@@ -1,10 +1,15 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('Pear2Pear', [
+var pear2pear = angular.module('Pear2Pear', [
   'ngRoute',
-  'Pear2Pear.version'
+  'Pear2Pear.version',
+  'tasks'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/'});
+ $routeProvider.
+      when('/tasks', {
+        templateUrl: 'tasks/tasks.html',
+        controller: 'TasksCtrl'
+      }).otherwise({redirectTo: '/'});
 }]);
