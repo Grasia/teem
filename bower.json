@@ -10,6 +10,7 @@
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
+    "angular-translate": "~2.4.0",
     "html5-boilerplate": "~4.3.0",
     "mobile-angular-ui": "~1.1.0-beta.30"
   }

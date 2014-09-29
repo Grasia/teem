@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title translate>page_title</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
@@ -19,10 +19,8 @@
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="/">Pear2Pear</a></li>
-  </ul>
 
+  <h1>{{ 'page_title' | translate }}</h1>
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -36,8 +34,11 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
   <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
   <script src="app.js"></script>
+  <script src="components/i18n/en.js"></script>
+  <script src="components/i18n/es.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
