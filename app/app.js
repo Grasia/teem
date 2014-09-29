@@ -3,8 +3,10 @@
 // Declare app level module which depends on views, and components
 var pear2pear = angular.module('Pear2Pear', [
   'ngRoute',
+  'tasks',
+  'pascalprecht.translate',
   'Pear2Pear.version',
-  'tasks'
+  'mobile-angular-ui'
 ]).
 config(['$routeProvider', function($routeProvider) {
  $routeProvider.
