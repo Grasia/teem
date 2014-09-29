@@ -11,7 +11,6 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
-    "fontawesome": "4.2.x",
     "mobile-angular-ui": "~1.1.0-beta.30"
   }
 }
