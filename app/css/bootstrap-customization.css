@@ -1,0 +1,72 @@
+@font-face {
+	font-family: "Dax Wide Regular";
+	src: url(fonts/dax-wide-regular.ttf);
+}
+
+@font-face {
+	font-family: "Verdana";
+	src: url(fonts/verdana.ttf);
+}
+
+@font-face {
+	font-family: "Verdana Bold";
+	src: url(fonts/verdana-bold.ttf);
+}
+
+@font-face {
+	font-family: "Cookie";
+	src: url(fonts/cookie-regular.ttf);
+}
+
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+	line-height: 1.5;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+body {
+	font-family: "Verdana", sans-serif;
+	font-size: 62.5%;
+	height: 100%;
+	background: url(../images/footer.png) center bottom repeat-x;
+	background-color: #f9f9f9}
+	
+.container {
+	max-width: 600px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #f9f9f9;
+}
+
+label {
+	font-size: 1.4em;
+	color: #999999;
+}
+
+.navbar-default {
+  background-color: #f9f9f9;
+  border: 0px;
+  border-top: solid #e2e2e2 1px;
+  border-bottom: solid #e2e2e2 1px;
+  border-radius: 0px;
+}
+
+.navbar {
+	min-height: 30px;
+}
+
+.btn-info {
+	color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da;
+}
+
+.fa {
+	color: #47c9eb;
+}
+
+.select2-container, .select2-drop {
+	font-size: 1.4em;
+}
