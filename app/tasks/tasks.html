@@ -1,16 +1,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title> Hello Tasks!</title>
-</head>
+  <head>
+    <title> Hello Tasks!</title>
+  </head>
 
-<body ng-app="tasks">
-  <h1>Hello tasks</h1>
-  <div class="col-md-12" ng-controller="TasksCtrl">
-    <div style="" ng-repeat="task in tasks">
+  <body ng-app="tasks">
+    <h2>Hello tasks</h2>
+    <div class="container">
+      <div class="col-md-12" ng-controller="TasksCtrl">
+        <div class="row job-item" ng-repeat="task in tasks">
+          <div class="col-md-12">
+            <div class="job-check-container pull-left">
+              <i ng-class="task.completed ? 'fa fa-square-o job-checkbox' : 'fa fa-check-square-o job-checkbox job-checkbox-checked' "></i>
+            </div>
+            <div class="job-media media">
+              <div class="media-body">
+                <h4 class = "media-heading job-name overflow-ellipsis">
+                  {{task.name}}
+                </h4>
+                <span ng-repeat="asig in task.assignees" class="job-assignees">
+                    {{asig.name +  ($last ? '' : ', ')}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
-    
-  </div>
-  <script src="../bower_components/angular/angular.js"></script>
-  <script src="tasks.js"></script>
-</body>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="tasks.js"></script>
+  </body>
 </html>
