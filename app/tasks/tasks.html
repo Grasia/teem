@@ -8,9 +8,9 @@
     <div class="container">
       <div class="col-md-12" ng-controller="TasksCtrl">
         <div class="row job-item" ng-repeat="task in tasks">
-          <div class="col-md-12">
-            <div class="job-check-container pull-left">
-              <i ng-class="task.completed ? 'fa fa-square-o job-checkbox' : 'fa fa-check-square-o job-checkbox job-checkbox-checked' "></i>
+          <div ng-click="editTask(task)" class="col-md-12">
+            <div ng-click="toggleCompleted(task)" class="job-check-container pull-left">
+              <div ng-class="task.completed ? 'fa fa-square-o job-checkbox' : 'fa fa-check-square-o job-checkbox job-checkbox-checked' "></div>
             </div>
             <div class="job-media media">
               <div class="media-body">
@@ -18,7 +18,7 @@
                   {{task.name}}
                 </h4>
                 <span ng-repeat="asig in task.assignees" class="job-assignees">
-                    {{asig.name +  ($last ? '' : ', ')}}
+                  {{asig.name +  ($last ? '' : ', ')}}
                 </span>
               </div>
             </div>
@@ -31,3 +31,4 @@
     <script src="tasks.js"></script>
   </body>
 </html>
+

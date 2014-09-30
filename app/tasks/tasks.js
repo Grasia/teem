@@ -1,31 +1,48 @@
 'use strict';
 
-var tasks = angular.module('tasks', []); 
+var tasks = angular.module('tasks', []);
 tasks.controller('TasksCtrl', ['$scope', function($scope){
-  $scope.tasks = 
+
+  $scope.tasks =
     [
       {
-        name: "Task1", 
+        id: "1",
+        name: "Task1",
         description: "Description1",
         completed: true,
         assignees: [
-          {name: "Antonio"
+          {
+            name: "Antonio"
           },
-          {name: "Pablo"
+          {
+            name: "Pablo"
           },
-          {name: "Samer"
+          {
+            name: "Samer"
           },
-          {name: "Juan"
-          },          
+          {
+            name: "Juan"
+          },
         ]
       },
       {
+        id:2,
         name: "Task2",
         completed: false,
         description: "Description2",
-assignees: [         
+        assignees: [
         ]
       }
-    ]
-  ;
-}]); 
+    ];
+
+  $scope.toggleCompleted = function(task){
+    task.completed = !task.completed;
+  };
+
+  $scope.editTask = function(task){
+    $location.path("task:"+task.id);
+  };
+  $scope.alert = function(message){
+    alert(message);
+  };
+}]);
