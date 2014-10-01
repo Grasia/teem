@@ -15,20 +15,30 @@
   <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-hover.min.css" />
   <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css" />
   <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.min.css" />
-  <link rel="stylesheet" href="css/bootstrap-customization.css"/>
+  <link rel="stylesheet" href="css/mangular-customization.css"/>
   <link rel="stylesheet" href="app.css"/>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
 
-  <ul class="menu">
-    <li><a href="/app">Pear2Pear</a></li>
-    <li><a href="#/tasks">tasks</a></li>
+  <div class="app">
+    <div class="navbar navbar-app navbar-absolute-top">
+      <div class="navbar-brand navbar-brand-center" yield-to="nav-title"></div>
+  
+      <div class="btn-group pull-left">
+        <div class="btn btn-navbar" yield-to="nav-left"></div>
+      </div>
+  
+      <div class="btn-group pull-right">
+        <div class="btn btn-navbar" yield-to="nav-right"></div>
+      </div>
+    </div>
 
-  </ul>
-
-  <div class="container" ng-view></div>
+    <div class="app-body">
+      <div class="container" ng-view></div>
+    </div>
+  </div>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

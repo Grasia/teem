@@ -3,6 +3,9 @@
     "add_participant": "Añadir participante",
     "edit": "Editar",
     "leave": "Abandonar esta comunidad",
+    "index": {
+      "title": "Mis comunidades"
+    },
     "name": "Nombre de la comunidad",
     "participants": "Gente en la comunidad"
   },

@@ -30,8 +30,12 @@ body {
 	font-family: "Verdana", sans-serif;
 	font-size: 62.5%;
 	height: 100%;
+}
+
+.app {
 	background: url(../images/footer.png) center bottom repeat-x;
-	background-color: #f9f9f9}
+	background-color: #f9f9f9
+}
 	
 .container {
 	max-width: 600px;
