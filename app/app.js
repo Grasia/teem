@@ -8,7 +8,8 @@ var pear2pear = angular.module('Pear2Pear', [
   'Pear2Pear.communities',
   'Pear2Pear.tasks',
   'pascalprecht.translate',
-  'mobile-angular-ui'
+  'mobile-angular-ui',
+  'ui.select'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
