@@ -9,9 +9,9 @@
     <form role="form">
       <div class="input-group">
         <label class="control-label sr-only" for="login" translate>login.name</label>
-        <input type="text" class="form-control" id="login" placeholder="{{ 'login.name' | translate }}">
+        <input type="text" class="form-control" id="login" ng-model="name" placeholder="{{ 'login.name' | translate }}">
         <span class="input-group-btn">
-          <button type="button" class="btn btn-info" translate>login.button</button>
+          <button type="button" class="btn btn-info" ng-click="create()" translate>login.button</button>
         </span>
       </div>
     </form>
