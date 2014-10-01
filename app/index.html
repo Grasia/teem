@@ -28,13 +28,11 @@
 
   </ul>
 
+  <div class="container" ng-view></div>
+
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-
-  <div ng-view></div>
-
-  <div>Pear2Pear: v<span app-version></span></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -44,8 +42,9 @@
   <script src="bower_components/angular-translate/angular-translate.js"></script>
   <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
   <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
-  <script src="tasks/tasks.js"> </script>
   <script src="app.js"></script>
+  <script src="tasks/tasks.js"> </script>
+  <script src="session/session.js"> </script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
