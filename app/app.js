@@ -11,11 +11,11 @@ var pear2pear = angular.module('Pear2Pear', [
 config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/tasks/:id', {
-            templateUrl: 'tasks/editTask.html',
+            templateUrl: 'tasks/edit.html',
             controller:'EditTaskCtrl'
         }).
         when('/tasks', {
-            templateUrl: 'tasks/tasks.html',
+            templateUrl: 'tasks/index.html',
             controller: 'TasksCtrl'
         })
         .otherwise({redirectTo: '/'});
