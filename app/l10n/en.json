@@ -1,4 +1,13 @@
 {
+  "tasks": {
+    "new_task" : "New task",
+    "reminders" : "My reminders",
+    "task_assigned_to" : "Assigned to",
+    "task_checkbox_tip" : "Click done tasks here",
+    "task_description" : "Task description",
+    "task_list" : "Task list",
+    "task_name" : "Task name"
+  },
   "community": {
     "add_participant": "Add participant",
     "edit": "Edit",

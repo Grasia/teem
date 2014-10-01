@@ -1,11 +1,11 @@
 <div class="col-md-12">
   <form class="job-form" role="form">
     <div class="form-group">
-      <label class="control-label"></label>
+      <label class="control-label" translate>tasks.task_name</label>
       <input id="task_name" class="form-control" type="text" ng-value="getTask().name"></input>
     </div>
     <div class="form-group">
-      <label class="control-label"></label>
+      <label class="control-label" translate>tasks.task_assigned_to</label>
        <ui-select multiple ng-model="assigSelect.assignees" theme="select2">
          <!-- ng-disabled="disabled"> -->
           <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
@@ -13,6 +13,11 @@
             {{user.name}}
           </ui-select-choices>
         </ui-select>
+    </div>
+    <div class="form-group">
+      <label class="control-label" translate>tasks.task_description</label>
+      <textarea ng-value="getTask().description" class="form-control">
+      </textarea>
     </div>
   </form>
 </div>

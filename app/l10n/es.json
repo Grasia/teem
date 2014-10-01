@@ -1,4 +1,13 @@
 {
+  "tasks": {
+    "new_task" : "Nueva tarea",
+    "reminders" : "Mis recordatorios",
+    "task_assigned_to" : "Asignada a",
+    "task_checkbox_tip" : "Haz click aquí en las tareas terminadas",
+    "task_description" : "Descripción de la tarea",
+    "task_list" : "Lista de tareas",
+    "task_name" : "Nombre de la tarea"
+  },
   "community": {
     "add_participant": "Añadir participante",
     "edit": "Editar",

@@ -65,7 +65,6 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($
 
 var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
   $scope.taskId = $routeParams.id;
-
   $scope.getTask = function(){
     // TODO use backend
 
