@@ -1,3 +1,9 @@
 {
+  "login": {
+    "button": "Entrar",
+    "name": "Nombre",
+    "tip": "Empieza introduciendo tu nombre",
+    "welcome_msg": "Bienvenid@ a Pear to Pear. Una herramienta para participar en tus grupos y comunidades"
+  },
   "page_title": "Prototipo P2Pvalue"
 }
