@@ -1,6 +1,19 @@
 'use strict';
 
 var tasks = angular.module('Pear2Pear.tasks', []);
+
+tasks.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.
+    when('/tasks', {
+      templateUrl: 'tasks/index.html',
+      controller: 'TasksCtrl'
+    }).
+    when('/tasks/:id', {
+      templateUrl: 'tasks/edit.html',
+      controller:'EditTaskCtrl'
+    });
+}]);
+
 var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($scope, $location){
 
   $scope.tasks =

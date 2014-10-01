@@ -12,22 +12,6 @@ var pear2pear = angular.module('Pear2Pear', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/session/new', {
-      templateUrl: 'session/new.html',
-      controller:'SessionCtrl'
-    }).
-    when('/communities', {
-      templateUrl: 'communities/index.html',
-      controller: 'CommunitiesCtrl'
-    }).
-    when('/tasks', {
-      templateUrl: 'tasks/index.html',
-      controller: 'TasksCtrl'
-    }).
-    when('/tasks/:id', {
-      templateUrl: 'tasks/edit.html',
-      controller:'EditTaskCtrl'
-    }).
     when('/', {
       redirectTo: '/session/new'
     });
