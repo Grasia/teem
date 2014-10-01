@@ -1,6 +1,10 @@
 {
   "community": {
-    "edit": "Editar"
+    "add_participant": "Añadir participante",
+    "edit": "Editar",
+    "leave": "Abandonar esta comunidad",
+    "name": "Nombre de la comunidad",
+    "participants": "Gente en la comunidad"
   },
   "login": {
     "button": "Entrar",

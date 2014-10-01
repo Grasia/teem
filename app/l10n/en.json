@@ -1,6 +1,10 @@
 {
   "community": {
-    "edit": "Edit"
+    "add_participant": "Add participant",
+    "edit": "Edit",
+    "leave": "Leave this community",
+    "name": "Community name",
+    "participants": "People in the community"
   },
   "login": {
     "button": "Login",
