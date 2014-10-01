@@ -15,15 +15,17 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'session/new.html',
       controller:'SessionCtrl'
     }).
+    when('/tasks', {
+      templateUrl: 'tasks/index.html',
+      controller: 'TasksCtrl'
+    }).
     when('/tasks/:id', {
       templateUrl: 'tasks/edit.html',
       controller:'EditTaskCtrl'
     }).
-    when('/tasks', {
-      templateUrl: 'tasks/index.html',
-      controller: 'TasksCtrl'
-    })
-    .otherwise({redirectTo: '/session/new'});
+    when('/', {
+      redirectTo: '/session/new'
+    });
 }])
 .config(function($translateProvider) {
   $translateProvider.useStaticFilesLoader({
