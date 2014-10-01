@@ -19,4 +19,12 @@ config(['$routeProvider', function($routeProvider) {
             controller: 'TasksCtrl'
         })
         .otherwise({redirectTo: '/'});
-}]);
+}])
+.config(function($translateProvider) {
+  $translateProvider.useStaticFilesLoader({
+    prefix: 'l10n/',
+    suffix: '.json'
+  });
+
+  $translateProvider.preferredLanguage('en');
+});
