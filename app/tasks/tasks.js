@@ -1,6 +1,6 @@
 'use strict';
 
-var tasks = angular.module('tasks', []);
+var tasks = angular.module('Pear2Pear.tasks', []);
 var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($scope, $location){
 
   $scope.tasks =

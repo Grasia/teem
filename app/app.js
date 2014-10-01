@@ -5,7 +5,7 @@ var pear2pear = angular.module('Pear2Pear', [
   'ngRoute',
   'Pear2Pear.version',
   'Pear2Pear.session',
-  'tasks',
+  'Pear2Pear.tasks',
   'pascalprecht.translate',
   'mobile-angular-ui'
 ]).
