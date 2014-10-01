@@ -4,7 +4,7 @@ var tasks = angular.module('Pear2Pear.tasks', []);
 
 tasks.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/tasks', {
+    when('/communities/:community_id/tasks', {
       templateUrl: 'tasks/index.html',
       controller: 'TasksCtrl'
     }).

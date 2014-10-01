@@ -251,6 +251,7 @@
 
 .community-item-name {
     font: 1.8em "Dax Wide Regular", sans-serif;
+    cursor: pointer;
 }
 
 .community-form {

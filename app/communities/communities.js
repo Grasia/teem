@@ -49,4 +49,8 @@ angular.module('Pear2Pear.communities', [])
   $scope.edit = function(id) {
     $location.path('/communities/' + id + '/edit');
   };
+
+  $scope.show_tasks = function(id) {
+    $location.path('/communities/' + id + '/tasks');
+  };
 }]);
