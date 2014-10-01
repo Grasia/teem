@@ -8,11 +8,11 @@
     <div class="container">
       <div class="col-md-12" ng-controller="TasksCtrl">
         <div class="row job-item" ng-repeat="task in tasks">
-          <div ng-click="editTask(task)" class="col-md-12">
+          <div class="col-md-12">
             <div ng-click="toggleCompleted(task)" class="job-check-container pull-left">
               <div ng-class="task.completed ? 'fa fa-square-o job-checkbox' : 'fa fa-check-square-o job-checkbox job-checkbox-checked' "></div>
             </div>
-            <div class="job-media media">
+            <div ng-click="editTask(task)" class="job-media media">
               <div class="media-body">
                 <h4 class = "media-heading job-name overflow-ellipsis">
                   {{task.name}}
@@ -27,8 +27,8 @@
       </div>
       
     </div>
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="tasks.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="tasks/tasks.js"></script>
   </body>
 </html>
 

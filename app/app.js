@@ -9,9 +9,14 @@ var pear2pear = angular.module('Pear2Pear', [
   'mobile-angular-ui'
 ]).
 config(['$routeProvider', function($routeProvider) {
- $routeProvider.
-      when('/tasks', {
-        templateUrl: 'tasks/tasks.html',
-        controller: 'TasksCtrl'
-      }).otherwise({redirectTo: '/'});
+    $routeProvider.
+        when('/tasks/:id', {
+            templateUrl: 'tasks/editTask.html',
+            controller:'EditTaskCtrl'
+        }).
+        when('/tasks', {
+            templateUrl: 'tasks/tasks.html',
+            controller: 'TasksCtrl'
+        })
+        .otherwise({redirectTo: '/'});
 }]);

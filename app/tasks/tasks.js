@@ -1,7 +1,7 @@
 'use strict';
 
 var tasks = angular.module('tasks', []);
-tasks.controller('TasksCtrl', ['$scope', function($scope){
+var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($scope, $location){
 
   $scope.tasks =
     [
@@ -40,9 +40,41 @@ tasks.controller('TasksCtrl', ['$scope', function($scope){
   };
 
   $scope.editTask = function(task){
-    $location.path("task:"+task.id);
+      $location.path('tasks/' + task.id);
   };
+ 
   $scope.alert = function(message){
     alert(message);
   };
+    
+    
+}]);
+
+var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {  
+    $scope.taskId = $routeParams.id;
+  
+    $scope.getTask = function(){
+        // TODO use backend
+        
+        return {
+            id: "1",
+            name: "Task1",
+            description: "Description1",
+            completed: true,
+            assignees: [
+                {
+                    name: "Antonio"
+                },
+                {
+                    name: "Pablo"
+                },
+                {
+                    name: "Samer"
+                },
+                {
+                    name: "Juan"
+                },
+            ]
+        };
+    };
 }]);
