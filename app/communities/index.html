@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12">
+      <div class="empty-communities-tip hidden">
+          <span class="empty-communities-tip-msg" translate>community.tip.empty</span> 
+      </div>
+      <div class="communities">
+        <div class="row community-item" ng-repeat="community in communities">
+          <div class="col-md-12"> 
+            <div class="pull-left community-item-name" title="Tasks of the community">{{ community.name }}</div>
+            <div class="btn-group pull-right">
+              <button class="btn btn-default community-edit" type="button" translate>community.edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="group-task-tip hidden" translate>community.tip.task</div>
+    </div>
+  </div>
+</div>

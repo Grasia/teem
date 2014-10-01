@@ -1,4 +1,7 @@
 {
+  "community": {
+    "edit": "Edit"
+  },
   "login": {
     "button": "Login",
     "name": "Name",
