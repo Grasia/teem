@@ -1,6 +1,6 @@
 'use strict';
 
-var tasks = angular.module('Pear2Pear.tasks', ["ui.select"]);
+var tasks = angular.module('Pear2Pear.tasks', ['ui.select', 'ui.bootstrap', 'ui.bootstrap.datetimepicker']);
 
 tasks.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -65,10 +65,7 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($
 
 var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
   $scope.taskId = $routeParams.id;
-  $scope.getTask = function(){
-    // TODO use backend
-
-    return {
+  $scope.task = {
       id: "1",
       name: "Task1",
       description: "Description1",
@@ -88,7 +85,11 @@ var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', f
         }
       ]
     };
-  };
+  $scope.getTask = function(){
+    // TODO use backend
+
+    return $scope.task;
+  }
   //TODO backend
   $scope.groupUsers =  [
     {

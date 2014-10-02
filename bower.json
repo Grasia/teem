@@ -16,6 +16,8 @@
     "mobile-angular-ui": "~1.1.0-beta.30",
     "jquery": "~2.1.0",
     "select2": "3.5.1",
-    "angular-ui-select":"0.7.0"
+    "angular-ui-select": "0.7.0",
+    "angular-bootstrap-datetimepicker": "latest",
+    "angular-bootstrap": "~0.11.2"
   }
 }
