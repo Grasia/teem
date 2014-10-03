@@ -6,7 +6,9 @@
     "task_checkbox_tip" : "Haz click aquí en las tareas terminadas",
     "task_description" : "Descripción de la tarea",
     "task_list" : "Lista de tareas",
-    "task_name" : "Nombre de la tarea"
+    "task_name" : "Nombre de la tarea",
+    "deadline" : "Fecha límite",
+    "reminders" : "Mis recordatorios"
   },
   "community": {
     "add_participant": "Añadir participante",

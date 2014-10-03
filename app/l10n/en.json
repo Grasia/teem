@@ -6,7 +6,9 @@
     "task_checkbox_tip" : "Click done tasks here",
     "task_description" : "Task description",
     "task_list" : "Task list",
-    "task_name" : "Task name"
+    "task_name" : "Task name",
+    "deadline" : "Deadline",
+    "reminders" : "My reminders"
   },
   "community": {
     "add_participant": "Add participant",

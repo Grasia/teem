@@ -1,6 +1,6 @@
 'use strict';
 
-var tasks = angular.module('Pear2Pear.tasks', ['ui.select', 'ui.bootstrap', 'ui.bootstrap.datetimepicker']);
+var tasks = angular.module('Pear2Pear.tasks', ['ui.select', 'mgcrea.ngStrap']);
 
 tasks.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -85,11 +85,13 @@ var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', f
         }
       ]
     };
+
   $scope.getTask = function(){
     // TODO use backend
 
     return $scope.task;
   }
+
   //TODO backend
   $scope.groupUsers =  [
     {
@@ -111,11 +113,24 @@ var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', f
       name: "Laura"
     }
   ];
+  // //TODO backend
+  $scope.reminders = [
+    {
+        date : new Date() //.parse("November 1, 2014 10:15 AM")
+    },
+          
+    {date : new Date()//.parse("November 12, 2014 11:15 PM")
+    }
+  ];
+  $scope.getReminders = function(taskId, userId){
+    return $scope.reminders;
+  };
   $scope.assigSelect = {};
   $scope.assigSelect.assignees = [
     $scope.groupUsers[0],$scope.groupUsers[1],
     $scope.groupUsers[2],$scope.groupUsers[3]
   ];
+
 }]);
 
 editTaskCtrl.config(function(uiSelectConfig) {
