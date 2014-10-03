@@ -1,0 +1,25 @@
+### Setup
+
+Cordova plugins are not tracked in the version control. There must be initialized:
+
+Initialize Android platform:
+
+  cordova platform add android
+
+Calendar plugin:
+
+  cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
+
+### Run the application in the Android emulator
+
+  cordova emulate android
+
+
+### Debugging the app in Android
+
+The app can be accessed and debugged using [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
+
+You need to include the following in the `<head>` of `www/index.html`, changing `external-ip` with
+the ip of your internet device (eth0, wlan0, etc..)
+
+  <script src="http://[external-ip]:8080/target/target-script-min.js#anonymous"></script>
