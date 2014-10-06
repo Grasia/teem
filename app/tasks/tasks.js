@@ -1,6 +1,8 @@
 'use strict';
 
-var tasks = angular.module('Pear2Pear.tasks', ['ui.select', 'mgcrea.ngStrap']);
+var tasks = angular.module('Pear2Pear.tasks', ['ui.select', 'ui.bootstrap']);
+
+tasks.constant("Modernizr", Modernizr);
 
 tasks.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -60,10 +62,9 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($
     alert(message);
   };
 
-
 }]);
 
-var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', 'Modernizr', function($scope, $routeParams, Modernizr) {
   $scope.taskId = $routeParams.id;
   $scope.task = {
       id: "1",
@@ -130,6 +131,18 @@ var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', f
     $scope.groupUsers[0],$scope.groupUsers[1],
     $scope.groupUsers[2],$scope.groupUsers[3]
   ];
+
+  $scope.supportsDateInput = Modernizr.inputtypes.date;
+  $scope.supportsTimeInput = Modernizr.inputtypes.time;
+
+  $scope.openDate = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {};
 
 }]);
 

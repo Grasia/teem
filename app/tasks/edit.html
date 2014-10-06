@@ -21,11 +21,22 @@
     <div class="form-group">
       <label class="control-label" translate>tasks.deadline</label>
       <div class="row">
-        <div class="col-sm-6">
-          <input type="date" class="form-control" ng-model="getTask().deadline" data-autoclose="1" placeholder="{{date}}" bs-datepicker/>
+        <div class="col-sm-6" ng-if="supportsDateInput">
+          <input type="date" class="form-control" ng-model="getTask().deadline" />
         </div>
-        <div class="col-sm-6">
-          <input type="time" class="form-control" ng-model="getTask().deadline" data-autoclose="1" placeholder="{{time}}" bs-timepicker/>
+        <div class="col-sm-6" ng-if="! supportsDateInput">
+          <div class="input-group datepicker">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="getTask().deadline" is-open="opened" datepicker-options="dateOptions"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openDate($event)"><i class="fa fa-calendar"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-6" ng-if="supportsTimeInput">
+          <input type="time" class="form-control" ng-model="getTask().deadline" data-autoclose="1" placeholder="{{time}}"/>
+        </div>
+        <div class="col-sm-6" ng-if="! supportsTimeInput">
+          <timepicker ng-model="getTask().deadline"></timepicker>
         </div>
       </div>
     </div>

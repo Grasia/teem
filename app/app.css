@@ -268,3 +268,7 @@ button.generic-edit {
 .reminder-date-picker{
   display: block;
 }
+
+.datepicker {
+  margin-top: 45px;
+}
