@@ -136,11 +136,11 @@
   text-decoration: line-through;
 }
 
-.job-completed {
+.task-completed {
   background-color: #efeded;
 }
 
-.job-item {
+.task-item {
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: normal;
@@ -148,33 +148,33 @@
   border-bottom: solid #e2e2e2 1px;
 }
 
-.job-check-container {
+.task-check-container {
   padding-top: 3%;
   width: 50px;
 }
 
-.job-checkbox {
+.task-checkbox {
   font-size: 3em;
   color: #d8d8d8;
 }
 
-.job-checkbox-checked {
+.task-checkbox-checked {
   color: #f6A247;
 }
 
-.job-name {
+.task-name {
   font: 1.8em "Dax Wide Regular", sans-serif;
   color: #696969;
   font-weight: bold;
 }
 
-.job-assignees {
+.task-assignees {
   font: 1.5em "Dax Wide Regular";
   color: #696969;
   margin-top: 5px;
 }
 
-.job-form {
+.task-form {
   padding-top: 10px;
 }
 
