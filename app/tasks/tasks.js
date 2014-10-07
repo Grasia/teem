@@ -10,13 +10,18 @@ tasks.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'tasks/index.html',
       controller: 'TasksCtrl'
     }).
+    when('/communities/:community_id/tasks/new', {
+      templateUrl: 'tasks/new.html',
+      controller: 'TasksCtrl'
+    }).
+
     when('/tasks/:id', {
       templateUrl: 'tasks/edit.html',
-      controller:'EditTaskCtrl'
+      controller:'TasksCtrl'
     });
 }]);
 
-var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($scope, $location){
+var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', '$routeParams', 'Modernizr', function($scope, $location, $routeParams, Modernizr){
 
   $scope.tasks =
     [
@@ -54,83 +59,90 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($
     task.completed = !task.completed;
   };
 
-  $scope.editTask = function(task){
+  $scope.edit = function(task){
     $location.path('tasks/' + task.id);
   };
 
-  $scope.alert = function(message){
-    alert(message);
+  $scope.community_show = function() {
+    $location.path('communities/' + $routeParams.community_id);
   };
 
-}]);
-
-var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', 'Modernizr', function($scope, $routeParams, Modernizr) {
-  $scope.taskId = $routeParams.id;
-  $scope.task = {
-      id: "1",
-      name: "Task1",
-      description: "Description1",
-      completed: true,
-      assignees: [
-        {
-          name: "Antonio"
-        },
-        {
-          name: "Pablo"
-        },
-        {
-          name: "Samer"
-        },
-        {
-          name: "Juan"
-        }
-      ]
-    };
-
-  $scope.getTask = function(){
+  var getTask = function(){
     // TODO use backend
-
-    return $scope.task;
-  }
-
-  //TODO backend
-  $scope.groupUsers =  [
-    {
-      name: "Antonio"
-    },
-    {
-      name: "Pablo"
-    },
-    {
-      name: "Samer"
-    },
-    {
-      name: "Juan"
-    },
-    {
-      name: "Jorge"
-    },
-    {
-      name: "Laura"
+    if ($routeParams) {
+      return {
+        id: "1",
+        name: "Task1",
+        description: "Description1",
+        community_id: 1,
+        completed: true,
+        assignees: [
+          {
+            name: "Antonio"
+          },
+          {
+            name: "Pablo"
+          },
+          {
+            name: "Samer"
+          },
+          {
+            name: "Juan"
+          }
+        ],
+        reminders: [
+          {
+            date : new Date() //.parse("November 1, 2014 10:15 AM")
+          },
+          {
+            date : new Date()//.parse("November 12, 2014 11:15 PM")
+          }
+        ]
+      };
+    } else {
+      return {
+        reminders: []
+      };
     }
-  ];
-  // //TODO backend
-  $scope.reminders = [
-    {
-        date : new Date() //.parse("November 1, 2014 10:15 AM")
-    },
-          
-    {date : new Date()//.parse("November 12, 2014 11:15 PM")
-    }
-  ];
-  $scope.getReminders = function(taskId, userId){
-    return $scope.reminders;
   };
-  $scope.assigSelect = {};
-  $scope.assigSelect.assignees = [
-    $scope.groupUsers[0],$scope.groupUsers[1],
-    $scope.groupUsers[2],$scope.groupUsers[3]
-  ];
+
+  $scope.task = getTask();
+
+  var getCommunity = function() {
+    //TODO backend
+    if ($routeParams.community_id || $scope.task && $scope.task.community_id) {
+      return {
+        id: $routeParams.community_id,
+        name: "UCM P2Pvalue",
+        users: [
+          {
+            name: "Antonio"
+          },
+          {
+            name: "Pablo"
+          },
+          {
+            name: "Samer"
+          },
+          {
+            name: "Juan"
+          },
+          {
+            name: "Jorge"
+          },
+          {
+            name: "Laura"
+          }
+        ]
+      };
+    }
+  };
+
+  $scope.community = getCommunity();
+
+  $scope.assigSelect = {
+    assignees: $scope.community.users
+  };
 
   $scope.supportsDateInput = Modernizr.inputtypes.date;
   $scope.supportsTimeInput = Modernizr.inputtypes.time;
@@ -146,6 +158,6 @@ var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', '
 
 }]);
 
-editTaskCtrl.config(function(uiSelectConfig) {
+tasksCtrl.config(function(uiSelectConfig) {
   uiSelectConfig.theme = 'select2';
 });

@@ -2,47 +2,47 @@
   <form class="task-form" role="form">
     <div class="form-group">
       <label class="control-label" translate>tasks.task_name</label>
-      <input id="task_name" class="form-control" type="text" ng-value="getTask().name"></input>
+      <input id="task_name" class="form-control" type="text" ng-value="task.name"></input>
     </div>
     <div class="form-group">
       <label class="control-label" translate>tasks.task_assigned_to</label>
       <ui-select multiple ng-model="assigSelect.assignees" theme="bootstrap">
         <!-- ng-disabled="disabled"> -->
         <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
-        <ui-select-choices repeat="user in groupUsers | filter:$select.search">
+        <ui-select-choices repeat="user in community.users | filter:$select.search">
           {{user.name}}
         </ui-select-choices>
       </ui-select>
     </div>
     <div class="form-group">
       <label class="control-label" translate>tasks.task_description</label>
-      <textarea class="form-control">{{getTask().description}}</textarea>
+      <textarea class="form-control">{{task.description}}</textarea>
     </div>
     <div class="form-group">
       <label class="control-label" translate>tasks.deadline</label>
       <div class="row">
         <div class="col-sm-6" ng-if="supportsDateInput">
-          <input type="date" class="form-control" ng-model="getTask().deadline" />
+          <input type="date" class="form-control" ng-model="task.deadline" />
         </div>
         <div class="col-sm-6" ng-if="! supportsDateInput">
           <div class="input-group datepicker">
-            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="getTask().deadline" is-open="opened" datepicker-options="dateOptions"/>
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="task.deadline" is-open="opened" datepicker-options="dateOptions"/>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="openDate($event)"><i class="fa fa-calendar"></i></button>
             </span>
           </div>
         </div>
         <div class="col-sm-6" ng-if="supportsTimeInput">
-          <input type="time" class="form-control" ng-model="getTask().deadline" data-autoclose="1" placeholder="{{time}}"/>
+          <input type="time" class="form-control" ng-model="task.deadline" data-autoclose="1" placeholder="{{time}}"/>
         </div>
         <div class="col-sm-6" ng-if="! supportsTimeInput">
-          <timepicker ng-model="getTask().deadline"></timepicker>
+          <timepicker ng-model="task.deadline"></timepicker>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label" translate>tasks.reminders</label>
-      <div class="row" ng-repeat="reminder in getReminders()">
+      <div class="row" ng-repeat="reminder in task.reminders">
         <div class="col-sm-6">
           <input type="date"  class="form-control" ng-model="reminder.date" data-autoclose="1" placeholder="{{date}}" bs-datepicker/>
         </div>

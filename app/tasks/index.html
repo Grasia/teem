@@ -1,9 +1,9 @@
 <div content-for="nav-title">
-  <div class="community-name overflow-ellipsis">atd</div>
+  <div class="community-name overflow-ellipsis">{{community.name}}</div>
   <div class="task-index" translate>tasks.index.title</div>
 </div>
 <div content-for="nav-left">
-  <div ng-click="$window.history.back"><i class="fa fa-chevron-left"></i></div>
+  <div ng-click="community_show()"><i class="fa fa-chevron-left"></i></div>
 </div>
 <div content-for="nav-right">
   <div ng-click="new()"><i class="fa fa-plus"></i></div>
@@ -15,7 +15,7 @@
       <div ng-click="toggleCompleted(task)" class="task-check-container pull-left">
         <div ng-class="task.completed ? 'fa fa-square-o task-checkbox' : 'fa fa-check-square-o task-checkbox task-checkbox-checked' "></div>
       </div>
-      <div ng-click="editTask(task)" class="task-media media">
+      <div ng-click="edit(task)" class="task-media media">
         <div class="media-body">
           <h4 class = "media-heading task-name overflow-ellipsis">
             {{task.name}}
