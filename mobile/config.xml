@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+<widget id="eu.p2pvalue.pear2pear" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Pear2Pear</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+Pear2Pear is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)
+
+http://p2pvalue.eu/
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-    <content src="index.html" />
+    <content src="http://192.168.175.104:8000/app/?cordova=true" />
     <access origin="*" />
     <platform name="android">
       <icon src="res/icon.png" density="ldpi" />
@@ -15,5 +17,5 @@
       <icon src="res/icon.png" density="hdpi" />
       <icon src="res/icon.png" density="xhdpi" />
     </platform>
-    <icon src="img/logo.png" />
+    <icon src="res/icon.png" />
 </widget>

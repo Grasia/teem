@@ -1,7 +1,7 @@
 {
   "name": "pear2pear",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "Pear2Pear is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
   "repository": "https://github.com/P2Pvalue/pear2pear",
   "license": "AGPL",
@@ -17,7 +17,7 @@
     "postinstall": "bower install",
 
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1",
+    "start": "http-server -a 0.0.0.0 -p 8000 -c-1",
 
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
