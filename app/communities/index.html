@@ -1,6 +1,6 @@
 <div content-for="nav-title"><span translate>community.index.title</span></div>
 
-<div content-for="nav-right"><i class="fa fa-plus"></i></div>
+<div content-for="nav-right"><i class="fa fa-plus" ng-click="new()"></i></div>
 
 <div class="row">
   <div class="col-md-12">
@@ -12,7 +12,7 @@
           <div class="col-md-12"> 
             <div class="pull-left community-item-name" title="Tasks of the community">{{ community.name }}</div>
             <div class="btn-group pull-right">
-              <button class="btn btn-default community-edit" type="button" ng-click="edit(community.id); $event.stopPropagation()" translate>community.edit</button>
+              <button class="btn btn-default community-edit" type="button" ng-click="edit(community.id); $event.stopPropagation()" translate>community.edit.button</button>
             </div>
           </div>
         </div>

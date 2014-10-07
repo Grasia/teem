@@ -14,10 +14,17 @@
     "add_participant": "Añadir participante",
     "edit": "Editar",
     "leave": "Abandonar esta comunidad",
+    "edit": {
+      "button": "Editar",
+      "title": "Editar comunidad"
+    },
     "index": {
       "title": "Mis comunidades"
     },
     "name": "Nombre de la comunidad",
+    "new": {
+      "title": "Nueva comunidad"
+    },
     "participants": "Gente en la comunidad"
   },
   "login": {
