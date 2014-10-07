@@ -166,6 +166,7 @@
   font: 1.8em "Dax Wide Regular", sans-serif;
   color: #696969;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .task-assignees {
