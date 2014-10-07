@@ -59,14 +59,6 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', '$routePar
     task.completed = !task.completed;
   };
 
-  $scope.edit = function(task){
-    $location.path('tasks/' + task.id);
-  };
-
-  $scope.community_show = function() {
-    $location.path('communities/' + $routeParams.community_id);
-  };
-
   var getTask = function(){
     // TODO use backend
     if ($routeParams) {
@@ -108,9 +100,13 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', '$routePar
 
   $scope.task = getTask();
 
+  var communityId = function() {
+    return $routeParams.community_id || $scope.task && $scope.task.community_id;
+  };
+
   var getCommunity = function() {
     //TODO backend
-    if ($routeParams.community_id || $scope.task && $scope.task.community_id) {
+    if (communityId()) {
       return {
         id: $routeParams.community_id,
         name: "UCM P2Pvalue",
@@ -139,6 +135,23 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', '$routePar
   };
 
   $scope.community = getCommunity();
+
+  $scope.index = function() {
+    $location.path('communities/' + communityId()  + '/tasks');
+  };
+
+  $scope.edit = function(task){
+    $location.path('tasks/' + task.id);
+  };
+
+  $scope.community_index = function() {
+    $location.path('communities');
+  };
+
+  $scope.save = function() {
+    // TODO backend
+    $scope.index();
+  };
 
   $scope.assigSelect = {
     assignees: $scope.community.users
