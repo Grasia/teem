@@ -14,7 +14,6 @@ tasks.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'tasks/new.html',
       controller: 'TasksCtrl'
     }).
-
     when('/tasks/:id', {
       templateUrl: 'tasks/edit.html',
       controller:'TasksCtrl'
@@ -61,7 +60,7 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', '$routePar
 
   var getTask = function(){
     // TODO use backend
-    if ($routeParams) {
+    if ($routeParams.id) {
       return {
         id: "1",
         name: "Task1",
@@ -138,6 +137,10 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', '$routePar
 
   $scope.index = function() {
     $location.path('communities/' + communityId()  + '/tasks');
+  };
+
+  $scope.new = function(){
+    $location.path('communities/' + communityId() + '/tasks/new');
   };
 
   $scope.edit = function(task){
