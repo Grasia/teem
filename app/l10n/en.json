@@ -1,5 +1,8 @@
 {
   "tasks": {
+    "index": {
+      "title": "Task list"
+    },
     "new_task" : "New task",
     "reminders" : "My reminders",
     "task_assigned_to" : "Assigned to",
