@@ -1,5 +1,14 @@
 {
   "tasks": {
+    "edit": {
+      "title": "Editar tarea"
+    },
+    "index": {
+      "title": "Lista de tareas"
+    },
+    "new": {
+      "title": "Nueva tarea"
+    },
     "new_task" : "Nueva tarea",
     "reminders" : "Mis recordatorios",
     "task_assigned_to" : "Asignada a",
