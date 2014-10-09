@@ -14,14 +14,6 @@ Calendar plugin:
 
   cordova emulate android
 
-### Add cordova scripts and plugins to server
-
-After cordova and calendar plugin instalation go to app folder and run the script setUpAndroidCordova.sh:
-  cd app;
-  chmod +x setUpAndroidCordova.sh
-  ./setUpAndroidCordova.sh
-
-
 ### Debugging the app in Android
 
 The app can be accessed and debugged using [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
