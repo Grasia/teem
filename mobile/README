@@ -18,7 +18,15 @@ Calendar plugin:
 
 The app can be accessed and debugged using [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
 
+Run weinre:
+
+  weinre --boundHost 0.0.0.0
+
 You need to include the following in the `<head>` of `www/index.html`, changing `external-ip` with
 the ip of your internet device (eth0, wlan0, etc..)
 
   <script src="http://[external-ip]:8080/target/target-script-min.js#anonymous"></script>
+
+You can access weinre from your browser at:
+
+  http://[external-ip]:8080/client/#anonymous
