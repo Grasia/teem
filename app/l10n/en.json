@@ -1,7 +1,13 @@
 {
   "tasks": {
+    "edit": {
+      "title": "Edit task"
+    },
     "index": {
       "title": "Task list"
+    },
+    "new": {
+      "title": "New task"
     },
     "new_task" : "New task",
     "reminders" : "My reminders",

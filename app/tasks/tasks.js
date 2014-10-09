@@ -10,13 +10,17 @@ tasks.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'tasks/index.html',
       controller: 'TasksCtrl'
     }).
+    when('/communities/:community_id/tasks/new', {
+      templateUrl: 'tasks/new.html',
+      controller: 'TasksCtrl'
+    }).
     when('/tasks/:id', {
       templateUrl: 'tasks/edit.html',
-      controller:'EditTaskCtrl'
+      controller:'TasksCtrl'
     });
 }]);
 
-var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($scope, $location){
+var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', '$routeParams', 'Modernizr', function($scope, $location, $routeParams, Modernizr){
 
   $scope.tasks =
     [
@@ -54,91 +58,99 @@ var tasksCtrl = tasks.controller('TasksCtrl', ['$scope', '$location', function($
     task.completed = !task.completed;
   };
 
-  $scope.editTask = function(task){
-    $location.path('tasks/' + task.id);
-  };
-
-  $scope.alert = function(message){
-    alert(message);
-  };
-
-}]);
-
-var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', 'Modernizr', function($scope, $routeParams, Modernizr) {
-  $scope.taskId = $routeParams.id;
-  $scope.task = {
-    id: "1",
-    name: "Task1",
-    description: "Description1",
-    completed: true,
-    assignees: [
-      {
-        name: "Antonio"
-      },
-      {
-        name: "Pablo"
-      },
-      {
-        name: "Samer"
-      },
-      {
-        name: "Juan"
-      }
-    ]
-  };
-
-  $scope.getTask = function(){
+  var getTask = function(){
     // TODO use backend
-
-    return $scope.task;
-  }
-
-  //TODO backend
-  $scope.groupUsers =  [
-    {
-      name: "Antonio"
-    },
-    {
-      name: "Pablo"
-    },
-    {
-      name: "Samer"
-    },
-    {
-      name: "Juan"
-    },
-    {
-      name: "Jorge"
-    },
-    {
-      name: "Laura"
+    if ($routeParams.id) {
+      return {
+        id: "1",
+        name: "Task1",
+        description: "Description1",
+        community_id: 1,
+        completed: true,
+        assignees: [
+          {
+            name: "Antonio"
+          },
+          {
+            name: "Pablo"
+          },
+          {
+            name: "Samer"
+          },
+          {
+            name: "Juan"
+          }
+        ],
+        reminders: [
+          {
+            id: "reminder1",
+            date : new Date() //.parse("November 1, 2014 10:15 AM")
+          },
+          {
+            id: "reminder2",
+            date : new Date()//.parse("November 12, 2014 11:15 PM")
+          }
+        ]
+      };
+    } else {
+      return {
+        reminders: []
+      };
     }
-  ];
+  };
 
-  // //TODO backend
-  $scope.reminders = [
-    {
-      id:"reminder1",
-      date : new Date()
-    },
+  $scope.task = getTask();
+
+  var communityId = function() {
+    return $routeParams.community_id || $scope.task && $scope.task.community_id;
+  };
+
+  var getCommunity = function() {
+    //TODO backend
+    if (communityId()) {
+      return {
+        id: $routeParams.community_id,
+        name: "UCM P2Pvalue",
+        users: [
+          {
+            name: "Antonio"
+          },
+          {
+            name: "Pablo"
+          },
+          {
+            name: "Samer"
+          },
+          {
+            name: "Juan"
+          },
+          {
+            name: "Jorge"
+          },
+          {
+            name: "Laura"
+          }
+        ]
+      };
+    }
+  };
+
+  $scope.reminders = $scope.task.reminders;
+
+  if ($scope.reminders[0]) {
+    $scope.reminders[0].date.setFullYear(2014);  
+    $scope.reminders[0].date.setMonth(9);
+    $scope.reminders[0].date.setDate(8);
+    $scope.reminders[0].date.setHours(9);
+    $scope.reminders[0].date.setMinutes(30);
+    $scope.reminders[0].date.setSeconds(0);
+    $scope.reminders[0].date.setMilliseconds(0);
+    //this array has the reminders as retrieved from server so when they changes the reminder of the phone can be updated.
     
-    {
-      id:"reminder2",
-      date : new Date()//.parse("November 12, 2014 11:15 PM")
+    var oldReminders = [];
+    for (var i = 0; i < $scope.reminders.length; i += 1){
+      oldReminders[$scope.reminders[i].id]= new Date($scope.reminders[i].date.getTime());
     }
-  ];
-  $scope.reminders[0].date.setFullYear(2014);  
-  $scope.reminders[0].date.setMonth(9);
-  $scope.reminders[0].date.setDate(8);
-  $scope.reminders[0].date.setHours(9);
-  $scope.reminders[0].date.setMinutes(30);
-  $scope.reminders[0].date.setSeconds(0);
-  $scope.reminders[0].date.setMilliseconds(0);
-  //this array has the reminders as retrieved from server so when they changes the reminder of the phone can be updated.
-  
-  var oldReminders = [];
-  for (var i = 0; i < $scope.reminders.length; i += 1){
-    oldReminders[$scope.reminders[i].id]= new Date($scope.reminders[i].date.getTime());
   }
 
   //TODO call this function on save form
@@ -193,11 +205,32 @@ var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', '
     return $scope.reminders;
   };
 
-  $scope.assigSelect = {};
-  $scope.assigSelect.assignees = [
-    $scope.groupUsers[0],$scope.groupUsers[1],
-    $scope.groupUsers[2],$scope.groupUsers[3]
-  ];
+  $scope.community = getCommunity();
+
+  $scope.index = function() {
+    $location.path('communities/' + communityId()  + '/tasks');
+  };
+
+  $scope.new = function(){
+    $location.path('communities/' + communityId() + '/tasks/new');
+  };
+
+  $scope.edit = function(task){
+    $location.path('tasks/' + task.id);
+  };
+
+  $scope.community_index = function() {
+    $location.path('communities');
+  };
+
+  $scope.save = function() {
+    // TODO backend
+    $scope.index();
+  };
+
+  $scope.assigSelect = {
+    assignees: $scope.community.users
+  };
 
   $scope.supportsDateInput = Modernizr.inputtypes.date;
   $scope.supportsTimeInput = Modernizr.inputtypes.time;
@@ -213,6 +246,6 @@ var editTaskCtrl = tasks.controller('EditTaskCtrl', ['$scope', '$routeParams', '
 
 }]);
 
-editTaskCtrl.config(function(uiSelectConfig) {
+tasksCtrl.config(function(uiSelectConfig) {
   uiSelectConfig.theme = 'select2';
 });
