@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css"/>
   <link rel="stylesheet" href="css/mangular-customization.css"/>
   <link rel="stylesheet" href="app.css"/>
-
 </head>
 <body>
 
@@ -68,10 +67,24 @@
   <script src="communities/communities.js"> </script>
   <script src="tasks/tasks.js"> </script>
   
-  <!-- TODO: load only whith android app -->
-  <script src="components/cordova/cordova.js"></script>
-  <script src="components/cordova/cordova_plugins.js"></script>
-  <script src="components/cordova/plugins/nl.x-services.plugins.calendar/www/Calendar.js"></script>
+  <script>
+    // Load only within android app: cordova=android
+    if (window.location.search.search("cordova") > 0) {
+      (function(d, script) {
+        var scripts = [
+          "cordova",
+          "cordova_plugins",
+        ]
+ 
+        for (i in scripts) {
+          script = d.createElement('script');
+          script.type = 'text/javascript';
+          script.src = 'components/cordova/' + scripts[i] + '.js';
+          d.getElementsByTagName('head')[0].appendChild(script);
+        }
+      }(document));
+    };
+  </script>
   
 </body>
 </html>
