@@ -21,6 +21,7 @@
 
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
+    "pretest-single-run": "npm install",
     "test-single-run": "karma start karma.conf.js  --single-run",
 
     "preupdate-webdriver": "npm install",
