@@ -5,9 +5,12 @@ bower_components/
 tmp
 .DS_Store
 .idea
-**/*swp
+**swp
 **/*~
 **/#*#
 mobile/plugins/
 mobile/platforms/
 npm-debug.log
+dist
+.tmp
+.sass-cache

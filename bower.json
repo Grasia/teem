@@ -1,22 +1,26 @@
 {
   "name": "pear2pear",
-  "description": "Pear2Pear is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
   "version": "0.0.0",
-  "homepage": "https://github.com/P2Pvalue/pear2pear",
-  "license": "AGPL",
-  "private": true,
   "dependencies": {
-    "angular": "1.2.x",
-    "angular-route": "1.2.x",
-    "angular-loader": "1.2.x",
-    "angular-mocks": "~1.2.x",
+    "angular": "~1.2.0",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.1.0",
+    "angular-resource": "~1.2.0",
+    "angular-cookies": "~1.2.0",
+    "angular-sanitize": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "angular-touch": "~1.2.0",
+    "angular-route": "~1.2.0",
     "angular-translate": "~2.4.x",
     "angular-translate-loader-static-files": "~2.4.0",
-    "html5-boilerplate": "~4.3.0",
     "mobile-angular-ui": "~1.1.0-beta.30",
-    "jquery": "~2.1.0",
-    "select2": "3.5.1",
     "angular-bootstrap": "latest",
-    "angular-ui-select": "0.7.0"
-  }
+    "angular-ui-select": "0.7.0",
+    "modernizr": "~2.8.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.0",
+    "angular-scenario": "~1.2.0"
+  },
+  "appPath": "app"
 }
