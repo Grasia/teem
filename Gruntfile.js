@@ -387,7 +387,21 @@ module.exports = function (grunt) {
         configFile: 'test/protractor.conf.js'
       },
       run: {}
+    },
+
+    buildcontrol: {
+      options: {
+        commit: true,
+        push: true,
+      },
+      proto: {
+        options: {
+          remote: 'git@prototype.p2pvalue.eu:pear2pear.git',
+           branch: 'master'
+        }
+      }
     }
+
   });
 
 
