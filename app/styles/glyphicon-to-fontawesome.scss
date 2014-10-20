@@ -1,0 +1,21 @@
+/*
+  Glyphicon translation into Font Awesome
+  
+  https://github.com/angular-ui/bootstrap/issues/2475#issuecomment-49469969
+
+  It needs the CSS linked in the form of a partial, see
+
+  https://github.com/sass/sass/issues/193
+*/
+
+@import 'mobile-angular-ui-base';
+
+.glyphicon {
+  @extend .fa;
+  &.glyphicon-chevron-up {
+    @extend .fa-chevron-up;
+  }
+  &.glyphicon-chevron-down {
+    @extend .fa-chevron-down;
+  }
+}

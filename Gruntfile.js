@@ -138,6 +138,8 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
+            // Preserve repository for buildcontrol
+            '!<%= yeoman.dist %>/.git/*',
             '!<%= yeoman.dist %>/.git*'
           ]
         }]
@@ -207,8 +209,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
@@ -234,7 +235,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/{,*/}*.html', '<%= yeoman.dist %>/views/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
@@ -341,7 +342,9 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'styles/fonts/*',
+            'l10n/*'
           ]
         }, {
           expand: true,
@@ -387,7 +390,21 @@ module.exports = function (grunt) {
         configFile: 'test/protractor.conf.js'
       },
       run: {}
+    },
+
+    buildcontrol: {
+      options: {
+        commit: true,
+        push: true,
+      },
+      proto: {
+        options: {
+          remote: 'git@prototype.p2pvalue.eu:pear2pear.git',
+           branch: 'dist'
+        }
+      }
     }
+
   });
 
 
