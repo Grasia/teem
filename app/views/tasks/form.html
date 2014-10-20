@@ -23,29 +23,29 @@
         <label class="control-label" translate>tasks.deadline</label>
         <div class="row">
           <div class="col-sm-6" ng-if="supportsDateInput">
-            <input type="date" class="form-control" ng-model="task.deadline" />
+            <input date-input class="form-control" ng-model="task.deadlineDate" />
           </div>
           <div class="col-sm-6" ng-if="! supportsDateInput">
             <div class="input-group datepicker">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="task.deadline" is-open="opened" datepicker-options="dateOptions"/>
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="task.deadlineDate" is-open="opened" datepicker-options="dateOptions"/>
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openDate($event)"><i class="fa fa-calendar"></i></button>
               </span>
             </div>
           </div>
           <div class="col-sm-6" ng-if="supportsTimeInput">
-            <input type="time" class="form-control" ng-model="task.deadline" data-autoclose="1" placeholder="{{time}}"/>
+            <input time-input class="form-control" ng-model="task.deadlineDate"/>
           </div>
           <div class="col-sm-6" ng-if="! supportsTimeInput">
-            <timepicker ng-model="task.deadline"></timepicker>
+            <timepicker ng-model="task.deadlineDate"></timepicker>
           </div>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label" translate>tasks.reminders</label>
-        <div class="row" ng-repeat="reminder in task.reminders">
+        <div class="row form-group" ng-repeat="reminder in task.reminders">
           <div class="col-sm-6" ng-if="supportsDateInput">
-            <input type="date" class="form-control" ng-model="reminder.date" />
+            <input date-input class="form-control"  ng-model="reminder.date" />
           </div>
           <div class="col-sm-6" ng-if="! supportsDateInput">
             <div class="input-group datepicker">
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="col-sm-6" ng-if="supportsTimeInput">
-            <input type="time" class="form-control" ng-model="reminder.date" data-autoclose="1" placeholder="{{time}}"/>
+            <input time-input class="form-control" ng-model="reminder.date" />
           </div>
           <div class="col-sm-6" ng-if="! supportsTimeInput">
             <timepicker ng-model="reminder.date"></timepicker>

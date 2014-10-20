@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'pascalprecht.translate',
     'mobile-angular-ui',
-    'ui.select'
+    'ui.select',
+    'ui.bootstrap'
   ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.

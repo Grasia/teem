@@ -24,8 +24,8 @@ angular.module('Pear2Pear')
         controller:'TasksCtrl'
       });
   }])
-  .controller('TasksCtrl', ['$scope', '$location', '$routeParams', 'Modernizr', function($scope, $location, $routeParams, Modernizr){
-  
+  .controller('TasksCtrl', ['$scope', '$location', '$routeParams', 'Modernizr', '$filter', function($scope, $location, $routeParams, Modernizr, $filter){
+
     $scope.tasks =
       [
         {
@@ -57,58 +57,50 @@ angular.module('Pear2Pear')
           ]
         }
       ];
-  
+
     $scope.toggleCompleted = function(task){
       task.completed = !task.completed;
     };
-  
-    var getTask = function(){
-      // TODO use backend
-      if ($routeParams.id) {
-        return {
-          id: "1",
-          name: "Task1",
-          description: "Description1",
-          community_id: 1,
-          completed: true,
-          assignees: [
-            {
-              name: "Antonio"
-            },
-            {
-              name: "Pablo"
-            },
-            {
-              name: "Samer"
-            },
-            {
-              name: "Juan"
-            }
-          ],
-          reminders: [
-            {
-              id: "reminder1",
-              date : new Date() //.parse("November 1, 2014 10:15 AM")
-            },
-            {
-              id: "reminder2",
-              date : new Date()//.parse("November 12, 2014 11:15 PM")
-            }
-          ]
-        };
-      } else {
-        return {
-          reminders: []
-        };
-      }
+
+   //TODO backend
+
+    $scope.task =  {
+      id: "1",
+      name: "Task1",
+      description: "Description1",
+      community_id: 1,
+      completed: true,
+      assignees: [
+        {
+          name: "Antonio"
+        },
+        {
+          name: "Pablo"
+        },
+        {
+          name: "Samer"
+        },
+        {
+          name: "Juan"
+        }
+      ],
+      deadlineDate : new Date(),
+      reminders: [
+        {
+          id: "reminder1",
+          date : new Date() //.parse("November 1, 2014 10:15 AM")
+        },
+        {
+          id: "reminder2",
+          date : new Date()//.parse("November 12, 2014 11:15 PM")
+        }
+      ]
     };
-  
-    $scope.task = getTask();
-  
+
     var communityId = function() {
       return $routeParams.community_id || $scope.task && $scope.task.community_id;
     };
-  
+
     var getCommunity = function() {
       //TODO backend
       if (communityId()) {
@@ -138,11 +130,11 @@ angular.module('Pear2Pear')
         };
       }
     };
-  
+
     $scope.reminders = $scope.task.reminders;
-  
+
     if ($scope.reminders[0]) {
-      $scope.reminders[0].date.setFullYear(2014);  
+      $scope.reminders[0].date.setFullYear(2014);
       $scope.reminders[0].date.setMonth(9);
       $scope.reminders[0].date.setDate(8);
       $scope.reminders[0].date.setHours(9);
@@ -150,31 +142,36 @@ angular.module('Pear2Pear')
       $scope.reminders[0].date.setSeconds(0);
       $scope.reminders[0].date.setMilliseconds(0);
       //this array has the reminders as retrieved from server so when they changes the reminder of the phone can be updated.
-      
-      var oldReminders = [];
+
+      var oldReminders = {};
       for (var i = 0; i < $scope.reminders.length; i += 1){
-        oldReminders[$scope.reminders[i].id]= new Date($scope.reminders[i].date.getTime());
+        oldReminders[$scope.reminders[i].id]= new Date();
+        oldReminders[$scope.reminders[i].id].setTime($scope.reminders[i].date.getTime());
       }
     }
-  
+
+    $scope.isApp = function(){
+      return true; //window.location.search.search("cordova") > 0;
+    };
+
     //TODO call this function on save form
-    $scope.onSave = function(){
+    $scope.save = function(){
       // TODO save other stuff
-      
       // saving reminders in phone
       for(var i = 0; i < $scope.reminders.length; i += 1){
-        var r = $scope.reminders[i];      
+        var r = $scope.reminders[i];
         if (r.date.getTime() !== oldReminders[r.id].getTime()){
           var oldDate = new Date();
           oldDate.setTime(oldReminders[r.id].getTime());
           //FIXME delete event not working
-          $scope.deleteReminder(oldDate, $scope.getTask().name);         
+          $scope.deleteReminder(oldDate, $scope.getTask().name);
           $scope.addReminder(r.date, $scope.getTask().name);
         }
       }
       // TODO save also reminders
+      $scope.index();
     };
-  
+
     $scope.addReminder = function(date, title){
       var dateWnd = new window.Date();
       dateWnd.setTime(date.getTime());
@@ -183,15 +180,15 @@ angular.module('Pear2Pear')
   	var error = function(message) {
   	  alert('Error: ' + JSON.stringify(message));
   	};
-      
+
   	var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
   	calOptions.firstReminderMinutes = 0;
       var comment = 'pear2pear reminder';
   	window.plugins.calendar.createEventWithOptions(title , "", comment,
                                                      dateWnd, dateWnd, calOptions, success, error);
-  
+
     };
-    
+
     $scope.deleteReminder = function(date, title){
       var success = function(message) {
       };
@@ -202,54 +199,95 @@ angular.module('Pear2Pear')
       dateWnd.setTime(date.getTime());
   	window.plugins.calendar.deleteEvent(title, null, null, dateWnd, dateWnd,
   				                        success, error);
-  
+
     };
-  
+
     $scope.getReminders = function(taskId, userId){
       return $scope.reminders;
     };
-  
+
     $scope.community = getCommunity();
-  
+
     $scope.index = function() {
       $location.path('communities/' + communityId()  + '/tasks');
     };
-  
+
     $scope.new = function(){
       $location.path('communities/' + communityId() + '/tasks/new');
     };
-  
+
     $scope.edit = function(task){
       $location.path('tasks/' + task.id);
     };
-  
+
     $scope.community_index = function() {
       $location.path('communities');
     };
-  
-    $scope.save = function() {
-      // TODO backend
-      $scope.index();
-    };
-  
+
     $scope.assigSelect = {
       assignees: $scope.community.users
     };
-  
+
     $scope.supportsDateInput = Modernizr.inputtypes.date;
     $scope.supportsTimeInput = Modernizr.inputtypes.time;
-  
+
     $scope.openDate = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
-  
+
       $scope.opened = true;
     };
-  
+
     $scope.dateOptions = {};
-  
+
   }])
 
-  .config(function(uiSelectConfig) {
+  .directive(
+    'dateInput',
+        function(dateFilter) {
+          return {
+            require: 'ngModel',
+            template: '<input type="date"></input>',
+            replace: true,
+            link: function(scope, elm, attrs, ngModelCtrl) {
+              ngModelCtrl.$formatters.unshift(function (modelValue) {
+                return dateFilter(modelValue, 'yyyy-MM-dd');
+              });
+
+              ngModelCtrl.$parsers.unshift(function(viewValue) {
+                var newDate = ngModelCtrl.$modelValue;
+                newDate.setDate(viewValue.getDate());
+                newDate.setMonth(viewValue.getMonth());
+                newDate.setYear(viewValue.getYear());
+                return new Date(viewValue);
+              });
+            }
+          };
+        })
+  .directive(
+    'timeInput',
+    function(dateFilter) {
+      return {
+        require: 'ngModel',
+        template: '<input type="time"></input>',
+        replace: true,
+        link: function(scope, elm, attrs, ngModelCtrl) {
+          ngModelCtrl.$formatters.unshift(function (modelValue) {
+            return dateFilter(modelValue, 'HH:mm');
+          });
+
+          ngModelCtrl.$parsers.unshift(function(viewValue) {
+            var newDate = ngModelCtrl.$modelValue;
+            var newTime = new Date().parse(viewValue);
+            newDate.setHours(newTime.getHours());
+            newDate.setMinutes(newTime.getMinutes());
+            newDate.setSeconds(0);
+            return newDate;
+          });
+        }
+      };
+    })
+
+ .config(function(uiSelectConfig) {
     uiSelectConfig.theme = 'select2';
   });
