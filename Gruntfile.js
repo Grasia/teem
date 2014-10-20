@@ -138,6 +138,8 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
+            // Preserve repository for buildcontrol
+            '!<%= yeoman.dist %>/.git/*',
             '!<%= yeoman.dist %>/.git*'
           ]
         }]
