@@ -28,12 +28,12 @@
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 1.8em;
+  font-size: 1.3em;
   font-family: "Dax Wide Regular"
 }
 
 .login-tip {
-  font: 2.5em "Cookie";
+  font: 1.8em "Cookie";
   color: #47c9eb;
   background: url(../images/arrow-down.png) no-repeat left 15px;
   padding-left: 50px;
@@ -43,7 +43,7 @@
 }
 
 .logout-tip {
-  font: 2.5em "Cookie";
+  font: 1.8em "Cookie";
   color: #47c9eb;
   height: 75px;
   margin-top: 10px;
@@ -61,7 +61,7 @@
 
 
 .empty-communities-tip, .empty-tasks-tip {
-  font: 2.5em "Cookie";
+  font: 1.8em "Cookie";
   color: #47c9eb;
   background: url(../images/arrow-up.png) no-repeat right top;
   padding-right: 50px;
@@ -92,26 +92,26 @@
 }
 
 .nav-title {
-  font-size: 2em;
+  font-size: 1.4em;
   font-family: 'Dax Wide Regular', sans-serif;
   color: #696969;
   text-align: center;
 }
 
-.nav-title .task-index-title {
+.nav-title .task-index {
   font-family: 'Dax Wide Regular', sans-serif;
   font-size: 0.8em;
   color: #696969;
 }
 
 .navbar .fa {
-  font-size: 2.5em;
+  font-size: 1.8em;
 }
 
 /* Tasks */
 
 .checkbox-tip {
-  font: 2.5em "Cookie";
+  font: 1.8em "Cookie";
   color: #47c9eb;
   background: url(../images/arrow-down.png) no-repeat left 15px;
   padding-left: 50px;
@@ -154,7 +154,7 @@
 }
 
 .task-checkbox {
-  font-size: 3em;
+  font-size: 2.15em;
   color: #d8d8d8;
 }
 
@@ -163,14 +163,14 @@
 }
 
 .task-name {
-  font: 1.8em "Dax Wide Regular", sans-serif;
+  font: 1.3em "Dax Wide Regular", sans-serif;
   color: #696969;
   font-weight: bold;
   cursor: pointer;
 }
 
 .task-assignees {
-  font: 1.5em "Dax Wide Regular";
+  font: 1.1em "Dax Wide Regular";
   color: #696969;
   margin-top: 5px;
 }
@@ -186,7 +186,7 @@
 /* Communities */
 
 .group-task-tip {
-  font: 2.5em "Cookie";
+  font: 1.8em "Cookie";
   color: #47c9eb;
   background: url(../images/arrow-down.png) no-repeat left 15px;
   padding-left: 50px;
@@ -220,7 +220,7 @@
 }
 
 .community-item-name {
-    font: 1.8em "Dax Wide Regular", sans-serif;
+    font: 1.3em "Dax Wide Regular", sans-serif;
     cursor: pointer;
 }
 
@@ -244,7 +244,7 @@ button.community-edit {
 }
 
 .user-item-name {
-    font: 1.8em "Dax Wide Regular", sans-serif;
+    font: 1.3em "Dax Wide Regular", sans-serif;
 }
 
 button.generic-edit {
@@ -255,7 +255,7 @@ button.generic-edit {
 .create-participant-link {
   margin-top: 1em;
   margin-bottom: 1em;
-  font: 1.8em "Dax Wide Regular", sans-serif;
+  font: 1.3em "Dax Wide Regular", sans-serif;
 }
 
 .deadline-date-picker{
