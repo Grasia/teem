@@ -43,7 +43,11 @@
       </div>
       <div class="form-group">
         <label class="control-label" translate>tasks.reminders</label>
-        <div class="row form-group" ng-repeat="reminder in task.reminders">
+        <div class="alert alert-info" role="alert">
+          <translate>tasks.reminders_for_android</translate> <a ng-href="www.eldiario.es" translate>tasks.android_app</a>
+
+        </div>
+        <div class="row form-group" ng-repeat="reminder in task.reminders" ng-if="isApp()">
           <div class="col-sm-6" ng-if="supportsDateInput">
             <input date-input class="form-control"  ng-model="reminder.date" />
           </div>

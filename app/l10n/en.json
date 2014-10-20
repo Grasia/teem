@@ -17,7 +17,9 @@
     "task_list" : "Task list",
     "task_name" : "Task name",
     "deadline" : "Deadline",
-    "reminders" : "My reminders"
+    "reminders" : "My reminders",
+    "reminders_for_android" : "Reminders available for our",
+    "android_app" : "Android app"
   },
   "community": {
     "add_participant": "Add participant",

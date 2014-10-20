@@ -151,7 +151,7 @@ angular.module('Pear2Pear')
     }
 
     $scope.isApp = function(){
-      return true; //window.location.search.search("cordova") > 0;
+      return window.location.search.search("cordova") > 0;
     };
 
     //TODO call this function on save form

@@ -17,7 +17,9 @@
     "task_list" : "Lista de tareas",
     "task_name" : "Nombre de la tarea",
     "deadline" : "Fecha límite",
-    "reminders" : "Mis recordatorios"
+    "reminders" : "Mis recordatorios",
+    "reminders_for_android" : "Recordatorios disponibles en nuestra",
+    "android_app" : "app Android"
   },
   "community": {
     "add_participant": "Añadir participante",
