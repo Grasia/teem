@@ -43,8 +43,8 @@
       </div>
       <div class="form-group">
         <label class="control-label" translate>tasks.reminders</label>
-        <div class="alert alert-info" role="alert">
-          <translate>tasks.reminders_for_android</translate> <a ng-href="www.eldiario.es" translate>tasks.android_app</a>
+        <div class="alert alert-info" role="alert" ng-if="!isApp()">
+          <translate>tasks.reminders_for_android</translate> <a ng-href="http://grasia.fdi.ucm.es/p2pvalue/Pear2Pear.apk" translate>tasks.android_app</a>
 
         </div>
         <div class="row form-group" ng-repeat="reminder in task.reminders" ng-if="isApp()">
