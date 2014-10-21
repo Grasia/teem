@@ -168,7 +168,7 @@ angular.module('Pear2Pear')
       // saving reminders in phone
       for(var i = 0; i < $scope.reminders.length; i += 1){
         var r = $scope.reminders[i];
-        if (r.date.getTime() !== oldReminders[r.id].getTime()){
+        if (r.date && r.date.getTime() !== oldReminders[r.id].getTime()){
           var oldDate = new Date();
           oldDate.setTime(oldReminders[r.id].getTime());
           //FIXME delete event not working
@@ -177,6 +177,7 @@ angular.module('Pear2Pear')
         }
       }
       // TODO save also reminders
+      alert('ba');
       $scope.index();
     };
 
