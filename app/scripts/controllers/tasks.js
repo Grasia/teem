@@ -132,7 +132,13 @@ angular.module('Pear2Pear')
     };
 
     $scope.reminders = $scope.task.reminders;
+    $scope.$watch('reminders', function () {
+      var i = $scope.reminders.length - 1;
+      if ($scope.reminders[i].date)
+        $scope.reminders.push({id: 'newId' + i, date : null});
+    },true);
 
+    //TODO erase empty
     if ($scope.reminders[0]) {
       $scope.reminders[0].date.setFullYear(2014);
       $scope.reminders[0].date.setMonth(9);
@@ -145,8 +151,10 @@ angular.module('Pear2Pear')
 
       var oldReminders = {};
       for (var i = 0; i < $scope.reminders.length; i += 1){
-        oldReminders[$scope.reminders[i].id]= new Date();
-        oldReminders[$scope.reminders[i].id].setTime($scope.reminders[i].date.getTime());
+        if ($scope.reminders[i].date){
+          oldReminders[$scope.reminders[i].id]= new Date();
+          oldReminders[$scope.reminders[i].id].setTime($scope.reminders[i].date.getTime());
+        }
       }
     }
 
@@ -255,10 +263,6 @@ angular.module('Pear2Pear')
               });
 
               ngModelCtrl.$parsers.unshift(function(viewValue) {
-                var newDate = ngModelCtrl.$modelValue;
-                newDate.setDate(viewValue.getDate());
-                newDate.setMonth(viewValue.getMonth());
-                newDate.setYear(viewValue.getYear());
                 return new Date(viewValue);
               });
             }
@@ -277,10 +281,12 @@ angular.module('Pear2Pear')
           });
 
           ngModelCtrl.$parsers.unshift(function(viewValue) {
-            var newDate = ngModelCtrl.$modelValue;
-            var newTime = new Date().parse(viewValue);
-            newDate.setHours(newTime.getHours());
-            newDate.setMinutes(newTime.getMinutes());
+            var newDate = new Date();
+            if (ngModelCtrl.$modelValue){
+              newDate.setTime(ngModelCtrl.$modelValue.getTime());
+            }
+            newDate.setHours(viewValue.split(':')[0]);
+            newDate.setMinutes(viewValue.split(':')[1]);
             newDate.setSeconds(0);
             return newDate;
           });
