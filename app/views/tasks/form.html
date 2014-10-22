@@ -21,25 +21,8 @@
       </div>
       <div class="form-group">
         <label class="control-label" translate>tasks.deadline</label>
-        <div class="row">
-          <div class="col-sm-6" ng-if="supportsDateInput">
-            <input date-input class="form-control" ng-model="task.deadlineDate" />
-          </div>
-          <div class="col-sm-6" ng-if="! supportsDateInput">
-            <div class="input-group datepicker">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="task.deadlineDate" is-open="opened" datepicker-options="dateOptions"/>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="openDate($event)"><i class="fa fa-calendar"></i></button>
-              </span>
-            </div>
-          </div>
-          <div class="col-sm-6" ng-if="supportsTimeInput">
-            <input time-input class="form-control" ng-model="task.deadlineDate"/>
-          </div>
-          <div class="col-sm-6" ng-if="! supportsTimeInput">
-            <timepicker ng-model="task.deadlineDate"></timepicker>
-          </div>
-        </div>
+        <div class="row" datetime-input date-model="task.deadlineDate"> </div>
+        
       </div>
       <div class="form-group">
         <label class="control-label" translate>tasks.reminders</label>
@@ -48,22 +31,7 @@
 
         </div>
         <div class="row form-group" ng-repeat="reminder in task.reminders" ng-if="isApp()">
-          <div class="col-sm-6" ng-if="supportsDateInput">
-            <input date-input class="form-control"  ng-model="reminder.date" />
-          </div>
-          <div class="col-sm-6" ng-if="! supportsDateInput">
-            <div class="input-group datepicker">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="reminder.date" is-open="opened" datepicker-options="dateOptions"/>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="openDate($event)"><i class="fa fa-calendar"></i></button>
-              </span>
-            </div>
-          </div>
-          <div class="col-sm-6" ng-if="supportsTimeInput">
-            <input time-input class="form-control" ng-model="reminder.date" />
-          </div>
-          <div class="col-sm-6" ng-if="! supportsTimeInput">
-            <timepicker ng-model="reminder.date"></timepicker>
+          <div datetime-input date-model="reminder.date">
           </div>
         </div>
       </div>

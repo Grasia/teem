@@ -240,13 +240,6 @@ angular.module('Pear2Pear')
     $scope.supportsDateInput = Modernizr.inputtypes.date;
     $scope.supportsTimeInput = Modernizr.inputtypes.time;
 
-    $scope.openDate = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      $scope.opened = true;
-    };
-
     $scope.dateOptions = {};
 
   }])
@@ -255,7 +248,7 @@ angular.module('Pear2Pear')
     'dateInput',
         function(dateFilter) {
           return {
-            require: 'ngModel',
+            require: '^ngModel',
             template: '<input type="date"></input>',
             replace: true,
             link: function(scope, elm, attrs, ngModelCtrl) {
@@ -273,7 +266,7 @@ angular.module('Pear2Pear')
     'timeInput',
     function(dateFilter) {
       return {
-        require: 'ngModel',
+        require: '^ngModel',
         template: '<input type="time"></input>',
         replace: true,
         link: function(scope, elm, attrs, ngModelCtrl) {
@@ -295,6 +288,22 @@ angular.module('Pear2Pear')
       };
     })
 
- .config(function(uiSelectConfig) {
+  .directive(
+    'datetimeInput',
+    function(){
+      return {
+        restrinct: 'AE',
+        scope: {
+          dateModel : '='
+        },
+        templateUrl: 'views/datetimeinput.html',
+        replace : true
+        };
+    }
+  )
+  
+  .config(function(uiSelectConfig) {
     uiSelectConfig.theme = 'select2';
   });
+
+
