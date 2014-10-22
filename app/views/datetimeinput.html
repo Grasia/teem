@@ -2,7 +2,7 @@
   <div class="col-sm-6" ng-if="supportsDateInput">
     <input date-input class="form-control" ng-model="dateModel"/>
   </div>
-  <div class="col-sm-6" ng-if="! supportsDateInput">
+  <div ng-controller="DateTimeInputCtrl" class="col-sm-6" ng-if="! supportsDateInput">
     <div class="input-group datepicker">
       <input type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" is-open="opened" ng-model="dateModel"/>
       <span class="input-group-btn">
