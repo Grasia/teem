@@ -3,19 +3,25 @@
   
   https://github.com/angular-ui/bootstrap/issues/2475#issuecomment-49469969
 
-  It needs the CSS linked in the form of a partial, see
+  It copies icon definition from mobile-angular-ui distribution of Font Awesome at
+  bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.css
 
-  https://github.com/sass/sass/issues/193
+  Watch out! New versions of Font Awesome may break this :-((
 */
 
-@import 'mobile-angular-ui-base';
-
 .glyphicon {
-  @extend .fa;
-  &.glyphicon-chevron-up {
-    @extend .fa-chevron-up;
-  }
-  &.glyphicon-chevron-down {
-    @extend .fa-chevron-down;
-  }
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-chevron-up:before {
+  content: "\f077";
+}
+
+.fa-chevron-down:before {
+  content: "\f078";
 }
