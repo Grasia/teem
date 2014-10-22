@@ -27,34 +27,34 @@ angular.module('Pear2Pear')
     $scope.communities = [
       {
         id: 1,
-        name: "P2Pvalue"
+        name: 'P2Pvalue'
       },
       {
         id: 2,
-        name: "Universidad Complutense de Madrid"
+        name: 'Universidad Complutense de Madrid'
       },
       {
         id: 3,
-        name: "Tabacalera"
+        name: 'Tabacalera'
       }
     ];
   
     var getCommunity = function() {
       if ($routeParams.id) {
         return {
-          name: "P2Pvalue",
+          name: 'P2Pvalue',
           participants: [
             {
-              name: "Marco"
+              name: 'Marco'
             },
             {
-              name: "Primavera"
+              name: 'Primavera'
             },
             {
-              name: "Mayo"
+              name: 'Mayo'
             },
             {
-              name: "Samer"
+              name: 'Samer'
             }
           ]
         };
@@ -77,7 +77,7 @@ angular.module('Pear2Pear')
       $location.path('/communities/' + id + '/edit');
     };
   
-    $scope.show_tasks = function(id) {
+    $scope.showTasks = function(id) {
       $location.path('/communities/' + id + '/tasks');
     };
   
