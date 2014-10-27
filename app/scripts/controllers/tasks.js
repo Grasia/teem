@@ -8,63 +8,63 @@
  * Controller of the Pear2Pear
  */
 angular.module('Pear2Pear')
-  .constant("Modernizr", Modernizr)
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.
-      when('/communities/:community_id/tasks', {
+  .constant('Modernizr', Modernizr)
+  .config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+      .when('/communities/:community_id/tasks', {
         templateUrl: 'views/tasks/index.html',
         controller: 'TasksCtrl'
-      }).
-      when('/communities/:community_id/tasks/new', {
+      })
+      .when('/communities/:community_id/tasks/new', {
         templateUrl: 'views/tasks/new.html',
         controller: 'TasksCtrl'
-      }).
-      when('/tasks/:id', {
+      })
+      .when('/tasks/:id', {
         templateUrl: 'views/tasks/edit.html',
-        controller:'TasksCtrl'
+        controller: 'TasksCtrl'
       });
   }])
-  .controller('TasksCtrl', ['$scope', '$location', '$routeParams', 'Modernizr', '$filter', function($scope, $location, $routeParams, Modernizr, $filter){
+  .controller('TasksCtrl', ['$scope', '$location', '$routeParams', 'Modernizr', function ($scope, $location, $routeParams, Modernizr) {
 
     $scope.tasks =
       [
         {
-          id: "1",
-          name: "Task1",
-          description: "Description1",
+          id: '1',
+          name: 'Task1',
+          description: 'Description1',
           completed: true,
           creationDate: new Date(2),
-          completionDate: new Date (1000),
+          completionDate: new Date(1000),
           assignees: [
             {
-              name: "Antonio"
+              name: 'Antonio'
             },
             {
-              name: "Pablo"
+              name: 'Pablo'
             },
             {
-              name: "Samer"
+              name: 'Samer'
             },
             {
-              name: "Juan"
-            },
+              name: 'Juan'
+            }
           ]
         },
         {
-          id:"2",
-          name: "Task2",
+          id: '2',
+          name: 'Task2',
           completed: false,
-          description: "Description2",
+          description: 'Description2',
           creationDate: new Date(1),
-          completionDate :null,
+          completionDate: null,
           assignees: [
           ]
         }
       ];
 
-    $scope.toggleCompleted = function(task){
+    $scope.toggleCompleted = function (task) {
       task.completed = !task.completed;
-      if (task.completed){
+      if (task.completed) {
         task.completionDate = new Date();
       } else {
         task.completionDate = null;
@@ -74,66 +74,65 @@ angular.module('Pear2Pear')
    //TODO backend
 
     $scope.task =  {
-      id: "1",
-      name: "Task1",
-      description: "Description1",
-      community_id: 1,
+      id: '1',
+      name: 'Task1',
+      description: 'Description1',
       completed: true,
       assignees: [
         {
-          name: "Antonio"
+          name: 'Antonio'
         },
         {
-          name: "Pablo"
+          name: 'Pablo'
         },
         {
-          name: "Samer"
+          name: 'Samer'
         },
         {
-          name: "Juan"
+          name: 'Juan'
         }
       ],
       deadlineDate : new Date(),
       reminders: [
         {
-          id: "reminder1",
-          date : new Date() //.parse("November 1, 2014 10:15 AM")
+          id: 'reminder1',
+          date : new Date() //.parse('November 1, 2014 10:15 AM')
         },
         {
-          id: "reminder2",
-          date : new Date()//.parse("November 12, 2014 11:15 PM")
+          id: 'reminder2',
+          date : new Date()//.parse('November 12, 2014 11:15 PM')
         }
       ]
     };
 
-    var communityId = function() {
-      return $routeParams.community_id || $scope.task && $scope.task.community_id;
+    var communityId = function () {
+      return $routeParams.community_id || $scope.task && $scope.task.id;
     };
 
-    var getCommunity = function() {
+    var getCommunity = function () {
       //TODO backend
       if (communityId()) {
         return {
           id: $routeParams.community_id,
-          name: "UCM P2Pvalue",
+          name: 'UCM P2Pvalue',
           users: [
             {
-              name: "Antonio"
+              name: 'Antonio'
             },
             {
-              name: "Pablo"
+              name: 'Pablo'
             },
             {
-              name: "Samer"
+              name: 'Samer'
             },
             {
-              name: "Juan"
+              name: 'Juan'
             },
             {
-              name: "Jorge"
+              name: 'Jorge'
             },
             {
-              name: "Laura"
+              name: 'Laura'
             }
           ]
         };
@@ -143,9 +142,10 @@ angular.module('Pear2Pear')
     $scope.reminders = $scope.task.reminders;
     $scope.$watch('reminders', function () {
       var i = $scope.reminders.length - 1;
-      if ($scope.reminders[i].date)
+      if ($scope.reminders[i].date) {
         $scope.reminders.push({id: 'newId' + i, date : null});
-    },true);
+      }
+    }, true);
 
     //TODO erase empty
     if ($scope.reminders[0]) {
@@ -159,25 +159,25 @@ angular.module('Pear2Pear')
       //this array has the reminders as retrieved from server so when they changes the reminder of the phone can be updated.
 
       var oldReminders = {};
-      for (var i = 0; i < $scope.reminders.length; i += 1){
-        if ($scope.reminders[i].date){
-          oldReminders[$scope.reminders[i].id]= new Date();
+      for (var i = 0; i < $scope.reminders.length; i += 1) {
+        if ($scope.reminders[i].date) {
+          oldReminders[$scope.reminders[i].id] = new Date();
           oldReminders[$scope.reminders[i].id].setTime($scope.reminders[i].date.getTime());
         }
       }
     }
 
-    $scope.isApp = function(){
-      return window.location.search.search("cordova") > 0;
+    $scope.isApp = function () {
+      return window.location.search.search('cordova') > 0;
     };
 
     //TODO call this function on save form
-    $scope.save = function(){
+    $scope.save = function () {
       // TODO save other stuff
       // saving reminders in phone
-      for(var i = 0; i < $scope.reminders.length; i += 1){
+      for (var i = 0; i < $scope.reminders.length; i += 1) {
         var r = $scope.reminders[i];
-        if (r.date && r.date.getTime() !== oldReminders[r.id].getTime()){
+        if (r.date && r.date.getTime() !== oldReminders[r.id].getTime()) {
           var oldDate = new Date();
           oldDate.setTime(oldReminders[r.id].getTime());
           //FIXME delete event not working
@@ -186,59 +186,57 @@ angular.module('Pear2Pear')
         }
       }
       // TODO save also reminders
-      alert('ba');
       $scope.index();
     };
 
-    $scope.addReminder = function(date, title){
+    $scope.addReminder = function (date, title) {
       var dateWnd = new window.Date();
       dateWnd.setTime(date.getTime());
-  	var success = function(message) {
-  	};
-  	var error = function(message) {
-  	  alert('Error: ' + JSON.stringify(message));
-  	};
-
-  	var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
-  	calOptions.firstReminderMinutes = 0;
-      var comment = 'pear2pear reminder';
-  	window.plugins.calendar.createEventWithOptions(title , "", comment,
-                                                     dateWnd, dateWnd, calOptions, success, error);
-
-    };
-
-    $scope.deleteReminder = function(date, title){
-      var success = function(message) {
+      var success = function () {
       };
-  	var error = function(message) {
-  	  alert("Error: " + message);
-  	};
-  	var dateWnd = new window.Date();
-      dateWnd.setTime(date.getTime());
-  	window.plugins.calendar.deleteEvent(title, null, null, dateWnd, dateWnd,
-  				                        success, error);
+      var error = function (message) {
+        window.alert('Error: ' + JSON.stringify(message));
+      };
+      
+      var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
+      calOptions.firstReminderMinutes = 0;
+      var comment = 'pear2pear reminder';
+      window.plugins.calendar.createEventWithOptions(title, '', comment, dateWnd, dateWnd, calOptions, success, error);
 
     };
 
-    $scope.getReminders = function(taskId, userId){
+    $scope.deleteReminder = function (date, title) {
+      var success = function () {
+      };
+      var error = function (message) {
+        window.alert('Error: ' + message);
+      };
+      var dateWnd = new window.Date();
+      dateWnd.setTime(date.getTime());
+      window.plugins.calendar.deleteEvent(title, null, null, dateWnd, dateWnd,
+                                          success, error);
+      
+    };
+
+    $scope.getReminders = function (taskId, userId) {
       return $scope.reminders;
     };
 
     $scope.community = getCommunity();
 
-    $scope.index = function() {
+    $scope.index = function () {
       $location.path('communities/' + communityId()  + '/tasks');
     };
 
-    $scope.new = function(){
+    $scope.new = function () {
       $location.path('communities/' + communityId() + '/tasks/new');
     };
 
-    $scope.edit = function(task){
+    $scope.edit = function (task) {
       $location.path('tasks/' + task.id);
     };
 
-    $scope.community_index = function() {
+    $scope.community_index = function () {
       $location.path('communities');
     };
 
@@ -255,37 +253,37 @@ angular.module('Pear2Pear')
 
   .directive(
     'dateInput',
-        function(dateFilter) {
-          return {
-            require: '^ngModel',
-            template: '<input type="date"></input>',
-            replace: true,
-            link: function(scope, elm, attrs, ngModelCtrl) {
-              ngModelCtrl.$formatters.unshift(function (modelValue) {
-                return dateFilter(modelValue, 'yyyy-MM-dd');
-              });
+    function (dateFilter) {
+      return {
+        require: '^ngModel',
+        template: '<input type="date"></input>',
+        replace: true,
+        link: function (scope, elm, attrs, ngModelCtrl) {
+          ngModelCtrl.$formatters.unshift(function (modelValue) {
+            return dateFilter(modelValue, 'yyyy-MM-dd');
+          });
 
-              ngModelCtrl.$parsers.unshift(function(viewValue) {
-                return new Date(viewValue);
-              });
-            }
-          };
-        })
+          ngModelCtrl.$parsers.unshift(function (viewValue) {
+            return new Date(viewValue);
+          });
+        }
+      };
+    })
   .directive(
     'timeInput',
-    function(dateFilter) {
+    function (dateFilter) {
       return {
         require: '^ngModel',
         template: '<input type="time"></input>',
         replace: true,
-        link: function(scope, elm, attrs, ngModelCtrl) {
+        link: function (scope, elm, attrs, ngModelCtrl) {
           ngModelCtrl.$formatters.unshift(function (modelValue) {
             return dateFilter(modelValue, 'HH:mm');
           });
 
-          ngModelCtrl.$parsers.unshift(function(viewValue) {
+          ngModelCtrl.$parsers.unshift(function (viewValue) {
             var newDate = new Date();
-            if (ngModelCtrl.$modelValue){
+            if (ngModelCtrl.$modelValue) {
               newDate.setTime(ngModelCtrl.$modelValue.getTime());
             }
             newDate.setHours(viewValue.split(':')[0]);
@@ -299,7 +297,7 @@ angular.module('Pear2Pear')
 
   .directive(
     'datetimeInput',
-    function(){
+    function () {
       return {
         restrinct: 'AE',
         scope: {
@@ -307,11 +305,11 @@ angular.module('Pear2Pear')
         },
         templateUrl: 'views/datetimeinput.html',
         replace : true
-        };
+      };
     }
   )
-  
-  .config(function(uiSelectConfig) {
+
+  .config(function (uiSelectConfig) {
     uiSelectConfig.theme = 'select2';
   });
 
