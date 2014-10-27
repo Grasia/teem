@@ -9,11 +9,11 @@
   <div ng-click="new()"><i class="fa fa-plus"></i></div>
 </div>
 
-<div class="col-md-12">
-  <div class="row task-item" ng-repeat="task in tasks">
+<div id="tasks" class="col-md-12">
+  <div class="row task-item" ng-repeat="task in tasks | orderBy:['completed','(completionDate!==null)? -completionDate.getTime() : -creationDate.getTime()']">
     <div class="col-md-12">
       <div ng-click="toggleCompleted(task)" class="task-check-container pull-left">
-        <div ng-class="task.completed ? 'fa fa-square-o task-checkbox' : 'fa fa-check-square-o task-checkbox task-checkbox-checked' "></div>
+        <div ng-class="task.completed ? 'fa fa-check-square-o task-checkbox task-checkbox-checked' : 'fa fa-square-o task-checkbox' "></div>
       </div>
       <div ng-click="edit(task)" class="task-media media">
         <div class="media-body">

@@ -33,6 +33,8 @@ angular.module('Pear2Pear')
           name: "Task1",
           description: "Description1",
           completed: true,
+          creationDate: new Date(2),
+          completionDate: new Date (1000),
           assignees: [
             {
               name: "Antonio"
@@ -53,6 +55,8 @@ angular.module('Pear2Pear')
           name: "Task2",
           completed: false,
           description: "Description2",
+          creationDate: new Date(1),
+          completionDate :null,
           assignees: [
           ]
         }
@@ -60,6 +64,11 @@ angular.module('Pear2Pear')
 
     $scope.toggleCompleted = function(task){
       task.completed = !task.completed;
+      if (task.completed){
+        task.completionDate = new Date();
+      } else {
+        task.completionDate = null;
+      }
     };
 
    //TODO backend
