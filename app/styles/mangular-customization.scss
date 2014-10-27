@@ -51,6 +51,14 @@ label {
 
 .navbar {
 	min-height: 30px;
+ 	max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-title {
+    text-align: center;
+    vertical-align: middle;
 }
 
 .btn-info {
