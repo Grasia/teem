@@ -19,7 +19,9 @@
     "deadline" : "Deadline",
     "reminders" : "My reminders",
     "reminders_for_android" : "Reminders available for our",
-    "android_app" : "Android app"
+    "android_app" : "Android app",
+    "empty_tasks_tip" : "Add a new task",
+    "task_checkbox_tip" : "Click done tasks here"
   },
   "community": {
     "add_participant": "Add participant",

@@ -19,7 +19,9 @@
     "deadline" : "Fecha límite",
     "reminders" : "Mis recordatorios",
     "reminders_for_android" : "Recordatorios disponibles en nuestra",
-    "android_app" : "app Android"
+    "android_app" : "app Android",
+    "empty_tasks_tip" : "Añade una tarea nueva",
+    "task_checkbox_tip" : "Haz click aquí en las tareas terminadas"
   },
   "community": {
     "add_participant": "Añadir participante",

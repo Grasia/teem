@@ -8,8 +8,12 @@
 <div content-for="nav-right">
   <div ng-click="new()"><i class="fa fa-plus"></i></div>
 </div>
-
 <div id="tasks" class="col-md-12">
+  <div class="empty-tasks-tip" ng-if="tasks.length===0">
+    <div class="empty-tasks-tip-msg" translate >
+      tasks.empty_tasks_tip
+    </div>
+  </div>
   <div class="row task-item" ng-repeat="task in tasks | orderBy:['completed','(completionDate!==null)? -completionDate.getTime() : -creationDate.getTime()']">
     <div class="col-md-12">
       <div ng-click="toggleCompleted(task)" class="task-check-container pull-left">
@@ -25,6 +29,11 @@
           </span>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="checkbox-tip" ng-if="tasks.length===1 && !tasks[0].completed">
+    <div  translate>
+      tasks.task_checkbox_tip
     </div>
   </div>
 </div>
