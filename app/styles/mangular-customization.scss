@@ -50,10 +50,11 @@ label {
 }
 
 .navbar {
-	min-height: 30px;
- 	max-width: 600px;
+    min-height: 30px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    lineheigth: 2.0;
 }
 
 .nav-title {
@@ -65,6 +66,11 @@ label {
 	color: #fff;
 	background-color: #5bc0de;
 	border-color: #46b8da;
+}
+
+
+.navbar-app .btn-navbar {
+    line-height: 2.0;
 }
 
 .fa {
