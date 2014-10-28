@@ -86,7 +86,12 @@ angular.module('Pear2Pear')
     };
   
     $scope.community = getCommunity();
- 
+    
+    $scope.app.noParticipants = $scope.app.users.filter( 
+      function (elem) {
+        return $scope.community.participants.indexOf(elem)== -1;
+      }
+    );
     $scope.index = function() {
       $location.path('/communities');
     };
