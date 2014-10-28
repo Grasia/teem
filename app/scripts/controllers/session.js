@@ -12,12 +12,14 @@ angular.module('Pear2Pear')
     $routeProvider.
       when('/session/new', {
         templateUrl: 'views/session/new.html',
-        controller:'SessionCtrl'
+        controller:'SessionCtrl'        
       });
   }])
 
   .controller('SessionCtrl', ['$scope', '$location', function($scope, $location) {
+    $scope.$parent.hideNavigation = true;
     $scope.create = function() {
+      $scope.$parent.hideNavigation = false;
       $location.path('/communities');
     };
   }]);
