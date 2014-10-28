@@ -39,23 +39,45 @@ angular.module('Pear2Pear')
       }
     ];
   
+    //TODO backend
+    $scope.app = {};
+    
+    $scope.app.users = [
+      {
+        name: 'Marco'
+      },
+      {
+        name: 'Primavera'
+      },
+      {
+        name: 'Mayo'
+      },
+      {
+        name: 'Samer'
+      },
+      {
+        name: 'Pablo'
+      },
+      {
+        name: 'Tapi'
+      },
+      {
+        name: 'Javi'
+      },
+      {
+        name: 'Tenorio'
+      }
+    ];
+    
     var getCommunity = function() {
       if ($routeParams.id) {
         return {
           name: 'P2Pvalue',
           participants: [
-            {
-              name: 'Marco'
-            },
-            {
-              name: 'Primavera'
-            },
-            {
-              name: 'Mayo'
-            },
-            {
-              name: 'Samer'
-            }
+            $scope.app.users[0],
+            $scope.app.users[1],
+            $scope.app.users[2],
+            $scope.app.users[3]
           ]
         };
       } else {
@@ -64,7 +86,7 @@ angular.module('Pear2Pear')
     };
   
     $scope.community = getCommunity();
-  
+ 
     $scope.index = function() {
       $location.path('/communities');
     };

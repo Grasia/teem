@@ -7,13 +7,12 @@
       </div>
       <div class="form-group">
         <label class="control-label" translate>community.participants</label>
-        <div class="row generic-item" ng-repeat="participant in community.participants">
-          <div class="col-md-12">
-            <div class="pull-left generic-item-name">{{participant.name}} </div>
-          </div>
-        </div>
-        <button type="button" class="btn pull-left add-participant btn-info" translate>community.add_participant</button>
-        <div class="clearfix"></div>
+        <ui-select multiple ng-model="community.participants" theme="bootstrap">
+          <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+          <ui-select-choices repeat="user in app.users | filter:$select.search">
+            {{user.name}}
+          </ui-select-choices>
+        </ui-select>
       </div>
       <div class="form-group">
         <label class="control-label" translate>community.leave</label>
