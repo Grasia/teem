@@ -11,11 +11,11 @@ angular.module('Pear2Pear')
   .constant('Modernizr', Modernizr)
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:community_id/tasks', {
+      .when('/communities/:communityId/tasks', {
         templateUrl: 'views/tasks/index.html',
         controller: 'TasksCtrl'
       })
-      .when('/communities/:community_id/tasks/new', {
+      .when('/communities/:communityId/tasks/new', {
         templateUrl: 'views/tasks/new.html',
         controller: 'TasksCtrl'
       })
@@ -106,14 +106,14 @@ angular.module('Pear2Pear')
     };
 
     var communityId = function () {
-      return $routeParams.community_id || $scope.task && $scope.task.id;
+      return $routeParams.communityId || $scope.task && $scope.task.id;
     };
 
     var getCommunity = function () {
       //TODO backend
       if (communityId()) {
         return {
-          id: $routeParams.community_id,
+          id: $routeParams.communityId,
           name: 'UCM P2Pvalue',
           users: [
             {
@@ -236,7 +236,7 @@ angular.module('Pear2Pear')
       $location.path('tasks/' + task.id);
     };
 
-    $scope.community_index = function () {
+    $scope.communityIndex = function () {
       $location.path('communities');
     };
 
