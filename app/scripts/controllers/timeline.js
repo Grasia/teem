@@ -19,22 +19,74 @@ angular.module('Pear2Pear')
   .controller('TimelineCtrl', ['$scope', function($scope) {
     $scope.timeline = [
       {
-        'icon': 'write',
+        'icon': 'magic',
         'heading': 'Buy some drinks',
         'body': 'New task for project Sabado verde'
       }
     ];
 
-    var hipotesis11 = function() {
-      var proyecto = prompt('Proyecto en el que quiso y no pudo');
-
-      $scope.timeline.unshift({
-        'icon': 'new-project',
-        'heading': 'Fulanito ha creado el proyecto ' + proyecto
-      });
-    };
-
+    var proyectoQuiso;
+    var tarea;
+    var proyectoDuda;
+    $scope.hipothesis = [
+      {
+        fun : function() {
+          proyectoQuiso = prompt('Proyecto en el que quiso y no pudo');
+          
+          $scope.timeline.unshift({
+            'icon': 'lightbulb-o',
+            'heading': 'Fulanito ha creado el proyecto ' + proyectoQuiso
+          });
+        }
+      },
+      {
+        fun : function() {
+          var tarea = prompt('Tarea del proyecto en el que quiso y no pude');
+          
+          $scope.timeline.unshift({
+            'icon': 'magic',
+            'heading': tarea,
+            'body': 'Fulanito ha creado una tarea en el proyecto ' + proyectoQuiso
+          });
+        }
+      },
+      {      fun : function() {
+          proyectoDuda = prompt('Proyecto en el que dudó si participar');
+          
+          $scope.timeline.unshift({
+            'icon': 'lightbulb-o',
+            'heading': 'Fulanito ha creado el proyecto ' + proyectoDuda
+          });
+        }
+      },
+      {
+        fun : function() {
+         var tarea = prompt('Tarea del proyecto en el que dudó si participar');
+          
+          $scope.timeline.unshift({
+            'icon': 'magic',
+            'heading': tarea,
+            'body': 'Fulanito ha creado una tarea en el proyecto ' + proyectoDuda
+          });
+        }
+      },
+      {
+        fun2: function () {          
+          $scope.timeline.unshift({
+            'icon': 'pencil',
+            'heading': proyectoDuda + ': En marcha!',
+            'body': 'Fulanito ha cambiado el estado del proyecto'
+          });
+        }
+      }
+    ];
+      
+    $scope.testIndex = 0;
     $scope.start = function() {
-      hipotesis11();
+      if ($scope.testIndex < $scope.hipothesis.length) {
+        ($scope.hipothesis[$scope.testIndex].fun)();
+        $scope.testIndex++;
+      }
     };
+    
   }]);
