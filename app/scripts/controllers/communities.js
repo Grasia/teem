@@ -89,7 +89,7 @@ angular.module('Pear2Pear')
     
     $scope.app.noParticipants = $scope.app.users.filter( 
       function (elem) {
-        return $scope.community.participants.indexOf(elem)== -1;
+        return ($scope.community.participants)? $scope.community.participants.indexOf(elem)== -1 : false;
       }
     );
     $scope.index = function() {
