@@ -8,22 +8,22 @@
  * Controller of the Pear2Pear
  */
 angular.module('Pear2Pear')
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.
-      when('/communities', {
+  .config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+      .when('/communities', {
         templateUrl: 'views/communities/index.html',
         controller: 'CommunitiesCtrl'
-      }).
-      when('/communities/new', {
+      })
+      .when('/communities/new', {
         templateUrl: 'views/communities/new.html',
         controller: 'CommunitiesCtrl'
-      }).
-      when('/communities/:id/edit', {
+      })
+      .when('/communities/:id/edit', {
         templateUrl: 'views/communities/edit.html',
-        controller:'CommunitiesCtrl'
+        controller: 'CommunitiesCtrl'
       });
   }])
-  .controller('CommunitiesCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams){
+  .controller('CommunitiesCtrl', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
     $scope.communities = [
       {
         id: 1,
@@ -38,10 +38,10 @@ angular.module('Pear2Pear')
         name: 'Tabacalera'
       }
     ];
-  
+
     //TODO backend
     $scope.app = {};
-    
+
     $scope.app.users = [
       {
         name: 'Marco'
@@ -68,8 +68,8 @@ angular.module('Pear2Pear')
         name: 'Tenorio'
       }
     ];
-    
-    var getCommunity = function() {
+
+    var getCommunity = function () {
       if ($routeParams.id) {
         return {
           name: 'P2Pvalue',
@@ -84,31 +84,31 @@ angular.module('Pear2Pear')
         return {};
       }
     };
-  
+
     $scope.community = getCommunity();
-    
-    $scope.app.noParticipants = $scope.app.users.filter( 
+
+    $scope.app.noParticipants = $scope.app.users.filter(
       function (elem) {
-        return ($scope.community.participants)? $scope.community.participants.indexOf(elem)== -1 : false;
+        return ($scope.community.participants) ? $scope.community.participants.indexOf(elem) === -1 : false;
       }
     );
-    $scope.index = function() {
+    $scope.index = function () {
       $location.path('/communities');
     };
-  
-    $scope.new  = function() {
+
+    $scope.new  = function () {
       $location.path('/communities/new');
     };
-  
-    $scope.edit = function(id) {
+
+    $scope.edit = function (id) {
       $location.path('/communities/' + id + '/edit');
     };
-  
-    $scope.showTasks = function(id) {
+
+    $scope.showTasks = function (id) {
       $location.path('/communities/' + id + '/tasks');
     };
-  
-    $scope.save = function() {
+
+    $scope.save = function () {
       // TODO
       $scope.index();
     };
