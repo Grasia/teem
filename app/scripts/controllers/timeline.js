@@ -25,6 +25,16 @@ angular.module('Pear2Pear')
       }
     ];
 
+    var hipotesis11 = function() {
+      var proyecto = prompt('Proyecto en el que quiso y no pudo');
+
+      $scope.timeline.unshift({
+        'icon': 'new-project',
+        'heading': 'Fulanito ha creado el proyecto ' + proyecto
+      });
+    };
+
     $scope.start = function() {
+      hipotesis11();
     };
   }]);
