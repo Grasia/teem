@@ -16,23 +16,18 @@ angular.module('Pear2Pear')
       });
   }])
 
-   .controller('TimelineCtrl', ['$scope', function ($scope) {
-    $scope.timeline = [
-      // {
-        // 'icon': 'magic',
-        // 'heading': 'Buy some drinks',
-        // 'body': 'New task for project Sabado verde'
-      // }
-    ];
-
+  .controller('TimelineCtrl', ['$scope', function ($scope) {
+    $scope.timeline = [];
     var nombre;
+    var machaca1;
+    var machaca2;
     var proyectoQuiso;
     var tarea;
     var proyectoDuda;
     $scope.hipothesis = [
       {
         fun : function () {
-          // nombre = prompt('Nombre del entrevistado');
+          nombre = prompt('Nombre del entrevistado');
           proyectoQuiso = prompt('Proyecto en el que quiso y no pudo');
           $scope.timeline.unshift({
             'icon': 'lightbulb-o',
@@ -42,12 +37,13 @@ angular.module('Pear2Pear')
       },
       {
         fun : function () {
+          machaca1 = prompt('Nombre de persona activa en comunidad'); 
           var tarea = prompt('Tarea del proyecto en el que quiso y no pude');
 
           $scope.timeline.unshift({
             'icon': 'magic',
             'heading': tarea,
-            'body': 'Fulanito ha creado una tarea en el proyecto ' + proyectoQuiso
+            'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoQuiso
           });
         }
       },
@@ -56,7 +52,7 @@ angular.module('Pear2Pear')
 
           $scope.timeline.unshift({
             'icon': 'lightbulb-o',
-            'heading': 'Fulanito ha creado el proyecto ' + proyectoDuda
+            'heading': machaca1 + ' ha creado el proyecto ' + proyectoDuda
           });
         }
       },
@@ -67,7 +63,7 @@ angular.module('Pear2Pear')
           $scope.timeline.unshift({
             'icon': 'magic',
             'heading': tarea,
-            'body': 'Fulanito ha creado una tarea en el proyecto ' + proyectoDuda
+            'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoDuda
           });
         }
       },
@@ -76,7 +72,17 @@ angular.module('Pear2Pear')
           $scope.timeline.unshift({
             'icon': 'pencil',
             'heading': proyectoDuda + ': En marcha!',
-            'body': 'Fulanito ha cambiado el estado del proyecto'
+            'body': machaca1 + ' ha cambiado el estado del proyecto'
+          });
+        }
+      },
+      {
+        fun: function () {
+          machaca2 = prompt('Nombre de otra persona activa en el proyecto');
+          $scope.timeline.unshift({
+            'icon': 'life-ring',
+            'heading': 'Ayuda a: ' + tarea,
+            'body': machaca2 + ' ha pedido colaboración en la tarea'
           });
         }
       },
@@ -85,16 +91,7 @@ angular.module('Pear2Pear')
           $scope.timeline.unshift({
             'icon': 'life-ring',
             'heading': 'Ayuda a: ' + tarea,
-            'body': 'Fulanita ha pedido colaboración en la tarea'
-          });
-        }
-      },
-      {
-        fun: function () {
-          $scope.timeline.unshift({
-            'icon': 'life-ring',
-            'heading': 'Ayuda a: ' + tarea,
-            'body': 'Fulanita ha pedido colaboración en la tarea'
+            'body': machaca2 + ' ha pedido colaboración en la tarea'
           });
         }
       },
@@ -103,7 +100,7 @@ angular.module('Pear2Pear')
           $scope.timeline.unshift({
             'icon': 'life-ring',
             'heading': 'Ayudame ' + nombre + ' a: ' + tarea,
-            'body': 'Fulanita te ha pedido colaboración en la tarea'
+            'body': machaca2 + ' te ha pedido colaboración en la tarea'
           });
         }
       },
@@ -112,7 +109,7 @@ angular.module('Pear2Pear')
           $scope.timeline.unshift({
             'icon': 'lightbulb-o',
             'heading': 'Únete a : ' + proyectoDuda,
-            'body': 'Fulanita te ha invitado a participar en el proyecto'
+            'body': machaca2 + ' te ha invitado a participar en el proyecto'
           });
         }
       }
