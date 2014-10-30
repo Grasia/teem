@@ -17,13 +17,13 @@ angular.module('Pear2Pear')
   }])
 
    .controller('TimelineCtrl', ['$scope', function ($scope) {
-  //   $scope.timeline = [
-  //     {
-  //       'icon': 'magic',
-  //       'heading': 'Buy some drinks',
-  //       'body': 'New task for project Sabado verde'
-  //     }
-  //   ];
+    $scope.timeline = [
+      // {
+        // 'icon': 'magic',
+        // 'heading': 'Buy some drinks',
+        // 'body': 'New task for project Sabado verde'
+      // }
+    ];
 
     var nombre;
     var proyectoQuiso;
@@ -32,7 +32,7 @@ angular.module('Pear2Pear')
     $scope.hipothesis = [
       {
         fun : function () {
-          nombre = prompt('Nombre del entrevistado');
+          // nombre = prompt('Nombre del entrevistado');
           proyectoQuiso = prompt('Proyecto en el que quiso y no pudo');
           $scope.timeline.unshift({
             'icon': 'lightbulb-o',
