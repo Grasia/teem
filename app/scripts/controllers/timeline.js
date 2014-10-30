@@ -28,17 +28,17 @@ angular.module('Pear2Pear')
       {
         fun : function () {
           nombre = prompt('Nombre del entrevistado');
+          machaca1 = prompt('Nombre de persona activa en comunidad'); 
           proyectoQuiso = prompt('Proyecto en el que quiso y no pudo');
           $scope.timeline.unshift({
             'icon': 'lightbulb-o',
-            'heading': 'Fulanito ha creado el proyecto ' + proyectoQuiso
+            'heading': machaca1 + ' ha creado el proyecto ' + proyectoQuiso
           });
         }
       },
       {
         fun : function () {
-          machaca1 = prompt('Nombre de persona activa en comunidad'); 
-          var tarea = prompt('Tarea del proyecto en el que quiso y no pude');
+          var tarea = prompt('Tarea del proyecto en el que quiso y no pudo');
 
           $scope.timeline.unshift({
             'icon': 'magic',
