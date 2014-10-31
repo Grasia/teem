@@ -250,7 +250,18 @@ angular.module('Pear2Pear')
     $scope.dateOptions = {};
 
   }])
-
+  .directive(
+    'taskList',
+    function () {
+      return {
+        templateUrl: 'views/tasklist.html',
+        replace: true,
+        scope: {
+          taskList : '='
+        }
+      };
+    }
+  )
   .directive(
     'dateInput',
     function (dateFilter) {

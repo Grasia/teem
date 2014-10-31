@@ -45,5 +45,21 @@
     "tip": "Start entering your name",
     "welcome_msg": "Welcome to Pear to Pear. A tool to participate in your groups and communities"
   },
+  "project": {
+    "edit": {
+      "button": "Edit",
+      "title": "Edit project"
+    },
+    "index": {
+      "title": "Projects"
+    },
+    "share": {
+      "button": "Share"
+    },
+    "task_list_label": "Project tasks:",
+    "project_name": "Project name",
+    "project_status": "Status",
+    "project_description": "Description"
+  },
   "page_title": "P2Pvalue Prototype"
 }

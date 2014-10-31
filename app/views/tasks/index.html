@@ -14,23 +14,7 @@
       tasks.empty_tasks_tip
     </div>
   </div>
-  <div class="row task-item" ng-repeat="task in tasks | orderBy:['completed','(completionDate!==null)? -completionDate.getTime() : -creationDate.getTime()']">
-    <div class="col-md-12">
-      <div ng-click="toggleCompleted(task)" class="task-check-container pull-left">
-        <div ng-class="task.completed ? 'fa fa-check-square-o task-checkbox task-checkbox-checked' : 'fa fa-square-o task-checkbox' "></div>
-      </div>
-      <div ng-click="edit(task)" class="task-media media">
-        <div class="media-body">
-          <h4 class = "media-heading task-name overflow-ellipsis">
-            {{task.name}}
-          </h4>
-          <span ng-repeat="asig in task.assignees" class="task-assignees">
-            {{asig.name +  ($last ? '' : ', ')}}
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="tasklist" ng-controller="TasksCtrl" task-list="tasks"></div>
   <div class="checkbox-tip" ng-if="tasks.length===1 && !tasks[0].completed">
     <div  translate>
       tasks.task_checkbox_tip

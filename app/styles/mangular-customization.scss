@@ -42,7 +42,6 @@ label {
 }
 
 .navbar-default {
-  background-color: #f9f9f9;
   border: 0px;
   border-top: solid #e2e2e2 1px;
   border-bottom: solid #e2e2e2 1px;
@@ -54,6 +53,8 @@ label {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 10px;
+	padding-bottom: 10px;
     lineheigth: 2.0;
 }
 
@@ -87,6 +88,14 @@ label {
     padding: 10px;
     
 }
+
+.projects .media {
+    background: #F7F7F7;
+    border: 1px solid #E7E7E7;
+    padding: 10px;
+    
+}
+
 div.timeline-icon {
     border-radius: 25px;
     display: block;

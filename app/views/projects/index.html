@@ -1,0 +1,24 @@
+<div content-for="nav-title">
+  <div class="project-name overflow-ellipsis" translate>project.index.title</div>
+  <div class="task-index" translate>{{community.name}}</div>
+</div>
+
+<div content-for="nav-right"><i class="fa fa-plus" ng-click="new()"></i></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="projects">
+      <div class="row project-item" ng-repeat="project in projects" ng-click="showProject(project.id)">
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading">{{project.name}}</h4>
+            <!--TODO color #C1D97A-->
+            <strong>{{project.status? 'Status:' : ''}}</strong>
+            {{project.status? project.status : ''}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

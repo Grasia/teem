@@ -1,0 +1,53 @@
+<div content-for="nav-title">
+  <div class="project-name overflow-ellipsis" translate>{{project.name}}</div>
+  <div class="task-index" translate>{{community.name}}</div>
+</div>
+<div ng-if="!editing" ng-controller="TasksCtrl" content-for="nav-right">
+  <div ng-click="new()"><i class="fa fa-plus"></i></div>
+</div>
+<div ng-if="editing" content-for="nav-right">
+  <i class="fa fa-check" ng-click="save()"></i>
+</div>
+
+<div  ng-if="editing" content-for="nav-left"><i class="fa fa-chevron-left" ng-click="cancel()"></i></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="projects project-show">
+      <div class="container show-project">
+        <div class="media-body" ng-if="!editing">
+          <h4 class="media-heading">{{project.name}}</h4>
+          <!--TODO color #C1D97A-->
+          <div class="green">
+            <strong>{{project.status? 'Status:' : ''}}</strong>
+            {{project.status? project.status : ''}}
+          </div>
+          <div class="containter" ng-model="project.description">
+            {{project.description}}
+          </div>
+        </div>
+        <div ng-include="'views/projects/form.html'" ng-if="editing">
+        </div>
+        <div class="row" ng-if="!editing">
+          <span class="btn-group">
+            <button class="btn btn-default project-edit" type="button" ng-click="edit(); $event.stopPropagation()" translate>project.edit.button</button>
+          </span>
+          <span class="btn-group">
+            <button class="btn btn-default project-share" type="button" ng-click="share(); $event.stopPropagation()">
+              <span class="fa fa-share-alt pull-left green">
+              </span>
+              <div class="pull-right" translate>project.share.button</div>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <label translate>project.task_list_label</label>
+      </div>
+      <!--TODO: Show only tasks of the project  -->
+      <div id="tasklist" ng-controller="TasksCtrl" task-list="tasks"></div>
+    </div>
+  </div>
+</div>
