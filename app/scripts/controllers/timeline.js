@@ -58,7 +58,7 @@ angular.module('Pear2Pear')
       },
       {
         fun : function () {
-         var tarea = prompt('Tarea del proyecto en el que dudó si participar');
+          tarea = prompt('Tarea del proyecto en el que dudó si participar');
 
           $scope.timeline.unshift({
             'icon': 'magic',
