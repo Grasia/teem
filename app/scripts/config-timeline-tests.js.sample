@@ -1,0 +1,6 @@
+
+window.configTimelineTests = {
+  user : 'user',
+  pass : 'pass',
+  waveId : 'local.net/dummy+0O2MMMusaRA'
+};
