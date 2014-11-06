@@ -69,7 +69,6 @@ angular.module('Pear2Pear')
 
     if (typeof window.WaveJS !== 'undefined') {
       $scope.init();
-      window.alert('foo');
     }
     else {
       window.onWaveJSReady = function () {
