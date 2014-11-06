@@ -10,7 +10,8 @@
 
 window.onWaveJSReady = function () {
   window.WaveJS.startSession(
-    'https://wave.p2pvalue.eu',
+    //'https://wave.p2pvalue.eu',
+    'http://localhost:9898',
     window.configTimelineTests.user,
     window.configTimelineTests.pass);
 };
@@ -37,6 +38,12 @@ angular.module('Pear2Pear')
     };
   })
   .controller('TimelineCtrl', ['$scope', '$location', function ($scope, $location) {
+    var apply = function () {
+      var p = $scope.$$phase;
+      if (p !== '$digest' && p !== '$apply') {
+        $scope.$apply();
+      }
+    };
     $scope.init = function () {
       window.WaveJS.openListModel(
         window.configTimelineTests.waveId,
@@ -46,31 +53,19 @@ angular.module('Pear2Pear')
             'ITEM_ADDED', function (item) {
               var index = window.WaveJS.listModel.list.values.indexOf(item);
               $scope.timeline[index] = JSON.parse(item);
-
-              var p = $scope.$$phase;
-              if (p !== '$digest' && p !== '$apply') {
-                $scope.$apply();
-              }
+              apply();
             });
           window.WaveJS.listModel.list.registerEventHandler(
             'ITEM_REMOVED', function (item) {
               var index = window.WaveJS.listModel.list.values.indexOf(item);
               $scope.timeline.splice(index, 1);
-
-              var p = $scope.$$phase;
-              if (p !== '$digest' && p !== '$apply') {
-                $scope.$apply();
-              }
+              apply();
             });
           $scope.timeline = [];
           for (var i = 0; i < listModel.list.values.length; i++) {
             $scope.timeline[i] = JSON.parse(listModel.list.values[i]);
           }
-          var p = $scope.$$phase;
-          if (p !== '$digest' && p !== '$apply') {
-            $scope.$apply();
-          }
-
+          apply();
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);
         });
@@ -82,7 +77,8 @@ angular.module('Pear2Pear')
     else {
       window.onWaveJSReady = function () {
         window.WaveJS.startSession(
-          'https://wave.p2pvalue.eu',
+          //'https://wave.p2pvalue.eu',
+          'http://localhost:9898',
           window.configTimelineTests.user,
           window.configTimelineTests.pass,
           function () {
