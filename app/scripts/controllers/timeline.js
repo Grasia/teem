@@ -10,8 +10,7 @@
 
 window.onWaveJSReady = function () {
   window.WaveJS.startSession(
-    //'https://wave.p2pvalue.eu',
-    'http://localhost:9898',
+    'https://wave.p2pvalue.eu',
     window.configTimelineTests.user,
     window.configTimelineTests.pass);
 };
@@ -65,7 +64,7 @@ angular.module('Pear2Pear')
           for (var i = 0; i < listModel.list.values.length; i++) {
             $scope.timeline[i] = JSON.parse(listModel.list.values[i]);
           }
-          apply();
+
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);
         });
@@ -77,8 +76,7 @@ angular.module('Pear2Pear')
     else {
       window.onWaveJSReady = function () {
         window.WaveJS.startSession(
-          //'https://wave.p2pvalue.eu',
-          'http://localhost:9898',
+          'https://wave.p2pvalue.eu',
           window.configTimelineTests.user,
           window.configTimelineTests.pass,
           function () {
