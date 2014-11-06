@@ -1,7 +1,7 @@
 <div id="timeline" class="row">
   <div class="col-md-12">
     <div class="timeline">
-      <div class="media" ng-repeat="item in timeline">
+      <div class="media" ng-repeat="item in timeline | reverse">
         <a class="pull-left" href="#">
           <div ng-class="'media-object fa timeline-icon' + (item.icon ? (' fa-' + item.icon) : '' )"></div>
         </a>

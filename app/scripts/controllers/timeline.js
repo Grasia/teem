@@ -31,7 +31,11 @@ angular.module('Pear2Pear')
         controller: 'TimelineCtrl'
       });
   }])
-
+  .filter('reverse', function () {
+    return function (items) {
+      return (items) ? items.slice().reverse(): [];
+    };
+  })
   .controller('TimelineCtrl', ['$scope', '$location', function ($scope, $location) {
     $scope.init = function () {
       window.WaveJS.openListModel(
@@ -62,6 +66,11 @@ angular.module('Pear2Pear')
           for (var i = 0; i < listModel.list.values.length; i++) {
             $scope.timeline[i] = JSON.parse(listModel.list.values[i]);
           }
+          var p = $scope.$$phase;
+          if (p !== '$digest' && p !== '$apply') {
+            $scope.$apply();
+          }
+
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);
         });
