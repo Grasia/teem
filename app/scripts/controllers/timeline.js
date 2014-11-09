@@ -43,7 +43,14 @@ angular.module('Pear2Pear')
         $scope.$apply();
       }
     };
+
     $scope.init = function () {
+      // following if avoids concurrency control error in wave
+      if (window.WaveJS.listModel) {
+        window.WaveJS.close(
+          window.configTimelineTests.waveId);
+      }
+
       window.WaveJS.openListModel(
         window.configTimelineTests.waveId,
         function (listModel) {
@@ -64,6 +71,7 @@ angular.module('Pear2Pear')
           for (var i = 0; i < listModel.list.values.length; i++) {
             $scope.timeline[i] = JSON.parse(listModel.list.values[i]);
           }
+          apply();
 
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);

@@ -62,5 +62,10 @@
     "project_status": "Estado",
     "project_description": "Descripción"
   },
-  "page_title": "Prototipo P2Pvalue"
+  "page_title": "Prototipo P2Pvalue",
+  "bottom_navbar": {
+    "news": "Noticias",
+    "projects": "Proyectos",
+    "my_tasks": "Mis tareas"
+  }
 }
