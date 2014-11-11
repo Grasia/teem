@@ -49,7 +49,7 @@
         <div class="btn-group col-md-12">
           <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-left-bottom">
             <div ng-click="timeline()">
-              <i class="fa fa-bullhorn"></i>
+              <i class="fa fa-bullhorn" ng-class="(context === 'news')?'selected':''"></i>
               <div translate>
                 bottom_navbar.news
               </div>
@@ -58,7 +58,7 @@
 
           <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-right-bottom">
             <div ng-click="projects()">
-              <i class="fa fa-lightbulb-o"></i>
+              <i class="fa fa-lightbulb-o" ng-class="(context === 'projects')?'selected':''"></i>
               <div translate>
                 bottom_navbar.projects
               </div>
@@ -67,7 +67,7 @@
 
           <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-center-bottom">
             <div ng-click="tasks()">
-              <i class="fa fa-check"></i>
+              <i class="fa fa-check" ng-class="(context === 'myTasks')?'selected':''"></i>
               <div translate>
                 bottom_navbar.my_tasks
               </div>
