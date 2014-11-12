@@ -80,7 +80,7 @@ angular.module('Pear2Pear')
 
     // TODO: this should be set by the method above
     $scope.community = {
-      name: 'Testing community'
+      name: 'UCM P2Pvalue'
     };
 
 
