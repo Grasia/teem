@@ -20,6 +20,6 @@ angular.module('Pear2Pear')
     $scope.$parent.hideNavigation = true;
     $scope.create = function() {
       $scope.$parent.hideNavigation = false;
-      $location.path('/communities');
+      $location.path('/timeline');
     };
   }]);

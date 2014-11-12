@@ -11,21 +11,23 @@ angular.module('Pear2Pear')
   .constant('Modernizr', Modernizr)
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:communityId/tasks', {
+      .when('/my_tasks/:id/tasks', {
         templateUrl: 'views/tasks/index.html',
         controller: 'TasksCtrl'
       })
-      .when('/communities/:communityId/tasks/new', {
-        templateUrl: 'views/tasks/new.html',
+      .when('/:context/:id/tasks/:id', {
+        templateUrl: 'views/tasks/edit.html',
         controller: 'TasksCtrl'
       })
-      .when('/tasks/:id', {
+      .when('/:context/:id/tasks/new', {
         templateUrl: 'views/tasks/edit.html',
         controller: 'TasksCtrl'
       });
   }])
   .controller('TasksCtrl', ['$scope', '$location', '$routeParams', 'Modernizr', function ($scope, $location, $routeParams, Modernizr) {
 
+    var context = $location.path().split('/')[1];
+    var id = $location.path().split('/')[2];
     $scope.tasks =
       [
         {
@@ -225,15 +227,15 @@ angular.module('Pear2Pear')
     $scope.community = getCommunity();
 
     $scope.index = function () {
-      $location.path('communities/' + communityId()  + '/tasks');
+      $location.path('/' + context + '/' + id + '/tasks');
     };
 
     $scope.new = function () {
-      $location.path('communities/' + communityId() + '/tasks/new');
+      $location.path('/' + context + '/' + id + '/tasks/new');
     };
 
     $scope.edit = function (task) {
-      $location.path('tasks/' + task.id);
+      $location.path('/' + context + '/' + id + '/tasks/' + task.id);
     };
 
     $scope.communityIndex = function () {

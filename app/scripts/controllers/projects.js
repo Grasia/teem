@@ -15,7 +15,7 @@ angular.module('Pear2Pear')
         templateUrl: 'views/projects/index.html',
         controller: 'ProjectsCtrl'
       })
-      .when('/projects/:id', {
+      .when('/projects/:id/tasks', {
         templateUrl: 'views/projects/show.html',
         controller: 'ProjectsCtrl'
       });
@@ -69,7 +69,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showProject = function (id) {
-      $location.path('/projects/' + id);
+      $location.path('/projects/' + id + '/tasks/');
     };
     
     $scope.edit = function () {
