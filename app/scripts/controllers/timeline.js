@@ -102,7 +102,6 @@ angular.module('Pear2Pear')
       };
     }
     var nombre;
-    var community = {};
     var machaca1;
     var machaca2;
     var proyectoQuiso;
@@ -112,7 +111,7 @@ angular.module('Pear2Pear')
       {
         fun : function () {
           nombre = prompt('Nombre del entrevistado');
-          community.name = prompt('Nombre de la comunidad');
+          $scope.community.name = prompt('Nombre de la comunidad');
           machaca1 = prompt('Nombre de persona activa en comunidad');
           proyectoQuiso = prompt('Proyecto en el que quiso y no pudo');
           window.WaveJS.listModel.list.add(JSON.stringify({
