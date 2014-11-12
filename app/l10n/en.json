@@ -61,6 +61,11 @@
     "project_status": "Status",
     "project_description": "Description"
   },
+  "timeline": {
+    "show": {
+      "title": "News"
+    }
+  },
   "page_title": "P2Pvalue Prototype",
   "bottom_navbar": {
     "news": "News",
