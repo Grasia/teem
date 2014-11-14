@@ -13,8 +13,10 @@
           <div class="media-body">
             <h4 class="media-heading">{{project.name}}</h4>
             <!--TODO color #C1D97A-->
-            <strong>{{project.status? 'Status:' : ''}}</strong>
-            {{project.status? project.status : ''}}
+            <div class="green">
+              <strong>{{project.status? 'Status:' : ''}}</strong>
+              {{project.status? project.status : ''}}
+            </div>
           </div>
         </div>
       </div>
