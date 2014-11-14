@@ -116,7 +116,11 @@ angular.module('Pear2Pear')
           proyectoQuiso = prompt('Proyecto en el que quiso y no pudo');
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'lightbulb-o',
-            'heading': machaca1 + ' ha creado el proyecto ' + proyectoQuiso
+            'heading': machaca1 + ' ha creado el proyecto ' + proyectoQuiso,
+            'entity': {
+              'type': 'project',
+              'projectId': '1'
+            }
           }));
         }
       },
@@ -127,7 +131,12 @@ angular.module('Pear2Pear')
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'magic',
             'heading': tarea,
-            'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoQuiso
+            'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoQuiso,
+            'entity': {
+              'type': 'task',
+              'projectId': '1',
+              'taskId': '1'
+            }
           }));
         }
       },
@@ -136,7 +145,11 @@ angular.module('Pear2Pear')
 
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'lightbulb-o',
-            'heading': machaca1 + ' ha creado el proyecto ' + proyectoDuda
+            'heading': machaca1 + ' ha creado el proyecto ' + proyectoDuda,
+            'entity': {
+              'type': 'project',
+              'projectId': '1'
+            }
           }));
         }
       },
@@ -147,7 +160,12 @@ angular.module('Pear2Pear')
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'magic',
             'heading': tarea,
-            'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoDuda
+            'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoDuda,
+            'entity': {
+              'type': 'task',
+              'projectId': '1',
+              'taskId': '1'
+            }
           }));
         }
       },
@@ -156,7 +174,11 @@ angular.module('Pear2Pear')
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'pencil',
             'heading': proyectoDuda + ': En marcha!',
-            'body': machaca1 + ' ha cambiado el estado del proyecto'
+            'body': machaca1 + ' ha cambiado el estado del proyecto',
+            'entity': {
+              'type': 'project',
+              'projectId': '1'
+            }
           }));
         }
       },
@@ -166,7 +188,12 @@ angular.module('Pear2Pear')
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'life-ring',
             'heading': 'Ayuda a: ' + tarea,
-            'body': machaca2 + ' ha pedido colaboración en la tarea'
+            'body': machaca2 + ' ha pedido colaboración en la tarea',
+            'entity': {
+              'type': 'task',
+              'projectId': '1',
+              'taskId': '1'
+            }
           }));
         }
       },
@@ -175,7 +202,13 @@ angular.module('Pear2Pear')
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'life-ring',
             'heading': 'Ayuda a: ' + tarea,
-            'body': machaca2 + ' ha pedido colaboración en la tarea'
+            'body': machaca2 + ' ha pedido colaboración en la tarea',
+            'entity': {
+              'type': 'task',
+              'projectId': '1',
+              'taskId': '1'
+            }
+
           }));
         }
       },
@@ -184,7 +217,13 @@ angular.module('Pear2Pear')
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'life-ring',
             'heading': 'Ayudame ' + nombre + ' a: ' + tarea,
-            'body': machaca2 + ' te ha pedido colaboración en la tarea'
+            'body': machaca2 + ' te ha pedido colaboración en la tarea',
+            'entity': {
+              'type': 'task',
+              'projectId': '1',
+              'taskId': '1'
+            }
+
           }));
         }
       },
@@ -193,7 +232,12 @@ angular.module('Pear2Pear')
           window.WaveJS.listModel.list.add(JSON.stringify({
             'icon': 'lightbulb-o',
             'heading': 'Únete a : ' + proyectoDuda,
-            'body': machaca2 + ' te ha invitado a participar en el proyecto'
+            'body': machaca2 + ' te ha invitado a participar en el proyecto',
+            'entity': {
+              'type': 'project',
+              'projectId': '1'
+            }
+
           }));
         }
       }
@@ -223,5 +267,15 @@ angular.module('Pear2Pear')
       window.alert(window.WaveJS.createListModel());
     };
 
+    $scope.timelineLink = function (entity) {
+      switch (entity.type) {
+      case 'task':
+        $location.path('projects/' + entity.projectId + '/tasks/' + entity.taskId);
+        break;
+      case 'project':
+        $location.path('projects/' + entity.projectId + '/tasks/');
+        break;
+      }
+    };
   }]);
 

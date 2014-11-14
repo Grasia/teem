@@ -6,11 +6,11 @@
 <div id="timeline" class="row">
   <div class="col-md-12">
     <div class="timeline">
-      <div class="media" ng-repeat="item in timeline | reverse">
-        <a class="pull-left" href="#">
-          <div ng-class="'media-object fa timeline-icon' + (item.icon ? (' fa-' + item.icon) : '' )"></div>
-        </a>
-        <div class="media-body">
+      <div class="media" ng-repeat="item in timeline | reverse" ng-click="timelink(item.entity)">
+        <div class="pull-left">
+          <div ng-class="'media-object fa timeline-icon' + (item.icon ? (' fa-' + item.icon) : '' )" ng-click="timelineLink(item.entity)"></div>
+        </div>
+        <div class="media-body" ng-click="timelineLink(item.entity)">
           <h4 class="media-heading">{{item.heading}}</h4>
           {{item.body}}
         </div>
