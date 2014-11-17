@@ -1,5 +1,6 @@
 
 window.configTimelineTests = {
+  server : 'https://wave.p2pvalue.eu',
   user : 'user',
   pass : 'pass',
   waveId : 'local.net/dummy+0O2MMMusaRA'

@@ -10,7 +10,7 @@
 
 window.onWaveJSReady = function () {
   window.WaveJS.startSession(
-    'https://wave.p2pvalue.eu',
+    window.configTimelineTests.server,
     window.configTimelineTests.user,
     window.configTimelineTests.pass);
 };
@@ -90,7 +90,7 @@ angular.module('Pear2Pear')
     else {
       window.onWaveJSReady = function () {
         window.WaveJS.startSession(
-          'https://wave.p2pvalue.eu',
+          window.configTimelineTests.server,
           window.configTimelineTests.user,
           window.configTimelineTests.pass,
           function () {
