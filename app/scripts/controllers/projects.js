@@ -60,18 +60,19 @@ angular.module('Pear2Pear')
       name: 'Really Interesting Community'
     };
 
+    $scope.showProject = function (id) {
+      $location.path('/projects/' + id + '/tasks/');
+    };
+
     $scope.new_ = function () {
       $scope.editing = true;
       //TODO do a proper new project
       $scope.project = {
 
       };
+      $scope.showProject('new');
     };
 
-    $scope.showProject = function (id) {
-      $location.path('/projects/' + id + '/tasks/');
-    };
-    
     $scope.edit = function () {
       $scope.editing = true;
       
