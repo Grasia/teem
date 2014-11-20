@@ -22,28 +22,26 @@
   </head>
   <body>
     <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
     <!-- Add your site or application content here -->
     <div class="app" id="app">
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
-          <div class="btn-group pull-left">
-            <div class="btn btn-navbar" yield-to="nav-left"></div>
-          </div>
+        <div class="btn-group pull-left">
+          <div class="btn btn-navbar" yield-to="nav-left"></div>
+        </div>
 
-          <div class="btn-group pull-right">
-            <div class="btn btn-navbar" yield-to="nav-right"></div>
-          </div>
+        <div class="btn-group pull-right">
+          <div class="btn btn-navbar" yield-to="nav-right"></div>
+        </div>
 
-          <div class="nav-title" yield-to="nav-title"></div>
+        <div class="nav-title" yield-to="nav-title"></div>
       </div>
-
 
       <div class="app-body scrollable">
         <div class="container scrollable-content" ng-view></div>
       </div>
-
 
       <div class="navbar navbar-app navbar-absolute-bottom" ng-hide="hideNavigation" ng-controller="BottomNavbarCtrl">
         <div class="btn-group col-md-12">
@@ -77,43 +75,61 @@
       </div>
     </div>
 
-<!-- build:js(.) scripts/oldieshim.js -->
-<!--[if lt IE 9]>
+    <script>
+     // Load only within android app: cordova=android
+     if (window.location.search.search("cordova") > 0) {
+       (function(d, script) {
+         var scripts = [
+           "cordova",
+           "cordova_plugins",
+         ]
+
+         for (i in scripts) {
+           script = d.createElement('script');
+           script.type = 'text/javascript';
+           script.src = 'scripts/cordova/' + scripts[i] + '.js';
+           d.getElementsByTagName('head')[0].appendChild(script);
+         }
+       }(document));
+     };
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <![endif]-->
-<!-- endbuild -->
+    <!-- endbuild -->
 
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/modernizr/modernizr.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-translate/angular-translate.js"></script>
-<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-<script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="bower_components/angular-ui-select/dist/select.js"></script>
-<!-- endbower -->
-<script src="scripts/cordova.js"></script>
-<!-- endbuild -->
-
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/session.js"></script>
-<script src="scripts/controllers/tasks.js"></script>
-<script src="scripts/controllers/communities.js"></script>
-<script src="scripts/controllers/datetimeinput.js"></script>
-<script src="scripts/controllers/timeline.js"></script>
-<script src="scripts/controllers/projects.js"></script>
-<script src="scripts/controllers/bottom_navbar.js"></script>
-<!-- endbuild -->
-<script src="https://wave.p2pvalue.eu/wavejs/wavejs.nocache.js"></script>
-<script src="scripts/config-timeline-tests.js"></script>
-</body>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <!-- endbower -->
+    <script src="scripts/cordova.js"></script>
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/session.js"></script>
+    <script src="scripts/controllers/tasks.js"></script>
+    <script src="scripts/controllers/communities.js"></script>
+    <script src="scripts/controllers/datetimeinput.js"></script>
+    <script src="scripts/controllers/timeline.js"></script>
+    <script src="scripts/controllers/projects.js"></script>
+    <script src="scripts/controllers/bottom_navbar.js"></script>
+    <!-- endbuild -->
+    <script src="https://wave.p2pvalue.eu/wavejs/wavejs.nocache.js"></script>
+    <script src="scripts/config-timeline-tests.js"></script>
+  </body>
 </html>
