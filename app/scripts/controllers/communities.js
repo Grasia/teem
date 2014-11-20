@@ -96,7 +96,7 @@ angular.module('Pear2Pear')
       $location.path('/communities');
     };
 
-    $scope.new  = function () {
+    $scope.new_  = function () {
       $location.path('/communities/new');
     };
 
