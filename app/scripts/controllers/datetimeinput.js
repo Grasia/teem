@@ -9,6 +9,8 @@
  */
 angular.module('Pear2Pear')
   .controller('DateTimeInputCtrl', ['$scope', '$timeout', function($scope,$timeout){
+    $scope.supportsDateInput = Modernizr.inputtypes.date;
+    $scope.supportsTimeInput = Modernizr.inputtypes.time;
     $scope.open = function() {
       $timeout(function() {
         $scope.opened = true;

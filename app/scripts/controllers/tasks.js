@@ -246,9 +246,6 @@ angular.module('Pear2Pear')
       assignees: $scope.community.users
     };
 
-    $scope.supportsDateInput = Modernizr.inputtypes.date;
-    $scope.supportsTimeInput = Modernizr.inputtypes.time;
-
     $scope.dateOptions = {};
 
   }])
