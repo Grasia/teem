@@ -230,7 +230,7 @@ angular.module('Pear2Pear')
       $location.path('/' + context + '/' + id + '/tasks');
     };
 
-    $scope.new = function () {
+    $scope.new_ = function () {
       $location.path('/' + context + '/' + id + '/tasks/new');
     };
 

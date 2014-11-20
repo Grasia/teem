@@ -60,7 +60,7 @@ angular.module('Pear2Pear')
       name: 'Really Interesting Community'
     };
 
-    $scope.new = function () {
+    $scope.new_ = function () {
       $scope.editing = true;
       //TODO do a proper new project
       $scope.project = {

@@ -3,7 +3,7 @@
   <div class="task-index" translate>{{community.name}}</div>
 </div>
 <div ng-if="!editing" ng-controller="TasksCtrl" content-for="nav-right">
-  <div ng-click="new()"><i class="fa fa-plus"></i></div>
+  <div ng-click="new_()"><i class="fa fa-plus"></i></div>
 </div>
 <div ng-if="editing" content-for="nav-right">
   <i class="fa fa-check" ng-click="save()"></i>
