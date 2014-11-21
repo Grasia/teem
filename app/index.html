@@ -39,7 +39,7 @@
         <div class="nav-title" yield-to="nav-title"></div>
       </div>
 
-      <div class="app-body scrollable">
+      <div ng-style="(hideNavigation) ? {'padding-bottom': '0px'}:{}" class="app-body scrollable">
         <div class="container scrollable-content" ng-view></div>
       </div>
 
