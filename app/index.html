@@ -26,7 +26,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="app" id="app">
+    <div bindonce class="app" id="app">
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
         <div class="btn-group pull-left">
           <div class="btn btn-navbar" yield-to="nav-left"></div>
@@ -47,7 +47,7 @@
         <div class="btn-group col-md-12">
           <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-left-bottom">
             <div ng-click="timeline()">
-              <i class="fa fa-bullhorn" ng-class="contextIs('timeline')?'selected':''"></i>
+              <i class="fa fa-bullhorn" bo-class="contextIs('timeline')?'selected':''"></i>
               <div translate>
                 bottom_navbar.news
               </div>
@@ -56,7 +56,7 @@
 
           <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-right-bottom">
             <div ng-click="projects()">
-              <i class="fa fa-lightbulb-o" ng-class="contextIs('projects')?'selected':''"></i>
+              <i class="fa fa-lightbulb-o" bo-class="contextIs('projects')?'selected':''"></i>
               <div translate>
                 bottom_navbar.projects
               </div>
@@ -65,7 +65,7 @@
 
           <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-center-bottom">
             <div ng-click="tasks()">
-              <i class="fa fa-check" ng-class="contextIs('my_tasks')?'selected':''"></i>
+              <i class="fa fa-check" bo-class="contextIs('my_tasks')?'selected':''"></i>
               <div translate>
                 bottom_navbar.my_tasks
               </div>
@@ -116,6 +116,7 @@
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/angular-bindonce/bindonce.js"></script>
     <!-- endbower -->
     <script src="scripts/cordova.js"></script>
     <!-- endbuild -->
