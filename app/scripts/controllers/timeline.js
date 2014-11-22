@@ -222,18 +222,31 @@ angular.module('Pear2Pear')
 
 
     $scope.testIndex = 0;
+
     $scope.next = function () {
       if ($scope.testIndex < $scope.hipothesis.length) {
         ($scope.hipothesis[$scope.testIndex].fun)();
         $scope.testIndex++;
       }
     };
+
     $scope.clear = function () {
       var wjsList = window.WaveJS.listModel.list;
       for (var i = wjsList.values.length; i >= 0 ; i--) {
         wjsList.remove(i);
       }
       $scope.testIndex = 0;
+    };
+
+    $scope.custom = function () {
+      var title = prompt('Timeline event TITLE');
+      var text = prompt('Timeline event TEXT');
+      var icon = prompt('Timeline event icon (magic, lightbulb-o, pencil, life-ring, heart-o, ...)');
+      window.WaveJS.listModel.list.add(JSON.stringify({
+        'icon': icon,
+        'heading': title,
+        'body': text
+      }));
     };
 
     $scope.isControl = function () {
