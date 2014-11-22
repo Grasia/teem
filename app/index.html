@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="Pear2Pear">
+<html class="no-js">
   <head>
     <meta charset="utf-8">
     <title translate>page_title</title>
@@ -132,5 +132,24 @@
     <!-- endbuild -->
     <script src="https://wave.p2pvalue.eu/wavejs/wavejs.nocache.js"></script>
     <script src="scripts/config-timeline-tests.js"></script>
+
+    <script>
+     window.onWaveJSReady = function () {
+       window.WaveJS.startSession(
+         window.configTimelineTests.server,
+         window.configTimelineTests.user,
+         window.configTimelineTests.pass,
+         function () {
+           //success
+         },
+         function () {
+           window.alert('Error conecting to wavejs server: Try again later')
+         });
+       angular.element(document).ready(function() {
+         angular.bootstrap(document, ['Pear2Pear']);
+       });
+     };
+    </script>
+
   </body>
 </html>

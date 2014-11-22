@@ -8,13 +8,6 @@
  * Controller of the Pear2Pear
  */
 
-window.onWaveJSReady = function () {
-  window.WaveJS.startSession(
-    window.configTimelineTests.server,
-    window.configTimelineTests.user,
-    window.configTimelineTests.pass);
-};
-
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -83,24 +76,8 @@ angular.module('Pear2Pear')
       name: 'UCM P2Pvalue'
     };
 
+    $scope.init();
 
-    if (typeof window.WaveJS !== 'undefined') {
-      $scope.init();
-    }
-    else {
-      window.onWaveJSReady = function () {
-        window.WaveJS.startSession(
-          window.configTimelineTests.server,
-          window.configTimelineTests.user,
-          window.configTimelineTests.pass,
-          function () {
-            $scope.init();
-          },
-          function (error) {
-            window.alert('error: ' + error);
-          });
-      };
-    }
     var nombre;
     var machaca1;
     var machaca2;
