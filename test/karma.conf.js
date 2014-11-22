@@ -32,6 +32,7 @@ module.exports = function(config) {
       'bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-ui-select/dist/select.js',
+      'bower_components/angular-bindonce/bindonce.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
