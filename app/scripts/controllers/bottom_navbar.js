@@ -8,7 +8,7 @@
  * Controller of the Pear2Pear
  */
 angular.module('Pear2Pear')
-  .controller('BottomNavbarCtrl', ['$scope', '$location', function ($scope, $location) {
+  .controller('BottomNavbarCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
     $scope.context = 'news';
     $scope.timeline = function () {
       //TODO timeline of the community
@@ -26,5 +26,15 @@ angular.module('Pear2Pear')
     $scope.contextIs = function (ctx) {
       return $location.path().split('/')[1] === ctx;
     };
-    
+    $scope.$watch(function () {
+      return $window.innerHeight;
+    }, function(value) {
+      console.log(value);
+    });
+
+    $window.addEventListener('resize', function () {
+      $scope.$apply(function () {
+        $scope.$parent.height = window.innerHeight;
+      });
+    }, true);
   }]);

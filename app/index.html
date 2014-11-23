@@ -39,11 +39,11 @@
         <div class="nav-title" yield-to="nav-title"></div>
       </div>
 
-      <div ng-style="(hideNavigation) ? {'padding-bottom': '0px'}:{}" class="app-body scrollable">
+      <div ng-style="(hideNavigation || (height<300)) ? {'padding-bottom': '0px'}:{}" class="app-body scrollable">
         <div class="container scrollable-content" ng-view></div>
       </div>
 
-      <div class="navbar navbar-app navbar-absolute-bottom" ng-hide="hideNavigation" ng-controller="BottomNavbarCtrl">
+      <div ng-hide="hideNavigation || (height<300)" class="navbar navbar-app navbar-absolute-bottom" ng-controller="BottomNavbarCtrl">
         <div class="btn-group col-md-12">
           <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-left-bottom">
             <div ng-click="timeline()">
@@ -129,9 +129,9 @@
     <script src="scripts/controllers/timeline.js"></script>
     <script src="scripts/controllers/projects.js"></script>
     <script src="scripts/controllers/bottom_navbar.js"></script>
+    <script src="scripts/config-timeline-tests.js"></script>
     <!-- endbuild -->
     <script src="https://wave.p2pvalue.eu/wavejs/wavejs.nocache.js"></script>
-    <script src="scripts/config-timeline-tests.js"></script>
 
     <script>
      window.onWaveJSReady = function () {
@@ -150,6 +150,5 @@
        });
      };
     </script>
-
   </body>
 </html>

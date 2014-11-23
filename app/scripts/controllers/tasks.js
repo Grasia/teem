@@ -73,6 +73,14 @@ angular.module('Pear2Pear')
       }
     };
 
+    $scope.datepicker = false;
+    $scope.showdatepicker = function () {
+      return $scope.datepicker;
+    };
+
+    $scope.toggledatepicker = function () {
+      $scope.datepicker = !$scope.datepicker;
+    };
    //TODO backend
 
     $scope.task =  {
@@ -199,7 +207,7 @@ angular.module('Pear2Pear')
       var error = function (message) {
         window.alert('Error: ' + JSON.stringify(message));
       };
-      
+
       var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
       calOptions.firstReminderMinutes = 0;
       var comment = 'pear2pear reminder';
@@ -217,7 +225,7 @@ angular.module('Pear2Pear')
       dateWnd.setTime(date.getTime());
       window.plugins.calendar.deleteEvent(title, null, null, dateWnd, dateWnd,
                                           success, error);
-      
+
     };
 
     $scope.getReminders = function (taskId, userId) {
@@ -247,7 +255,6 @@ angular.module('Pear2Pear')
     };
 
     $scope.dateOptions = {};
-
   }])
   .directive(
     'taskList',
