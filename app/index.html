@@ -141,13 +141,14 @@
          window.configTimelineTests.pass,
          function () {
            //success
+           angular.element(document).ready(function() {
+             angular.bootstrap(document, ['Pear2Pear']);
+           });
          },
          function () {
            window.alert('Error conecting to wavejs server: Try again later')
          });
-       angular.element(document).ready(function() {
-         angular.bootstrap(document, ['Pear2Pear']);
-       });
+      
      };
     </script>
   </body>
