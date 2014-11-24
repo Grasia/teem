@@ -40,7 +40,7 @@ angular.module('Pear2Pear')
     $scope.init = function () {
       // following if avoids concurrency control error in wave
       if (window.WaveJS.listModel) {
-        window.WaveJS.close(
+        window.WaveJS.closeModel(
           window.configTimelineTests.waveId);
       }
 
