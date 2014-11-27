@@ -21,7 +21,7 @@
       </div>
       <div class="form-group">
         <label class="control-label" translate>tasks.deadline</label>
-        <div class="row" datetime-input date-model="task.deadlineDate"> </div>
+        <div datetime-input date-model="task.deadline"> </div>
         
       </div>
       <div class="form-group">
@@ -31,7 +31,7 @@
 
         </div>
         <div class="row form-group" ng-repeat="reminder in task.reminders" ng-if="isApp()">
-          <div datetime-input date-model="reminder.date">
+          <div datetime-input date-model="reminder">
           </div>
         </div>
       </div>

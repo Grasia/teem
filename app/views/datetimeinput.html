@@ -1,22 +1,29 @@
 <div>
   <div  id="datetime" ng-controller="DateTimeInputCtrl">
     <div class="col-sm-6" ng-if="supportsDateInput">
-      <input date-input class="form-control" ng-model="dateModel"/>
+      <input date-input class="form-control" ng-model="dateModel.date"/>
     </div>
 
     <div class="col-sm-6" ng-if="!supportsDateInput">
       <div class="input-group datepicker">
-        <input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions" is-open="model.opened" ng-required="true" ng-model="dateModel" ng-click="open($event,'opened')" close-text="Close"/>
-        <span class="input-group-addon" ng-click="open($event,'opened')">
-          <i class="fa fa-calendar"></i>
-        </span>
-      </div>
+        <div ng-if="!model.opened">
+          <input type="text" class="form-control" ng-value="dateModel.date | date:'shortDate'" ng-click="open($event,'opened')"/>
+        </div>
+        <div ng-if="model.opened">
+          <input type="text" class="form-control" datepicker-popup="shortDate" datepicker-options="dateOptions" is-open="model.opened" ng-model="dateModel.date" ng-click="open($event,'opened')"/>
+        </div>
+
+          <span class="input-group-addon" ng-click="open($event,'opened')">
+            <i class="fa fa-calendar"></i>
+          </span>
+        </div>
+      
     </div>
     <div class="col-sm-6" ng-if="supportsTimeInput">
-      <input time-input class="form-control"  ng-model="dateModel"/>
+      <input time-input class="form-control"  ng-model="dateModel.date"/>
     </div>
     <div class="col-sm-6" ng-if="! supportsTimeInput">
-      <timepicker ng-model="dateModel"></timepicker>
+      <timepicker ng-model="dateModel.date"></timepicker>
     </div>
   </div>
 </div>

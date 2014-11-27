@@ -102,7 +102,9 @@ angular.module('Pear2Pear')
           name: 'Juan'
         }
       ],
-      deadlineDate : new Date(),
+      deadline : {
+        date : new Date()
+      },
       reminders: [
         {
           id: 'reminder1',
