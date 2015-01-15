@@ -114,3 +114,64 @@ div.timeline-icon {
 .media-heading {
   font-family: "Dax Wide Regular", sans-serif;
 }
+
+// profile-thumbnail classes, for image croping based on http://jonathannicol.com/blog/2014/06/16/centre-crop-thumbnails-with-css/
+
+.profile-thumbnail {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+.profile-thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.profile-thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}
+//
+
+// blockquote style based on http://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/
+ 
+blockquote {
+font-family: Georgia, serif;
+font-size: 18px;
+font-style: italic;
+width: 500px;
+margin: 0.25em 0;
+padding: 0.25em 40px;
+line-height: 1.45;
+position: relative;
+color: #383838;
+border-left: 0px;
+}
+
+blockquote:before {
+display: block;
+content: "\201C";
+font-size: 80px;
+position: absolute;
+left: +0px;
+top: -20px;
+color: #7a7a7a;
+}
+
+blockquote cite {
+color: #999999;
+font-size: 14px;
+display: block;
+margin-top: 5px;
+}
+ 
+blockquote cite:before {
+content: "\2014 \2009";
+}
