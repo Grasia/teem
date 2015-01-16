@@ -49,10 +49,11 @@
         <div ng-hide="!formDisp">
           <div class="form-group">
             <label class="control-label">Pide ayuda a la comunidad</label>
-          
             <input class="form-control pull-right" style="display: inline-block;" type="text" placeholder="¿Qué necesitas?" ng-model="helpForm.what"></input>
             <textarea class="form-control pull-right" style="display: inline-block;" placeholder="Más detalles..."" ng-model="helpForm.details"></textarea>
-            <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm();addHelpRequest(helpForm.what,helpForm.details); helpForm = {};">Compartir</button>
+            <input class="form-control full-right" type="text" placeholder="Porqué es importante para la comunidad" ng-model="helpForm.support""></input>
+              <input class="form-control full-right" type="text" placeholder="Qué se puede aprender haciendo esto" ng-model="helpForm.learn"></input>
+            <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm();addHelpRequest(helpForm.what, helpForm.details, helpForm.support, helpForm.learn); helpForm = {};">Compartir</button>
             <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm()">Cancelar</button>
           </div>
         </div>
@@ -65,7 +66,17 @@
         </div>
         <div class="media-body" ng-click="TODO">
           <h4 class="media-heading">{{item.what}}</h4>
-          {{item.details}}
+
+          <div class="col-lg-6">
+            {{item.support}}
+            <div class="fa fa-heart-o pull-left">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            {{item.learn}}
+            <div class="fa fa-book pull-left">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -81,4 +92,28 @@
   </div>
 </div>
 
+<div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar" ng-if="isControl()">
+  <div class="btn-group col-md-12">
 
+    <div content-for="nav-right-bottom" class="btn-group pull-right">
+      <a class="btn btn-navbar" ng-click="clear()">
+        Clear
+      </a>
+    </div>
+    <div content-for="nav-center-bottom" class="btn-group">
+      <a class="btn btn-navbar" ng-click="newWaveId()">
+        New Wave Id
+      </a>
+    </div>
+  </div>
+</div> 
+
+<div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar" ng-if="!isControl()">
+  <div content-for="nav-left-bottom" class="btn-group pull-left">
+    
+  </div>
+  <div content-for="nav-right-bottom" class="btn-group pull-right">
+  </div>
+  <div content-for="nav-center-bottom" class="btn-group">
+  </div>
+</div>

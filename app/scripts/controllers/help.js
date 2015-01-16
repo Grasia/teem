@@ -11,13 +11,17 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/collab', {
+      .when('/collab/:id', {
+        templateUrl: 'views/help/show.html',
+        controller: 'HelpCtrl'
+      })
+      .when('/collab/:id/control', {
         templateUrl: 'views/help/show.html',
         controller: 'HelpCtrl'
       });
   }])
 
-  .controller('HelpCtrl', ['$scope', '$location', function($scope, $location){
+  .controller('HelpCtrl', ['$scope', '$location', '$route', function($scope, $location, $route){
     var apply = function () {
       var p = $scope.$$phase;
       if (p !== '$digest' && p !== '$apply') {
@@ -25,8 +29,7 @@ angular.module('Pear2Pear')
       }
     };
 
-    // TODO change for a communityId when community selection is implemented
-    $scope.communityId = 'Tabacalera';
+    $scope.communityId = $route.current.params['id'];
 
     $scope.init = function () {
       // following if avoids concurrency control error in wave
@@ -87,10 +90,12 @@ angular.module('Pear2Pear')
     $scope.init();
     
     $scope.helpForm = {};
-    $scope.addHelpRequest = function(what, details) {
+    $scope.addHelpRequest = function(what, details,support,learn) {
       var s = JSON.stringify({
         'what': what,
         'details': details,
+        'support': support,
+        'learn': learn
       });
       var str = window.WaveJS.model.createString(s);
       str = window.WaveJS.model.root.get($scope.communityId).add(str);
