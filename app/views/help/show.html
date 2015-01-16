@@ -8,45 +8,69 @@
     <div class="timeline">
       <div class="media col-md-12">
         <div ng-hide="formDisp">
-          <button class="form-control col-md-6" style="margin-left: 20px;" ng-click="switchForm()">
-            <div class="pull-left">
-              <div ng-class="'media-object fa fa-life-ring'" ng-click="TODO"></div>
-            </div>
-            Pide ayuda a la comunidad ...
-          </button>
-          <button class="form-control col-md-6" style="margin-left: 20px;" ng-click="switchForm()">
-            <div class="pull-left">
-              <div ng-class="'media-object fa fa-life-ring'" ng-click="TODO"></div>
-            </div>
-            
-          </button>
+          <div class="form-group">
+            <label class="control-label">Pide ayuda a la comunidad:</label>
+          </div>
+          <div class="row">
+            <button class="form-control col-md-6" style="margin-left: 20px;" ng-click="switchForm()">
+              <div class="pull-left">
+                <div class="media-object fa fa-life-ring"></div>
+              </div>
+              Pedir ayuda
+            </button>
+          </div>
 
-          <div ng-hide="!formDisp">
+          <div class="form-group">
+            <label class="control-label"> O encuentra dónde colaborar: </label>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">
+                    <div class=" fa fa-heart-o"></div>
+                  </button>
+                </span>
+                <input type="text" class="form-control" placeholder="Ayudar con...">
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Aprender...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">
+                     <div class=" fa fa-book"></div>
+                  </button>
+                </span>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+          </div>
+        </div>
+        <div ng-hide="!formDisp">
+          <div class="form-group">
+            <label class="control-label">Pide ayuda a la comunidad</label>
+          
             <input class="form-control pull-right" style="display: inline-block;" type="text" placeholder="¿Qué necesitas?" ng-model="helpForm.what"></input>
             <textarea class="form-control pull-right" style="display: inline-block;" placeholder="Más detalles..."" ng-model="helpForm.details"></textarea>
             <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm();addHelpRequest(helpForm.what,helpForm.details); helpForm = {};">Compartir</button>
-<button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm()">Cancelar</button>
-            
+            <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm()">Cancelar</button>
           </div>
         </div>
       </div>
       <div class="media col-md-12" ng-repeat="item in help">
         <div class="pull-left profile-thumbnail">
           <div class="pull-left">
-            <div ng-class="'media-object fa timeline-icon fa-life-ring'" ng-click="TODO"></div>
+            <div class="media-object fa timeline-icon fa-life-ring" ng-click="TODO"></div>
           </div>
-
         </div>
         <div class="media-body" ng-click="TODO">
           <h4 class="media-heading">{{item.what}}</h4>
           {{item.details}}
         </div>
       </div>
-      
     </div>
   </div>
 </div>
-
 <div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar">
   <div content-for="nav-left-bottom" class="btn-group pull-left">
     
