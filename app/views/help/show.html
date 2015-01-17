@@ -50,8 +50,8 @@
           <div class="form-group">
             <label class="control-label">Pide ayuda a la comunidad</label>
             <input class="form-control pull-right" style="display: inline-block;" type="text" placeholder="¿Qué necesitas?" ng-model="helpForm.what"></input>
-            <textarea class="form-control pull-right" style="display: inline-block;" placeholder="Más detalles..."" ng-model="helpForm.details"></textarea>
-            <input class="form-control full-right" type="text" placeholder="Porqué es importante para la comunidad" ng-model="helpForm.support""></input>
+            <textarea class="form-control pull-right" style="display: inline-block;" placeholder="Más detalles..." ng-model="helpForm.details"></textarea>
+            <input class="form-control full-right" type="text" placeholder="Porqué es importante para la comunidad" ng-model="helpForm.support"></input>
               <input class="form-control full-right" type="text" placeholder="Qué se puede aprender haciendo esto" ng-model="helpForm.learn"></input>
             <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm();addHelpRequest(helpForm.what, helpForm.details, helpForm.support, helpForm.learn); helpForm = {};">Compartir</button>
             <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm()">Cancelar</button>
