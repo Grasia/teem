@@ -15,7 +15,7 @@
     "angular-translate-loader-static-files": "~2.4.0",
     "mobile-angular-ui": "~1.1.0-beta.30",
     "angular-bootstrap": "latest",
-    "angular-ui-select": "~0.8.3",
+    "angular-ui-select": "~0.9.6",
     "modernizr": "~2.8.3",
     "angular-bindonce": "~0.3.1"
   },
