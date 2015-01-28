@@ -71,5 +71,24 @@
     "news": "News",
     "projects": "Projects",
     "my_tasks": "My tasks"
+  },
+  "session": {
+    "title": "Tell us a little bit about you",
+    "intro": "<strong>Thanks for testing our prototype!</strong> <br> Please, fill the info bellow to help us understand a little bit more about the way you will use our application.",
+    "community": "In which community do you participate?" ,
+    "sex": "Sex",
+    "sex_male": "male",
+    "sex_female": "female",
+    "age": "Age",
+    "role": "What is your relation with the community?",
+    "role_90_radio": "I am interested in what the community does",
+    "role_9_radio": "I collaborate ocasionally with the community",
+    "role_1_radio": "I am very involved in the community",
+    "tech": "How is your experience with computer programs and moblie applications?",
+    "tech_low": "Low",
+    "tech_medium": "Medium",
+    "tech_high": "High",
+    
+    "send_user_data": "Send"
   }
 }

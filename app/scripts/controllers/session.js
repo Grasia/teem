@@ -12,14 +12,25 @@ angular.module('Pear2Pear')
     $routeProvider.
       when('/session/new', {
         templateUrl: 'views/session/new.html',
-        controller:'SessionCtrl'        
-      });
+        controller:'SessionCtrl'
+      })
+    .when('/session/userdata',{
+      templateUrl: 'views/session/userdata.html',
+      controller:'SessionCtrl'
+    });
   }])
 
   .controller('SessionCtrl', ['$scope', '$location', function($scope, $location) {
     $scope.$parent.hideNavigation = true;
+
     $scope.create = function() {
       $scope.$parent.hideNavigation = false;
+      // $location.path('/timeline');
+      $location.path('/session/userdata');
+    };
+
+    $scope.userData = function(){
+      alert('DEBUG: user data function called');
       $location.path('/timeline');
     };
   }]);

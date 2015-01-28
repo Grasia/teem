@@ -1,0 +1,73 @@
+<h1>
+  {{'session.title' | translate}}
+</h1>
+<div class="row">
+  <div class="col-md-12">
+    <div class="alert alert-info" role="alert" translate>
+      session.intro
+    </div>
+    <form role="form">
+      <div class="form-group">
+        <label for="sex" translate>session.sex</label>
+        <div class="radio">
+          <label class="radio">
+            <input type="radio" name="sex" value="male">{{'session.sex_male' |translate}}
+          </label>
+          <label class="radio">
+            <input type="radio" name="sex" value="female">{{'session.sex_female' |translate}}
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="age" translate>session.age</label>
+        <div>
+          <input id="age" class="form-control" type="text" ng-value="userdata.age">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="community" translate>session.community</label>
+        <input id="community" class="form-control" type="text" ng-value="userdata.community">
+
+      </div>
+
+      <div class="form-group">
+        <label translate>session.role</label>
+       
+        <div class="controls">
+          <div class="radio">
+            <label class="radio">
+              <input type="radio" name="role" value="90">{{' session.role_90_radio' |translate}}
+            </label>
+            <label class="radio">
+              <input type="radio" name="role" value="9">{{' session.role_9_radio' |translate}}
+            </label>
+            <label class="radio">
+              <input type="radio" name="role" value="1">{{' session.role_1_radio' |translate}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label translate>session.tech</label>
+        <div class="controls">
+          <div class="radio">
+            <label class="radio">
+              <input type="radio" name="tech" value="low">{{'session.tech_low' | translate}}</input>
+            </label>
+            <label class="radio">
+              <input type="radio" name="tech" value="medium">{{'session.tech_medium' | translate}}</input>
+            </label>
+            <label class="radio">
+              <input type="radio" name="tech" value="high">{{'session.tech_high' | translate}}</input>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div>
+          <button type="submit" class="btn btn-default">{{'session.send_user_data' | translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
