@@ -71,5 +71,9 @@
     "news": "News",
     "projects": "Projects",
     "my_tasks": "My tasks"
+  },
+  "collab": {
+    "learn": "Learn Space",
+    "collaborate": "Collaboration Space"
   }
 }

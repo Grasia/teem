@@ -73,4 +73,8 @@
     "projects": "Proyectos",
     "my_tasks": "Mis tareas"
   }
+  "collab": {
+    "learn": "Espacio de Aprendizaje",
+    "collaborate": "Espacio de Colaboración"
+  }
 }
