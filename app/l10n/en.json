@@ -72,6 +72,7 @@
     "projects": "Projects",
     "my_tasks": "My tasks"
   },
+
   "session": {
     "title": "Tell us a little bit about you",
     "intro": "<strong>Thanks for testing our prototype!</strong> <br> Please, fill the info bellow to help us understand a little bit more about the way you will use our application.",
@@ -88,7 +89,12 @@
     "tech_low": "Low",
     "tech_medium": "Medium",
     "tech_high": "High",
-    
+
     "send_user_data": "Send"
+  },
+
+  "collab": {
+    "learn": "Learn Space",
+    "collaborate": "Collaboration Space"
   }
 }

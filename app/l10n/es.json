@@ -90,7 +90,11 @@
     "tech_low": "Baja",
     "tech_medium": "Intermedia",
     "tech_high": "Alta",
-    
     "send_user_data": "Enviar"
+  },
+
+  "collab": {
+    "learn": "Espacio de Aprendizaje",
+    "collaborate": "Espacio de Colaboración"
   }
 }

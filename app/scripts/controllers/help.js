@@ -11,12 +11,20 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/collab/:id', {
-        templateUrl: 'views/help/show.html',
+      .when('/collab/work/:id', {
+        templateUrl: 'views/help/show-collab.html',
+        controller: 'HelpCtrl'
+      })
+      .when('/collab/learn/:id', {
+        templateUrl: 'views/help/show-learn.html',
+        controller: 'HelpCtrl'
+      })
+      .when('/collab/:viewmode/:id/new', {
+        templateUrl: 'views/help/form.html',
         controller: 'HelpCtrl'
       })
       .when('/collab/:id/control', {
-        templateUrl: 'views/help/show.html',
+        templateUrl: 'views/help/show-collab.html',
         controller: 'HelpCtrl'
       });
   }])
@@ -30,7 +38,10 @@ angular.module('Pear2Pear')
     };
 
     $scope.communityId = $route.current.params['id'];
-
+    $scope.categories = {
+      learn : [],
+      contrib : []
+    };
     $scope.init = function () {
       // following if avoids concurrency control error in wave
       if (window.WaveJS.model) {
@@ -99,15 +110,54 @@ angular.module('Pear2Pear')
       });
       var str = window.WaveJS.model.createString(s);
       str = window.WaveJS.model.root.get($scope.communityId).add(str);
+      $scope.backToList();
+    };
+    
+    $scope.backToList = function(){
+      var i = $location.path().search('/new');
+      var s = $location.path().substring(0, i);
+      $location.path(s);
     };
 
     $scope.newWaveId = function () {
       window.alert(window.WaveJS.createModel());
     };
 
-    //display the add testimony form
-    $scope.formDisp = false;
-    $scope.switchForm = function(){
-      $scope.formDisp = ! $scope.formDisp;
+    // To be called either with 'learn' or 'support' to retrieved categories
+    $scope.categories = function(name){
+      if (!$scope.help) {
+        return [];
+      }
+      var arrays = $scope.help.map(
+        function(n){
+          return n[name];
+        });
+     
+      var categs;
+      if (arrays.length === 0){
+        categs = [];
+      } else {
+        categs = arrays.reduce(
+          function(a, b){
+            return a.concat(b);
+          }
+        );
+      }
+      return $scope.uniq(categs);
+    };
+
+    $scope.uniq = function (a) {
+      return a.sort().filter(function (item, pos) {
+        return !pos || item !== a[pos - 1];
+      });
+    };
+    
+    $scope.new_ = function () {
+      $location.path($location.path() + '/new').replace();
+    };
+    
+    //switch view, call it with 'learn' or 'collab'
+    $scope.nav = function(where){
+      $location.path('/collab/' + where + '/' + $scope.communityId);
     };
 }]);

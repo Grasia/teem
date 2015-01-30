@@ -1,0 +1,68 @@
+<div content-for="nav-title">
+  <div class="community-name overflow-ellipsis">{{communityId}}</div>
+  <div class="task-index" translate>collab.learn</div>
+</div>
+
+<div content-for="nav-right">
+  <div ng-click="new_()"><i class="fa fa-plus"></i></div>
+</div>
+
+<div id="collab" class="row">
+  <div class="col-md-12">
+    <div class="timeline">
+      <div ng-repeat="item in help">
+        <div class="media" ng-repeat="lesson in item.learn">
+          <div class="pull-left profile-thumbnail">
+            <div class="pull-left">
+              <div class="media-object fa timeline-icon fa-book" ng-click="TODO"></div>
+            </div>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{lesson}}</h4>
+            <div class="media-body">{{item.what}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar">
+  <div content-for="nav-left-bottom" class="btn-group pull-left">
+  </div>
+  <div content-for="nav-right-bottom" class="btn-group pull-right">
+  </div>
+  <div content-for="nav-center-bottom" class="btn-group">
+  </div>
+</div>
+
+<div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar" ng-if="isControl()">
+  <div class="btn-group col-md-12">
+    <div content-for="nav-right-bottom" class="btn-group pull-right">
+      <a class="btn btn-navbar" ng-click="clear()">
+        Clear
+      </a>
+    </div>
+    <div content-for="nav-center-bottom" class="btn-group">
+      <a class="btn btn-navbar" ng-click="newWaveId()">
+        New Wave Id
+      </a>
+    </div>
+  </div>
+</div> 
+
+<div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar" ng-if="!isControl()">
+  <div content-for="nav-left-bottom" class="btn-group pull-left">
+    <div ng-click="nav('learn')">
+      <div class="fa fa-book selected"></div>
+      Aprender
+    </div>
+  </div>
+  <div content-for="nav-right-bottom" class="btn-group pull-right">
+    <div ng-click="nav('work')">
+      <div class="fa fa-wrench"></div>
+      Colaborar
+    </div>
+  </div>
+  <div content-for="nav-center-bottom" class="btn-group">
+  </div>
+</div>
