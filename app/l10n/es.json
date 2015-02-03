@@ -94,7 +94,20 @@
   },
 
   "collab": {
-    "learn": "Espacio de Aprendizaje",
-    "collaborate": "Espacio de Colaboración"
+    "learn_space": "Espacio de Aprendizaje",
+    "collaboration_space": "Espacio de Colaboración",
+    "join": "Unirte a la actividad?",
+    "yes": "Si!",
+    "no" : "No",
+    "new_activity": "Nueva actividad",
+    "learn": "Aprender",
+    "collaborate": "Colabora",
+    "name": "Nombre",
+    "objectives": "Objetivos...",
+    "what_can_be_learned": "Qué se puede aprender haciendo esto"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "share": "Compartir"
   }
 }

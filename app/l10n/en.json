@@ -94,7 +94,20 @@
   },
 
   "collab": {
-    "learn": "Learn Space",
-    "collaborate": "Collaboration Space"
+    "learn_space": "Learn Space",
+    "collaboration_space": "Collaboration Space",
+    "join": "Join this activity?",
+    "yes": "Yes!",
+    "no" : "No",
+    "new_activity": "New activity",
+    "learn": "Learn",
+    "collaborate": "Collaborate",
+    "name": "Name",
+    "objectives": "Objectives...",
+    "what_can_be_learned": "What can be learned by doing this"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "share": "Share" 
   }
 }

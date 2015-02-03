@@ -1,6 +1,6 @@
 <div content-for="nav-title">
   <div class="community-name overflow-ellipsis">{{communityId}}</div>
-  <div class="task-index" translate>collab.collaborate</div>
+  <div class="task-index" translate>collab.collaboration_space</div>
 </div>
 
 <div content-for="nav-right">
@@ -16,7 +16,7 @@
             <div class="media-object fa timeline-icon fa-wrench" ng-click="TODO"></div>
           </div>
         </div>
-        <div class="media-body" ng-click="TODO">
+        <div class="media-body" ng-click="show(item.what)">
           <h4 class="media-heading">{{item.what}}</h4>
           <div ng-if="item.learn[0]">
             <span class="fa fa-book"></span>
@@ -27,14 +27,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar">
-  <div content-for="nav-left-bottom" class="btn-group pull-left">
-  </div>
-  <div content-for="nav-right-bottom" class="btn-group pull-right">
-  </div>
-  <div content-for="nav-center-bottom" class="btn-group">
   </div>
 </div>
 
@@ -56,14 +48,14 @@
 <div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar" ng-if="!isControl()">
   <div content-for="nav-left-bottom" class="btn-group pull-left">
     <div ng-click="nav('learn')">
-      <div class="fa fa-book"></div>
-      Aprender
+      <div class="fa fa-book selected"></div>
+      <div translate>collab.learn</div>
     </div>
   </div>
   <div content-for="nav-right-bottom" class="btn-group pull-right">
     <div ng-click="nav('work')">
-      <div class="fa fa-wrench selected"></div>
-      Colaborar
+      <div class="fa fa-wrench"></div>
+      <div translate>collab.collaborate</div>
     </div>
   </div>
   <div content-for="nav-center-bottom" class="btn-group">

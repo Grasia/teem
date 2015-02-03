@@ -23,10 +23,15 @@ angular.module('Pear2Pear')
         templateUrl: 'views/help/form.html',
         controller: 'HelpCtrl'
       })
+      .when('/collab/show/:id/:item', {
+        templateUrl: 'views/help/show.html',
+        controller: 'HelpCtrl'
+      })
       .when('/collab/:id/control', {
         templateUrl: 'views/help/show-collab.html',
         controller: 'HelpCtrl'
       });
+
   }])
 
   .controller('HelpCtrl', ['$scope', '$location', '$route', function($scope, $location, $route){
@@ -110,6 +115,7 @@ angular.module('Pear2Pear')
       });
       var str = window.WaveJS.model.createString(s);
       str = window.WaveJS.model.root.get($scope.communityId).add(str);
+      $scope.helpForm = {};
       $scope.backToList();
     };
     
@@ -156,8 +162,28 @@ angular.module('Pear2Pear')
       $location.path($location.path() + '/new').replace();
     };
     
+    $scope.show = function (itemId) {
+      $location.path('/collab/show/' + $scope.communityId + '/' + itemId);
+    }
+    
     //switch view, call it with 'learn' or 'collab'
     $scope.nav = function(where){
       $location.path('/collab/' + where + '/' + $scope.communityId);
     };
-}]);
+
+    $scope.item = {};
+    $scope.selectedItem = function () {
+      // TODO improve performance, now O(n)
+      // TODO duplicate "whats" will not work with this impl.
+      if ($scope.item && $scope.item.what === $route.current.params['item']){
+        return $scope.item;
+      }
+      for (var item in $scope.help) {
+        if ($scope.help[item].what === $route.current.params['item']) {
+          $scope.item = $scope.help[item];
+          return $scope.item;
+        }
+      }
+      return {};
+    };
+  }]);

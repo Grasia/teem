@@ -1,21 +1,41 @@
 <form role="form" id="newCollab"> 
   <div class="form-group">
-    <label class="control-label">Nueva actividad</label>
-    <input class="form-control pull-right" style="display: inline-block;" type="text" placeholder="Nombre" ng-model="helpForm.what"></input>
-    <textarea class="form-control pull-right" style="display: inline-block;" placeholder="Objetivos..." ng-model="helpForm.details"></textarea>
+    <label class="control-label" translate>collab.new_activity</label>
+    <input class="form-control pull-right" style="display: inline-block;" type="text" placeholder="{{'collab.name' | translate}}" ng-model="helpForm.what"></input>
+    <textarea class="form-control pull-right" style="display: inline-block;" placeholder="{{'collab.objectives' | translate}}" ng-model="helpForm.details"></textarea>
   </div>
   <div class="form-group">
-    <label class="control-label"> <div class="fa fa-book"></div> Aprender <div class="fa fa-tags" style="color:grey"> </div></label>
+    <label class="control-label"> <div class="fa fa-book"></div>
+      <span translate> 
+        collab.learn
+      </span>
+      <div class="fa fa-tags" style="color:grey"> </div></label>
     <div class="input-medium">
       <ui-select multiple tagging ng-model="helpForm.learn" theme="bootstrap">
-        <ui-select-match placeholder="Qué se puede aprender haciendo esto">{{$item}}</ui-select-match>
+        <ui-select-match placeholder="{{ 'collab.what_can_be_learned' | translate }}">{{$item}}</ui-select-match>
         <ui-select-choices repeat="category in categories('learn') | filter:$select.search">
           {{category}}
         </ui-select-choices>
       </ui-select>
     </div>
   </div>
-  <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm();addHelpRequest(helpForm.what, helpForm.details, helpForm.support, helpForm.learn); helpForm = {};">Compartir</button>
-  <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm()">Cancelar</button>
-
+  <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="addHelpRequest(helpForm.what, helpForm.details, helpForm.support, helpForm.learn);" translate>common.share</button>
+  <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="backToList(); helpForm = {};" translate>common.cancel</button>
 </form>
+
+<div class="navbar navbar-app navbar-absolute-bottom" id="bottomNavBar" ng-if="!isControl()">
+  <div content-for="nav-left-bottom" class="btn-group pull-left">
+    <div ng-click="nav('learn')">
+      <div class="fa fa-book selected"></div>
+      <div translate>collab.learn</div>
+    </div>
+  </div>
+  <div content-for="nav-right-bottom" class="btn-group pull-right">
+    <div ng-click="nav('work')">
+      <div class="fa fa-wrench"></div>
+      <div translate>collab.collaborate</div>
+    </div>
+  </div>
+  <div content-for="nav-center-bottom" class="btn-group">
+  </div>
+</div>
