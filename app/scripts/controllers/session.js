@@ -20,8 +20,9 @@ angular.module('Pear2Pear')
     });
   }])
 
-  .controller('SessionCtrl', ['$scope', '$location', function($scope, $location) {
+  .controller('SessionCtrl', ['$scope', '$location, function($scope, $location) {
     $scope.$parent.hideNavigation = true;
+    $scope.session = {};
 
     $scope.create = function() {
       $scope.$parent.hideNavigation = false;
@@ -30,7 +31,14 @@ angular.module('Pear2Pear')
     };
 
     $scope.userData = function(){
-      alert('DEBUG: user data function called');
-      $location.path('/timeline');
+      var tracker = Piwik.getAsyncTracker();
+      window.alert($scope.user.gender+ ' ' + $scope.user.age + ' ' + $scope.user.tech + ' ' + $scope.user.community + ' ' + $scope.user.role);
+      tracker.setCustomVariable(1,'gender', $scope.user.gender,'visit');
+      tracker.setCustomVariable(2,'age', $scope.user.age,'visit');
+      tracker.setCustomVariable(3,'role', $scope.user.role,'visit');
+      tracker.setCustomVariable(4,'tech', $scope.user.tech,'visit');
+      tracker.setCustomVariable(5,'community', $scope.user.community,'visit');
+      tracker.storeCustomVariablesInCookie();
     };
+    
   }]);
