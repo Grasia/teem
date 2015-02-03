@@ -118,11 +118,15 @@ angular.module('Pear2Pear')
       $scope.helpForm = {};
       $scope.backToList();
     };
-    
+
     $scope.backToList = function(){
       var i = $location.path().search('/new');
-      var s = $location.path().substring(0, i);
-      $location.path(s);
+      if (i !== -1){
+        var s = $location.path().substring(0, i);
+        $location.path(s);
+      } else {
+        $scope.nav('learn');
+      }
     };
 
     $scope.newWaveId = function () {
@@ -164,7 +168,7 @@ angular.module('Pear2Pear')
     
     $scope.show = function (itemId) {
       $location.path('/collab/show/' + $scope.communityId + '/' + itemId);
-    }
+    };
     
     //switch view, call it with 'learn' or 'collab'
     $scope.nav = function(where){
