@@ -8,13 +8,13 @@
     </div>
     <form role="form">
       <div class="form-group">
-        <label for="sex" translate>session.sex</label>
+        <label for="gender" translate>session.gender</label>
         <div class="radio">
           <label class="radio">
-            <input type="radio" name="sex" value="male">{{'session.sex_male' |translate}}
+            <input type="radio" name="gender" value="male">{{'session.gender_male' |translate}}
           </label>
           <label class="radio">
-            <input type="radio" name="sex" value="female">{{'session.sex_female' |translate}}
+            <input type="radio" name="gender" value="female">{{'session.gender_female' |translate}}
           </label>
         </div>
       </div>
@@ -65,7 +65,7 @@
       </div>
       <div class="form-group">
         <div>
-          <button type="submit" class="btn btn-default">{{'session.send_user_data' | translate}}</button>
+          <button type="button" class="btn btn-default" ng-click="userData()">{{'session.send_user_data' | translate}}</button>
         </div>
       </div>
     </form>
