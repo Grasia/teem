@@ -38,7 +38,7 @@ angular.module('Pear2Pear')
       tracker.setCustomVariable(4,'tech', $scope.user.tech,'visit');
       tracker.setCustomVariable(5,'community', $scope.user.community,'visit');
       tracker.storeCustomVariablesInCookie();
-
+      tracker.trackEvent('Session/questionaire', 'answer');
       if (!$route.current.params['redirect']) {
         $location.path('/timeline');
       }
