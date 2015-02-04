@@ -37,9 +37,12 @@ angular.module('Pear2Pear')
       _paq.push(['setCustomVariable', 3, 'role', $scope.user.role, 'visit']);
       _paq.push(['setCustomVariable', 4, 'tech', $scope.user.tech, 'visit']);
       _paq.push(['setCustomVariable', 5, 'community', $scope.user.community, 'visit']);
-      // tracker.storeCustomVariablesInCookie();
-      _paq.push(['trackEvent', 'Session/questionaire', 'answer']);
       _paq.push(['trackPageView']);
+
+      // tracker.storeCustomVariablesInCookie();
+      _paq.push(['trackEvent', 'Questionaire', 'answer']);
+      _paq.push(['trackPageView']);
+
       if (!$route.current.params['redirect']) {
         $location.path('/timeline');
       }
