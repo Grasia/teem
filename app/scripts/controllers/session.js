@@ -30,15 +30,16 @@ angular.module('Pear2Pear')
       $location.path('/session/userdata');
     };
 
-    $scope.userData = function(){
-      var tracker = Piwik.getAsyncTracker();
-      tracker.setCustomVariable(1,'gender', $scope.user.gender,'visit');
-      tracker.setCustomVariable(2,'age', $scope.user.age,'visit');
-      tracker.setCustomVariable(3,'role', $scope.user.role,'visit');
-      tracker.setCustomVariable(4,'tech', $scope.user.tech,'visit');
-      tracker.setCustomVariable(5,'community', $scope.user.community,'visit');
+    $scope.userData = function () {
+      var tracker = Piwik.getTracker('//stats.p2pvalue.eu/piwik.php');
+      tracker.setCustomVariable(1, 'gender', $scope.user.gender, 'visit');
+      tracker.setCustomVariable(2, 'age', $scope.user.age, 'visit');
+      tracker.setCustomVariable(3, 'role', $scope.user.role, 'visit');
+      tracker.setCustomVariable(4, 'tech', $scope.user.tech, 'visit');
+      tracker.setCustomVariable(5, 'community', $scope.user.community, 'visit');
       tracker.storeCustomVariablesInCookie();
       tracker.trackEvent('Session/questionaire', 'answer');
+      tracker.trackPageView('questionaire');
       if (!$route.current.params['redirect']) {
         $location.path('/timeline');
       }
