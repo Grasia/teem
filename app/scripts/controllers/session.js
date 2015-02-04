@@ -31,6 +31,9 @@ angular.module('Pear2Pear')
     };
 
     $scope.userData = function () {
+      _paq.push(['appendToTrackingUrl', 'new_visit=1']);
+      _paq.push(["deleteCookies"]);
+      _paq.push(["trackPageView"]);
       _paq.push(['setCustomVariable', 1, 'gender', $scope.user.gender, 'visit']);
       _paq.push(['setCustomVariable', 2, 'age', $scope.user.age, 'visit']);
       _paq.push(['setCustomVariable', 3, 'role', $scope.user.role, 'visit']);
