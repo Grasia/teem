@@ -31,15 +31,15 @@ angular.module('Pear2Pear')
     };
 
     $scope.userData = function () {
-      var tracker = Piwik.getTracker('//stats.p2pvalue.eu/piwik.php');
-      tracker.setCustomVariable(1, 'gender', $scope.user.gender, 'visit');
-      tracker.setCustomVariable(2, 'age', $scope.user.age, 'visit');
-      tracker.setCustomVariable(3, 'role', $scope.user.role, 'visit');
-      tracker.setCustomVariable(4, 'tech', $scope.user.tech, 'visit');
-      tracker.setCustomVariable(5, 'community', $scope.user.community, 'visit');
-      tracker.storeCustomVariablesInCookie();
-      tracker.trackEvent('Session/questionaire', 'answer');
-      tracker.trackPageView('questionaire');
+      var _paq = _paq || [];
+      _paq.push(['setCustomVariable', 1, 'gender', $scope.user.gender, 'visit']);
+      _paq.push(['setCustomVariable', 2, 'age', $scope.user.age, 'visit']);
+      _paq.push(['setCustomVariable', 3, 'role', $scope.user.role, 'visit']);
+      _paq.push(['setCustomVariable', 4, 'tech', $scope.user.tech, 'visit']);
+      _paq.push(['setCustomVariable', 5, 'community', $scope.user.community, 'visit']);
+      // tracker.storeCustomVariablesInCookie();
+      _paq.push(['trackEvent', 'Session/questionaire', 'answer']);
+      _paq.push(['trackPageView']);
       if (!$route.current.params['redirect']) {
         $location.path('/timeline');
       }
