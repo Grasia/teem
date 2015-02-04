@@ -31,7 +31,6 @@ angular.module('Pear2Pear')
     };
 
     $scope.userData = function () {
-      var _paq = _paq || [];
       _paq.push(['setCustomVariable', 1, 'gender', $scope.user.gender, 'visit']);
       _paq.push(['setCustomVariable', 2, 'age', $scope.user.age, 'visit']);
       _paq.push(['setCustomVariable', 3, 'role', $scope.user.role, 'visit']);
@@ -40,7 +39,7 @@ angular.module('Pear2Pear')
       _paq.push(['trackPageView']);
 
       // tracker.storeCustomVariablesInCookie();
-      _paq.push(['trackEvent', 'Questionaire', 'answer']);
+      _paq.push(['trackEvent', 'UserQuestionaire', 'answer']);
       _paq.push(['trackPageView']);
 
       if (!$route.current.params['redirect']) {
