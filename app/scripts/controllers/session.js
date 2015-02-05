@@ -44,13 +44,15 @@ angular.module('Pear2Pear')
       // tracker.storeCustomVariablesInCookie();
       _paq.push(['trackEvent', 'UserQuestionaire', 'answer']);
       _paq.push(['trackPageView']);
-
-      if (!$route.current.params['redirect']) {
-        $location.path('/timeline');
+      if ($route.current.params['redirect']) {
+         var redirect = $route.current.params['redirect'];
+        $location.path(redirect);
+      }
+      else if ($route.current.params['predirect']) {
+        window.location.href =  $route.current.params['predirect'];
       }
       else {
-        var redirect = $route.current.params['redirect'];
-        $location.path(redirect);
+        $location.path('/timeline');
       }
     };
     
