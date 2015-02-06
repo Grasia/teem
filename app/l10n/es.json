@@ -99,12 +99,13 @@
     "join": "Unirte a la actividad?",
     "yes": "Si!",
     "no" : "No",
+    "activity": "Actividad",
     "new_activity": "Nueva actividad",
     "learn": "Aprender",
     "collaborate": "Colabora",
     "name": "Nombre",
     "objectives": "Objetivos...",
-    "what_can_be_learned": "Qué se puede aprender haciendo esto"
+    "what_can_be_learned": "fotografía, pintura"
   },
   "common": {
     "cancel": "Cancelar",
