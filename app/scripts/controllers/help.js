@@ -175,6 +175,14 @@ angular.module('Pear2Pear')
       $location.path('/collab/' + where + '/' + $scope.communityId);
     };
 
+    $scope.join = function (b) {
+      if (b) {
+        _paq.push(['trackEvent', 'joinActivity', 'true']);
+      } else {
+        _paq.push(['trackEvent', 'joinActivity', 'false']);
+      }
+    };
+
     $scope.item = {};
     $scope.selectedItem = function () {
       // TODO improve performance, now O(n)
