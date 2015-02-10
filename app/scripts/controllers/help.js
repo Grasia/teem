@@ -35,6 +35,8 @@ angular.module('Pear2Pear')
   }])
 
   .controller('HelpCtrl', ['$scope', '$location', '$route', function($scope, $location, $route){
+    
+    $scope.$parent.hideNavigation = false;
     var apply = function () {
       var p = $scope.$$phase;
       if (p !== '$digest' && p !== '$apply') {
