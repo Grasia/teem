@@ -10,6 +10,11 @@
 <div id="collab" class="row">
   <div class="col-md-12">
     <div class="timeline">
+      <div class="empty-tasks-tip" ng-if="help.length===0">
+        <div class="empty-tasks-tip-msg" translate>
+          collab.empty_collab_tip
+        </div>
+      </div>
       <div ng-repeat="item in help">
         <div class="media" ng-repeat="lesson in item.learn">
           <div class="pull-left profile-thumbnail">

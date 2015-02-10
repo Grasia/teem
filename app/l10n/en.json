@@ -105,7 +105,8 @@
     "collaborate": "Collaborate",
     "name": "Name",
     "objectives": "Objectives...",
-    "what_can_be_learned": "photography, painting"
+    "what_can_be_learned": "photography, painting",
+    "empty_collab_tip": "add a new activity"
   },
   "common": {
     "cancel": "Cancel",

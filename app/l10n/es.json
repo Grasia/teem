@@ -106,6 +106,7 @@
     "name": "Nombre",
     "objectives": "Objetivos...",
     "what_can_be_learned": "fotografía, pintura"
+    "empty_collab_tip": "add a new activity"
   },
   "common": {
     "cancel": "Cancelar",
