@@ -406,7 +406,7 @@ module.exports = function (grunt) {
       },
       proto: {
         options: {
-          remote: 'git@prototype.p2pvalue.eu:pear2pear.git',
+          remote: 'git@p.p2pvalue.eu:pear2pear.git',
            branch: 'dist'
         }
       }
