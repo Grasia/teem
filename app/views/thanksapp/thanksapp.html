@@ -1,1 +1,112 @@
-<h1>  foo FOO </h1>
+<img src="images/thanksappLogo.png"/>
+
+<div class="row" style="padding: 10px;">
+  <div>
+    <div class="col-md-3" >
+      <img src="images/defaultAvatar.png" width=90 height=90/>
+      <div style="font-size: 20px;"><strong>@{{userId}}</strong></div>
+    </div>
+    <div ng-show="mode === 'self'">
+      <div class="col-md-9 alert alert-info">Tienes <strong>{{thanks.length}} <big><span id="icon-thanksapplogo" class="icon-thanksapplogo" ></span></big>thanks</strong>
+        <br>
+        <a ng-click="open('sm')"> Registrate</a> y envía tus agradecimientos con Thanksapp!
+      </div>
+    </div>
+    <div ng-show="mode === 'commingsoon'">
+      <div class="col-md-9 alert alert-danger">
+        <strong>No hemos podido crear tu cuenta</strong>
+        <br/>
+        Agradecemos tu interes, pero todavía estamos construyendo la applicación. Vuelve pronto!
+      </div>
+    </div>
+  </div>
+  <!-- <div class="pull-right"> -->
+  <!--   <button type="button" class="btn btn-default" ng-click="switchForm()">  -->
+  <!--     <strong>  Say thanks!</strong> -->
+  <!--   </button> -->
+  <!-- </div> -->
+</div>
+<!-- <div ng-hide="!formDisp" class="media col-md-12"> -->
+<!--   <div> -->
+<!--     <div class="col-md-8"> -->
+<!--       <textarea class="form-control pull-right" style="display: inline-block;" placeholder="Tu testimonio" ng-model="testimForm.testimony"></textarea>  -->
+<!--       <input class="form-control pull-right" style="display: inline-block;" type="text" placeholder="firma" ng-model="testimForm.signature"></input> -->
+<!--     </div> -->
+<!--     <div class="media-body col-md-2"> -->
+<!--       <button class="btn btn-lg btn-default icon-thanksapplogo"></button> -->
+<!--     </div> -->
+<!--     <button class="form-control col-md-3 pull-right"  style="display: inline-block;" ng-click="switchForm();customTestimony(testimForm.signature,testimForm.testimony);testimForm = {};">Send</button> -->
+<!--   </div> -->
+<!-- </div> -->
+
+<hr/>
+
+<div id="thanksapp" class="row">
+  <div class="col-md-12 ">
+    <div class="timeline">
+      <div class="media" ng-repeat="item in thanks">
+        <div class="pull-left profile-thumbnail">
+            <img ng-click="profile(item.name)" ng-src="images/defaultAvatar.png">
+        </div>
+        <div class="media-body">
+          <blockquote>
+            <div>
+              <div style="padding-left: 10px;" ng-bind-html="thanksappify(item.text)"></div>
+              <div>
+                <cite ng-click="profile(item.name)" ng-bind-html="'@' + item.name"></cite>
+              </div>
+            </div>
+            <!-- <div class="col-md-1"> -->
+            <!--   <button type="button" class="btn btn-lg btn-default" ng-click="join()"><i class="icon-thanksapplogo" style="color:#C11B17;"></i> -->
+            <!--   </button> -->
+            <!-- </div> -->
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script type="text/ng-template" id="myModalContent.html">
+      <div class="modal-sm">
+        <div class="modal-header ">
+          <h3 class="modal-title">Crea tu cuenta</h3>
+          
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="control-label">email</label>
+            <input id="email" class="form-control" type="text" ng-model="register.email"></input>
+            <label class="control-label">contraseña</label>
+            <input type="password" id="pass" class="form-control" type="text"></input>
+            <label class="control-label">Repetir contraseña</label>
+            <input type="password" id="pass2" class="form-control" type="text"></input>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok()">OK</button>
+          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+      </div>
+    </script>
+
+<nav class="navbar navbar-default navbar-fixed-bottom" ng-hide="mode !== 'new'">
+  <div class="container">
+    <div class="input-group input-group-lg">
+      <span class="input-group-btn">
+        <button class="btn btn-lg btn-default icon-thanksapplogo" ng-click="open('sm')"></button>
+      </span>
+      <input class="form-control pull-right" style="display: inline-block;" placeholder="Tu testimonio" ng-model="testimForm.testimony"></input>
+      <span class="input-group-btn">
+        <button class="btn btn-lg btn-default">Send</button>
+      </span> 
+    </div>
+  </div>
+  
+</nav>
+
+<!-- Hola _Alice_, -->
+
+<!-- _Bob_ te ha enviado un agradecimiento: "Gracias blabla ..." -->
+
+<!-- Puedes ver tus agradecimientos en: http://p.p2pvalue.eu/thanksapp/alice -->
