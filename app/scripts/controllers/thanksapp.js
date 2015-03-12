@@ -15,8 +15,12 @@ angular.module('Pear2Pear')
         templateUrl: 'views/thanksapp/thanksapp.html',
         controller: 'ThanksappCtrl'
       })
+      .when('/thanksapp-register/:id', {
+        templateUrl: 'views/thanksapp/register.html',
+        controller: 'ThanksappCtrl'
+      });
   }])
-  .controller('ThanksappCtrl', ['$scope', '$location', '$route', '$modal', function($scope, $location, $route, $modal){
+  .controller('ThanksappCtrl', ['$scope', '$location', '$route', function($scope, $location, $route){
     var apply = function () {
       var p = $scope.$$phase;
       if (p !== '$digest' && p !== '$apply') {
@@ -32,11 +36,12 @@ angular.module('Pear2Pear')
       // following if avoids concurrency control error in wave
       if (window.WaveJS.model) {
         window.WaveJS.closeModel(
-          window.configTimelineTests.testimoniesWaveId);
+          window.configTimelineTests.thanksappWaveId);
+        window.WaveJS.model = null;
       }
       
       window.WaveJS.openModel(
-        window.configTimelineTests.testimoniesWaveId,
+        window.configTimelineTests.thanksappWaveId,
         function (model) {
           window.WaveJS.model = model;
           if (typeof model.root.get($scope.userId) == 'undefined'){
@@ -95,7 +100,28 @@ angular.module('Pear2Pear')
         'photo': 'images/profile1.jpg'
       });
       var str = window.WaveJS.model.createString(s);
-      str = window.WaveJS.model.root.get($scope.userId).add(str);
+      var reg = new RegExp('(\<@)(\\w+)', 'g');
+      var rr;
+      var receiver;
+      while ((rr = reg.exec(text)) !== null){
+      var str = window.WaveJS.model.createString(s);
+        console.log(rr);
+        receiver =  rr[2];
+        console.log(receiver);
+        if (typeof window.WaveJS.model.root.get(receiver) === 'undefined'){
+          var list =  window.WaveJS.model.createList();
+          var map = window.WaveJS.model.root;
+          list = map.put(receiver,list);
+//          list.add(str);
+        }
+        str = window.WaveJS.model.root.get(receiver).add(str);
+      }
+
+     var emails = $scope.thanksappMails(text,name);
+     console.log(emails);
+  //    for (var e in emails){
+  //      window.alert(emails[e]);
+  //   }
     };
 
     $scope.newWaveId = function () {
@@ -112,44 +138,49 @@ angular.module('Pear2Pear')
       $scope.formDisp = ! $scope.formDisp;
     };
     
-    $scope.items = ['TODO!'];
-
     $scope.open = function (size) {
-      var modalInstance = $modal.open({
-        templateUrl: 'myModalContent.html',
-        controller: 'ModalInstanceCtrl',
-        size: 'sm'// ,
-        // resolve: {
-        //   items: function () {
-        //     return $scope.items;
-        //   }
-        // }
-      });
-
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, function () {
-        console.log('Modal dismissed at: ' + new Date());
-      });
+      $location.url('/thanksapp-register/' + $scope.userId);
     };
 
     $scope.thanksappify = function (string){
       var re = new RegExp('(\<@)(\\w+)', 'g');
-      var s =string.replace(re, '<a href="#/thanksapp/view/$2"><strong><i class="icon-thanksapplogo"></i>$2</strong></a>');
-      return s;
+      return string.replace(re, '<a href="#/thanksapp/view/$2"><strong><i class="icon-thanksapplogo"></i>$2</strong></a>');
     };
-    
+
+    $scope.thanksappMails = function (string, sender){
+      var rt = [];
+      if (string){
+        var re = new RegExp('(\<@)(\\w+)', 'g');
+        var re2 = new RegExp('(\<@)(\\w+)', 'g');
+        var r;
+        while ((r = re2.exec(string))!== null) {
+          var receiver = r[2];
+          console.log(r);
+          var salut = 'Hola ' + receiver + ',<br/><br/>';
+          var body = '';
+          if (sender){
+            body += sender + ' te ha enviado un agracecimiento: "<i>';
+          }
+          else {
+            body += 'Te han enviado un agradecimiento: "<i>';
+          }
+          var s = string
+            .replace(re, '<a href="#/thanksapp/view/$2"><strong>$1$2</strong></a>');
+          s = salut + body + s + '</i>".<br/><br/>puedes ver tus agradecimientos y activar tu cuenta en <a href="#/thanksapp/self/'+receiver+'">tu Thanksapp</a>.';
+          rt.push(s);
+        }
+      }
+      return rt;
+    };
+ 
+    $scope.ok = function () {
+      $location.url('/thanksapp/commingsoon/' + $route.current.params['id']);
+    };
+
+    $scope.cancel = function () {
+      $location.url('/thanksapp/self/' + $route.current.params['id']);
+    };
+
+    // $scope.control = {};
+
   }]);
-
-angular.module('Pear2Pear').controller('ModalInstanceCtrl', function ($scope, $modalInstance, $route, $location) {
-  $scope.register = {};
-
-  $scope.ok = function () {
-    $location.url('/thanksapp/commingsoon/' + $route.current.params['id']);
-    $modalInstance.close('foo');
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-});

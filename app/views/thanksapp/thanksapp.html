@@ -41,6 +41,24 @@
 
 <hr/>
 
+<div ng-show="mode==='control'">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label class="control-label">sender</label>
+        <input id="sender" class="form-control" type="text" ng-model="control.sender"></input>
+      </div>
+      <div class="form-group">
+        <label class="control-label">message</label>
+        <textarea id="message" class="form-control" ng-model="control.message" ></textarea>
+      </div>
+      <div>
+        <button class="btn btn-default" ng-click="customThanks(control.sender, control.message)">send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="thanksapp" class="row">
   <div class="col-md-12 ">
     <div class="timeline">
