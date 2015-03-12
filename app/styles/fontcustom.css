@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: "fontcustom";
-  src: url("./fontcustom_4bb1b5d91e245e73e4e5e1060644b774.eot");
-  src: url("./fontcustom_4bb1b5d91e245e73e4e5e1060644b774.eot?#iefix") format("embedded-opentype"),
-       url("./fontcustom_4bb1b5d91e245e73e4e5e1060644b774.woff") format("woff"),
-       url("./fontcustom_4bb1b5d91e245e73e4e5e1060644b774.ttf") format("truetype"),
-       url("./fontcustom_4bb1b5d91e245e73e4e5e1060644b774.svg#fontcustom") format("svg");
+  src: url("./fontcustom_d2227095ee02f1265045c063e4753d75.eot");
+  src: url("./fontcustom_d2227095ee02f1265045c063e4753d75.eot?#iefix") format("embedded-opentype"),
+       url("./fontcustom_d2227095ee02f1265045c063e4753d75.woff") format("woff"),
+       url("./fonts/fontcustom_d2227095ee02f1265045c063e4753d75.ttf") format("truetype"),
+       url("./fontcustom_d2227095ee02f1265045c063e4753d75.svg#fontcustom") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "fontcustom";
-    src: url("./fontcustom_4bb1b5d91e245e73e4e5e1060644b774.svg#fontcustom") format("svg");
+    src: url("./fontcustom_d2227095ee02f1265045c063e4753d75.svg#fontcustom") format("svg");
   }
 }
 
