@@ -145,7 +145,7 @@ angular.module('Pear2Pear')
     $scope.thanksappify = function (string){
       var re = new RegExp('(\<@)(\\w+)', 'g');
       var domain = window.location.hostname;
-      return string.replace(re, '<a href= domain + "/#/thanksapp/view/$2"><strong><i class="icon-thanksapplogo"></i>$2</strong></a>');
+      return string.replace(re, '<a href= ' + domain + '"/#/thanksapp/view/$2"><strong><i class="icon-thanksapplogo"></i>$2</strong></a>');
     };
 
     $scope.thanksappMails = function (string, sender){
@@ -167,7 +167,7 @@ angular.module('Pear2Pear')
           }
           var domain = window.location.hostname;
           var s = string
-            .replace(re, '<a href= domain + "/#/thanksapp/view/$2"><strong>$1$2</strong></a>');
+            .replace(re, '<a href= ' + domain + '"/#/thanksapp/view/$2"><strong>$1$2</strong></a>');
           s = salut + body + s + '</i>".<br/><br/>puedes ver tus agradecimientos y activar tu cuenta en <a href="#/thanksapp/self/'+receiver+'">tu Thanksapp</a>.';
           rt.push(s);
         }
