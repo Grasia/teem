@@ -4,18 +4,25 @@
       <h3 class="modal-title">Crea tu cuenta</h3>
     </div>
     <div class="modal-body">
+      <div class="alert alert-info">
+        <strong>Recibe novedades:</strong>
+        <br/>
+        Todavía estamos construyendo la applicación y el registro no está disponible. Si quieres recibir más información, dejanos tu email
+      </div>
       <div class="form-group">
         <label class="control-label">email</label>
-        <input id="email" class="form-control" type="text" ng-model="register.email"></input>
-        <label class="control-label">contraseña</label>
-        <input type="password" id="pass" class="form-control" type="text"></input>
-        <label class="control-label">Repetir contraseña</label>
-        <input type="password" id="pass2" class="form-control" type="text"></input>
+        <input id="email" class="form-control" type="text" ng-model="thanksForm.email"></input>
       </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="ok()">OK</button>
-      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div>
+      <div class="form-group">
+        <label class="control-label">contraseña</label>
+        <input type="password" id="pass" class="form-control" type="text" readonly></input>
+        <label class="control-label">Repetir contraseña</label>
+        <input type="password" id="pass2" class="form-control" type="text" readonly> </input>
+      </div>
     </div>
   </div>
 </div>

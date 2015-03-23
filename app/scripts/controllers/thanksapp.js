@@ -177,6 +177,9 @@ angular.module('Pear2Pear')
 
     $scope.ok = function () {
       $location.url('/thanksapp/commingsoon/' + $route.current.params['id']);
+      _paq.push(['trackEvent', 'MoreInfo', $scope.thanksForm.email]);
+      _paq.push(['trackPageView']);
+
     };
 
     $scope.cancel = function () {
