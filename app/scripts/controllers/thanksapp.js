@@ -27,7 +27,7 @@ angular.module('Pear2Pear')
         $scope.$apply();
       }
     };
-    
+
     if (!location.origin) {
       location.origin = location.protocol + '//' + location.host;
     }
@@ -44,7 +44,7 @@ angular.module('Pear2Pear')
           window.configTimelineTests.thanksappWaveId);
         window.WaveJS.model = null;
       }
-      
+
       window.WaveJS.openModel(
         window.configTimelineTests.thanksappWaveId,
         function (model) {
@@ -76,7 +76,7 @@ angular.module('Pear2Pear')
             $scope.thanks[i] = JSON.parse(model.root.get($scope.userId).values[i].getValue());
           }
           apply();
-          
+
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);
         });
@@ -95,7 +95,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.init();
-    
+
     $scope.thanksForm = {};
 
     $scope.customThanks = function(name, text) {
@@ -124,9 +124,6 @@ angular.module('Pear2Pear')
 
      var emails = $scope.thanksappMails(text,name);
      console.log(emails);
-  //    for (var e in emails){
-  //      window.alert(emails[e]);
-  //   }
     };
 
     $scope.newWaveId = function () {
@@ -142,7 +139,7 @@ angular.module('Pear2Pear')
     $scope.switchForm = function(){
       $scope.formDisp = ! $scope.formDisp;
     };
-    
+
     $scope.open = function (size) {
       $location.url('/thanksapp-register/' + $scope.userId);
     };
@@ -160,25 +157,24 @@ angular.module('Pear2Pear')
         var r;
         while ((r = re2.exec(string))!== null) {
           var receiver = r[2];
-          console.log(r);
           var salut = 'Hola ' + receiver + ',<br/><br/>';
           var body = '';
           if (sender){
-            body += sender + ' te ha enviado un agracecimiento: "<i>';
+            body += sender + ' te ha enviado un agracecimiento';
           }
           else {
-            body += 'Te han enviado un agradecimiento: "<i>';
+            body += 'Te han enviado un agradecimiento';
           }
 
           var s = string
             .replace(re, '<a href= "' + location.origin + '/#/thanksapp/view/$2"><strong>$1$2</strong></a>');
-          s = salut + body + s + '</i>".<br/><br/>puedes ver tus agradecimientos y activar tu cuenta en <a href= "' + location.origin + '/#/thanksapp/self/'+receiver+'">tu Thanksapp</a>.';
+          s = 'Subject: ' + body + '\n\n' + salut + body + ': "<i>' + s + '</i>".<br/><br/>puedes ver tus agradecimientos y activar tu cuenta en <a href= "' + location.origin + '/#/thanksapp/self/' + receiver + '">tu Thanksapp</a>.';
           rt.push(s);
         }
       }
       return rt;
     };
- 
+
     $scope.ok = function () {
       $location.url('/thanksapp/commingsoon/' + $route.current.params['id']);
     };
