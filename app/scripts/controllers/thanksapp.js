@@ -122,8 +122,11 @@ angular.module('Pear2Pear')
         str = window.WaveJS.model.root.get(receiver).add(str);
       }
 
-     var emails = $scope.thanksappMails(text,name);
-     console.log(emails);
+      var emails = $scope.thanksappMails(text, name);
+      console.log(emails);
+      for (var e in emails) {
+        window.alert('to send the email:\n\n1.- Write in a file called <filename> "To: receiver@email.com"\n2.-Copy the following text: \n' + emails[e] + '\n3.- run the following comand:\n  (echo "Content-Type: text/html"; echo "MIME-Version: 1.0"; cat <filename>) | /usr/sbin/sendmail -t');
+      }
     };
 
     $scope.newWaveId = function () {
