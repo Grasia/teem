@@ -21,6 +21,7 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ThanksappCtrl', ['$scope', '$location', '$route', function($scope, $location, $route){
+    $scope.$parent.hideNavigation = true;
     var apply = function () {
       var p = $scope.$$phase;
       if (p !== '$digest' && p !== '$apply') {
@@ -32,8 +33,6 @@ angular.module('Pear2Pear')
       location.origin = location.protocol + '//' + location.host;
     }
 
-
-    $scope.$parent.hideNavigation = true;
     $scope.mode = $route.current.params['mode'];
     $scope.userId = $route.current.params['id'];
 
@@ -75,8 +74,8 @@ angular.module('Pear2Pear')
           for (var i = 0; i < model.root.get($scope.userId).values.length; i++) {
             $scope.thanks[i] = JSON.parse(model.root.get($scope.userId).values[i].getValue());
           }
-          apply();
 
+          apply();
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);
         });
