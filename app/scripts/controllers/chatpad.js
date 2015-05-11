@@ -56,7 +56,8 @@ angular.module('Pear2Pear')
           }
 
           model.root.get($scope.padId).registerEventHandler(
-              alert (oldStr + ' ' + newStr);
+            SwellRT.events.ITEM_CHANGED,
+            function (newStr, oldStr) {
               $scope.pad = newStr;
               apply();
             });
