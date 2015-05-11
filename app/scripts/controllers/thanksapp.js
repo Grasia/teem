@@ -38,22 +38,22 @@ angular.module('Pear2Pear')
 
     $scope.init = function () {
       // following if avoids concurrency control error in wave
-      if (window.WaveJS.model) {
-        window.WaveJS.closeModel(
+      if (window.SwellRT.model) {
+        window.SwellRT.closeModel(
           window.configTimelineTests.thanksappWaveId);
-        window.WaveJS.model = null;
+        window.SwellRT.model = null;
       }
 
-      window.WaveJS.openModel(
+      window.SwellRT.openModel(
         window.configTimelineTests.thanksappWaveId,
         function (model) {
-          window.WaveJS.model = model;
+          window.SwellRT.model = model;
           if (typeof model.root.get($scope.userId) == 'undefined'){
             var list = model.createList();
             list = model.root.put($scope.userId,list); // list is attached to the sub map: root->map->list
           }
           model.root.get($scope.userId).registerEventHandler(
-            WaveJS.events.ITEM_ADDED, function (item) {
+            SwellRT.events.ITEM_ADDED, function (item) {
               var index = -1;
               var i = 0;
               while ( index == -1 && i < model.root.get($scope.userId).values.length) {
@@ -64,9 +64,9 @@ angular.module('Pear2Pear')
               $scope.thanks[index] = JSON.parse(item.getValue());
               apply();
             });
-          window.WaveJS.model.root.get($scope.userId).registerEventHandler(
-             WaveJS.events.ITEM_REMOVED, function (item) {
-              var index = window.WaveJS.model.root.get($scope.userId).values.indexOf(item);
+          window.SwellRT.model.root.get($scope.userId).registerEventHandler(
+             SwellRT.events.ITEM_REMOVED, function (item) {
+              var index = window.SwellRT.model.root.get($scope.userId).values.indexOf(item);
               $scope.thanks.splice(index, 1);
               apply();
             });
@@ -82,7 +82,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.clear = function () {
-      var wjsList = window.WaveJS.model.root.get($scope.userId);
+      var wjsList = window.SwellRT.model.root.get($scope.userId);
       for (var i = wjsList.size()-1; i >= 0 ; i--) {
         wjsList.remove(i);
       }
@@ -103,22 +103,22 @@ angular.module('Pear2Pear')
         'text': text,
         'photo': 'images/profile1.jpg'
       });
-      var str = window.WaveJS.model.createString(s);
+      var str = window.SwellRT.model.createString(s);
       var reg = new RegExp('(\<@)(\\w+)', 'g');
       var rr;
       var receiver;
       while ((rr = reg.exec(text)) !== null){
-      var str = window.WaveJS.model.createString(s);
+      var str = window.SwellRT.model.createString(s);
         console.log(rr);
         receiver =  rr[2];
         console.log(receiver);
-        if (typeof window.WaveJS.model.root.get(receiver) === 'undefined'){
-          var list =  window.WaveJS.model.createList();
-          var map = window.WaveJS.model.root;
+        if (typeof window.SwellRT.model.root.get(receiver) === 'undefined'){
+          var list =  window.SwellRT.model.createList();
+          var map = window.SwellRT.model.root;
           list = map.put(receiver,list);
 //          list.add(str);
         }
-        str = window.WaveJS.model.root.get(receiver).add(str);
+        str = window.SwellRT.model.root.get(receiver).add(str);
       }
 
       var emails = $scope.thanksappMails(text, name);
@@ -129,7 +129,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.newWaveId = function () {
-      window.alert(window.WaveJS.createModel());
+      window.alert(window.SwellRT.createModel());
     };
 
     $scope.profile = function (name){

@@ -39,24 +39,24 @@ angular.module('Pear2Pear')
 
     $scope.init = function () {
       // following if avoids concurrency control error in wave
-      if (window.WaveJS.listModel) {
-        window.WaveJS.closeModel(
+      if (window.SwellRT.listModel) {
+        window.SwellRT.closeModel(
           window.configTimelineTests.waveId);
       }
 
-      window.WaveJS.openListModel(
+      window.SwellRT.openListModel(
         window.configTimelineTests.waveId,
         function (listModel) {
-          window.WaveJS.listModel = listModel;
-          window.WaveJS.listModel.list.registerEventHandler(
+          window.SwellRT.listModel = listModel;
+          window.SwellRT.listModel.list.registerEventHandler(
             'ITEM_ADDED', function (item) {
-              var index = window.WaveJS.listModel.list.values.indexOf(item);
+              var index = window.SwellRT.listModel.list.values.indexOf(item);
               $scope.timeline[index] = JSON.parse(item);
               apply();
             });
-          window.WaveJS.listModel.list.registerEventHandler(
+          window.SwellRT.listModel.list.registerEventHandler(
             'ITEM_REMOVED', function (item) {
-              var index = window.WaveJS.listModel.list.values.indexOf(item);
+              var index = window.SwellRT.listModel.list.values.indexOf(item);
               $scope.timeline.splice(index, 1);
               apply();
             });
@@ -91,7 +91,7 @@ angular.module('Pear2Pear')
           $scope.community.name = prompt('Nombre de la comunidad');
           machaca1 = prompt('Nombre de persona activa en comunidad');
           proyectoQuiso = prompt('Proyecto en el que quiso y no pudo');
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'lightbulb-o',
             'heading': machaca1 + ' ha creado el proyecto ' + proyectoQuiso,
             'entity': {
@@ -105,7 +105,7 @@ angular.module('Pear2Pear')
         fun : function () {
           var tarea = prompt('Tarea del proyecto en el que quiso y no pudo');
 
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'magic',
             'heading': tarea,
             'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoQuiso,
@@ -120,7 +120,7 @@ angular.module('Pear2Pear')
       {      fun : function () {
           proyectoDuda = prompt('Proyecto en el que dudó si participar');
 
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'lightbulb-o',
             'heading': machaca1 + ' ha creado el proyecto ' + proyectoDuda,
             'entity': {
@@ -134,7 +134,7 @@ angular.module('Pear2Pear')
         fun : function () {
           tarea = prompt('Tarea del proyecto en el que dudó si participar');
 
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'magic',
             'heading': tarea,
             'body': machaca1 + ' ha creado una tarea en el proyecto ' + proyectoDuda,
@@ -148,7 +148,7 @@ angular.module('Pear2Pear')
       },
       {
         fun: function () {
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'pencil',
             'heading': proyectoDuda + ': En marcha!',
             'body': machaca1 + ' ha cambiado el estado del proyecto',
@@ -162,7 +162,7 @@ angular.module('Pear2Pear')
       {
         fun: function () {
           machaca2 = prompt('Nombre de otra persona activa en el proyecto');
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'life-ring',
             'heading': 'Ayuda a: ' + tarea,
             'body': machaca2 + ' ha pedido colaboración en la tarea',
@@ -176,7 +176,7 @@ angular.module('Pear2Pear')
       },
       {
         fun: function () {
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'life-ring',
             'heading': 'Ayuda a: ' + tarea,
             'body': machaca2 + ' ha pedido colaboración en la tarea',
@@ -191,7 +191,7 @@ angular.module('Pear2Pear')
       },
       {
         fun: function () {
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'life-ring',
             'heading': 'Ayudame ' + nombre + ' a: ' + tarea,
             'body': machaca2 + ' te ha pedido colaboración en la tarea',
@@ -206,7 +206,7 @@ angular.module('Pear2Pear')
       },
       {
         fun: function () {
-          window.WaveJS.listModel.list.add(JSON.stringify({
+          window.SwellRT.listModel.list.add(JSON.stringify({
             'icon': 'lightbulb-o',
             'heading': 'Únete a : ' + proyectoDuda,
             'body': machaca2 + ' te ha invitado a participar en el proyecto',
@@ -231,7 +231,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.clear = function () {
-      var wjsList = window.WaveJS.listModel.list;
+      var wjsList = window.SwellRT.listModel.list;
       for (var i = wjsList.values.length; i >= 0 ; i--) {
         wjsList.remove(i);
       }
@@ -242,7 +242,7 @@ angular.module('Pear2Pear')
       var title = prompt('Timeline event TITLE');
       var text = prompt('Timeline event TEXT');
       var icon = prompt('Timeline event icon (magic, lightbulb-o, pencil, life-ring, heart-o, ...)');
-      window.WaveJS.listModel.list.add(JSON.stringify({
+      window.SwellRT.listModel.list.add(JSON.stringify({
         'icon': icon,
         'heading': title,
         'body': text
@@ -254,7 +254,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.newWaveId = function () {
-      window.alert(window.WaveJS.createListModel());
+      window.alert(window.SwellRT.createListModel());
     };
 
     $scope.timelineLink = function (entity) {

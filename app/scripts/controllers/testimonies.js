@@ -33,21 +33,21 @@ angular.module('Pear2Pear')
 
     $scope.init = function () {
       // following if avoids concurrency control error in wave
-      if (window.WaveJS.model) {
-        window.WaveJS.closeModel(
+      if (window.SwellRT.model) {
+        window.SwellRT.closeModel(
           window.configTimelineTests.testimoniesWaveId);
       }
       
-      window.WaveJS.openModel(
+      window.SwellRT.openModel(
         window.configTimelineTests.testimoniesWaveId,
         function (model) {
-          window.WaveJS.model = model;
+          window.SwellRT.model = model;
           if (typeof model.root.get($scope.communityId) == 'undefined'){
             var list = model.createList();
             list = model.root.put($scope.communityId,list); // list is attached to the sub map: root->map->list
           }
           model.root.get($scope.communityId).registerEventHandler(
-            WaveJS.events.ITEM_ADDED, function (item) {
+            SwellRT.events.ITEM_ADDED, function (item) {
               var index = -1;
               var i = 0;
               while ( index == -1 && i < model.root.get($scope.communityId).values.length) {
@@ -58,9 +58,9 @@ angular.module('Pear2Pear')
               $scope.testimonies[index] = JSON.parse(item.getValue());
               apply();
             });
-          window.WaveJS.model.root.get($scope.communityId).registerEventHandler(
-             WaveJS.events.ITEM_REMOVED, function (item) {
-              var index = window.WaveJS.model.root.get($scope.communityId).values.indexOf(item);
+          window.SwellRT.model.root.get($scope.communityId).registerEventHandler(
+             SwellRT.events.ITEM_REMOVED, function (item) {
+              var index = window.SwellRT.model.root.get($scope.communityId).values.indexOf(item);
               $scope.testimonies.splice(index, 1);
               apply();
             });
@@ -76,7 +76,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.clear = function () {
-      var wjsList = window.WaveJS.model.root.get($scope.communityId);
+      var wjsList = window.SwellRT.model.root.get($scope.communityId);
       for (var i = wjsList.size()-1; i >= 0 ; i--) {
         wjsList.remove(i);
       }
@@ -102,12 +102,12 @@ angular.module('Pear2Pear')
         'text': text,
         'photo': 'images/profile1.jpg'
       });
-      var str = window.WaveJS.model.createString(s);
-      str = window.WaveJS.model.root.get($scope.communityId).add(str);
+      var str = window.SwellRT.model.createString(s);
+      str = window.SwellRT.model.root.get($scope.communityId).add(str);
     };
 
     $scope.newWaveId = function () {
-      window.alert(window.WaveJS.createModel());
+      window.alert(window.SwellRT.createModel());
     };
 
     //display the add testimony form

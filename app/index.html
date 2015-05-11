@@ -125,7 +125,7 @@
     <script src="scripts/cordova.js"></script>
     <script src="scripts/stats.js"></script>
     <!-- endbuild -->
-    <script src="https://wave.p2pvalue.eu/wavejs/wavejs.nocache.js"></script>
+    <script src="http://localhost:9898/swellrt/swellrt.nocache.js"></script>
     <script src="scripts/config-timeline-tests.js"></script>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -139,11 +139,12 @@
     <script src="scripts/controllers/testimonies.js"></script>
     <script src="scripts/controllers/help.js"></script>
     <script src="scripts/controllers/thanksapp.js"></script>
+    <script src="scripts/controllers/chatpad.js"></script>
     <!-- endbuild -->
 
     <script>
-     window.onWaveJSReady = function () {
-       window.WaveJS.startSession(
+     window.onSwellRTReady = function () {
+       window.SwellRT.startSession(
          window.configTimelineTests.server,
          window.configTimelineTests.user,
          window.configTimelineTests.pass,
