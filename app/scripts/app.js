@@ -13,7 +13,6 @@ angular
     'pasvaz.bindonce',
     'ngAnimate',
     'ngRoute',
-    'ngSanitize',
     'ngTouch',
     'pascalprecht.translate',
     'mobile-angular-ui',
