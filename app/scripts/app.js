@@ -12,7 +12,6 @@ angular
   .module('Pear2Pear', [
     'pasvaz.bindonce',
     'ngAnimate',
-    'ngCookies',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
