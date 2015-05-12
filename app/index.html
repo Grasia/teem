@@ -19,18 +19,16 @@
     <link rel="stylesheet" href="styles/mangular-customization.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/fontcustom.css">
-    <link rel="stylesheet" href="bower_components/ngprogress/ngProgress.css">
     <!-- endbuild -->
   </head>
-  <body ng-cloak ng-show="moduleStarted">
+  <body>
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-
     <div bindonce class="app" id="app">
-      <div class="navbar navbar-app navbar-absolute-top" ng-show="!hideNavigation">
+      <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
         <div class="btn-group pull-left">
           <div class="btn btn-navbar" yield-to="nav-left"></div>
         </div>
@@ -120,7 +118,6 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-ui-select/dist/select.js"></script>
     <script src="bower_components/angular-bindonce/bindonce.js"></script>
-    <script src="bower_components/ngprogress/build/ngProgress.js"></script>
     <!-- endbower -->
     <script src="scripts/cordova.js"></script>
     <script src="scripts/stats.js"></script>

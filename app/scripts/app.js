@@ -20,8 +20,7 @@ angular
     'pascalprecht.translate',
     'mobile-angular-ui',
     'ui.select',
-    'ui.bootstrap',
-    'ngProgress'
+    'ui.bootstrap'
   ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -37,13 +36,3 @@ angular
   
     $translateProvider.preferredLanguage('en');
   });
-
-angular.module('Pear2Pear').run(function($rootScope, ngProgress) {
-  $rootScope.$on('$routeChangeStart', function(ev,data) {
-    ngProgress.start();
-  });
-  $rootScope.$on('$routeChangeSuccess', function(ev,data) {
-    ngProgress.complete();
-    $rootScope.moduleStarted = true;
-  });
-});
