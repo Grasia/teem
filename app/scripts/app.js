@@ -13,7 +13,6 @@ angular
     'pasvaz.bindonce',
     'ngAnimate',
     'ngCookies',
-    'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
