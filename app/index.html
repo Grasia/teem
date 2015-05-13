@@ -119,8 +119,13 @@
     <script src="scripts/cordova.js"></script>
     <script src="scripts/stats.js"></script>
     <!-- endbuild -->
-    <script src="http://localhost:9898/swellrt/swellrt.nocache.js"></script>
     <script src="scripts/swellrt-config.js"></script>
+    <script>
+     var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = window.swellrtConfig.server + '/swellrt/swellrt.nocache.js';
+      document.getElementsByTagName('head')[0].appendChild(script);
+    </script>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/session.js"></script>
