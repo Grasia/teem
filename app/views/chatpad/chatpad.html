@@ -12,11 +12,6 @@
       <div class="media">
         <textarea class="col-md-12" style="min-height:200px; background: #fff;" ng-model="pad">
         </textarea>
-        <div class="media-body">
-          <div ng-repeat="item in thanks">
-            <p style="padding-left: 10px;" ng-bind-html="item.text"></p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -30,5 +25,5 @@
 </div>
 
 <div ng-show="mode==='ctrl'">
-  He creado el <strong>chatpad</strong> del grupo: {{getLocation()}}
+  He creado el <strong>chatpad</strong> del grupo: {{getLocation()}} con el mensaje: "{{pad.substr(0,16)}}..."
 </div>
