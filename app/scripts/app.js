@@ -29,5 +29,6 @@ angular
       suffix: '.json'
     });
   
+    $translateProvider.useSanitizeValueStrategy('escaped');
     $translateProvider.preferredLanguage('en');
   });
