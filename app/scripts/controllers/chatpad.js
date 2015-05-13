@@ -132,6 +132,6 @@ angular.module('Pear2Pear')
       }
     });
     $scope.getLocation = function () {
-      return location.origin + '/#/v/' + $scope.mode;
+      return location.origin + '/#/v/' + $scope.mode + '/' + $scope.padId;
     };
   }]);
