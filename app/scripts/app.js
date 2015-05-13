@@ -11,10 +11,8 @@
 angular
   .module('Pear2Pear', [
     'pasvaz.bindonce',
-    'ngAnimate',
-    'ngRoute',
-    'ngTouch',
     'pascalprecht.translate',
+    'ngRoute',
     'mobile-angular-ui',
     'ui.select',
     'ui.bootstrap'
