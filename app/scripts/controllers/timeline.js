@@ -41,11 +41,11 @@ angular.module('Pear2Pear')
       // following if avoids concurrency control error in wave
       if (window.SwellRT.listModel) {
         window.SwellRT.closeModel(
-          window.configTimelineTests.waveId);
+          window.swellrtConfig.waveId);
       }
 
       window.SwellRT.openListModel(
-        window.configTimelineTests.waveId,
+        window.swellrtConfig.waveId,
         function (listModel) {
           window.SwellRT.listModel = listModel;
           window.SwellRT.listModel.list.registerEventHandler(

@@ -35,11 +35,11 @@ angular.module('Pear2Pear')
       // following if avoids concurrency control error in wave
       if (window.SwellRT.model) {
         window.SwellRT.closeModel(
-          window.configTimelineTests.testimoniesWaveId);
+          window.swellrtConfig.testimoniesWaveId);
       }
       
       window.SwellRT.openModel(
-        window.configTimelineTests.testimoniesWaveId,
+        window.swellrtConfig.testimoniesWaveId,
         function (model) {
           window.SwellRT.model = model;
           if (typeof model.root.get($scope.communityId) == 'undefined'){

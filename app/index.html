@@ -120,7 +120,7 @@
     <script src="scripts/stats.js"></script>
     <!-- endbuild -->
     <script src="http://localhost:9898/swellrt/swellrt.nocache.js"></script>
-    <script src="scripts/config-timeline-tests.js"></script>
+    <script src="scripts/swellrt-config.js"></script>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/session.js"></script>
@@ -139,9 +139,9 @@
     <script>
      window.onSwellRTReady = function () {
        window.SwellRT.startSession(
-         window.configTimelineTests.server,
-         window.configTimelineTests.user,
-         window.configTimelineTests.pass,
+         window.swellrtConfig.server,
+         window.swellrtConfig.user,
+         window.swellrtConfig.pass,
          function () {
            //success
            angular.element(document).ready(function() {

@@ -40,12 +40,12 @@ angular.module('Pear2Pear')
       // following if avoids concurrency control error in wave
       if (window.SwellRT.model) {
         window.SwellRT.closeModel(
-          window.configTimelineTests.chatpadWaveId);
+          window.swellrtConfig.chatpadWaveId);
         window.SwellRT.model = null;
       }
 
       window.SwellRT.openModel(
-        window.configTimelineTests.chatpadWaveId,
+        window.swellrtConfig.chatpadWaveId,
         function (model) {
           window.SwellRT.model = model;
           if (typeof model.root.get($scope.padId) == 'undefined'){
