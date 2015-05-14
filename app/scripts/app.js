@@ -15,7 +15,9 @@ angular
     'ngRoute',
     'mobile-angular-ui',
     'ui.select',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angulartics',
+    'angulartics.piwik'
   ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
