@@ -18,6 +18,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'bower_components/jquery/dist/jquery.js',
       'bower_components/modernizr/modernizr.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
@@ -28,6 +29,24 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-ui-select/dist/select.js',
       'bower_components/angular-bindonce/bindonce.js',
+      'bower_components/SHA-1/sha1.js',
+      'bower_components/angulartics/src/angulartics.js',
+      'bower_components/angulartics/src/angulartics-adobe.js',
+      'bower_components/angulartics/src/angulartics-chartbeat.js',
+      'bower_components/angulartics/src/angulartics-cnzz.js',
+      'bower_components/angulartics/src/angulartics-flurry.js',
+      'bower_components/angulartics/src/angulartics-ga-cordova.js',
+      'bower_components/angulartics/src/angulartics-ga.js',
+      'bower_components/angulartics/src/angulartics-gtm.js',
+      'bower_components/angulartics/src/angulartics-kissmetrics.js',
+      'bower_components/angulartics/src/angulartics-mixpanel.js',
+      'bower_components/angulartics/src/angulartics-piwik.js',
+      'bower_components/angulartics/src/angulartics-scroll.js',
+      'bower_components/angulartics/src/angulartics-segmentio.js',
+      'bower_components/angulartics/src/angulartics-splunk.js',
+      'bower_components/angulartics/src/angulartics-woopra.js',
+      'bower_components/angulartics/src/angulartics-marketo.js',
+      'bower_components/angulartics/src/angulartics-intercom.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
