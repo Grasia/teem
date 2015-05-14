@@ -1,8 +1,8 @@
 window.swellrtConfig = {
   server : 'http://localhost:9898',
   // user and pass have to be credentials of an existing user in wave server
-  user : 'user',
-  pass : 'pass',
+  user : 'test@local.net',
+  pass : 'test',
   // WaveIds have to exist in wave server
   waveId : 'local.net/gen+12345abcde',
   testimoniesWaveId : 'local.net/gen+12345abcde',
