@@ -2,6 +2,7 @@
   <h1>Chatpad</h1>
   <p class="subtitle">Tu memoria grupal</p>
 </div>
+
 <div class="row">
   <div id="chatpad" class="col-md-12">
     <form>
@@ -13,14 +14,21 @@
   </div>
 </div>
 <div class="row">
+  <div class="col-md-12" ng-show="mode === 'ctrl'">
+    He creado el <strong>chatpad</strong> del grupo: {{getLocation()}} con el mensaje: "{{pad.substr(0,16)}}..."
+  </div>
+
   <div class="col-md-12">
-    <div ng-show="mode!=='ctrl'" class=" alert alert-info">
+    <div ng-show="mode === 'v' || mode === 'view'" class="alert alert-info">
       Guardar este <strong>Chatpad</strong> para futuras ocasiones
-      <button class="btn btn-default pull-right" ng-click="">Guardar</button>
+      <button class="btn btn-default pull-right" ng-click="ok()">Guardar</button>
     </div>
+  </div>
+
+  <div class="col-md-12">
+    <div ng-show="mode === 'commingsoon'" class="alert alert-info">
+      Ups... estamos trabajando en ello! Siempre puedes acceder a este chatpad guardándolo en favoritos. Si quieres recibir información del proyecto escribe a <a href="mailto:p2pv@ucm.es">p2pv@ucm.es</a>
   </div>
 </div>
 
-<div ng-show="mode==='ctrl'">
-  He creado el <strong>chatpad</strong> del grupo: {{getLocation()}} con el mensaje: "{{pad.substr(0,16)}}..."
-</div>
+

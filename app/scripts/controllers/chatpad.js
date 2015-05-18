@@ -115,16 +115,9 @@ angular.module('Pear2Pear')
     };
 
     $scope.ok = function () {
-      $location.url('/chatpad/commingsoon/' + $route.current.params['id']);
-      _paq.push(['trackEvent', 'MoreInfo', $scope.padForm.email]);
-      _paq.push(['trackPageView']);
-
+      $location.url('/chatpad/commingsoon/' + $route.current.params.id);
     };
 
-    $scope.cancel = function () {
-      $location.url('/chatpad/self/' + $route.current.params['id']);
-    };
-    
     $scope.$watch('pad', function() {
       if (window.SwellRT.model !== undefined){
         window.SwellRT.model.root.get($scope.padId).setValue($scope.pad);
