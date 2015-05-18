@@ -33,8 +33,8 @@ angular.module('Pear2Pear')
       location.origin = location.protocol + '//' + location.host;
     }
 
-    $scope.mode = $route.current.params['mode'];
-    $scope.padId = $route.current.params['id'];
+    $scope.mode = $route.current.params.mode;
+    $scope.padId = $route.current.params.id;
 
     $scope.init = function () {
       // following if avoids concurrency control error in wave
@@ -125,6 +125,6 @@ angular.module('Pear2Pear')
       }
     });
     $scope.getLocation = function () {
-      return location.origin + '/#/v/' + $scope.mode + '/' + $scope.padId;
+      return location.origin + '/#/cp/v/' + $scope.padId;
     };
   }]);
