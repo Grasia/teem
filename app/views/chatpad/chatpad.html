@@ -1,27 +1,24 @@
-<center>
-  <!-- TODO improve header -->
-  <h1 id="chatpad">Chatpad</h1>
-  <p class="subtitle">Your group memory</p>
-</center>
-
-<hr/>
-
-<div id="thanksapp" class="row">
-  <div class="col-md-12 ">
-    <div class="timeline">
-      <div class="media">
-        <textarea class="col-md-12" style="min-height:200px; background: #fff;" ng-model="pad">
+<div class="text-center">
+  <h1>Chatpad</h1>
+  <p class="subtitle">Tu memoria grupal</p>
+</div>
+<div class="row">
+  <div id="chatpad" class="col-md-12">
+    <form>
+      <div class="form-group">
+        <textarea class=" form-control" rows="10" ng-model="pad">
         </textarea>
       </div>
-    </div>
+    </form>
   </div>
 </div>
-
-<hr/>
-
-<div ng-show="mode!=='ctrl'" class="col-md-12 alert alert-info">
-  Guardar este <strong>Chatpad</strong> para futuras ocasiones
-  <button class="btn btn-default pull-right" ng-click="">Guardar</button>
+<div class="row">
+  <div class="col-md-12">
+    <div ng-show="mode!=='ctrl'" class=" alert alert-info">
+      Guardar este <strong>Chatpad</strong> para futuras ocasiones
+      <button class="btn btn-default pull-right" ng-click="">Guardar</button>
+    </div>
+  </div>
 </div>
 
 <div ng-show="mode==='ctrl'">
