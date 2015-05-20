@@ -12,11 +12,11 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/cp/:mode/:id', {
-        templateUrl: 'views/chatpad/chatpad.html',
+        templateUrl: 'chatpad/chatpad.html',
         controller: 'ChatpadCtrl'
       })
       .when('/chatpad/:mode/:id', {
-        templateUrl: 'views/chatpad/chatpad.html',
+        templateUrl: 'chatpad/chatpad.html',
         controller: 'ChatpadCtrl'
       });
   }])

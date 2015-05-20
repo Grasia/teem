@@ -11,15 +11,15 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/communities', {
-        templateUrl: 'views/communities/index.html',
+        templateUrl: 'communities/index.html',
         controller: 'CommunitiesCtrl'
       })
       .when('/communities/new', {
-        templateUrl: 'views/communities/new.html',
+        templateUrl: 'communities/new.html',
         controller: 'CommunitiesCtrl'
       })
       .when('/communities/:id/edit', {
-        templateUrl: 'views/communities/edit.html',
+        templateUrl: 'communities/edit.html',
         controller: 'CommunitiesCtrl'
       });
   }])

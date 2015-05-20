@@ -12,11 +12,11 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/projects', {
-        templateUrl: 'views/projects/index.html',
+        templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
       .when('/projects/:id/tasks', {
-        templateUrl: 'views/projects/show.html',
+        templateUrl: 'projects/show.html',
         controller: 'ProjectsCtrl'
       });
   }])

@@ -11,11 +11,11 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/session/new', {
-        templateUrl: 'views/session/new.html',
+        templateUrl: 'session/new.html',
         controller:'SessionCtrl'
       })
     .when('/session/userdata',{
-      templateUrl: 'views/session/userdata.html',
+      templateUrl: 'session/userdata.html',
       controller:'SessionCtrl'
     });
   }])

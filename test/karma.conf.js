@@ -6,6 +6,8 @@
 module.exports = function(config) {
   'use strict';
 
+  var gulpConfig = require(__dirname + '/../gulpfile').config;
+
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
@@ -17,40 +19,12 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
-    files: [
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/modernizr/modernizr.js',
-      'bower_components/angular/angular.js',
+    files: gulpConfig.vendor.js.concat([
       'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-translate/angular-translate.js',
-      'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-      'bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js',
-      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'bower_components/angular-ui-select/dist/select.js',
-      'bower_components/angular-bindonce/bindonce.js',
-      'bower_components/SHA-1/sha1.js',
-      'bower_components/angulartics/src/angulartics.js',
-      'bower_components/angulartics/src/angulartics-adobe.js',
-      'bower_components/angulartics/src/angulartics-chartbeat.js',
-      'bower_components/angulartics/src/angulartics-cnzz.js',
-      'bower_components/angulartics/src/angulartics-flurry.js',
-      'bower_components/angulartics/src/angulartics-ga-cordova.js',
-      'bower_components/angulartics/src/angulartics-ga.js',
-      'bower_components/angulartics/src/angulartics-gtm.js',
-      'bower_components/angulartics/src/angulartics-kissmetrics.js',
-      'bower_components/angulartics/src/angulartics-mixpanel.js',
-      'bower_components/angulartics/src/angulartics-piwik.js',
-      'bower_components/angulartics/src/angulartics-scroll.js',
-      'bower_components/angulartics/src/angulartics-segmentio.js',
-      'bower_components/angulartics/src/angulartics-splunk.js',
-      'bower_components/angulartics/src/angulartics-woopra.js',
-      'bower_components/angulartics/src/angulartics-marketo.js',
-      'bower_components/angulartics/src/angulartics-intercom.js',
-      'app/scripts/**/*.js',
+      'src/js/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
-    ],
+    ]),
 
     // list of files / patterns to exclude
     exclude: [],

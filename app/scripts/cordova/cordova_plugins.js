@@ -1,1 +1,0 @@
-../../../mobile/platforms/android/assets/www/cordova_plugins.js

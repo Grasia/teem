@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title translate>page_title</title>
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="stylesheet" href="css/app.min.css" />
+    <!-- inject:js -->
+    <script src="js/app.min.js"></script>
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div bindonce class="app" id="app">
+      <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
+        <div class="btn-group pull-left">
+          <div class="btn btn-navbar" yield-to="nav-left"></div>
+        </div>
+
+        <div class="btn-group pull-right">
+          <div class="btn btn-navbar" yield-to="nav-right"></div>
+        </div>
+
+        <div class="nav-title" yield-to="nav-title"></div>
+      </div>
+
+      <div ng-style="(hideNavigation || (height<300)) ? {'padding-bottom': '0px'}:{}" class="app-body scrollable">
+        <div class="container scrollable-content" ng-view></div>
+      </div>
+
+      <div ng-hide="hideNavigation || (height<300)" class="navbar navbar-app navbar-absolute-bottom" ng-controller="BottomNavbarCtrl">
+        <div class="btn-group col-md-12">
+          <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-left-bottom">
+            <div ng-click="timeline()">
+              <i class="fa fa-bullhorn" bo-class="contextIs('timeline')?'selected':''"></i>
+              <div translate>
+                bottom_navbar.news
+              </div>
+            </div>
+          </div>
+
+          <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-right-bottom">
+            <div ng-click="projects()">
+              <i class="fa fa-lightbulb-o" bo-class="contextIs('projects')?'selected':''"></i>
+              <div translate>
+                bottom_navbar.projects
+              </div>
+            </div>
+          </div>
+
+          <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-center-bottom">
+            <div ng-click="tasks()">
+              <i class="fa fa-check" bo-class="contextIs('my_tasks')?'selected':''"></i>
+              <div translate>
+                bottom_navbar.my_tasks
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+     window.onSwellRTReady = function () {
+       window.SwellRT.startSession(
+         window.swellrtConfig.server,
+         window.swellrtConfig.user,
+         window.swellrtConfig.pass,
+         function () {
+           //success
+           angular.element(document).ready(function() {
+             angular.bootstrap(document, ['Pear2Pear']);
+           });
+         },
+         function () {
+           window.alert('Error conecting to wavejs server: Try again later')
+         });
+      
+     };
+    </script>
+
+    <!-- Piwik -->
+    <!-- TODO move to stats template -->
+    <script type="text/javascript">
+      if (window.location.toString().search('p2pvalue')!=-1){
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking', true]);
+        (function() {
+          var u="//stats.p2pvalue.eu/";
+          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          _paq.push(['setSiteId', 3]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+      }
+    </script>
+    <noscript><p><img src="//stats.p2pvalue.eu/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+  </body>
+</html>

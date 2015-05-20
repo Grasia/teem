@@ -12,23 +12,23 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/collab/work/:id', {
-        templateUrl: 'views/help/show-collab.html',
+        templateUrl: 'help/show-collab.html',
         controller: 'HelpCtrl'
       })
       .when('/collab/learn/:id', {
-        templateUrl: 'views/help/show-learn.html',
+        templateUrl: 'help/show-learn.html',
         controller: 'HelpCtrl'
       })
       .when('/collab/:viewmode/:id/new', {
-        templateUrl: 'views/help/form.html',
+        templateUrl: 'help/form.html',
         controller: 'HelpCtrl'
       })
       .when('/collab/show/:id/:item', {
-        templateUrl: 'views/help/show.html',
+        templateUrl: 'help/show.html',
         controller: 'HelpCtrl'
       })
       .when('/collab/:id/control', {
-        templateUrl: 'views/help/show-collab.html',
+        templateUrl: 'help/show-collab.html',
         controller: 'HelpCtrl'
       });
 

@@ -12,15 +12,15 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/timeline', {
-        templateUrl: 'views/timeline/show.html',
+        templateUrl: 'timeline/show.html',
         controller: 'TimelineCtrl'
       })
       .when('/timeline/control', {
-        templateUrl: 'views/timeline/show.html',
+        templateUrl: 'timeline/show.html',
         controller: 'TimelineCtrl'
       })
       .when('/timeline/waveid', {
-        templateUrl: 'views/timeline/waveid.html',
+        templateUrl: 'timeline/waveid.html',
         controller: 'TimelineCtrl'
       });
   }])

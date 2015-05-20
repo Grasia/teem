@@ -12,11 +12,11 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/thanksapp/:mode/:id', {
-        templateUrl: 'views/thanksapp/thanksapp.html',
+        templateUrl: 'thanksapp/thanksapp.html',
         controller: 'ThanksappCtrl'
       })
       .when('/thanksapp-register/:id', {
-        templateUrl: 'views/thanksapp/register.html',
+        templateUrl: 'thanksapp/register.html',
         controller: 'ThanksappCtrl'
       });
   }])

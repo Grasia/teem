@@ -12,15 +12,15 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/my_tasks/:id/tasks', {
-        templateUrl: 'views/tasks/index.html',
+        templateUrl: 'tasks/index.html',
         controller: 'TasksCtrl'
       })
       .when('/:context/:id/tasks/:id', {
-        templateUrl: 'views/tasks/edit.html',
+        templateUrl: 'tasks/edit.html',
         controller: 'TasksCtrl'
       })
       .when('/:context/:id/tasks/new', {
-        templateUrl: 'views/tasks/edit.html',
+        templateUrl: 'tasks/edit.html',
         controller: 'TasksCtrl'
       });
   }])
@@ -262,7 +262,7 @@ angular.module('Pear2Pear')
     'taskList',
     function () {
       return {
-        templateUrl: 'views/tasklist.html',
+        templateUrl: 'tasklist.html',
         replace: true,
         scope: {
           taskList : '='
@@ -322,7 +322,7 @@ angular.module('Pear2Pear')
         scope: {
           dateModel : '='
         },
-        templateUrl: 'views/datetimeinput.html',
+        templateUrl: 'datetimeinput.html',
         replace : true
       };
     }
