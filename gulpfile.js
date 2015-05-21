@@ -108,6 +108,7 @@ var gulp           = require('gulp'),
   streamqueue    = require('streamqueue'),
   rename         = require('gulp-rename'),
   path           = require('path'),
+  watch          = require('gulp-watch'),
   jshint         = require('gulp-jshint'),
   karma          = require('karma').server,
   angularProtractor = require('gulp-angular-protractor'),
@@ -292,13 +293,13 @@ gulp.task('js', function() {
 
 gulp.task('watch', function () {
   if (typeof config.server === 'object') {
-    gulp.watch([config.dest + '/**/*'], ['livereload']);  
+    watch([config.dest + '/**/*'], function() { gulp.start('livereload'); });
   }
-  gulp.watch(['./src/html/**/*'], ['html']);
-  gulp.watch(['./src/sass/**/*'], ['sass']);
-  gulp.watch(['./src/js/**/*', './src/templates/**/*', config.vendor.js], ['jshint', 'js']);
-  gulp.watch(['./src/images/**/*'], ['images']);
-  gulp.watch(['./src/l10n/**/*'], ['l10n']);
+  watch(['./src/html/**/*'], function() { gulp.start('html'); });
+  watch(['./src/sass/**/*'], function() { gulp.start('sass'); });
+  watch(config.vendor.js.concat(['./src/js/**/*', './src/templates/**/*']), function() { gulp.start(['jshint', 'js']); });
+  watch(['./src/images/**/*'], function() { gulp.start('images'); });
+  watch(['./src/l10n/**/*'], function() { gulp.start('l10n'); });
 });
 
 
