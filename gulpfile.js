@@ -52,6 +52,11 @@ var config = {
     port: '8000'
   },
 
+  serverTest: {
+    host: '127.0.0.1',
+    port: '9001'
+  },
+
   weinre: {
     httpPort:     8001,
     boundHost:    'localhost',
@@ -152,7 +157,6 @@ if (typeof config.server === 'object') {
   throw new Error('Connect is not configured');
 }
 });
-
 
 /*==============================================================
 =            Setup live reloading on source changes            =
@@ -337,15 +341,22 @@ gulp.task('unit-test', function(done) {
 =        End to end testing with protractor      =
 =================================================*/
 
+
 gulp.task('e2e-test', function(done) {
+  connect.server({
+    root: config.dest,
+    host: config.serverTest.host,
+    port: config.serverTest.port
+  });
+
   gulp.src(['./test/e2e/**/*.js'])
     .pipe(angularProtractor({
       'configFile': 'test/protractor.conf.js',
-      'args': ['--baseUrl', 'http://127.0.0.1:8000'],
       'autoStartStopServer': true,
       'debug': true
     }))
-    .on('error', function(e) { throw e })
+    .on('error', function(e) { connect.serverClose(); throw e })
+    .on('end', function() { connect.serverClose(); });
 });
 
 /*====================================

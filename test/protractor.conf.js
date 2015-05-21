@@ -1,3 +1,5 @@
+var gulpConfig = require(__dirname + '/../gulpfile').config;
+
 exports.config = {
   allScriptsTimeout: 90000,
 
@@ -9,7 +11,7 @@ exports.config = {
     'browserName': 'chrome'
   },
 
-  baseUrl: 'http://localhost:9001/',
+  baseUrl: 'http://' + gulpConfig.serverTest.host + ':' + gulpConfig.serverTest.port + '/',
 
   framework: 'jasmine2',
 
