@@ -22,14 +22,14 @@
     <div bindonce class="app" id="app">
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
         <div class="btn-group pull-left">
-          <div class="btn btn-navbar" yield-to="nav-left"></div>
+          <div class="btn btn-navbar" ui-yield-to="nav-left"></div>
         </div>
 
         <div class="btn-group pull-right">
-          <div class="btn btn-navbar" yield-to="nav-right"></div>
+          <div class="btn btn-navbar" ui-yield-to="nav-right"></div>
         </div>
 
-        <div class="nav-title" yield-to="nav-title"></div>
+        <div class="nav-title" ui-yield-to="nav-title"></div>
       </div>
 
       <div ng-style="(hideNavigation || (height<300)) ? {'padding-bottom': '0px'}:{}" class="app-body scrollable">
@@ -38,7 +38,7 @@
 
       <div ng-hide="hideNavigation || (height<300)" class="navbar navbar-app navbar-absolute-bottom" ng-controller="BottomNavbarCtrl">
         <div class="btn-group col-md-12">
-          <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-left-bottom">
+          <div class="btn btn-navbar btn-navbar-bottom col-md-4" ui-yield-to="nav-left-bottom">
             <div ng-click="timeline()">
               <i class="fa fa-bullhorn" bo-class="contextIs('timeline')?'selected':''"></i>
               <div translate>
@@ -47,7 +47,7 @@
             </div>
           </div>
 
-          <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-right-bottom">
+          <div class="btn btn-navbar btn-navbar-bottom col-md-4" ui-yield-to="nav-right-bottom">
             <div ng-click="projects()">
               <i class="fa fa-lightbulb-o" bo-class="contextIs('projects')?'selected':''"></i>
               <div translate>
@@ -56,7 +56,7 @@
             </div>
           </div>
 
-          <div class="btn btn-navbar btn-navbar-bottom col-md-4" yield-to="nav-center-bottom">
+          <div class="btn btn-navbar btn-navbar-bottom col-md-4" ui-yield-to="nav-center-bottom">
             <div ng-click="tasks()">
               <i class="fa fa-check" bo-class="contextIs('my_tasks')?'selected':''"></i>
               <div translate>
