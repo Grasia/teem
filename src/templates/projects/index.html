@@ -3,20 +3,13 @@
   <div class="task-index" translate>{{community.name}}</div>
 </div>
 
-<div ui-content-for="nav-right"><i class="fa fa-plus" ng-click="new_()"></i></div>
-
 <div class="row">
   <div class="col-md-12">
     <div class="projects">
-      <div class="row project-item" ng-repeat="project in projects" ng-click="showProject(project.id)">
+      <div class="row project-item" ng-repeat="project in projects" ng-click="showProjectChat(project.id)">
         <div class="media">
           <div class="media-body">
             <h4 class="media-heading">{{project.name}}</h4>
-            <!--TODO color #C1D97A-->
-            <div class="green">
-              <strong>{{project.status? 'Status:' : ''}}</strong>
-              {{project.status? project.status : ''}}
-            </div>
           </div>
         </div>
       </div>

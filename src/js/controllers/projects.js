@@ -43,8 +43,7 @@ angular.module('Pear2Pear')
         title: 'Cool project'
       };
     
-    
-    $scope.showProject = function (id) {
+    $scope.showProjectChat = function (id) {
       $location.path('/projects/' + id + '/chat/');
     };
 
