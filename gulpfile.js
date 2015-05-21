@@ -59,6 +59,11 @@ var config = {
     debug:        false,
     readTimeout:  5,
     deathTimeout: 15
+  },
+
+  deploy: {
+    origin: 'origin',
+    branch: 'deploy'
   }
 };
 
@@ -101,7 +106,8 @@ var gulp           = require('gulp'),
   path           = require('path'),
   jshint         = require('gulp-jshint'),
   karma          = require('karma').server,
-  angularProtractor = require('gulp-angular-protractor');
+  angularProtractor = require('gulp-angular-protractor'),
+  ghPages        = require('gulp-gh-pages');
 
 
 /*================================================
@@ -349,6 +355,24 @@ gulp.task('e2e-test', function(done) {
 gulp.task('test', function(done){
   seq('unit-test', 'e2e-test', done);
 });
+
+/*====================================
+=              Deploy Task           =
+====================================*/
+
+gulp.task('deploy', function(done) {
+  return gulp.src('./www/**/*')
+    .pipe(ghPages(config.deploy));
+});
+
+/*============================================
+=         Continous Delivery Task            =
+============================================*/
+
+gulp.task('ci', function(done) {
+  seq('build', 'test', 'deploy', done);
+});
+
 
 
 /*====================================

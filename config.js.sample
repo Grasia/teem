@@ -23,4 +23,8 @@ module.exports = function(config) {
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');
   // config.vendor.fonts.push('.bower_components/font/dist/*');
 
+  // Deploy options
+  // config.deploy.origin = 'origin'
+
+  config.deploy = false
 };
