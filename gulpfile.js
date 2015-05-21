@@ -67,7 +67,6 @@ var config = {
   },
 
   deploy: {
-    origin: 'deploy',
     branch: 'dist'
   }
 };
