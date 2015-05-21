@@ -173,17 +173,17 @@ gulp.src(path.join(config.dest, '*.html'))
 =====================================*/
 
 gulp.task('images', function () {
-var stream = gulp.src('src/images/**/*');
+  var stream = gulp.src('src/images/**/*');
 
-if (config.minify_images) {
-  stream = stream.pipe(imagemin({
+  if (config.minify_images) {
+    stream = stream.pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
       use: [pngcrush()]
-  }));
-}
+    }));
+  }
 
-return stream.pipe(gulp.dest(path.join(config.dest, 'images')));
+  return stream.pipe(gulp.dest(path.join(config.dest, 'images')));
 });
 
 
@@ -192,8 +192,8 @@ return stream.pipe(gulp.dest(path.join(config.dest, 'images')));
 ==================================*/
 
 gulp.task('fonts', function() {
-return gulp.src(config.vendor.fonts)
-.pipe(gulp.dest(path.join(config.dest, 'fonts')));
+  return gulp.src(config.vendor.fonts)
+    .pipe(gulp.dest(path.join(config.dest, 'fonts')));
 });
 
 /*==================================
