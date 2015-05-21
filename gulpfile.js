@@ -369,7 +369,7 @@ gulp.task('deploy', function(done) {
 =         Continous Delivery Task            =
 ============================================*/
 
-gulp.task('ci', function(done) {
+gulp.task('cd', function(done) {
   seq('build', 'test', 'deploy', done);
 });
 
