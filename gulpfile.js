@@ -356,7 +356,7 @@ gulp.task('e2e-test', function(done) {
       'debug': true
     }))
     .on('error', function(e) { connect.serverClose(); throw e })
-    .on('end', function() { connect.serverClose(); });
+    .on('end', function() { connect.serverClose(); done(); });
 });
 
 /*====================================
@@ -373,7 +373,8 @@ gulp.task('test', function(done){
 
 gulp.task('deploy', function(done) {
   return gulp.src('./www/**/*')
-    .pipe(ghPages(config.deploy));
+    .pipe(ghPages(config.deploy))
+    .on('end', done);
 });
 
 /*============================================
