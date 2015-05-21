@@ -371,10 +371,9 @@ gulp.task('test', function(done){
 =              Deploy Task           =
 ====================================*/
 
-gulp.task('deploy', function(done) {
+gulp.task('deploy', function() {
   return gulp.src('./www/**/*')
-    .pipe(ghPages(config.deploy))
-    .on('end', done);
+    .pipe(ghPages(config.deploy));
 });
 
 /*============================================
