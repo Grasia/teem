@@ -25,43 +25,27 @@ angular.module('Pear2Pear')
     $scope.projects = [
       {
         id: '1',
-        name : 'Street Art project',
-        status: 'Starting'
+        title : 'Street Art project'
       },
       {
         id: '2',
-        name : 'Feminist film festival',
-        status: 'Aproved'
+        name : 'Feminist film festival'
       }
     ];
 
-    $scope.editing = false;
-
     //TODO get from backend
     $scope.getProject = function () {
-      return {
-        id: '1',
-        name: 'Cool project',
-        status: 'Starting',
-        description: 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.'
-      };
+      return $scope.project;
     };
     
     $scope.project = {
         id: '1',
-        name: 'Cool project',
-        status: 'Starting',
-        description: 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.'
+        title: 'Cool project'
       };
     
     
-    //TODO set proper community
-    $scope.community = {
-      name: 'Really Interesting Community'
-    };
-
     $scope.showProject = function (id) {
-      $location.path('/projects/' + id + '/tasks/');
+      $location.path('/projects/' + id + '/chat/');
     };
 
     $scope.new_ = function () {
