@@ -320,7 +320,7 @@ gulp.task('build', function(done) {
 =        Unit testing with Karma       =
 ======================================*/
 
-gulp.task('karma', function(done) {
+gulp.task('unit-test', function(done) {
   karma.start({
     configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
@@ -331,7 +331,7 @@ gulp.task('karma', function(done) {
 =        End to end testing with protractor      =
 =================================================*/
 
-gulp.task('protractor', function(done) {
+gulp.task('e2e-test', function(done) {
   gulp.src(['./test/e2e/**/*.js'])
     .pipe(angularProtractor({
       'configFile': 'test/protractor.conf.js',
@@ -340,6 +340,14 @@ gulp.task('protractor', function(done) {
       'debug': true
     }))
     .on('error', function(e) { throw e })
+});
+
+/*====================================
+=              Test Task             =
+====================================*/
+
+gulp.task('test', function(done){
+  seq('unit-test', 'e2e-test', done);
 });
 
 
