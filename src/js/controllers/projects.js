@@ -20,24 +20,10 @@ angular.module('Pear2Pear')
         controller: 'ProjectsCtrl'
       });
   }])
-  .controller('ProjectsCtrl', ['$scope', '$location', function ($scope, $location) {
+  .controller('ProjectsCtrl', ['pear', '$scope', '$location', function (pear, $scope, $location) {
 
-    $scope.projects = [
-      {
-        id: '1',
-        title : 'Street Art project'
-      },
-      {
-        id: '2',
-        title : 'Feminist film festival'
-      }
-    ];
+    $scope.projects = pear.projects.all();
 
-    //TODO get from backend
-    $scope.getProject = function () {
-      return $scope.project;
-    };
-    
     $scope.project = {
         id: '1',
         title: 'Cool project'
@@ -64,11 +50,6 @@ angular.module('Pear2Pear')
     $scope.save = function () {
       $scope.editing = false;
       //TODO
-    };
-    
-    $scope.cancel = function () {
-      $scope.project = $scope.getProject();
-      $scope.editing = false;
     };
     
     $scope.share = function () {

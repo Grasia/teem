@@ -16,27 +16,6 @@ angular.module('Pear2Pear')
         controller: 'ChatCtrl'
       });
   }])
-  .controller('ChatCtrl', ['$scope', function($scope){
-    $scope.project = {
-      title: 'Feminist film festival',
-      chat: [
-        {
-          text: 'Cómo mola el festival',
-          standpoint: 'mine'
-        },
-        {
-          text: 'Vamos a partir la pana',
-          standpoint: 'their'
-        },
-        {
-          text: 'A qué hora empieza?',
-          standpoint: 'mine'
-        },
-        {
-          text: 'A la que se reza',
-          standpoint: 'their'
-        }
-      ]
-    };
-
+  .controller('ChatCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
+    $scope.project = pear.projects.find($route.current.params.id);
   }]);

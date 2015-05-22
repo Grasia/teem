@@ -16,9 +16,6 @@ angular.module('Pear2Pear')
         controller: 'PadCtrl'
       });
   }])
-  .controller('PadCtrl', ['$scope', function($scope){
-    $scope.project = {
-      title: 'Feminist film festival',
-      pad: "El festival que va a partir la pana"
-    };
+  .controller('PadCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
+    $scope.project = pear.find($route.current.params.id);
   }]);
