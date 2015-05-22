@@ -20,7 +20,6 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div bindonce class="app" id="app">
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
         <div class="btn-group pull-left">
@@ -34,8 +33,10 @@
         <div class="nav-title" ui-yield-to="nav-title"></div>
       </div>
 
-      <div ng-style="(hideNavigation || (height<300)) ? {'padding-bottom': '0px'}:{}" class="app-body scrollable">
-        <div class="container scrollable-content" ng-view></div>
+      <div ng-style="(hideNavigation || (height<300)) ? {'padding-bottom': '0px'}:{}" class="app-body">
+        <div class="app-content">
+          <div class="container" ng-view>
+        </div>
       </div>
 
       <div ng-hide="hideNavigation || (height<300)" class="navbar navbar-app navbar-absolute-bottom" ng-controller="BottomNavbarCtrl">
