@@ -2,23 +2,23 @@
   <div class="project-title overflow-ellipsis">{{project.title}}</div>
 </div>
 
-    <div class="chat scrollable">
-      <div class="scrollable-content">
-        <ul class="chat-messages">
-          <li ng-repeat="msg in project.chat" class="chat-message {{msg.standpoint}}">
-            {{msg.text}}
-          </li>
-        </ul>
+<div class="chat scrollable">
+  <div class="scrollable-content">
+    <ul class="chat-messages">
+      <li ng-repeat="msg in project.chat" class="chat-message {{msg.standpoint}}">
+        {{msg.text}}
+      </li>
+    </ul>
+  </div>
+  <div class="scrollable-footer">
+    <form ng-submit="send()">
+      <div class="input-group">
+        <textarea class="form-control" rows="1" ng-model="chat.new" placeholder="{{ 'chat.input' | translate}}"/> 
+        <span class="input-group-addon">
+          <i class="fa fa-chevron-circle-right chat-input-button" ng-click="send()"></i>
+        </span>
       </div>
-      <div class="scrollable-footer">
-        <form ng-submit="send()">
-          <div class="input-group">
-            <textarea class="form-control" rows="1" ng-model="chat.new" placeholder="{{ 'chat.input' | translate}}"/> 
-            <span class="input-group-addon">
-              <i class="fa fa-chevron-circle-right chat-input-button" ng-click="send()"></i>
-            </span>
-          </div>
-        </form>
-      </div>
-    </div>
+    </form>
+  </div>
+</div>
 
