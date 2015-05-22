@@ -37,12 +37,9 @@
 
       <div ng-style="(hideNavigation || (height<300)) ? {'padding-bottom': '0px'}:{}" class="app-body">
         <div class="app-content">
-          <div class="container" ng-view>
+          <ng-view></ng-view>
         </div>
       </div>
-
-
-
     </div>
     <script>
      window.onSwellRTReady = function () {

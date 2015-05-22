@@ -1,0 +1,17 @@
+.chat
+  ul.chat-messages
+    padding: 0
+    list-style-type: none
+    li
+      border-radius: 5px
+      box-shadow: 0 0 6px $chat-msg-shadow
+      padding: 10px
+      margin: 15px 20px
+      &.mine
+        background-color: $chat-mine-color
+        margin-left: 40px
+      &.their
+        background-color: $chat-their-color
+        margin-right: 40px
+  .chat-input-button
+    font-size: 2em

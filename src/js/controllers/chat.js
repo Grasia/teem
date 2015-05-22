@@ -21,10 +21,20 @@ angular.module('Pear2Pear')
       title: 'Feminist film festival',
       chat: [
         {
-          text: 'Cómo mola el festival'
+          text: 'Cómo mola el festival',
+          standpoint: 'mine'
         },
         {
-          text: 'Vamos a partir la pana'
+          text: 'Vamos a partir la pana',
+          standpoint: 'their'
+        },
+        {
+          text: 'A qué hora empieza?',
+          standpoint: 'mine'
+        },
+        {
+          text: 'A la que se reza',
+          standpoint: 'their'
         }
       ]
     };

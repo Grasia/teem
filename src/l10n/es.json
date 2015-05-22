@@ -23,6 +23,9 @@
     "empty_tasks_tip" : "Añade una tarea nueva",
     "task_checkbox_tip" : "Haz click aquí en las tareas terminadas"
   },
+  "chat": {
+    "input": "Mensaje"
+  },
   "community": {
     "add_participant": "Añadir participante",
     "edit": "Editar",
