@@ -29,7 +29,7 @@ angular.module('Pear2Pear')
       },
       {
         id: '2',
-        name : 'Feminist film festival'
+        title : 'Feminist film festival'
       }
     ];
 
