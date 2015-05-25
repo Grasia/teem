@@ -37,31 +37,11 @@ body {
 	background-color: #f9f9f9;
 }
 
+
 label {
   color: #999999;
 }
 
-.navbar-default {
-  border: 0px;
-  border-top: solid #e2e2e2 1px;
-  border-bottom: solid #e2e2e2 1px;
-  border-radius: 0px;
-}
-
-.navbar {
-    min-height: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 10px;
-	padding-bottom: 10px;
-    lineheigth: 2.0;
-}
-
-.nav-title {
-    text-align: center;
-    vertical-align: middle;
-}
 
 .btn-info {
 	color: #fff;
@@ -69,10 +49,6 @@ label {
 	border-color: #46b8da;
 }
 
-
-.navbar-app .btn-navbar {
-    line-height: 2.0;
-}
 
 .fa {
 	color: #47c9eb;
