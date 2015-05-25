@@ -24,7 +24,10 @@
     "task_checkbox_tip" : "Haz click aquí en las tareas terminadas"
   },
   "chat": {
-    "input": "Mensaje"
+    "input": "Mensaje",
+    "nav": {
+      "title": "Chat"
+    }
   },
   "community": {
     "add_participant": "Añadir participante",
@@ -48,6 +51,11 @@
     "name": "Nombre",
     "tip": "Empieza introduciendo tu nombre",
     "welcome_msg": "Bienvenid@ a Pear to Pear. Una herramienta para participar en tus grupos y comunidades"
+  },
+  "pad": {
+    "nav": {
+      "title": "Pad"
+    }
   },
   "project": {
     "edit": {

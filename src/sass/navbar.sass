@@ -1,32 +1,34 @@
+/* Change navbar-top height to accomodate navbar-top-navigation
+ *
+ * We should use less
+ */
+.has-navbar-top .app-body
+  padding-top: 86px
 .navbar-absolute-top
+  /* Change navbar-top height to accomodate navbar-top-navigation */
+  min-height: 85px
   border-bottom-width: 0px
-  &, .fa
+  &, .fa, a
     color: $navbar-top-color
   background-color: $navbar-top-background-color
-
-.nav-left-container
-  float: left
-
-.nav-right-container
-  float: right
 
 .nav-title
   font-size: 1.4em
   font-family: 'Dax Wide Regular', sans-serif
   text-align: center
 
-.nav-title .task-index
-  font-family: 'Dax Wide Regular', sans-serif
-  font-size: 0.8em
-
 .navbar .fa
   font-size: 1.8em
 
-.navbar-app .btn-navbar-bottom
-  color: #696969
-
-.navbar-app .btn-navbar-bottom .fa 
-  color: #696969
-
-.navbar-app .btn-navbar-bottom .fa.selected
-  color: #47c9eb
+.navbar-top-navigation
+  position: absolute
+  top: 50px
+  text-align: center
+  min-height: 30px
+  a
+    font-size: 1.1em
+    padding-top: 5px
+    padding-bottom: 5px
+    text-transform: uppercase
+    &.active
+      border-bottom: 3px solid $navbar-top-underscore
