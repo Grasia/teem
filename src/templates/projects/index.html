@@ -3,15 +3,11 @@
   <div class="task-index" translate>{{community.name}}</div>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="projects">
-      <div class="row project-item" ng-repeat="project in projects" ng-click="showProjectChat(project.id)">
-        <div class="media">
-          <div class="media-body">
-            <h4 class="media-heading">{{project.title}}</h4>
-          </div>
-        </div>
+<div class="projects list-group">
+  <div class="row project-item list-group-item" ng-repeat="project in projects" ng-click="showProjectChat(project.id)">
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">{{project.title}}</h4>
       </div>
     </div>
   </div>
