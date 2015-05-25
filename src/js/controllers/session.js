@@ -26,8 +26,7 @@ angular.module('Pear2Pear')
 
     $scope.create = function() {
       $scope.$parent.hideNavigation = false;
-      // $location.path('/timeline');
-      $location.path('/session/userdata');
+      $location.path('/projects');
     };
 
     $scope.userData = function () {
