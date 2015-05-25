@@ -16,6 +16,10 @@ angular.module('Pear2Pear')
         controller: 'ChatCtrl'
       });
   }])
-  .controller('ChatCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
+  .controller('ChatCtrl', ['pear', '$scope', '$route', '$location', function(pear, $scope, $route, $location){
     $scope.project = pear.projects.find($route.current.params.id);
+
+    $scope.projectIndex = function() {
+      $location.path('projects');
+    };
   }]);

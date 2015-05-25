@@ -18,4 +18,8 @@ angular.module('Pear2Pear')
   }])
   .controller('PadCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
     $scope.project = pear.projects.find($route.current.params.id);
+
+    $scope.projectIndex = function() {
+      $location.path('projects');
+    };
   }]);

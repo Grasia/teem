@@ -22,6 +22,8 @@
 
     <div bindonce class="app" id="app">
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
+        <div class="navbar-brand navbar-brand-center nav-title" ui-yield-to="nav-title"></div>
+
         <div class="btn-group pull-left">
           <div class="btn btn-navbar" ui-yield-to="nav-left"></div>
         </div>
@@ -30,7 +32,6 @@
           <div class="btn btn-navbar" ui-yield-to="nav-right"></div>
         </div>
 
-        <div class="nav-title" ui-yield-to="nav-title"></div>
       </div>
 
       <div ui-yield-to="bottom-navbar"></div>
