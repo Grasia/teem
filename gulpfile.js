@@ -236,12 +236,12 @@ gulp.task('sass', function () {
   gulp.src('./src/sass/app.sass')
     .pipe(sourcemaps.init())
     .pipe(sass({
-        includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components') ]
-      }).on('error', sass.logError))
+      includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components') ]
+    }).on('error', sass.logError))
     .pipe(mobilizer('app.css', {
       'app.css': {
         hover: 'exclude',
-        screens: ['0px']      
+        screens: ['0px']
       },
       'hover.css': {
         hover: 'only',
