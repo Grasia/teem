@@ -238,6 +238,7 @@ gulp.task('sass', function () {
     .pipe(sass({
       includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components') ]
     }).on('error', sass.logError))
+    /* Currently not working with sourcemaps
     .pipe(mobilizer('app.css', {
       'app.css': {
         hover: 'exclude',
@@ -248,6 +249,7 @@ gulp.task('sass', function () {
         screens: ['0px']
       }
     }))
+    */
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write())
