@@ -21,6 +21,7 @@ var config = {
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       './bower_components/angular-ui-select/dist/select.js',
+      './bower_components/angular-elastic/elastic.js',
       './bower_components/angular-bindonce/bindonce.js',
       './bower_components/waypoints/waypoints.js',
       './bower_components/SHA-1/sha1.js',

@@ -16,6 +16,7 @@ angular
     'mobile-angular-ui',
     'ui.select',
     'ui.bootstrap',
+    'monospaced.elastic',
     'angulartics',
     'angulartics.piwik'
   ]).
