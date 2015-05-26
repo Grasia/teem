@@ -33,7 +33,7 @@ angular.module('Pear2Pear')
             standpoint: 'their'
           }
         ],
-        pad: "El arte urbano se basa en la apropriación de los espacios como forma de comunicación"
+        pad: 'El arte urbano se basa en la apropriación de los espacios como forma de comunicación'
       },
       {
         id: '2',
