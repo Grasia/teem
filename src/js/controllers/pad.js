@@ -18,4 +18,9 @@ angular.module('Pear2Pear')
   }])
   .controller('PadCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
     $scope.project = pear.projects.find($route.current.params.id);
+
+    // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262 
+    $scope.nav = function(id) {
+      return id === 'pad' ? 'active' : '';
+    };
   }]);
