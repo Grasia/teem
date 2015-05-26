@@ -12,6 +12,12 @@
     color: $navbar-top-color
   background-color: $navbar-top-background-color
 
+/* Prevent mobile-angular-ui moving navbar-brand-center to left in desktop */
+@media (min-width: 992px)
+  .navbar-brand-center
+    width: 100%
+
+
 .nav-title
   font-size: 1.4em
   font-family: 'Dax Wide Regular', sans-serif
