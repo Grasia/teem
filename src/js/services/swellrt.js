@@ -57,12 +57,12 @@ angular.module('SwellRTService',[])
           .openModel(waveId, 
                      function (model) {
                        apply(function() {
-                         deferred.resolve(model);
                          currentWaveId = waveId;
                          currentModel.model = model;
                          ret.model = model.root;
                          ret.mod = model;
                          simplify(model.root, ret.copy, []);
+                         deferred.resolve(model);
                        })}, 
                      function(error){
                        alert(error);
@@ -218,7 +218,8 @@ angular.module('SwellRTService',[])
               return r;
             },
             function(newValue, oldValue){
-              var newVals = Object.keys(newValue).diff(Object.keys(oldValue));
+              // AngularJS introduce $$haskKey property to some objects
+              var newVals = Object.keys(newValue).diff(['$$hashKey'].concat(Object.keys(oldValue)));
               angular.forEach(newVals, function(value, key){
                 var m = path.reduce(function(object,k){return object.get(k)}, ret.model);
                 createAttachObject(m, value, newValue[value]);
