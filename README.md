@@ -45,6 +45,24 @@ folders in your project.
 * `node_modules` - contains the npm packages for the tools we need
 * `bower_components` - contains the angular framework files
 
+### Install SwellRT
+
+Pear2Pear uses [SwellRT](https://github.com/P2Pvalue/swellrt), a real-time federated collaboration framework.
+
+You need to run SwellRT, which is extremelly easy using Docker
+
+1. [Install Docker](https://docs.docker.com/installation/)
+2. `sudo docker run -p 9898:9898 -h swellrt -d p2pvalue/swellrt`
+
+### Optional: Change configuration options
+
+You can customize several options, such as server port, Weinre, SwellRT address via `config.js`
+
+```
+cp config.js.sample config.js
+edit config.js
+```
+
 ### Run the Application
 
 We have preconfigured the project with a simple development web server.  The simplest way to start
@@ -54,8 +72,7 @@ this server is:
 gulp
 ```
 
-Now browse to the app at `http://localhost:8000/`.
-
+Now browse to the app at `http://localhost:8000/`
 
 
 ## Testing
