@@ -47,7 +47,7 @@ angular.module('SwellRTService',[])
            def.reject('Error conecting to wavejs server: Try again later');
          });
     }
-    if (window.SwellRT) {
+    if ( window.SwellRT) {
       init();
     }
     window.onSwellRTReady = function () {
