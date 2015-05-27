@@ -67,9 +67,14 @@ angular.module('SwellRTService',[])
                          ret.model = model.root;
                          ret.mod = model;
                          simplify(model.root, ret.copy, []);
+<<<<<<< HEAD
                          deferred.resolve(model);
                        });
                      },
+=======
+                         //watch(ret.copy,[]);
+                       })}, 
+>>>>>>> Revert "swellRT-angular service: lists working"
                      function(error){
                        console.log(error);
                        apply(function() {
