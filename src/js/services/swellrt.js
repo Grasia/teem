@@ -131,7 +131,7 @@ angular.module('SwellRTService',[])
         angular.forEach(value, function(val, key){
           console.log(val);
           console.log(key);
-          createAttachObject(obj.get(pathKey), key, val);
+          createAttachObject(o, key, val);
         });
       }
     }
@@ -188,7 +188,9 @@ angular.module('SwellRTService',[])
           e.registerEventHandler(SwellRT.events.ITEM_ADDED,
                                  function(foo) {
                                    console.log(foo);
-                                   simplify(foo[1], ret.copy, path.concat([foo[0]]));
+                                   var p = (path || []).concat([foo[0]]);
+                                   console.log("foooo: " + p);
+                                   simplify(foo[1], mod, p);
                                    apply();
                                  },
                                  function(error) {
@@ -196,10 +198,10 @@ angular.module('SwellRTService',[])
                                  });
           e.registerEventHandler(SwellRT.events.ITEM_REMOVED,
                                  function(foo) {
-                                   console.log(foo);
                                    alert('deleted!!');
-                                   delete path.reduce(function(object, key){return object[key]}, mod);
-                                   console.log("foooo: " + path);
+                                   console.log(foo);
+                                   var p = (path || []).concat([foo[0]]);
+                                   delete path.reduce(function(object, key){return object[key]}, mod)[foo[0]];
                                    apply();
                                  },
                                  function(error) {
@@ -209,7 +211,7 @@ angular.module('SwellRTService',[])
           angular.forEach(keys,function(value, key){
             var el = e.get(value);
             console.log(el);
-            simplify(el, mod, path.concat(value));
+            simplify(el, mod, path.concat([value]));
           });
           $rootScope.$watchCollection(
             function(){
@@ -221,7 +223,6 @@ angular.module('SwellRTService',[])
               var newVals = Object.keys(newValue).diff(Object.keys(oldValue));
               angular.forEach(newVals, function(value, key){
                 var m = path.reduce(function(object,k){return object.get(k)}, ret.model);
-                console.log(newValue[value]);
                 createAttachObject(m, value, newValue[value]);
                 apply();
               });
