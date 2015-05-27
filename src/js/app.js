@@ -18,7 +18,8 @@ angular
     'ui.bootstrap',
     'monospaced.elastic',
     'angulartics',
-    'angulartics.piwik'
+    'angulartics.piwik',
+    'SwellRTService'
   ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.

@@ -24,7 +24,7 @@ angular.module('SwellRTService',[])
       create: create,
       model: currentModel,
       m2: currentModel.model,
-      copy : {}
+      copy: {}
     }
     
     var apply = function (fun) {
@@ -63,7 +63,6 @@ angular.module('SwellRTService',[])
                          ret.model = model.root;
                          ret.mod = model;
                          simplify(model.root, ret.copy, []);
-                         //watch(ret.copy,[]);
                        })}, 
                      function(error){
                        alert(error);
@@ -198,7 +197,6 @@ angular.module('SwellRTService',[])
                                  });
           e.registerEventHandler(SwellRT.events.ITEM_REMOVED,
                                  function(foo) {
-                                   alert('deleted!!');
                                    console.log(foo);
                                    var p = (path || []).concat([foo[0]]);
                                    delete path.reduce(function(object, key){return object[key]}, mod)[foo[0]];
@@ -238,9 +236,11 @@ angular.module('SwellRTService',[])
 
           var b = path.reduce(function(object, key){return object[key]}, mod);
           b = [];
-          angular.forEach(e, function(value, key){
-            simplify(e.get(key), mod, path.concat([e.get(key)])
-            )});
+          setPathValue(mod, path, []);
+          var keyNum = e.size();
+          for(var i = 0; i < keyNum; i++){
+            simplify(e.get(i), mod, path.concat([i]));
+          };
           break;
       }
     }

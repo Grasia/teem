@@ -15,7 +15,7 @@
     <script src="js/app.min.js"></script>
   </head>
 
-  <body>
+  <body ng-app="Pear2Pear">
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -45,24 +45,6 @@
         </div>
       </div>
     </div>
-    <script>
-     window.onSwellRTReady = function () {
-       window.SwellRT.startSession(
-         window.swellrtConfig.server,
-         window.swellrtConfig.user,
-         window.swellrtConfig.pass,
-         function () {
-           //success
-           angular.element(document).ready(function() {
-             angular.bootstrap(document.body, ['Pear2Pear']);
-           });
-         },
-         function () {
-           window.alert('Error conecting to wavejs server: Try again later')
-         });
-      
-     };
-    </script>
 
     <!-- Piwik -->
     <!-- TODO move to stats template -->

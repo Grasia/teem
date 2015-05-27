@@ -10,7 +10,10 @@
  */
 
 angular.module('Pear2Pear')
-  .factory('pear', function() {
+  .factory('pear', ['swellRT', function(swellRT) {
+
+    swellRT.open(window.swellrtConfig.chatpadWaveId);
+
     var projectsDb = [
       {
         id: '1',
@@ -62,7 +65,7 @@ angular.module('Pear2Pear')
 
     var projects = {
       all: function() {
-        return projectsDb;
+        return swellRT.copy;
       },
       find: function(id) {
         return projectsDb[0];
@@ -76,10 +79,12 @@ angular.module('Pear2Pear')
         };
 
         projectsDb.push(p);
+        projects.put(p.id, p);
         callback(p);
       }
     };
     return {
-      projects: projects
+      projects: projects,
+      model: swellRT.copy
     };
-  });
+  }]);
