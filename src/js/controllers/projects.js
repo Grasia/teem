@@ -23,16 +23,18 @@ angular.module('Pear2Pear')
   .controller('ProjectsCtrl', ['pear', '$scope', '$location', function (pear, $scope, $location) {
 
     pear.onLoad(function(){
-        $scope.projects = pear.projects.all();
+      $scope.projects = pear.projects.all();
+      $scope.new_ = function () {
+        alert('foo');
+        pear.projects.create(function(p) {
+          $location.path('/projects/' + p.id + '/pad/');
+        });
+      };
     });
 
     $scope.showProjectChat = function (id) {
       $location.path('/projects/' + id + '/chat/');
     };
 
-    $scope.new_ = function () {
-      pear.projects.create(function(p) {
-        $location.path('/projects/' + p.id + '/pad/');
-      });
-    };
+    
   }]);

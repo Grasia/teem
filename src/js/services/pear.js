@@ -31,8 +31,7 @@ angular.module('Pear2Pear')
           pad: ''
         };
 
-        projectsDb.push(p);
-        projects.put(p.id, p);
+        swellRT.copy[p.id] = p;
         callback(p);
       }
     };
