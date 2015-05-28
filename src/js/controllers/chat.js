@@ -20,7 +20,6 @@ angular.module('Pear2Pear')
 
     $scope.id = $route.current.params.id;
     $scope.userId = $rootScope.userId;
-
     $scope.chat = {_new : ''};
 
     pear.onLoad(function(){
