@@ -66,6 +66,17 @@ angular.module('Pear2Pear')
       },
       find: function(id) {
         return projectsDb[0];
+      },
+      create: function(callback) {
+        var p = {
+          id: Math.random().toString(36).substr(2, 5),
+          title: '',
+          chat: [],
+          pad: ''
+        };
+
+        projectsDb.push(p);
+        callback(p);
       }
     };
     return {
