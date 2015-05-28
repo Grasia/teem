@@ -17,9 +17,22 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ChatCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
-    $scope.project = pear.projects.find($route.current.params.id);
-    $scope.projects = pear.projects;
-    // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262 
+
+    $scope.id = $route.current.params.id;
+
+    $scope.chat = {_new : ''};
+
+    pear.onLoad(function(){
+        $scope.project = pear.projects.find($scope.id);
+        $scope.projects = pear.projects.all();
+    });
+
+    $scope.send = function(){
+      // TODO change 'me' by actual username
+      pear.addChatMessage($scope.id, $scope.chat._new, 'me');
+    };
+
+    // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
       return id === 'chat' ? 'active' : '';
     };

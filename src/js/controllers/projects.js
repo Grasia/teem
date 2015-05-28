@@ -22,7 +22,9 @@ angular.module('Pear2Pear')
   }])
   .controller('ProjectsCtrl', ['pear', '$scope', '$location', function (pear, $scope, $location) {
 
-    $scope.projects = pear.projects.all();
+    pear.onLoad(function(){
+        $scope.projects = pear.projects.all();
+    });
 
     $scope.showProjectChat = function (id) {
       $location.path('/projects/' + id + '/chat/');

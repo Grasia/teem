@@ -10,65 +10,18 @@
  */
 
 angular.module('Pear2Pear')
-  .factory('pear', ['swellRT', function(swellRT) {
+  .factory('pear', ['$rootScope', 'swellRT', '$q', function($rootScope, swellRT, $q) {
 
-    swellRT.open(window.swellrtConfig.chatpadWaveId);
-
-    var projectsDb = [
-      {
-        id: '1',
-        title : 'Street Art project',
-        chat: [
-          {
-            text: 'Conoces a Banksy?',
-            standpoint: 'mine'
-          },
-          {
-            text: 'Buah, ese es un refor',
-            standpoint: 'their'
-          },
-          {
-            text: 'Pero qué dices?',
-            standpoint: 'mine'
-          },
-          {
-            text: 'Pinta demasiadas flores',
-            standpoint: 'their'
-          }
-        ],
-        pad: 'El arte urbano se basa en la apropriación de los espacios como forma de comunicación'
-      },
-      {
-        id: '2',
-        title : 'Feminist film festival',
-        chat: [
-          {
-            text: 'Cómo mola el festival',
-            standpoint: 'mine'
-          },
-          {
-            text: 'Vamos a partir la pana',
-            standpoint: 'their'
-          },
-          {
-            text: 'A qué hora empieza?',
-            standpoint: 'mine'
-          },
-          {
-            text: 'A la que se reza',
-            standpoint: 'their'
-          }
-        ],
-        pad: 'Queremos visibilizar las mujeres en la música'
-      }
-    ];
+    var model = {
+      model : swellRT.copy,
+    };
 
     var projects = {
       all: function() {
-        return swellRT.copy;
+        return model.model;
       },
       find: function(id) {
-        return projectsDb[0];
+        return model.model[id];
       },
       create: function(callback) {
         var p = {
@@ -83,8 +36,30 @@ angular.module('Pear2Pear')
         callback(p);
       }
     };
-    return {
+
+    var addChatMessage = function(projectId, message, who) {
+      model.model[projectId].chat.push({
+        text: message,
+        // TODO change when ready
+        standpoint: 'mine',
+        who: who
+      });
+    }
+
+    var def = $q.defer();
+
+    swellRT.open(window.swellrtConfig.chatpadWaveId).then(
+      function() {
+        model.model = swellRT.copy;
+        def.resolve(swellRT.copy);
+      });
+
+    var ret = {
       projects: projects,
-      model: swellRT.copy
-    };
+      addChatMessage: addChatMessage, 
+      onLoad: function(f){
+        def.promise.then(f);
+      }
+    }
+    return ret;
   }]);
