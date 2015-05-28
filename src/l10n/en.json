@@ -68,6 +68,9 @@
       "button": "Share"
     },
     "task_list_label": "Project tasks:",
+    "title" : {
+      "placeholder" : "New project"
+    },
     "project_name": "Project name",
     "project_status": "Status",
     "project_description": "Description"

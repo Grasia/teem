@@ -1,5 +1,7 @@
 <div ui-content-for="nav-title">
-  <div class="project-title overflow-ellipsis">{{project.title}}</div>
+  <div class="project-title overflow-ellipsis">
+    <input type="text" ng-model="project.title" placeholder="{{ 'project.title.placeholder' | translate }}">
+  </div>
 </div>
 
 <div ui-content-for="nav-left">
