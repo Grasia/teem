@@ -41,7 +41,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "postinstall": "node node_modules/protractor/bin/webdriver-manager update; bower install",
+    "postinstall": "bower install",
     "test": "gulp test"
   }
 }
