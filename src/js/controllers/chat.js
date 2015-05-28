@@ -16,9 +16,10 @@ angular.module('Pear2Pear')
         controller: 'ChatCtrl'
       });
   }])
-  .controller('ChatCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
+  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', function(pear, $scope, $rootScope, $route){
 
     $scope.id = $route.current.params.id;
+    $scope.userId = $rootScope.userId;
 
     $scope.chat = {_new : ''};
 
@@ -28,8 +29,7 @@ angular.module('Pear2Pear')
     });
 
     $scope.send = function(){
-      // TODO change 'me' by actual username
-      pear.addChatMessage($scope.id, $scope.chat._new, 'me');
+      pear.addChatMessage($scope.id, $scope.chat._new, $scope.userId);
     };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262

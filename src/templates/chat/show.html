@@ -13,7 +13,7 @@
   <div class="scrollable">
     <div class="scrollable-content">
       <ul class="chat-messages">
-        <li ng-repeat="msg in project.chat" class="chat-message {{msg.standpoint}}">
+        <li ng-repeat="msg in project.chat" class="chat-message {{(msg.who === userId)? 'mine': 'their'}}">
           {{msg.text}}
         </li>
       </ul>
