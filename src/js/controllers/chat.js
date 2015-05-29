@@ -19,7 +19,7 @@ angular.module('Pear2Pear')
   .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', function(pear, $scope, $rootScope, $route){
 
     $scope.id = $route.current.params.id;
-    $scope.userId = $rootScope.userId;
+    $scope.userId = window.sessionStorage.getItem('userId');
 
     pear.onLoad(function(){
         $scope.project = pear.projects.find($scope.id);

@@ -28,7 +28,7 @@ angular.module('Pear2Pear')
       $scope.$parent.hideNavigation = false;
       $location.path('/projects');
       // TODO change when user ids available;
-      $rootScope.userId = $scope.name;
+      window.sessionStorage.setItem('userId', $scope.name);
     };
 
     $scope.userData = function () {
