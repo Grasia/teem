@@ -20,7 +20,6 @@ angular.module('Pear2Pear')
 
     $scope.id = $route.current.params.id;
     $scope.userId = $rootScope.userId;
-    $scope.chat = {_new : ''};
 
     pear.onLoad(function(){
         $scope.project = pear.projects.find($scope.id);
@@ -28,7 +27,9 @@ angular.module('Pear2Pear')
     });
 
     $scope.send = function(){
-      pear.addChatMessage($scope.id, $scope.chat._new, $scope.userId);
+      pear.addChatMessage($scope.id, $scope.newMsg, $scope.userId);
+
+      $scope.newMsg = '';
     };
 
     $scope.standpoint = function(msg){
