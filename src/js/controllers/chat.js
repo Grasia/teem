@@ -22,8 +22,8 @@ angular.module('Pear2Pear')
     $scope.userId = window.sessionStorage.getItem('userId');
 
     pear.onLoad(function(){
-        $scope.project = pear.projects.find($scope.id);
-        $scope.projects = pear.projects.all();
+      $scope.project = pear.projects.find($scope.id);
+      $scope.projects = pear.projects.all();
     });
 
     $scope.send = function(){
