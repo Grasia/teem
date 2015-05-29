@@ -41,7 +41,8 @@ angular.module('Pear2Pear')
         text: message,
         // TODO change when ready
         standpoint: 'mine',
-        who: who
+        who: who,
+        time: ''+ new Date().getTime()
       });
     }
 
