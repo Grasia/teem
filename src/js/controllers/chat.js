@@ -42,6 +42,13 @@ angular.module('Pear2Pear')
     $scope.theirStandpoint = function(msg) {
       return $scope.standpoint(msg) === 'their';
     };
+
+    $scope.hour = function(msg) {
+      var d = (new Date(msg.time));
+
+      return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
+    };
+
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
       return id === 'chat' ? 'active' : '';
