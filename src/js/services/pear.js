@@ -42,7 +42,7 @@ angular.module('Pear2Pear')
         // TODO change when ready
         standpoint: 'mine',
         who: who,
-        time: ''+ new Date().getTime()
+        time: (new Date()).toJSON()
       });
     }
 
