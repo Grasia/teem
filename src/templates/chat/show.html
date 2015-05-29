@@ -14,7 +14,12 @@
     <div class="scrollable-content">
       <ul class="chat-messages">
         <li ng-repeat="msg in project.chat" class="chat-message {{standpoint(msg)}}">
-          {{msg.text}}
+          <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
+            {{msg.who}}
+          </div>
+          <div class="chat-message-text">
+            {{msg.text}}
+          </div>
         </li>
       </ul>
     </div>

@@ -37,7 +37,11 @@ angular.module('Pear2Pear')
         return 'their';
       }
       return (msg.who === $scope.userId)? 'mine': 'their';
-    }
+    };
+
+    $scope.theirStandpoint = function(msg) {
+      return $scope.standpoint(msg) === 'their';
+    };
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
       return id === 'chat' ? 'active' : '';
