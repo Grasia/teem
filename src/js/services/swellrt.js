@@ -135,7 +135,7 @@ angular.module('SwellRTService',[])
         }
       }
       // Attach
-      var className = obj._delegate.___clazz$.simpleName;
+      var className = obj.getDelegate().___clazz$.simpleName;
       if (className === 'ListType'){
         try{
           obj.add(o);
@@ -177,7 +177,7 @@ angular.module('SwellRTService',[])
     }
 
     function simplify(e, mod, path){
-      var className = e._delegate.___clazz$.simpleName;
+      var className = e.getDelegate().___clazz$.simpleName;
       switch (className) {
 
         case 'StringType':
@@ -287,7 +287,7 @@ angular.module('SwellRTService',[])
         // e.registerEventHandler(SwellRT.events.ITEM_REMOVED,
         //                        function(item) {
                                    // function copy(v1){
-                                   //   className = v1._delegate.___clazz$.simpleName;
+                                   //   className = v1.getDelegate().___clazz$.simpleName;
                                    //   var r;
                                    //   if (className === 'StringType'){
                                    //     r = v1.getValue();
