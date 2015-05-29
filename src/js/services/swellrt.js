@@ -109,6 +109,18 @@ angular.module('SwellRTService',[])
       });
     }
 
+    function classSimpleName(o){
+      if (typeof o.keySet === 'function'){
+        return 'MapType';
+      }
+      if (typeof o.size === 'function'){
+        return 'ListType';
+      }
+      if (typeof o.getValue === 'function'){
+        return 'StringType';
+      }
+      return 'unknown';
+    }
     // Creates and attach (if not attached) an object made from maps, arrays and strings
     function createAttachObject(obj, key, value) {
 
@@ -135,7 +147,7 @@ angular.module('SwellRTService',[])
         }
       }
       // Attach
-      var className = obj.getDelegate().___clazz$.simpleName;
+      var className = classSimpleName(obj);
       if (className === 'ListType'){
         try{
           obj.add(o);
@@ -177,7 +189,7 @@ angular.module('SwellRTService',[])
     }
 
     function simplify(e, mod, path){
-      var className = e.getDelegate().___clazz$.simpleName;
+      var className = classSimpleName(e);
       switch (className) {
 
         case 'StringType':
@@ -287,7 +299,7 @@ angular.module('SwellRTService',[])
         // e.registerEventHandler(SwellRT.events.ITEM_REMOVED,
         //                        function(item) {
                                    // function copy(v1){
-                                   //   className = v1.getDelegate().___clazz$.simpleName;
+                                   //   className = classSimpleName(v1);
                                    //   var r;
                                    //   if (className === 'StringType'){
                                    //     r = v1.getValue();
