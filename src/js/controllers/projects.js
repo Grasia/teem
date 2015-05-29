@@ -25,7 +25,6 @@ angular.module('Pear2Pear')
     pear.onLoad(function(){
       $scope.projects = pear.projects.all();
       $scope.new_ = function () {
-        alert('foo');
         pear.projects.create(function(p) {
           $location.path('/projects/' + p.id + '/pad/');
         });
