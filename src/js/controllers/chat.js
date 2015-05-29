@@ -33,6 +33,9 @@ angular.module('Pear2Pear')
     };
 
     $scope.standpoint = function(msg){
+      if (!$scope.userId) {
+        return 'their';
+      }
       return (msg.who === $scope.userId)? 'mine': 'their';
     }
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
