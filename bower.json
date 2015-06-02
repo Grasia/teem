@@ -15,7 +15,8 @@
     "modernizr": "~2.8.3",
     "angular-bindonce": "~0.3.1",
     "angulartics": "0.x",
-    "angular-elastic": "~2.4.2"
+    "angular-elastic": "~2.4.2",
+    "angular-swellrt": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.x",

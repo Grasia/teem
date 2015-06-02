@@ -26,7 +26,8 @@ var config = {
       './bower_components/waypoints/waypoints.js',
       './bower_components/SHA-1/sha1.js',
       './bower_components/angulartics/src/angulartics.js',
-      './bower_components/angulartics/src/angulartics-piwik.js'
+      './bower_components/angulartics/src/angulartics-piwik.js',
+      './bower_components/angular-swellrt/angular-swellrt.js'
     ],
 
     fonts: [

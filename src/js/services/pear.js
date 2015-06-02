@@ -48,6 +48,8 @@ angular.module('Pear2Pear')
 
     var def = $q.defer();
 
+    swellRT.startSession(window.swellrtConfig.server, window.swellrtConfig.user, window.swellrtConfig.pass);
+
     swellRT.open(window.swellrtConfig.chatpadWaveId).then(
       function() {
         model.model = swellRT.copy;
