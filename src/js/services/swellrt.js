@@ -22,8 +22,6 @@ angular.module('SwellRTService',[])
       open: openModel,
       close: closeModel,
       create: create,
-      model: currentModel,
-      m2: currentModel.model,
       copy: {}
     };
 
@@ -33,7 +31,9 @@ angular.module('SwellRTService',[])
         $rootScope.$apply(fun);
       }
     };
+
     function init(){
+    // TODO get server, user and pass from method
       window.SwellRT.startSession(
         window.swellrtConfig.server,
         window.swellrtConfig.user,
@@ -64,9 +64,9 @@ angular.module('SwellRTService',[])
                        apply(function() {
                          currentWaveId = waveId;
                          currentModel.model = model;
-                         ret.model = model.root;
-                         ret.mod = model;
                          simplify(model.root, ret.copy, []);
+                         registerEventHandlers(model.root, ret.copy, []);
+                         watchModel(model.root, ret.copy, []);
                          deferred.resolve(model);
                        });
                      },
@@ -121,6 +121,7 @@ angular.module('SwellRTService',[])
       }
       return 'unknown';
     }
+
     // Creates and attach (if not attached) an object made from maps, arrays and strings
     function createAttachObject(obj, key, value) {
 
@@ -129,6 +130,7 @@ angular.module('SwellRTService',[])
       try {
         o = obj.get(key);
       } catch (e) {
+        console.log(e);
       }
       var isNew = !o;
       if (typeof value === 'string'){
@@ -153,12 +155,14 @@ angular.module('SwellRTService',[])
           obj.add(o);
           }
         catch (e){
+          console.log(e);
         }
       } else if (className === 'MapType'){
         try{
           obj.put(key, o);
         }
         catch (e){
+          console.log(e);
         }
       }
       if (typeof value !== 'string'){
@@ -188,21 +192,158 @@ angular.module('SwellRTService',[])
         })(value);
     }
 
-    function simplify(e, mod, path){
+    /**
+
+     */
+    function registerEventHandlers(e, m, p){
+ 
+      depthFirstFunct(
+        e, m, p, 
+        function(elem, mod, path){
+        elem.registerEventHandler(
+          SwellRT.events.ITEM_CHANGED,
+          function(newStr) {
+            setPathValue(mod,path,newStr);
+            apply();
+          },
+          function(error) {
+            console.log(error);
+          }
+        );
+      },
+        function(elem, mod, path){
+          elem.registerEventHandler(
+            SwellRT.events.ITEM_ADDED,
+            function(item) {
+              var par = path.reduce(function(object,key){return object[key];},mod);
+              // TODO check if change currentModel.model.root by elem works
+              var ext = path.reduce(function(object,key){return object.get(key);},currentModel.model.root);
+              //var p = path.concat([par.length]);
+              var p = (path || []).slice();
+              p.push('' + (par.length || '0'));
+              // TODO check for possible failure due to paralel additions
+              // if it is not a item I added
+              if (ext.size() > par.length){
+                try{
+                  simplify(item, mod, p);
+                  registerEventHandlers(item, mod, p);
+                  watchModel(item, mod, p);
+                } catch (e) {
+                  console.log(e);
+                }
+              }
+              apply();
+            });
+          //TODO: check why is not needed!
+          // elem.registerEventHandler(SwellRT.events.ITEM_REMOVED,
+          //                        function(item) {
+          // function copy(v1){
+          //   className = classSimpleName(v1);
+          //   var r;
+          //   if (className === 'StringType'){
+          //     r = v1.getValue();
+          //   }
+          //   if (className === 'ListType'){
+          //     r = [];
+          //     for (var i = 0; i < v1.size(); i++){
+          //       r.push(copy(v1.get(i)));
+          //     }
+          //   }
+          //   if (className === 'MapType'){
+          //     r = {};
+          //     angular.forEach(v1.keySet(), function(value, key){
+          //       r[value] = copy(v1.get(value));
+          //     });
+          //   }
+          //   return r;
+          // }
+          // var cp = copy(foo);
+          // var par = path.reduce(function(object, key){return object[key]}, mod);
+          // // TODO if cp in par, delete it
+          // //
+          // apply();
+          // },
+          // function(error) {
+          //   console.log(error);
+          // });
+        },
+        function(elem, mod, path){
+          elem.registerEventHandler(
+            SwellRT.events.ITEM_ADDED,
+            function(item) {
+              var p = (path || []).slice();
+              p.push(item[0]);
+              try {
+                // TODO call simplify, register event handlers and watch model
+                console.log('reg: map: item added');
+                simplify(item[1], mod, p);
+                registerEventHandlers(item[1], mod, p);
+                watchModel(item[1], mod, p);
+              }
+              catch (e) {
+                console.log(e);
+              }
+              apply();
+            },
+            function(error) {
+              console.log(error);
+            });
+          elem.registerEventHandler(
+            SwellRT.events.ITEM_REMOVED,
+            function(item) {
+              var p = (path || []).slice();
+              delete p.reduce(function(object, key){return object[key];}, mod)[item[0]];
+              apply();
+            },
+            function(error) {
+              console.log(error);
+            });
+        }
+      );
+    }
+
+    // visits all nodes of the model and depending on the type (string, list or map)
+    // call a function of the params
+    function depthFirstFunct(e, mod, path, funStr, funList, funMap){
       var className = classSimpleName(e);
       switch (className) {
 
         case 'StringType':
 
-          e.registerEventHandler(SwellRT.events.ITEM_CHANGED,
-                                 function(newStr) {
-                                   setPathValue(ret.copy,path,newStr);
-                                   apply();
-                                 },
-                                 function(error) {
-                                   console.log(error);
-                                 }
-          );
+          funStr(e, mod, path);
+
+          break;
+
+        case 'MapType':
+
+          var keys = e.keySet();
+          funMap(e, mod, path);
+          angular.forEach(keys,function(value){
+            var el = e.get(value);
+            var p = (path || []).slice();
+            p.push(value);
+            depthFirstFunct(el, mod, p, funStr, funList, funMap);
+          });
+
+          break;
+
+        case 'ListType':
+          funList(e, mod, path);
+          var keyNum = e.size();
+          for(var i = 0; i < keyNum; i++){
+            var p = (path || []).slice();
+            p.push('' + i);
+            depthFirstFunct(e.get(i), mod, p, funStr, funList, funMap);
+          }
+
+          break;
+      }
+    }
+
+    function watchModel(e, m, p){
+      depthFirstFunct(
+        e, m, p,
+        function(elem, mod, path){
           $rootScope.$watch(
             function(){
               var r = path.reduce(function(object, key){return object[key];}, mod);
@@ -210,47 +351,34 @@ angular.module('SwellRTService',[])
             },
             function (newValue){
               if (typeof newValue === 'string'){
-                path.reduce(function(object,key){return object.get(key);}, ret.model).setValue(newValue);
+                // TODO check if change currentModel.model.root by e works
+                path.reduce(function(object,key){return object.get(key);}, currentModel.model.root).setValue(newValue);
               }
             },
             true);
-          setPathValue(mod, path, e.getValue());
-          break;
-
-        case 'MapType':
-
-          setPathValue(mod, path, {});
-          e.registerEventHandler(SwellRT.events.ITEM_ADDED,
-                                 function(item) {
-                                   var p = (path || []).slice();
-                                   p.push(item[0]);
-                                   try {
-                                     simplify(item[1], mod, p);
-                                   }
-                                   catch (e) {
-                                     console.log(e);
-                                   }
-                                   apply();
-                                 },
-                                 function(error) {
-                                   console.log(error);
-                                 });
-          e.registerEventHandler(SwellRT.events.ITEM_REMOVED,
-                                 function(item) {
-                                   var p = (path || []).slice();
-                                   delete p.reduce(function(object, key){return object[key];}, mod)[item[0]];
-                                   apply();
-                                 },
-                                 function(error) {
-                                   console.log(error);
-                                 });
-          var keys = e.keySet();
-          angular.forEach(keys,function(value){
-              var el = e.get(value);
-              var p = (path || []).slice();
-              p.push(value);
-              simplify(el, mod, p);
-          });
+        },
+        function(elem, mod, path){
+          $rootScope.$watchCollection(
+             function(){
+               var r = path.reduce(function(object,key){return object[key];}, mod);
+               return r;
+             },
+             function(newValue, oldValue){
+               var newVals = diff(Object.keys(newValue), Object.keys(oldValue));
+               angular.forEach(newVals, function(value){
+                 // TODO check if change currentModel.model.root by e works
+                 var m = path.reduce(function(object,k){return object.get(k);}, currentModel.model.root);
+                 createAttachObject(m, ''+value, newValue[value]);
+                 apply();
+               });
+               var deletedVars = diff(Object.keys(oldValue), Object.keys(newValue));
+               angular.forEach(deletedVars, function(value){
+                 elem.remove(value);
+                 apply();
+               });
+           });          
+        },
+        function(elem, mod, path){
           $rootScope.$watchCollection(
             function(){
               var r = path.reduce(function(object,key){return object[key];} , mod);
@@ -262,72 +390,64 @@ angular.module('SwellRTService',[])
               oldKeys.push('$$hashKey');
               var newVals = diff(Object.keys(newValue),oldKeys);
               angular.forEach(newVals, function(value){
-                var m = path.reduce(function(object,k){return object.get(k);}, ret.model);
+                // TODO check if change currentModel.model.root by elem works
+                var m = path.reduce(function(object,k){return object.get(k);}, currentModel.model.root);
                 createAttachObject(m, value, newValue[value]);
                 apply();
               });
               var deletedVars = diff(Object.keys(oldValue), Object.keys(newValue));
               angular.forEach(deletedVars, function(value){
-                e.remove(value);
+                elem.remove(value);
                 apply();
               });
           });
+        }
+      );
+      var className = classSimpleName(e);
+      switch (className) {
+        case 'StringType':
+          
+
+          break;
+
+        case 'MapType':
+          
           break;
 
         case 'ListType':
 
-          setPathValue(mod, path, []);
-          e.registerEventHandler(SwellRT.events.ITEM_ADDED,
-                                  function(item) {
-                                    var par = path.reduce(function(object,key){return object[key];},mod);
-                                    var ext = path.reduce(function(object,key){return object.get(key);},ret.model);
-                                    //var p = path.concat([par.length]);
-                                    var p = (path || []).slice();
-                                    p.push('' + (par.length || '0'));
-                                    // TODO check for possible failure due to paralel additions
-                                    // if it is not a item I added
-                                    if (ext.size() > par.length){
-                                      try{
-                                        simplify(item, mod, p);
-                                      } catch (e) {
-                                        console.log(e);
-                                      }
-                                    }
-                                    apply();
-                                  });
-        //TODO: check why is not needed!
-        // e.registerEventHandler(SwellRT.events.ITEM_REMOVED,
-        //                        function(item) {
-                                   // function copy(v1){
-                                   //   className = classSimpleName(v1);
-                                   //   var r;
-                                   //   if (className === 'StringType'){
-                                   //     r = v1.getValue();
-                                   //   }
+          break;
+      }
+    }
 
-                                   //   if (className === 'ListType'){
-                                   //     r = [];
-                                   //     for (var i = 0; i < v1.size(); i++){
-                                   //       r.push(copy(v1.get(i)));
-                                   //     }
-                                   //   }
-                                   //   if (className === 'MapType'){
-                                   //     r = {};
-                                   //     angular.forEach(v1.keySet(), function(value, key){
-                                   //       r[value] = copy(v1.get(value));
-                                   //     });
-                                   //   }
-                                   //   return r;
-                                   // }
-                                   // var cp = copy(foo);
-                                   // var par = path.reduce(function(object, key){return object[key]}, mod);
-                                   // // TODO if cp in par, delete it
-                                   // //
-                                   // apply();
-                                 // },
-                                 // function(error) {
-                                 //   console.log(error);
-                                 // });
+    function simplify(e, mod, path){
+      var className = classSimpleName(e);
+      switch (className) {
+
+        case 'StringType':
+
+          setPathValue(mod, path, e.getValue());
+
+          break;
+
+        case 'MapType':
+
+          // TODO: only if not exists
+          setPathValue(mod, path, {});
+          var keys = e.keySet();
+          angular.forEach(keys,function(value){
+              var el = e.get(value);
+              var p = (path || []).slice();
+              p.push(value);
+              simplify(el, mod, p);
+          });
+
+          break;
+
+        case 'ListType':
+
+          // TODO: only if not exists
+          setPathValue(mod, path, []);
 
           var keyNum = e.size();
           for(var i = 0; i < keyNum; i++){
@@ -335,26 +455,6 @@ angular.module('SwellRTService',[])
             p.push('' + i);
             simplify(e.get(i), mod, p);
           }
-
-           $rootScope.$watchCollection(
-             function(){
-               // TODO change ret.copy by mod?
-               var r = path.reduce(function(object,key){return object[key];} ,ret.copy);
-               return r;
-             },
-             function(newValue, oldValue){
-               var newVals = diff(Object.keys(newValue), Object.keys(oldValue));
-               angular.forEach(newVals, function(value){
-                 var m = path.reduce(function(object,k){return object.get(k);}, ret.model);
-                 createAttachObject(m, ''+value, newValue[value]);
-                 apply();
-               });
-               var deletedVars = diff(Object.keys(oldValue), Object.keys(newValue));
-               angular.forEach(deletedVars, function(value){
-                 e.remove(value);
-                 apply();
-               });
-           });
 
           break;
       }
