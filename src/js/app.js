@@ -19,7 +19,8 @@ angular
     'monospaced.elastic',
     'angulartics',
     'angulartics.piwik',
-    'SwellRTService'
+    'SwellRTService',
+    'hmTouchEvents'
   ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.

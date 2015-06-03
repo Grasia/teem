@@ -16,7 +16,7 @@ angular.module('Pear2Pear')
         controller: 'ChatCtrl'
       });
   }])
-  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', function(pear, $scope, $rootScope, $route){
+  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', function(pear, $scope, $rootScope, $route, $location){
 
     $scope.id = $route.current.params.id;
     $scope.userId = window.sessionStorage.getItem('userId');
@@ -52,5 +52,9 @@ angular.module('Pear2Pear')
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
       return id === 'chat' ? 'active' : '';
+    };
+
+    $scope.showPad = function() {
+      $location.path('/projects/' + $scope.project.id + '/pad');
     };
   }]);
