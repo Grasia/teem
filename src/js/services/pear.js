@@ -13,7 +13,7 @@ angular.module('Pear2Pear')
   .factory('pear', ['$rootScope', 'swellRT', '$q', function($rootScope, swellRT, $q) {
 
     var model = {
-      model : swellRT.copy,
+      model : swellRT.copy
     };
 
     var projects = {
@@ -44,7 +44,7 @@ angular.module('Pear2Pear')
         who: who,
         time: (new Date()).toJSON()
       });
-    }
+    };
 
     var def = $q.defer();
 
@@ -58,10 +58,10 @@ angular.module('Pear2Pear')
 
     var ret = {
       projects: projects,
-      addChatMessage: addChatMessage, 
+      addChatMessage: addChatMessage,
       onLoad: function(f){
         def.promise.then(f);
       }
-    }
+    };
     return ret;
   }]);
