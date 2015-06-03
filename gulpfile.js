@@ -29,7 +29,7 @@ var config = {
       './bower_components/angulartics/src/angulartics-piwik.js',
       './bower_components/angular-swellrt/angular-swellrt.js',
       './bower_components/hammerjs/hammer.js',
-      './bower_components/angular-hammer/angular-hammer.js'
+      './bower_components/ryanmullins-angular-hammer/angular.hammer.js'
 
     ],
 
