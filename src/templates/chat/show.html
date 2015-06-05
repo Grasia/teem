@@ -13,7 +13,7 @@
   <div class="scrollable" hm-swipeleft="showPad();">
     <div class="scrollable-content">
       <ul class="chat-messages">
-        <li ng-repeat="msg in project.chat" class="chat-message {{standpoint(msg)}}">
+        <li ng-repeat="msg in project.chat" class="chat-message {{standpoint(msg)}}" hm-swiperight="addToPad(msg.text);">
           <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
             {{msg.who}}
           </div>

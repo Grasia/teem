@@ -57,4 +57,9 @@ angular.module('Pear2Pear')
     $scope.showPad = function() {
       $location.path('/projects/' + $scope.project.id + '/pad');
     };
+
+    $scope.addToPad = function(txt) {
+      $scope.project.pad += '\n' + txt;
+      $scope.showPad();
+    }
   }]);
