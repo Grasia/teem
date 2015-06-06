@@ -18,15 +18,20 @@ Calendar plugin:
 
 The app can be accessed and debugged using [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
 
-Run weinre:
+In the project root, copy the config.js.sample to your config.js
 
-  weinre --boundHost 0.0.0.0
+  cp config.js.sample config.js
 
-You need to include the following in the `<head>` of `www/index.html`, changing `external-ip` with
-the ip of your internet device (eth0, wlan0, etc..)
+Edit config.js and change the line
 
-  <script src="http://[external-ip]:8080/target/target-script-min.js#anonymous"></script>
+  config.weinre = true;
+
+Restart the server
+
+  gulp
 
 You can access weinre from your browser at:
 
   http://[external-ip]:8080/client/#anonymous
+
+Being `external-ip` with the ip of your internet device (eth0, wlan0, etc..)
