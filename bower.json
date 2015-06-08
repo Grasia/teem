@@ -5,6 +5,7 @@
     "angular": "1.x",
     "json3": "3.x",
     "es5-shim": "3.x",
+    "angular-sanitize": "1.x",
     "angular-translate": "2.x",
     "angular-translate-loader-static-files": "2.x",
     "angular-route": "1.x",

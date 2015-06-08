@@ -17,9 +17,7 @@
           <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
             {{msg.who}}
           </div>
-          <div class="chat-message-text">
-            {{msg.text}}
-          </div>
+          <div class="chat-message-text" ng-bind-html="msg.text | linky"></div>
           <div class="chat-message-time">
             {{hour(msg)}}
           </div>

@@ -13,6 +13,7 @@ angular
     'pasvaz.bindonce',
     'pascalprecht.translate',
     'ngRoute',
+    'ngSanitize',
     'mobile-angular-ui',
     'ui.select',
     'ui.bootstrap',
