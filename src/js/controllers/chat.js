@@ -27,11 +27,13 @@ angular.module('Pear2Pear')
     });
 
     $scope.send = function(){
-      if ($scope.newMsg === '') {
+      var msg = $scope.newMsg.trim();
+
+      if (msg === '') {
         return;
       }
 
-      pear.addChatMessage($scope.id, $scope.newMsg, $scope.userId);
+      pear.addChatMessage($scope.id, msg, $scope.userId);
 
       $scope.newMsg = '';
     };
