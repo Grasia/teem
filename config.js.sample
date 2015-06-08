@@ -27,6 +27,10 @@ module.exports = function(config) {
 
     
   // 3rd party components
+
+  // var index = config.vendor.js.indexOf('./bower_components/angular-swellrt/angular-swellrt.js');
+  // config.vendor.js[index] = '../angular-swellrt/angular-swellrt.js';
+
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');
   // config.vendor.fonts.push('.bower_components/font/dist/*');
 
