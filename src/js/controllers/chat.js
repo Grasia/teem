@@ -16,7 +16,7 @@ angular.module('Pear2Pear')
         controller: 'ChatCtrl'
       });
   }])
-  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', function(pear, $scope, $rootScope, $route, $location){
+  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', '$animate', function(pear, $scope, $rootScope, $route, $location, $animate){
 
     $scope.id = $route.current.params.id;
     $scope.userId = window.sessionStorage.getItem('userId');
@@ -24,8 +24,10 @@ angular.module('Pear2Pear')
     pear.onLoad(function(){
       $scope.project = pear.projects.find($scope.id);
       $scope.projects = pear.projects.all();
+
     });
 
+    // Send button
     $scope.send = function(){
       var msg = $scope.newMsg.trim();
 
@@ -37,6 +39,13 @@ angular.module('Pear2Pear')
 
       $scope.newMsg = '';
     };
+
+    // Scroll to bottom after adding a message
+    $animate.on('enter', angular.element('.chat-messages'), function(msg) {
+      var scrollableContentController = msg.controller('scrollableContent');
+
+      scrollableContentController.scrollTo(msg);
+    });
 
     $scope.standpoint = function(msg){
       if (!$scope.userId) {

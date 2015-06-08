@@ -30,7 +30,8 @@ var config = {
       './bower_components/angular-swellrt/angular-swellrt.js',
       './bower_components/hammerjs/hammer.js',
       './bower_components/ryanmullins-angular-hammer/angular.hammer.js',
-      './bower_components/angular-sanitize/angular-sanitize.js'
+      './bower_components/angular-sanitize/angular-sanitize.js',
+      './bower_components/angular-animate/angular-animate.js'
     ],
 
     fonts: [

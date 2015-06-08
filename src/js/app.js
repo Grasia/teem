@@ -14,6 +14,7 @@ angular
     'pascalprecht.translate',
     'ngRoute',
     'ngSanitize',
+    'ngAnimate',
     'mobile-angular-ui',
     'ui.select',
     'ui.bootstrap',
