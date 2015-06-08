@@ -27,6 +27,10 @@ angular.module('Pear2Pear')
     });
 
     $scope.send = function(){
+      if ($scope.newMsg === '') {
+        return;
+      }
+
       pear.addChatMessage($scope.id, $scope.newMsg, $scope.userId);
 
       $scope.newMsg = '';
