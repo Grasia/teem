@@ -9,9 +9,9 @@
 
 <div ng-include="'navbar_top/chat_pad.html'"></div>
 
-<div id="chat" class="section chat">
+<div id="chat" class="chat">
   <div class="scrollable" hm-swipeleft="showPad();">
-    <div class="scrollable-content">
+    <div class="scrollable-content section">
       <ul class="chat-messages">
         <li ng-repeat="msg in project.chat" class="chat-message {{standpoint(msg)}}" hm-swiperight="addToPad(msg.text);">
           <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
