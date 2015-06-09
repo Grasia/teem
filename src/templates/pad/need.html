@@ -1,0 +1,5 @@
+<div class="needs col-md-12">
+  <div class="ineed-check-container pull-left" ng-click="toggleCompleted(need)" ng-class="(need.completed === 'true') ? 'need-checkbox-true' :  ((need.completed === 'false') ? 'need-checkbox-false' : 'need-checkbox-add')">
+  </div>
+  <input type="text" class="need-name overflow-ellipsis col-md-11" ng-class="need.completed === 'true' ? 'text-strike' : ''" ng-model="need.text" placeholder="New need" ng-blur="addNeed(need)">
+</div>
