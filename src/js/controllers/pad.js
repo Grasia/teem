@@ -48,6 +48,7 @@ angular.module('Pear2Pear')
               need.completionDate = '';
             }
           };
+
           scope.addNeed = function(need) {
             if (need.completed === 'add'){
               need.completed = 'false';
@@ -55,10 +56,16 @@ angular.module('Pear2Pear')
               scope.need = {completed: 'add', text: ''};
             }
           };
+
+          scope.blurOnEnter = function(event){
+            console.log(event);
+            if (event.charCode === 0)
+              event.target.blur();
+          };
         },
         templateUrl: 'pad/need.html',
-        transclude: true,
-      }
+        transclude: true
+      };
     }
   ).directive(
     'needList',
