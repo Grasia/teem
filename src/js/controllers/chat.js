@@ -19,7 +19,7 @@ angular.module('Pear2Pear')
   .directive('pearChatScroll', function() {
     return function(scope, element) {
       if (scope.$last) {
-        setInterval(function() {
+        setTimeout(function() {
           var bottom = angular.element(element);
           var scrollableContentController = bottom.controller('scrollableContent');
 
