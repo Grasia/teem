@@ -38,9 +38,8 @@ angular
       })
       .useSanitizeValueStrategy('escaped')
       .registerAvailableLanguageKeys(['en', 'es'], {
-        'en_US': 'en',
-        'en_UK': 'en',
-        'es_ES': 'es'
+        'en_*': 'en',
+        'es_*': 'es'
        })
       .fallbackLanguage('en')
       .determinePreferredLanguage();
