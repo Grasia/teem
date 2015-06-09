@@ -60,9 +60,12 @@ angular.module('Pear2Pear')
             }
           };
 
-          scope.blurOnEnter = function(event){
+          scope.keyEventsHandler = function(event){
             if ((event.charCode === 0) && (event.keyCode === 13)){
               event.target.blur();
+            }
+            if ((event.charCode === 0) && (event.keyCode === 8) && (scope.need.text === '') ){
+              scope.updateNeed(scope.need);
             }
           };
 
