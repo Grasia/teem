@@ -18,6 +18,13 @@ module.exports = function(config) {
   // SwellRT server
 
   config.swellrt.server = 'http://localhost:9898'
+
+  // Piwik stats
+  // config.piwik = {
+  //   server = '//statistics.yourdomain.org/', // Don't forget the trailing slash!
+  //   siteId = 1,
+  // };
+
     
   // 3rd party components
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');

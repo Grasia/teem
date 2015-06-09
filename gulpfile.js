@@ -72,6 +72,8 @@ var config = {
     deathTimeout: 15
   },
 
+  piwik: false,
+
   deploy: {
     branch: 'dist'
   }
@@ -222,6 +224,11 @@ gulp.task('html', function() {
   if (config.swellrt) {
     inject.push('<script src="'+config.swellrt.server+'/swellrt/swellrt.nocache.js"></script>');
     inject.push('<script>window.swellrtConfig = '+JSON.stringify(config.swellrt)+';</script>');
+  }
+
+  if (config.piwik) {
+    inject.push('<script type="text/javascript"> var _paq = _paq || []; _paq.push([\'trackPageView\']); _paq.push([\'enableLinkTracking\', true]); (function() { var u="' + config.piwik.server + '"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', ' + config.piwik.siteId + ']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })(); </script>');
+    inject.push('<noscript><p><img src="' + config.piwik.server + 'piwik.php?idsite=' + config.piwik.siteId + '" style="border:0;" alt="" /></p></noscript>');
   }
 
   if (typeof config.weinre === 'object') {
