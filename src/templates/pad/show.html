@@ -10,11 +10,15 @@
 
 <div ng-include="'navbar_top/chat_pad.html'"></div>
 
+<div need-list needs="project.needs"/>
+<div class="swellrt-editor" ng-model="project.pad"></div>
+
 <div id="pad" class="section pad" hm-swiperight="showChat()">
+
   <form>
     <div class="form-group">
       <textarea class="form-control" ng-model="project.pad" />
     </div>
   </form>
-</div>
 
+</div>
