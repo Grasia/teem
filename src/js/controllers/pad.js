@@ -49,18 +49,25 @@ angular.module('Pear2Pear')
             }
           };
 
-          scope.addNeed = function(need) {
+          scope.updateNeed = function(need) {
             if (need.completed === 'add'){
               need.completed = 'false';
               needsCtrl.addNeed(need);
               scope.need = {completed: 'add', text: ''};
+            } 
+            else if (need.text === ''){
+              needsCtrl.removeNeed(need);
             }
           };
 
           scope.blurOnEnter = function(event){
-            console.log(event);
-            if (event.charCode === 0)
+            if ((event.charCode === 0) && (event.keyCode === 13)){
               event.target.blur();
+            }
+          };
+
+          scope.focusElem = function(event){
+            event.target.parentNode.children[1].focus();
           };
         },
         templateUrl: 'pad/need.html',
@@ -78,7 +85,13 @@ angular.module('Pear2Pear')
         },
         controller: function($scope) {
           this.addNeed = function (need) {
-            console.log($scope.needs.push(need));
+            if (need.text != ''){
+              $scope.needs.push(need);
+            }
+          };
+          this.removeNeed = function (need) {
+            var i = $scope.needs.indexOf(need);
+            $scope.needs.splice(i,1);
           };
         }
       };
