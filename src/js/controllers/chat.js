@@ -16,6 +16,18 @@ angular.module('Pear2Pear')
         controller: 'ChatCtrl'
       });
   }])
+  .directive('pearChatScroll', function() {
+    return function(scope, element) {
+      if (scope.$last) {
+        setInterval(function() {
+          var bottom = angular.element(element);
+          var scrollableContentController = bottom.controller('scrollableContent');
+
+          scrollableContentController.scrollTo(bottom);
+        }, 50);
+      }
+    };
+  })
   .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', '$animate', function(pear, $scope, $rootScope, $route, $location, $animate){
 
     $scope.id = $route.current.params.id;
@@ -24,7 +36,6 @@ angular.module('Pear2Pear')
     pear.onLoad(function(){
       $scope.project = pear.projects.find($scope.id);
       $scope.projects = pear.projects.all();
-
     });
 
     // Send button
@@ -46,6 +57,7 @@ angular.module('Pear2Pear')
 
       scrollableContentController.scrollTo(msg);
     });
+
 
     $scope.standpoint = function(msg){
       if (!$scope.userId) {
