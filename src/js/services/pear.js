@@ -30,7 +30,7 @@ angular.module('Pear2Pear')
           id: Math.random().toString(36).substr(2, 5),
           title: '',
           chat: [],
-          pad: '',
+          pad:  new swellRT.TextObject(),
           needs: [],
           promoter: users.current()
         };
