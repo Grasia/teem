@@ -2,12 +2,12 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
-describe('my app', function() {
+describe('Pear2Pear', function() {
 
   browser.get('index.html');
 
   it('should automatically redirect to /session/new when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/session/new");
+    expect(browser.getLocationAbsUrl()).toMatch('/session/new');
   });
 
 
