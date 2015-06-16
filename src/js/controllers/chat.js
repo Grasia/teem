@@ -88,5 +88,5 @@ angular.module('Pear2Pear')
     $scope.addToPad = function(txt) {
       $scope.project.pad += '\n' + txt;
       $scope.showPad();
-    }
+    };
   }]);
