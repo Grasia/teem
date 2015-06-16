@@ -86,7 +86,7 @@
     "news": "Noticias",
     "projects": "Proyectos",
     "my_tasks": "Mis tareas"
-  }
+  },
 
   "session": {
     "title": "Cuéntanos un poco sobre ti",
@@ -119,7 +119,7 @@
     "collaborate": "Colabora",
     "name": "Nombre",
     "objectives": "Objetivos...",
-    "what_can_be_learned": "fotografía, pintura"
+    "what_can_be_learned": "fotografía, pintura",
     "empty_collab_tip": "add a new activity"
   },
   "common": {

@@ -31,11 +31,16 @@ angular
       });
   }])
   .config(function($translateProvider) {
-    $translateProvider.useStaticFilesLoader({
-      prefix: 'l10n/',
-      suffix: '.json'
-    });
-  
-    $translateProvider.useSanitizeValueStrategy('escaped');
-    $translateProvider.preferredLanguage('en');
+    $translateProvider
+      .useStaticFilesLoader({
+        prefix: 'l10n/',
+        suffix: '.json'
+      })
+      .useSanitizeValueStrategy('escaped')
+      .registerAvailableLanguageKeys(['en', 'es'], {
+        'en_*': 'en',
+        'es_*': 'es'
+       })
+      .fallbackLanguage('en')
+      .determinePreferredLanguage();
   });
