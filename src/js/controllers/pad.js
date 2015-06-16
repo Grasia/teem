@@ -40,7 +40,7 @@ angular.module('Pear2Pear')
         },
         link: function (scope, element, attrs, needsCtrl) {
           scope.toggleCompleted = function (need) {
-            var completed = eval(need.completed);
+            var completed = (need.completed === 'true') ? true : false;
             need.completed = (!completed).toString();
             if (completed) {
               need.completionDate = new Date().toString();
