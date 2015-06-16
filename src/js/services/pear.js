@@ -34,6 +34,9 @@ angular.module('Pear2Pear')
 
         swellRT.copy[p.id] = p;
         callback(p);
+      },
+      destroy: function(id) {
+        delete model.model[id];
       }
     };
 

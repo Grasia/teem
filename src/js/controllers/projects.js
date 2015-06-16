@@ -29,6 +29,10 @@ angular.module('Pear2Pear')
           $location.path('/projects/' + p.id + '/pad/');
         });
       };
+
+      $scope.destroy = function(id) {
+        pear.projects.destroy(id);
+      };
     });
 
     $scope.showProjectChat = function (id) {
