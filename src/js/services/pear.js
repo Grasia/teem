@@ -34,6 +34,9 @@ angular.module('Pear2Pear')
 
         swellRT.copy[p.id] = p;
         callback(p);
+      },
+      destroy: function(id) {
+        delete model.model[id];
       }
     };
 
@@ -57,12 +60,11 @@ angular.module('Pear2Pear')
         def.resolve(swellRT.copy);
       });
 
-    var ret = {
+    return {
       projects: projects,
       addChatMessage: addChatMessage,
       onLoad: function(f){
         def.promise.then(f);
       }
     };
-    return ret;
   }]);
