@@ -52,6 +52,11 @@
     "tip": "Empieza introduciendo tu nombre",
     "welcome_msg": "Bienvenid@ a Pear to Pear. Una herramienta para participar en tus grupos y comunidades"
   },
+  "need": {
+    "nav": {
+      "title": "Necesidades"
+    }
+  },
   "pad": {
     "nav": {
       "title": "Pad"

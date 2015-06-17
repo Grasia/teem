@@ -4,13 +4,8 @@
   </div>
 </div>
 
-<div ui-content-for="nav-left">
-  <a href="#/projects"><i class="fa fa-chevron-left"></i></a>
-</div>
-
 <div ng-include="'navbar_top/chat_pad.html'"></div>
 
-<div need-list needs="project.needs"/>
 <div class="swellrt-editor" ng-model="project.pad"></div>
 
 <div id="pad" class="section pad" hm-swiperight="showChat()">

@@ -1,0 +1,11 @@
+<div ui-content-for="nav-title">
+  <div class="project-title overflow-ellipsis">{{project.title}}</div>
+</div>
+
+<div ng-include="'navbar_top/chat_pad.html'"></div>
+
+<div class="scrollable" hm-swiperight="showChat();">
+  <div class="scrollable-content section">
+    <div need-list needs="project.needs"/>
+  </div>
+</div>
