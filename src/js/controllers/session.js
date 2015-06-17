@@ -20,15 +20,17 @@ angular.module('Pear2Pear')
     });
   }])
 
-  .controller('SessionCtrl', ['$scope', '$rootScope', '$location', '$route', function($scope, $rootScope, $location, $route) {
+  .controller('SessionCtrl', ['$scope', '$rootScope', '$location', '$route', 'pear', function($scope, $rootScope, $location, $route, pear) {
     $scope.$parent.hideNavigation = true;
     $scope.session = {};
 
     $scope.create = function() {
       $scope.$parent.hideNavigation = false;
-      $location.path('/projects');
+
       // TODO change when user ids available;
-      window.sessionStorage.setItem('userId', $scope.name);
+      pear.users.setCurrent($scope.name);
+
+      $location.path('/projects');
     };
 
     $scope.userData = function () {

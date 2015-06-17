@@ -40,12 +40,23 @@ angular.module('Pear2Pear')
       }
     };
 
-    var addChatMessage = function(projectId, message, who) {
+    var users = {
+      current: function() {
+        return window.sessionStorage.getItem('userId');
+      },
+      setCurrent: function() {
+      },
+      isCurrent: function(user) {
+        return user === users.current();
+      }
+    };
+
+    var addChatMessage = function(projectId, message) {
       model.model[projectId].chat.push({
         text: message,
         // TODO change when ready
         standpoint: 'mine',
-        who: who,
+        who: users.current(),
         time: (new Date()).toJSON()
       });
     };
@@ -62,6 +73,7 @@ angular.module('Pear2Pear')
 
     return {
       projects: projects,
+      users: users,
       addChatMessage: addChatMessage,
       onLoad: function(f){
         def.promise.then(f);

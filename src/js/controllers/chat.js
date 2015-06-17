@@ -31,7 +31,6 @@ angular.module('Pear2Pear')
   .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', '$animate', function(pear, $scope, $rootScope, $route, $location, $animate){
 
     $scope.id = $route.current.params.id;
-    $scope.userId = window.sessionStorage.getItem('userId');
 
     pear.onLoad(function(){
       $scope.project = pear.projects.find($scope.id);
@@ -46,7 +45,7 @@ angular.module('Pear2Pear')
         return;
       }
 
-      pear.addChatMessage($scope.id, msg, $scope.userId);
+      pear.addChatMessage($scope.id, msg);
 
       $scope.newMsg = '';
     };
@@ -60,10 +59,10 @@ angular.module('Pear2Pear')
 
 
     $scope.standpoint = function(msg){
-      if (!$scope.userId) {
+      if (!pear.users.current()) {
         return 'their';
       }
-      return (msg.who === $scope.userId)? 'mine': 'their';
+      return pear.users.isCurrent(msg.who) ? 'mine' : 'their';
     };
 
     $scope.theirStandpoint = function(msg) {
