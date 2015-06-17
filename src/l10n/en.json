@@ -54,6 +54,9 @@
   "need": {
     "nav": {
       "title": "Needs"
+    },
+    "new": {
+      "placeholder": "New need"
     }
   },
   "pad": {
