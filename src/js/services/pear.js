@@ -29,7 +29,8 @@ angular.module('Pear2Pear')
           title: '',
           chat: [],
           pad: '',
-          needs: []
+          needs: [],
+          promoter: users.current()
         };
 
         swellRT.copy[p.id] = p;
