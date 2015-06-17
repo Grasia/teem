@@ -35,6 +35,7 @@
     "Modernizr": false,
     "prompt": false,
     "spyOn": false,
+    "SwellRTConfig": false,
     "$": false
   }
 }

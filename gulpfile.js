@@ -223,7 +223,7 @@ gulp.task('html', function() {
 
   if (config.swellrt) {
     inject.push('<script src="'+config.swellrt.server+'/swellrt/swellrt.nocache.js"></script>');
-    inject.push('<script>window.swellrtConfig = '+JSON.stringify(config.swellrt)+';</script>');
+    inject.push('<script>var SwellRTConfig = '+JSON.stringify(config.swellrt)+';</script>');
   }
 
   if (config.piwik) {
