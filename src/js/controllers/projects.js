@@ -39,5 +39,40 @@ angular.module('Pear2Pear')
       $location.path('/projects/' + id + '/chat/');
     };
 
-    
+    // This function should belong to the model
+    // In the prototype or something similar
+    $scope.progressPercentage = function(project) {
+      var size,
+          completed = 0;
+
+      if (project.needs === undefined) {
+        return 0;
+      }
+
+      size = project.needs.length;
+
+      if (size === 0) {
+        return 0;
+      }
+
+      angular.forEach(project.needs, function(need) {
+        if (need.completed === 'true') {
+          completed++;
+        }
+      });
+
+      return completed * 100 / size;
+    };
+
+    $scope.progressType = function(project) {
+      var percentage = $scope.progressPercentage(project);
+
+      if (percentage < 33) {
+        return 'danger';
+      } else if (percentage > 66) {
+        return 'success';
+      } else {
+        return 'warning';
+      }
+    };
   }]);

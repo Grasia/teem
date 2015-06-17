@@ -72,6 +72,14 @@
     "index": {
       "title": "Crowddoing"
     },
+    "section": {
+      "needs": {
+        "title": "Needs"
+      },
+      "promoters": {
+        "title": "Promoted by"
+      }
+    },
     "share": {
       "button": "Share"
     },
