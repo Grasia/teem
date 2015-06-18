@@ -349,7 +349,9 @@ gulp.task('unit-test', function(done) {
   karma.start({
     configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
-  }, done);
+  }, function() {
+      done();
+  });
 });
 
 /*================================================
