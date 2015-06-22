@@ -12,16 +12,18 @@
 angular.module('Pear2Pear')
   .factory('pear', ['$rootScope', 'swellRT', '$q', function($rootScope, swellRT, $q) {
 
-    var model = {
-      model : swellRT.copy
+    var proxy = {
+      model: {}
     };
+
+    var def = $q.defer();
 
     var projects = {
       all: function() {
-        return model.model;
+        return proxy.model;
       },
       find: function(id) {
-        return model.model[id];
+        return proxy.model[id];
       },
       create: function(callback) {
         var p = {
@@ -33,11 +35,11 @@ angular.module('Pear2Pear')
           promoter: users.current()
         };
 
-        swellRT.copy[p.id] = p;
+        proxy.model[p.id] = p;
         callback(p);
       },
       destroy: function(id) {
-        delete model.model[id];
+        delete proxy.model[id];
       }
     };
 
@@ -53,7 +55,7 @@ angular.module('Pear2Pear')
     };
 
     var addChatMessage = function(projectId, message) {
-      model.model[projectId].chat.push({
+      proxy.model[projectId].chat.push({
         text: message,
         // TODO change when ready
         standpoint: 'mine',
@@ -62,15 +64,20 @@ angular.module('Pear2Pear')
       });
     };
 
-    var def = $q.defer();
-
-    swellRT.startSession(SwellRTConfig.server, SwellRTConfig.user, SwellRTConfig.pass);
-
-    swellRT.open(SwellRTConfig.chatpadWaveId).then(
-      function() {
-        model.model = swellRT.copy;
-        def.resolve(swellRT.copy);
-      });
+    window.onSwellRTReady = function (){
+      window.SwellRT.startSession(
+        SwellRTConfig.server, SwellRTConfig.user, SwellRTConfig.pass,
+        function() {
+          window.SwellRT.openModel(
+            SwellRTConfig.chatpadWaveId,
+            function(model) {
+              proxy.model = swellRT.proxy(model);
+              def.resolve(proxy.model);
+            }, function(error){
+              console.log(error);
+            });
+        });
+    }
 
     return {
       projects: projects,
