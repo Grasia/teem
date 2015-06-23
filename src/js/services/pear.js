@@ -132,7 +132,14 @@ angular.module('Pear2Pear')
             }, function(error){
               console.log(error);
             });
+        },
+        function(error) {
+          console.log(error);
         });
+    };
+
+    if (window.SwellRT) {
+      window.onSwellRTReady();
     }
 
     return {
