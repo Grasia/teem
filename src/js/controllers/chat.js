@@ -86,8 +86,8 @@ angular.module('Pear2Pear')
 
     $scope.addToPad = function(txt) {
       var p = $scope.project.pad;
-      p.newLine(p.size());
-      p.insert(txt, p.size());
+      p.newLine(p.size() - 1);
+      p.insert(p.size() - 1, txt);
       $scope.showPad();
     };
 
