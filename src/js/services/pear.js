@@ -18,6 +18,62 @@ angular.module('Pear2Pear')
 
     var def = $q.defer();
 
+    var communities = {
+      all: function() {
+        return [
+          {
+            id: '1',
+            name: 'Medialab Prado'
+          },
+          {
+            id: '2',
+            name: 'GRASIA'
+          },
+          {
+            id: '3',
+            name: 'Nosaltres'
+          }
+        ];
+      },
+      find: function(id) {
+        return {
+          id: id, 
+          name: 'Medialab Prado',
+          projects: [
+            {
+              id: '1',
+              title: 'Festilab'
+            },
+            {
+              id: '2',
+              title: 'Jardineando'
+            }
+
+          ]
+        };
+      },
+      create: function(callback) {
+        return {
+          id: '1', 
+          name: 'Medialab Prado',
+          projects: [
+            {
+              id: '1',
+              title: 'Festilab'
+            },
+            {
+              id: '2',
+              title: 'Jardineando'
+            }
+
+          ]
+        };
+      },
+      destroy: function(id) {
+        return id;
+      }
+    };
+
     var projects = {
       all: function() {
         return proxy.model;
