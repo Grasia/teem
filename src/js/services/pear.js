@@ -143,6 +143,7 @@ angular.module('Pear2Pear')
     }
 
     return {
+      communities: communities,
       projects: projects,
       users: users,
       addChatMessage: addChatMessage,
