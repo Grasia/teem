@@ -11,19 +11,18 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/projects', {
+      .when('/communities/:id/projects', {
         templateUrl: 'projects/index.html',
-        controller: 'ProjectsCtrl'
-      })
-      .when('/projects/:id/tasks', {
-        templateUrl: 'projects/show.html',
         controller: 'ProjectsCtrl'
       });
   }])
-  .controller('ProjectsCtrl', ['pear', '$scope', '$location', function (pear, $scope, $location) {
+  .controller('ProjectsCtrl', ['pear', '$scope', '$location', '$route', function (pear, $scope, $location, $route) {
 
     pear.onLoad(function(){
+      $scope.community = pear.communities.find($route.current.params.id);
+
       $scope.projects = pear.projects.all();
+
       $scope.new_ = function () {
         pear.projects.create(function(p) {
           $location.path('/projects/' + p.id + '/pad/');

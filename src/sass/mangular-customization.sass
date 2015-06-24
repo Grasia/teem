@@ -125,12 +125,15 @@ blockquote cite:before
 
 /* Limit app width desktop */
 @media (min-width: 992px)
-  .navbar, .app-content
+  .navbar, .app-content, .modal-dialog
     width: 970px
     margin: auto
 
 @media (min-width: 1200px)
-  .navbar, .app-content
+  .navbar, .app-content, .modal-dialog
     width: 1170px
     margin: auto
 
+.btn-primary
+  background-color: $button-primary-background-color
+  border-color: $button-primary-background-color

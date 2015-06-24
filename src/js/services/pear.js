@@ -52,9 +52,9 @@ angular.module('Pear2Pear')
           ]
         };
       },
-      create: function(callback) {
-        return {
-          id: '1', 
+      create: function(data, callback) {
+        callback({
+          id: '1',
           name: 'Medialab Prado',
           projects: [
             {
@@ -67,7 +67,7 @@ angular.module('Pear2Pear')
             }
 
           ]
-        };
+        });
       },
       destroy: function(id) {
         return id;

@@ -13,16 +13,22 @@ angular.module('Pear2Pear')
       .when('/communities', {
         templateUrl: 'communities/index.html',
         controller: 'CommunitiesCtrl'
-      })
+      });
   }])
-  .controller('CommunitiesCtrl', ['$scope', 'pear', function ($scope, pear) {
+  .controller('CommunitiesCtrl', ['$scope', 'pear', '$location', function ($scope, pear, $location) {
     pear.onLoad(function(){
       $scope.communities = pear.communities.all();
 
-      $scope.new_ = function () {
-        pear.communties.create(function() {
-          return;
-        });
+      $scope.create = function() {
+        pear.communities.create(
+          { name: $scope.newCommunityName },
+          function(community) {
+            $scope.showProjects(community.id);
+          });
       };
     });
+
+    $scope.showProjects = function(id) {
+      $location.path('/communities/' + id + '/projects');
+    };
   }]);
