@@ -12,12 +12,12 @@
               <h4 class="media-heading">{{project.title}}</h4>
               <div class="project-sections justified">
                 <div class="project-promoters">
-                  <h5 class="project-section-title">&nbsp;</h5>
+                  <h5>&nbsp;</h5>
                   {{ project.promoter }}
                 </div>
                 <div class="project-needs">
                   <a ng-href="#/projects/{{project.id}}/needs">
-                    <h5 class="project-section-title" translate>project.section.needs.title</h5>
+                    <h5 translate>project.section.needs.title</h5>
                     <div class="progress">
                       <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
                       <span class="sr-only">60% Complete</span>
