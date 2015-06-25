@@ -76,8 +76,12 @@
       "needs": {
         "title": "Needs"
       },
-      "promoters": {
-        "title": "Promoted by"
+      "support": {
+        "btn": {
+          "do": "Support",
+          "doing": "Supporting"
+        },
+        "title": "Supports"
       }
     },
     "share": {

@@ -75,4 +75,47 @@ angular.module('Pear2Pear')
         return 'warning';
       }
     };
+
+    $scope.isPromoter = function(project) {
+      return pear.users.isCurrent(project.promoter);
+    };
+
+    $scope.supporterCount = function(project) {
+      // Migrate project.support
+      if (project.supporters === undefined) {
+        project.supporters = [];
+
+        return 0;
+      }
+
+      return project.supporters.length;
+    };
+
+    $scope.isSupporter = function(project) {
+      // Migrate project.support
+      if (project.supporters === undefined) {
+        project.supporters = [];
+
+        return false;
+      }
+
+      return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
+    };
+
+    $scope.toggleSupport = function(project) {
+      // Need a valid login to support
+      if (! pear.users.loggedIn()) {
+        $location.path('session/new');
+
+        return;
+      }
+
+      var index = project.supporters.indexOf(pear.users.current());
+
+      if (index > -1) {
+        project.supporters.splice(index, 1);
+        } else {
+        project.supporters.push(pear.users.current());
+      }
+    };
   }]);

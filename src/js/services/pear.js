@@ -108,6 +108,9 @@ angular.module('Pear2Pear')
       },
       isCurrent: function(user) {
         return user === users.current();
+      },
+      loggedIn: function() {
+        return users.current() !== 'undefined';
       }
     };
 

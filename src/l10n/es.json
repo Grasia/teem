@@ -77,8 +77,12 @@
       "needs": {
         "title": "Necesidades"
       },
-      "promoters": {
-        "title": "Impulsado por"
+      "support": {
+        "btn": {
+          "do": "Apoyar",
+          "doing": "Apoyando"
+        },
+        "title": "Apoyos"
       }
     },
     "share": {
