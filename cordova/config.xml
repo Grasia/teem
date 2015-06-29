@@ -9,7 +9,7 @@ http://p2pvalue.eu/
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-    <content src="http://192.168.175.103:9000/?cordova=android" />
+    <content src="http://p.p2pvalue.eu/?cordova=android" />
     <access origin="*" />
     <platform name="android">
       <icon src="res/icon.png" density="ldpi" />
