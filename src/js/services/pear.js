@@ -103,10 +103,14 @@ angular.module('Pear2Pear')
       current: function() {
         return window.sessionStorage.getItem('userId');
       },
-      setCurrent: function() {
+      setCurrent: function(name) {
+        return window.sessionStorage.setItem('userId', name);
       },
       isCurrent: function(user) {
         return user === users.current();
+      },
+      loggedIn: function() {
+        return users.current() !== 'undefined';
       }
     };
 
