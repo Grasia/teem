@@ -42,9 +42,7 @@ describe('Pear2Pear', function() {
       }, timeout);
 
       // Wait until pear has loaded the projects
-      browser.wait(function() {
-        return element(projectList).evaluate('projects') !== null;
-      }, timeout);
+      browser.wait(element(projectList).evaluate('projects.create'), timeout);
 
       var newButton = by.css('.new-project a');
       element(newButton).click();
