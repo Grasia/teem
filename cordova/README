@@ -1,5 +1,7 @@
 ### Setup
 
+First of all, you must have [cordova installed](https://cordova.apache.org/docs/en/4.0.0/guide_cli_index.md.html)
+
 Cordova plugins are not tracked in the version control. There must be initialized:
 
 Initialize Android platform:
