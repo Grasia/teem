@@ -270,7 +270,9 @@ gulp.task('sass', function () {
     */
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.', {
+      sourceMappingURLPrefix: '/css/'
+    }))
     .pipe(gulp.dest(path.join(config.dest, 'css')));
 });
 
@@ -302,9 +304,11 @@ gulp.task('js', function() {
     .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write('.', {
+      sourceMappingURLPrefix: '/js/'
+    }))
     .pipe(gulp.dest(path.join(config.dest, 'js')));
-});
+  });
 
 
 /*===================================================================
