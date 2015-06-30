@@ -51,7 +51,7 @@ angular.module('Pear2Pear')
     };
 
     // Scroll to bottom after adding a message
-    $animate.on('enter', angular.element('.chat-messages'), function(msg) {
+    $animate.on('enter', angular.element(document.querySelector('.chat-messages')), function(msg) {
       var scrollableContentController = msg.controller('scrollableContent');
 
       scrollableContentController.scrollTo(msg);
