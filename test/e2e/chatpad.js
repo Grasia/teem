@@ -71,7 +71,7 @@ describe('Pear2Pear', function() {
       // Temporary solution for removing a project
       // It should be included inside tests
       browser.executeScript(function() {
-        angular.element('.chat').scope().destroyProject();
+        angular.element(document.querySelector('.chat')).scope().destroyProject();
       });
 
       // Give time for the former to be exec
