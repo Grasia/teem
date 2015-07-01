@@ -30,7 +30,7 @@ describe('Pear2Pear', function() {
     });
 
     it('should use the chadpad', function() {
-      var timeout = 30000;
+      var timeout = 10000;
 
       element(by.css('input#login')).sendKeys('Test');
       element(by.css('.login-form button')).click();
