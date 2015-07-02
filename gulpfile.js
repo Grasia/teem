@@ -46,11 +46,8 @@ var config = {
     user : 'test@local.net',
     pass : 'test',
     // WaveIds have to exist in wave server
-    waveId : 'local.net/gen+12345abcde',
-    testimoniesWaveId : 'local.net/gen+12345abcde',
-    helpWaveId : 'local.net/gen+12345abcde',
-    thanksappWaveId : 'local.net/gen+12345abcde',
-    chatpadWaveId : 'local.net/gen+12345abcde'
+    chatpadWaveId : 'local.net/gen+12345abcde1',
+    communityListWaveId: 'local.net/gen+12345abcd2'
   },
 
   server: {

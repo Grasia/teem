@@ -18,24 +18,28 @@ angular.module('Pear2Pear')
   }])
   .controller('ProjectsCtrl', ['pear', '$scope', '$location', '$route', function (pear, $scope, $location, $route) {
 
+    $scope.comId = decodeURIComponent($route.current.params.id);
     pear.onLoad(function(){
-      $scope.community = pear.communities.find($route.current.params.id);
-
-      $scope.projects = pear.projects.all();
+      console.log('param: ', $scope.comId);
+      var com = pear.communities.find($scope.comId);
+      $scope.community = com.community;
+      com.projects.all().then(
+        function (projects){
+          $scope.projects = projects;
+        });
 
       $scope.new_ = function () {
         pear.projects.create(function(p) {
-          $location.path('/projects/' + p.id + '/pad/');
+          var pId = encodeURIComponent(p.id);
+          $scope.community.projects.push(p.id);
+          $location.path('/projects/' + pId + '/pad/');
         });
-      };
-
-      $scope.destroy = function(id) {
-        pear.projects.destroy(id);
       };
     });
 
     $scope.showProjectChat = function (id) {
-      $location.path('/projects/' + id + '/chat/');
+      var pId = encodeURIComponent(id);
+      $location.path('/projects/' + pId + '/chat/');
     };
 
     // This function should belong to the model

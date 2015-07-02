@@ -19,15 +19,19 @@ angular.module('Pear2Pear')
   .controller('PadCtrl', ['pear', '$scope', '$route', '$location', function(pear, $scope, $route, $location){
 
     pear.onLoad(function(){
-      $scope.project = pear.projects.find($route.current.params.id);
+      pear.projects.find(decodeURIComponent($route.current.params.id))
+        .then(function(proxy) {
+          $scope.project = proxy;
+        });
     });
 
     $scope.showChat = function() {
-      $location.path('/projects/' + $scope.project.id + '/chat');
+      $location.path('/projects/' + $route.current.params.id + '/chat');
     };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
       return id === 'pad' ? 'active' : '';
     };
+
   }]);

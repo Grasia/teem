@@ -2,7 +2,7 @@
   <div class="overflow-ellipsis">CrowdDoing</div>
 </div>
 
-<div class="section communities">
+<div id="communities" class="section communities">
   <div class="scrollable">
       <div class="scrollable-content">
         <div class="list-group">
@@ -22,7 +22,7 @@
 </div>
 
 <div ui-content-for="modals">
-  <div class="modal" ui-if='modalCreate' ui-state='modalCreate'>
+  <div class="modal" ui-if="modalCreate" ui-state="modalCreate">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -33,7 +33,7 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="{{'community.create.placeholder' | translate}}" ng-model="newCommunityName">
+              <input type="text" class="form-control" placeholder="{{'community.create.placeholder' | translate}}" ng-model="newCommunityName.text">
             </div>
           </form>
         </div>

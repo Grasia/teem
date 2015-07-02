@@ -18,8 +18,14 @@ angular.module('Pear2Pear')
   }])
   .controller('NeedsCtrl', ['pear', '$scope', '$route', function(pear, $scope, $route){
 
+    $scope.id = $route.current.params.id;
+
     pear.onLoad(function(){
-      $scope.project = pear.projects.find($route.current.params.id);
+      pear.projects.find(decodeURIComponent($scope.id)).then(
+        function(proxy){
+          $scope.project = proxy;
+        }
+      );
     });
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262

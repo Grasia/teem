@@ -33,8 +33,10 @@ angular.module('Pear2Pear')
     $scope.id = $route.current.params.id;
 
     pear.onLoad(function(){
-      $scope.project = pear.projects.find($scope.id);
-      $scope.projects = pear.projects.all();
+      pear.projects.find(decodeURIComponent($scope.id)).then(
+        function(proxy){
+          $scope.project = proxy;
+        });
     });
 
     // Send button
@@ -45,7 +47,7 @@ angular.module('Pear2Pear')
         return;
       }
 
-      pear.addChatMessage($scope.id, msg);
+      pear.addChatMessage($scope.project.id, msg);
 
       $scope.newMsg = '';
     };
@@ -81,7 +83,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showPad = function() {
-      $location.path('/projects/' + $scope.project.id + '/pad');
+      $location.path('/projects/' + $route.current.params.id + '/pad');
     };
 
     $scope.addToPad = function(txt) {

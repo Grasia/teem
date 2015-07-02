@@ -43,4 +43,7 @@ angular
        })
       .fallbackLanguage('en')
       .determinePreferredLanguage();
+  })
+  .filter('escape', function() {
+    return window.encodeURIComponent;
   });
