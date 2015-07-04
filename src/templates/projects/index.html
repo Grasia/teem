@@ -1,5 +1,9 @@
+<div ui-content-for="nav-left">
+  <a href="#/communities"><i class="fa fa-chevron-left"></i></a>
+</div>
+
 <div ui-content-for="nav-title">
-  <div class="overflow-ellipsis" translate>project.index.title</div>
+  <div class="overflow-ellipsis">{{ community.name }}</div>
 </div>
 
 <div class="section projects">
@@ -16,7 +20,8 @@
                   {{ project.promoter }}
                 </div>
                 <div class="project-needs">
-                  <a ng-href="#/projects/{{project.id}}/needs">
+
+                  <a ng-href="#/communities/{{comId | escapeBase64}}/projects/{{project.id | escapeBase64}}/needs">
                     <h5 translate>project.section.needs.title</h5>
                     <div class="progress">
                       <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
@@ -46,6 +51,6 @@
   </div>
 </div>
 
-<div class="new-project">
+<div class="new-item new-project">
   <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
 </div>

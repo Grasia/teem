@@ -31,6 +31,11 @@
   },
   "community": {
     "add_participant": "Add participant",
+    "create": {
+      "button": "Create",
+      "placeholder": "Community name",
+      "title": "New community"
+    },
     "edit": {
       "button": "Edit",
       "title": "Edit community"
@@ -40,9 +45,6 @@
     },
     "leave": "Leave this community",
     "name": "Community name",
-    "new": {
-      "title": "New community"
-    },
     "participants": "People in the community"
   },
   "login": {

@@ -11,7 +11,7 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/projects/:id/chat', {
+      .when('/communities/:comId/projects/:id/chat', {
         templateUrl: 'chat/show.html',
         controller: 'ChatCtrl'
       });
@@ -28,13 +28,16 @@ angular.module('Pear2Pear')
       }
     };
   })
-  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', '$animate', function(pear, $scope, $rootScope, $route, $location, $animate){
+  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', '$animate', '$filter', function(pear, $scope, $rootScope, $route, $location, $animate, $filter){
 
     $scope.id = $route.current.params.id;
+    $scope.escapedComId = window.encodeURIComponent($route.current.params.comId);
 
     pear.onLoad(function(){
-      $scope.project = pear.projects.find($scope.id);
-      $scope.projects = pear.projects.all();
+      pear.projects.find($filter('unescapeBase64')($scope.id)).then(
+        function(proxy){
+          $scope.project = proxy;
+        });
     });
 
     // Send button
@@ -45,7 +48,7 @@ angular.module('Pear2Pear')
         return;
       }
 
-      pear.addChatMessage($scope.id, msg);
+      pear.addChatMessage($scope.project.id, msg);
 
       $scope.newMsg = '';
     };
@@ -81,7 +84,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showPad = function() {
-      $location.path('/projects/' + $scope.project.id + '/pad');
+      $location.path('/communities/' + $route.current.params.comId + '/projects/' + $route.current.params.id + '/pad');
     };
 
     $scope.addToPad = function(txt) {

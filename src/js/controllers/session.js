@@ -30,7 +30,7 @@ angular.module('Pear2Pear')
       // TODO change when user ids available;
       pear.users.setCurrent($scope.name);
 
-      $location.path('/projects');
+      $location.path('/communities');
     };
 
     $scope.userData = function () {

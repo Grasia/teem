@@ -11,32 +11,35 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/projects', {
+      .when('/communities/:id/projects', {
         templateUrl: 'projects/index.html',
-        controller: 'ProjectsCtrl'
-      })
-      .when('/projects/:id/tasks', {
-        templateUrl: 'projects/show.html',
         controller: 'ProjectsCtrl'
       });
   }])
-  .controller('ProjectsCtrl', ['pear', '$scope', '$location', function (pear, $scope, $location) {
+  .controller('ProjectsCtrl', ['pear', '$scope', '$location', '$route', '$filter', function (pear, $scope, $location, $route, $filter) {
+
+    $scope.comId = $filter('unescapeBase64')($route.current.params.id);
 
     pear.onLoad(function(){
-      $scope.projects = pear.projects.all();
+      var com = pear.communities.find($scope.comId);
+      $scope.community = com.community;
+      com.projects.all().then(
+        function (projects){
+          $scope.projects = projects;
+        });
+
       $scope.new_ = function () {
         pear.projects.create(function(p) {
-          $location.path('/projects/' + p.id + '/pad/');
+          var pId = $filter('escapeBase64')(p.id);
+          $scope.community.projects.push(p.id);
+          $location.path('/communities/' + $route.current.params.id + '/projects/' + pId + '/pad/');
         });
-      };
-
-      $scope.destroy = function(id) {
-        pear.projects.destroy(id);
       };
     });
 
     $scope.showProjectChat = function (id) {
-      $location.path('/projects/' + id + '/chat/');
+      var pId = $filter('escapeBase64')(id);
+      $location.path('/communities/' + $route.current.params.id + '/projects/' + pId + '/chat/');
     };
 
     // This function should belong to the model

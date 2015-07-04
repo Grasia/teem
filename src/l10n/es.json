@@ -31,6 +31,11 @@
   },
   "community": {
     "add_participant": "Añadir participante",
+    "new": {
+      "button": "Crear",
+      "placeholder": "Nombre de la comunidad",
+      "title": "Nueva comunidad"
+    },
     "edit": "Editar",
     "leave": "Abandonar esta comunidad",
     "edit": {
@@ -41,9 +46,6 @@
       "title": "Mis comunidades"
     },
     "name": "Nombre de la comunidad",
-    "new": {
-      "title": "Nueva comunidad"
-    },
     "participants": "Gente en la comunidad"
   },
   "login": {
