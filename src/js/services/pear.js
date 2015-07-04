@@ -146,7 +146,7 @@ angular.module('Pear2Pear')
         return user === users.current();
       },
       loggedIn: function() {
-        return users.current() !== 'undefined';
+        return users.current() !== 'undefined' && users.current() !== null;
       }
     };
 
