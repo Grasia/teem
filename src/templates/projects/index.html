@@ -20,7 +20,7 @@
                   {{ project.promoter }}
                 </div>
                 <div class="project-needs">
-                  <a ng-href="#/projects/{{project.id}}/needs">
+                  <a ng-href="#/communities/{{comId | escapeBase64}}/projects/{{project.id | escapeBase64}}/needs">
                     <h5 class="project-section-title" translate>project.section.needs.title</h5>
                     <div class="progress">
                       <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">

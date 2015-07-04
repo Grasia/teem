@@ -15,16 +15,14 @@ angular.module('Pear2Pear')
         controller: 'CommunitiesCtrl'
       });
   }])
-  .controller('CommunitiesCtrl', ['$scope', 'pear', '$location', function ($scope, pear, $location) {
+  .controller('CommunitiesCtrl', ['$scope', 'pear', '$location', '$filter', function ($scope, pear, $location, $filter) {
 
     $scope.newCommunityName = {
       text : ''
     };
 
     pear.onLoad(function(){
-      console.log('onload1');
       $scope.communities = pear.communities.all();
-      console.log('onload', $scope.communities);
       $scope.create = function() {
         console.log('create', $scope.newCommunityName);
         pear.communities.create(
@@ -38,6 +36,6 @@ angular.module('Pear2Pear')
     });
 
     $scope.showProjects = function(id) {
-      $location.path('/communities/' + encodeURIComponent(id) + '/projects');
+      $location.path('/communities/' + $filter('escapeBase64')(id) + '/projects');
     };
   }]);

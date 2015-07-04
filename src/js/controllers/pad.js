@@ -11,22 +11,24 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/projects/:id/pad', {
+      .when('/communities/:comId/projects/:id/pad', {
         templateUrl: 'pad/show.html',
         controller: 'PadCtrl'
       });
   }])
-  .controller('PadCtrl', ['pear', '$scope', '$route', '$location', function(pear, $scope, $route, $location){
+  .controller('PadCtrl', ['pear', '$scope', '$route', '$location', '$filter', function(pear, $scope, $route, $location, $filter){
+
+    $scope.escapedComId = window.encodeURIComponent($route.current.params.comId);
 
     pear.onLoad(function(){
-      pear.projects.find(decodeURIComponent($route.current.params.id))
+      pear.projects.find($filter('unescapeBase64')($route.current.params.id))
         .then(function(proxy) {
           $scope.project = proxy;
         });
     });
 
     $scope.showChat = function() {
-      $location.path('/projects/' + $route.current.params.id + '/chat');
+      $location.path('/communities/' + $route.current.params.comId + '/projects/' + $route.current.params.id + '/chat');
     };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262

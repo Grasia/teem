@@ -1,11 +1,11 @@
 <div ui-content-for="nav-left">
-  <a href="#/projects"><i class="fa fa-chevron-left"></i></a>
+  <a href="#/communities/{{escapedComId}}/projects"><i class="fa fa-chevron-left"></i></a>
 </div>
 
 <div ui-content-for="nav-navigation">
   <div class="btn-group justified">
-    <a ng-href="#/projects/{{project.id | escape | escape }}/chat" class="nav-chat {{nav('chat')}}" | translate>chat.nav.title</a>
-    <a ng-href="#/projects/{{project.id | escape | escape }}/pad" class="nav-pad {{nav('pad')}}" | translate>pad.nav.title</a>
-    <a ng-href="#/projects/{{project.id | escape | escape }}/needs" class="nav-pad {{nav('needs')}}" | translate>need.nav.title</a>
+    <a ng-href="#/communities/{{escapedComId}}/projects/{{project.id | escapeBase64 }}/chat" class="nav-chat {{nav('chat')}}" | translate>chat.nav.title</a>
+    <a ng-href="#/communities/{{escapedComId}}/projects/{{project.id | escapeBase64 }}/pad" class="nav-pad {{nav('pad')}}" | translate>pad.nav.title</a>
+    <a ng-href="#/communities/{{escapedComId}}/projects/{{project.id | escapeBase64 }}/needs" class="nav-pad {{nav('needs')}}" | translate>need.nav.title</a>
   </div>
 </div>

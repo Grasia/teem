@@ -44,6 +44,23 @@ angular
       .fallbackLanguage('en')
       .determinePreferredLanguage();
   })
+  .filter('base64', function(){
+    return window.btoa;
+  })
   .filter('escape', function() {
     return window.encodeURIComponent;
+  })
+  .filter('escapeBase64', function(){
+    return function(str){
+      return window.encodeURIComponent(
+        window.encodeURIComponent(
+          window.btoa(str)));
+    }
+  })
+  .filter('unescapeBase64', function(){
+    return function(str){
+      return window.atob(
+        window.decodeURIComponent(
+          window.decodeURIComponent(str)));
+    }
   });
