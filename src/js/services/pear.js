@@ -160,6 +160,8 @@ angular.module('Pear2Pear')
 
     window.onSwellRTReady = function () {
       window.SwellRT.startSession(
+        SwellRTConfig.server, SwellRTConfig.user, SwellRTConfig.pass,
+        function() {
           // Open Community List
           window.SwellRT.openModel(
             SwellRTConfig.communityListWaveId,
