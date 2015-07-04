@@ -32,6 +32,7 @@ angular.module('Pear2Pear')
 
     $scope.id = $route.current.params.id;
     $scope.escapedComId = window.encodeURIComponent($route.current.params.comId);
+    $scope.comId = $filter('unescapeBase64')($route.current.params.comId);
 
     pear.onLoad(function(){
       pear.projects.find($filter('unescapeBase64')($scope.id)).then(
@@ -96,6 +97,13 @@ angular.module('Pear2Pear')
 
     // Temporal way to destroy a project
     $scope.destroyProject = function() {
-      pear.projects.destroy($scope.project.id);
+      var community = pear.communities
+        .find($scope.comId).projects.destroy($scope.project.id);
+    };
+
+    // Temporal way to destroy a community
+    $scope.destroyProject = function() {
+      var community = pear.communities
+        .find($scope.comId).destroy($scope.project.id);
     };
   }]);

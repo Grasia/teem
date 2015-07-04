@@ -52,6 +52,12 @@ angular.module('Pear2Pear')
 
               var projsDef = $q.all(promises);
               return projsDef;
+            },
+            destroy: function(projId){
+              var i = community.projects.indexOf(projId);
+              if (i > -1){
+                community.projects.splice(i,1);
+              }
             }
           }
         };

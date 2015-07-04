@@ -35,6 +35,26 @@ describe('Pear2Pear', function() {
       element(by.css('input#login')).sendKeys('Test');
       element(by.css('.login-form button')).click();
 
+      var communityList = by.css('.communities');
+
+      browser.wait(function() {
+        return browser.isElementPresent(communityList);
+      }, timeout);
+
+
+      var newCommunityButton = by.css('.new-community a');
+      element(newCommunityButton).click();
+
+      var newCommunityName = by.css('.new-community-name');
+
+      browser.wait(function(){
+        return browser.isElementPresent(newCommunityName);
+      });
+
+      element(newCommunityName).sendKeys('Testing Community');
+
+      element(by.css('.create-community-btn')).click();
+
       var projectList = by.css('.projects');
 
       browser.wait(function() {
@@ -44,8 +64,8 @@ describe('Pear2Pear', function() {
       // Wait until pear has loaded the projects
       browser.wait(element(projectList).evaluate('projects.create'), timeout);
 
-      var newButton = by.css('.new-project a');
-      element(newButton).click();
+      var newProjectButton = by.css('.new-project a');
+      element(newProjectButton).click();
 
       var editTitle = by.css('.project-title input');
 
@@ -74,6 +94,11 @@ describe('Pear2Pear', function() {
         angular.element(document.querySelector('.chat')).scope().destroyProject();
       });
 
+      // Temporary solution for removing a community
+      // It should be included inside tests
+      browser.executeScript(function() {
+        angular.element(document.querySelector('.chat')).scope().destroy();
+      });
       // Give time for the former to be exec
       element(by.css('.nav-left a')).click();
     });
