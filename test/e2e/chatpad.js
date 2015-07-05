@@ -97,7 +97,7 @@ describe('Pear2Pear', function() {
       // Temporary solution for removing a community
       // It should be included inside tests
       browser.executeScript(function() {
-        angular.element(document.querySelector('.chat')).scope().destroy();
+        angular.element(document.querySelector('.chat')).scope().destroyCommunity();
       });
       // Give time for the former to be exec
       element(by.css('.nav-left a')).click();

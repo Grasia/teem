@@ -102,8 +102,7 @@ angular.module('Pear2Pear')
     };
 
     // Temporal way to destroy a community
-    $scope.destroyProject = function() {
-      var community = pear.communities
-        .find($scope.comId).destroy($scope.project.id);
+    $scope.destroyCommunity = function() {
+      var community = pear.communities.destroy($scope.comId);
     };
   }]);
