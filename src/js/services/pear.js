@@ -190,9 +190,11 @@ angular.module('Pear2Pear')
         function(error) {
           console.log(error);
         });
+      // to avoid multiple calls
+      window.onSwellRTReady = null;
     };
 
-    if (window.SwellRT) {
+    if (window.SwellRT && typeof window.onSwellRTReady === 'function') {
       window.onSwellRTReady();
     }
 
