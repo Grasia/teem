@@ -49,10 +49,10 @@ folders in your project.
 
 Pear2Pear uses [SwellRT](https://github.com/P2Pvalue/swellrt), a real-time federated collaboration framework.
 
-You need to run SwellRT, which is extremelly easy using Docker
+You need to run SwellRT, which is extremelly easy using Docker. [Install Docker](https://docs.docker.com/installation/)
 
-1. [Install Docker](https://docs.docker.com/installation/)
-2. `sudo docker run -p 9898:9898 -h swellrt -d p2pvalue/swellrt`
+An instance of SwellRT will be automagically started for you
+
 
 ### Optional: Change configuration options
 

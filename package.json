@@ -6,6 +6,7 @@
   "license": "AGPL",
   "dependencies": {},
   "devDependencies": {
+    "dockerode": "^2.2.1",
     "gulp": "^3.8.1",
     "gulp-angular-filesort": "^1.0.1",
     "gulp-angular-protractor": "0.0.2",

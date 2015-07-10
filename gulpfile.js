@@ -41,13 +41,21 @@ var config = {
   },
 
   swellrt: {
-    server : 'http://localhost:9898',
+    host: 'demo-swellrt.p2pvalue.eu',
+    protocol: 'https://',
     // user and pass have to be credentials of an existing user in wave server
     user : 'test@local.net',
     pass : 'test',
     // WaveIds have to exist in wave server
     chatpadWaveId : 'local.net/gen+12345abcde1',
-    communityListWaveId: 'local.net/gen+12345abcd2'
+    communityListWaveId: 'local.net/gen+12345abcd2',
+    docker: {
+      image: 'p2pvalue/swellrt'
+    }
+  },
+
+  angularSwellrt: {
+    path: './bower_components/angular-swellrt'
   },
 
   server: {
@@ -80,6 +88,22 @@ var config = {
 if (require('fs').existsSync('./config.js')) {
   var configFn = require('./config');
   configFn(config);
+}
+
+if (! config.swellrt.server) {
+  config.swellrt.server = config.swellrt.protocol + config.swellrt.host;
+  if (config.swellrt.port) {
+    config.swellrt.server += ':' + config.swellrt.port;
+  }
+}
+
+// Setup angular-swellrt stuff, depending on path
+config.vendor.js.push(config.angularSwellrt.path + '/angular-swellrt.js');
+config.angularSwellrt.swellrt = require(config.angularSwellrt.path + '/swellrt.json');
+
+if (!config.swellrt.docker.taggedImage) {
+  config.swellrt.docker.taggedImage =
+    config.swellrt.docker.image + ':' + config.angularSwellrt.swellrt.version;
 }
 
 // Use configuration in other modules, such as Karma
@@ -117,7 +141,8 @@ var gulp           = require('gulp'),
   jshint         = require('gulp-jshint'),
   karma          = require('karma').server,
   angularProtractor = require('gulp-angular-protractor'),
-  ghPages        = require('gulp-gh-pages');
+  ghPages        = require('gulp-gh-pages'),
+  docker         = require('dockerode')();
 
 
 /*================================================
@@ -391,6 +416,61 @@ gulp.task('test', function(done){
 });
 
 /*====================================
+=      Run SwellRT with Docker       =
+====================================*/
+
+gulp.task('docker:swellrt:start', function() {
+  docker.pull(config.swellrt.docker.taggedImage, function(err, stream) {
+    if (err) { throw err; }
+
+    docker.modem.followProgress(stream, function(err) {
+      if (err) { throw err; }
+
+      var options = {
+        Image: config.swellrt.docker.taggedImage,
+        Hostname: config.swellrt.host
+      };
+
+      if (config.swellrt.port) {
+        options.HostConfig = { PortBindings: {}};
+        options.HostConfig.PortBindings[config.swellrt.port + '/tcp'] =
+          [{ 
+            HostIp: '0.0.0.0',
+            HostPort: config.swellrt.port
+          }];
+      }
+
+      docker.createContainer(options, function(err, container) {
+        if (err) { throw err; }
+
+        container.start(function(err, data) {
+          if (err) { throw err; }
+
+          console.log(data);
+        });
+      });
+    });
+  });
+});
+
+gulp.task('docker:swellrt', function() {
+  docker.listContainers(function(err, containers) {
+    var running;
+
+    containers.forEach(function (c) {
+      if (c.Image === config.swellrt.docker.taggedImage) {
+        running = true;
+      }
+    });
+
+    if (! running) {
+      gulp.start('docker:swellrt:start');
+    }
+  });
+});
+
+
+/*====================================
 =              Deploy Task           =
 ====================================*/
 
@@ -415,6 +495,10 @@ gulp.task('cd', function(done) {
 
 gulp.task('default', function(done){
   var tasks = [];
+
+  if (config.swellrt.docker) {
+    tasks.push('docker:swellrt');
+  }
 
   if (typeof config.weinre === 'object') {
     tasks.push('weinre');

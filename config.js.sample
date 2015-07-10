@@ -17,7 +17,14 @@ module.exports = function(config) {
 
   // SwellRT server
 
-  config.swellrt.server = 'http://localhost:9898'
+  config.swellrt.protocol = 'http://'
+  config.swellrt.host = 'localhost'
+  config.swellrt.port = '9898'
+
+  // angular-swellrt
+  // Use local version
+  // config.angularSwellrt.path = '../angular-swellrt';
+
 
   // Piwik stats
   // config.piwik = {
@@ -27,10 +34,6 @@ module.exports = function(config) {
 
     
   // 3rd party components
-
-  // angular-swellrt
-  // var index = config.vendor.js.indexOf('./bower_components/angular-swellrt/angular-swellrt.js');
-  // config.vendor.js[index] = '../angular-swellrt/angular-swellrt.js';
 
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');
   // config.vendor.fonts.push('.bower_components/font/dist/*');
