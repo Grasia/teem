@@ -101,9 +101,11 @@ if (! config.swellrt.server) {
 config.vendor.js.push(config.angularSwellrt.path + '/angular-swellrt.js');
 config.angularSwellrt.swellrt = require(config.angularSwellrt.path + '/swellrt.json');
 
-if (!config.swellrt.docker.taggedImage) {
-  config.swellrt.docker.taggedImage =
-    config.swellrt.docker.image + ':' + config.angularSwellrt.swellrt.version;
+if (config.swellrt.docker) {
+  if (!config.swellrt.docker.taggedImage) {
+    config.swellrt.docker.taggedImage =
+      config.swellrt.docker.image + ':' + config.angularSwellrt.swellrt.version;
+  }
 }
 
 // Use configuration in other modules, such as Karma
