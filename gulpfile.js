@@ -375,49 +375,6 @@ gulp.task('build', function(done) {
   seq('clean', tasks, done);
 });
 
-/*======================================
-=        Unit testing with Karma       =
-======================================*/
-
-gulp.task('unit-test', function(done) {
-  karma.start({
-    configFile: __dirname + '/test/karma.conf.js',
-    singleRun: true
-  }, function() {
-      done();
-  });
-});
-
-/*================================================
-=        End to end testing with protractor      =
-=================================================*/
-
-
-gulp.task('e2e-test', function(done) {
-  connect.server({
-    root: config.dest,
-    host: config.serverTest.host,
-    port: config.serverTest.port
-  });
-
-  gulp.src(['./test/e2e/**/*.js'])
-    .pipe(angularProtractor({
-      'configFile': 'test/protractor.conf.js',
-      'autoStartStopServer': true,
-      'debug': true
-    }))
-    .on('error', function(e) { connect.serverClose(); throw e })
-    .on('end', function() { connect.serverClose(); done(); });
-});
-
-/*====================================
-=              Test Task             =
-====================================*/
-
-gulp.task('test', function(done){
-  seq('unit-test', 'e2e-test', done);
-});
-
 /*====================================
 =      Run SwellRT with Docker       =
 ====================================*/
@@ -490,6 +447,48 @@ gulp.task('docker:swellrt', function() {
   });
 });
 
+/*======================================
+=        Unit testing with Karma       =
+======================================*/
+
+gulp.task('unit-test', function(done) {
+  karma.start({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: true
+  }, function() {
+      done();
+  });
+});
+
+/*================================================
+=        End to end testing with protractor      =
+=================================================*/
+
+
+gulp.task('e2e-test', function(done) {
+  connect.server({
+    root: config.dest,
+    host: config.serverTest.host,
+    port: config.serverTest.port
+  });
+
+  gulp.src(['./test/e2e/**/*.js'])
+    .pipe(angularProtractor({
+      'configFile': 'test/protractor.conf.js',
+      'autoStartStopServer': true,
+      'debug': true
+    }))
+    .on('error', function(e) { connect.serverClose(); throw e; })
+    .on('end', function() { connect.serverClose(); done(); });
+});
+
+/*====================================
+=              Test Task             =
+====================================*/
+
+gulp.task('test', function(done){
+  seq('docker:swellrt', 'unit-test', 'e2e-test', done);
+});
 
 /*====================================
 =              Deploy Task           =
