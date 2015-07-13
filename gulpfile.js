@@ -50,7 +50,8 @@ var config = {
     chatpadWaveId : 'local.net/gen+12345abcde1',
     communityListWaveId: 'local.net/gen+12345abcd2',
     docker: {
-      image: 'p2pvalue/swellrt'
+      image: 'p2pvalue/swellrt',
+      name: 'pear2pear-swellrt'
     }
   },
 
@@ -430,7 +431,8 @@ gulp.task('docker:swellrt:start', function() {
 
       var options = {
         Image: config.swellrt.docker.taggedImage,
-        Hostname: config.swellrt.host
+        Hostname: config.swellrt.host,
+        name: config.swellrt.docker.name
       };
 
       if (config.swellrt.port) {
@@ -469,8 +471,16 @@ gulp.task('docker:swellrt', function() {
     var running;
 
     containers.forEach(function (c) {
-      if (c.Image === config.swellrt.docker.taggedImage) {
-        running = true;
+      if (c.Names[0] === '/' + config.swellrt.docker.name) {
+        if (c.Image === config.swellrt.docker.taggedImage) {
+          running = true;
+        } else {
+          docker.getContainer(c.Id).remove({ force: true }, function(err, data) {
+            if (err) { throw err; }
+
+            console.log(data);
+          });
+        }
       }
     });
 
