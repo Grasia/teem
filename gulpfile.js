@@ -457,6 +457,15 @@ gulp.task('docker:swellrt:start', function() {
 
 gulp.task('docker:swellrt', function() {
   docker.listContainers(function(err, containers) {
+    if (err) {
+      if (err.code === 'EACCES') {
+        console.error('Error: Cannot access docker. You probably need to add your user to the docker group');
+        console.error('Error: Try: sudo adduser <your_user> docker and restart');
+
+        throw err;
+      }
+    }
+
     var running;
 
     containers.forEach(function (c) {
