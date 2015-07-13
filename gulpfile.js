@@ -51,7 +51,8 @@ var config = {
     communityListWaveId: 'local.net/gen+12345abcd2',
     docker: {
       image: 'p2pvalue/swellrt',
-      name: 'pear2pear-swellrt'
+      name: 'pear2pear-swellrt',
+      port: '9898'
     }
   },
 
@@ -389,17 +390,16 @@ gulp.task('docker:swellrt:start', function() {
       var options = {
         Image: config.swellrt.docker.taggedImage,
         Hostname: config.swellrt.host,
-        name: config.swellrt.docker.name
+        name: config.swellrt.docker.name,
+        HostConfig: {
+          PortBindings: {
+            '9898/tcp': [{
+              HostIp:   '0.0.0.0',
+              HostPort: config.swellrt.docker.port
+            }]
+          }
+        }
       };
-
-      if (config.swellrt.port) {
-        options.HostConfig = { PortBindings: {}};
-        options.HostConfig.PortBindings[config.swellrt.port + '/tcp'] =
-          [{ 
-            HostIp: '0.0.0.0',
-            HostPort: config.swellrt.port
-          }];
-      }
 
       docker.createContainer(options, function(err, container) {
         if (err) { throw err; }
