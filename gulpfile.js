@@ -50,9 +50,7 @@ var config = {
     chatpadWaveId : 'local.net/gen+12345abcde1',
     communityListWaveId: 'local.net/gen+12345abcd2',
     docker: {
-      image: 'p2pvalue/swellrt',
-      name: 'pear2pear-swellrt',
-      port: '9898'
+      name: 'pear2pear-swellrt'
     }
   },
 
@@ -92,6 +90,7 @@ if (require('fs').existsSync('./config.js')) {
   configFn(config);
 }
 
+// Build SwellRT url
 if (! config.swellrt.server) {
   config.swellrt.server = config.swellrt.protocol + config.swellrt.host;
   if (config.swellrt.port) {
@@ -103,11 +102,13 @@ if (! config.swellrt.server) {
 config.vendor.js.push(config.angularSwellrt.path + '/angular-swellrt.js');
 config.angularSwellrt.swellrt = require(config.angularSwellrt.path + '/swellrt.json');
 
-if (config.swellrt.docker) {
-  if (!config.swellrt.docker.taggedImage) {
-    config.swellrt.docker.taggedImage =
-      config.swellrt.docker.image + ':' + config.angularSwellrt.swellrt.version;
-  }
+// Fill docker options
+if (config.swellrt.docker.host) {
+  config.swellrt.docker.host = config.swellrt.host;
+}
+
+if (!config.swellrt.docker.tag) {
+  config.swellrt.docker.tag = config.angularSwellrt.swellrt.version;
 }
 
 // Use configuration in other modules, such as Karma
@@ -146,7 +147,7 @@ var gulp           = require('gulp'),
   karma          = require('karma').server,
   angularProtractor = require('gulp-angular-protractor'),
   ghPages        = require('gulp-gh-pages'),
-  docker         = require('dockerode')();
+  dockerSwellrt  = require('gulp-docker-swellrt');
 
 
 /*================================================
@@ -380,71 +381,8 @@ gulp.task('build', function(done) {
 =      Run SwellRT with Docker       =
 ====================================*/
 
-gulp.task('docker:swellrt:start', function() {
-  docker.pull(config.swellrt.docker.taggedImage, function(err, stream) {
-    if (err) { throw err; }
-
-    docker.modem.followProgress(stream, function(err) {
-      if (err) { throw err; }
-
-      var options = {
-        Image: config.swellrt.docker.taggedImage,
-        Hostname: config.swellrt.host,
-        name: config.swellrt.docker.name,
-        HostConfig: {
-          PortBindings: {
-            '9898/tcp': [{
-              HostIp:   '0.0.0.0',
-              HostPort: config.swellrt.docker.port
-            }]
-          }
-        }
-      };
-
-      docker.createContainer(options, function(err, container) {
-        if (err) { throw err; }
-
-        container.start(function(err, data) {
-          if (err) { throw err; }
-
-          console.log(data);
-        });
-      });
-    });
-  });
-});
-
-gulp.task('docker:swellrt', function() {
-  docker.listContainers(function(err, containers) {
-    if (err) {
-      if (err.code === 'EACCES') {
-        console.error('Error: Cannot access docker. You probably need to add your user to the docker group');
-        console.error('Error: Try: sudo adduser <your_user> docker and restart');
-
-        throw err;
-      }
-    }
-
-    var running;
-
-    containers.forEach(function (c) {
-      if (c.Names[0] === '/' + config.swellrt.docker.name) {
-        if (c.Image === config.swellrt.docker.taggedImage) {
-          running = true;
-        } else {
-          docker.getContainer(c.Id).remove({ force: true }, function(err, data) {
-            if (err) { throw err; }
-
-            console.log(data);
-          });
-        }
-      }
-    });
-
-    if (! running) {
-      gulp.start('docker:swellrt:start');
-    }
-  });
+gulp.task('docker:swellrt', function(done) {
+  dockerSwellrt(config.swellrt.docker, done);
 });
 
 /*======================================
