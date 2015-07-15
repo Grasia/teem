@@ -39,7 +39,18 @@ module.exports = function(config) {
   // config.vendor.fonts.push('.bower_components/font/dist/*');
 
   // Deploy options
-  // config.deploy.origin = 'origin'
+  // config.deploy.files.origin = 'origin'
+  //
+  // config.deploy.swellrt.args =
+  //   '-v /usr/local/etc/pear2pear-swellrt:/usr/local/swellrt/config ' +
+  //   '-v /var/local/log/pear2pear-swellrt:/usr/local/swellrt/log ' +
+  //   '--link pear2pear-swellrt-mongo:mongo ' +
+  //   '-h swellrt.p2pvalue.eu -p 127.0.0.1:9899:9898';
+  // config.deploy.swellrt.ssh = {
+  //   host: 'swellrt.p2pvalue.eu',
+  //   username: 'user',
+  //   privateKey: require('fs').readFileSync('/home/user/.ssh/id_rsa')
+  // };
 
   config.deploy = false
 };

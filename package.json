@@ -35,6 +35,7 @@
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "run-sequence": "^0.3.6",
+    "ssh2": "^0.4.10",
     "streamqueue": "^0.1.1",
     "weinre": "^2.0.0-pre-I0Z7U9OV"
   },

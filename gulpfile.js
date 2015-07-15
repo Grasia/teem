@@ -80,7 +80,14 @@ var config = {
   piwik: false,
 
   deploy: {
-    branch: 'dist'
+    files: {
+      branch: 'dist'
+    },
+    swellrt: {
+      name:  'pear2pear-swellrt',
+      image: 'p2pvalue/swellrt',
+      args: ' -p 9898:9898 -h swellrt'
+    }
   }
 };
 
@@ -105,6 +112,10 @@ config.angularSwellrt.swellrt = require(config.angularSwellrt.path + '/swellrt.j
 // Fill docker options
 if (!config.swellrt.docker.tag) {
   config.swellrt.docker.tag = config.angularSwellrt.swellrt.version;
+}
+
+if (!config.deploy.swellrt.tag) {
+  config.deploy.swellrt.tag = config.angularSwellrt.swellrt.version;
 }
 
 // Use configuration in other modules, such as Karma
@@ -137,6 +148,7 @@ var gulp           = require('gulp'),
   ngFilesort     = require('gulp-angular-filesort'),
   streamqueue    = require('streamqueue'),
   rename         = require('gulp-rename'),
+  ssh            = require('ssh2').Client,
   path           = require('path'),
   watch          = require('gulp-watch'),
   jshint         = require('gulp-jshint'),
@@ -428,9 +440,95 @@ gulp.task('test', function(done){
 =              Deploy Task           =
 ====================================*/
 
-gulp.task('deploy', function() {
+gulp.task('deploy:swellrt', function(done) {
+  var taggedImage = config.deploy.swellrt.image + ':' + config.deploy.swellrt.tag,
+      connection = new ssh();
+
+  var start = function() {
+    var cmd = 'docker run ' +
+      config.deploy.swellrt.args +
+      ' --name ' + config.deploy.swellrt.name +
+      ' -d ' + taggedImage;
+
+    console.log(cmd);
+
+    connection.exec(cmd, function(err, stream) {
+
+      if (err) { throw err ; }
+
+      stream.
+        on('data', function(d) {
+          console.log('ssh: ' + d);
+        }).
+        on('close', function() {
+          done();
+          connection.end();
+        }).
+        stderr.on('data', function(data) { console.log('STDERR: ' + data); });
+    });
+  };
+
+  var stop = function(id, cb) {
+    var cmd = 'docker stop ' + id + ' && docker rm ' + id;
+
+    connection.exec(cmd, function(err, stream) {
+      if (err) { throw err ; }
+
+      stream.
+        on('data', function(d) {
+          console.log('ssh: ' + d);
+        }).
+        on('close', function() {
+          cb();
+        }).
+        stderr.on('data', function(data) { console.log('STDERR: ' + data); });
+    });
+  };
+
+
+  connection.on('ready', function() {
+    connection.exec('docker inspect ' + config.deploy.swellrt.name, function(err, stream) {
+      if (err) { throw err ; }
+
+      var data = '';
+
+      stream.
+        on('data', function(d) {
+          data += d;
+        }).
+        on('close', function() {
+          var container = JSON.parse(data)[0];
+
+          if (container) {
+            if (container.Config.Image === taggedImage) {
+              // Right image is deployed
+              console.log('swellrt already running');
+              done();
+              connection.end();
+            } else {
+              console.log('updating swellrt');
+              stop(container.Id, function() {
+                start();
+              });
+            }
+          } else {
+            console.log('swellrt not running');
+            start();
+          }
+        }).
+        stderr.on('data', function(data) { console.log('STDERR: ' + data); });
+    });
+  }).connect(config.deploy.swellrt.ssh);
+});
+
+gulp.task('deploy:files', function() {
   return gulp.src('./www/**/*')
-    .pipe(ghPages(config.deploy));
+    .pipe(ghPages(config.deploy.files));
+});
+
+gulp.task('deploy', function(done) {
+  var tasks = ['deploy:swellrt', 'deploy:files'];
+  seq(tasks, done);
 });
 
 /*============================================
