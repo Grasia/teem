@@ -31,7 +31,7 @@
   },
   "community": {
     "add_participant": "Añadir participante",
-    "new": {
+    "create": {
       "button": "Crear",
       "placeholder": "Nombre de la comunidad",
       "title": "Nueva comunidad"
