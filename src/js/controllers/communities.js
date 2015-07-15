@@ -24,7 +24,6 @@ angular.module('Pear2Pear')
     pear.onLoad(function(){
       $scope.communities = pear.communities.all();
       $scope.create = function() {
-        console.log('create', $scope.newCommunityName);
         pear.communities.create(
           { name: $scope.newCommunityName.text },
           function(community) {
