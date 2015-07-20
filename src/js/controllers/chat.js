@@ -11,7 +11,7 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/communities/:comId/projects/:id/chat', {
+      .when('/communities/:communityId/projects/:id/chat', {
         templateUrl: 'chat/show.html',
         controller: 'ChatCtrl'
       });
@@ -28,14 +28,15 @@ angular.module('Pear2Pear')
       }
     };
   })
-  .controller('ChatCtrl', ['pear', '$scope', '$rootScope', '$route', '$location', '$animate', '$filter', function(pear, $scope, $rootScope, $route, $location, $animate, $filter){
+  .controller('ChatCtrl', [
+              'pear', '$scope', '$rootScope', '$route', '$location', '$animate',
+              function(pear, $scope, $rootScope, $route, $location, $animate){
 
-    $scope.id = $route.current.params.id;
-    $scope.escapedComId = window.encodeURIComponent($route.current.params.comId);
-    $scope.comId = $filter('unescapeBase64')($route.current.params.comId);
+    $scope.urlId = pear.urlId;
+    $scope.communityId = $route.current.params.communityId;
 
     pear.onLoad(function(){
-      pear.projects.find($filter('unescapeBase64')($scope.id)).then(
+      pear.projects.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
         });
@@ -49,7 +50,7 @@ angular.module('Pear2Pear')
         return;
       }
 
-      pear.addChatMessage($scope.project.id, msg);
+      pear.addChatMessage(pear.urlId($scope.project.id), msg);
 
       $scope.newMsg = '';
     };
@@ -85,7 +86,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showPad = function() {
-      $location.path('/communities/' + $route.current.params.comId + '/projects/' + $route.current.params.id + '/pad');
+      $location.path('/projects/' + pear.urlId($route.current.params.id) + '/pad');
     };
 
     $scope.addToPad = function(txt) {
@@ -93,16 +94,5 @@ angular.module('Pear2Pear')
       p.newLine(p.size() - 1);
       p.insert(p.size() - 1, txt);
       $scope.showPad();
-    };
-
-    // Temporal way to destroy a project
-    $scope.destroyProject = function() {
-      var community = pear.communities
-        .find($scope.comId).projects.destroy($scope.project.id);
-    };
-
-    // Temporal way to destroy a community
-    $scope.destroyCommunity = function() {
-      var community = pear.communities.destroy($scope.comId);
     };
   }]);

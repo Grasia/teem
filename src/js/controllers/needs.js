@@ -11,18 +11,20 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/communities/:comId/projects/:id/needs', {
+      .when('/communities/:communityId/projects/:id/needs', {
         templateUrl: 'needs/index.html',
         controller: 'NeedsCtrl'
       });
   }])
-  .controller('NeedsCtrl', ['pear', '$scope', '$route', '$filter', function(pear, $scope, $route, $filter){
+  .controller('NeedsCtrl', [
+              'pear', '$scope', '$route',
+              function(pear, $scope, $route){
 
-    $scope.id = $route.current.params.id;
-    $scope.escapedComId = window.encodeURIComponent($route.current.params.comId);
+    $scope.urlId = pear.urlId;
+    $scope.communityId = $route.current.params.communityId;
 
     pear.onLoad(function(){
-      pear.projects.find($filter('unescapeBase64')($scope.id)).then(
+      pear.projects.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
         }

@@ -11,24 +11,28 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/communities/:comId/projects/:id/pad', {
+      .when('/communities/:communityId/projects/:id/pad', {
         templateUrl: 'pad/show.html',
         controller: 'PadCtrl'
       });
   }])
-  .controller('PadCtrl', ['pear', '$scope', '$route', '$location', '$filter', function(pear, $scope, $route, $location, $filter){
+  .controller('PadCtrl', [
+              'pear', '$scope', '$route', '$location',
+              function(pear, $scope, $route, $location){
 
-    $scope.escapedComId = window.encodeURIComponent($route.current.params.comId);
+    $scope.urlId = pear.urlId;
+    $scope.communityId = $route.current.params.communityId;
 
     pear.onLoad(function(){
-      pear.projects.find($filter('unescapeBase64')($route.current.params.id))
+      pear.projects.find($route.current.params.id)
         .then(function(proxy) {
           $scope.project = proxy;
         });
     });
 
     $scope.showChat = function() {
-      $location.path('/communities/' + $route.current.params.comId + '/projects/' + $route.current.params.id + '/chat');
+      //FIXME model prototype
+      $location.path('/projects/' + pear.urlId($scope.project.id) + '/chat');
     };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262

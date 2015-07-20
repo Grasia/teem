@@ -16,12 +16,14 @@ angular.module('Pear2Pear')
         controller: 'ProjectsCtrl'
       });
   }])
-  .controller('ProjectsCtrl', ['pear', '$scope', '$location', '$route', '$filter', function (pear, $scope, $location, $route, $filter) {
+  .controller('ProjectsCtrl', [
+              'pear', '$scope', '$location', '$route',
+              function (pear, $scope, $location, $route) {
 
-    $scope.comId = $filter('unescapeBase64')($route.current.params.id);
+    $scope.urlId= pear.urlId;
 
     pear.onLoad(function(){
-      var com = pear.communities.find($scope.comId);
+      var com = pear.communities.find($route.current.params.id);
       $scope.community = com.community;
       com.projects.all().then(
         function (projects){
@@ -30,16 +32,17 @@ angular.module('Pear2Pear')
 
       $scope.new_ = function () {
         pear.projects.create(function(p) {
-          var pId = $filter('escapeBase64')(p.id);
           $scope.community.projects.push(p.id);
-          $location.path('/communities/' + $route.current.params.id + '/projects/' + pId + '/pad/');
+
+          //FIXME model prototype
+          $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
         });
       };
     });
 
-    $scope.showProjectChat = function (id) {
-      var pId = $filter('escapeBase64')(id);
-      $location.path('/communities/' + $route.current.params.id + '/projects/' + pId + '/chat/');
+    $scope.showProjectChat = function(id) {
+      //FIXME model prototype
+      $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/chat');
     };
 
     // This function should belong to the model

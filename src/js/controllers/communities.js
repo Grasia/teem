@@ -15,11 +15,14 @@ angular.module('Pear2Pear')
         controller: 'CommunitiesCtrl'
       });
   }])
-  .controller('CommunitiesCtrl', ['$scope', 'pear', '$location', '$filter', function ($scope, pear, $location, $filter) {
+  .controller('CommunitiesCtrl', ['$scope', 'pear', '$location', function ($scope, pear, $location) {
 
     $scope.newCommunityName = {
       text : ''
     };
+
+    // FIXME: model prototype
+    $scope.urlId = pear.urlId;
 
     pear.onLoad(function(){
       $scope.communities = pear.communities.all();
@@ -35,6 +38,6 @@ angular.module('Pear2Pear')
     });
 
     $scope.showProjects = function(id) {
-      $location.path('/communities/' + $filter('escapeBase64')(id) + '/projects');
+      $location.path('/communities/' + pear.urlId(id) + '/projects');
     };
   }]);

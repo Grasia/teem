@@ -23,6 +23,7 @@ var config = {
       './bower_components/angular-ui-select/dist/select.js',
       './bower_components/angular-elastic/elastic.js',
       './bower_components/angular-bindonce/bindonce.js',
+      './bower_components/angular-utf8-base64/angular-utf8-base64.js',
       './bower_components/waypoints/waypoints.js',
       './bower_components/SHA-1/sha1.js',
       './bower_components/angulartics/src/angulartics.js',

@@ -22,7 +22,8 @@ angular
     'angulartics',
     'angulartics.piwik',
     'SwellRTService',
-    'hmTouchEvents'
+    'hmTouchEvents',
+    'ab-base64'
   ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.

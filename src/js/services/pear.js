@@ -10,10 +10,17 @@
  */
 
 angular.module('Pear2Pear')
-  .factory('pear', ['$rootScope', 'swellRT', '$q', '$timeout', function($rootScope, swellRT, $q, $timeout) {
+  .factory('pear', [
+           '$rootScope', 'swellRT', '$q', '$timeout', 'base64',
+           function($rootScope, swellRT, $q, $timeout, base64) {
 
     var proxy = {
       communities: {}
+    };
+
+    // FIXME model prototype
+    var urlId = function(id) {
+      return base64.encode(id);
     };
 
     // map of opened projects
@@ -27,8 +34,10 @@ angular.module('Pear2Pear')
         return proxy.communities;
       },
 
-      find: function(id) {
+      find: function(urlId) {
+        var id = base64.decode(urlId);
         var community = proxy.communities[id];
+
         return {
           community: community,
           projects: {
@@ -97,15 +106,20 @@ angular.module('Pear2Pear')
             }});
         });
       },
-      destroy: function(id) {
+      destroy: function(urlId) {
+        var id = base64.decode(urlId);
+
         delete proxy.communities[id];
-        return id;
+
+        return urlId;
       }
     };
 
     var projects = {
 
-      find: function(id) {
+      find: function(urlId) {
+        var id = base64.decode(urlId);
+
         def = $q.defer();
 
         if (!openedProjects[id]) {
@@ -202,6 +216,7 @@ angular.module('Pear2Pear')
       communities: communities,
       projects: projects,
       users: users,
+      urlId: urlId,
       addChatMessage: addChatMessage,
       onLoad: function(f) {
         def.promise.then(f);
