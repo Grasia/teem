@@ -20,6 +20,8 @@ angular.module('Pear2Pear')
 
     // FIXME model prototype
     var urlId = function(id) {
+      if (id === undefined) { return ''; }
+
       return base64.encode(id);
     };
 
