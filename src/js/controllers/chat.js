@@ -21,9 +21,12 @@ angular.module('Pear2Pear')
       if (scope.$last) {
         setTimeout(function() {
           var bottom = angular.element(element);
-          var scrollableContentController = bottom.controller('scrollableContent');
 
-          scrollableContentController.scrollTo(bottom);
+          if (bottom) {
+            var scrollableContentController = bottom.controller('scrollableContent');
+
+            scrollableContentController.scrollTo(bottom);
+          }
         }, 50);
       }
     };
