@@ -45,7 +45,7 @@ var config = {
     host: 'demo-swellrt.p2pvalue.eu',
     protocol: 'https://',
     // user and pass have to be credentials of an existing user in wave server
-    user : 'test@local.net',
+    user : 'test',
     pass : 'test',
     // WaveIds have to exist in wave server
     chatpadWaveId : 'local.net/gen+12345abcde1',
