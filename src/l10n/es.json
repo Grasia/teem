@@ -88,6 +88,8 @@
       }
     },
     "share": {
+      "title": "Comparte {{title}}",
+      "description": "Comparte el siguiente enlace para que más gente impulse el proyecto",
       "button": "Compartir"
     },
     "task_list_label": "Tareas del proyecto:",

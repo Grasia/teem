@@ -87,6 +87,8 @@
       }
     },
     "share": {
+      "title": "Share {{title}}",
+      "description": "Share this link with other people so they join this project",
       "button": "Share"
     },
     "task_list_label": "Project tasks:",
