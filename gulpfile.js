@@ -111,11 +111,11 @@ config.vendor.js.push(config.angularSwellrt.path + '/angular-swellrt.js');
 config.angularSwellrt.swellrt = require(config.angularSwellrt.path + '/swellrt.json');
 
 // Fill docker options
-if (!config.swellrt.docker.tag) {
+if (config.swellrt.docker && !config.swellrt.docker.tag) {
   config.swellrt.docker.tag = config.angularSwellrt.swellrt.version;
 }
 
-if (!config.deploy.swellrt.tag) {
+if (config.deploy && !config.deploy.swellrt.tag) {
   config.deploy.swellrt.tag = config.angularSwellrt.swellrt.version;
 }
 
