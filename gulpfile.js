@@ -494,6 +494,8 @@ gulp.task('deploy:swellrt', function(done) {
           console.log(data);
         }).
         on('close', function() {
+          console.log('data: ' + data);
+
           var container = JSON.parse(data)[0];
 
           if (container) {
