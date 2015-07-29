@@ -34,11 +34,13 @@ var config = {
       './bower_components/angular-sanitize/angular-sanitize.js',
       './bower_components/angular-animate/angular-animate.js',
       './bower_components/angular-toArrayFilter/toArrayFilter.js',
-      './bower_components/swiper/dist/js/swiper.js'
+      './bower_components/swiper/dist/js/swiper.js',
+      './bower_components/pear2pear-loading/js/pear2pear-loading.js'
     ],
 
     fonts: [
       './bower_components/font-awesome/fonts/fontawesome-webfont.*',
+      './bower_components/pear2pear-loading/fonts/pear2pear.*',
       './src/fonts/*'
     ]
   },
@@ -331,7 +333,6 @@ gulp.task('js', function() {
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
     .pipe(ngAnnotate())
-    .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.', {
       sourceMappingURLPrefix: '/js/'

@@ -33,6 +33,7 @@
     "it": false,
     "jasmine": false,
     "Modernizr": false,
+    "Pear2PearLoading": false,
     "prompt": false,
     "spyOn": false,
     "SwellRT": false,
