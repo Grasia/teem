@@ -491,6 +491,7 @@ gulp.task('deploy:swellrt', function(done) {
       stream.
         on('data', function(d) {
           data += d;
+          console.log(data);
         }).
         on('close', function() {
           var container = JSON.parse(data)[0];
