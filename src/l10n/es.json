@@ -94,7 +94,7 @@
     },
     "task_list_label": "Tareas del proyecto:",
     "title" : {
-      "placeholder" : "Título del nuevo proyecto"
+      "placeholder" : "Proyecto sin titulo"
     },
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",

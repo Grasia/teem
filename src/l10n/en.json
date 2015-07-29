@@ -93,7 +93,7 @@
     },
     "task_list_label": "Project tasks:",
     "title" : {
-      "placeholder" : "New project title"
+      "placeholder" : "Project without a title"
     },
     "project_name": "Project name",
     "project_status": "Status",
