@@ -162,7 +162,7 @@ angular.module('Pear2Pear')
         return window.sessionStorage.getItem('userId');
       },
       setCurrent: function(name) {
-        return window.sessionStorage.setItem('userId', name);
+        return window.sessionStorage.setItem('userId', name.trim());
       },
       isCurrent: function(user) {
         return user === users.current();
