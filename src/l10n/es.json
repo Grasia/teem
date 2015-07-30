@@ -47,7 +47,8 @@
     },
     "name": "Nombre de la comunidad",
     "participants": "Gente en la comunidad",
-    "searchCreate": "Busca o crea tu comunidad"
+    "searchCreate": "Busca o crea tu comunidad",
+    "communities": "Comunidades"
   },
   "login": {
     "button": "Entrar",
@@ -99,7 +100,8 @@
     },
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
-    "project_description": "Descripción"
+    "project_description": "Descripción",
+    "projects": "Proyectos"
   },
   "timeline": {
     "show": {

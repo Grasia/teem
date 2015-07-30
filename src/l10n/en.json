@@ -45,7 +45,9 @@
     },
     "leave": "Leave this community",
     "name": "Community name",
-    "participants": "People in the community"
+    "participants": "People in the community",
+    "searchCreate": "Search or create your community",
+    "communities": "Communities"
   },
   "login": {
     "button": "Login",
@@ -97,7 +99,8 @@
     },
     "project_name": "Project name",
     "project_status": "Status",
-    "project_description": "Description"
+    "project_description": "Description",
+    "projects": "Projects"
   },
   "timeline": {
     "show": {
