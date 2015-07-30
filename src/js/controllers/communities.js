@@ -18,7 +18,7 @@ angular.module('Pear2Pear')
   .controller('CommunitiesCtrl', ['$scope', 'pear', '$location', function ($scope, pear, $location) {
 
     $scope.newCommunityName = {
-      text : ''
+      name : ''
     };
 
     // FIXME: model prototype
@@ -26,9 +26,9 @@ angular.module('Pear2Pear')
 
     pear.onLoad(function(){
       $scope.communities = pear.communities.all();
-      $scope.create = function() {
+      $scope.create = function(name) {
         pear.communities.create(
-          { name: $scope.newCommunityName.text },
+          { name: name || $scope.newCommunityName.name },
           function(community) {
             $scope.showProjects(community.community.id);
             

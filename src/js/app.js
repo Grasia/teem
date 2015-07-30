@@ -23,7 +23,8 @@ angular
     'angulartics.piwik',
     'SwellRTService',
     'hmTouchEvents',
-    'ab-base64'
+    'ab-base64',
+    'angular-toArrayFilter'
   ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.

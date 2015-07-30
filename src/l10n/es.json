@@ -46,7 +46,8 @@
       "title": "Mis comunidades"
     },
     "name": "Nombre de la comunidad",
-    "participants": "Gente en la comunidad"
+    "participants": "Gente en la comunidad",
+    "searchCreate": "Busca o crea tu comunidad"
   },
   "login": {
     "button": "Entrar",
