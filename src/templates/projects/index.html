@@ -39,7 +39,7 @@
                 <div class="project-support-action">
                   <h5>&nbsp;</h5>
                   <div class="project-support-btn" ng-if="! isPromoter(project)">
-                    <button class="btn" ng-class="isSupporter(project) ? 'btn-success' : 'btn-primary'" ng-click="toggleSupport(project); $event.stopPropagation();" translate>{{ isSupporter(project) ? 'project.section.support.btn.doing' : 'project.section.support.btn.do' }}</button>
+                    <button class="btn btn-default" ng-class="isSupporter(project) ? 'active' : ''" ng-click="toggleSupport(project); $event.stopPropagation();" translate>{{ isSupporter(project) ? 'project.section.support.btn.doing' : 'project.section.support.btn.do' }}</button>
                   </div>
                 </div>
               </div>
