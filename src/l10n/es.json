@@ -67,7 +67,8 @@
   "pad": {
     "nav": {
       "title": "Pad"
-    }
+    },
+    "placeholder": "Empieza escribiendo la descripción el proyecto en este documento colaborativo"
   },
   "project": {
     "edit": {
