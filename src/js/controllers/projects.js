@@ -126,6 +126,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.emptyProjects = function(){
-      return $scope.projects && (!$scope.projects || Object.keys($scope.projects).length === 0);
+      return $scope.projects && (Object.keys($scope.projects).length === 0);
     };
+
   }]);
