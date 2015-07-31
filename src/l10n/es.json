@@ -101,7 +101,8 @@
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
     "project_description": "Descripción",
-    "projects": "Proyectos"
+    "projects": "Proyectos",
+    "create_first_project": "Crea el primer proyecto"
   },
   "timeline": {
     "show": {

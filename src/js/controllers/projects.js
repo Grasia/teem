@@ -124,4 +124,8 @@ angular.module('Pear2Pear')
         project.supporters.push(pear.users.current());
       }
     };
+
+    $scope.emptyProjects = function(){
+      return $scope.projects && (!$scope.projects || Object.keys($scope.projects).length === 0);
+    };
   }]);

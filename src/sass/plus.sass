@@ -1,8 +1,10 @@
-.new-item
-  position: absolute
-  bottom: 15px
-  right: 15px
+.new-item-basic
   color: $button-primary-color
   font-size: 4em
 
 
+.new-item
+  @extend .new-item-basic
+  position: absolute
+  bottom: 15px
+  right: 15px

@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div class="section projects">
+<div id="projects" class="section projects">
   <div class="scrollable">
     <div class="scrollable-content">
       <div class="list-group">
@@ -51,11 +51,18 @@
             </div>
           </div>
         </div>
+        <div ng-show="emptyProjects()" class="project-item list-group-item" style="text-align: center">
+          <div class="new-item-basic new-project">
+            <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
+          </div>
+          <span class="tip" translate>
+            project.create_first_project
+          </span>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="new-item new-project">
+<div ng-hide="emptyProjects()" class="new-item new-project">
   <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
 </div>

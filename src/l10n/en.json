@@ -100,7 +100,8 @@
     "project_name": "Project name",
     "project_status": "Status",
     "project_description": "Description",
-    "projects": "Projects"
+    "projects": "Projects",
+    "create_first_project": "Create the first project"
   },
   "timeline": {
     "show": {
