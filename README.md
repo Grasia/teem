@@ -147,5 +147,5 @@ development server.
 
 ## Contact
 
-For more information on AngularJS please check out http://p2pvalue.eu/
+For more information on P2Pvalue project please check out http://p2pvalue.eu/
 
