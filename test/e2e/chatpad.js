@@ -76,7 +76,7 @@ describe('Pear2Pear', function() {
       element(editTitle).sendKeys('Testing');
 
       element(by.css('#pad .swellrt-editor')).click();
-      element(by.css('#pad .wave-editor-on')).sendKeys('Grow your community with Pear2Pear');
+      element(by.css('#pad .swellrt-editor')).sendKeys('Grow your community with Pear2Pear');
 
       element(by.css('a.nav-chat')).click();
 
