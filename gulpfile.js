@@ -492,10 +492,10 @@ gulp.task('deploy:swellrt', function(done) {
       stream.
         on('data', function(d) {
           data += d;
-          console.dir(data);
+          console.dir('on data: ' + data);
         }).
         on('close', function() {
-          console.dir('data: ' + data);
+          console.dir('on close: ' + data);
 
           var container = JSON.parse(data)[0];
 
