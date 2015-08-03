@@ -5,7 +5,11 @@
 <div id="communities" class="section communities">
   <div class="scrollable">
       <div class="scrollable-content">
-        <input  type="text" class="form-control navbar-search" ng-model="newCommunityName.name" translate placeholder="{{ 'community.search.placeholder' | translate }}">
+        <div class="input-group input-group-lg community-search">
+          <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+          <input  type="text" class="form-control" ng-model="newCommunityName.name" translate placeholder="{{ 'community.search.placeholder' | translate }}">
+        </div>
+
         <div class="list-group">
           <div class="community-item list-group-item" ng-repeat="community in communities | toArray:true | filter:newCommunityName:strict" ng-click="showProjects(community.id)">
             <h4 class="community-title" ng-bind-html="community.name | highlight:newCommunityName.name">
