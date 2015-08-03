@@ -74,6 +74,7 @@
   },
   "project": {
     "create": {
+      "description": "Pear2Pear es una herramienta fantástica para explicar tus propuestas a tu comunidad, trabajar en ellas de forma colaborativa e involucrar a más gente", 
       "tip": "Crea el primer proyecto"
     },
     "edit": {

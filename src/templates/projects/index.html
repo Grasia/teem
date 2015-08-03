@@ -51,13 +51,16 @@
             </div>
           </div>
         </div>
-        <div ng-show="emptyProjects()" class="project-item list-group-item" style="text-align: center">
-          <div class="new-item-basic new-project">
-            <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
+        <div ng-show="emptyProjects()" class="project-item list-group-item">
+          <div class="new-project-description" translate>project.create.description</div>
+          <div class="text-center">
+            <div class="new-item-basic new-project">
+              <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
+            </div>
+            <div class="tip" translate>
+              project.create.tip
+            </div>
           </div>
-          <span class="tip" translate>
-            project.create.tip
-          </span>
         </div>
       </div>
     </div>
