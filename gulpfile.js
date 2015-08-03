@@ -441,7 +441,7 @@ gulp.task('deploy:swellrt', function(done) {
   var taggedImage = config.deploy.swellrt.image + ':' + config.deploy.swellrt.tag,
       connection = new ssh();
 
-  var start = function() {
+  function start() {
     var cmd = 'docker run ' +
       config.deploy.swellrt.args +
       ' --name ' + config.deploy.swellrt.name +
@@ -463,9 +463,9 @@ gulp.task('deploy:swellrt', function(done) {
         }).
         stderr.on('data', function(data) { console.log('STDERR: ' + data); });
     });
-  };
+  }
 
-  var stop = function(id, cb) {
+  function stop(id, cb) {
     var cmd = 'docker stop ' + id + ' && docker rm ' + id;
 
     connection.exec(cmd, function(err, stream) {
@@ -480,7 +480,7 @@ gulp.task('deploy:swellrt', function(done) {
         }).
         stderr.on('data', function(data) { console.log('STDERR: ' + data); });
     });
-  };
+  }
 
 
   connection.on('ready', function() {
