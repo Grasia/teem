@@ -32,7 +32,6 @@
   "community": {
     "add_participant": "Añadir participante",
     "create": {
-    "create": {
       "button": "Crear \"{{name}}\"",
       "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!"
     },
