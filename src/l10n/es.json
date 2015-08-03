@@ -73,6 +73,9 @@
     "placeholder": "Empieza escribiendo la descripción del proyecto en este documento colaborativo, para que otras participantes conozcan el proyecto y se involucren en él"
   },
   "project": {
+    "create": {
+      "tip": "Crea el primer proyecto"
+    },
     "edit": {
       "button": "Editar",
       "title": "Editar proyecto"
@@ -103,8 +106,7 @@
     },
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
-    "project_description": "Descripción",
-    "create_first_project": "Crea el primer proyecto"
+    "project_description": "Descripción"
   },
   "timeline": {
     "show": {

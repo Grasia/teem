@@ -71,6 +71,9 @@
     "placeholder": "Start writting your project description in this collaborative document pad, so other participants know about your project and join it"
   },
   "project": {
+    "create": {
+      "tip": "Create the first project"
+    },
     "edit": {
       "button": "Edit",
       "title": "Edit project"
@@ -101,8 +104,7 @@
     },
     "project_name": "Project name",
     "project_status": "Status",
-    "project_description": "Description",
-    "create_first_project": "Create the first project"
+    "project_description": "Description"
   },
   "timeline": {
     "show": {
