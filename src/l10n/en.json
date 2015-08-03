@@ -46,7 +46,9 @@
     "leave": "Leave this community",
     "name": "Community name",
     "participants": "People in the community",
-    "searchCreate": "Search or create your community",
+    "search": {
+      "placeholder": "Search or create your community"
+    },
     "communities": "Communities"
   },
   "login": {

@@ -47,7 +47,9 @@
     },
     "name": "Nombre de la comunidad",
     "participants": "Gente en la comunidad",
-    "searchCreate": "Busca o crea tu comunidad",
+    "search": {
+      "placeholder": "Busca o crea tu comunidad"
+    },
     "communities": "Comunidades"
   },
   "login": {
