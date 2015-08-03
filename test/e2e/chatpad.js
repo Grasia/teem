@@ -42,18 +42,11 @@ describe('Pear2Pear', function() {
       }, timeout);
 
 
-      var newCommunityButton = by.css('.new-community a');
+      var communitySearchInput = by.css('.community-search input');
+      element(communitySearchInput).sendKeys('Testing Community');
+
+      var newCommunityButton = by.css('.new-community-item button');
       element(newCommunityButton).click();
-
-      var newCommunityName = by.css('.new-community-name');
-
-      browser.wait(function(){
-        return browser.isElementPresent(newCommunityName);
-      });
-
-      element(newCommunityName).sendKeys('Testing Community');
-
-      element(by.css('.create-community-btn')).click();
 
       var projectList = by.css('.projects');
 

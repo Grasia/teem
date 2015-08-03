@@ -15,39 +15,13 @@
             <h4 class="community-title" ng-bind-html="community.name | highlight:newCommunityName.name">
             </h4>
           </div>
-          <div ng-if="newCommunityName.name" class="community-item list-group-item" ng-click="create(newCommunityName.name)">
-            <h4 class="community-title">
-              <strong> {{ 'common.create' | translate }} </strong> '{{ newCommunityName.name }}'
-            </h4>
+          <div ng-if="newCommunityName.name" class="new-community-item community-item list-group-item">
+            <div class="new-community-description" translate>community.create.description</div>
+            <button class="btn btn-primary btn-block btn-lg" ng-click="create(newCommunityName.name)">
+              <i class="fa fa-plus-circle"></i>
+              <span translate translate-values="{ name: '{{newCommunityName.name}}' }">community.create.button</span>
+            </button>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="new-item new-community">
-  <a ui-turn-on="modalCreate"><i class="fa fa-plus-circle"></i></a>
-</div>
-
-<div ui-content-for="modals">
-  <div class="modal" ui-if="modalCreate" ui-state="modalCreate">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close"
-                  ui-turn-off="modalCreate">&times;</button>
-          <h4 class="modal-title" translate>community.create.title</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <input type="text" class="form-control new-community-name" placeholder="{{'community.create.placeholder' | translate}}" ng-model="newCommunityName.text">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary create-community-btn" ng-click="create()" translate>community.create.button</button>
         </div>
       </div>
     </div>

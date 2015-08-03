@@ -32,9 +32,9 @@
   "community": {
     "add_participant": "Añadir participante",
     "create": {
-      "button": "Crear",
-      "placeholder": "Nombre de la comunidad",
-      "title": "Nueva comunidad"
+    "create": {
+      "button": "Crear \"{{name}}\"",
+      "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!"
     },
     "edit": "Editar",
     "leave": "Abandonar esta comunidad",

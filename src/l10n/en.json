@@ -32,9 +32,8 @@
   "community": {
     "add_participant": "Add participant",
     "create": {
-      "button": "Create",
-      "placeholder": "Community name",
-      "title": "New community"
+      "button": "Create \"{{name}}\"",
+      "description": "Can't you find what you were looking for? Register your community!"
     },
     "edit": {
       "button": "Edit",
