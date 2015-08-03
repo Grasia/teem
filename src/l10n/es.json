@@ -78,7 +78,7 @@
       "title": "Editar proyecto"
     },
     "index": {
-      "title": "Crowddoing"
+      "title": "Proyectos"
     },
     "section": {
       "needs": {
@@ -104,7 +104,6 @@
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
     "project_description": "Descripción",
-    "projects": "Proyectos",
     "create_first_project": "Crea el primer proyecto"
   },
   "timeline": {
