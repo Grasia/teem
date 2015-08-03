@@ -5,9 +5,6 @@
 <div id="communities" class="section communities">
   <div class="scrollable">
       <div class="scrollable-content">
-        <!-- <div id="search-communities" translate> -->
-        <!--   community.searchCreate -->
-        <!-- </div> -->
         <input  type="text" class="form-control navbar-search" ng-model="newCommunityName.name" translate placeholder="{{ 'community.searchCreate' | translate }}">
         <div class="list-group">
           <div class="community-item list-group-item" ng-repeat="community in communities | toArray:true | filter:newCommunityName:strict" ng-click="showProjects(community.id)">
