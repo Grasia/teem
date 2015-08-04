@@ -495,7 +495,6 @@ gulp.task('deploy:swellrt', function(done) {
           console.dir('on data: ' + data);
         }).
         on('close', function() {
-          setTimeout(function() {
           console.dir('on close: ' + data);
 
           var container = JSON.parse(data)[0];
@@ -516,7 +515,6 @@ gulp.task('deploy:swellrt', function(done) {
             console.log('swellrt not running');
             start();
           }
-          }, 5000);
         }).
         stderr.on('data', function(data) { console.log('STDERR: ' + data); });
     });
