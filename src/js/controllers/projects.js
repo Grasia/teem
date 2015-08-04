@@ -38,6 +38,11 @@ angular.module('Pear2Pear')
           $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
         });
       };
+      $scope.destroy = function() {
+        pear.communities.destroy(pear.urlId($scope.community.id));
+
+        $location.path('/communities');
+      };
     });
 
     $scope.showProjectPad = function(id) {
