@@ -38,7 +38,7 @@
                 <div class="project-support">
                   <h5 translate>project.section.support.title</h5>
                   <div class="project-support-number">
-                    {{ supporterCount(project) }} 
+                    {{ supporterCount(project) }}
                   </div>
                 </div>
                 <div class="project-support-action">
@@ -52,14 +52,11 @@
           </div>
         </div>
         <div ng-show="emptyProjects()" class="project-item list-group-item">
-          <div class="new-project-description" translate>project.create.description</div>
-          <div class="text-center">
-            <div class="new-item-basic new-project">
-              <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
-            </div>
-            <div class="tip" translate>
-              project.create.tip
-            </div>
+          <div class="new-project-description tip" translate>project.create.tip</div>
+          <button class="btn btn-primary btn-block btn-lg" ng-click="new_()">
+            <i class="fa fa-plus-circle"></i>
+            <span translate translate-values="{ name: '{{newCommunityName.name}}' }">project.create.button</span>
+          </button>
           </div>
         </div>
       </div>
