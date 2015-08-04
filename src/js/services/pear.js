@@ -18,6 +18,11 @@ angular.module('Pear2Pear')
       communities: {}
     };
 
+    var DATATYPES = {
+      PROJECT: 'PROJECT',
+      COMMUNITY: 'COMMUNITY'
+    };
+
     // FIXME model prototype
     var urlId = function(id) {
       if (id === undefined) { return ''; }
@@ -39,30 +44,63 @@ angular.module('Pear2Pear')
       find: function(urlId) {
         var id = base64.decode(urlId);
         var community = proxy.communities[id];
-
+        var allSnapshot = function(){
+              var foundProjects = $q.defer();
+              SwellRT.query(
+                {
+                  'root.type': DATATYPES.PROJECT,
+                  'root.communities': id,
+                  $or: [
+                    {'root.private': 'false'},
+                    {'root.supporters': users.current()},
+                    {'root.contributors': users.current()}
+                  ]
+                },
+                function(result){
+                  console.log(JSON.stringify(result));
+                  var projs = [];
+                  angular.forEach(result.result, function(val) {
+                    console.log(val.root);
+                    projs.push(val.root);
+                  });
+                 foundProjects.resolve(projs);
+                },
+                function(e){
+                  foundProjects.reject(e);
+                }
+              );
+              return foundProjects.promise;
+            };
         return {
           community: community,
           projects: {
+
+            allSnapshot: allSnapshot,
+
             all: function() {
-              var promises = {};
-              angular.forEach(community.projects, function(val){
-                var projDef = $q.defer();
-                promises[val] = projDef.promise;
-                if (!openedProjects[val]){
-                  window.SwellRT.openModel(val, function(model){
-                    $timeout(function(){
-                      var pr = swellRT.proxy(model);
-                      openedProjects[val] = pr;
-                      projDef.resolve(pr);
-                    });
+              var projsDef = $q.defer();
+              allSnapshot().then(function(all){
+                var promises = {};
+                if (all.length > 0){
+                  angular.forEach(all, function(val){
+                    var projDef = $q.defer();
+                    console.log(val);
+                    promises[val.id] = projDef.promise;
+                    if (!openedProjects[val.id]){
+                      projects.find(base64.encode(val.id)).then(function(model){
+                        $timeout(function(){
+                          openedProjects[val.id] = model;
+                          projDef.resolve(model);
+                        });
+                      });
+                    } else {
+                      projDef.resolve(openedProjects[val.id]);
+                    }
                   });
-                } else {
-                  projDef.resolve(openedProjects[val]);
-                }
+                } else projsDef.resolve([]);
               });
 
-              var projsDef = $q.all(promises);
-              return projsDef;
+              return projsDef.promise;
             },
             destroy: function(projId){
               var i = community.projects.indexOf(projId);
@@ -76,6 +114,7 @@ angular.module('Pear2Pear')
       create: function(data, callback) {
         var id = window.SwellRT.createModel(function(model){
           var p = swellRT.proxy(model);
+          p.type = DATATYPES.COMMUNITY;
           p.name = data.name;
           p.id = id;
           p.projects = [];
@@ -139,21 +178,41 @@ angular.module('Pear2Pear')
       },
       create: function(callback) {
         var id = window.SwellRT.createModel(function(model){
-          var p = {
-            proj : {}
-          };
+
+          model.addParticipant('@' + SwellRTConfig.waveServerDomain,
+                                null,
+                                function(err){
+                                  console.log('ERROR: ' + err);
+                                }
+                              );
+
           proxy.proj = swellRT.proxy(model);
           $timeout(function(){
-            proxy.proj['id'] = id;
-            proxy.proj['title'] = '';
-            proxy.proj['chat'] = [];
-            proxy.proj['pad'] = new swellRT.TextObject();
-            proxy.proj['needs'] = [];
-            proxy.proj['promoter'] = users.current();
+            proxy.proj.type = DATATYPES.PROJECT;
+            proxy.proj.communities = (communityId) ? [communityId] : [];
+            proxy.proj.id = id;
+            proxy.proj.title = '';
+            proxy.proj.chat = [];
+            proxy.proj.pad = new swellRT.TextObject();
+            proxy.proj.needs = [];
+            proxy.proj.promoter = users.current();
+            proxy.proj.supporters = [];
+            proxy.proj.contributors = [];
+            proxy.proj.private = 'false';
             openedProjects[id] = proxy.proj;
             callback(proxy.proj);
           });
         });
+      },
+
+      /* changes the visibility of the project with base64 id 'projId'
+         to private if called with true or public if called with false */
+      setVisiblility: function(projId, setPrivate){
+        project.find(
+          projId,
+          function(project){
+            project.private = setPrivate.toString();
+          });
       }
     };
 
@@ -184,6 +243,28 @@ angular.module('Pear2Pear')
       }, function(error){
         console.log(error);
       });
+    };
+
+    var toggleSupport = function(projectId) {
+      console.log(projectId);
+      projects.find(base64.encode(projectId)).then(
+        function(model){
+          console.log(model);
+          var index = model.supporters.indexOf(users.current());
+
+          $timeout(function(){
+            if (index > -1) {
+              model.supporters.splice(index, 1);
+            } else {
+              model.supporters.push(users.current());
+              console.log(model.supporters);
+            }
+          });
+        },
+        function(error){
+          console.log(error);
+        }
+      );
     };
 
     window.onSwellRTReady = function () {
@@ -222,6 +303,7 @@ angular.module('Pear2Pear')
       users: users,
       urlId: urlId,
       addChatMessage: addChatMessage,
+      toggleSupport: toggleSupport,
       onLoad: function(f) {
         def.promise.then(f);
       }

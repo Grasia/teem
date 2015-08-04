@@ -27,6 +27,7 @@ angular.module('Pear2Pear')
       $scope.community = com.community;
       com.projects.all().then(
         function (projects){
+          console.log("all projects:", projects);
           $scope.projects = projects;
         });
 
@@ -93,23 +94,11 @@ angular.module('Pear2Pear')
 
     $scope.supporterCount = function(project) {
       // Migrate project.support
-      if (project.supporters === undefined) {
-        project.supporters = [];
-
-        return 0;
-      }
-
       return project.supporters.length;
     };
 
     $scope.isSupporter = function(project) {
       // Migrate project.support
-      if (project.supporters === undefined) {
-        project.supporters = [];
-
-        return false;
-      }
-
       return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
     };
 
@@ -121,6 +110,7 @@ angular.module('Pear2Pear')
         return;
       }
 
+      pear.toggleSupport(project.id);
       var index = project.supporters.indexOf(pear.users.current());
 
       if (index > -1) {
