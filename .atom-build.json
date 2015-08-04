@@ -1,0 +1,5 @@
+{
+  "cmd": "gulp",
+  "name": "Gulp!",
+  "sh": true
+}
