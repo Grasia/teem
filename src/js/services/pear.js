@@ -269,7 +269,7 @@ angular.module('Pear2Pear')
 
     window.onSwellRTReady = function () {
       window.SwellRT.startSession(
-        "http://demo.swellrt.org", SwellRT.user.ANONYMOUS, "",
+        SwellRTConfig.server, SwellRT.user.ANONYMOUS, "",
         function() {
           // Open Community List
           window.SwellRT.openModel(
