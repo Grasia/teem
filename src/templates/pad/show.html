@@ -9,3 +9,20 @@
 <div id="pad" class="section pad" hm-swiperight="showChat()">
   <div class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}"></div>
 </div>
+
+
+<!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
+<div ui-content-for="modals2">
+  <div class="modal modal-overlay" ui-if="projectTitleReminder" ui-state="projectTitleReminder">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <span translate>project.title.reminder.body
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

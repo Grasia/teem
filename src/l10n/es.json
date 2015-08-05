@@ -102,7 +102,11 @@
     },
     "task_list_label": "Tareas del proyecto:",
     "title" : {
-      "placeholder" : "Proyecto sin titulo"
+      "placeholder" : "Proyecto sin titulo",
+      "reminder": {
+        "button": "¡Hecho!",
+        "body": "Por favor, introduce un título para que otros participantes identifiquen la propuesta fácilmente"
+      }
     },
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",

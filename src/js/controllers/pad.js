@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('PadCtrl', [
-              'pear', '$scope', '$route', '$location',
-              function(pear, $scope, $route, $location){
+              'pear', '$rootScope', '$scope', '$route', '$location', 'SharedState',
+              function(pear, $rootScope, $scope, $route, $location, SharedState){
 
     $scope.urlId = pear.urlId;
     $scope.communityId = $route.current.params.communityId;
@@ -39,5 +39,20 @@ angular.module('Pear2Pear')
     $scope.nav = function(id) {
       return id === 'pad' ? 'active' : '';
     };
+
+    $scope.titleReminder = function titleReminder() {
+      SharedState.turnOff('projectTitleReminder');
+
+      document.querySelector('.project-title input').focus();
+    };
+
+    // Do not leave pad without giving a title to the project
+    $rootScope.$on('$routeChangeStart', function(event) {
+      if ($scope.project.title === undefined || $scope.project.title === '') {
+        event.preventDefault();
+
+        SharedState.turnOn('projectTitleReminder');
+      }
+    });
 
   }]);

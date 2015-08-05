@@ -101,7 +101,11 @@
     },
     "task_list_label": "Project tasks:",
     "title" : {
-      "placeholder" : "Project without a title"
+      "placeholder" : "Project without a title",
+      "reminder": {
+        "button": "Got it!",
+        "body": "Please, introduce a title so other participants identify your project easily"
+      }
     },
     "project_name": "Project name",
     "project_status": "Status",
