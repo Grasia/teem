@@ -97,7 +97,10 @@ angular.module('Pear2Pear')
                       projDef.resolve(openedProjects[val.id]);
                     }
                   });
-                } else projsDef.resolve([]);
+                  projsDef.resolve($q.all(promises));
+                } else {
+                  projsDef.resolve([]);
+                }
               });
 
               return projsDef.promise;
@@ -176,7 +179,7 @@ angular.module('Pear2Pear')
         }
         return def.promise;
       },
-      create: function(callback) {
+      create: function(callback, communityId) {
         var id = window.SwellRT.createModel(function(model){
 
           model.addParticipant('@' + SwellRTConfig.waveServerDomain,

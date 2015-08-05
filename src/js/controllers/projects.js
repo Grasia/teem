@@ -37,7 +37,7 @@ angular.module('Pear2Pear')
 
           //FIXME model prototype
           $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
-        });
+        }, $scope.community.id)
       };
       $scope.destroy = function() {
         pear.communities.destroy(pear.urlId($scope.community.id));
