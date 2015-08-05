@@ -24,6 +24,8 @@ angular.module('Pear2Pear')
     $scope.$parent.hideNavigation = true;
     $scope.session = {};
 
+    $scope.loginRegexp = new RegExp('^[a-zA-Z\.]+$');
+
     $scope.create = function() {
       $scope.$parent.hideNavigation = false;
 
@@ -56,5 +58,4 @@ angular.module('Pear2Pear')
         $location.path('/timeline');
       }
     };
-    
   }]);

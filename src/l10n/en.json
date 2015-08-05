@@ -52,8 +52,9 @@
   },
   "login": {
     "button": "Login",
-    "name": "Name",
-    "tip": "Start entering your name",
+    "name": "Nickname",
+    "tip": "Start entering your nickname",
+    "error": "Please, choose a nickname composed by letters, numbers and dots",
     "welcome_msg": "Welcome to Pear to Pear. A tool to participate in your groups and communities"
   },
   "need": {
