@@ -24,7 +24,7 @@ angular.module('Pear2Pear')
     $scope.$parent.hideNavigation = true;
     $scope.session = {};
 
-    $scope.loginRegexp = new RegExp('^[a-zA-Z\.]+$');
+    $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
 
     $scope.login = function() {
       $scope.$parent.hideNavigation = false;

@@ -32,7 +32,9 @@ angular.module('Pear2Pear')
         pear.communities.create(
           { name: name || $scope.newCommunityName.name },
           function(community) {
-            $scope.showProjects(community.community.id);
+
+            $scope.showProjects(community.id);
+
           });
       };
     });
