@@ -130,16 +130,11 @@ angular.module('Pear2Pear')
                   angular.forEach(all, function(val){
                     var projDef = $q.defer();
                     promises[val.id] = projDef.promise;
-                    if (!openedProjects[val.id]){
-                      openedProjects[val.id] = projDef.promise;
-                      projects.find(base64.encode(val.id)).then(function(model){
-                        $timeout(function(){
-                          projDef.resolve(model);
-                        });
+                    projects.find(base64.encode(val.id)).then(function(model){
+                      $timeout(function(){
+                        projDef.resolve(model);
                       });
-                    } else {
-                      projDef.resolve(openedProjects[val.id]);
-                    }
+                    });
                   });
                   projsDef.resolve($q.all(promises));
                 } else {
@@ -182,9 +177,7 @@ angular.module('Pear2Pear')
 
     var findProjects = function(urlId) {
         var id = base64.decode(urlId);
-
         var def = $q.defer();
-
         if (!openedProjects[id]) {
           openedProjects[id] = def.promise;
           window.SwellRT.openModel(id, function(model){
@@ -227,7 +220,7 @@ angular.module('Pear2Pear')
             proxyProj.needs = [];
             proxyProj.promoter = users.current();
             proxyProj.supporters = [];
-            proxyProj.contributors = [];
+            proxyProj.contributors = [users.current()];
             proxyProj.shareMode = projects.shareMode.PUBLIC;
             var d = $q.defer();
             d.resolve(proxyProj);
@@ -302,19 +295,25 @@ angular.module('Pear2Pear')
 
     var startSession = function(userName, password, onSuccess, onError){
 
+      // if login with user Name, close previous anonimous session
+      if (userName){
+        window.SwellRT.stopSession();
+      }
       window.SwellRT.startSession(
         SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
-        onSuccess, onError);
+        function(){
+          SwellRT.on(SwellRT.events.NETWORK_CONNECTED, onSuccess);
+        }, onError);
     };
 
     window.onSwellRTReady = function () {
-      window.SwellRT.startSession(
-        SwellRTConfig.server, SwellRT.user.ANONYMOUS, "",
-        function() {
-          communities.all();
-          def.resolve(SwellRT);
+      startSession(null, null, function(){
+          $timeout(
+            function() {
+              communities.all();
+              def.resolve(SwellRT);
+            });
         },
-
         function(error) {
           console.log(error);
         });

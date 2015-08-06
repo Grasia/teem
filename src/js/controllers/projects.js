@@ -11,7 +11,7 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:id/projects', {
+      .when('/communities/:comId/projects', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       });
@@ -23,8 +23,7 @@ angular.module('Pear2Pear')
     $scope.urlId= pear.urlId;
 
     pear.onLoad(function(){
-      var com = pear.communities.find($route.current.params.id);
-
+      var com = pear.communities.find($route.current.params.comId);
       com.community.then(function(community){
         $scope.community = community;
       });
@@ -36,7 +35,6 @@ angular.module('Pear2Pear')
 
       $scope.new_ = function () {
         pear.projects.create(function(p) {
-          $scope.community.projects.push(p.id);
 
           //FIXME model prototype
           $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
