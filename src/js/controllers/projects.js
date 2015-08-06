@@ -24,10 +24,13 @@ angular.module('Pear2Pear')
 
     pear.onLoad(function(){
       var com = pear.communities.find($route.current.params.id);
-      $scope.community = com.community;
+
+      com.community.then(function(community){
+        $scope.community = community;
+      });
+
       com.projects.all().then(
         function (projects){
-          console.log("all projects:", projects);
           $scope.projects = projects;
         });
 
@@ -37,7 +40,7 @@ angular.module('Pear2Pear')
 
           //FIXME model prototype
           $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
-        }, $scope.community.id)
+        }, $scope.community.id);
       };
       $scope.destroy = function() {
         pear.communities.destroy(pear.urlId($scope.community.id));

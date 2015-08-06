@@ -26,13 +26,24 @@ angular.module('Pear2Pear')
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z\.]+$');
 
-    $scope.create = function() {
+    $scope.login = function() {
       $scope.$parent.hideNavigation = false;
 
-      // TODO change when user ids available;
-      pear.users.setCurrent($scope.name);
-
-      $location.path('/communities');
+      var startSession = function(){
+        // TODO change password when register is available
+        pear.startSession(
+          $scope.name, '$password$',
+          function(){
+            console.log('success!');
+            pear.users.setCurrent($scope.name + '@' + SwellRTConfig.swellrtServerDomain);
+            $location.path('/communities');
+          },
+          function(error){
+            console.log(error);
+          }
+        );
+      };
+      pear.registerUser($scope.name, '$password$', startSession, startSession);
     };
 
     $scope.userData = function () {

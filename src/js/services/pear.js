@@ -15,7 +15,6 @@ angular.module('Pear2Pear')
            function($rootScope, swellRT, $q, $timeout, base64) {
 
     var proxy = {
-      communities: {}
     };
 
     var DATATYPES = {
@@ -34,33 +33,57 @@ angular.module('Pear2Pear')
     var openedProjects = {};
 
     var def = $q.defer();
+    var defCommunities = $q.defer();
 
     var communities = {
 
       all: function() {
-        return proxy.communities;
+        if (!proxy.communities) {
+          window.SwellRT.openModel(
+            SwellRTConfig.communityListWaveId,
+            function(model) {
+              proxy.communities = swellRT.proxy(model);
+
+              if (!proxy.communities){
+                proxy['communities'] = {};
+              }
+            defCommunities.resolve(proxy.communities);
+            },
+            function(error){
+              defCommunities.reject(error);
+            });
+        }
+        return defCommunities.promise;
       },
 
       find: function(urlId) {
+
         var id = base64.decode(urlId);
-        var community = proxy.communities[id];
+        var comDef = $q.defer();
+        var community = comDef.promise;
+
+        defCommunities.promise.then(function(communities){
+          comDef.resolve(
+          communities[id]);
+        });
+
         var allSnapshot = function(){
               var foundProjects = $q.defer();
               SwellRT.query(
                 {
                   'root.type': DATATYPES.PROJECT,
                   'root.communities': id,
-                  $or: [
-                    {'root.private': 'false'},
-                    {'root.supporters': users.current()},
-                    {'root.contributors': users.current()}
-                  ]
+                  $and: [{
+                    $or: [
+                      {'root.private': 'false'},
+                      {'root.supporters': users.current()},
+                      {'root.contributors': users.current()}
+                    ]
+                  }]
                 },
                 function(result){
-                  console.log(JSON.stringify(result));
                   var projs = [];
                   angular.forEach(result.result, function(val) {
-                    console.log(val.root);
                     projs.push(val.root);
                   });
                  foundProjects.resolve(projs);
@@ -84,7 +107,6 @@ angular.module('Pear2Pear')
                 if (all.length > 0){
                   angular.forEach(all, function(val){
                     var projDef = $q.defer();
-                    console.log(val);
                     promises[val.id] = projDef.promise;
                     if (!openedProjects[val.id]){
                       projects.find(base64.encode(val.id)).then(function(model){
@@ -121,7 +143,10 @@ angular.module('Pear2Pear')
           p.name = data.name;
           p.id = id;
           p.projects = [];
-          proxy.communities[id] = p;
+          defCommunities.promise.then(
+            function(comms){
+              comms[id] = p;
+            });
           callback({
             community: p,
             projects: {
@@ -153,7 +178,9 @@ angular.module('Pear2Pear')
       destroy: function(urlId) {
         var id = base64.decode(urlId);
 
-        delete proxy.communities[id];
+        defCommunities.promise.then(function(comms){
+          delete comms[id];
+        });
 
         return urlId;
       }
@@ -172,6 +199,7 @@ angular.module('Pear2Pear')
             openedProjects[id] = pr;
             def.resolve(openedProjects[id]);
           }, function(error){
+            console.log(error);
             def.reject(error);
           });
         } else {
@@ -182,7 +210,7 @@ angular.module('Pear2Pear')
       create: function(callback, communityId) {
         var id = window.SwellRT.createModel(function(model){
 
-          model.addParticipant('@' + SwellRTConfig.waveServerDomain,
+          model.addParticipant('@' + SwellRTConfig.swellrtServerDomain,
                                 null,
                                 function(err){
                                   console.log('ERROR: ' + err);
@@ -211,7 +239,7 @@ angular.module('Pear2Pear')
       /* changes the visibility of the project with base64 id 'projId'
          to private if called with true or public if called with false */
       setVisiblility: function(projId, setPrivate){
-        project.find(
+        projects.find(
           projId,
           function(project){
             project.private = setPrivate.toString();
@@ -249,10 +277,8 @@ angular.module('Pear2Pear')
     };
 
     var toggleSupport = function(projectId) {
-      console.log(projectId);
       projects.find(base64.encode(projectId)).then(
         function(model){
-          console.log(model);
           var index = model.supporters.indexOf(users.current());
 
           $timeout(function(){
@@ -260,7 +286,6 @@ angular.module('Pear2Pear')
               model.supporters.splice(index, 1);
             } else {
               model.supporters.push(users.current());
-              console.log(model.supporters);
             }
           });
         },
@@ -270,24 +295,24 @@ angular.module('Pear2Pear')
       );
     };
 
+    var registerUser = function(userName, password, onSuccess, onError){
+      window.SwellRT.registerUser(SwellRTConfig.server, userName, password, onSuccess, onError);
+    };
+
+    var startSession = function(userName, password, onSuccess, onError){
+
+      window.SwellRT.startSession(
+        SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
+        onSuccess, onError);
+    };
+
     window.onSwellRTReady = function () {
       window.SwellRT.startSession(
         SwellRTConfig.server, SwellRT.user.ANONYMOUS, "",
         function() {
-          // Open Community List
-          window.SwellRT.openModel(
-            SwellRTConfig.communityListWaveId,
-            function(model) {
-              proxy.communities = swellRT.proxy(model);
-              if (!proxy.communities){
-                proxy['communities'] = {};
-              }
-              def.resolve(proxy.model);
-            },
-            function(error){
-              console.log(error);
-            });
-          },
+          communities.all();
+          def.resolve(SwellRT);
+        },
 
         function(error) {
           console.log(error);
@@ -307,6 +332,8 @@ angular.module('Pear2Pear')
       urlId: urlId,
       addChatMessage: addChatMessage,
       toggleSupport: toggleSupport,
+      startSession: startSession,
+      registerUser: registerUser,
       onLoad: function(f) {
         def.promise.then(f);
       }
