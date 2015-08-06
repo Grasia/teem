@@ -99,7 +99,13 @@
     "share": {
       "title": "Comparte {{title}}",
       "description": "Comparte el siguiente enlace para que más gente impulse el proyecto",
-      "button": "Compartir"
+      "button": "Compartir",
+      "mode" : {
+        "description": "Elige cómo compartir este proyecto",
+        "public": "Público",
+        "link": "Enlace (link)",
+        "invite": "Por invitación"
+      }
     },
     "task_list_label": "Tareas del proyecto:",
     "title" : {

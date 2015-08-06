@@ -98,7 +98,13 @@
     "share": {
       "title": "Share {{title}}",
       "description": "Share this link with other people so they join this project",
-      "button": "Share"
+      "button": "Share",
+      "mode" : {
+        "description": "Elige cómo compartir este proyecto",
+        "public": "Público",
+        "link": "Enlace (link)",
+        "invite": "Por invitación"
+      }
     },
     "task_list_label": "Project tasks:",
     "title" : {

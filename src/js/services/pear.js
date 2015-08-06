@@ -31,9 +31,9 @@ angular.module('Pear2Pear')
 
     // map of opened projects
     var openedProjects = {};
-    // map of opened communities    
+    // map of opened communities
     var openedCommunities = {};
-    
+
     var def = $q.defer();
 
     function makeModelPublic(model){
@@ -55,7 +55,6 @@ angular.module('Pear2Pear')
           },
           function(result){
             var comms = [];
-            console.log(result);
             angular.forEach(result.result, function(val) {
               comms.push(val.root);
             });
@@ -75,16 +74,19 @@ angular.module('Pear2Pear')
         var community = comDef.promise;
 
         if (!openedCommunities[id]) {
+          openedCommunities[id] = comDef.promise;
           window.SwellRT.openModel(id, function(model){
             var pr = swellRT.proxy(model);
-            openedCommunities[id] = pr;
-            comDef.resolve(openedProjects[id]);
+            comDef.resolve(pr);
           }, function(error){
             console.log(error);
             comDef.reject(error);
           });
         } else {
-          comDef.resolve(openedProjects[id]);
+          openedCommunities[id].then(
+            function(r){
+              comDef.resolve(r);
+            });
         }
 
         var allSnapshot = function(){
@@ -95,7 +97,7 @@ angular.module('Pear2Pear')
                   'root.communities': id,
                   $and: [{
                     $or: [
-                      {'root.private': 'false'},
+                      {'root.shareMode': projects.shareMode.PUBLIC},
                       {'root.supporters': users.current()},
                       {'root.contributors': users.current()}
                     ]
@@ -129,9 +131,9 @@ angular.module('Pear2Pear')
                     var projDef = $q.defer();
                     promises[val.id] = projDef.promise;
                     if (!openedProjects[val.id]){
+                      openedProjects[val.id] = projDef.promise;
                       projects.find(base64.encode(val.id)).then(function(model){
                         $timeout(function(){
-                          openedProjects[val.id] = model;
                           projDef.resolve(model);
                         });
                       });
@@ -163,7 +165,6 @@ angular.module('Pear2Pear')
           var p = swellRT.proxy(model);
 
           $timeout(function(){
-            console.log(p);
             p.type = DATATYPES.COMMUNITY;
             p.name = data.name;
             p.id = id;
@@ -179,27 +180,38 @@ angular.module('Pear2Pear')
       }
     };
 
-    var projects = {
-
-      find: function(urlId) {
+    var findProjects = function(urlId) {
         var id = base64.decode(urlId);
 
-        def = $q.defer();
+        var def = $q.defer();
 
         if (!openedProjects[id]) {
+          openedProjects[id] = def.promise;
           window.SwellRT.openModel(id, function(model){
             var pr = swellRT.proxy(model);
-            openedProjects[id] = pr;
-            def.resolve(openedProjects[id]);
+            def.resolve(pr);
           }, function(error){
             console.log(error);
             def.reject(error);
           });
         } else {
-          def.resolve(openedProjects[id]);
+          openedProjects[id].then(
+            function(r){
+              def.resolve(r);
+            });
         }
         return def.promise;
+    };
+    var projects = {
+
+      find: findProjects,
+
+      shareMode : {
+        'PUBLIC': 'PUBLIC',
+        'LINK': 'LINK',
+        'INVITE': 'INVITE'
       },
+
       create: function(callback, communityId) {
         var id = window.SwellRT.createModel(function(model){
 
@@ -216,21 +228,23 @@ angular.module('Pear2Pear')
             proxyProj.promoter = users.current();
             proxyProj.supporters = [];
             proxyProj.contributors = [];
-            proxyProj.private = 'false';
-            openedProjects[id] = proxyProj;
+            proxyProj.shareMode = projects.shareMode.PUBLIC;
+            var d = $q.defer();
+            d.resolve(proxyProj);
+            openedProjects[id] = d.promise;
             callback(proxyProj);
           });
         });
       },
 
-      /* changes the visibility of the project with base64 id 'projId'
-         to private if called with true or public if called with false */
-      setVisiblility: function(projId, setPrivate){
-        projects.find(
-          projId,
+      setShareMode: function(projId, shareMode){
+        projects.find(projId).then(
           function(project){
-            project.private = setPrivate.toString();
-          });
+            $timeout(function(){
+              project.shareMode = shareMode;
+            });
+          }
+        );
       }
     };
 
