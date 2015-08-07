@@ -98,13 +98,15 @@
     },
     "share": {
       "title": "Comparte {{title}}",
-      "description": "Comparte el siguiente enlace para que más gente impulse el proyecto",
+      "description": {
+        "public": "El proyecto es público en la lista de proyectos de la comunidad. Puedes compartir el siguiente enlace para que más gente impulse el proyecto",
+        "link": "El proyecto no es público en la lista de proyectos de la comunidad. Comparte el siguiente enlace para que más gente impulse el proyecto"
+      },
       "button": "Compartir",
       "mode" : {
-        "description": "Elige cómo compartir este proyecto",
         "public": "Público",
-        "link": "Enlace (link)",
-        "invite": "Por invitación"
+        "link": "Enlace",
+        "invite": "Invitación"
       }
     },
     "task_list_label": "Tareas del proyecto:",
