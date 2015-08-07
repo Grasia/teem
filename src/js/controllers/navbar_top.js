@@ -20,15 +20,18 @@ angular.module('Pear2Pear')
           return null; 
         };
 
-        pear.onLoad(function(){
-          if ($route.current.params.id){
-            $scope.project = pear.projects.find($route.current.params.id)
-              .then(function(proxy) {
-                console.log(proxy);
-                $scope.project = proxy;
-              });
-          }
+        $scope.$on('$locationChangeStart', function(event) {
+          pear.onLoad(function(){
+            if ($route.current.params.id){
+              $scope.project = pear.projects.find($route.current.params.id)
+                .then(function(proxy) {
+                  console.log(proxy);
+                  $scope.project = proxy;
+                });
+            }
+          });
         });
+
 
         $scope.isPublicShared = function() {
           if ($scope.project){
