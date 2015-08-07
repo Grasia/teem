@@ -20,7 +20,7 @@ angular.module('Pear2Pear')
     });
   }])
 
-  .controller('SessionCtrl', ['$scope', '$rootScope', '$location', '$route', 'pear', function($scope, $rootScope, $location, $route, pear) {
+  .controller('SessionCtrl', ['$scope', '$rootScope', '$location', '$route', 'pear', '$timeout', function($scope, $rootScope, $location, $route, pear, $timeout) {
     $scope.$parent.hideNavigation = true;
     $scope.session = {};
 
@@ -34,9 +34,10 @@ angular.module('Pear2Pear')
         pear.startSession(
           $scope.name, '$password$',
           function(){
-            console.log('success!');
-            pear.users.setCurrent($scope.name + '@' + SwellRTConfig.swellrtServerDomain);
-            $location.path('/communities');
+            $timeout(function(){
+              pear.users.setCurrent($scope.name + '@' + SwellRTConfig.swellrtServerDomain);
+              $location.path('/communities');
+            })
           },
           function(error){
             console.log(error);
