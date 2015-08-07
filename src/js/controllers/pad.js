@@ -30,11 +30,6 @@ angular.module('Pear2Pear')
         });
     });
 
-    $scope.showChat = function() {
-      //FIXME model prototype
-      $location.path('/projects/' + pear.urlId($scope.project.id) + '/chat');
-    };
-
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
       return id === 'pad' ? 'active' : '';
@@ -55,4 +50,11 @@ angular.module('Pear2Pear')
       }
     });
 
+    angular.element('.swellrt-editor').on(
+      'focusin',
+      function(){
+        console.log('focus');
+        pear.projects
+          .addContributor($route.current.params.id);
+      });
   }]);

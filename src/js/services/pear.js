@@ -238,6 +238,19 @@ angular.module('Pear2Pear')
             });
           }
         );
+      },
+
+      addContributor: function(projId, user){
+        if (!user){
+          user = users.current();
+        }
+        console.log('user',user);
+        projects.find(projId).then(
+          function(p){
+            if (user && p.contributors.indexOf(user) < 0){
+              p.contributors.push(user);
+            }
+          });
       }
     };
 
@@ -265,6 +278,7 @@ angular.module('Pear2Pear')
           who: users.current(),
           time: (new Date()).toJSON()
         });
+        projects.addContributor(projectId);
       }, function(error){
         console.log(error);
       });
