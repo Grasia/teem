@@ -18,7 +18,9 @@
         <div class="project-item list-group-item" ng-repeat="project in projects" ng-click="showProjectPad(project.id)">
           <div class="media">
             <div class="media-body">
-              <h4 class="media-heading">{{project.title}}</h4>
+              <h4 class="media-heading">
+                <i class="fa fa-lock" ng-show="{{project.shareMode !== 'PUBLIC'}}"></i>
+                {{project.title}}</h4>
               <div class="project-sections justified">
                 <div class="project-promoters">
                   <h5>&nbsp;</h5>
