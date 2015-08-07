@@ -221,7 +221,7 @@ angular.module('Pear2Pear')
             proxyProj.promoter = users.current();
             proxyProj.supporters = [];
             proxyProj.contributors = [users.current()];
-            proxyProj.shareMode = projects.shareMode.PUBLIC;
+            proxyProj.shareMode = projects.shareMode.LINK;
             var d = $q.defer();
             d.resolve(proxyProj);
             openedProjects[id] = d.promise;
