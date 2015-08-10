@@ -65,7 +65,7 @@ angular.module('Pear2Pear')
       }
     });
 
-    angular.element('.swellrt-editor').on(
+    angular.element(document.querySelector('.swellrt-editor')).on(
       'focusin',
       function(){
         pear.projects
