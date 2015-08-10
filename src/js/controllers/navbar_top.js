@@ -17,7 +17,7 @@ angular.module('Pear2Pear')
           if ($scope.project){
             return $scope.project.shareMode;
           }
-          return null; 
+          return null;
         };
 
         $scope.$on('$locationChangeStart', function(event) {
@@ -35,41 +35,38 @@ angular.module('Pear2Pear')
 
         $scope.isPublicShared = function() {
           if ($scope.project){
-            return getSharedMode() === pear.projects.shareMode.PUBLIC;
+            return getSharedMode() === 'public';
           }
           return false;
         };
 
         $scope.isLinkShared = function() {
           if ($scope.project){
-            return getSharedMode() === pear.projects.shareMode.LINK;
+            return getSharedMode() === 'link';
           }
           return false;
         };
 
         $scope.isInviteShared = function() {
           if ($scope.project){
-            return getSharedMode() === pear.projects.shareMode.INVITE;
+            return getSharedMode() === 'invite';
           }
           return false;
         };
 
         var setShareMode = function(mode){
-          console.log($route.current.params.id, mode);
           pear.projects.setShareMode($route.current.params.id, mode);
         };
 
         $scope.setPublicShared = function(){
-          console.log('pub');
-          setShareMode(pear.projects.shareMode.PUBLIC);
+          setShareMode('public');
         };
 
         $scope.setLinkShared = function(){
-          console.log('link');
-          setShareMode(pear.projects.shareMode.LINK);
+          setShareMode('link');
         };
 
         $scope.setInviteShared = function(){
-          setShareMode(pear.projects.shareMode.INVITE);
+          setShareMode('invite');
         };
   }]);

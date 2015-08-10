@@ -97,7 +97,7 @@ angular.module('Pear2Pear')
                   'root.communities': id,
                   $and: [{
                     $or: [
-                      {'root.shareMode': projects.shareMode.PUBLIC},
+                      {'root.shareMode': 'public'},
                       {'root.supporters': users.current()},
                       {'root.contributors': users.current()}
                     ]
@@ -199,12 +199,6 @@ angular.module('Pear2Pear')
 
       find: findProjects,
 
-      shareMode : {
-        'PUBLIC': 'PUBLIC',
-        'LINK': 'LINK',
-        'INVITE': 'INVITE'
-      },
-
       create: function(callback, communityId) {
         var id = window.SwellRT.createModel(function(model){
 
@@ -221,7 +215,7 @@ angular.module('Pear2Pear')
             proxyProj.promoter = users.current();
             proxyProj.supporters = [];
             proxyProj.contributors = [users.current()];
-            proxyProj.shareMode = projects.shareMode.LINK;
+            proxyProj.shareMode = 'link';
             var d = $q.defer();
             d.resolve(proxyProj);
             openedProjects[id] = d.promise;
