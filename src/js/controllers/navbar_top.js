@@ -32,41 +32,25 @@ angular.module('Pear2Pear')
           });
         });
 
+        $scope.shareIcon = function shareIcon(project) {
+          switch (getSharedMode()) {
+            case 'link':
+              return 'fa-link';
+            case 'public':
+              return 'fa-users';
+            default:
+              return '';
+          }
+        };
 
-        $scope.isPublicShared = function() {
+        $scope.isShared = function(mode) {
           if ($scope.project){
-            return getSharedMode() === 'public';
+            return getSharedMode() === mode;
           }
           return false;
         };
 
-        $scope.isLinkShared = function() {
-          if ($scope.project){
-            return getSharedMode() === 'link';
-          }
-          return false;
-        };
-
-        $scope.isInviteShared = function() {
-          if ($scope.project){
-            return getSharedMode() === 'invite';
-          }
-          return false;
-        };
-
-        var setShareMode = function(mode){
+        $scope.setShared = function setShared(mode){
           pear.projects.setShareMode($route.current.params.id, mode);
-        };
-
-        $scope.setPublicShared = function(){
-          setShareMode('public');
-        };
-
-        $scope.setLinkShared = function(){
-          setShareMode('link');
-        };
-
-        $scope.setInviteShared = function(){
-          setShareMode('invite');
         };
   }]);
