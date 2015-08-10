@@ -113,12 +113,13 @@ angular.module('Pear2Pear')
 
       pear.toggleSupport(project.id);
       var index = project.supporters.indexOf(pear.users.current());
-
-      if (index > -1) {
-        project.supporters.splice(index, 1);
+      $timeout(function(){
+        if (index > -1) {
+          project.supporters.splice(index, 1);
         } else {
-        project.supporters.push(pear.users.current());
-      }
+          project.supporters.push(pear.users.current());
+        }
+      })
     };
 
     $scope.emptyProjects = function(){
