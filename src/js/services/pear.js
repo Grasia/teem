@@ -305,6 +305,7 @@ angular.module('Pear2Pear')
       window.SwellRT.startSession(
         SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
         function(){
+          SwellRTConfig.swellrtServerDomain = __session.domain;
           SwellRT.on(SwellRT.events.NETWORK_CONNECTED, onSuccess);
         }, onError);
     };
