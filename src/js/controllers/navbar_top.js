@@ -37,7 +37,7 @@ angular.module('Pear2Pear')
             case 'link':
               return 'fa-link';
             case 'public':
-              return 'fa-users';
+              return 'fa-globe';
             default:
               return '';
           }
