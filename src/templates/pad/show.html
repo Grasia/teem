@@ -1,9 +1,6 @@
 <div ui-content-for="nav-title">
   <div class="project-title overflow-ellipsis">
-    <span ng-show="!editingTitle" ng-click="editingTitle = true">
-      {{project.title}}
-    </span>
-    <input id="title_input" type="text" ng-class="(!editingTitle && project.title)? 'hidden-input' : ''" ng-model="project.title" placeholder="{{ 'project.title.placeholder' | translate }}" focus-me="editingTitle" ng-focus="editingTitle = true" ng-blur="editingTitle = false">
+    <input id="title_input" type="text" ng-model="project.title" placeholder="{{ 'project.title.placeholder' | translate }}">
 </div>
 </div>
 

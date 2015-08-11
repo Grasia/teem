@@ -16,18 +16,6 @@ angular.module('Pear2Pear')
         controller: 'PadCtrl'
       });
   }])
-  .directive('focusMe', function () {
-    return {
-        link: function(scope, element, attrs) {
-            scope.$watch(attrs.focusMe, function(value) {
-                if(value === true) {
-                    element[0].focus();
-                    element[0].select();
-                }
-            });
-        }
-    };
-  })
   .controller('PadCtrl', [
               'pear', '$rootScope', '$scope', '$route', '$location', '$timeout', 'SharedState',
               function(pear, $rootScope, $scope, $route, $location, $timeout, SharedState){
@@ -39,9 +27,6 @@ angular.module('Pear2Pear')
       pear.projects.find($route.current.params.id)
         .then(function(proxy) {
           $scope.project = proxy;
-          if ($scope.project.title === ''){
-            $scope.editingTitle = true;
-          }
         });
     });
 
