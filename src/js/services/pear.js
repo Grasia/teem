@@ -17,11 +17,6 @@ angular.module('Pear2Pear')
     var proxy = {
     };
 
-    var DATATYPES = {
-      PROJECT: 'PROJECT',
-      COMMUNITY: 'COMMUNITY'
-    };
-
     // FIXME model prototype
     var urlId = function(id) {
       if (id === undefined) { return ''; }
@@ -51,7 +46,7 @@ angular.module('Pear2Pear')
         var foundCommunities = $q.defer();
         SwellRT.query(
           {
-            'root.type': DATATYPES.COMMUNITY
+            'root.type': 'community'
           },
           function(result){
             var comms = [];
@@ -93,7 +88,7 @@ angular.module('Pear2Pear')
               var foundProjects = $q.defer();
               SwellRT.query(
                 {
-                  'root.type': DATATYPES.PROJECT,
+                  'root.type': 'project',
                   'root.communities': id,
                   $and: [{
                     $or: [
@@ -160,7 +155,7 @@ angular.module('Pear2Pear')
           var p = swellRT.proxy(model);
 
           $timeout(function(){
-            p.type = DATATYPES.COMMUNITY;
+            p.type = 'community';
             p.name = data.name;
             p.id = id;
             p.projects = [];
@@ -205,7 +200,7 @@ angular.module('Pear2Pear')
           makeModelPublic(model);
           var proxyProj = swellRT.proxy(model);
           $timeout(function(){
-            proxyProj.type = DATATYPES.PROJECT;
+            proxyProj.type = 'project';
             proxyProj.communities = (communityId) ? [communityId] : [];
             proxyProj.id = id;
             proxyProj.title = '';
