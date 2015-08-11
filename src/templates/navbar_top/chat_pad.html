@@ -3,7 +3,7 @@
 </div>
 
 <div ui-content-for="nav-right">
-  <a ui-turn-on="shareModalCreate"><i class="fa fa-share-alt"></i></a>
+  <a ui-turn-on="shareModalCreate"><i class="fa" ng-class="shareIcon()"></i></a>
 </div>
 
 <div ui-content-for="nav-navigation">
@@ -24,7 +24,21 @@
             <h4 class="modal-title" translate translate-values="{ title: '{{project.title}}' }">project.share.title</h4>
         </div>
         <div class="modal-body">
-          <div class="share-description" translate>project.share.description</div>
+          <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" ng-click="setShared('link')" ng-class="isShared('link') ? 'active' : ''">
+                <i class="fa fa-link"></i> <span translate>project.share.mode.link</span>
+              </button>
+            </div>
+            <div class="btn-group" role="group"> 
+              <button type="button" class="btn btn-default" ng-click="setShared('public')" ng-class="isShared('public') ? 'active' : ''">
+                <i class="fa fa-users"></i> <span translate>project.share.mode.public</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="share-description" ng-show="isShared('link')" translate>project.share.description.link</div>
+          <div class="share-description" ng-show="isShared('public')" translate>project.share.description.public</div>
           <div class="well share-link" ng-controller="HelperCtrl">{{currentHref()}}</div>
         </div>
       </div>

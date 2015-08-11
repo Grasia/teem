@@ -52,8 +52,9 @@
   },
   "login": {
     "button": "Login",
-    "name": "Name",
-    "tip": "Start entering your name",
+    "name": "Nickname",
+    "tip": "Start entering your nickname",
+    "error": "Please, choose a nickname composed by letters, numbers and dots",
     "welcome_msg": "Welcome to Pear to Pear. A tool to participate in your groups and communities"
   },
   "need": {
@@ -96,8 +97,16 @@
     },
     "share": {
       "title": "Share {{title}}",
-      "description": "Share this link with other people so they join this project",
-      "button": "Share"
+      "description": {
+        "public": "The project is public in the community projects list. You can share this link with other people so they join this project",
+        "link": "The project is not public in the community projects list. Share this link with other people so they join this project"
+      },
+      "button": "Share",
+      "mode" : {
+        "public": "Public",
+        "link": "Link",
+        "invite": "Invite"
+      }
     },
     "task_list_label": "Project tasks:",
     "title" : {

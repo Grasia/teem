@@ -3,14 +3,16 @@
     <img src="images/app-logo.png" class="welcome-logo img-responsive"> </div>
   <div class="welcome-msg" translate>
     login.welcome_msg
-  </div> 
-  <div class="login-tip" translate>login.tip</div> 
-  <form class="login-form" role="form">
-    <div class="input-group">
+  </div>
+  <div class="tip" ng-hide="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>login.tip</div> 
+  <div class="error-tip" ng-show="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>login.error</div>
+  <form class="login-form" role="form" name="loginForm">
+    <div class="input-group" ng-class="(loginForm.login.$invalid  && loginForm.login.$dirty && !loginForm.login.$error.required ) ? 'has-error' : ''">
       <label class="control-label sr-only" for="login" translate>login.name</label>
-      <input type="text" class="form-control" id="login" ng-model="name" placeholder="{{ 'login.name' | translate }}">
+      <input type="text" class="form-control" id="login" name="login" ng-model="name" placeholder="{{ 'login.name' | translate }}"
+             ng-pattern="loginRegexp" ng-model-options="{ debounce: 250 }" required/>
       <span class="input-group-btn">
-        <button class="btn btn-info" ng-click="create()" translate>login.button</button>
+        <input type="submit" class="btn btn-info" ng-click="login()" value="{{'login.button' | translate}}"  ng-disabled="loginForm.login.$invalid" >
       </span>
     </div>
   </form>

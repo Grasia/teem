@@ -1,3 +1,10 @@
-.tip
+.tip-font
   font: 1.8em "Cookie"
+
+.tip
+  @extend .tip-font
   color: $not-so-light-blue
+
+.error-tip
+  @extend .text-danger
+  @extend .tip-font

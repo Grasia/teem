@@ -25,12 +25,16 @@ angular.module('Pear2Pear')
     $scope.urlId = pear.urlId;
 
     pear.onLoad(function(){
-      $scope.communities = pear.communities.all();
+      pear.communities.all().then(function(communities){
+        $scope.communities = communities;
+      });
       $scope.create = function(name) {
         pear.communities.create(
           { name: name || $scope.newCommunityName.name },
           function(community) {
-            $scope.showProjects(community.community.id);
+
+            $scope.showProjects(community.id);
+
           });
       };
     });

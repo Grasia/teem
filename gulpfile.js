@@ -45,11 +45,7 @@ var config = {
   swellrt: {
     host: 'demo-swellrt.p2pvalue.eu',
     protocol: 'https://',
-    // user and pass have to be credentials of an existing user in wave server
-    user : 'test',
-    pass : 'test',
-    // WaveIds have to exist in wave server
-    chatpadWaveId : 'local.net/gen+12345abcde1',
+    // WaveIds have to exist in wave server and be public
     communityListWaveId: 'local.net/gen+12345abcd2',
     docker: {
       name: 'pear2pear-swellrt'

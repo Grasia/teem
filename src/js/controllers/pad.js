@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('PadCtrl', [
-              'pear', '$rootScope', '$scope', '$route', '$location', 'SharedState',
-              function(pear, $rootScope, $scope, $route, $location, SharedState){
+              'pear', '$rootScope', '$scope', '$route', '$location', '$timeout', 'SharedState',
+              function(pear, $rootScope, $scope, $route, $location, $timeout, SharedState){
 
     $scope.urlId = pear.urlId;
     $scope.communityId = $route.current.params.communityId;
@@ -29,11 +29,6 @@ angular.module('Pear2Pear')
           $scope.project = proxy;
         });
     });
-
-    $scope.showChat = function() {
-      //FIXME model prototype
-      $location.path('/projects/' + pear.urlId($scope.project.id) + '/chat');
-    };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
@@ -55,4 +50,10 @@ angular.module('Pear2Pear')
       }
     });
 
+    angular.element(document.querySelector('.swellrt-editor')).on(
+      'focusin',
+      function(){
+        pear.projects
+          .addContributor($route.current.params.id);
+      });
   }]);

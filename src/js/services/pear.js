@@ -15,7 +15,6 @@ angular.module('Pear2Pear')
            function($rootScope, swellRT, $q, $timeout, base64) {
 
     var proxy = {
-      communities: {}
     };
 
     // FIXME model prototype
@@ -27,42 +26,118 @@ angular.module('Pear2Pear')
 
     // map of opened projects
     var openedProjects = {};
+    // map of opened communities
+    var openedCommunities = {};
 
     var def = $q.defer();
+
+    function makeModelPublic(model){
+      model.addParticipant('@' + SwellRTConfig.swellrtServerDomain,
+                           null,
+                           function(err){
+                             console.log('ERROR: ' + err);
+                           }
+                          );
+    }
 
     var communities = {
 
       all: function() {
-        return proxy.communities;
+        var foundCommunities = $q.defer();
+        SwellRT.query(
+          {
+            'root.type': 'community'
+          },
+          function(result){
+            var comms = [];
+            angular.forEach(result.result, function(val) {
+              comms.push(val.root);
+            });
+            foundCommunities.resolve(comms);
+          },
+          function(e){
+            foundCommunities.reject(e);
+          }
+        );
+        return foundCommunities.promise;
       },
 
       find: function(urlId) {
-        var id = base64.decode(urlId);
-        var community = proxy.communities[id];
 
-        return {
-          community: community,
+        var id = base64.decode(urlId);
+        var comDef = $q.defer();
+        var community = comDef.promise;
+
+        if (!openedCommunities[id]) {
+          openedCommunities[id] = comDef.promise;
+          window.SwellRT.openModel(id, function(model){
+            var pr = swellRT.proxy(model);
+            comDef.resolve(pr);
+          }, function(error){
+            console.log(error);
+            comDef.reject(error);
+          });
+        } else {
+          openedCommunities[id].then(
+            function(r){
+              comDef.resolve(r);
+            });
+        }
+
+        var allSnapshot = function(){
+              var foundProjects = $q.defer();
+              SwellRT.query(
+                {
+                  'root.type': 'project',
+                  'root.communities': id,
+                  $and: [{
+                    $or: [
+                      {'root.shareMode': 'public'},
+                      {'root.supporters': users.current()},
+                      {'root.contributors': users.current()}
+                    ]
+                  }]
+                },
+                function(result){
+                  var projs = [];
+                  angular.forEach(result.result, function(val) {
+                    projs.push(val.root);
+                  });
+                 foundProjects.resolve(projs);
+                },
+                function(e){
+                  foundProjects.reject(e);
+                }
+              );
+              return foundProjects.promise;
+      };
+      return {
+          community: comDef.promise,
           projects: {
+
+            allSnapshot: allSnapshot,
+
             all: function() {
-              var promises = {};
-              angular.forEach(community.projects, function(val){
-                var projDef = $q.defer();
-                promises[val] = projDef.promise;
-                if (!openedProjects[val]){
-                  window.SwellRT.openModel(val, function(model){
-                    $timeout(function(){
-                      var pr = swellRT.proxy(model);
-                      openedProjects[val] = pr;
-                      projDef.resolve(pr);
+              var projsDef = $q.defer();
+              allSnapshot().then(function(all){
+                var promises = {};
+                if (all.length > 0){
+                  angular.forEach(all, function(val){
+                    var projDef = $q.defer();
+                    promises[val.id] = projDef.promise;
+                    projects.find(base64.encode(val.id)).then(function(model){
+                      $timeout(function(){
+                        projDef.resolve(model);
+                      });
                     });
                   });
+                  projsDef.resolve($q.all(promises));
                 } else {
-                  projDef.resolve(openedProjects[val]);
+                  projsDef.resolve([]);
                 }
               });
 
-              var projsDef = $q.all(promises);
-              return projsDef;
+              return projsDef.promise;
             },
             destroy: function(projId){
               var i = community.projects.indexOf(projId);
@@ -75,85 +150,96 @@ angular.module('Pear2Pear')
       },
       create: function(data, callback) {
         var id = window.SwellRT.createModel(function(model){
-          var p = swellRT.proxy(model);
-          p.name = data.name;
-          p.id = id;
-          p.projects = [];
-          proxy.communities[id] = p;
-          callback({
-            community: p,
-            projects: {
-              // TODO avoid repeated function
-              all: function() {
-                var promises = {};
-                angular.forEach(community.projects, function(val){
-                  var projDef = $q.defer();
-                  promises[val] = projDef.promise;
-                  if (!openedProjects[val]){
-                    window.SwellRT.openModel(val, function(model){
-                      $timeout(function(){
-                        var pr = swellRT.proxy(model);
-                        openedProjects[val] = pr;
-                        projDef.resolve(pr);
-                      });
-                    });
-                  } else {
-                    projDef.resolve(openedProjects[val]);
-                  }
-                });
 
-                var projsDef = $q.all(promises);
-                return projsDef;
-              }
-            }});
+          makeModelPublic(model);
+          var p = swellRT.proxy(model);
+
+          $timeout(function(){
+            p.type = 'community';
+            p.name = data.name;
+            p.id = id;
+            p.projects = [];
+            callback(p);
+          });
         });
       },
       destroy: function(urlId) {
         var id = base64.decode(urlId);
-
-        delete proxy.communities[id];
-
+        // currently not supported by SwellRT
         return urlId;
       }
     };
 
-    var projects = {
-
-      find: function(urlId) {
+    var findProjects = function(urlId) {
         var id = base64.decode(urlId);
-
-        def = $q.defer();
-
+        var def = $q.defer();
         if (!openedProjects[id]) {
+          openedProjects[id] = def.promise;
           window.SwellRT.openModel(id, function(model){
             var pr = swellRT.proxy(model);
-            openedProjects[id] = pr;
-            def.resolve(openedProjects[id]);
+            def.resolve(pr);
           }, function(error){
+            console.log(error);
             def.reject(error);
           });
         } else {
-          def.resolve(openedProjects[id]);
+          openedProjects[id].then(
+            function(r){
+              def.resolve(r);
+            });
         }
         return def.promise;
-      },
-      create: function(callback) {
+    };
+    var projects = {
+
+      find: findProjects,
+
+      create: function(callback, communityId) {
         var id = window.SwellRT.createModel(function(model){
-          var p = {
-            proj : {}
-          };
-          proxy.proj = swellRT.proxy(model);
+
+          makeModelPublic(model);
+          var proxyProj = swellRT.proxy(model);
           $timeout(function(){
-            proxy.proj['id'] = id;
-            proxy.proj['title'] = '';
-            proxy.proj['chat'] = [];
-            proxy.proj['pad'] = new swellRT.TextObject();
-            proxy.proj['needs'] = [];
-            proxy.proj['promoter'] = users.current();
-            openedProjects[id] = proxy.proj;
-            callback(proxy.proj);
+            proxyProj.type = 'project';
+            proxyProj.communities = (communityId) ? [communityId] : [];
+            proxyProj.id = id;
+            proxyProj.title = '';
+            proxyProj.chat = [];
+            proxyProj.pad = new swellRT.TextObject();
+            proxyProj.needs = [];
+            proxyProj.promoter = users.current();
+            proxyProj.supporters = [];
+            proxyProj.contributors = [users.current()];
+            proxyProj.shareMode = 'link';
+            var d = $q.defer();
+            d.resolve(proxyProj);
+            openedProjects[id] = d.promise;
+            callback(proxyProj);
           });
         });
+      },
+
+      setShareMode: function(projId, shareMode){
+        projects.find(projId).then(
+          function(project){
+            $timeout(function(){
+              project.shareMode = shareMode;
+            });
+          }
+        );
+      },
+
+      addContributor: function(projId, user){
+        if (!user){
+          user = users.current();
+        }
+        console.log('user',user);
+        projects.find(projId).then(
+          function(p){
+            if (user && p.contributors.indexOf(user) < 0){
+              p.contributors.push(user);
+            }
+          });
       }
     };
 
@@ -181,30 +267,56 @@ angular.module('Pear2Pear')
           who: users.current(),
           time: (new Date()).toJSON()
         });
+        projects.addContributor(projectId);
       }, function(error){
         console.log(error);
       });
     };
 
-    window.onSwellRTReady = function () {
-      window.SwellRT.startSession(
-        SwellRTConfig.server, SwellRTConfig.user, SwellRTConfig.pass,
-        function() {
-          // Open Community List
-          window.SwellRT.openModel(
-            SwellRTConfig.communityListWaveId,
-            function(model) {
-              proxy.communities = swellRT.proxy(model);
-              if (!proxy.communities){
-                proxy['communities'] = {};
-              }
-              def.resolve(proxy.model);
-            },
-            function(error){
-              console.log(error);
-            });
-          },
+    var toggleSupport = function(projectId) {
+      projects.find(base64.encode(projectId)).then(
+        function(model){
+          var index = model.supporters.indexOf(users.current());
 
+          $timeout(function(){
+            if (index > -1) {
+              model.supporters.splice(index, 1);
+            } else {
+              model.supporters.push(users.current());
+            }
+          });
+        },
+        function(error){
+          console.log(error);
+        }
+      );
+    };
+
+    var registerUser = function(userName, password, onSuccess, onError){
+      window.SwellRT.registerUser(SwellRTConfig.server, userName, password, onSuccess, onError);
+    };
+
+    var startSession = function(userName, password, onSuccess, onError){
+
+      // if login with user Name, close previous anonimous session
+      if (userName){
+        window.SwellRT.stopSession();
+      }
+      window.SwellRT.startSession(
+        SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
+        function(){
+          SwellRT.on(SwellRT.events.NETWORK_CONNECTED, onSuccess);
+        }, onError);
+    };
+
+    window.onSwellRTReady = function () {
+      startSession(null, null, function(){
+          $timeout(
+            function() {
+              communities.all();
+              def.resolve(SwellRT);
+            });
+        },
         function(error) {
           console.log(error);
         });
@@ -222,6 +334,9 @@ angular.module('Pear2Pear')
       users: users,
       urlId: urlId,
       addChatMessage: addChatMessage,
+      toggleSupport: toggleSupport,
+      startSession: startSession,
+      registerUser: registerUser,
       onLoad: function(f) {
         def.promise.then(f);
       }

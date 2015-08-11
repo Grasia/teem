@@ -92,10 +92,11 @@ angular.module('Pear2Pear')
         scope: {
           needs: '='
         },
-        controller: function($scope) {
+        controller: function($scope, pear, $route) {
           this.addNeed = function (need) {
             if (need.text !== ''){
               $scope.needs.push(need);
+              pear.projects.addContributor($route.current.params.id);
             }
           };
           this.removeNeed = function (need) {

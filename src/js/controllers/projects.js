@@ -11,7 +11,7 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:id/projects', {
+      .when('/communities/:comId/projects', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       });
@@ -23,8 +23,11 @@ angular.module('Pear2Pear')
     $scope.urlId= pear.urlId;
 
     pear.onLoad(function(){
-      var com = pear.communities.find($route.current.params.id);
-      $scope.community = com.community;
+      var com = pear.communities.find($route.current.params.comId);
+      com.community.then(function(community){
+        $scope.community = community;
+      });
+
       com.projects.all().then(
         function (projects){
           $scope.projects = projects;
@@ -32,11 +35,10 @@ angular.module('Pear2Pear')
 
       $scope.new_ = function () {
         pear.projects.create(function(p) {
-          $scope.community.projects.push(p.id);
 
           //FIXME model prototype
           $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
-        });
+        }, $scope.community.id);
       };
       $scope.destroy = function() {
         pear.communities.destroy(pear.urlId($scope.community.id));
@@ -93,23 +95,11 @@ angular.module('Pear2Pear')
 
     $scope.supporterCount = function(project) {
       // Migrate project.support
-      if (project.supporters === undefined) {
-        project.supporters = [];
-
-        return 0;
-      }
-
       return project.supporters.length;
     };
 
     $scope.isSupporter = function(project) {
       // Migrate project.support
-      if (project.supporters === undefined) {
-        project.supporters = [];
-
-        return false;
-      }
-
       return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
     };
 
@@ -121,13 +111,15 @@ angular.module('Pear2Pear')
         return;
       }
 
+      pear.toggleSupport(project.id);
       var index = project.supporters.indexOf(pear.users.current());
-
-      if (index > -1) {
-        project.supporters.splice(index, 1);
+      $timeout(function(){
+        if (index > -1) {
+          project.supporters.splice(index, 1);
         } else {
-        project.supporters.push(pear.users.current());
-      }
+          project.supporters.push(pear.users.current());
+        }
+      })
     };
 
     $scope.emptyProjects = function(){
