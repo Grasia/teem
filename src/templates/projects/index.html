@@ -19,8 +19,9 @@
           <div class="media">
             <div class="media-body">
               <h4 class="media-heading">
-                <i class="fa fa-lock" ng-show="{{project.shareMode !== 'public'}}"></i>
-                {{project.title}}</h4>
+                <div class="project-title pull-left">{{project.title}}</div>
+                <div class="pull-right"><i class="fa fa-lock"></i></div>
+                </h4>
               <div class="project-sections justified">
                 <div class="project-promoters">
                   <h5>&nbsp;</h5>
