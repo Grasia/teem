@@ -47,6 +47,18 @@ angular.module('Pear2Pear')
       };
     });
 
+    // TODO: repeated code in NavbarTopCtrl
+    $scope.shareIcon = function shareIcon(project) {
+      switch ($scope.project.shareMode) {
+        case 'link':
+          return 'fa-link';
+        case 'public':
+          return 'fa-globe';
+        default:
+          return '';
+      }
+    };
+
     $scope.showProjectPad = function(id) {
       //FIXME model prototype
       $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/pad');

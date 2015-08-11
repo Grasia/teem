@@ -32,7 +32,7 @@ angular.module('Pear2Pear')
           });
         });
 
-        $scope.shareIcon = function shareIcon(project) {
+        $scope.shareIcon = function shareIcon() {
           switch (getSharedMode()) {
             case 'link':
               return 'fa-link';
