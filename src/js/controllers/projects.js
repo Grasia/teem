@@ -49,7 +49,7 @@ angular.module('Pear2Pear')
 
     // TODO: repeated code in NavbarTopCtrl
     $scope.shareIcon = function shareIcon(project) {
-      switch ($scope.project.shareMode) {
+      switch (project.shareMode) {
         case 'link':
           return 'fa-link';
         case 'public':
