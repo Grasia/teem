@@ -52,10 +52,15 @@
   },
   "login": {
     "button": "Login",
+    "copy": {
+      "explore": "Explore what people is doing in your community",
+      "propose": "Propose your project, find support and collaborators",
+      "work": "Work in your project and expose your needs"
+    },
     "name": "Nickname",
     "tip": "Start entering your nickname",
     "error": "Please, choose a nickname composed by letters, numbers and dots",
-    "welcome_msg": "Welcome to Pear to Pear. A tool to participate in your groups and communities"
+    "welcome_msg": "The tool to promote your proposals in your communities"
   },
   "need": {
     "nav": {

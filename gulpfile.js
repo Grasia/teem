@@ -33,7 +33,8 @@ var config = {
       './bower_components/ryanmullins-angular-hammer/angular.hammer.js',
       './bower_components/angular-sanitize/angular-sanitize.js',
       './bower_components/angular-animate/angular-animate.js',
-      './bower_components/angular-toArrayFilter/toArrayFilter.js'
+      './bower_components/angular-toArrayFilter/toArrayFilter.js',
+      './bower_components/swiper/dist/js/swiper.js'
     ],
 
     fonts: [
@@ -559,6 +560,6 @@ gulp.task('default', function(done){
   }
 
   tasks.push('watch');
-  
+
   seq('build', tasks, done);
 });

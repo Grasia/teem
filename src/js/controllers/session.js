@@ -20,15 +20,14 @@ angular.module('Pear2Pear')
     });
   }])
 
-  .controller('SessionCtrl', ['$scope', '$rootScope', '$location', '$route', 'pear', '$timeout', function($scope, $rootScope, $location, $route, pear, $timeout) {
-    $scope.$parent.hideNavigation = true;
+  .controller('SessionCtrl', [
+    '$scope', '$location', '$route', 'pear', '$timeout',
+    function($scope, $location, $route, pear, $timeout) {
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
 
     $scope.login = function() {
-      $scope.$parent.hideNavigation = false;
-
       var startSession = function(){
         // TODO change password when register is available
         pear.startSession(
@@ -37,7 +36,7 @@ angular.module('Pear2Pear')
             $timeout(function(){
               pear.users.setCurrent($scope.name + '@' + SwellRTConfig.swellrtServerDomain);
               $location.path('/communities');
-            })
+            });
           },
           function(error){
             console.log(error);

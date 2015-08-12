@@ -29,7 +29,7 @@ angular
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {
-        redirectTo: '/session/new'
+        redirectTo: '/frontpage'
       });
   }])
   .config(function($translateProvider) {

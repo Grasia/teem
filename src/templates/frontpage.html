@@ -1,0 +1,42 @@
+<div class="frontpage">
+  <div class="section">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/app-logo.png" class="welcome-logo img-responsive"/>
+          <div class="welcome-msg" translate>
+            login.welcome_msg
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="welcome-icon welcome-icon-explore">
+            <i class="fa fa-map-signs"></i>
+          </div>
+          <div class="welcome-msg" translate>
+            login.copy.explore
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="welcome-icon welcome-icon-propose">
+            <i class="fa fa-bullhorn"></i>
+          </div>
+          <div class="welcome-msg" translate>
+            login.copy.propose
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="welcome-icon welcome-icon-work">
+            <i class="fa fa-cogs"></i>
+          </div>
+          <div class="welcome-msg" translate>
+            login.copy.work
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <div ng-include="'session/form.html'" ng-controller="SessionCtrl"></div>
+  </div>
+</div>

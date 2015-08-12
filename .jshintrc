@@ -37,6 +37,7 @@
     "spyOn": false,
     "SwellRT": false,
     "SwellRTConfig": false,
+    "Swiper": false,
     "$": false
   }
 }
