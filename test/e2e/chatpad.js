@@ -6,19 +6,19 @@ describe('Pear2Pear', function() {
 
   browser.get('index.html');
 
-  it('should automatically redirect to /session/new when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch('/session/new');
+  it('should automatically redirect to /frontpage when location hash/fragment is empty', function() {
+    expect(browser.getLocationAbsUrl()).toMatch('/frontpage');
   });
 
 
-  describe('session/new', function() {
+  describe('frontpage', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/session/new');
+      browser.get('index.html#/frontpage');
     });
 
 
-    it('should render session/new when user navigates to /session/new', function() {
+    it('should render session/form when user navigates to /frontpage', function() {
       expect(element.all(by.css('[ng-view] input#login')).first()).toBeDefined();
     });
 
