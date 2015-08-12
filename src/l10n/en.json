@@ -45,6 +45,9 @@
     "leave": "Leave this community",
     "name": "Community name",
     "participants": "People in the community",
+    "project": {
+      "number": "{{number}} projects"
+    },
     "search": {
       "placeholder": "Find your community"
     },
