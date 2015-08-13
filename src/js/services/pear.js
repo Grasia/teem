@@ -43,23 +43,60 @@ angular.module('Pear2Pear')
     var communities = {
 
       all: function() {
+
+        var communities = $q.defer();
         var foundCommunities = $q.defer();
+        var foundProjectNumbers = $q.defer();
+
+        var queries = $q.all([
+          foundCommunities.promise,
+          foundProjectNumbers.promuse
+        ]);
+
+        var comms = {};
+        var nums = {};
+
         SwellRT.query(
           {
             'root.type': 'community'
           },
           function(result){
-            var comms = [];
             angular.forEach(result.result, function(val) {
-              comms.push(val.root);
+              comms[val.root.id] = val.root;
             });
+
             foundCommunities.resolve(comms);
           },
           function(e){
             foundCommunities.reject(e);
           }
         );
-        return foundCommunities.promise;
+        SwellRT.query(
+          {_aggregate:
+           [{$match: {'root.type': 'project'}},
+            {$unwind: '$root.communities'},
+            {$group :
+             {_id:'$root.communities',
+              number: { $sum : 1 }
+             }
+            }]},
+          function(result){
+            nums = result.result;
+            foundProjectNumbers.resolve(nums);
+          },
+          function(e){
+            foundCommunities.reject(e);
+          }
+        );
+
+        queries.then(function(){
+          angular.forEach(nums, function(val){
+            comms[val._id].numProjects = val.number;
+          });
+          communities.resolve(comms);
+
+        });
+        return communities.promise;
       },
 
       find: function(urlId) {
@@ -168,6 +205,8 @@ angular.module('Pear2Pear')
         // currently not supported by SwellRT
         return urlId;
       }
+
+
     };
 
     var findProjects = function(urlId) {
