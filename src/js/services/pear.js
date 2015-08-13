@@ -73,7 +73,10 @@ angular.module('Pear2Pear')
         );
         SwellRT.query(
           {_aggregate:
-           [{$match: {'root.type': 'project'}},
+           [{$match: {
+             'root.type': 'project',
+             'root.shareMode': 'public'
+           }},
             {$unwind: '$root.communities'},
             {$group :
              {_id:'$root.communities',
