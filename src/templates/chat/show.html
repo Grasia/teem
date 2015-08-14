@@ -11,6 +11,7 @@
     <div class="scrollable-content section">
       <ul class="chat-messages">
         <li ng-repeat="msg in project.chat" class="chat-message {{standpoint(msg)}}" hm-swiperight="addToPad(msg.text);" pear-chat-scroll>
+          <span class="swellrt-avatars avatar" ng-model="msg.who"></span>
           <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
             {{msg.who}}
           </div>

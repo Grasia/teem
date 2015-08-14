@@ -7,19 +7,24 @@
       box-shadow: 0 0 6px $chat-msg-shadow
       padding: 10px
       margin: 15px 20px
+      overflow: auto
       &.mine
         background-color: $chat-mine-color
         margin-left: 40px
+        .swellrt-avatars
+          display: none
       &.their
         background-color: $chat-their-color
         margin-right: 40px
+        .swellrt-avatars
+          float: left
+          padding-right: 10px
       .chat-message-sender
         color: $chat-sender-color
         margin-bottom: 2px
       .chat-message-time
         float: right
         margin-top: -10px
-
   .chat-input-button
     font-size: 2em
   .input-group
