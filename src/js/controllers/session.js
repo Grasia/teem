@@ -44,7 +44,7 @@ angular.module('Pear2Pear')
           }
         );
       };
-      pear.registerUser(name, '$password$', startSession, startSession);
+      pear.registerUser($scope.name, '$password$', startSession, startSession);
     };
 
     $scope.userData = function () {
