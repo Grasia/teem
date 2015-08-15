@@ -47,7 +47,7 @@
     "name": "Nombre de la comunidad",
     "participants": "Gente en la comunidad",
     "project": {
-      "number": "{{number}} proyectos"
+      "number": "{{number}} proyectos públicos"
     },
     "search": {
       "placeholder": "Encuentra tu comunidad"
