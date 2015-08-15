@@ -29,11 +29,12 @@ angular.module('Pear2Pear')
 
     $scope.user = {
       nick : ""
-    }
+    };
 
     $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
+        console.log(name);
         pear.startSession(
           $scope.user.nick, pear.users.password,
           function(){
