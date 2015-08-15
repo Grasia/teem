@@ -8,7 +8,7 @@
       <input type="text" class="form-control" id="login" name="login" ng-model="name" placeholder="{{ 'login.name' | translate }}"
              ng-pattern="loginRegexp" ng-model-options="{ debounce: 250 }" required/>
       <span class="input-group-btn">
-        <input type="submit" class="btn btn-info" ng-click="login(name)" value="{{'login.button' | translate}}"  ng-disabled="loginForm.login.$invalid" >
+        <input type="submit" class="btn btn-info" ng-click="login()" value="{{'login.button' | translate}}"  ng-disabled="loginForm.login.$invalid" >
       </span>
     </div>
   </form>

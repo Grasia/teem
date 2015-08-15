@@ -27,15 +27,14 @@ angular.module('Pear2Pear')
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
 
-    $scope.login = function(name) {
+    $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
-        console.log(name);
         pear.startSession(
-          name, '$password$',
+          $scope.name, '$password$',
           function(){
             $timeout(function(){
-              pear.users.setCurrent(name + '@' + SwellRTConfig.swellrtServerDomain);
+              pear.users.setCurrent($scope.name + '@' + SwellRTConfig.swellrtServerDomain);
               $location.path('/communities');
             });
           },
