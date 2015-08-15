@@ -50,7 +50,7 @@ angular.module('Pear2Pear')
 
         var queries = $q.all([
           foundCommunities.promise,
-          foundProjectNumbers.promuse
+          foundProjectNumbers.promise
         ]);
 
         var comms = {};
