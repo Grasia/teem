@@ -246,6 +246,58 @@ angular.module('Pear2Pear')
         return window.localStorage.setItem('communityId', communityId);
       },
 
+      myCommunities: function(){
+        var myComms = $q.defer();
+        console.log('user', users.current());
+        SwellRT.query(
+          {
+            _aggregate : [
+              {$match: {
+                'root.type': 'project',
+                'root.contributors': users.current()
+              }},
+              {$unwind: '$root.communities'},
+              {$group :
+               {_id:'$root.communities'
+               }
+            }]
+          },
+          function(result){
+            var comms = [];
+
+            angular.forEach(result.result, function(val) {
+              comms.push(val._id);
+            });
+
+            SwellRT.query(
+              {
+                'root.type': 'community',
+                'root.id' : {
+                  $in : comms
+                }
+              },
+              function(result){
+                var resultComms = {};
+
+                angular.forEach(result.result, function(val){
+                  resultComms[val.root.id] = val.root;
+                });
+
+                myComms.resolve(resultComms);
+              },
+              function(error){
+                myComms.reject(error);
+              }
+            );
+          },
+          function(error){
+            myComms.reject(error);
+          }
+        );
+        console.log('foo0', myComms.promise);
+        return myComms.promise;
+      },
+
       current: function() {
         return window.localStorage.getItem('communityId');
       }
@@ -330,6 +382,41 @@ angular.module('Pear2Pear')
               p.contributors.push(user);
             }
           });
+      },
+      myProjects: function(communityId){
+
+        var myProjs = $q.defer();
+
+        var query = {
+          _aggregate: [
+            {
+              $match: {
+                'root.type': 'project',
+                'root.contributors': users.current()
+              }
+            }
+          ]};
+
+        if (communityId){
+          query._aggregate.$match['root.communities'] = communityId;
+        }
+
+        SwellRT.query(
+          query,
+          function(result) {
+
+            var res = [];
+
+            angular.forEach(result.result, function(val){
+              res.push(val.root);
+            });
+
+            myProjs.resolve(res);
+          },
+          function(error){
+            myProjs.reject(error);
+          });
+        return myProjs.promise;
       }
     };
 
