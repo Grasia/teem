@@ -10,21 +10,22 @@
 
 angular.module('Pear2Pear')
   .factory('loading', [
-           'SharedState', '$rootElement',
-           function(SharedState, $rootElement) {
-    var initialized = false;
+           'SharedState', '$rootElement', '$rootScope',
+           function(SharedState, $rootElement, $rootScope) {
+    SharedState.initialize($rootScope, 'notLoading', { defaultValue: false });
+
+    Pear2PearLoading.create({
+      callback: function() {
+        SharedState.turnOff('notLoading');
+      }
+    });
 
     function show() {
-      SharedState.turnOn('loading');
+      SharedState.turnOff('notLoading');
       $rootElement.addClass('has-modal');
       $rootElement.addClass('has-modal-overlay');
 
-      if (!initialized) {
-        Pear2PearLoading.create();
-        initialized = true;
-      } else {
-        Pear2PearLoading.start();
-      }
+      Pear2PearLoading.start();
     }
 
     function hide() {
@@ -32,7 +33,7 @@ angular.module('Pear2Pear')
       $rootElement.removeClass('has-modal');
       $rootElement.removeClass('has-modal-overlay');
 
-      SharedState.turnOff('loading');
+      SharedState.turnOn('notLoading');
     }
 
     return {
@@ -40,5 +41,4 @@ angular.module('Pear2Pear')
       hide: hide
     };
   }]);
-
 
