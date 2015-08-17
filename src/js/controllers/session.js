@@ -26,15 +26,19 @@ angular.module('Pear2Pear')
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
+    
+    $scope.user = {
+      nick : ""
+    }
 
     $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
         pear.startSession(
-          $scope.name, '$password$',
+          $scope.user.nick, '$password$',
           function(){
             $timeout(function(){
-              pear.users.setCurrent($scope.name + '@' + SwellRTConfig.swellrtServerDomain);
+              pear.users.setCurrent($scope.user.nick + '@' + SwellRTConfig.swellrtServerDomain);
               $location.path('/communities');
             });
           },
@@ -43,7 +47,7 @@ angular.module('Pear2Pear')
           }
         );
       };
-      pear.registerUser($scope.name, '$password$', startSession, startSession);
+      pear.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
 
     $scope.userData = function () {

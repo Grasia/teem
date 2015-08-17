@@ -5,7 +5,7 @@
   <form class="login-form" role="form" name="loginForm">
     <div class="input-group" ng-class="(loginForm.login.$invalid  && loginForm.login.$dirty && !loginForm.login.$error.required ) ? 'has-error' : ''">
       <label class="control-label sr-only" for="login" translate>login.name</label>
-      <input type="text" class="form-control" id="login" name="login" ng-model="name" placeholder="{{ 'login.name' | translate }}"
+      <input type="text" class="form-control" id="login" name="login" ng-model="user.nick" placeholder="{{ 'login.name' | translate }}"
              ng-pattern="loginRegexp" ng-model-options="{ debounce: 250 }" required/>
       <span class="input-group-btn">
         <input type="submit" class="btn btn-info" ng-click="login()" value="{{'login.button' | translate}}"  ng-disabled="loginForm.login.$invalid" >
