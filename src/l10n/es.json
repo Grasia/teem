@@ -138,7 +138,9 @@
   "bottom_navbar": {
     "news": "Noticias",
     "projects": "Proyectos",
-    "my_tasks": "Mis tareas"
+    "my_tasks": "Mis tareas",
+    "crowd_doing": "CrowdDoing",
+    "my_doing": "Mis comunidades"
   },
 
   "session": {
