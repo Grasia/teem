@@ -16,4 +16,9 @@ angular.module('Pear2Pear')
     $scope.currentHref = function currentHref() {
       return $window.location.href;
     };
+
+    $scope.linkCurrentProject = function linkCurrentProject() {
+      var hash = $window.location.hash.substr(1);
+      return $window.location.host + '#/?redirect=' + hash
+    };
   }]);

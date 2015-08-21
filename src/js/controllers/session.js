@@ -39,7 +39,16 @@ angular.module('Pear2Pear')
           function(){
             $timeout(function(){
               pear.users.setCurrent($scope.user.nick + '@' + SwellRTConfig.swellrtServerDomain);
-              $location.path('/communities');
+              if ($route.current.params.redirect) {
+                var params = $route.current.params;
+                var redirect = $route.current.params.redirect;
+                delete params.redirect;
+                $route.updateParams(params);
+                $location.path(redirect);
+              }
+              else {
+                $location.path('/communities');
+              }
             });
           },
           function(error){
