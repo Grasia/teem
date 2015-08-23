@@ -328,6 +328,7 @@ angular.module('Pear2Pear')
     };
 
     var users = {
+      password: '$password$',
       current: function() {
         return window.sessionStorage.getItem('userId');
       },
@@ -401,7 +402,15 @@ angular.module('Pear2Pear')
     };
 
     window.onSwellRTReady = function () {
-      startSession(null, null, function(){
+      var user = null,
+          pass = null;
+
+      if (users.current()) {
+        user = users.current();
+        pass = users.password;
+      }
+
+      startSession(user, pass, function(){
           $timeout(
             function() {
               communities.all();

@@ -26,7 +26,7 @@ angular.module('Pear2Pear')
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
-    
+
     $scope.user = {
       nick : ""
     }
@@ -35,7 +35,7 @@ angular.module('Pear2Pear')
       var startSession = function(){
         // TODO change password when register is available
         pear.startSession(
-          $scope.user.nick, '$password$',
+          $scope.user.nick, pear.users.password,
           function(){
             $timeout(function(){
               pear.users.setCurrent($scope.user.nick + '@' + SwellRTConfig.swellrtServerDomain);
