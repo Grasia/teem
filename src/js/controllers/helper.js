@@ -19,6 +19,6 @@ angular.module('Pear2Pear')
 
     $scope.linkCurrentProject = function linkCurrentProject() {
       var hash = $window.location.hash.substr(1);
-      return $window.location.host + '#/?redirect=' + hash
+      return $window.location.protocol + '//' + $window.location.host + '#/?redirect=' + hash
     };
   }]);
