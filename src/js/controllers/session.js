@@ -38,10 +38,12 @@ angular.module('Pear2Pear')
           $scope.user.nick, pear.users.password,
           function(){
             $timeout(function(){
-              pear.users.setCurrent($scope.user.nick + '@' + SwellRTConfig.swellrtServerDomain);
               if ($route.current.params.redirect) {
                 var params = $route.current.params;
                 var redirect = $route.current.params.redirect;
+                // redirects are of the form /community/:communityId/project/projectId
+                var communityId = redirect.split('/')[2];
+                pear.communities.setCurrent(communityId);
                 delete params.redirect;
                 $route.updateParams(params);
                 $location.path(redirect);
@@ -58,6 +60,16 @@ angular.module('Pear2Pear')
       };
       pear.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
+
+
+    // Check for stored session information
+    if (pear.users.current() !== null) {
+      if (pear.communities.current()){
+        $location.path('/communities/' + pear.communities.current() + '/projects');
+      } else {
+        $location.path('/communities');
+      }
+    }
 
     $scope.userData = function () {
       _paq.push(['appendToTrackingUrl', 'new_visit=1']);

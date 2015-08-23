@@ -240,9 +240,15 @@ angular.module('Pear2Pear')
         var id = base64.decode(urlId);
         // currently not supported by SwellRT
         return urlId;
+      },
+
+      setCurrent: function(communityId) {
+        return window.sessionStorage.setItem('communityId', communityId);
+      },
+
+      current: function() {
+        return window.sessionStorage.getItem('communityId');
       }
-
-
     };
 
     var findProjects = function(urlId) {
@@ -317,7 +323,7 @@ angular.module('Pear2Pear')
         if (!user){
           user = users.current();
         }
-        console.log('user',user);
+
         projects.find(projId).then(
           function(p){
             if (user && p.contributors.indexOf(user) < 0){
@@ -342,6 +348,9 @@ angular.module('Pear2Pear')
       },
       loggedIn: function() {
         return users.current() !== 'undefined' && users.current() !== null;
+      },
+      clearCurrent: function(){
+        window.sessionStorage.removeItem("userId");
       }
     };
 
@@ -384,14 +393,15 @@ angular.module('Pear2Pear')
     var startSession = function(userName, password, onSuccess, onError){
       loading.show();
 
-      // if login with user Name, close previous anonimous session
-      if (userName){
-        window.SwellRT.stopSession();
-      }
       window.SwellRT.startSession(
         SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
         function(){
           SwellRTConfig.swellrtServerDomain = __session.domain;
+          if (userName){
+            users.setCurrent(__session.address);
+          } else {
+            users.clearCurrent();
+          }
           SwellRT.on(SwellRT.events.NETWORK_CONNECTED, onSuccess);
 
           loading.hide();
@@ -402,10 +412,10 @@ angular.module('Pear2Pear')
     };
 
     window.onSwellRTReady = function () {
-      var user = null,
-          pass = null;
+      var user = undefined,
+          pass = undefined;
 
-      if (users.current()) {
+      if (users.current() != null) {
         user = users.current();
         pass = users.password;
       }

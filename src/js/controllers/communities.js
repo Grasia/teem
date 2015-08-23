@@ -40,6 +40,7 @@ angular.module('Pear2Pear')
     });
 
     $scope.showProjects = function(id) {
+      pear.communities.setCurrent(pear.urlId(id));
       $location.path('/communities/' + pear.urlId(id) + '/projects');
     };
   }]);
