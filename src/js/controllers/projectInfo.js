@@ -37,6 +37,13 @@ angular.module('Pear2Pear')
     });
 
     $scope.isSupporter = function(project) {
+      if (!project) {
+        return false;
+      }
+      
+      if (!project.supporters) {
+        return false;
+      }
       // Migrate project.support
       return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
     };

@@ -26,6 +26,16 @@
         </div>
         <div class="list-group-item project-support" ng-if="nav('information')">
           <h5 translate>project.section.support.title</h5>
+          <div class="project-supports">
+            <div class="project-supports-section">
+              <div class="project-avatars swellrt-avatars" ng-model="project.supporters"></div>
+            </div>
+            <div class="project-supports-section">
+              <div class="project-support-number">
+                {{ project.supporters.length }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="scrollable-content">
