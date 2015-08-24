@@ -67,6 +67,9 @@
     "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades"
   },
   "need": {
+    "comment": {
+      "input": "Write your comment here..."
+    },
     "nav": {
       "title": "Necesidades"
     },

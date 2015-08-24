@@ -66,6 +66,9 @@
     "welcome_msg": "The tool to promote your proposals in your communities"
   },
   "need": {
+    "comment": {
+      "input": "Write your comment here..."
+    },
     "nav": {
       "title": "Needs"
     },

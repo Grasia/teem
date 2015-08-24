@@ -24,6 +24,11 @@ angular.module('Pear2Pear')
 
     $scope.communityId = $route.current.params.communityId;
 
+    $scope.comments = {
+      new: [],
+      visible: []
+    };
+
     pear.onLoad(function(){
       pear.communities.find($route.current.params.communityId)
         .community.then(function(community){
@@ -67,6 +72,25 @@ angular.module('Pear2Pear')
       });
     };
 
+    $scope.toggleCommentsVisibility = function toggleCommentsVisibility(needIndex) {
+      if ($scope.comments.visible[needIndex]) {
+        $scope.comments.visible[needIndex] = false;
+      } else {
+        $scope.comments.visible[needIndex] = true;
+      }
+    };
+
+    $scope.sendComment = function sendComment(needIndex) {
+      //TODO backend
+      console.log($scope.comments.new[needIndex]);
+    };
+
+    $scope.hour = function(comment) {
+      var d = (new Date(comment.time));
+
+      return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
+    };
+
     function section() {
       if ($route.current.params.section) {
         return $route.current.params.section;
@@ -85,7 +109,18 @@ angular.module('Pear2Pear')
       {
         text: 'One completed need',
         completed: 'true',
-        comments: []
+        comments: [
+          {
+            text: 'One comment',
+            time: '2015-08-24T13:16:53.259Z',
+            author: 'pepe@local.net'
+          },
+          {
+            text: 'Other comment',
+            time: '2015-08-24T14:16:55.259Z',
+            author: 'pepe2@local.net'
+          }
+        ]
       },
       { text: 'One non completed need',
         completed: 'false',
@@ -111,7 +146,7 @@ angular.module('Pear2Pear')
           },
           {
             text: 'Other comment',
-            time: '2015-08-24T13:16:55.259Z',
+            time: '2015-08-24T14:16:55.259Z',
             author: 'pepe2@local.net'
           }
         ]

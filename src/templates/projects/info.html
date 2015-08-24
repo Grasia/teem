@@ -48,20 +48,51 @@
         <div class="list-group-item project-needs" ng-if="nav('needs')">
           <div class="list-group project-needs-list">
             <div class="list-group-item need-item" ng-repeat="need in needs">
-              <div class="need-section need-status">
-                <!-- fixes icon margin in table-cell -->
-                <div class="need-icon-fix">&nbsp;</div>
-                <i ng-class="need.completed === 'true' ? 'need-checkbox-true' : 'need-checkbox-false'"></i>
-              </div>
-              <div class="need-section need-text" ng-class="need.completed === 'true' ? 'text-strike' : ''">
-                {{ need.text }}
-              </div>
-              <div class="need-section need-comments">
-                <div class="need-comments-count">
-                  {{ need.comments.length }}
+              <div class="need-sections" ng-click="toggleCommentsVisibility($index)">
+                <div class="need-section need-section-status">
+                  <!-- fixes icon margin in table-cell -->
+                  <div class="need-icon-fix">&nbsp;</div>
+                  <i ng-class="need.completed === 'true' ? 'need-checkbox-true' : 'need-checkbox-false'"></i>
                 </div>
-                <div class="need-comments-icon">
-                  <i class="fa fa-comment"></i>
+                <div class="need-section need-text" ng-class="need.completed === 'true' ? 'text-strike' : ''">
+                  {{ need.text }}
+                </div>
+                <div class="need-section need-section-comments">
+                  <div class="need-comments-count">
+                    {{ need.comments.length }}
+                  </div>
+                  <div class="need-comments-icon">
+                    <i class="fa fa-comment"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="need-comments" ng-show="comments.visible[$index]">
+                <div class="media" ng-repeat="comment in need.comments">
+                  <div class="media-left">
+                    <div class="need-comment-avatar swellrt-avatars" ng-model="comment.author"></div>
+                  </div>
+                  <div class="media-body">
+                    <div class="comment-time pull-right">
+                      {{ hour(comment) }}
+                    </div>
+                    <h5 class="media-heading">
+                      <span class="comment-author-name">
+                        {{comment.author.split('@')[0]}}
+                      </span>
+                    </h5>
+                    {{comment.text}}
+                  </div>
+                </div>
+                <div class="new-need-comment">
+                  <form class="new-need-comment-send" ng-submit="sendComment($index)">
+                    <div class="input-group">
+                      <textarea class="form-control" rows="1" msd-elastic="\n" ng-model="comments.new[$index]" placeholder="{{ 'need.comment.input' | translate}}"/>
+                      </textarea>
+                      <span class="input-group-addon">
+                        <i class="fa fa-chevron-circle-right need-comment-input-button" ng-click="sendComment($index)"></i>
+                      </span>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
