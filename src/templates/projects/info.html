@@ -46,7 +46,26 @@
         </div>
 
         <div class="list-group-item project-needs" ng-if="nav('needs')">
-          project needs
+          <div class="list-group project-needs-list">
+            <div class="list-group-item need-item" ng-repeat="need in needs">
+              <div class="need-section need-status">
+                <!-- fixes icon margin in table-cell -->
+                <div class="need-icon-fix">&nbsp;</div>
+                <i ng-class="need.completed === 'true' ? 'need-checkbox-true' : 'need-checkbox-false'"></i>
+              </div>
+              <div class="need-section need-text" ng-class="need.completed === 'true' ? 'text-strike' : ''">
+                {{ need.text }}
+              </div>
+              <div class="need-section need-comments">
+                <div class="need-comments-count">
+                  {{ need.comments.length }}
+                </div>
+                <div class="need-comments-icon">
+                  <i class="fa fa-comment"></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>

@@ -40,7 +40,7 @@ angular.module('Pear2Pear')
       if (!project) {
         return false;
       }
-      
+
       if (!project.supporters) {
         return false;
       }
@@ -80,4 +80,41 @@ angular.module('Pear2Pear')
       return id === section() ? 'active' : '';
     };
 
+    //TODO backend
+    $scope.needs = [
+      {
+        text: 'One completed need',
+        completed: 'true',
+        comments: []
+      },
+      { text: 'One non completed need',
+        completed: 'false',
+        comments: []
+      },
+      {
+        text: 'One completed need, in the second place',
+        completed: 'true',
+        comments: []
+      },
+      { text: 'One non completed need, in the second place',
+        completed: 'false',
+        comments: []
+      },
+      {
+        text: 'One need with comments',
+        completed: 'false',
+        comments: [
+          {
+            text: 'One comment',
+            time: '2015-08-24T13:16:53.259Z',
+            author: 'pepe@local.net'
+          },
+          {
+            text: 'Other comment',
+            time: '2015-08-24T13:16:55.259Z',
+            author: 'pepe2@local.net'
+          }
+        ]
+      }
+    ];
   }]);
