@@ -135,10 +135,11 @@ blockquote cite:before
     margin: auto
 
 .btn-primary
-  background-color: $button-primary-background-color
-  border-color: $button-primary-background-color
-  .fa
-    color: #fff
+  &, &.active, &:hover
+    background-color: $button-primary-background-color
+    border-color: $button-primary-background-color
+    .fa
+      color: #fff
 .btn-group
   .btn-default
     .fa

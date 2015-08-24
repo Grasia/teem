@@ -131,37 +131,9 @@ angular.module('Pear2Pear')
       }
     };
 
-    $scope.isPromoter = function(project) {
-      return pear.users.isCurrent(project.promoter);
-    };
-
     $scope.supporterCount = function(project) {
       // Migrate project.support
       return project.supporters.length;
-    };
-
-    $scope.isSupporter = function(project) {
-      // Migrate project.support
-      return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
-    };
-
-    $scope.toggleSupport = function(project) {
-      // Need a valid login to support
-      if (! pear.users.loggedIn()) {
-        $location.path('session/new');
-
-        return;
-      }
-
-      pear.toggleSupport(project.id);
-      var index = project.supporters.indexOf(pear.users.current());
-      $timeout(function(){
-        if (index > -1) {
-          project.supporters.splice(index, 1);
-        } else {
-          project.supporters.push(pear.users.current());
-        }
-      })
     };
 
     $scope.emptyProjects = function(){

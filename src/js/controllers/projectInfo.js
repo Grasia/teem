@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectInfoCtrl', [
-              'pear', '$scope', '$location', '$route',
-              function (pear, $scope, $location, $route) {
+              'pear', '$scope', '$location', '$route', '$timeout',
+              function (pear, $scope, $location, $route, $timeout) {
 
     $scope.urlId= pear.urlId;
 
@@ -35,6 +35,30 @@ angular.module('Pear2Pear')
           $scope.project = proxy;
         });
     });
+
+    $scope.isSupporter = function(project) {
+      // Migrate project.support
+      return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
+    };
+
+    $scope.toggleSupport = function(project) {
+      // Need a valid login to support
+      if (! pear.users.loggedIn()) {
+        $location.path('session/new');
+
+        return;
+      }
+
+      pear.toggleSupport(project.id);
+      var index = project.supporters.indexOf(pear.users.current());
+      $timeout(function(){
+        if (index > -1) {
+          project.supporters.splice(index, 1);
+        } else {
+          project.supporters.push(pear.users.current());
+        }
+      });
+    };
 
     function section() {
       if ($route.current.params.section) {
