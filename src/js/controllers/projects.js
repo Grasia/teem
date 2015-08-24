@@ -47,6 +47,19 @@ angular.module('Pear2Pear')
       };
     });
 
+    $scope.section = 'crowddoing';
+
+    $scope.crowddoing = function crowddoing() {
+      //TODO change $scope.projects to community projects
+      $scope.section = 'crowddoing';
+    };
+
+    $scope.mydoing = function mydoing() {
+      //TODO change $scope.projects to my projects
+
+      $scope.section = 'mydoing';
+    };
+
     // TODO: repeated code in NavbarTopCtrl
     $scope.shareIcon = function shareIcon(project) {
       switch (project.shareMode) {
