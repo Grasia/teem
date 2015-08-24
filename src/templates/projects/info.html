@@ -1,0 +1,16 @@
+
+<div ui-content-for="nav-title">
+  <div class="project-title overflow-ellipsis">
+    {{project.title}}
+  </div>
+</div>
+
+<div ng-include="'navbar_top/project_info.html'"></div>
+
+<div class="section project-information" ng-show="nav('information')">
+  project information
+</div>
+
+<div class="section project-needs" ng-show="nav('needs')">
+  project needs
+</div>

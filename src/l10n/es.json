@@ -92,6 +92,11 @@
     "index": {
       "title": "Proyectos"
     },
+    "info": {
+      "nav": {
+        "title": "Información"
+      }
+    },
     "section": {
       "needs": {
         "title": "Necesidades"

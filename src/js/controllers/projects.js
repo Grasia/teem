@@ -72,9 +72,13 @@ angular.module('Pear2Pear')
       }
     };
 
-    $scope.showProjectPad = function(id) {
-      //FIXME model prototype
-      $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/pad');
+    $scope.showProject = function(id) {
+      if ($scope.section === 'mydoing') {
+        //FIXME model prototype
+        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/pad');
+      } else {
+        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id));
+      }
     };
 
     // This function should belong to the model
