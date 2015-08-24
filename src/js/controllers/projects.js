@@ -28,10 +28,18 @@ angular.module('Pear2Pear')
         $scope.community = community;
       });
 
-      com.projects.all().then(
-        function (projects){
-          $scope.projects = projects;
-        });
+      if (isSection('mydoing')) {
+        // TODO my projects
+        com.projects.all().then(
+          function (projects){
+            $scope.projects = projects;
+          });
+      } else {
+        com.projects.all().then(
+          function (projects){
+            $scope.projects = projects;
+          });
+      }
 
       $scope.new_ = function () {
         pear.projects.create(function(p) {
@@ -47,17 +55,22 @@ angular.module('Pear2Pear')
       };
     });
 
-    $scope.section = 'crowddoing';
+    //FIXME repeated code in ProjectInfoCtrl
+    // Refactorize to service
+    function section() {
+      if ($route.current.params.section) {
+        return $route.current.params.section;
+      } else {
+        return 'crowddoing';
+      }
+    }
 
-    $scope.crowddoing = function crowddoing() {
-      //TODO change $scope.projects to community projects
-      $scope.section = 'crowddoing';
-    };
+    function isSection(s) {
+      return s === section();
+    }
 
-    $scope.mydoing = function mydoing() {
-      //TODO change $scope.projects to my projects
-
-      $scope.section = 'mydoing';
+    $scope.nav = function(id) {
+      return isSection(id) ? 'selected' : '';
     };
 
     // TODO: repeated code in NavbarTopCtrl
@@ -73,7 +86,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showProject = function(id) {
-      if ($scope.section === 'mydoing') {
+      if (section() === 'mydoing') {
         //FIXME model prototype
         $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/pad');
       } else {
