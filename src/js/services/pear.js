@@ -243,11 +243,11 @@ angular.module('Pear2Pear')
       },
 
       setCurrent: function(communityId) {
-        return window.sessionStorage.setItem('communityId', communityId);
+        return window.localStorage.setItem('communityId', communityId);
       },
 
       current: function() {
-        return window.sessionStorage.getItem('communityId');
+        return window.localStorage.getItem('communityId');
       }
     };
 
@@ -336,12 +336,12 @@ angular.module('Pear2Pear')
     var users = {
       password: '$password$',
       current: function() {
-        return window.sessionStorage.getItem('userId');
+        return window.localStorage.getItem('userId');
       },
       setCurrent: function(name) {
         var cleanedName = name ? name.trim() : name;
 
-        return window.sessionStorage.setItem('userId', cleanedName);
+        return window.localStorage.setItem('userId', cleanedName);
       },
       isCurrent: function(user) {
         return user === users.current();
@@ -350,7 +350,7 @@ angular.module('Pear2Pear')
         return users.current() !== 'undefined' && users.current() !== null;
       },
       clearCurrent: function(){
-        window.sessionStorage.removeItem("userId");
+        window.localStorage.removeItem("userId");
       }
     };
 

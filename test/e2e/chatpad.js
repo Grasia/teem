@@ -4,6 +4,8 @@
 
 describe('Pear2Pear', function() {
 
+  browser.driver.executeScript("window.localStorage.clear();");
+
   browser.get('index.html');
 
   it('should automatically redirect to /frontpage when location hash/fragment is empty', function() {
@@ -16,6 +18,7 @@ describe('Pear2Pear', function() {
     beforeEach(function() {
       browser.get('index.html#/frontpage');
     });
+
 
 
     it('should render session/form when user navigates to /frontpage', function() {
@@ -80,6 +83,20 @@ describe('Pear2Pear', function() {
 
       expect(element.all(by.css('.chat-message-text')).last().getText())
         .toEqual(chatText);
+    });
+  });
+
+  describe('session and community preferences working', function(){
+
+    it('should automatically redirect to the saved community when visiting frontpage', function() {
+
+      browser.get('/#/frontpage');
+
+      var comId = browser.driver.executeScript("return window.localStorage.communityId;");
+
+      comId.then(function(communityId){
+        expect(browser.getLocationAbsUrl()).toBe('/communities/' + communityId + '/projects');
+      });
     });
   });
 });
