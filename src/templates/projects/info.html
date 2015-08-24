@@ -1,16 +1,35 @@
 
 <div ui-content-for="nav-title">
-  <div class="project-title overflow-ellipsis">
-    {{project.title}}
+  <div class="community-title overflow-ellipsis">
+    {{community.name}}
   </div>
 </div>
 
 <div ng-include="'navbar_top/project_info.html'"></div>
 
-<div class="section project-information" ng-show="nav('information')">
-  project information
-</div>
+<div class="section project">
+  <div class="list-group">
+    <div class="scrollable">
+      <div class="scrollable-header">
+        <div class="list-group-item project-heading">
+          <h4>{{project.title}}</h4>
+        </div>
+        <div class="list-group-item project-support" ng-show="nav('information')">
+          <h5 translate>project.section.support.title</h5>
+        </div>
+      </div>
+      <div class="scrollable-content">
 
-<div class="section project-needs" ng-show="nav('needs')">
-  project needs
+        <div class="list-group-item project-description" ng-show="nav('information')">
+          <h5 translate>project.section.description.title</h5>
+          Lorem fistrum nostrud incididunt reprehenderit de la pradera te voy a borrar el cerito eiusmod tempor qué dise usteer. No puedor reprehenderit adipisicing qué dise usteer te va a hasé pupitaa labore por la gloria de mi madre torpedo consectetur duis. Benemeritaar veniam de la pradera ese pedazo de sexuarl. Sexuarl sexuarl ut cillum dolore occaecat reprehenderit. A peich sexuarl sexuarl amatomaa la caidita te voy a borrar el cerito adipisicing eiusmod. Esse eiusmod magna commodo va usté muy cargadoo. Nisi diodeno te voy a borrar el cerito fistro ut. Commodo adipisicing apetecan a gramenawer ex no te digo trigo por no llamarte Rodrigor se calle ustée cillum commodo aute. Ese que llega dolore consequat sit amet me cago en tus muelas pupita te va a hasé pupitaa jarl me cago en tus muelas labore magna.
+        </div>
+
+        <div class="list-group-item project-needs" ng-show="nav('needs')">
+          project needs
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

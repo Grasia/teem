@@ -97,6 +97,9 @@
       }
     },
     "section": {
+      "description": {
+        "title": "Description"
+      },
       "needs": {
         "title": "Needs"
       },

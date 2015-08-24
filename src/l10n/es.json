@@ -98,6 +98,9 @@
       }
     },
     "section": {
+      "description": {
+        "title": "Descripción"
+      },
       "needs": {
         "title": "Necesidades"
       },

@@ -25,6 +25,11 @@ angular.module('Pear2Pear')
     $scope.communityId = $route.current.params.communityId;
 
     pear.onLoad(function(){
+      pear.communities.find($route.current.params.communityId)
+        .community.then(function(community){
+        $scope.community = community;
+      });
+
       pear.projects.find($route.current.params.id)
         .then(function(proxy) {
           $scope.project = proxy;
