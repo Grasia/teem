@@ -38,6 +38,7 @@ angular.module('Pear2Pear')
       pear.projects.find($route.current.params.id)
         .then(function(proxy) {
           $scope.project = proxy;
+          $scope.needs = $scope.project.needs;
         });
     });
 
@@ -81,8 +82,9 @@ angular.module('Pear2Pear')
     };
 
     $scope.sendComment = function sendComment(needIndex) {
-      //TODO backend
-      console.log($scope.comments.new[needIndex]);
+      var need = $scope.project.needs[needIndex];
+      pear.addNeedComment(need, $scope.comments.new[needIndex]);
+      $scope.comments.new[needIndex] = '';
     };
 
     $scope.hour = function(comment) {
@@ -104,52 +106,4 @@ angular.module('Pear2Pear')
       return id === section() ? 'active' : '';
     };
 
-    //TODO backend
-    $scope.needs = [
-      {
-        text: 'One completed need',
-        completed: 'true',
-        comments: [
-          {
-            text: 'One comment',
-            time: '2015-08-24T13:16:53.259Z',
-            author: 'pepe@local.net'
-          },
-          {
-            text: 'Other comment',
-            time: '2015-08-24T14:16:55.259Z',
-            author: 'pepe2@local.net'
-          }
-        ]
-      },
-      { text: 'One non completed need',
-        completed: 'false',
-        comments: []
-      },
-      {
-        text: 'One completed need, in the second place',
-        completed: 'true',
-        comments: []
-      },
-      { text: 'One non completed need, in the second place',
-        completed: 'false',
-        comments: []
-      },
-      {
-        text: 'One need with comments',
-        completed: 'false',
-        comments: [
-          {
-            text: 'One comment',
-            time: '2015-08-24T13:16:53.259Z',
-            author: 'pepe@local.net'
-          },
-          {
-            text: 'Other comment',
-            time: '2015-08-24T14:16:55.259Z',
-            author: 'pepe2@local.net'
-          }
-        ]
-      }
-    ];
   }]);

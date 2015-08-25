@@ -398,7 +398,7 @@ angular.module('Pear2Pear')
           ]};
 
         if (communityId){
-          query._aggregate.$match['root.communities'] = communityId;
+          query._aggregate[0].$match['root.communities'] = base64.decode(communityId);
         }
 
         SwellRT.query(
@@ -473,6 +473,17 @@ angular.module('Pear2Pear')
       );
     };
 
+    var addNeedComment = function(need, comment){
+      if (!need.comments){
+        need.comments = [];
+      }
+      need.comments.push({
+        text: comment,
+        time: (new Date()).toJSON(),
+        author: users.current()
+      });
+    };
+
     var registerUser = function(userName, password, onSuccess, onError){
       window.SwellRT.registerUser(SwellRTConfig.server, userName, password, onSuccess, onError);
     };
@@ -535,6 +546,7 @@ angular.module('Pear2Pear')
       users: users,
       urlId: urlId,
       addChatMessage: addChatMessage,
+      addNeedComment: addNeedComment,
       toggleSupport: toggleSupport,
       startSession: startSession,
       registerUser: registerUser,

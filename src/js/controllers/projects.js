@@ -22,15 +22,16 @@ angular.module('Pear2Pear')
 
     $scope.urlId= pear.urlId;
 
+    var comUrlId = $route.current.params.comId;
+
     pear.onLoad(function(){
-      var com = pear.communities.find($route.current.params.comId);
+      var com = pear.communities.find(comUrlId);
       com.community.then(function(community){
         $scope.community = community;
       });
 
       if (isSection('mydoing')) {
-        // TODO my projects
-        com.projects.all().then(
+        pear.projects.myProjects(comUrlId).then(
           function (projects){
             $scope.projects = projects;
           });
