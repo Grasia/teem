@@ -61,16 +61,7 @@ angular.module('Pear2Pear')
 
         return;
       }
-
       pear.toggleSupport(project.id);
-      var index = project.supporters.indexOf(pear.users.current());
-      $timeout(function(){
-        if (index > -1) {
-          project.supporters.splice(index, 1);
-        } else {
-          project.supporters.push(pear.users.current());
-        }
-      });
     };
 
     $scope.toggleCommentsVisibility = function toggleCommentsVisibility(needIndex) {
