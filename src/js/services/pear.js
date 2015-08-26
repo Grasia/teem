@@ -151,13 +151,7 @@ angular.module('Pear2Pear')
                 {
                   'root.type': 'project',
                   'root.communities': id,
-                  $and: [{
-                    $or: [
-                      {'root.shareMode': 'public'},
-                      {'root.supporters': users.current()},
-                      {'root.contributors': users.current()}
-                    ]
-                  }]
+                  'root.shareMode': 'public'
                 },
                 function(result){
                   var projs = [];
