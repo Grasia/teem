@@ -22,7 +22,7 @@
                 <i class="fa" ng-class="shareIcon(project)"></i>
                 <span class="project-title">{{project.title}}</span>
               </h4>
-              <div class="project-sections justified">
+              <div class="project-sections projects-sections-crowddoing justified" ng-if="nav('crowddoing')">
                 <div class="project-promoters">
                   <h5>&nbsp;</h5>
                   <div class="project-avatars swellrt-avatars visible-xs-inline" ng-model="project.contributors"></div>
@@ -33,7 +33,7 @@
                     <h5 translate>project.section.needs.title</h5>
                     <div class="progress">
                       <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
-                      <span class="sr-only">60% Complete</span>
+                        <span class="sr-only">60% Complete</span>
                       </div>
                     </div>
                   </a>
@@ -42,6 +42,23 @@
                   <h5 translate>project.section.support.title</h5>
                   <div class="project-support-number">
                     {{ supporterCount(project) }}
+                  </div>
+                </div>
+              </div>
+              <div class="projects-sections-mydoing" ng-if="nav('mydoing')">
+                <div class="project-last-message">
+                  <div class="message-time">20:35</div>
+                  <div class="author-avatar"></div>
+                  <div class="author-name">Abbey</div>
+                  <div class="message-text">mañana hablaré con el espacio..</div>
+                </div>
+                <div class="project-sections justified">
+                  <div>&nbsp;</div>
+                  <div class="project-editions">
+                    <i class="fa fa-pencil-square-o"></i> 8
+                  </div>
+                  <div class="project-messages">
+                    <i class="fa fa-comments-o"></i> 8
                   </div>
                 </div>
               </div>
