@@ -33,7 +33,7 @@
                     <h5 translate>project.section.needs.title</h5>
                     <div class="progress">
                       <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
-                        <span class="sr-only">60% Complete</span>
+                        <span class="sr-only">{{progressPercentage(project)}}% Complete</span>
                       </div>
                     </div>
                   </a>
