@@ -26,7 +26,7 @@
                 <div class="project-promoters">
                   <h5>&nbsp;</h5>
                   <div class="project-avatars swellrt-avatars visible-xs-inline" ng-model="project.contributors"></div>
-                  <div class="project-avatars swellrt-avatars hidden-xs" ng-model="project.contributors" num-avatars="3"></div>
+                  <div class="project-avatars swellrt-avatars hidden-xs" ng-model="project.contributors" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
                 </div>
                 <div class="project-needs">
                   <a ng-href="#/communities/{{urlId(community.id)}}/projects/{{urlId(project.id)}}?section=needs">
