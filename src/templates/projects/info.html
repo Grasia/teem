@@ -58,9 +58,9 @@
                 <div class="need-section need-text" ng-class="need.completed === 'true' ? 'text-strike' : ''">
                   {{ need.text }}
                 </div>
-                <div class="need-section need-section-comments">
+                <div class="need-section need-section-comments" ng-class="need.comments.length ? 'active' : ''">
                   <div class="need-comments-count">
-                    {{ need.comments.length }}
+                    {{ need.comments.length || 0 }}
                   </div>
                   <div class="need-comments-icon">
                     <i class="fa fa-comment"></i>
