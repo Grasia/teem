@@ -25,8 +25,7 @@ angular.module('Pear2Pear')
     $scope.communityId = $route.current.params.comId;
 
     $scope.comments = {
-      new: [],
-      visible: []
+      new: []
     };
 
     pear.onLoad(function(){
@@ -64,12 +63,12 @@ angular.module('Pear2Pear')
       pear.toggleSupport(project.id);
     };
 
-    $scope.toggleCommentsVisibility = function toggleCommentsVisibility(needIndex) {
-      if ($scope.comments.visible[needIndex]) {
-        $scope.comments.visible[needIndex] = false;
-      } else {
-        $scope.comments.visible[needIndex] = true;
-      }
+    $scope.toggleCommentsVisibility = function toggleCommentsVisibility(need) {
+      $scope.comments.visible = need;
+    };
+
+    $scope.areCommentsVisible = function areCommentsVisible(need) {
+      return $scope.comments.visible === need;
     };
 
     $scope.sendComment = function sendComment(needIndex) {

@@ -49,7 +49,7 @@
         <div class="list-group-item project-needs" ng-if="nav('needs')">
           <div class="list-group project-needs-list">
             <div class="list-group-item need-item" ng-repeat="need in needs">
-              <div class="need-sections" ng-click="toggleCommentsVisibility($index)">
+              <div class="need-sections" ng-click="toggleCommentsVisibility(need)">
                 <div class="need-section need-section-status">
                   <!-- fixes icon margin in table-cell -->
                   <div class="need-icon-fix">&nbsp;</div>
@@ -67,7 +67,7 @@
                   </div>
                 </div>
               </div>
-              <div class="need-comments" ng-show="comments.visible[$index]">
+              <div class="need-comments" ng-show="areCommentsVisible(need)">
                 <div class="media" ng-repeat="comment in need.comments">
                   <div class="media-left">
                     <div class="need-comment-avatar swellrt-avatars" ng-model="comment.author"></div>
