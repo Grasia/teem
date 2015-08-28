@@ -485,6 +485,11 @@ angular.module('Pear2Pear')
     var startSession = function(userName, password, onSuccess, onError){
       loading.show();
 
+      // TODO: do not try to close when no other session is open
+      try{
+        window.SwellRT.stopSession();
+      } catch(e) {}
+
       window.SwellRT.startSession(
         SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
         function(){
