@@ -34,7 +34,6 @@ angular.module('Pear2Pear')
     $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
-        console.log(name);
         pear.startSession(
           $scope.user.nick, pear.users.password,
           function(){
@@ -65,7 +64,7 @@ angular.module('Pear2Pear')
 
     // Check for stored session information
     if (pear.users.current() !== null) {
-      if (pear.communities.current()){
+      if (pear.communities.current() && !$route.current.params.redirect){
         $location.path('/communities/' + pear.communities.current() + '/projects');
       } else {
         $location.path('/communities');
