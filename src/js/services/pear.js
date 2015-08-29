@@ -560,9 +560,7 @@ angular.module('Pear2Pear')
       return openedProfiles[userName];
     };
 
-
-    var newMessagesCount = function(project){
-
+    var getOrCreateProfile = function(){
       var profileDef = $q.defer();
       getProfile(users.current()).then(
         function(prof){
@@ -579,8 +577,13 @@ angular.module('Pear2Pear')
             );
           }
         });
+      return profileDef.promise;
+    };
+
+    var newMessagesCount = function(project){
       var countDef = $q.defer();
-      profileDef.promise.then(function(profile){
+
+      getOrCreateProfile().then(function(profile){
 
         var lastVisit =
           (profile.lastProjectVisit[project.id])?
@@ -603,16 +606,32 @@ angular.module('Pear2Pear')
     };
 
     var padEditionCount = function(project){
-      var d = $q.defer();
-      d.resolve(0);
-      return d.promise;
+      var countDef = $q.defer();
+      getOrCreateProfile().then(function(profile){
+
+        var lastVisit =
+          (profile.lastProjectVisit[project.id])?
+          new Date(profile.lastProjectVisit[project.id]):new Date(0);
+
+        if (project.pad.lastmodtime < lastVisit.getTime()){
+          countDef.resolve(0);
+          }
+        else {
+          console.log(new Date(project.pad.lastmodtime), project.pad.lastmodtime);
+          // TODO return real number of changes when available
+          countDef.resolve(1);
+        }
+      }, function(error){
+        countDef.reject(error);
+      });
+      return countDef.promise;
     };
 
     var timestampProjectAccess = function(projId){
       getProfile(users.current()).then(function(profile) {
         var decodedId = base64.decode(projId);
         profile.lastProjectVisit[decodedId] = (new Date()).toJSON();
-      })
+      });
     };
 
     window.onSwellRTReady = function () {
