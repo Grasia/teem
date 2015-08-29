@@ -43,6 +43,8 @@ angular.module('Pear2Pear')
         function(proxy){
           $scope.project = proxy;
         });
+
+      pear.timestampProjectAccess($route.current.params.id);
     });
 
     // Send button

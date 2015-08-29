@@ -30,10 +30,22 @@ angular.module('Pear2Pear')
         $scope.community = community;
       });
 
+      // get the count of new edits and chats for a list of projects and store them in the project properties
+      function getNewsCounts(projs) {
+       angular.forEach(projs, function(proj) {
+         pear.newMessagesCount(proj).then(function(count) {
+           proj.newMessagesCount = count;
+         });
+         pear.padEditionCount(proj).then(function(count) {
+           proj.padEditionCount = count;
+         });
+       });
+      }
       if (isSection('mydoing')) {
         pear.projects.myProjects(comUrlId).then(
           function (projects){
             $scope.projects = projects;
+            getNewsCounts($scope.projects);
           });
       } else {
         com.projects.all().then(
@@ -86,10 +98,10 @@ angular.module('Pear2Pear')
       }
     };
 
-    $scope.showProject = function(id) {
+    $scope.showProject = function(id, tabName) {
       if (section() === 'mydoing') {
         //FIXME model prototype
-        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/pad');
+        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/' + (tabName || 'pad'));
       } else {
         $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id));
       }
@@ -135,6 +147,40 @@ angular.module('Pear2Pear')
     $scope.supporterCount = function(project) {
       // Migrate project.support
       return project.supporters.length;
+    };
+
+    $scope.newMessagesCount = function(project) {
+      return project.newMessagesCount;
+    };
+
+    $scope.padEditionCount = function(project) {
+      return project.padEditionCount;
+    };
+
+    // TODO avoid repetition of this code: reapeated in chat.js
+    $scope.hour = function(msg) {
+      var d = (new Date(msg.time));
+
+      return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
+    };
+
+    $scope.lastChat = function(project){
+      if ($scope.newMessagesCount(project) > 0){
+        var lastChat = project.chat[project.chat.length-1];
+        return {
+          who: lastChat.who,
+          author: function() {
+            if (!lastChat) {
+              return '';
+            }
+            return lastChat.who.split('@')[0] + ':';
+          },
+          time: $scope.hour(lastChat),
+          text: lastChat.text.slice(0, 35) +
+            ((lastChat.text.length > 35) ? '...' : '')
+        };
+      }
+      return undefined;
     };
 
     $scope.emptyProjects = function(){

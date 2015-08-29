@@ -47,18 +47,17 @@
               </div>
               <div class="projects-sections-mydoing" ng-if="nav('mydoing')">
                 <div class="project-last-message">
-                  <div class="message-time">20:35</div>
-                  <div class="author-avatar"></div>
-                  <div class="author-name">Abbey</div>
-                  <div class="message-text">mañana hablaré con el espacio..</div>
+                  <div class="message-time">{{lastChat(project).time}}</div>
+                  <div class="author-avatar swellrt-avatars" ng-model="lastChat(project).who" swellrt-avatar-options="{size: 20}"> </div>
+                  <div class="author-name">{{lastChat(project).author()}}</div>
+                  <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
                 </div>
                 <div class="project-sections justified">
-                  <div>&nbsp;</div>
                   <div class="project-editions">
-                    <i class="fa fa-pencil-square-o"></i> 8
+                    <i class="fa fa-pencil-square-o"></i> {{padEditionCount(project)}}
                   </div>
-                  <div class="project-messages">
-                    <i class="fa fa-comments-o"></i> 8
+                  <div class="project-messages" ng-click="showProject(project.id, 'chat')">
+                    <i class="fa fa-comments-o"></i> {{newMessagesCount(project)}}
                   </div>
                 </div>
               </div>

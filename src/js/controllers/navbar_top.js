@@ -53,4 +53,8 @@ angular.module('Pear2Pear')
         $scope.setShared = function setShared(mode){
           pear.projects.setShareMode($route.current.params.id, mode);
         };
+
+        $scope.timestampProjectAccess = function(){
+          pear.timestampProjectAccess($route.current.params.id);
+        };
   }]);

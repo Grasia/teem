@@ -28,6 +28,8 @@ angular.module('Pear2Pear')
     var openedProjects = {};
     // map of opened communities
     var openedCommunities = {};
+    // map of opened profiles
+    var openedProfiles = {};
 
     var def = $q.defer();
 
@@ -242,7 +244,6 @@ angular.module('Pear2Pear')
 
       myCommunities: function(){
         var myComms = $q.defer();
-        console.log('user', users.current());
         SwellRT.query(
           {
             _aggregate : [
@@ -288,7 +289,6 @@ angular.module('Pear2Pear')
             myComms.reject(error);
           }
         );
-        console.log('foo0', myComms.promise);
         return myComms.promise;
       },
 
@@ -481,7 +481,6 @@ angular.module('Pear2Pear')
     var registerUser = function(userName, password, onSuccess, onError){
       window.SwellRT.registerUser(SwellRTConfig.server, userName, password, onSuccess, onError);
     };
-
     var startSession = function(userName, password, onSuccess, onError){
       loading.show();
 
@@ -506,6 +505,114 @@ angular.module('Pear2Pear')
           onError();
           loading.hide();
         });
+    };
+
+    // check that the profile does not exists before calling this method
+    var createProfile = function(userName) {
+      var def = $q.defer();
+      window.SwellRT.createModel(
+        function(model) {
+          var proxy = swellRT.proxy(model);
+          $timeout(function(){
+            proxy.type = "userProfile";
+            proxy.userName = userName;
+            proxy.lastProjectVisit = {};
+            def.resolve(proxy);
+          });
+        }
+      );
+      return def.promise;
+    };
+
+    var getProfile = function(userName) {
+
+      if (!openedProfiles[userName]){
+        var def = $q.defer();
+        openedProfiles[userName] = def.promise;
+        window.SwellRT.query(
+          {
+            'root.type' : 'userProfile',
+            'root.userName' : userName
+          }, function(result) {
+            // check that there is one and only one profile for the user
+            if (result.result.length < 1) {
+              def.reject('Profile not found');
+              return;
+            } else if (result.result.length > 1) {
+              def.reject('ERROR: More than one profile found for user ', userName);
+              return;
+            }
+            window.SwellRT.openModel(result.result[0].wave_id,
+              function(model) {
+                var proxy = swellRT.proxy(model);
+
+                $timeout(function(){
+                  def.resolve(proxy);
+                });
+              },
+              function(error){
+                def.reject(error);
+              }
+            );
+          }
+        );
+      }
+      return openedProfiles[userName];
+    };
+
+
+    var newMessagesCount = function(project){
+
+      var profileDef = $q.defer();
+      getProfile(users.current()).then(
+        function(prof){
+          profileDef.resolve(prof);
+        }, function(error) {
+          if (error === 'Profile not found'){
+            createProfile(users.current()).then(
+              function(p) {
+                profileDef.resolve(p);
+              },
+              function(error){
+                profileDef.reject(error);
+              }
+            );
+          }
+        });
+      var countDef = $q.defer();
+      profileDef.promise.then(function(profile){
+
+        var lastVisit =
+          (profile.lastProjectVisit[project.id])?
+          new Date(profile.lastProjectVisit[project.id]):new Date(0);
+
+        var chatsLength = project.chat.length;
+
+        if (chatsLength > 0){
+          var i = chatsLength - 1;
+          while (i > -1 && (new Date(project.chat[i].time) > lastVisit)) {
+            i --;
+          }
+          countDef.resolve(chatsLength - 1 - i);
+        } else {
+          countDef.resolve(0);
+        }
+
+      });
+      return countDef.promise;
+    };
+
+    var padEditionCount = function(project){
+      var d = $q.defer();
+      d.resolve(0);
+      return d.promise;
+    };
+
+    var timestampProjectAccess = function(projId){
+      getProfile(users.current()).then(function(profile) {
+        var decodedId = base64.decode(projId);
+        profile.lastProjectVisit[decodedId] = (new Date()).toJSON();
+      })
     };
 
     window.onSwellRTReady = function () {
@@ -549,6 +656,9 @@ angular.module('Pear2Pear')
       toggleSupport: toggleSupport,
       startSession: startSession,
       registerUser: registerUser,
+      newMessagesCount: newMessagesCount,
+      padEditionCount: padEditionCount,
+      timestampProjectAccess: timestampProjectAccess,
       onLoad: function(f) {
         def.promise.then(f);
       }

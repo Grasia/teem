@@ -28,6 +28,8 @@ angular.module('Pear2Pear')
         .then(function(proxy) {
           $scope.project = proxy;
         });
+
+      pear.timestampProjectAccess($route.current.params.id);
     });
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
