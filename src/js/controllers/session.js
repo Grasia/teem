@@ -65,6 +65,10 @@ angular.module('Pear2Pear')
     // Check for stored session information
     if (pear.users.current() !== null) {
       if (pear.communities.current() && !$route.current.params.redirect){
+        var params = {
+          section: 'mydoing'
+        };
+        $route.updateParams(params);
         $location.path('/communities/' + pear.communities.current() + '/projects');
       } else {
         $location.path('/communities');
