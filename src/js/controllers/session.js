@@ -31,6 +31,16 @@ angular.module('Pear2Pear')
       nick : ""
     };
 
+    var redirect = function(params) {
+      $timeout(function(){
+        var redirect = params.redirect;
+        // redirects are of the form /community/:communityId/project/projectId
+        var communityId = redirect.split('/')[2];
+        pear.communities.setCurrent(communityId);
+        $location.url(redirect);
+      });
+    };
+
     $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
@@ -39,14 +49,7 @@ angular.module('Pear2Pear')
           function(){
             $timeout(function(){
               if ($route.current.params.redirect) {
-                var params = $route.current.params;
-                var redirect = $route.current.params.redirect;
-                // redirects are of the form /community/:communityId/project/projectId
-                var communityId = redirect.split('/')[2];
-                pear.communities.setCurrent(communityId);
-                delete params.redirect;
-                $route.updateParams(params);
-                $location.path(redirect);
+                redirect($route.current.params);
               }
               else {
                 $location.path('/communities');
@@ -65,11 +68,11 @@ angular.module('Pear2Pear')
     // Check for stored session information
     if (pear.users.current() !== null) {
       if (pear.communities.current() && !$route.current.params.redirect){
-        var params = {
-          section: 'mydoing'
-        };
-        $route.updateParams(params);
+        $route.current.params.section = 'mydoing';
+        $route.updateParams($route.current.params);
         $location.path('/communities/' + pear.communities.current() + '/projects');
+      } else if ($route.current.params.redirect) {
+        redirect($route.current.params);
       } else {
         $location.path('/communities');
       }
