@@ -30,6 +30,8 @@ angular.module('Pear2Pear')
     var openedCommunities = {};
     // map of opened profiles
     var openedProfiles = {};
+    // map of created profiles
+    var createdProfiles = {};
 
     var def = $q.defer();
 
@@ -509,19 +511,21 @@ angular.module('Pear2Pear')
 
     // check that the profile does not exists before calling this method
     var createProfile = function(userName) {
-      var def = $q.defer();
-      window.SwellRT.createModel(
-        function(model) {
-          var proxy = swellRT.proxy(model);
-          $timeout(function(){
-            proxy.type = "userProfile";
-            proxy.userName = userName;
-            proxy.lastProjectVisit = {};
-            def.resolve(proxy);
+      if (!createdProfiles[userName]) {
+        var def = $q.defer();
+        createdProfiles[userName] = def.promise;
+        window.SwellRT.createModel(
+          function(model) {
+            var proxy = swellRT.proxy(model);
+            $timeout(function(){
+              proxy.type = "userProfile";
+              proxy.userName = userName;
+              proxy.lastProjectVisit = {};
+              def.resolve(proxy);
+            });
           });
-        }
-      );
-      return def.promise;
+      }
+      return createdProfiles[userName];
     };
 
     var getProfile = function(userName) {
@@ -583,24 +587,26 @@ angular.module('Pear2Pear')
     var newMessagesCount = function(project){
       var countDef = $q.defer();
 
-      getOrCreateProfile().then(function(profile){
+      getOrCreateProfile().then(
+        function(profile) {
+          var lastVisit =
+            (profile.lastProjectVisit[project.id])?
+            new Date(profile.lastProjectVisit[project.id]):new Date(0);
 
-        var lastVisit =
-          (profile.lastProjectVisit[project.id])?
-          new Date(profile.lastProjectVisit[project.id]):new Date(0);
+          var chatsLength = project.chat.length;
 
-        var chatsLength = project.chat.length;
-
-        if (chatsLength > 0){
-          var i = chatsLength - 1;
-          while (i > -1 && (new Date(project.chat[i].time) > lastVisit)) {
-            i --;
+          if (chatsLength > 0){
+            var i = chatsLength - 1;
+            while (i > -1 && (new Date(project.chat[i].time) > lastVisit)) {
+              i --;
+            }
+            countDef.resolve(chatsLength - 1 - i);
+          } else {
+            countDef.resolve(0);
           }
-          countDef.resolve(chatsLength - 1 - i);
-        } else {
-          countDef.resolve(0);
-        }
-
+        },
+      function(error){
+        console.log(error);
       });
       return countDef.promise;
     };
@@ -617,7 +623,6 @@ angular.module('Pear2Pear')
           countDef.resolve(0);
           }
         else {
-          console.log(new Date(project.pad.lastmodtime), project.pad.lastmodtime);
           // TODO return real number of changes when available
           countDef.resolve(1);
         }
@@ -630,7 +635,9 @@ angular.module('Pear2Pear')
     var timestampProjectAccess = function(projId){
       getProfile(users.current()).then(function(profile) {
         var decodedId = base64.decode(projId);
-        profile.lastProjectVisit[decodedId] = (new Date()).toJSON();
+        $timeout(function(){
+          profile.lastProjectVisit[decodedId] = (new Date()).toJSON();
+        });
       });
     };
 
