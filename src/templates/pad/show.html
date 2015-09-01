@@ -8,7 +8,7 @@
 <div ng-include="'navbar_top/chat_pad.html'"></div>
 
 <div id="pad" class="section pad" hm-swiperight="showChat()">
-  <div class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}"></div>
+  <div class="swellrt-editor scrollable-content" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}"></div>
 </div>
 
 
@@ -27,3 +27,5 @@
     </div>
   </div>
 </div>
+
+<div ng-include="'navbar_bottom/projects.html'"></div>

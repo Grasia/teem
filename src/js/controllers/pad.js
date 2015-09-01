@@ -11,7 +11,7 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/communities/:communityId/projects/:id/pad', {
+      .when('/communities/:comId/projects/:id/pad', {
         templateUrl: 'pad/show.html',
         controller: 'PadCtrl'
       });
@@ -21,7 +21,7 @@ angular.module('Pear2Pear')
               function(pear, $rootScope, $scope, $route, $location, $timeout, SharedState){
 
     $scope.urlId = pear.urlId;
-    $scope.communityId = $route.current.params.communityId;
+    $scope.communityId = $route.current.params.comId;
 
     pear.onLoad(function(){
       pear.projects.find($route.current.params.id)

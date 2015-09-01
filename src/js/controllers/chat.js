@@ -11,7 +11,7 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/communities/:communityId/projects/:id/chat', {
+      .when('/communities/:comId/projects/:id/chat', {
         templateUrl: 'chat/show.html',
         controller: 'ChatCtrl'
       });
@@ -36,13 +36,15 @@ angular.module('Pear2Pear')
               function(pear, $scope, $rootScope, $route, $location, $animate){
 
     $scope.urlId = pear.urlId;
-    $scope.communityId = $route.current.params.communityId;
+    $scope.communityId = $route.current.params.comId;
 
     pear.onLoad(function(){
       pear.projects.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
         });
+
+
 
       pear.timestampProjectAccess($route.current.params.id);
     });
