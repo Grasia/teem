@@ -1,0 +1,4 @@
+{
+  "plugins": ["jscs-angular"],
+  "validateIndentation": 2
+}
