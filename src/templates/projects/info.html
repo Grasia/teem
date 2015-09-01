@@ -1,7 +1,10 @@
 
 <div ui-content-for="nav-title">
-  <div class="community-title overflow-ellipsis">
-    {{community.name}}
+    <div class="project-title-community-context overflow-ellipsis">
+      {{community.name}}
+    </div>
+    <div class="project-info-title overflow-ellipsis">
+    {{project.title}}
   </div>
 </div>
 
@@ -13,6 +16,7 @@
       <div class="scrollable-header">
         <div class="list-group-item project-heading">
           <div class="project-heading-section">
+            <h5 translate>project.section.name.title</h5>
             <h4>{{project.title}}</h4>
           </div>
           <div class="project-heading-section">

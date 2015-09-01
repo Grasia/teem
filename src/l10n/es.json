@@ -101,6 +101,9 @@
       }
     },
     "section": {
+      "name": {
+        "title": "Nombre"
+      },
       "description": {
         "title": "Descripción"
       },

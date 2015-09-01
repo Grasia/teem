@@ -23,11 +23,15 @@ angular.module('Pear2Pear')
         $scope.$on('$locationChangeStart', function(event) {
           pear.onLoad(function(){
             if ($route.current.params.id){
-              $scope.project = pear.projects.find($route.current.params.id)
+              pear.projects.find($route.current.params.id)
                 .then(function(proxy) {
-                  console.log(proxy);
                   $scope.project = proxy;
                 });
+
+              var com = pear.communities.find($route.current.params.communityId);
+              com.community.then(function(community){
+                $scope.community = community;
+              });
             }
           });
         });
