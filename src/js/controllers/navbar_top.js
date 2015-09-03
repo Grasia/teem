@@ -27,11 +27,6 @@ angular.module('Pear2Pear')
                 .then(function(proxy) {
                   $scope.project = proxy;
                 });
-
-              var com = pear.communities.find($route.current.params.comId);
-              com.community.then(function(community){
-                $scope.community = community;
-              });
             }
           });
         });
