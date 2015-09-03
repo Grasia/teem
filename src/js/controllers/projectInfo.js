@@ -11,7 +11,7 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:communityId/projects/:id', {
+      .when('/communities/:comId/projects/:id', {
         templateUrl: 'projects/info.html',
         controller: 'ProjectInfoCtrl'
       });
@@ -22,7 +22,7 @@ angular.module('Pear2Pear')
 
     $scope.urlId= pear.urlId;
 
-    $scope.communityId = $route.current.params.communityId;
+    $scope.communityId = $route.current.params.comId;
 
     $scope.comments = {
       new: [],
@@ -30,7 +30,7 @@ angular.module('Pear2Pear')
     };
 
     pear.onLoad(function(){
-      pear.communities.find($route.current.params.communityId)
+      pear.communities.find($route.current.params.comId)
         .community.then(function(community){
         $scope.community = community;
       });
@@ -84,9 +84,9 @@ angular.module('Pear2Pear')
       return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
     };
 
-    function section() {
-      if ($route.current.params.section) {
-        return $route.current.params.section;
+    function tab() {
+      if ($route.current.params.tab) {
+        return $route.current.params.tab;
       } else {
         return 'information';
       }
@@ -94,7 +94,7 @@ angular.module('Pear2Pear')
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
-      return id === section() ? 'active' : '';
+      return id === tab() ? 'active' : '';
     };
 
   }]);
