@@ -47,7 +47,10 @@
               </div>
               <div class="projects-sections-mydoing" ng-if="nav('mydoing')">
                 <div class="project-last-message">
-                  <div class="message-time">{{lastChat(project).time}}</div>
+                  <div class="message-time" ng-click="showProject(project.id, 'chat')">
+                    <i class="fa fa-comment-o"></i>
+                    {{lastChat(project).time}}
+                  </div>
                   <div class="author-avatar swellrt-avatars" ng-model="lastChat(project).who" swellrt-avatar-options="{size: 20}"> </div>
                   <div class="author-name">{{lastChat(project).author()}}</div>
                   <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
