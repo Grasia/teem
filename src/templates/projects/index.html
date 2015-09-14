@@ -65,7 +65,7 @@
                          ng-show="padEditionCount(project)>0"></i>
                     </span>
                     <!-- {{padEditionCount(project)}} -->
-                    <span class="fa-stack">
+                    <span class="fa-stack" ng-click="showProject(project.id, 'chat')">
                       <i class="fa fa-comments-o fa-stack-1x"></i>
                       <i class="fa fa-circle fa-stack-1x notification-indicator"
                          ng-show="newMessagesCount(project)>0"></i>
