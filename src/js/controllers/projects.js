@@ -164,21 +164,27 @@ angular.module('Pear2Pear')
       return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
     };
 
+    var lastChatsCache = [];
+
     $scope.lastChat = function(project){
       if ($scope.newMessagesCount(project) > 0){
-        var lastChat = project.chat[project.chat.length-1];
-        return {
-          who: lastChat.who,
-          author: function() {
-            if (!lastChat) {
-              return '';
-            }
-            return lastChat.who.split('@')[0] + ':';
-          },
-          time: $scope.hour(lastChat),
-          text: lastChat.text.slice(0, 35) +
-            ((lastChat.text.length > 35) ? '...' : '')
-        };
+        if (!lastChatsCache[project.id] || lastChatsCache[project.id].index !== project.chat.length-1) {
+          var lastChat = project.chat[project.chat.length-1];
+          lastChatsCache[project.id] = {
+            index: project.chat.length-1,
+            who: lastChat.who,
+            author: function() {
+              if (!lastChat) {
+                return '';
+              }
+              return lastChat.who.split('@')[0] + ':';
+            },
+            time: $scope.hour(lastChat),
+            text: lastChat.text.slice(0, 35) +
+              ((lastChat.text.length > 35) ? '...' : '')
+          };
+        }
+        return lastChatsCache[project.id];
       }
       return undefined;
     };

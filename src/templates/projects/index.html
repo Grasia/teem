@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div class="projects-sections-mydoing" ng-if="nav('mydoing')">
-                <div class="project-last-message">
+                <div class="project-last-message" ng-show="lastChat(project)">
                   <div class="message-time" ng-click="showProject(project.id, 'chat')">
                     <i class="fa fa-comment-o"></i>
                     {{lastChat(project).time}}
