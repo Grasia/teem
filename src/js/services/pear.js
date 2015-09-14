@@ -450,6 +450,19 @@ angular.module('Pear2Pear')
       });
     };
 
+    var addChatNotification = function(projectId, message, translateValues) {
+      projects.find(projectId).then(function(project){
+        project.chat.push({
+          text: message,
+          time: (new Date()).toJSON(),
+          standpoint: 'notification',
+          translateValues: translateValues
+        });
+      }, function(error){
+        console.log(error);
+      });
+    };
+
     var toggleSupport = function(projectId) {
       projects.find(base64.encode(projectId)).then(
         function(model){
@@ -678,6 +691,7 @@ angular.module('Pear2Pear')
       users: users,
       urlId: urlId,
       addChatMessage: addChatMessage,
+      addChatNotification: addChatNotification,
       addNeedComment: addNeedComment,
       toggleSupport: toggleSupport,
       startSession: startSession,

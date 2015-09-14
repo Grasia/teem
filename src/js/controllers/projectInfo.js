@@ -74,7 +74,16 @@ angular.module('Pear2Pear')
 
     $scope.sendComment = function sendComment(needIndex) {
       var need = $scope.project.needs[needIndex];
-      pear.addNeedComment(need, $scope.comments.new[needIndex]);
+      var comment = $scope.comments.new[needIndex];
+      pear.addNeedComment(need, comment);
+      pear.addChatNotification(
+        $route.current.params.id, 'need.comment.notification', 
+        {
+          user: pear.users.current().split('@')[0],
+          need: need.text,
+          comment: comment
+        }
+      );
       $scope.comments.new[needIndex] = '';
     };
 

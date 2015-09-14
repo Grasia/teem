@@ -72,13 +72,17 @@ angular.module('Pear2Pear')
 
     $scope.standpoint = function(msg){
       if (!pear.users.current()) {
-        return 'their';
+        return msg.standpoint || 'their';
       }
-      return pear.users.isCurrent(msg.who) ? 'mine' : 'their';
+      return msg.standpoint || (pear.users.isCurrent(msg.who) ? 'mine' : 'their');
     };
 
     $scope.theirStandpoint = function(msg) {
       return $scope.standpoint(msg) === 'their';
+    };
+
+    $scope.isNotificationMessage = function(msg){
+      return $scope.standpoint(msg) === 'notification';
     };
 
     $scope.hour = function(msg) {

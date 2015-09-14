@@ -68,13 +68,15 @@
   },
   "need": {
     "comment": {
-      "input": "Write your comment here..."
+      "input": "Write your comment here...",
+      "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
     },
     "nav": {
       "title": "Necesidades"
     },
     "new": {
-      "placeholder": "Nueva necesidad"
+      "placeholder": "Nueva necesidad",
+      "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el proyecto"
     }
   },
   "pad": {

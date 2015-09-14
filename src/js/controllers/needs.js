@@ -99,6 +99,14 @@ angular.module('Pear2Pear')
             if (need.text !== ''){
               $scope.needs.push(need);
               pear.projects.addContributor($route.current.params.id);
+              console.log(pear.users.current());
+              pear.addChatNotification(
+                $route.current.params.id, 'need.new.notification',
+                {
+                  user: pear.users.current().split('@')[0],
+                  need: need.text
+                }
+              );
             }
           };
           this.removeNeed = function (need) {

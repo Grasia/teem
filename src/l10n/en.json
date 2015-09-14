@@ -67,13 +67,15 @@
   },
   "need": {
     "comment": {
-      "input": "Write your comment here..."
+      "input": "Write your comment here...",
+      "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at need \"{{need}}\""
     },
     "nav": {
       "title": "Needs"
     },
     "new": {
-      "placeholder": "New need"
+      "placeholder": "New need",
+      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the project"
     }
   },
   "pad": {

@@ -15,7 +15,8 @@
           <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
             {{msg.who.split('@')[0]}}
           </div>
-          <div class="chat-message-text" ng-bind-html="msg.text | linky"></div>
+          <div class="chat-message-text" ng-if="!isNotificationMessage(msg)" ng-bind-html="msg.text | linky"></div>
+          <div class="chat-message-text" ng-if="isNotificationMessage(msg)" ng-bind-html="msg.text" translate={{msg.text}} translate-values="msg.translateValues"></div>
           <div class="chat-message-time">
             {{hour(msg)}}
           </div>
