@@ -602,6 +602,9 @@ angular.module('Pear2Pear')
 
       getOrCreateProfile().then(
         function(profile) {
+          if (!profile.lastProjectVisit){
+            profile.lastProjectVisit = {};
+          }
           var lastVisit =
             (profile.lastProjectVisit[project.id])?
             new Date(profile.lastProjectVisit[project.id]):new Date(0);
