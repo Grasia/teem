@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectInfoCtrl', [
-              'pear', '$scope', '$location', '$route', '$timeout',
-              function (pear, $scope, $location, $route, $timeout) {
+              'pear', '$scope', '$location', '$route', '$timeout', 'common',
+              function (pear, $scope, $location, $route, $timeout, common) {
 
     $scope.urlId= pear.urlId;
 
@@ -88,9 +88,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.hour = function(comment) {
-      var d = (new Date(comment.time));
-
-      return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
+      return common.time.hour(new Date(comment.time));
     };
 
     function tab() {

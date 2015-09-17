@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-              'pear', '$scope', '$location', '$route',
-              function (pear, $scope, $location, $route) {
+              'pear', '$scope', '$location', '$route', 'common',
+              function (pear, $scope, $location, $route, common) {
 
     $scope.urlId= pear.urlId;
 
@@ -157,11 +157,8 @@ angular.module('Pear2Pear')
       return project.padEditionCount;
     };
 
-    // TODO avoid repetition of this code: reapeated in chat.js
     $scope.hour = function(msg) {
-      var d = (new Date(msg.time));
-
-      return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
+      common.time.hour(new Date(msg.time));
     };
 
     var lastChatsCache = [];

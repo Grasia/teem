@@ -32,8 +32,8 @@ angular.module('Pear2Pear')
     };
   })
   .controller('ChatCtrl', [
-              'pear', '$scope', '$rootScope', '$route', '$location', '$animate',
-              function(pear, $scope, $rootScope, $route, $location, $animate){
+              'pear', '$scope', '$rootScope', '$route', '$location', '$animate', 'common',
+              function(pear, $scope, $rootScope, $route, $location, $animate, common){
 
     $scope.urlId = pear.urlId;
     $scope.communityId = $route.current.params.comId;
@@ -85,10 +85,9 @@ angular.module('Pear2Pear')
       return $scope.standpoint(msg) === 'notification';
     };
 
-    $scope.hour = function(msg) {
-      var d = (new Date(msg.time));
 
-      return d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
+    $scope.hour = function(msg) {
+      return common.time.hour(new Date(msg.time));
     };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
