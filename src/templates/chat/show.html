@@ -10,17 +10,20 @@
   <div class="scrollable" hm-swipeleft="showPad();">
     <div class="scrollable-content section">
       <ul class="chat-messages">
-        <li ng-repeat="msg in project.chat" class="chat-message {{standpoint(msg)}}" hm-swiperight="addToPad(msg.text);" pear-chat-scroll>
-          <span class="swellrt-avatars avatar" ng-model="msg.who"></span>
-          <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
-            {{msg.who.split('@')[0]}}
-          </div>
-          <div class="chat-message-text" ng-if="!isNotificationMessage(msg)" ng-bind-html="msg.text | linky"></div>
-          <div class="chat-message-text" ng-if="isNotificationMessage(msg)" ng-bind-html="msg.text" translate={{msg.text}} translate-values="msg.translateValues"></div>
-          <div class="chat-message-time">
-            {{hour(msg)}}
-          </div>
-        </li>
+        <div ng-repeat="msg in project.chat" class="" hm-swiperight="addToPad(msg.text);" pear-chat-scroll>
+          <li ng-if="dayChange(msg, $index)" class="day-change">{{dayChange(msg, $index)}}</li>
+          <li class="chat-message {{standpoint(msg)}}">
+            <span class="swellrt-avatars avatar" ng-model="msg.who"></span>
+            <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
+              {{msg.who.split('@')[0]}}
+            </div>
+            <div class="chat-message-text" ng-if="!isNotificationMessage(msg)" ng-bind-html="msg.text | linky"></div>
+            <div class="chat-message-text" ng-if="isNotificationMessage(msg)" ng-bind-html="msg.text" translate={{msg.text}} translate-values="msg.translateValues"></div>
+            <div class="chat-message-time">
+              {{hour(msg)}}
+            </div>
+          </li>
+        </div>
       </ul>
     </div>
     <div class="scrollable-footer">

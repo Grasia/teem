@@ -105,4 +105,12 @@ angular.module('Pear2Pear')
       p.insert(p.size() - 1, txt);
       $scope.showPad();
     };
+
+    $scope.dayChange = function(msg, index){
+      var d = new Date(msg.time);
+      if (index > 0 && d.getDate() !== new Date($scope.project.chat[index -1].time).getDate()){
+        return common.time.date(d);
+      };
+      return undefined;
+    };
   }]);
