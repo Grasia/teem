@@ -180,8 +180,9 @@ angular.module('Pear2Pear')
               return lastChat.who.split('@')[0] + ':';
             },
             time: $scope.hour(lastChat),
-            text: lastChat.text.slice(0, 35) +
-              ((lastChat.text.length > 35) ? '...' : '')
+            text: lastChat.text,
+            isNotification: lastChat.standpoint === 'notification',
+            translateValues: lastChat.translateValues
           };
         }
         return lastChatsCache[project.id];

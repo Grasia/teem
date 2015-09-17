@@ -46,18 +46,21 @@
                 </div>
               </div>
               <div class="projects-sections-mydoing" ng-if="nav('mydoing')">
-                <div class="project-last-message" ng-show="lastChat(project)">
+                <div class="project-last-message hidden-xs" ng-show="lastChat(project)">
                   <div class="message-time" ng-click="showProject(project.id, 'chat')">
                     <i class="fa fa-comment-o"></i>
                     {{lastChat(project).time}}
                   </div>
-                  <div class="author-avatar swellrt-avatars" ng-model="lastChat(project).who" swellrt-avatar-options="{size: 20}"> </div>
-                  <div class="author-name">{{lastChat(project).author()}}</div>
-                  <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
+                  <div ng-if="!lastChat(project).isNotification">
+                    <div class="author-avatar swellrt-avatars" ng-model="lastChat(project).who" swellrt-avatar-options="{size: 20}"> </div>
+                    <div class="author-name">{{lastChat(project).author()}}</div>
+                    <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
+                  </div>
+                  <div ng-if="lastChat(project).isNotification">
+                    <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')" translate translate-values="lastChat(project).translateValues">{{lastChat(project).text}}</div>
+                  </div>
                 </div>
                 <div class="project-sections justified">
-                  <div class="project-editions">
-                  </div>
                   <div class="project-editions">
                     <span class="fa-stack">
                       <i class="fa fa-pencil-square-o fa-stack-1x"></i>
