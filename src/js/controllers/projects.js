@@ -158,7 +158,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.hour = function(msg) {
-      common.time.hour(new Date(msg.time));
+      return common.time.hour(new Date(msg.time));
     };
 
     var lastChatsCache = [];
