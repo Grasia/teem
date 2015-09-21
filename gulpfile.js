@@ -333,6 +333,7 @@ gulp.task('js', function() {
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
     .pipe(ngAnnotate())
+    .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.', {
       sourceMappingURLPrefix: '/js/'
