@@ -37,3 +37,14 @@ You can access weinre from your browser at:
   http://[external-ip]:8080/client/#anonymous
 
 Being `external-ip` with the ip of your internet device (eth0, wlan0, etc..)
+
+### Releasing and signing the apk
+
+You need to get the keystore from your organization private repo or generate your own.
+
+Then copy build.json.example to build.json
+
+  cp build.json.example build.json
+
+And customize it with the path to the keystore
+

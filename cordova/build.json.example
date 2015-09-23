@@ -1,0 +1,8 @@
+{
+  "android": {
+    "release": {
+      "keystore": "/path/to/keystore",
+      "alias": "pear2pear"
+    }
+  }
+}
