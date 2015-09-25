@@ -8,9 +8,9 @@ Initialize Android platform:
 
   cordova platform add android
 
-Calendar plugin:
+Whitelist plugin:
 
-  cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
+  cordova plugin add https://github.com/apache/cordova-plugin-whitelist.git
 
 ### Run the application in the Android emulator
 
