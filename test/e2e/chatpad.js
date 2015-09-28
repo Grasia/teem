@@ -4,7 +4,9 @@
 
 describe('Pear2Pear', function() {
 
-  browser.driver.executeScript("window.localStorage.clear();");
+  beforeAll(function() {
+    browser.driver.executeScript("window.localStorage.clear();");
+  });
 
   browser.get('index.html');
 

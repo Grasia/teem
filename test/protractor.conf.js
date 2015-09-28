@@ -19,15 +19,5 @@ exports.config = {
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 90000
-  },
-
-  // Create user and wave before tests
-  onPrepare: function() {
-    browser.driver.get(gulpConfig.swellrt.server + '/auth/register');
-
-    browser.driver.findElement(by.id('address')).sendKeys(gulpConfig.swellrt.user);
-    browser.driver.findElement(by.id('password')).sendKeys(gulpConfig.swellrt.pass);
-    browser.driver.findElement(by.id('verifypass')).sendKeys(gulpConfig.swellrt.pass);
-    browser.driver.findElement(by.css('input[value="Register"]')).click();
   }
 };
