@@ -21,7 +21,7 @@ angular.module('Pear2Pear')
     var urlId = function(id) {
       if (id === undefined) { return ''; }
 
-      return base64.encode(id);
+      return base64.urlencode(id);
     };
 
     // map of opened projects
@@ -118,7 +118,7 @@ angular.module('Pear2Pear')
       find: function(urlId) {
         loading.show();
 
-        var id = base64.decode(urlId);
+        var id = base64.urldecode(urlId);
         var comDef = $q.defer();
         var community = comDef.promise;
 
@@ -192,7 +192,7 @@ angular.module('Pear2Pear')
                   angular.forEach(all, function(val){
                     var projDef = $q.defer();
                     promises[val.id] = projDef.promise;
-                    projects.find(base64.encode(val.id)).then(function(model){
+                    projects.find(base64.urlencode(val.id)).then(function(model){
                       $timeout(function(){
                         projDef.resolve(model);
                       });
@@ -235,7 +235,7 @@ angular.module('Pear2Pear')
         });
       },
       destroy: function(urlId) {
-        var id = base64.decode(urlId);
+          var id = base64.urldecode(urlId);
         // currently not supported by SwellRT
         return urlId;
       },
@@ -302,7 +302,7 @@ angular.module('Pear2Pear')
     var findProjects = function(urlId) {
       loading.show();
 
-        var id = base64.decode(urlId);
+        var id = base64.urldecode(urlId);
         var def = $q.defer();
         if (!openedProjects[id]) {
           openedProjects[id] = def.promise;
@@ -394,7 +394,7 @@ angular.module('Pear2Pear')
           ]};
 
         if (communityId){
-          query._aggregate[0].$match['root.communities'] = base64.decode(communityId);
+          query._aggregate[0].$match['root.communities'] = base64.urldecode(communityId);
         }
 
         SwellRT.query(
@@ -464,7 +464,7 @@ angular.module('Pear2Pear')
     };
 
     var toggleSupport = function(projectId) {
-      projects.find(base64.encode(projectId)).then(
+      projects.find(base64.urlencode(projectId)).then(
         function(model){
           var index = model.supporters.indexOf(users.current());
 
@@ -650,7 +650,7 @@ angular.module('Pear2Pear')
 
     var timestampProjectAccess = function(projId){
       getProfile(users.current()).then(function(profile) {
-        var decodedId = base64.decode(projId);
+        var decodedId = base64.urldecode(projId);
         $timeout(function(){
           profile.lastProjectVisit[decodedId] = (new Date()).toJSON();
         });
