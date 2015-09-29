@@ -2,11 +2,10 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.service:Pear
+ * @name Pear2Pear.service:common
  * @description
- * # Pear service
- * Provides controllers with a data model for pear to pear app
- * It serves as an abstraction between Pear data and backend (SwellRT)
+ * # common service
+ * It provides several common functions to be used by several controllers
  */
 
 angular.module('Pear2Pear')

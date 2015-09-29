@@ -17,14 +17,14 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-              'pear', '$scope', '$location', '$route', 'common',
-              function (pear, $scope, $location, $route, common) {
+              'SwellRTSession', 'pear', '$scope', '$location', '$route', 'common',
+              function (SwellRTSession, pear, $scope, $location, $route, common) {
 
     $scope.urlId= pear.urlId;
 
     var comUrlId = $route.current.params.comId;
 
-    pear.onLoad(function(){
+    SwellRTSession.onLoad(function(){
       var com = pear.communities.find(comUrlId);
       com.community.then(function(community){
         $scope.community = community;

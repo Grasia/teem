@@ -21,8 +21,8 @@ angular.module('Pear2Pear')
   }])
 
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'pear', '$timeout',
-    function($scope, $location, $route, pear, $timeout) {
+    '$scope', '$location', '$route', 'SwellRTSession', 'pear', '$timeout',
+    function($scope, $location, $route, SwellRTSession, pear, $timeout) {
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
@@ -44,7 +44,7 @@ angular.module('Pear2Pear')
     $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
-        pear.startSession(
+        SwellRTSession.startSession(
           $scope.user.nick, pear.users.password,
           function(){
             $timeout(function(){
@@ -61,7 +61,7 @@ angular.module('Pear2Pear')
           }
         );
       };
-      pear.registerUser($scope.user.nick, '$password$', startSession, startSession);
+      SwellRTSession.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
 
 

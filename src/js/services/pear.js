@@ -493,35 +493,6 @@ angular.module('Pear2Pear')
       });
     };
 
-    var registerUser = function(userName, password, onSuccess, onError){
-      window.SwellRT.registerUser(SwellRTConfig.server, userName, password, onSuccess, onError);
-    };
-    var startSession = function(userName, password, onSuccess, onError){
-      loading.show();
-
-      // TODO: do not try to close when no other session is open
-      try{
-        window.SwellRT.stopSession();
-      } catch(e) {}
-
-      window.SwellRT.startSession(
-        SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
-        function(){
-          SwellRTConfig.swellrtServerDomain = __session.domain;
-          if (userName){
-            users.setCurrent(__session.address);
-          } else {
-            users.clearCurrent();
-          }
-          SwellRT.on(SwellRT.events.NETWORK_CONNECTED, onSuccess);
-
-          loading.hide();
-        }, function() {
-          onError();
-          loading.hide();
-        });
-    };
-
     // check that the profile does not exists before calling this method
     var createProfile = function(userName) {
       if (!createdProfiles[userName]) {
@@ -657,37 +628,6 @@ angular.module('Pear2Pear')
       });
     };
 
-    window.onSwellRTReady = function () {
-      var user = undefined,
-          pass = undefined;
-
-      if (users.current() != null) {
-        user = users.current();
-        pass = users.password;
-      }
-
-      startSession(user, pass, function(){
-          $timeout(
-            function() {
-              communities.all();
-              def.resolve(SwellRT);
-
-              loading.hide();
-            });
-        },
-        function(error) {
-          console.log(error);
-
-          loading.hide();
-        });
-      // to avoid multiple calls
-      window.onSwellRTReady = null;
-    };
-
-    if (window.SwellRT && typeof window.onSwellRTReady === 'function') {
-      window.onSwellRTReady();
-    }
-
     return {
       communities: communities,
       projects: projects,
@@ -697,13 +637,8 @@ angular.module('Pear2Pear')
       addChatNotification: addChatNotification,
       addNeedComment: addNeedComment,
       toggleSupport: toggleSupport,
-      startSession: startSession,
-      registerUser: registerUser,
       newMessagesCount: newMessagesCount,
       padEditionCount: padEditionCount,
-      timestampProjectAccess: timestampProjectAccess,
-      onLoad: function(f) {
-        def.promise.then(f);
-      }
+      timestampProjectAccess: timestampProjectAccess
     };
   }]);

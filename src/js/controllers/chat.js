@@ -32,13 +32,13 @@ angular.module('Pear2Pear')
     };
   })
   .controller('ChatCtrl', [
-              'pear', '$scope', '$rootScope', '$route', '$location', '$animate', 'common',
-              function(pear, $scope, $rootScope, $route, $location, $animate, common){
+              'SwellRTSession', 'pear', '$scope', '$rootScope', '$route', '$location', '$animate', 'common',
+              function(SwellRTSession, pear, $scope, $rootScope, $route, $location, $animate, common){
 
     $scope.urlId = pear.urlId;
     $scope.communityId = $route.current.params.comId;
 
-    pear.onLoad(function(){
+    SwellRTSession.onLoad(function(){
       pear.projects.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;

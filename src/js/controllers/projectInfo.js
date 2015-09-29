@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectInfoCtrl', [
-              'pear', '$scope', '$location', '$route', '$timeout', 'common',
-              function (pear, $scope, $location, $route, $timeout, common) {
+              'SwellRTSession', 'pear', '$scope', '$location', '$route', '$timeout', 'common',
+              function (SwellRTSession, pear, $scope, $location, $route, $timeout, common) {
 
     $scope.urlId= pear.urlId;
 
@@ -28,7 +28,7 @@ angular.module('Pear2Pear')
       new: []
     };
 
-    pear.onLoad(function(){
+    SwellRTSession.onLoad(function(){
       pear.communities.find($route.current.params.comId)
         .community.then(function(community){
         $scope.community = community;
