@@ -67,12 +67,12 @@ angular.module('Pear2Pear')
         });
       };
 
+      // check variable connecting before calling startSession
       var startSession = function(userName, password, onSuccess, onError) {
+        connecting = true;
         swellRTpromise.then(function(){
           // TODO: call loading functions from controller code
           loading.show();
-
-          connecting = true;
 
           if (sessionConnected) {
             if (userName && __session.address &&
