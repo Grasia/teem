@@ -17,14 +17,14 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('NeedsCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$route',
-              function(SwellRTSession, pear, $scope, $route){
+              'SwellRTSession', 'pear', '$scope', '$route', 'ProjectsSvc',
+              function(SwellRTSession, pear, $scope, $route, ProjectsSvc){
 
     $scope.urlId = pear.urlId;
     $scope.communityId = $route.current.params.comId;
 
     SwellRTSession.onLoad(function(){
-      pear.projects.find($route.current.params.id).then(
+      ProjectsSvc.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
         }
@@ -98,12 +98,12 @@ angular.module('Pear2Pear')
           this.addNeed = function (need) {
             if (need.text !== ''){
               $scope.needs.push(need);
-              pear.projects.addContributor($route.current.params.id);
-              console.log(pear.users.current());
+              $scope.project.addContributor();
+              console.log(SwellRTSession.users.current());
               pear.addChatNotification(
                 $route.current.params.id, 'need.new.notification',
                 {
-                  user: pear.users.current().split('@')[0],
+                  user: SwellRTSession.users.current().split('@')[0],
                   need: need.text
                 }
               );

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Pear2Pear')
-  .factory('CommunitiesSvc', ['swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', 'SwellRTCommon', function(swellRT, $q, $timeout, base64, SwellRTSession, SwellRTCommon){
+  .factory('CommunitiesSvc', ['swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', 'SwellRTCommon', 'ProjectsSvc', function(swellRT, $q, $timeout, base64, SwellRTSession, SwellRTCommon, ProjectsSvc){
 
     var Community = function(){};
 
@@ -50,6 +50,41 @@ angular.module('Pear2Pear')
       return projsDef.promise;
     };
 
+    // return the collection of projects of current user in the community as snapshots
+    Community.prototype.myProjects = function(){
+      var myProjs = $q.defer();
+
+      var query = {
+        _aggregate: [
+          {
+            $match: {
+              'root.type': 'project',
+              'root.contributors': SwellRTSession.users.current()
+            }
+          }
+        ]};
+
+      if (this.id){
+        query._aggregate[0].$match['root.communities'] = base64.urldecode(this.id);
+      }
+
+      SwellRT.query(
+        query,
+        function(result) {
+
+          var res = [];
+
+          angular.forEach(result.result, function(val){
+            res.push(val.root);
+          });
+
+          myProjs.resolve(res);
+        },
+        function(error){
+          myProjs.reject(error);
+        });
+      return myProjs.promise;
+    };
 
     // Service functions
 

@@ -10,8 +10,8 @@
 angular.module('Pear2Pear')
   .controller(
     'NavbarTopCtrl', [
-      'SwellRTSession', 'pear', '$scope', '$route',
-      function(SwellRTSession, pear, $scope, $route){
+      'SwellRTSession', '$scope',
+      function(SwellRTSession, $scope){
 
         var getSharedMode = function(){
           if ($scope.project){
@@ -39,10 +39,10 @@ angular.module('Pear2Pear')
         };
 
         $scope.setShared = function setShared(mode){
-          pear.projects.setShareMode($route.current.params.id, mode);
+          $scope.project.setShareMode(mode);
         };
 
         $scope.timestampProjectAccess = function(){
-          pear.timestampProjectAccess($route.current.params.id);
+          $scope.project.timestampProjectAccess();
         };
-  }]);
+      }]);

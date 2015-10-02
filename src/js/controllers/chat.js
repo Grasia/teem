@@ -32,21 +32,18 @@ angular.module('Pear2Pear')
     };
   })
   .controller('ChatCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$rootScope', '$route', '$location', '$animate', 'common',
-              function(SwellRTSession, pear, $scope, $rootScope, $route, $location, $animate, common){
+              'SwellRTSession', 'pear', '$scope', '$rootScope', '$route', '$location', '$animate', 'common', 'ProjectsSvc',
+              function(SwellRTSession, pear, $scope, $rootScope, $route, $location, $animate, common, ProjectsSvc){
 
     $scope.urlId = pear.urlId;
     $scope.communityId = $route.current.params.comId;
 
     SwellRTSession.onLoad(function(){
-      pear.projects.find($route.current.params.id).then(
+      ProjectsSvc.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
+          $scope.project.timestampProjectAccess();
         });
-
-
-
-      pear.timestampProjectAccess($route.current.params.id);
     });
 
     // Send button
@@ -71,10 +68,10 @@ angular.module('Pear2Pear')
 
 
     $scope.standpoint = function(msg){
-      if (!pear.users.current()) {
+      if (!SwellRTSession.users.current()) {
         return msg.standpoint || 'their';
       }
-      return msg.standpoint || (pear.users.isCurrent(msg.who) ? 'mine' : 'their');
+      return msg.standpoint || (SwellRTSession.users.isCurrent(msg.who) ? 'mine' : 'their');
     };
 
     $scope.theirStandpoint = function(msg) {

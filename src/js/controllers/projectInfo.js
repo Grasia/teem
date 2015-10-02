@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectInfoCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$location', '$route', '$timeout', 'common', 'CommunitiesSvc',
-              function (SwellRTSession, pear, $scope, $location, $route, $timeout, common, CommunitiesSvc) {
+              'SwellRTSession', 'pear', '$scope', '$location', '$route', '$timeout', 'common', 'CommunitiesSvc', 'ProjectsSvc',
+              function (SwellRTSession, pear, $scope, $location, $route, $timeout, common, CommunitiesSvc, ProjectsSvc) {
 
     $scope.urlId= pear.urlId;
 
@@ -29,11 +29,12 @@ angular.module('Pear2Pear')
     };
 
     SwellRTSession.onLoad(function(){
+
       CommunitiesSvc.find($route.current.params.comId).then(function(community){
         $scope.community = community;
       });
 
-      pear.projects.find($route.current.params.id)
+      ProjectsSvc.find($route.current.params.id)
         .then(function(proxy) {
           $scope.project = proxy;
           $scope.needs = $scope.project.needs;
@@ -49,17 +50,18 @@ angular.module('Pear2Pear')
         return false;
       }
       // Migrate project.support
-      return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
+      return SwellRTSession.users.loggedIn() && project.supporters.indexOf(SwellRTSession.users.current()) > -1;
     };
 
     $scope.toggleSupport = function(project) {
       // Need a valid login to support
-      if (! pear.users.loggedIn()) {
+      // TODO, do not redirect without asking the user
+      if (! SwellRTSession.users.loggedIn()) {
         $location.path('session/new');
 
         return;
       }
-      pear.toggleSupport(project.id);
+      project.toggleSupport();
     };
 
     $scope.toggleCommentsVisibility = function toggleCommentsVisibility(need) {
@@ -77,7 +79,7 @@ angular.module('Pear2Pear')
       pear.addChatNotification(
         $route.current.params.id, 'need.comment.notification', 
         {
-          user: pear.users.current().split('@')[0],
+          user: SwellRTSession.users.current().split('@')[0],
           need: need.text,
           comment: comment
         }

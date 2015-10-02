@@ -45,7 +45,7 @@ angular.module('Pear2Pear')
       var startSession = function(){
         // TODO change password when register is available
         SwellRTSession.startSession(
-          $scope.user.nick, pear.users.password,
+          $scope.user.nick, SwellRTSession.users.password,
           function(){
             $timeout(function(){
               if ($route.current.params.redirect) {
@@ -66,7 +66,7 @@ angular.module('Pear2Pear')
 
 
     // Check for stored session information
-    if (pear.users.current() !== null) {
+    if (SwellRTSession.users.current() !== null) {
       if (pear.communities.current() && !$route.current.params.redirect){
         $route.current.params.section = 'mydoing';
         $route.updateParams($route.current.params);

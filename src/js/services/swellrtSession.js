@@ -69,42 +69,43 @@ angular.module('Pear2Pear')
         });
       };
 
-      SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
-        $timeout(function(){
-          sessionConnected = true;
+      swellRTpromise.then(function(){
+        SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
+          $timeout(function(){
+            sessionConnected = true;
+          });
         });
-      });
 
-      SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
-        $timeout(function(){
-          sessionConnected = false;
+        SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
+          $timeout(function(){
+            sessionConnected = false;
+          });
         });
-      });
 
-      var dataStatusTimeout;
+        var dataStatusTimeout;
 
-      SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
-        console.log(data, data.inFlightSize.value_0, data.uncommittedSize.value_0, data.unacknowledgedSize.value_0);
-        if (data.inFlightSize.value_0 === 0 &&
-            data.uncommittedSize.value_0 === 0 &&
-            data.unacknowledgedSize.value_0  === 0) {
+        SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
+          console.log(data, data.inFlightSize.value_0, data.uncommittedSize.value_0, data.unacknowledgedSize.value_0);
+          if (data.inFlightSize.value_0 === 0 &&
+              data.uncommittedSize.value_0 === 0 &&
+              data.unacknowledgedSize.value_0  === 0) {
           
-          dataSync = true;
-          lastDataSync = new Date();
-          if (dataStatusTimeout){
-            $timeout.cancel(dataStatusTimeout);
-            dataStatusTimeout = undefined;
+            dataSync = true;
+            lastDataSync = new Date();
+            if (dataStatusTimeout){
+              $timeout.cancel(dataStatusTimeout);
+              dataStatusTimeout = undefined;
+            }
           }
-        }
-        else {
-          if (!dataStatusTimeout){
-            dataStatusTimeout = $timeout(function(){
-              dataSync = false;
-            }, 3000);
+          else {
+            if (!dataStatusTimeout){
+              dataStatusTimeout = $timeout(function(){
+                dataSync = false;
+              }, 3000);
+            }
           }
-        }
+        });
       });
-
       // check variable connecting before calling startSession
       var startSession = function(userName, password, onSuccess, onError) {
         connecting = true;
