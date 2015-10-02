@@ -196,5 +196,10 @@
   "common": {
     "cancel": "Cancel",
     "create": "Create"
+  },
+  "connection": {
+    "lost": "Connection lost: trying to reconnect...",
+    "sync": "Your changes from {{time.toLocaleString()}} have not been saved.",
+    "tip": "If the problem persist, copy somewhere else your last changes and reload the application"
   }
 }

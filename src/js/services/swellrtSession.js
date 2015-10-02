@@ -22,13 +22,15 @@ angular.module('Pear2Pear')
       };
 
       var sessionConnected = false;
+      var dataSync = true;
+      var lastDataSync;
       var connecting = false;
 
 
       // TODO use this to handle fatal exceptions
       var setFatalExceptionHandler = function(handler){
         swellRTpromise.then(function(){
-          SwellRT.on(SwellRTevents.FATAL_EXCEPTION, handler);
+          SwellRT.on(SwellRT.events.FATAL_EXCEPTION, handler);
         });
       };
 
@@ -67,6 +69,42 @@ angular.module('Pear2Pear')
         });
       };
 
+      SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
+        $timeout(function(){
+          sessionConnected = true;
+        });
+      });
+
+      SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
+        $timeout(function(){
+          sessionConnected = false;
+        });
+      });
+
+      var dataStatusTimeout;
+
+      SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
+        console.log(data, data.inFlightSize.value_0, data.uncommittedSize.value_0, data.unacknowledgedSize.value_0);
+        if (data.inFlightSize.value_0 === 0 &&
+            data.uncommittedSize.value_0 === 0 &&
+            data.unacknowledgedSize.value_0  === 0) {
+          
+          dataSync = true;
+          lastDataSync = new Date();
+          if (dataStatusTimeout){
+            $timeout.cancel(dataStatusTimeout);
+            dataStatusTimeout = undefined;
+          }
+        }
+        else {
+          if (!dataStatusTimeout){
+            dataStatusTimeout = $timeout(function(){
+              dataSync = false;
+            }, 3000);
+          }
+        }
+      });
+
       // check variable connecting before calling startSession
       var startSession = function(userName, password, onSuccess, onError) {
         connecting = true;
@@ -95,16 +133,10 @@ angular.module('Pear2Pear')
                 users.clearCurrent();
               }
 
-              SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
-                sessionConnected = true;
-                sessionDef.resolve(SwellRT);
-                onSuccess();
-              });
+              sessionDef.resolve(SwellRT);
+              onSuccess();
 
-              SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
-                sessionConnected = false;
-              });
-
+              sessionConnected = true;
               connecting = false;
               loading.hide();
             }, function() {
@@ -137,10 +169,26 @@ angular.module('Pear2Pear')
       };
 
       return {
+        users: users,
         registerUser: registerUser,
         startSession: startSession,
         stopSession: stopSession,
         setFatalExceptionHandler: setFatalExceptionHandler,
+        // TODO no restart session without user saying so
+        // TODO stop session before start session after a timeout
+        // TODO if reconnected, get again all objects
+        status: {
+          isConnected: function(){
+            return sessionConnected;
+          },
+          isDataSync: function(){
+            return dataSync;
+          },
+          lastDataSync: function(){
+            return lastDataSync;
+          }
+        },
+
         // TODO refactor with Prototype version of proxy objects to avoid the use of onLoad
         onLoad: function(f) {
           if (!sessionConnected && !connecting){

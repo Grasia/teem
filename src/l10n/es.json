@@ -196,5 +196,10 @@
   "common": {
     "cancel": "Cancelar",
     "create": "Crear"
+  },
+  "connection": {
+    "lost": "Conexión perdida: tratando de reconectar...",
+    "sync": "Tus cambios desde {{time}} no se han guardado.",
+    "tip": "Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
   }
 }

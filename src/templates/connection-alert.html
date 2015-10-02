@@ -1,0 +1,11 @@
+<div class="alert alert-warning col-md-12" ng-show="!connected() || !sync()">
+  <div ng-show="!connected()" translate>
+    connection.lost
+  </div>
+  <div ng-show="!sync()" translate-values="{time: '{{lastDataSync().toLocaleString()}}'}" translate>
+    connection.sync
+  </div>
+  <div ng-show="!connected() || !sync()" translate>
+    connection.tip
+  </div>
+</div>
