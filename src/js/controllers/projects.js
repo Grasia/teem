@@ -17,16 +17,16 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$location', '$route', 'common',
-              function (SwellRTSession, pear, $scope, $location, $route, common) {
+              'SwellRTSession', 'pear', '$scope', '$location', '$route', 'common', 'CommunitiesSvc',
+              function (SwellRTSession, pear, $scope, $location, $route, common, CommunitiesSvc) {
 
     $scope.urlId= pear.urlId;
 
     var comUrlId = $route.current.params.comId;
 
     SwellRTSession.onLoad(function(){
-      var com = pear.communities.find(comUrlId);
-      com.community.then(function(community){
+      var com = CommunitiesSvc.find(comUrlId);
+      com.then(function(community){
         $scope.community = community;
       });
 
@@ -48,7 +48,7 @@ angular.module('Pear2Pear')
             getNewsCounts($scope.projects);
           });
       } else {
-        com.projects.all().then(
+        com.getProjects().then(
           function (projects){
             $scope.projects = projects;
           });
@@ -60,11 +60,6 @@ angular.module('Pear2Pear')
           //FIXME model prototype
           $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
         }, $scope.community.id);
-      };
-      $scope.destroy = function() {
-        pear.communities.destroy(pear.urlId($scope.community.id));
-
-        $location.path('/communities');
       };
     });
 

@@ -21,8 +21,8 @@ angular.module('Pear2Pear')
   }])
 
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SwellRTSession', 'pear', '$timeout',
-    function($scope, $location, $route, SwellRTSession, pear, $timeout) {
+    '$scope', '$location', '$route', 'SwellRTSession', 'pear', '$timeout', 'CommunitiesSvc',
+    function($scope, $location, $route, SwellRTSession, pear, $timeout, CommunitiesSvc) {
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
@@ -36,7 +36,7 @@ angular.module('Pear2Pear')
         var redirect = params.redirect;
         // redirects are of the form /community/:communityId/project/projectId
         var communityId = redirect.split('/')[2];
-        pear.communities.setCurrent(communityId);
+        CommunitiesSvc.setCurrent(communityId);
         $location.url(redirect);
       });
     };
