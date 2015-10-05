@@ -45,6 +45,15 @@ angular.module('Pear2Pear')
       this.addContributor();
     };
 
+    Project.prototype.addChatNotification = function(message, translateValues){
+      this.chat.push({
+        text: message,
+        time: (new Date()).toJSON(),
+        standpoint: 'notification',
+        translateValues: translateValues
+      });
+    };
+
     // Service functions //
 
     var openedProjects = {};

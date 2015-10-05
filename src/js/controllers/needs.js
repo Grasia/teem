@@ -27,10 +27,9 @@ angular.module('Pear2Pear')
       ProjectsSvc.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
+          $scope.project.timestampProjectAccess();
         }
       );
-
-      pear.timestampProjectAccess($route.current.params.id);
     });
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
@@ -94,14 +93,14 @@ angular.module('Pear2Pear')
         scope: {
           needs: '='
         },
-        controller: function($scope, pear, $route) {
+        controller: function($scope, pear, $route, SwellRTSession) {
           this.addNeed = function (need) {
             if (need.text !== ''){
               $scope.needs.push(need);
               $scope.project.addContributor();
               console.log(SwellRTSession.users.current());
-              pear.addChatNotification(
-                $route.current.params.id, 'need.new.notification',
+              $scope.project.addChatNotification(
+                'need.new.notification',
                 {
                   user: SwellRTSession.users.current().split('@')[0],
                   need: need.text
