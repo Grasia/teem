@@ -20,9 +20,11 @@ angular.module('Pear2Pear')
 
     //TODO profiles Service and bring this method there
     Project.prototype.timestampProjectAccess = function(){
-
+      var proj = this;
       ProfilesSvc.current().then(function(profile) {
-        profile.lastProjectVisit[this.id] = (new Date()).toJSON();
+        profile.lastProjectVisit[proj.id] = (new Date()).toJSON();
+        console.log(profile);
+        console.log(proj);
       });
     };
 

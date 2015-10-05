@@ -20,12 +20,14 @@ angular.module('Pear2Pear')
           return null;
         };
 
-        $scope.$on('$locationChangeStart', function(event) {
+        $scope.$on('$routeChangeSuccess', function(event) {
           if ($route.current && $route.current.params.id){
-            ProjectsSvc.find($route.current.params.id)
-              .then(function(proxy) {
-                $scope.project = proxy;
-              });
+            SwellRTSession.onLoad(function(){
+              ProjectsSvc.find($route.current.params.id)
+                .then(function(proxy) {
+                  $scope.project = proxy;
+                });
+            });
           }
         });
 
