@@ -21,14 +21,12 @@ angular.module('Pear2Pear')
         };
 
         $scope.$on('$locationChangeStart', function(event) {
-          SwellRTSession.onLoad(function(){
-            if ($route.current.params.id){
-              ProjectsSvc.find($route.current.params.id)
-                .then(function(proxy) {
-                  $scope.project = proxy;
-                });
-            }
-          });
+          if ($route.current && $route.current.params.id){
+            ProjectsSvc.find($route.current.params.id)
+              .then(function(proxy) {
+                $scope.project = proxy;
+              });
+          }
         });
 
         $scope.shareIcon = function shareIcon() {
