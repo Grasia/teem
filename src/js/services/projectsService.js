@@ -36,6 +36,15 @@ angular.module('Pear2Pear')
       }
     };
 
+    Project.prototype.addChatMessage = function(message){
+      this.chat.push({
+          text: message,
+          who: SwellRTSession.users.current(),
+          time: (new Date()).toJSON()
+        });
+      this.addContributor();
+    };
+
     // Service functions //
 
     var openedProjects = {};

@@ -54,7 +54,7 @@ angular.module('Pear2Pear')
         return;
       }
 
-      pear.addChatMessage(pear.urlId($scope.project.id), msg);
+      $scope.project.addChatMessage(msg);
 
       $scope.newMsg = '';
     };
