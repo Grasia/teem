@@ -85,7 +85,6 @@ angular.module('Pear2Pear')
         var dataStatusTimeout;
 
         SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
-          console.log(data, data.inFlightSize.value_0, data.uncommittedSize.value_0, data.unacknowledgedSize.value_0);
           if (data.inFlightSize.value_0 === 0 &&
               data.uncommittedSize.value_0 === 0 &&
               data.unacknowledgedSize.value_0  === 0) {
