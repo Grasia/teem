@@ -42,11 +42,13 @@ angular.module('Pear2Pear')
        });
       }
       if (isSection('mydoing')) {
-        $scope.community.myProjects().then(
-          function (projects){
-            $scope.projects = projects;
-            getNewsCounts($scope.projects);
-          });
+        com.then(function(community){
+          community.myProjects().then(
+            function (projects){
+              $scope.projects = projects;
+              getNewsCounts($scope.projects);
+            });
+        });
       } else {
         com.then(function(community){
           community.getProjects().then(

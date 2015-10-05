@@ -65,7 +65,7 @@ angular.module('Pear2Pear')
         ]};
 
       if (this.id){
-        query._aggregate[0].$match['root.communities'] = base64.urldecode(this.id);
+        query._aggregate[0].$match['root.communities'] = this.id;
       }
 
       SwellRT.query(
