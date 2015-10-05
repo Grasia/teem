@@ -20,6 +20,17 @@ angular.module('Pear2Pear')
           return null;
         };
 
+        $scope.$on('$locationChangeStart', function(event) {
+          SwellRTSession.onLoad(function(){
+            if ($route.current.params.id){
+              pear.projects.find($route.current.params.id)
+                .then(function(proxy) {
+                  $scope.project = proxy;
+                });
+            }
+          });
+        });
+
         $scope.shareIcon = function shareIcon() {
           switch (getSharedMode()) {
             case 'link':
