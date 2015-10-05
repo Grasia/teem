@@ -10,8 +10,8 @@
 angular.module('Pear2Pear')
   .controller(
     'NavbarTopCtrl', [
-      'SwellRTSession', '$scope',
-      function(SwellRTSession, $scope){
+      'SwellRTSession', '$scope', '$route', 'ProjectsSvc',
+      function(SwellRTSession, $scope, $route, ProjectsSvc){
 
         var getSharedMode = function(){
           if ($scope.project){
@@ -23,7 +23,7 @@ angular.module('Pear2Pear')
         $scope.$on('$locationChangeStart', function(event) {
           SwellRTSession.onLoad(function(){
             if ($route.current.params.id){
-              pear.projects.find($route.current.params.id)
+              ProjectsSvc.find($route.current.params.id)
                 .then(function(proxy) {
                   $scope.project = proxy;
                 });
