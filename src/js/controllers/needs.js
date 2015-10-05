@@ -93,19 +93,20 @@ angular.module('Pear2Pear')
         scope: {
           needs: '='
         },
-        controller: function($scope, pear, $route, SwellRTSession) {
+        controller: function($scope, pear, $route, SwellRTSession, ProjectsSvc) {
           this.addNeed = function (need) {
             if (need.text !== ''){
               $scope.needs.push(need);
-              $scope.project.addContributor();
-              console.log(SwellRTSession.users.current());
-              $scope.project.addChatNotification(
-                'need.new.notification',
-                {
-                  user: SwellRTSession.users.current().split('@')[0],
-                  need: need.text
-                }
-              );
+              ProjectsSvc.find($route.current.params.id).then(function(project){
+                project.addContributor();
+                project.addChatNotification(
+                  'need.new.notification',
+                  {
+                    user: SwellRTSession.users.current().split('@')[0],
+                    need: need.text
+                  }
+                );
+              });
             }
           };
           this.removeNeed = function (need) {
