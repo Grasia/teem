@@ -31,8 +31,13 @@ describe('Pear2Pear', function() {
       browser.get('index.html');
     });
 
+
     it('should use the chadpad', function() {
-      var timeout = 50000;
+      /*
+       * If it is not loaded in 10 seconds, we have a problem in mobiles
+       * Please do not increase this
+       */
+      var timeout = 10000;
 
       element(by.css('input#login')).sendKeys('TestUserName');
       element(by.css('input:enabled[type=submit]')).click();
