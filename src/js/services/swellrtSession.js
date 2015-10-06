@@ -30,7 +30,12 @@ angular.module('Pear2Pear')
       // TODO use this to handle fatal exceptions
       var setFatalExceptionHandler = function(handler){
         swellRTpromise.then(function(){
-          SwellRT.on(SwellRT.events.FATAL_EXCEPTION, handler);
+          SwellRT.on(SwellRT.events.FATAL_EXCEPTION, function(){
+            $timeout(function(){
+              sessionConnected = false;
+            });
+            handler();
+          });
         });
       };
 
