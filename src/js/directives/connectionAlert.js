@@ -5,7 +5,7 @@ angular.module('Pear2Pear')
     return {
       controller: ['$scope', 'SwellRTSession', function($scope, SwellRTSession){
         $scope.connected = function(){
-          return SwellRTSession.status.isConnected || !SwellRTSession.users.loggedIn();
+          return SwellRTSession.status.isConnected() || !SwellRTSession.users.loggedIn();
         };
         $scope.sync = SwellRTSession.status.isDataSync;
         $scope.lastDataSync = SwellRTSession.status.lastDataSync;
