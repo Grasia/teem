@@ -17,10 +17,10 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectInfoCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$location', '$route', '$timeout', 'common', 'CommunitiesSvc', 'ProjectsSvc',
-              function (SwellRTSession, pear, $scope, $location, $route, $timeout, common, CommunitiesSvc, ProjectsSvc) {
+              'SwellRTSession', 'url', '$scope', '$location', '$route', '$timeout', 'time', 'CommunitiesSvc', 'ProjectsSvc',
+              function (SwellRTSession, url, $scope, $location, $route, $timeout, time, CommunitiesSvc, ProjectsSvc) {
 
-    $scope.urlId= pear.urlId;
+    $scope.urlId= url.urlId;
 
     $scope.communityId = $route.current.params.comId;
 
@@ -88,7 +88,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.hour = function(comment) {
-      return common.time.hour(new Date(comment.time));
+      return time.hour(new Date(comment.time));
     };
 
     function tab() {

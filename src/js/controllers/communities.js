@@ -15,14 +15,14 @@ angular.module('Pear2Pear')
         controller: 'CommunitiesCtrl'
       });
   }])
-  .controller('CommunitiesCtrl', ['$scope', 'SwellRTSession', 'pear', '$location', 'CommunitiesSvc', function ($scope, SwellRTSession, pear, $location, CommunitiesSvc) {
+  .controller('CommunitiesCtrl', ['$scope', 'SwellRTSession', 'url', '$location', 'CommunitiesSvc', function ($scope, SwellRTSession, url, $location, CommunitiesSvc) {
 
     $scope.newCommunityName = {
       name : ''
     };
 
     // FIXME: model prototype
-    $scope.urlId = pear.urlId;
+    $scope.urlId = url.urlId;
 
     SwellRTSession.onLoad(function(){
       CommunitiesSvc.all().then(function(communities){
@@ -39,7 +39,7 @@ angular.module('Pear2Pear')
     });
 
     $scope.showProjects = function(id) {
-      CommunitiesSvc.setCurrent(pear.urlId(id));
-      $location.path('/communities/' + pear.urlId(id) + '/projects');
+      CommunitiesSvc.setCurrent(url.urlId(id));
+      $location.path('/communities/' + url.urlId(id) + '/projects');
     };
   }]);

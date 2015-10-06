@@ -21,8 +21,8 @@ angular.module('Pear2Pear')
   }])
 
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SwellRTSession', 'pear', '$timeout', 'CommunitiesSvc',
-    function($scope, $location, $route, SwellRTSession, pear, $timeout, CommunitiesSvc) {
+    '$scope', '$location', '$route', 'SwellRTSession', '$timeout', 'CommunitiesSvc',
+    function($scope, $location, $route, SwellRTSession, $timeout, CommunitiesSvc) {
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');

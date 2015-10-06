@@ -17,10 +17,10 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('NeedsCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$route', 'ProjectsSvc',
-              function(SwellRTSession, pear, $scope, $route, ProjectsSvc){
+              'SwellRTSession', 'url', '$scope', '$route', 'ProjectsSvc',
+              function(SwellRTSession, url, $scope, $route, ProjectsSvc){
 
-    $scope.urlId = pear.urlId;
+    $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
 
     SwellRTSession.onLoad(function(){
@@ -93,7 +93,7 @@ angular.module('Pear2Pear')
         scope: {
           needs: '='
         },
-        controller: function($scope, pear, $route, SwellRTSession, ProjectsSvc) {
+        controller: function($scope, $route, SwellRTSession, ProjectsSvc) {
           this.addNeed = function (need) {
             if (need.text !== ''){
               $scope.needs.push(need);

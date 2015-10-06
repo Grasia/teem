@@ -17,10 +17,10 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$location', '$route', 'common', 'CommunitiesSvc', 'ProjectsSvc',
-              function (SwellRTSession, pear, $scope, $location, $route, common, CommunitiesSvc, ProjectsSvc) {
+              'SwellRTSession', 'url', '$scope', '$location', '$route', 'time', 'CommunitiesSvc', 'ProjectsSvc',
+              function (SwellRTSession, url, $scope, $location, $route, time, CommunitiesSvc, ProjectsSvc) {
 
-    $scope.urlId= pear.urlId;
+    $scope.urlId= url.urlId;
 
     var comUrlId = $route.current.params.comId;
 
@@ -62,7 +62,7 @@ angular.module('Pear2Pear')
         ProjectsSvc.create(function(p) {
 
           //FIXME model prototype
-          $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
+          $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(p.id) + '/pad');
         }, $scope.community.id);
       };
     });
@@ -100,9 +100,9 @@ angular.module('Pear2Pear')
     $scope.showProject = function(id, tabName) {
       if (section() === 'mydoing') {
         //FIXME model prototype
-        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/' + (tabName || 'pad'));
+        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id) + '/' + (tabName || 'pad'));
       } else {
-        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id));
+        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id));
       }
     };
 
@@ -157,7 +157,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.hour = function(msg) {
-      return common.time.hour(new Date(msg.time));
+      return time.hour(new Date(msg.time));
     };
 
     var lastChatsCache = [];

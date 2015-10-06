@@ -32,10 +32,10 @@ angular.module('Pear2Pear')
     };
   })
   .controller('ChatCtrl', [
-              'SwellRTSession', 'pear', '$scope', '$rootScope', '$route', '$location', '$animate', 'common', 'ProjectsSvc',
-              function(SwellRTSession, pear, $scope, $rootScope, $route, $location, $animate, common, ProjectsSvc){
+              'SwellRTSession', 'url', '$scope', '$rootScope', '$route', '$location', '$animate', 'time', 'ProjectsSvc',
+              function(SwellRTSession, url, $scope, $rootScope, $route, $location, $animate, time, ProjectsSvc){
 
-    $scope.urlId = pear.urlId;
+    $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
 
     SwellRTSession.onLoad(function(){
@@ -84,7 +84,7 @@ angular.module('Pear2Pear')
 
 
     $scope.hour = function(msg) {
-      return common.time.hour(new Date(msg.time));
+      return time.hour(new Date(msg.time));
     };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
@@ -93,7 +93,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showPad = function() {
-      $location.path('/projects/' + pear.urlId($route.current.params.id) + '/pad');
+      $location.path('/projects/' + url.urlId($route.current.params.id) + '/pad');
     };
 
     $scope.addToPad = function(txt) {
@@ -106,7 +106,7 @@ angular.module('Pear2Pear')
     $scope.dayChange = function(msg, index){
       var d = new Date(msg.time);
       if (index > 0 && d.getDate() !== new Date($scope.project.chat[index -1].time).getDate()){
-        return common.time.date(d);
+        return time.date(d);
       };
       return undefined;
     };
