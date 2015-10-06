@@ -3,8 +3,43 @@
 angular.module('Pear2Pear')
   .factory('ProfilesSvc', ['swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', function(swellRT, $q, $timeout, base64, SwellRTSession){
 
-    var Profile = function(){};
+    var Profile = function(){
+    };
 
+    Profile.prototype.timestampProjectAccess = function(projId){
+      this.lastProjectVisit[projId] = (new Date()).toJSON();
+    };
+
+
+    Profile.prototype.getPadEditionCount = function(proj){
+      var lastVisit =
+        (profile.lastProjectVisit[project.id])?
+        new Date(profile.lastProjectVisit[project.id]):new Date(0);
+
+      if (lastVisit.getTime() < proj.pad.lastmodtime){
+        return 0;
+      } else {
+        return 1;
+      }
+    };
+
+    Profile.prototype.getNewMessagesCount = function(proj){
+      var lastVisit =
+        (profile.lastProjectVisit[proj.id])?
+        new Date(profile.lastProjectVisit[proj.id]):new Date(0);
+
+      var chatsLength = proj.chat.length;
+
+      if (chatsLength > 0){
+        var i = chatsLength - 1;
+        while (i > -1 && (new Date(proj.chat[i].time) > lastVisit)) {
+          i --;
+        }
+        return chatsLength -1 -i;
+      } else {
+        return 0;
+      }
+    };
     // Service methods //
 
     // map of opened profiles

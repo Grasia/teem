@@ -67,10 +67,10 @@ angular.module('Pear2Pear')
 
     // Check for stored session information
     if (SwellRTSession.users.current() !== null) {
-      if (pear.communities.current() && !$route.current.params.redirect){
+      if (CommunitiesSvc.current() && !$route.current.params.redirect){
         $route.current.params.section = 'mydoing';
         $route.updateParams($route.current.params);
-        $location.path('/communities/' + pear.communities.current() + '/projects');
+        $location.path('/communities/' + CommunitiesSvc.current() + '/projects');
       } else if ($route.current.params.redirect) {
         redirect($route.current.params);
       } else {

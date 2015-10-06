@@ -203,10 +203,15 @@ angular.module('Pear2Pear')
       return window.localStorage.setItem('communityId', communityId);
     };
 
+    var current = function() {
+      return window.localStorage.getItem('communityId');
+    }
+
     return {
       find : find,
       create: create,
       all: all,
-      setCurrent: setCurrent
+      setCurrent: setCurrent,
+      current: current
     };
   }]);
