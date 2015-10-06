@@ -90,9 +90,9 @@ angular.module('Pear2Pear')
         var dataStatusTimeout;
 
         SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
-          if (data.inFlightSize.value_0 === 0 &&
-              data.uncommittedSize.value_0 === 0 &&
-              data.unacknowledgedSize.value_0  === 0) {
+          if (data.inFlightSize === 0 &&
+              data.uncommittedSize === 0 &&
+              data.unacknowledgedSize  === 0) {
           
             dataSync = true;
             lastDataSync = new Date();
