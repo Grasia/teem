@@ -3,6 +3,7 @@
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
 describe('Pear2Pear', function() {
+  var random = require('./random');
 
   beforeAll(function() {
     browser.get('index.html');
@@ -15,14 +16,15 @@ describe('Pear2Pear', function() {
       browser.get('index.html');
     });
 
-    it('should use the chadpad', function() {
+    it('should create a project and share it', function() {
       /*
        * If it is not loaded in 10 seconds, we have a problem in mobiles
        * Please do not increase this
        */
       var timeout = 10000;
+      var login = random.emailUser();
 
-      element(by.css('input#login')).sendKeys('TestUserName');
+      element(by.css('input#login')).sendKeys(login);
       element(by.css('input:enabled[type=submit]')).click();
 
       var communityList = by.css('.communities');
