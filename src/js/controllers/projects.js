@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-              'SwellRTSession', 'url', '$scope', '$location', '$route', 'time', 'CommunitiesSvc', 'ProjectsSvc',
-              function (SwellRTSession, url, $scope, $location, $route, time, CommunitiesSvc, ProjectsSvc) {
+              'SwellRTSession', 'url', '$scope', '$location', '$route', 'time', 'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc',
+              function (SwellRTSession, url, $scope, $location, $route, time, CommunitiesSvc, ProjectsSvc, ProfilesSvc) {
 
     $scope.urlId= url.urlId;
 
@@ -36,7 +36,7 @@ angular.module('Pear2Pear')
          ProfilesSvc.getNewMessagessCount(proj).then(function(count) {
            proj.newMessagesCount = count;
          });
-         ProfileSvc.getPadEditionCount(proj).then(function(count) {
+         ProfilesSvc.getPadEditionCount(proj).then(function(count) {
            proj.padEditionCount = count;
          });
        });
