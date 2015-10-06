@@ -56,6 +56,17 @@ angular.module('Pear2Pear')
       });
     };
 
+    Project.prototype.addNeedComment = function(need, comment){
+      if (!need.comments){
+        need.comments = [];
+      }
+      need.comments.push({
+        text: comment,
+        time: (new Date()).toJSON(),
+        author: SwellRTSession.users.current()
+      });
+    };
+
     // Service functions //
 
     var openedProjects = {};
