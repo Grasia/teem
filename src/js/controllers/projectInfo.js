@@ -76,8 +76,8 @@ angular.module('Pear2Pear')
       var need = $scope.project.needs[needIndex];
       var comment = $scope.comments.new[needIndex];
       pear.addNeedComment(need, comment);
-      pear.addChatNotification(
-        $route.current.params.id, 'need.comment.notification', 
+      $scope.project.addChatNotification(
+        'need.comment.notification',
         {
           user: SwellRTSession.users.current().split('@')[0],
           need: need.text,
