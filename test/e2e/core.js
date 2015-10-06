@@ -10,27 +10,10 @@ describe('Pear2Pear', function() {
     browser.driver.executeScript("window.localStorage.clear();");
   });
 
-  describe('frontpage', function() {
-
-    describe('redirect', function() {
-
-      browser.get('index.html');
-
-      it('should automatically redirect to /frontpage when location hash/fragment is empty', function() {
-        expect(browser.getLocationAbsUrl()).toMatch('/frontpage');
-      });
-
-      it('should render session/form when user navigates to /frontpage', function() {
-        expect(element.all(by.css('[ng-view] input#login')).first()).toBeDefined();
-      });
-    });
-  });
-
-  describe('chatpad', function() {
+  describe('1% core user', function() {
     beforeAll(function() {
       browser.get('index.html');
     });
-
 
     it('should use the chadpad', function() {
       /*
