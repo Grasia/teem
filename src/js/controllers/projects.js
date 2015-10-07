@@ -33,11 +33,9 @@ angular.module('Pear2Pear')
       // get the count of new edits and chats for a list of projects and store them in the project properties
       function getNewsCounts(projs) {
        angular.forEach(projs, function(proj) {
-         ProfilesSvc.getNewMessagessCount(proj).then(function(count) {
-           proj.newMessagesCount = count;
-         });
-         ProfilesSvc.getPadEditionCount(proj).then(function(count) {
-           proj.padEditionCount = count;
+         ProfilesSvc.current().then(function(prof){
+           proj.newMessagesCount = prof.getNewMessagesCount(proj);
+           proj.padEditionCount = prof.getPadEditionCount(proj);
          });
        });
       }

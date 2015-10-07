@@ -13,8 +13,8 @@ angular.module('Pear2Pear')
 
     Profile.prototype.getPadEditionCount = function(proj){
       var lastVisit =
-        (profile.lastProjectVisit[project.id])?
-        new Date(profile.lastProjectVisit[project.id]):new Date(0);
+        (this.lastProjectVisit[project.id])?
+        new Date(this.lastProjectVisit[project.id]):new Date(0);
 
       if (lastVisit.getTime() < proj.pad.lastmodtime){
         return 0;
@@ -25,8 +25,8 @@ angular.module('Pear2Pear')
 
     Profile.prototype.getNewMessagesCount = function(proj){
       var lastVisit =
-        (profile.lastProjectVisit[proj.id])?
-        new Date(profile.lastProjectVisit[proj.id]):new Date(0);
+        (this.lastProjectVisit[proj.id])?
+        new Date(this.lastProjectVisit[proj.id]):new Date(0);
 
       var chatsLength = proj.chat.length;
 
