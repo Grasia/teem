@@ -23,8 +23,6 @@ angular.module('Pear2Pear')
       var proj = this;
       ProfilesSvc.current().then(function(profile) {
         profile.lastProjectVisit[proj.id] = (new Date()).toJSON();
-        console.log(profile);
-        console.log(proj);
       });
     };
 
@@ -75,7 +73,6 @@ angular.module('Pear2Pear')
 
       var id = base64.urldecode(urlId);
       var def = $q.defer();
-
       if (!openedProjects[id]) {
         openedProjects[id] = def.promise;
         SwellRT.openModel(id, function(model){
@@ -85,13 +82,8 @@ angular.module('Pear2Pear')
           console.log(error);
           def.reject(error);
         });
-      } else {
-        openedProjects[id].then(
-          function(r){
-            def.resolve(r);
-          });
       }
-      return def.promise;
+      return openedProjects[id];
     };
 
     var create = function(callback, communityId) {
