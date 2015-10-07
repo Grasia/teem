@@ -17,54 +17,51 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-              'pear', '$scope', '$location', '$route', 'common',
-              function (pear, $scope, $location, $route, common) {
+              'SwellRTSession', 'url', '$scope', '$location', '$route', 'time', 'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc',
+              function (SwellRTSession, url, $scope, $location, $route, time, CommunitiesSvc, ProjectsSvc, ProfilesSvc) {
 
-    $scope.urlId= pear.urlId;
+    $scope.urlId= url.urlId;
 
     var comUrlId = $route.current.params.comId;
 
-    pear.onLoad(function(){
-      var com = pear.communities.find(comUrlId);
-      com.community.then(function(community){
+    SwellRTSession.onLoad(function(){
+      var com = CommunitiesSvc.find(comUrlId);
+      com.then(function(community){
         $scope.community = community;
       });
 
       // get the count of new edits and chats for a list of projects and store them in the project properties
       function getNewsCounts(projs) {
        angular.forEach(projs, function(proj) {
-         pear.newMessagesCount(proj).then(function(count) {
-           proj.newMessagesCount = count;
-         });
-         pear.padEditionCount(proj).then(function(count) {
-           proj.padEditionCount = count;
+         ProfilesSvc.current().then(function(prof){
+           proj.newMessagesCount = prof.getNewMessagesCount(proj);
+           proj.padEditionCount = prof.getPadEditionCount(proj);
          });
        });
       }
       if (isSection('mydoing')) {
-        pear.projects.myProjects(comUrlId).then(
-          function (projects){
-            $scope.projects = projects;
-            getNewsCounts($scope.projects);
-          });
+        com.then(function(community){
+          community.myProjects().then(
+            function (projects){
+              $scope.projects = projects;
+              getNewsCounts($scope.projects);
+            });
+        });
       } else {
-        com.projects.all().then(
-          function (projects){
-            $scope.projects = projects;
-          });
+        com.then(function(community){
+          community.getProjects().then(
+            function (projects){
+              $scope.projects = projects;
+            });
+        });
       }
 
       $scope.new_ = function () {
-        pear.projects.create(function(p) {
+        ProjectsSvc.create(function(p) {
 
           //FIXME model prototype
-          $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(p.id) + '/pad');
+          $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(p.id) + '/pad');
         }, $scope.community.id);
-      };
-      $scope.destroy = function() {
-        pear.communities.destroy(pear.urlId($scope.community.id));
-
-        $location.path('/communities');
       };
     });
 
@@ -101,9 +98,9 @@ angular.module('Pear2Pear')
     $scope.showProject = function(id, tabName) {
       if (section() === 'mydoing') {
         //FIXME model prototype
-        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id) + '/' + (tabName || 'pad'));
+        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id) + '/' + (tabName || 'pad'));
       } else {
-        $location.path('/communities/' + pear.urlId($scope.community.id) + '/projects/' + pear.urlId(id));
+        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id));
       }
     };
 
@@ -158,7 +155,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.hour = function(msg) {
-      return common.time.hour(new Date(msg.time));
+      return time.hour(new Date(msg.time));
     };
 
     var lastChatsCache = [];

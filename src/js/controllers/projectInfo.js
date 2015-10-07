@@ -17,10 +17,10 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectInfoCtrl', [
-              'pear', '$scope', '$location', '$route', '$timeout', 'common',
-              function (pear, $scope, $location, $route, $timeout, common) {
+              'SwellRTSession', 'url', '$scope', '$location', '$route', '$timeout', 'time', 'CommunitiesSvc', 'ProjectsSvc',
+              function (SwellRTSession, url, $scope, $location, $route, $timeout, time, CommunitiesSvc, ProjectsSvc) {
 
-    $scope.urlId= pear.urlId;
+    $scope.urlId= url.urlId;
 
     $scope.communityId = $route.current.params.comId;
 
@@ -28,13 +28,13 @@ angular.module('Pear2Pear')
       new: []
     };
 
-    pear.onLoad(function(){
-      pear.communities.find($route.current.params.comId)
-        .community.then(function(community){
+    SwellRTSession.onLoad(function(){
+
+      CommunitiesSvc.find($route.current.params.comId).then(function(community){
         $scope.community = community;
       });
 
-      pear.projects.find($route.current.params.id)
+      ProjectsSvc.find($route.current.params.id)
         .then(function(proxy) {
           $scope.project = proxy;
           $scope.needs = $scope.project.needs;
@@ -50,17 +50,18 @@ angular.module('Pear2Pear')
         return false;
       }
       // Migrate project.support
-      return pear.users.loggedIn() && project.supporters.indexOf(pear.users.current()) > -1;
+      return SwellRTSession.users.loggedIn() && project.supporters.indexOf(SwellRTSession.users.current()) > -1;
     };
 
     $scope.toggleSupport = function(project) {
       // Need a valid login to support
-      if (! pear.users.loggedIn()) {
+      // TODO, do not redirect without asking the user
+      if (! SwellRTSession.users.loggedIn()) {
         $location.path('session/new');
 
         return;
       }
-      pear.toggleSupport(project.id);
+      project.toggleSupport();
     };
 
     $scope.toggleCommentsVisibility = function toggleCommentsVisibility(need) {
@@ -74,11 +75,11 @@ angular.module('Pear2Pear')
     $scope.sendComment = function sendComment(needIndex) {
       var need = $scope.project.needs[needIndex];
       var comment = $scope.comments.new[needIndex];
-      pear.addNeedComment(need, comment);
-      pear.addChatNotification(
-        $route.current.params.id, 'need.comment.notification', 
+      $scope.project.addNeedComment(need, comment);
+      $scope.project.addChatNotification(
+        'need.comment.notification',
         {
-          user: pear.users.current().split('@')[0],
+          user: SwellRTSession.users.current().split('@')[0],
           need: need.text,
           comment: comment
         }
@@ -87,7 +88,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.hour = function(comment) {
-      return common.time.hour(new Date(comment.time));
+      return time.hour(new Date(comment.time));
     };
 
     function tab() {

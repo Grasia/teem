@@ -17,20 +17,19 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('NeedsCtrl', [
-              'pear', '$scope', '$route',
-              function(pear, $scope, $route){
+              'SwellRTSession', 'url', '$scope', '$route', 'ProjectsSvc',
+              function(SwellRTSession, url, $scope, $route, ProjectsSvc){
 
-    $scope.urlId = pear.urlId;
+    $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
 
-    pear.onLoad(function(){
-      pear.projects.find($route.current.params.id).then(
+    SwellRTSession.onLoad(function(){
+      ProjectsSvc.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
+          $scope.project.timestampProjectAccess();
         }
       );
-
-      pear.timestampProjectAccess($route.current.params.id);
     });
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
@@ -94,19 +93,20 @@ angular.module('Pear2Pear')
         scope: {
           needs: '='
         },
-        controller: function($scope, pear, $route) {
+        controller: function($scope, $route, SwellRTSession, ProjectsSvc) {
           this.addNeed = function (need) {
             if (need.text !== ''){
               $scope.needs.push(need);
-              pear.projects.addContributor($route.current.params.id);
-              console.log(pear.users.current());
-              pear.addChatNotification(
-                $route.current.params.id, 'need.new.notification',
-                {
-                  user: pear.users.current().split('@')[0],
-                  need: need.text
-                }
-              );
+              ProjectsSvc.find($route.current.params.id).then(function(project){
+                project.addContributor();
+                project.addChatNotification(
+                  'need.new.notification',
+                  {
+                    user: SwellRTSession.users.current().split('@')[0],
+                    need: need.text
+                  }
+                );
+              });
             }
           };
           this.removeNeed = function (need) {

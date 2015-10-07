@@ -2,24 +2,21 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.service:Pear
+ * @name Pear2Pear.service:time
  * @description
- * # Pear service
- * Provides controllers with a data model for pear to pear app
- * It serves as an abstraction between Pear data and backend (SwellRT)
+ * # time service
+ * It provides several time common functions to be used by several controllers
  */
 
 angular.module('Pear2Pear')
-  .factory('common', [ function() {
+  .factory('time', [ function() {
     return {
-      time : {
-        hour: function(date){
-          return date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
-        },
-        date: function(date){
-          var options = { month: 'long', day: 'numeric' };
-          return date.toLocaleDateString(undefined, options);
-        }
+      hour: function(date){
+        return date.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes();
+      },
+      date: function(date){
+        var options = { month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
       }
     };
   }]);

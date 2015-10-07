@@ -15,32 +15,31 @@ angular.module('Pear2Pear')
         controller: 'CommunitiesCtrl'
       });
   }])
-  .controller('CommunitiesCtrl', ['$scope', 'pear', '$location', function ($scope, pear, $location) {
+  .controller('CommunitiesCtrl', ['$scope', 'SwellRTSession', 'url', '$location', 'CommunitiesSvc', function ($scope, SwellRTSession, url, $location, CommunitiesSvc) {
 
     $scope.newCommunityName = {
       name : ''
     };
 
     // FIXME: model prototype
-    $scope.urlId = pear.urlId;
+    $scope.urlId = url.urlId;
 
-    pear.onLoad(function(){
-      pear.communities.all().then(function(communities){
+    SwellRTSession.onLoad(function(){
+      CommunitiesSvc.all().then(function(communities){
         $scope.communities = communities;
       });
       $scope.create = function(name) {
-        pear.communities.create(
+        CommunitiesSvc.create(
           { name: name || $scope.newCommunityName.name },
           function(community) {
-
+            // TODO: bring following call to controller code
             $scope.showProjects(community.id);
-
           });
       };
     });
 
     $scope.showProjects = function(id) {
-      pear.communities.setCurrent(pear.urlId(id));
-      $location.path('/communities/' + pear.urlId(id) + '/projects');
+      CommunitiesSvc.setCurrent(url.urlId(id));
+      $location.path('/communities/' + url.urlId(id) + '/projects');
     };
   }]);

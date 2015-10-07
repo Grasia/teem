@@ -32,21 +32,18 @@ angular.module('Pear2Pear')
     };
   })
   .controller('ChatCtrl', [
-              'pear', '$scope', '$rootScope', '$route', '$location', '$animate', 'common',
-              function(pear, $scope, $rootScope, $route, $location, $animate, common){
+              'SwellRTSession', 'url', '$scope', '$rootScope', '$route', '$location', '$animate', 'time', 'ProjectsSvc',
+              function(SwellRTSession, url, $scope, $rootScope, $route, $location, $animate, time, ProjectsSvc){
 
-    $scope.urlId = pear.urlId;
+    $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
 
-    pear.onLoad(function(){
-      pear.projects.find($route.current.params.id).then(
+    SwellRTSession.onLoad(function(){
+      ProjectsSvc.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
+          $scope.project.timestampProjectAccess();
         });
-
-
-
-      pear.timestampProjectAccess($route.current.params.id);
     });
 
     // Send button
@@ -57,7 +54,7 @@ angular.module('Pear2Pear')
         return;
       }
 
-      pear.addChatMessage(pear.urlId($scope.project.id), msg);
+      $scope.project.addChatMessage(msg);
 
       $scope.newMsg = '';
     };
@@ -71,10 +68,10 @@ angular.module('Pear2Pear')
 
 
     $scope.standpoint = function(msg){
-      if (!pear.users.current()) {
+      if (!SwellRTSession.users.current()) {
         return msg.standpoint || 'their';
       }
-      return msg.standpoint || (pear.users.isCurrent(msg.who) ? 'mine' : 'their');
+      return msg.standpoint || (SwellRTSession.users.isCurrent(msg.who) ? 'mine' : 'their');
     };
 
     $scope.theirStandpoint = function(msg) {
@@ -87,7 +84,7 @@ angular.module('Pear2Pear')
 
 
     $scope.hour = function(msg) {
-      return common.time.hour(new Date(msg.time));
+      return time.hour(new Date(msg.time));
     };
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
@@ -96,7 +93,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showPad = function() {
-      $location.path('/projects/' + pear.urlId($route.current.params.id) + '/pad');
+      $location.path('/projects/' + url.urlId($route.current.params.id) + '/pad');
     };
 
     $scope.addToPad = function(txt) {
@@ -109,7 +106,7 @@ angular.module('Pear2Pear')
     $scope.dayChange = function(msg, index){
       var d = new Date(msg.time);
       if (index > 0 && d.getDate() !== new Date($scope.project.chat[index -1].time).getDate()){
-        return common.time.date(d);
+        return time.date(d);
       };
       return undefined;
     };

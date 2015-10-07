@@ -21,8 +21,8 @@ angular.module('Pear2Pear')
   }])
 
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'pear', '$timeout',
-    function($scope, $location, $route, pear, $timeout) {
+    '$scope', '$location', '$route', 'SwellRTSession', '$timeout', 'CommunitiesSvc',
+    function($scope, $location, $route, SwellRTSession, $timeout, CommunitiesSvc) {
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
@@ -36,7 +36,7 @@ angular.module('Pear2Pear')
         var redirect = params.redirect;
         // redirects are of the form /community/:communityId/project/projectId
         var communityId = redirect.split('/')[2];
-        pear.communities.setCurrent(communityId);
+        CommunitiesSvc.setCurrent(communityId);
         $location.url(redirect);
       });
     };
@@ -44,8 +44,8 @@ angular.module('Pear2Pear')
     $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
-        pear.startSession(
-          $scope.user.nick, pear.users.password,
+        SwellRTSession.startSession(
+          $scope.user.nick, SwellRTSession.users.password,
           function(){
             $timeout(function(){
               if ($route.current.params.redirect) {
@@ -61,16 +61,16 @@ angular.module('Pear2Pear')
           }
         );
       };
-      pear.registerUser($scope.user.nick, '$password$', startSession, startSession);
+      SwellRTSession.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
 
 
     // Check for stored session information
-    if (pear.users.current() !== null) {
-      if (pear.communities.current() && !$route.current.params.redirect){
+    if (SwellRTSession.users.current() !== null) {
+      if (CommunitiesSvc.current() && !$route.current.params.redirect){
         $route.current.params.section = 'mydoing';
         $route.updateParams($route.current.params);
-        $location.path('/communities/' + pear.communities.current() + '/projects');
+        $location.path('/communities/' + CommunitiesSvc.current() + '/projects');
       } else if ($route.current.params.redirect) {
         redirect($route.current.params);
       } else {

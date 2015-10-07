@@ -17,19 +17,18 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('PadCtrl', [
-              'pear', '$rootScope', '$scope', '$route', '$location', '$timeout', 'SharedState',
-              function(pear, $rootScope, $scope, $route, $location, $timeout, SharedState){
+              'SwellRTSession', 'url', '$rootScope', '$scope', '$route', '$location', '$timeout', 'SharedState', 'ProjectsSvc',
+              function(SwellRTSession, url, $rootScope, $scope, $route, $location, $timeout, SharedState, ProjectsSvc){
 
-    $scope.urlId = pear.urlId;
+    $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
 
-    pear.onLoad(function(){
-      pear.projects.find($route.current.params.id)
+    SwellRTSession.onLoad(function(){
+      ProjectsSvc.find($route.current.params.id)
         .then(function(proxy) {
           $scope.project = proxy;
+          $scope.project.timestampProjectAccess();
         });
-
-      pear.timestampProjectAccess($route.current.params.id);
     });
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
@@ -55,7 +54,6 @@ angular.module('Pear2Pear')
     angular.element(document.querySelector('.swellrt-editor')).on(
       'focusin',
       function(){
-        pear.projects
-          .addContributor($route.current.params.id);
+        $scope.project.addContributor();
       });
   }]);

@@ -10,8 +10,8 @@
 angular.module('Pear2Pear')
   .controller(
     'NavbarTopCtrl', [
-      'pear', '$scope', '$route',
-      function(pear, $scope, $route){
+      'SwellRTSession', '$scope', '$route', 'ProjectsSvc',
+      function(SwellRTSession, $scope, $route, ProjectsSvc){
 
         var getSharedMode = function(){
           if ($scope.project){
@@ -20,15 +20,15 @@ angular.module('Pear2Pear')
           return null;
         };
 
-        $scope.$on('$locationChangeStart', function(event) {
-          pear.onLoad(function(){
-            if ($route.current.params.id){
-              pear.projects.find($route.current.params.id)
+        $scope.$on('$routeChangeSuccess', function(event) {
+          if ($route.current && $route.current.params.id){
+            SwellRTSession.onLoad(function(){
+              ProjectsSvc.find($route.current.params.id)
                 .then(function(proxy) {
                   $scope.project = proxy;
                 });
-            }
-          });
+            });
+          }
         });
 
         $scope.shareIcon = function shareIcon() {
@@ -50,10 +50,10 @@ angular.module('Pear2Pear')
         };
 
         $scope.setShared = function setShared(mode){
-          pear.projects.setShareMode($route.current.params.id, mode);
+          $scope.project.setShareMode(mode);
         };
 
         $scope.timestampProjectAccess = function(){
-          pear.timestampProjectAccess($route.current.params.id);
+          $scope.project.timestampProjectAccess();
         };
-  }]);
+      }]);
