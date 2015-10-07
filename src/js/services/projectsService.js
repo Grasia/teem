@@ -76,8 +76,10 @@ angular.module('Pear2Pear')
       if (!openedProjects[id]) {
         openedProjects[id] = def.promise;
         SwellRT.openModel(id, function(model){
-          var pr = swellRT.proxy(model, Project);
-          def.resolve(pr);
+          $timeout(function(){
+            var pr = swellRT.proxy(model, Project);
+            def.resolve(pr);
+          });
         }, function(error){
           console.log(error);
           def.reject(error);
@@ -87,12 +89,12 @@ angular.module('Pear2Pear')
     };
 
     var create = function(callback, communityId) {
-
+      var d = $q.defer();
       var id = SwellRT.createModel(function(model){
-
+        openedProjects[id] = d.promise;
         SwellRTCommon.makeModelPublic(model);
-        var proxyProj = swellRT.proxy(model, Project);
         $timeout(function(){
+          var proxyProj = swellRT.proxy(model, Project);
           proxyProj.type = 'project';
           proxyProj.communities = (communityId) ? [communityId] : [];
           proxyProj.id = id;
@@ -104,13 +106,13 @@ angular.module('Pear2Pear')
           proxyProj.supporters = [];
           proxyProj.contributors = [SwellRTSession.users.current()];
           proxyProj.shareMode = 'link';
-          var d = $q.defer();
           d.resolve(proxyProj);
-          openedProjects[id] = d.promise;
-
-          callback(proxyProj);
         });
       });
+
+      d.promise.then(callback);
+
+      return d.promise;
     };
 
     return {

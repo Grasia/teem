@@ -58,8 +58,8 @@ angular.module('Pear2Pear')
         createdProfiles[userName] = def.promise;
         window.SwellRT.createModel(
           function(model) {
-            var proxy = swellRT.proxy(model, Profile);
             $timeout(function(){
+              var proxy = swellRT.proxy(model, Profile);
               proxy.type = 'userProfile';
               proxy.userName = userName;
               proxy.lastProjectVisit = {};
@@ -90,9 +90,11 @@ angular.module('Pear2Pear')
             }
             window.SwellRT.openModel(result.result[0].wave_id,
               function(model) {
-                var proxy = swellRT.proxy(model, Profile);
+
 
                 $timeout(function(){
+                  var proxy = swellRT.proxy(model, Profile);
+
                   def.resolve(proxy);
                 });
               },
