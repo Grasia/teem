@@ -23,9 +23,16 @@ describe('Pear2Pear', function() {
        */
       var timeout = 10000;
       var login = random.emailUser();
+      var loginButton = element(by.css('input:enabled[type=submit]'));
 
       element(by.css('input#login')).sendKeys(login);
-      element(by.css('input:enabled[type=submit]')).click();
+
+      browser.wait(function() {
+        return loginButton.click().then(
+          function() { return true; },
+          function() { return false; }
+        );
+      }, timeout);
 
       var communityList = by.css('.communities');
 
