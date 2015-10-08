@@ -92,9 +92,16 @@ angular.module('Pear2Pear')
       var d = $q.defer();
       var id = SwellRT.createModel(function(model){
         openedProjects[id] = d.promise;
+
         SwellRTCommon.makeModelPublic(model);
+
+        var proxyProj;
+
         $timeout(function(){
-          var proxyProj = swellRT.proxy(model, Project);
+          proxyProj = swellRT.proxy(model, Project);
+        });
+
+        $timeout(function(){
           proxyProj.type = 'project';
           proxyProj.communities = (communityId) ? [communityId] : [];
           proxyProj.id = id;

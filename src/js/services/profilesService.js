@@ -58,8 +58,11 @@ angular.module('Pear2Pear')
         createdProfiles[userName] = def.promise;
         window.SwellRT.createModel(
           function(model) {
+            var proxy;
             $timeout(function(){
-              var proxy = swellRT.proxy(model, Profile);
+              proxy = swellRT.proxy(model, Profile);
+            });
+            $timeout(function(){
               proxy.type = 'userProfile';
               proxy.userName = userName;
               proxy.lastProjectVisit = {};

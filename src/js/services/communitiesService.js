@@ -131,8 +131,13 @@ angular.module('Pear2Pear')
         openedCommunities[id] = d.promise;
         SwellRTCommon.makeModelPublic(model);
 
+        var p;
+
         $timeout(function(){
-        var p = swellRT.proxy(model, Community);
+          p = swellRT.proxy(model, Community);
+        });
+
+        $timeout(function(){
           p.type = 'community';
           p.name = data.name;
           p.id = id;
