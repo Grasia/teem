@@ -8,7 +8,7 @@ describe('Pear2Pear', function() {
   beforeAll(function() {
     browser.get('index.html');
 
-    browser.driver.executeScript("window.localStorage.clear();");
+    browser.driver.executeScript('window.localStorage.clear();');
   });
 
   describe('1% core user', function() {
@@ -81,7 +81,7 @@ describe('Pear2Pear', function() {
 
       browser.get('/#/frontpage');
 
-      var comId = browser.driver.executeScript("return window.localStorage.communityId;");
+      var comId = browser.driver.executeScript('return window.localStorage.communityId;');
 
       comId.then(function(communityId){
         expect(browser.getLocationAbsUrl()).toBe('/communities/' + communityId + '/projects?section=mydoing');
