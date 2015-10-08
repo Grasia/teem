@@ -6,9 +6,10 @@
 describe('Pear2Pear', function() {
 
   beforeAll(function() {
+    browser.driver.executeScript("window.localStorage.clear();");
+
     browser.get('index.html');
 
-    browser.driver.executeScript("window.localStorage.clear();");
   });
 
   describe('frontpage', function() {
