@@ -22,7 +22,7 @@ angular.module('Pear2Pear')
         window.onSwellRTReadyCalled = true;
       };
 
-      if (SwellRT && !window.onSwellRTReadyCalled){
+      if (window.SwellRT && !window.onSwellRTReadyCalled){
         window.onSwellRTReady();
       }
 
