@@ -15,11 +15,17 @@ angular.module('Pear2Pear')
       var swellRTDef = $q.defer();
       var swellRTpromise = swellRTDef.promise;
 
+      window.onSwellRTReadyCalled = false;
+
       window.onSwellRTReady = function(){
-        swellRTDef.resolve();
-        // TODO handle loading correctly
         loading.hide();
+        swellRTDef.resolve();
+        window.onSwellRTReadyCalled = true;
       };
+
+      if (SwellRT && !window.onSwellRTReadyCalled){
+        window.onSwellRTReady();
+      }
 
       var sessionConnected = false;
       var dataSync = true;
@@ -93,7 +99,7 @@ angular.module('Pear2Pear')
           if (data.inFlightSize === 0 &&
               data.uncommittedSize === 0 &&
               data.unacknowledgedSize  === 0) {
-          
+
             dataSync = true;
             lastDataSync = new Date();
             if (dataStatusTimeout){
