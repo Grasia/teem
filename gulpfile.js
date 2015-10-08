@@ -430,7 +430,14 @@ gulp.task('e2e-test', function(done) {
 ====================================*/
 
 gulp.task('test', function(done){
-  seq('docker:swellrt', 'unit-test', 'e2e-test', done);
+  var tasks = [];
+
+  if (config.swellrt.docker) {
+    tasks.push('docker:swellrt');
+  }
+
+  tasks.push('unit-test', 'e2e-test');
+  seq(tasks, done);
 });
 
 /*====================================
