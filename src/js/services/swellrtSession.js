@@ -10,7 +10,7 @@
 
 angular.module('Pear2Pear')
   .factory(
-    'SwellRTSession', ['loading', '$q', '$timeout', function(loading, $q, $timeout){
+    'SwellRTSession', ['$q', '$timeout', function($q, $timeout){
 
       var swellRTDef = $q.defer();
       var swellRTpromise = swellRTDef.promise;
@@ -18,7 +18,6 @@ angular.module('Pear2Pear')
       window.onSwellRTReadyCalled = false;
 
       window.onSwellRTReady = function(){
-        loading.hide();
         swellRTDef.resolve();
         window.onSwellRTReadyCalled = true;
       };
@@ -120,9 +119,6 @@ angular.module('Pear2Pear')
       var startSession = function(userName, password, onSuccess, onError) {
         connecting = true;
         swellRTpromise.then(function(){
-          // TODO: call loading functions from controller code
-          loading.show();
-
           if (sessionConnected) {
             if (userName && __session.address &&
                 __session.address.split('@')[0] === userName.split('@')[0]) {
@@ -149,11 +145,9 @@ angular.module('Pear2Pear')
 
               sessionConnected = true;
               connecting = false;
-              loading.hide();
             }, function() {
               onError();
               connecting = false;
-              loading.hide();
             });
         });
       };
@@ -170,12 +164,10 @@ angular.module('Pear2Pear')
           user, pass, function(){
             $timeout(
               function() {
-                loading.hide();
               });
           },
           function(error) {
             console.log(error);
-            loading.hide();
           });
       };
 
