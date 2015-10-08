@@ -72,12 +72,6 @@ describe('Pear2Pear', function() {
 
       expect(element.all(by.css('.chat-message-text')).last().getText())
         .toEqual(chatText);
-    });
-  });
-
-  describe('session and community preferences working', function(){
-
-    it('should automatically redirect to the saved community when visiting frontpage', function() {
 
       browser.get('/#/frontpage');
 
