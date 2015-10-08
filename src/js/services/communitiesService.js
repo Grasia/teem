@@ -141,7 +141,7 @@ angular.module('Pear2Pear')
         });
       });
 
-      d.promise.them(callback);
+      d.promise.then(callback);
 
       return d.promise;
     };
