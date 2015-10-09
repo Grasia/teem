@@ -96,12 +96,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.showProject = function(id, tabName) {
-      if (section() === 'mydoing') {
-        //FIXME model prototype
-        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id) + '/' + (tabName || 'pad'));
-      } else {
-        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id));
-      }
+      $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id) + '/' + (tabName || 'pad'));
     };
 
     // This function should belong to the model

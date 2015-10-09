@@ -56,4 +56,20 @@ angular.module('Pear2Pear')
       function(){
         $scope.project.addContributor();
       });
+
+    $scope.toggleSupport = function(project) {
+      // Need a valid login to support
+      // TODO, do not redirect without asking the user
+      if (! SwellRTSession.users.loggedIn()) {
+        $location.path('frontpage');
+
+        return;
+      }
+      project.toggleSupport();
+    };
+
+    $scope.ed = {
+      editting: false
+    };
+
   }]);

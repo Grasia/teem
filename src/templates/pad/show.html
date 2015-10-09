@@ -6,10 +6,44 @@
 
 <div ng-include="'navbar_top/chat_pad.html'"></div>
 
-<div id="pad" class="section pad" hm-swiperight="showChat()">
-  <div class="swellrt-editor scrollable-content" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}"></div>
-</div>
+<div class="section project">
+  <div class="section" hm-swiperight="showChat()">
+    <div class="list-group">
+      <div class="scrollable">
+        <div class="scrollable-header">
+          <div class="list-group-item project-support" ng-if="!ed.editting">
+            <h5 translate>project.section.support.title</h5>
+            <div class="project-supports">
+              <div class="project-supports-section">
+                <div class="project-avatars swellrt-avatars" ng-model="project.supporters" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
+              </div>
+              <div class="project-supports-section">
+                <div class="project-support-number">
+                  {{ project.supporters.length }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scrollable-content">
 
+          <div class="list-group-item project-description">
+            <div class="project-description-header">
+              <h5 translate>project.section.description.title</h5>
+              <div class="pad-edit-btn">
+                <button class="btn btn-primary"
+                        ng-class="ed.editting? 'active' : ''"
+                        ng-click="ed.editting = !ed.editting; angular.element(editor).focus()"
+                        translate>pad.edit
+                </button>
+              </div>
+            </div>
+            <div class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}" block-edit="!project.isSupporter() || !ed.editting"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 
 <!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
 <div ui-content-for="modals2">
@@ -26,4 +60,3 @@
     </div>
   </div>
 </div>
-
