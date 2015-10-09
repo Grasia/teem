@@ -1,14 +1,13 @@
 <div ui-content-for="nav-left">
-  <a href="#/communities"><i class="fa fa-chevron-left"></i></a>
+  <div class="btn-group pull-left">
+    <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+      <i class="fa fa-bars"></i>
+    </div>
+  </div>
 </div>
 
 <div ui-content-for="nav-title">
   <div class="overflow-ellipsis">{{ community.name }}</div>
-  <div ui-content-for="nav-subtitle">
-    <span translate>
-      project.index.title
-    </span>
-  </div>
 </div>
 
 <div id="projects" class="section projects">
@@ -93,7 +92,7 @@
   </div>
 </div>
 
-<div ng-include="'navbar_bottom/projects.html'"></div>
+<div ng-include="'navbar_bottom/navbar-bottom.html'"></div>
 
 <div ng-hide="emptyProjects()" class="new-item new-project">
   <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>

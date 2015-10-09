@@ -32,7 +32,7 @@
   "community": {
     "add_participant": "Add participant",
     "create": {
-      "button": "Create \"{{name}}\"",
+      "button": "Create \"{{name}}\" community",
       "description": "Can't you find what you were looking for? Register your community!"
     },
     "edit": {
@@ -51,7 +51,8 @@
     "search": {
       "placeholder": "Find your community"
     },
-    "communities": "Communities"
+    "communities": "Communities",
+    "no_selected_tip": "Start selecting a community"
   },
   "login": {
     "button": "Login",
@@ -201,5 +202,8 @@
     "lost": "Connection lost: trying to reconnect...",
     "sync": "Your changes from {{time.toLocaleString()}} have not been saved.",
     "tip": "If the problem persist, copy somewhere else your last changes and reload the application"
+  },
+  "app" : {
+    "name" : "Pear2Pear"
   }
 }

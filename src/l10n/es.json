@@ -32,7 +32,7 @@
   "community": {
     "add_participant": "Añadir participante",
     "create": {
-      "button": "Crear \"{{name}}\"",
+      "button": "Crear la comunidad \"{{name}}\"",
       "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!"
     },
     "edit": "Editar",
@@ -52,7 +52,8 @@
     "search": {
       "placeholder": "Encuentra tu comunidad"
     },
-    "communities": "Comunidades"
+    "communities": "Comunidades",
+    "no_selected_tip": "Por favor, selecciona una comunidad"
   },
   "login": {
     "button": "Entrar",

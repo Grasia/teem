@@ -188,4 +188,11 @@ angular.module('Pear2Pear')
       return $scope.projects && (Object.keys($scope.projects).length === 0);
     };
 
+    $scope.projectsUrl = function(communityId){
+      if (communityId) {
+        return '#/communities/' + $scope.urlId(communityId) + '/projects';
+      } else {
+        return '#/communities';
+      }
+    };
   }]);
