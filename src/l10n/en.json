@@ -153,11 +153,7 @@
   },
   "page_title": "P2Pvalue Prototype",
   "bottom_navbar": {
-    "news": "News",
-    "projects": "Projects",
-    "my_tasks": "My tasks",
-    "crowd_doing": "CrowdDoing",
-    "my_doing": "My projects"
+
   },
 
   "session": {
