@@ -56,4 +56,23 @@ angular.module('Pear2Pear')
         $scope.timestampProjectAccess = function(){
           $scope.project.timestampProjectAccess();
         };
+
+        //FIXME repeated code in ProjectInfoCtrl
+        // Refactorize to service
+        function section() {
+          if ($route.current.params.section) {
+            return $route.current.params.section;
+          } else {
+            return 'crowddoing';
+          }
+        }
+
+        function isSection(s) {
+          console.log(section());
+          return s === section();
+        }
+
+        $scope.mode = function(id) {
+          return isSection(id);
+        };
       }]);

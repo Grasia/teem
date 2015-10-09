@@ -11,7 +11,7 @@
   <div class="btn-group justified">
     <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/pad?section=mydoing" class="nav-pad {{nav('pad')}}" | translate>pad.nav.title</a>
     <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/needs?section=mydoing" class="nav-pad {{nav('needs')}}" | translate>need.nav.title</a>
-    <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/chat?section=mydoing" class="nav-chat {{nav('chat')}}" | translate>chat.nav.title</a>
+    <a ng-if="mode(mydoing)" ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/chat?section=mydoing" class="nav-chat {{nav('chat')}}" | translate>chat.nav.title </a>
   </div>
 </div>
 
