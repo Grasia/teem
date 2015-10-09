@@ -19,7 +19,7 @@
           <div class="project-heading-section">
             <div class="project-support-btn">
               <button class="btn btn-primary"
-              ng-class="{true: 'active'}[project.isSupporter()]"
+              ng-class="project.isSupporter() ? 'active' : ''"
               ng-click="toggleSupport(project);"
               translate>{{ project.isSupporter() ? 'project.section.support.btn.doing' : 'project.section.support.btn.do' }}</button>
             </div>
@@ -46,7 +46,7 @@
             <h5 translate>project.section.description.title</h5>
             <div class="pad-edit-btn">
               <button class="btn btn-primary"
-                      ng-class="{true: 'active'}[editor.editting]"
+                      ng-class="{editor.editting: 'active', !editor.editting: ''}"
                       ng-click="editor.editting = !editor.editting; angular.element(editor).focus()"
                       translate>pad.edit
               </button>
