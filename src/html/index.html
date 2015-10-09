@@ -48,9 +48,7 @@
       </div>
     </div>
 
-    <div class="sidebar sidebar-left" ng-if="hideNavigation === false">
-      <div ng-include="'communities/index.html'" ng-controller="CommunitiesCtrl"></div>
-    </div>
+    <div ui-yield-to="sidebar"></div>
 
     <div ui-yield-to="modals"></div>
     <!-- Need support for several ui-content-for https://github.com/mcasimir/mobile-angular-ui/pull/286 -->

@@ -94,6 +94,10 @@
 
 <div ng-include="'navbar_bottom/navbar-bottom.html'"></div>
 
+<div ui-content-for="sidebar">
+  <div class="sidebar sidebar-left" ui-turn-off="uiSidebarLeft" ng-include="'communities/index.html'" ng-controller="CommunitiesCtrl"></div>
+</div>
+
 <div ng-hide="emptyProjects()" class="new-item new-project">
   <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
 </div>
