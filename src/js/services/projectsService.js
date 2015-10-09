@@ -119,7 +119,7 @@ angular.module('Pear2Pear')
           proxyProj.promoter = SwellRTSession.users.current();
           proxyProj.supporters = [];
           proxyProj.contributors = [SwellRTSession.users.current()];
-          proxyProj.shareMode = 'link';
+          proxyProj.shareMode = 'public';
           d.resolve(proxyProj);
         });
       });
