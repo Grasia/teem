@@ -11,7 +11,7 @@
   <div class="list-group">
     <div class="scrollable">
       <div class="scrollable-header">
-        <div class="list-group-item project-heading">
+        <div class="list-group-item project-heading" ng-hide="editor.editting">
           <div class="project-heading-section">
             <h5 translate>project.section.name.title</h5>
             <h4>{{project.title}}</h4>
@@ -19,13 +19,13 @@
           <div class="project-heading-section">
             <div class="project-support-btn">
               <button class="btn btn-primary"
-              ng-class="isSupporter(project) ? 'active' : ''"
+              ng-class="{true: 'active'}[project.isSupporter()]"
               ng-click="toggleSupport(project);"
-              translate>{{ isSupporter(project) ? 'project.section.support.btn.doing' : 'project.section.support.btn.do' }}</button>
+              translate>{{ project.isSupporter() ? 'project.section.support.btn.doing' : 'project.section.support.btn.do' }}</button>
             </div>
           </div>
         </div>
-        <div class="list-group-item project-support" ng-if="nav('information')">
+        <div class="list-group-item project-support" ng-if="nav('information') && !editor.editting">
           <h5 translate>project.section.support.title</h5>
           <div class="project-supports">
             <div class="project-supports-section">
@@ -42,8 +42,17 @@
       <div class="scrollable-content">
 
         <div class="list-group-item project-description" ng-if="nav('information')">
-          <h5 translate>project.section.description.title</h5>
-          <div class="swellrt-editor" ng-model="project.pad" block-edit="true"></div>
+          <div class="project-description-header">
+            <h5 translate>project.section.description.title</h5>
+            <div class="pad-edit-btn">
+              <button class="btn btn-primary"
+                      ng-class="{true: 'active'}[editor.editting]"
+                      ng-click="editor.editting = !editor.editting; angular.element(editor).focus()"
+                      translate>pad.edit
+              </button>
+            </div>
+          </div>
+          <div id="editor" class="swellrt-editor project-editor" ng-model="project.pad" ng-disable="!project.isSupporter()" block-edit="!project.isSupporter() || !editor.editting"></div>
         </div>
 
         <div class="list-group-item project-needs" ng-if="nav('needs')">

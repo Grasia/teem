@@ -195,4 +195,8 @@ angular.module('Pear2Pear')
         return '#/communities';
       }
     };
+
+    $scope.editor = {
+      editting: false
+    };
   }]);

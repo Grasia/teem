@@ -65,6 +65,13 @@ angular.module('Pear2Pear')
       });
     };
 
+    Project.prototype.isSupporter = function(user){
+      if (!user){
+        user = SwellRTSession.users.current();
+      }
+      return this.supporters.indexOf(user) > -1;
+    };
+
     // Service functions //
 
     var openedProjects = {};

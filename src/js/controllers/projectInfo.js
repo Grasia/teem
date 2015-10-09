@@ -41,23 +41,11 @@ angular.module('Pear2Pear')
         });
     });
 
-    $scope.isSupporter = function(project) {
-      if (!project) {
-        return false;
-      }
-
-      if (!project.supporters) {
-        return false;
-      }
-      // Migrate project.support
-      return SwellRTSession.users.loggedIn() && project.supporters.indexOf(SwellRTSession.users.current()) > -1;
-    };
-
     $scope.toggleSupport = function(project) {
       // Need a valid login to support
       // TODO, do not redirect without asking the user
       if (! SwellRTSession.users.loggedIn()) {
-        $location.path('session/new');
+        $location.path('frontpage');
 
         return;
       }
@@ -102,6 +90,10 @@ angular.module('Pear2Pear')
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
       return id === tab() ? 'active' : '';
+    };
+
+    $scope.editor = {
+      editting: false
     };
 
   }]);
