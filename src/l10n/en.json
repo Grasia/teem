@@ -142,10 +142,10 @@
     "title" : {
       "placeholder" : "<Write here project's name>",
       "reminder": {
-        "button_cancel": "Cancel create project",
-        "button_continue": "Continue",
+        "button_cancel": "Yes, discard the project",
+        "button_continue": "No, keep the project",
         "body_one": "This project doesn't have a name yet!",
-        "body_two": "Do you really want to cancel create a project?"
+        "body_two": "Do you really want to discard the project?"
       }
     },
     "project_name": "Project name",
