@@ -39,7 +39,7 @@ angular.module('Pear2Pear')
   }])
   .directive(
     'needDisplay',
-    function(){
+    function(SwellRTSession, ProjectsSvc, $route){
       return {
         require: '^needList',
         scope: {
@@ -66,7 +66,13 @@ angular.module('Pear2Pear')
               needsCtrl.removeNeed(need);
             }
           };
-
+          SwellRTSession.onLoad(function(){
+            ProjectsSvc.find($route.current.params.id).then(
+              function(project){
+                scope.project = project;
+              }
+            );
+          });
           scope.keyEventsHandler = function(event){
             if ((event.charCode === 0) && (event.keyCode === 13)){
               event.target.blur();
@@ -79,6 +85,31 @@ angular.module('Pear2Pear')
           scope.focusElem = function(event){
             event.target.parentNode.children[1].focus();
           };
+
+          scope.toggleCommentsVisibility = function(n){
+            needsCtrl.toggleCommentsVisibility(n);
+          };
+
+          scope.newComment = {
+            text: ''
+          };
+
+          scope.areCommentsVisible = needsCtrl.areCommentsVisible;
+          scope.sendComment = function(){
+            ProjectsSvc.find($route.current.params.id).then(function(project){
+              project.addNeedComment(scope.need, scope.newComment.text);
+              project.addChatNotification(
+                'need.comment.notification',
+                {
+                  user: SwellRTSession.users.current().split('@')[0],
+                  need: scope.need.text,
+                  comment: scope.newComment.text
+                }
+              );
+              scope.newComment.text = '';
+            });
+          };
+          scope.hour = needsCtrl.hour;
         },
         templateUrl: 'needs/need.html',
         transclude: true
@@ -93,7 +124,7 @@ angular.module('Pear2Pear')
         scope: {
           needs: '='
         },
-        controller: function($scope, $route, SwellRTSession, ProjectsSvc) {
+        controller: function($scope, $route, SwellRTSession, ProjectsSvc, time) {
           this.addNeed = function (need) {
             if (need.text !== ''){
               $scope.needs.push(need);
@@ -113,7 +144,22 @@ angular.module('Pear2Pear')
             var i = $scope.needs.indexOf(need);
             $scope.needs.splice(i,1);
           };
+
+          this.comments = {};
+
+          var comments = this.comments;
+
+          this.toggleCommentsVisibility = function toggleCommentsVisibility(need) {
+            comments.visible = (comments.visible === null)?need:null;
+          };
+
+          this.areCommentsVisible = function areCommentsVisible(need) {
+            return comments.visible === need;
+          };
+
+          this.hour = function(comment) {
+            return time.hour(new Date(comment.time));
+          };
         }
       };
-    }
-  );
+    });
