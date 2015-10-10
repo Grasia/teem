@@ -118,13 +118,14 @@
           "do": "I like",
           "doing": "I don't like"
         },
-        "title": "People"
+        "title": "Likes"
       },
       "participate": {
         "btn": {
           "do": "Join",
           "doing": "Leave"
-          }
+        },
+        "title": "Participants"
         }
     },
     "share": {

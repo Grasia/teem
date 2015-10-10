@@ -119,13 +119,14 @@
           "do": "Me gusta",
           "doing": "Ya no me gusta"
         },
-        "title": "Personas"
+        "title": "Me gusta"
       },
       "participate": {
         "btn": {
           "do": "Participar",
           "doing": "No participar"
-          }
+        },
+        "title": "Participantes"
         }
       },
     },
