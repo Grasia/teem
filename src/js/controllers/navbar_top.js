@@ -67,6 +67,8 @@ angular.module('Pear2Pear')
           }
         }
 
+        $scope.section = section;
+
         function isSection(s) {
           console.log(section());
           return s === section();

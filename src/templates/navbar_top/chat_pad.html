@@ -9,9 +9,9 @@
 
 <div ui-content-for="nav-navigation">
   <div class="btn-group justified">
-    <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/pad?section=mydoing" class="nav-pad {{nav('pad')}}" | translate>pad.nav.title</a>
-    <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/needs?section=mydoing" class="nav-pad {{nav('needs')}}" | translate>need.nav.title</a>
-    <a ng-if="mode(mydoing)" ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/chat?section=mydoing" class="nav-chat {{nav('chat')}}" | translate>chat.nav.title </a>
+    <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/pad?section={{section()}}" class="nav-pad {{nav('pad')}}" | translate>pad.nav.title</a>
+    <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/needs?section={{section()}}" class="nav-pad {{nav('needs')}}" | translate>need.nav.title</a>
+    <a ng-if="project.isContributor()" ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/chat?section={{section()}}" class="nav-chat {{nav('chat')}}" | translate>chat.nav.title </a>
   </div>
 </div>
 

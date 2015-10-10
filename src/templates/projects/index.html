@@ -28,7 +28,7 @@
                   <div class="project-avatars swellrt-avatars hidden-xs" ng-model="project.contributors" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
                 </div>
                 <div class="project-needs">
-                  <a ng-href="#/communities/{{urlId(community.id)}}/projects/{{urlId(project.id)}}?section=needs">
+                  <a ng-href="#/communities/{{urlId(community.id)}}/projects/{{urlId(project.id)}}/needs">
                     <h5 translate>project.section.needs.title</h5>
                     <div class="progress">
                       <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">

@@ -72,6 +72,13 @@ angular.module('Pear2Pear')
       return this.supporters.indexOf(user) > -1;
     };
 
+    Project.prototype.isContributor = function(user){
+      if (!user){
+        user = SwellRTSession.users.current();
+      }
+      return this.contributors.indexOf(user) > -1;
+    };
+
     // Service functions //
 
     var openedProjects = {};
