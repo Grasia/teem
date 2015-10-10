@@ -88,8 +88,8 @@
   },
   "project": {
     "create": {
-      "tip": "Pear2Pear is an awesome tool to explain your proposals to your community, work on it in a collaborative way and engage more people",
-      "button": "Create the first project"
+      "tip": "Pear2Pear is a tool to make and develop proposals within communities. Please, create a new initiative or project.",
+      "button": "Create initiative or project"
     },
     "edit": {
       "button": "Edit",
