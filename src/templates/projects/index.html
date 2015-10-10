@@ -98,6 +98,9 @@
   <div class="sidebar sidebar-left" ui-turn-off="uiSidebarLeft" ng-include="'communities/index.html'" ng-controller="CommunitiesCtrl"></div>
 </div>
 
-<div ng-hide="emptyProjects()" class="new-item new-project">
-  <a ng-click="new_()"><i class="fa fa-plus-circle"></i></a>
+<div ng-hide="emptyProjects()" class="cta-placeholder">
+  <button class="btn btn-default cta-btn" ng-click="new_()">
+      <span translate>Crea una idea o proyecto</span>
+  </button>
+
 </div>

@@ -122,16 +122,20 @@
       }
     },
     "share": {
-      "title": "Share {{title}}",
+      "title": "Share project '{{title}}'",
       "description": {
-        "public": "The project is public in the community projects list. You can share this link with other people so they join this project",
-        "link": "The project is not public in the community projects list. Share this link with other people so they join this project"
+        "link": "Link to share:",
+        "permission": "Change access permissions:"
       },
       "button": "Share",
       "mode" : {
-        "public": "Public",
-        "link": "Link",
+        "public": "Public to anyone",
+        "link": "Only with Link ",
         "invite": "Invite"
+      },
+      "info" : {
+        "public" : "This project is visible in the community's project list",
+        "link" : "Only people with the link can see the project"
       }
     },
     "task_list_label": "Project tasks:",
@@ -153,11 +157,7 @@
   },
   "page_title": "P2Pvalue Prototype",
   "bottom_navbar": {
-    "news": "News",
-    "projects": "Projects",
-    "my_tasks": "My tasks",
-    "crowd_doing": "CrowdDoing",
-    "my_doing": "My projects"
+
   },
 
   "session": {
