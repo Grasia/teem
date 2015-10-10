@@ -13,14 +13,14 @@
             <h4 class="community-title" ng-bind-html="community.name | highlight:newCommunityName.name">
             </h4>
             <div>
-              <div translate translate-values="{number: '{{community.numProjects || 0}}'}">community.project.number</div>
+              <span class="community-projects-number">{{community.numProjects || 0}}</span>
+              <span translate>community.project.number</span>
             </div>
           </div>
           <div ng-if="newCommunityName.name" class="new-community-item community-item list-group-item">
-            <button class="btn btn-primary btn-block btn-lg" ng-click="create(newCommunityName.name)">
-              <i class="fa fa-plus-circle"></i>
+            <a class="btn btn-primary btn-block" ng-click="create(newCommunityName.name)" overflow-ellipsis>
               <span translate translate-values="{ name: '{{newCommunityName.name}}' }">community.create.button</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
