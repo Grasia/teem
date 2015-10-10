@@ -84,7 +84,7 @@
       "title": "Pad"
     },
     "placeholder": "Start writting your project description in this collaborative document pad, so other participants know about your project and join it",
-    "edit": "edit"
+    "edit": "Edit"
   },
   "project": {
     "create": {
@@ -108,18 +108,24 @@
         "title": "Name"
       },
       "description": {
-        "title": "Description"
+        "title": "Notes"
       },
       "needs": {
         "title": "Needs"
       },
       "support": {
         "btn": {
-          "do": "Support",
-          "doing": "Supporting"
+          "do": "I like",
+          "doing": "I don't like"
         },
-        "title": "Supports"
-      }
+        "title": "People"
+      },
+      "participate": {
+        "btn": {
+          "do": "Join",
+          "doing": "Leave"
+          }
+        }
     },
     "share": {
       "title": "Share project '{{title}}'",

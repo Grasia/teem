@@ -85,7 +85,7 @@
       "title": "Pad"
     },
     "placeholder": "Empieza escribiendo la descripción del proyecto en este documento colaborativo, para que otras participantes conozcan el proyecto y se involucren en él",
-    "edit": "editar"
+    "edit": "Editar"
   },
   "project": {
     "create": {
@@ -109,18 +109,25 @@
         "title": "Nombre"
       },
       "description": {
-        "title": "Descripción"
+        "title": "Notas"
       },
       "needs": {
         "title": "Necesidades"
       },
       "support": {
         "btn": {
-          "do": "Apoyar",
-          "doing": "Apoyo"
+          "do": "Me gusta",
+          "doing": "Ya no me gusta"
         },
-        "title": "Apoyos"
-      }
+        "title": "Personas"
+      },
+      "participate": {
+        "btn": {
+          "do": "Participar",
+          "doing": "No participar"
+          }
+        }
+      },
     },
     "share": {
       "title": "Compartir proyecto '{{title}}'",
