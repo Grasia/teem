@@ -15,14 +15,14 @@
       <div class="scrollable">
         <div class="scrollable-header">
           <div class="list-group-item project-support" ng-if="!ed.editting">
-            <h5 translate>project.section.support.title</h5>
+            <h5 translate>project.section.participate.title</h5>
             <div class="project-supports">
               <div class="project-supports-section">
-                <div class="project-avatars swellrt-avatars" ng-model="project.supporters" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
+                <div class="project-avatars swellrt-avatars" ng-model="project.contributors" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
               </div>
               <div class="project-supports-section">
                 <div class="project-support-number">
-                  {{ project.supporters.length }}
+                  {{ project.contributors.length }}
                 </div>
               </div>
             </div>
@@ -32,15 +32,17 @@
 
           <div class="list-group-item project-description">
             <div class="project-description-header">
-              <h5 translate>project.section.description.title</h5>
+              <h5 ng-if="!ed.editting"><span translate>project.section.description.title</span><span class="project-notes-tip" >&nbsp;(Tap to edit)</span></h5>
 
               <div class="pad-edit-btn"> <!-- TODO Add stop edit button -->
-                <button class="btn btn-default btn-xs"
-                        ng-class="ed.editting? 'active' : ''"
+                <button class="btn btn-link btn-xs" ng-if="!ed.editting"
                         ng-click="ed.editting = !ed.editting; angular.element(editor).focus()">
-                        <span translate>pad.edit</span><i class="fa fa-expand"></i>
+                        <i class="fa fa-expand"></i>
                 </button>
-
+                <button class="btn btn-link btn-xs" ng-if="ed.editting"
+                        ng-click="ed.editting = !ed.editting;">
+                        <i class="fa fa-compress"></i>
+                </button>
               </div>
             </div>
             <div class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}" block-edit="!project.isSupporter() || !ed.editting"></div>
