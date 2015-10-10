@@ -140,10 +140,12 @@
     },
     "task_list_label": "Project tasks:",
     "title" : {
-      "placeholder" : "Project without a title",
+      "placeholder" : "<Write here project's name>",
       "reminder": {
-        "button": "Got it!",
-        "body": "Please, introduce a title so other participants identify your project easily"
+        "button_cancel": "Cancel create project",
+        "button_continue": "Continue",
+        "body_one": "This project doesn't have a name yet!",
+        "body_two": "Do you really want to cancel create a project?"
       }
     },
     "project_name": "Project name",

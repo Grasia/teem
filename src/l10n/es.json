@@ -141,10 +141,12 @@
     },
     "task_list_label": "Tareas del proyecto:",
     "title" : {
-      "placeholder" : "Proyecto sin titulo",
+      "placeholder" : "<Escribir nombre del proyecto>",
       "reminder": {
-        "button": "¡Hecho!",
-        "body": "Por favor, introduce un título para que otros participantes identifiquen la propuesta fácilmente"
+        "button_cancel": "Cancelar crear proyecto",
+        "button_continue": "Continuar",
+        "body_one": "El proyecto no tiene nombre! Deseas cancelar crear el proyecto?",
+        "body_two": "Deseas cancelar crear el proyecto?"
       }
     },
     "project_name": "Nombre del proyecto",
