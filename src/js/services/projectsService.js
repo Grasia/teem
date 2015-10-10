@@ -26,7 +26,7 @@ angular.module('Pear2Pear')
       });
     };
 
-    Project.prototype.toogleSupport = function(){
+    Project.prototype.toggleSupport = function(){
       var index = this.supporters.indexOf(SwellRTSession.users.current());
 
       if (index > -1) {
