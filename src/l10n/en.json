@@ -149,8 +149,8 @@
     "title" : {
       "placeholder" : "<Write here project's name>",
       "reminder": {
-        "button_cancel": "Yes, discard the project",
-        "button_continue": "No, keep the project",
+        "button_cancel": "Yes, discard project",
+        "button_continue": "No, keep project",
         "body_one": "This project doesn't have a name yet!",
         "body_two": "Do you really want to discard the project?"
       }
