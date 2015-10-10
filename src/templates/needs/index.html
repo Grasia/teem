@@ -2,6 +2,9 @@
   <div class="project-title overflow-ellipsis">
     {{project.title}}
   </div>
+  <div class="project-subtitle">
+    <span><!-- TODO show community--></span>
+  </div>
 </div>
 
 <div ng-include="'navbar_top/chat_pad.html'"></div>
@@ -10,4 +13,16 @@
   <div class="scrollable-content section">
     <div need-list needs="project.needs"/>
   </div>
+</div>
+
+<div class="cta-placeholder">
+
+  <button class="btn btn-info cta-btn-2" ng-click="">
+    <span class="cta-icon"><i class="fa fa-star-o"></i></span><span translate>project.section.support.btn.do</span>
+  </button>
+
+  <button class="btn btn-info cta-btn-2" ng-click="">
+      <span class="cta-icon"><i class="fa fa-heart-o"></i></span><span translate>project.section.participate.btn.do</span>
+  </button>
+
 </div>
