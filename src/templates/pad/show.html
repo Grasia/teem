@@ -1,7 +1,10 @@
 <div ui-content-for="nav-title">
   <div class="project-title overflow-ellipsis">
     <input id="title_input" type="text" ng-model="project.title" placeholder="{{ 'project.title.placeholder' | translate }}">
-</div>
+    <div class="project-subtitle">
+      <span>Community</span>
+    </div>
+  </div>
 </div>
 
 <div ng-include="'navbar_top/chat_pad.html'"></div>
@@ -30,12 +33,14 @@
           <div class="list-group-item project-description">
             <div class="project-description-header">
               <h5 translate>project.section.description.title</h5>
-              <div class="pad-edit-btn">
-                <button class="btn btn-primary"
+
+              <div class="pad-edit-btn"> <!-- TODO Add stop edit button -->
+                <button class="btn btn-default btn-xs"
                         ng-class="ed.editting? 'active' : ''"
-                        ng-click="ed.editting = !ed.editting; angular.element(editor).focus()"
-                        translate>pad.edit
+                        ng-click="ed.editting = !ed.editting; angular.element(editor).focus()">
+                        <span translate>pad.edit</span><i class="fa fa-expand"></i>
                 </button>
+
               </div>
             </div>
             <div class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}" block-edit="!project.isSupporter() || !ed.editting"></div>
@@ -45,16 +50,30 @@
     </div>
 </div>
 
+<div class="cta-placeholder"  ng-if="!ed.editting">
+
+  <button class="btn btn-info cta-btn-2" ng-click="">
+    <span class="cta-icon"><i class="fa fa-star-o"></i></span><span translate>project.section.support.btn.do</span>
+  </button>
+
+  <button class="btn btn-info cta-btn-2" ng-click="">
+      <span class="cta-icon"><i class="fa fa-heart-o"></i></span><span translate>project.section.participate.btn.do</span>
+  </button>
+
+</div>
+
 <!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
 <div ui-content-for="modals2">
   <div class="modal modal-overlay" ui-if="projectTitleReminder" ui-state="projectTitleReminder">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <span translate>project.title.reminder.body
+          <p translate>project.title.reminder.body_one</p>
+          <strong><p translate>project.title.reminder.body_two</p></strong>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button</button>
+          <button class="btn btn-default project-title-reminder-btn" ng-click="" translate>project.title.reminder.button_cancel</button>
+          <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button_continue</button>
         </div>
       </div>
     </div>

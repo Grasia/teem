@@ -84,12 +84,12 @@
       "title": "Pad"
     },
     "placeholder": "Start writting your project description in this collaborative document pad, so other participants know about your project and join it",
-    "edit": "edit"
+    "edit": "Edit"
   },
   "project": {
     "create": {
-      "tip": "Pear2Pear is an awesome tool to explain your proposals to your community, work on it in a collaborative way and engage more people",
-      "button": "Create the first project"
+      "tip": "Pear2Pear is a tool to make and develop proposals within communities. Please, create a new initiative or project.",
+      "button": "Create initiative or project"
     },
     "edit": {
       "button": "Edit",
@@ -108,18 +108,24 @@
         "title": "Name"
       },
       "description": {
-        "title": "Description"
+        "title": "Notes"
       },
       "needs": {
         "title": "Needs"
       },
       "support": {
         "btn": {
-          "do": "Support",
-          "doing": "Supporting"
+          "do": "I like",
+          "doing": "I don't like"
         },
-        "title": "Supports"
-      }
+        "title": "People"
+      },
+      "participate": {
+        "btn": {
+          "do": "Join",
+          "doing": "Leave"
+          }
+        }
     },
     "share": {
       "title": "Share project '{{title}}'",
@@ -140,10 +146,12 @@
     },
     "task_list_label": "Project tasks:",
     "title" : {
-      "placeholder" : "Project without a title",
+      "placeholder" : "<Write here project's name>",
       "reminder": {
-        "button": "Got it!",
-        "body": "Please, introduce a title so other participants identify your project easily"
+        "button_cancel": "Yes, discard the project",
+        "button_continue": "No, keep the project",
+        "body_one": "This project doesn't have a name yet!",
+        "body_two": "Do you really want to discard the project?"
       }
     },
     "project_name": "Project name",

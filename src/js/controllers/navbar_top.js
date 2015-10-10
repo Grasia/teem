@@ -34,9 +34,9 @@ angular.module('Pear2Pear')
         $scope.shareIcon = function shareIcon() {
           switch (getSharedMode()) {
             case 'link':
-              return 'fa-link';
+              return 'fa-share-alt';
             case 'public':
-              return 'fa-globe';
+              return 'fa-share-alt';
             default:
               return '';
           }

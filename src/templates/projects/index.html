@@ -81,10 +81,12 @@
         </div>
         <div ng-show="emptyProjects()" class="new-project-item list-group-item">
           <div class="new-project-description tip" translate>project.create.tip</div>
+          <!--
           <button class="btn btn-primary btn-block btn-lg new-project-btn" ng-click="new_()">
             <i class="fa fa-plus-circle"></i>
             <span translate translate-values="{ name: '{{newCommunityName.name}}' }">project.create.button</span>
           </button>
+          -->
           </div>
         </div>
       </div>
@@ -98,9 +100,9 @@
   <div class="sidebar sidebar-left" ui-turn-off="uiSidebarLeft" ng-include="'communities/index.html'" ng-controller="CommunitiesCtrl"></div>
 </div>
 
-<div ng-hide="emptyProjects()" class="cta-placeholder">
-  <button class="btn btn-default cta-btn" ng-click="new_()">
-      <span translate>Crea una idea o proyecto</span>
+<div class="cta-placeholder">
+  <button class="btn btn-info cta-btn" ng-click="new_()">
+      <span translate>project.create.button</span>
   </button>
 
 </div>

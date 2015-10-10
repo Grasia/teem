@@ -85,12 +85,12 @@
       "title": "Pad"
     },
     "placeholder": "Empieza escribiendo la descripción del proyecto en este documento colaborativo, para que otras participantes conozcan el proyecto y se involucren en él",
-    "edit": "editar"
+    "edit": "Editar"
   },
   "project": {
     "create": {
-      "tip": "Pear2Pear es una herramienta fantástica para explicar tus propuestas a tu comunidad, trabajar en ellas de forma colaborativa e involucrar a más gente",
-      "button": "Crea el primer proyecto"
+      "tip": "Pear2Pear es una herramienta para hacer propuestas y desarrollarlas en comunidad. Por favor, crea una nueva iniciativa o proyecto.",
+      "button": "Crear iniciativa o proyecto"
     },
     "edit": {
       "button": "Editar",
@@ -109,18 +109,25 @@
         "title": "Nombre"
       },
       "description": {
-        "title": "Descripción"
+        "title": "Notas"
       },
       "needs": {
         "title": "Necesidades"
       },
       "support": {
         "btn": {
-          "do": "Apoyar",
-          "doing": "Apoyo"
+          "do": "Me gusta",
+          "doing": "Ya no me gusta"
         },
-        "title": "Apoyos"
-      }
+        "title": "Personas"
+      },
+      "participate": {
+        "btn": {
+          "do": "Participar",
+          "doing": "No participar"
+          }
+        }
+      },
     },
     "share": {
       "title": "Compartir proyecto '{{title}}'",
@@ -141,10 +148,12 @@
     },
     "task_list_label": "Tareas del proyecto:",
     "title" : {
-      "placeholder" : "Proyecto sin titulo",
+      "placeholder" : "<Escribir nombre del proyecto>",
       "reminder": {
-        "button": "¡Hecho!",
-        "body": "Por favor, introduce un título para que otros participantes identifiquen la propuesta fácilmente"
+        "button_cancel": "Si, descartar el proyecto",
+        "button_continue": "No, seguir en el proyecto",
+        "body_one": "El proyecto no tiene nombre!",
+        "body_two": "Deseas descartar el proyecto?"
       }
     },
     "project_name": "Nombre del proyecto",
