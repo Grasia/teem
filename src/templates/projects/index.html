@@ -15,51 +15,83 @@
     <div class="scrollable-content">
       <div class="list-group">
         <div class="project-item list-group-item" ng-repeat="project in projects" ng-click="showProject(project.id)">
+
+
           <div class="media">
-            <div class="media-body">
+
+            <div class="media-left media-middle">
+              <div class="project-avatars swellrt-avatars visible-xs-inline" ng-model="project.contributors"></div>
+              <div class="project-avatars swellrt-avatars hidden-xs" ng-model="project.contributors" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
+            </div>
+
+            <!-- CROWDDOING -->
+            <div class="media-body" ng-if="nav('crowddoing')">
+
               <h4 class="media-heading">
-                <i class="fa" ng-class="shareIcon(project)"></i>
-                <span class="project-title">{{project.title}}</span>
+                <span class="project-item-title">{{project.title}}</span>
               </h4>
-              <div class="project-sections projects-sections-crowddoing justified" ng-if="nav('crowddoing')">
-                <div class="project-promoters">
-                  <h5>&nbsp;</h5>
-                  <div class="project-avatars swellrt-avatars visible-xs-inline" ng-model="project.contributors"></div>
-                  <div class="project-avatars swellrt-avatars hidden-xs" ng-model="project.contributors" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
-                </div>
-                <div class="project-needs">
-                  <a ng-href="#/communities/{{urlId(community.id)}}/projects/{{urlId(project.id)}}/needs">
-                    <h5 translate>project.section.needs.title</h5>
-                    <div class="progress">
-                      <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
-                        <span class="sr-only">{{progressPercentage(project)}}% Complete</span>
+
+              <div class="project-sections projects-sections-crowddoing">
+
+                <!-- Project stats -->
+                <div class="stats">
+                      <div class="title" translate>project.section.needs.title</div>
+                      <div class="progress">
+                        <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
+                          <span class="sr-only">{{progressPercentage(project)}}% Complete</span>
+                        </div>
                       </div>
-                    </div>
-                  </a>
                 </div>
-                <div class="project-support">
-                  <h5 translate>project.section.support.title</h5>
-                  <div class="project-support-number">
-                    {{ supporterCount(project) }}
-                  </div>
+
+                <div class="inline-content">
+                    <span class="inline-value">{{ supporterCount(project) }}</span><span class="inline-tittle" translate>project.section.support.title</span>
+                    <span class="inline-value">?</span><span class="inline-tittle" translate>project.section.participate.title</span>
                 </div>
+
               </div>
-              <div class="projects-sections-mydoing" ng-if="nav('mydoing')">
-                <div class="project-last-message hidden-xs" ng-show="lastChat(project)">
-                  <div class="message-time" ng-click="showProject(project.id, 'chat')">
-                    <i class="fa fa-comment-o"></i>
-                    {{lastChat(project).time}}
-                  </div>
-                  <div ng-if="!lastChat(project).isNotification">
-                    <div class="author-avatar swellrt-avatars" ng-model="lastChat(project).who" swellrt-avatar-options="{size: 20}"> </div>
-                    <div class="author-name">{{lastChat(project).author()}}</div>
-                    <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
-                  </div>
-                  <div ng-if="lastChat(project).isNotification">
-                    <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')" translate translate-values="lastChat(project).translateValues">{{lastChat(project).text}}</div>
-                  </div>
+            </div>
+
+            <!-- MYDOING -->
+            <div class="media-body" ng-if="nav('mydoing')">
+
+              <h4 class="media-heading">
+                <span class="project-item-title">{{project.title}}</span>
+              </h4>
+
+              <div class="project-sections projects-sections-mydoing" >
+
+                <!-- Project stats -->
+                <div class="stats">
+                      <div class="title" translate>project.section.needs.title</div>
+                      <div class="progress">
+                        <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
+                          <span class="sr-only">{{progressPercentage(project)}}% Complete</span>
+                        </div>
+                      </div>
                 </div>
-                <div class="project-sections justified">
+
+                <!-- Actions -->
+                <div class="actions">
+                  <!-- Messages -->
+                  <div class="project-last-message hidden-xs" ng-show="lastChat(project)">
+                    <div class="message-time" ng-click="showProject(project.id, 'chat')">
+                      <i class="fa fa-comment-o"></i>
+                      {{lastChat(project).time}}
+                    </div>
+
+                    <div ng-if="!lastChat(project).isNotification">
+                      <div class="author-avatar swellrt-avatars" ng-model="lastChat(project).who" swellrt-avatar-options="{size: 20}"> </div>
+                      <div class="author-name">{{lastChat(project).author()}}</div>
+                      <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
+                    </div>
+
+                    <div ng-if="lastChat(project).isNotification">
+                      <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')" translate translate-values="lastChat(project).translateValues">{{lastChat(project).text}}</div>
+                    </div>
+
+                  </div>
+
+                  <!-- Editions -->
                   <div class="project-editions">
                     <span class="fa-stack">
                       <i class="fa fa-pencil-square-o fa-stack-1x"></i>
@@ -75,10 +107,17 @@
                     {{newMessagesCount(project)}}
                   </div>
                 </div>
-              </div>
             </div>
+
+            </div>
+
+
+
           </div>
+
+
         </div>
+
         <div ng-show="emptyProjects()" class="new-project-item list-group-item">
           <div class="new-project-description tip" translate>project.create.tip</div>
           <!--
