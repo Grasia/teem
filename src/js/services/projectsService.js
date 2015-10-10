@@ -36,6 +36,15 @@ angular.module('Pear2Pear')
       }
     };
 
+    Project.prototype.toggleContributor = function(){
+      var index = this.contributors.indexOf(SwellRTSession.users.current());
+
+      if (index > -1) {
+        this.contributors.splice(index, 1);
+      } else {
+        this.contributors.push(SwellRTSession.users.current());
+      }
+    };
     Project.prototype.addChatMessage = function(message){
       this.chat.push({
           text: message,
