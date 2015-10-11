@@ -46,11 +46,19 @@
                 <div class="inline-content">
                     <span class="inline-value">{{ supporterCount(project) }}</span>
                     <!-- <span class="inline-tittle" translate>project.section.support.title</span> -->
-                    <span class="inline-tittle"><i class="fa fa-thumbs-up"></i></span>
+                    <span class="inline-title">
+                      <span class="fa-stack">
+                        <i class="fa fa-thumbs-up fa-stack-1x"></i>
+                      </span>
+                    </span>
 
-                    <span class="inline-value">?</span>
+                    <span class="inline-value">{{ contributorCount(project) }}</span>
                     <!--   <span class="inline-tittle" translate>project.section.participate.title</span> -->
-                    <span class="inline-tittle"><i class="fa fa-heart"></i></span>
+                    <span class="inline-title">
+                        <span class="fa-stack">
+                          <i class="fa fa-heart fa-stack-1x"></i>
+                        </span>
+                    </span>
                 </div>
 
               </div>
@@ -76,7 +84,8 @@
                 </div>
 
                 <!-- Actions -->
-                <div class="actions">
+                <div class="inline-content">
+
                   <!-- Messages -->
                   <div class="project-last-message hidden-xs" ng-show="lastChat(project)">
                     <div class="message-time" ng-click="showProject(project.id, 'chat')">
@@ -97,21 +106,29 @@
                   </div>
 
                   <!-- Editions -->
-                  <div class="project-editions">
+                  <!--
+                  <span class="inline-value">{{padEditionCount(project)}}</span>
+                  -->
+                  <span class="inline-title">
                     <span class="fa-stack">
                       <i class="fa fa-pencil-square-o fa-stack-1x"></i>
                       <i class="fa fa-circle fa-stack-1x notification-indicator"
                          ng-show="padEditionCount(project)>0"></i>
                     </span>
-                    <!-- {{padEditionCount(project)}} -->
+                  </span>
+
+                  <span class="inline-value">{{newMessagesCount(project)}}</span>
+                  <span class="inline-title">
                     <span class="fa-stack" ng-click="showProject(project.id, 'chat')">
                       <i class="fa fa-comments-o fa-stack-1x"></i>
                       <i class="fa fa-circle fa-stack-1x notification-indicator"
                          ng-show="newMessagesCount(project)>0"></i>
                     </span>
-                    {{newMessagesCount(project)}}
+                  </span>
+
                   </div>
                 </div>
+
             </div>
 
             </div>

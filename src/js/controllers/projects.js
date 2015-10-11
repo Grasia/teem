@@ -141,6 +141,11 @@ angular.module('Pear2Pear')
       return project.supporters.length;
     };
 
+    $scope.contributorCount = function(project) {
+      // Migrate project.support
+      return project.contributors.length;
+    };
+
     $scope.newMessagesCount = function(project) {
       return project.newMessagesCount;
     };
