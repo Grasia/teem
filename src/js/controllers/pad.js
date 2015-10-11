@@ -64,32 +64,6 @@ angular.module('Pear2Pear')
         $scope.project.addContributor();
       });
 
-    $scope.toggleSupport = function(project) {
-      if (! SwellRTSession.users.loggedIn()) {
-        SharedState.turnOn('shouldLoginSharedState');
-        return;
-      }
-
-      if (!project){
-        project = $scope.project;
-      }
-
-      project.toggleSupport();
-    };
-
-    $scope.toggleContributor = function(project) {
-      if (! SwellRTSession.users.loggedIn()) {
-        SharedState.turnOn('shouldLoginSharedState');
-        return;
-      }
-
-      if (!project){
-        project = $scope.project;
-      }
-
-      project.toggleContributor();
-    };
-
     $scope.ed = {
       editting: false
     };
