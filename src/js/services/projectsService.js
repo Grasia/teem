@@ -27,6 +27,9 @@ angular.module('Pear2Pear')
     };
 
     Project.prototype.toggleSupport = function(){
+      if (SwellRTSession.users.current() === null) {
+        return;
+      }
       var index = this.supporters.indexOf(SwellRTSession.users.current());
 
       if (index > -1) {
@@ -37,6 +40,9 @@ angular.module('Pear2Pear')
     };
 
     Project.prototype.toggleContributor = function(){
+      if (SwellRTSession.users.current() === null) {
+        return;
+      }
       var index = this.contributors.indexOf(SwellRTSession.users.current());
 
       if (index > -1) {

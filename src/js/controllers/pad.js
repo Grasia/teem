@@ -65,14 +65,29 @@ angular.module('Pear2Pear')
       });
 
     $scope.toggleSupport = function(project) {
-      // Need a valid login to support
-      // TODO, do not redirect without asking the user
       if (! SwellRTSession.users.loggedIn()) {
-        $location.path('frontpage');
-
+        SharedState.turnOn('shouldLoginSharedState');
         return;
       }
+
+      if (!project){
+        project = $scope.project;
+      }
+
       project.toggleSupport();
+    };
+
+    $scope.toggleContributor = function(project) {
+      if (! SwellRTSession.users.loggedIn()) {
+        SharedState.turnOn('shouldLoginSharedState');
+        return;
+      }
+
+      if (!project){
+        project = $scope.project;
+      }
+
+      project.toggleContributor();
     };
 
     $scope.ed = {
