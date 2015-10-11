@@ -65,7 +65,12 @@
     "name": "Nick",
     "tip": "Empieza introduciendo tu nick",
     "error": "Por favor, escoge un nick formado sólo por letras, números y puntos",
-    "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades"
+    "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades",
+    "should_be_logged": {
+      "message": "Por favor, inicia sesión para realizar esta acción.",
+      "loggin_now": "Iniciar sesión",
+      "cancel": "Cancelar"
+    }
   },
   "need": {
     "comment": {

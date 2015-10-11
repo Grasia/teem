@@ -64,7 +64,12 @@
     "name": "Nickname",
     "tip": "Start entering your nickname",
     "error": "Please, choose a nickname composed by letters, numbers and dots",
-    "welcome_msg": "The tool to promote your proposals in your communities"
+    "welcome_msg": "The tool to promote your proposals in your communities",
+    "should_be_logged": {
+      "message": "Sorry! You should be logged in to do that action.",
+      "loggin_now": "Loggin now",
+      "cancel": "cancel"
+    }
   },
   "need": {
     "comment": {

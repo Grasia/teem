@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 
 angular.module('Pear2Pear')
   .directive('connectionAlert', function() {

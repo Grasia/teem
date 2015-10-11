@@ -1,0 +1,16 @@
+ <div class="modal modal-overlay" ui-if="shouldLoginSharedState" ui-state="shouldLoginSharedState">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-body">
+         <div translate>
+           login.should_be_logged.message
+         </div>
+       </div>
+       <div class="modal-footer">
+         <button class="btn btn-default should-be-logged-btn" ng-click="cancel()" translate>login.should_be_logged.cancel</button>
+         <button class="btn btn-primary should-be-logged-btn" ng-click="login()" translate>login.should_be_logged.loggin_now</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
