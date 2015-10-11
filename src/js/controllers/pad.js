@@ -42,9 +42,16 @@ angular.module('Pear2Pear')
       document.querySelector('.project-title input').focus();
     };
 
+    $scope.cancelProject = function() {
+      SharedState.turnOff('projectTitleReminder');
+      $scope.project.type = 'deleted';
+      $scope.project.communities = [];
+      $location.path('frontpage');
+    };
+
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
-      if ($scope.project.title === undefined || $scope.project.title === '') {
+      if ($scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
         event.preventDefault();
 
         SharedState.turnOn('projectTitleReminder');
