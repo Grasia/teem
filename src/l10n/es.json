@@ -127,8 +127,7 @@
           "doing": "No participar"
         },
         "title": "Participantes"
-        }
-      },
+      }
     },
     "share": {
       "title": "Compartir proyecto '{{title}}'",

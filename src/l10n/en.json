@@ -126,7 +126,7 @@
           "doing": "Leave"
         },
         "title": "Participants"
-        }
+      }
     },
     "share": {
       "title": "Share project '{{title}}'",
