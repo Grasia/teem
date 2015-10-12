@@ -35,16 +35,28 @@ describe('Pear2Pear', function() {
       }, timeout);
 
       var communityList = by.css('.communities');
+      var communitySearchInput = by.css('.community-search input');
+      var toggleCommunitySearchBtn = by.css('.sidebar-toggle');
 
       browser.wait(function() {
-        return browser.isElementPresent(communityList);
+        return browser.isElementPresent(toggleCommunitySearchBtn);
       }, timeout);
 
+      element(toggleCommunitySearchBtn).click();
 
-      var communitySearchInput = by.css('.community-search input');
+      browser.wait(function() {
+        return element(communitySearchInput).isDisplayed() &&
+          element(communityList).isDisplayed();
+      }, timeout);
+
       element(communitySearchInput).sendKeys('Testing Community');
 
-      var newCommunityButton = by.css('.new-community-item button');
+      var newCommunityButton = by.css('.new-community-item .btn');
+
+      browser.wait(function() {
+        return browser.isElementPresent(newCommunityButton);
+      }, timeout);
+
       element(newCommunityButton).click();
 
       var projectList = by.css('.projects');
@@ -56,7 +68,12 @@ describe('Pear2Pear', function() {
       // Wait until pear has loaded the projects
       browser.wait(element(projectList).evaluate('projects.create'), timeout);
 
-      var newProjectButton = by.css('.new-project-btn');
+      var newProjectButton = by.css('.cta-btn');
+
+      browser.wait(function() {
+        return browser.isElementPresent(newProjectButton);
+      }, timeout);
+
       element(newProjectButton).click();
 
       var editTitle = by.css('.project-title input');
@@ -67,8 +84,8 @@ describe('Pear2Pear', function() {
 
       element(editTitle).sendKeys('Testing');
 
-      element(by.css('#pad .swellrt-editor')).click();
-      element(by.css('#pad .wave-editor-on')).sendKeys('Grow your community with Pear2Pear');
+      element(by.css('.swellrt-editor')).click();
+      element(by.css('.wave-editor-on')).sendKeys('Grow your community with Pear2Pear');
 
       element(by.css('a.nav-chat')).click();
 
