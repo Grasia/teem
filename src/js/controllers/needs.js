@@ -47,9 +47,7 @@ angular.module('Pear2Pear')
         },
         link: function (scope, element, attrs, needsCtrl) {
           scope.toggleCompleted = function (need, event) {
-            event.preventDefault();
 
-            console.log(event);
             if (!scope.project.isContributor()){
               return;
             }
