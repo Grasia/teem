@@ -53,7 +53,7 @@
       "placeholder": "Encuentra tu comunidad"
     },
     "communities": "Comunidades",
-    "no_selected_tip": "Por favor, selecciona una comunidad"
+    "no_selected_tip": "Por favor, selecciona una comunidad en el menú principal"
   },
   "login": {
     "button": "Entrar",
@@ -94,7 +94,7 @@
   },
   "project": {
     "create": {
-      "tip": "Pear2Pear es una herramienta para hacer propuestas y desarrollarlas en comunidad. Por favor, crea una nueva iniciativa o proyecto.",
+      "tip": "Empieza creando una nueva iniciativa o proyecto...",
       "button": "Crear iniciativa o proyecto"
     },
     "edit": {
@@ -143,7 +143,7 @@
       },
       "button": "Compartir",
       "mode" : {
-        "public": "Público para todos",
+        "public": "Visible",
         "link": "Sólo con enlace",
         "invite": "Invitación"
       },
