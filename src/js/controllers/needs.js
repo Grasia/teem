@@ -46,7 +46,19 @@ angular.module('Pear2Pear')
           need: '='
         },
         link: function (scope, element, attrs, needsCtrl) {
-          scope.toggleCompleted = function (need) {
+          scope.toggleCompleted = function (need, event) {
+            event.preventDefault();
+
+            console.log(event);
+            if (!scope.project.isContributor()){
+              return;
+            }
+
+            if (need.completed === 'add'){
+              scope.focusElem(event);
+
+              return;
+            }
             var completed = (need.completed === 'true') ? true : false;
             need.completed = (!completed).toString();
             if (completed) {
@@ -54,6 +66,7 @@ angular.module('Pear2Pear')
             } else {
               need.completionDate = '';
             }
+
           };
 
           scope.updateNeed = function(need) {
@@ -83,7 +96,8 @@ angular.module('Pear2Pear')
           };
 
           scope.focusElem = function(event){
-            event.target.parentNode.children[1].focus();
+            console.log(event.target.parentNode.parentNode.children);
+            event.target.parentNode.parentNode.children[1].children[0].focus();
           };
 
           scope.toggleCommentsVisibility = function(n){
