@@ -158,7 +158,7 @@
 <div ng-include="'navbar_bottom/navbar-bottom.html'"></div>
 
 <div ui-content-for="sidebar">
-  <div class="sidebar sidebar-left" ng-include="'communities/index.html'" ng-controller="CommunitiesCtrl"></div>
+  <div class="sidebar sidebar-left" ng-include="'communities/index.html'" ng-controller="CommunitiesCtrl" ng-click="refreshCommunityList()"></div>
 </div>
 
 <div class="cta-placeholder">

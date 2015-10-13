@@ -24,10 +24,14 @@ angular.module('Pear2Pear')
     // FIXME: model prototype
     $scope.urlId = url.urlId;
 
-    SwellRTSession.onLoad(function(){
+    $scope.refreshCommunityList = function() {
       CommunitiesSvc.all().then(function(communities){
         $scope.communities = communities;
       });
+    };
+
+    SwellRTSession.onLoad(function(){
+      $scope.refreshCommunityList();
       $scope.create = function(name) {
         CommunitiesSvc.create(
           { name: name || $scope.newCommunityName.name },
@@ -42,4 +46,9 @@ angular.module('Pear2Pear')
       CommunitiesSvc.setCurrent(url.urlId(id));
       $location.path('/communities/' + url.urlId(id) + '/projects');
     };
+
+    $scope.$on('mobile-angular-ui.state.changed.uiSidebarLeft', function() {
+      $scope.refreshCommunityList();
+    });
+
   }]);
