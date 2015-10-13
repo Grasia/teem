@@ -49,6 +49,14 @@ angular.module('Pear2Pear')
       $location.path('frontpage');
     };
 
+    angular.element(document.querySelector('.swellrt-editor')).on(
+      'focusin',
+      function(){
+        $timeout(function(){
+          $scope.ed.editting= true;
+        });
+      });
+
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
       if ($scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
