@@ -155,9 +155,16 @@
   height: 90%
 .project
   .swellrt-editor
-    min-height: 100%
-    &, > div
-      min-height: 100%
-    background: #FFFFFF
-    box-shadow: 5px 5px 3px $grey
-    padding: 5px
+    height : 100%
+    > div
+      min-height : 100%
+      background: #FFFFFF
+      box-shadow: 5px 5px 3px $grey
+      padding: 5px
+
+.swellrt-placeholder:empty
+  @extend .tip
+
+.hidden-input
+  position: absolute
+  top: -100px

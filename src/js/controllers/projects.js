@@ -43,8 +43,10 @@ angular.module('Pear2Pear')
         com.then(function(community){
           community.myProjects().then(
             function (projects){
+              getNewsCounts(projects);
+              console.log(projects);
               $scope.projects = projects;
-              getNewsCounts($scope.projects);
+
             });
         });
       } else {
