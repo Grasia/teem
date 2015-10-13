@@ -114,7 +114,8 @@
         "title": "Nombre"
       },
       "description": {
-        "title": "Notas"
+        "title": "Notas",
+        "tip": "(Tap para editar)"
       },
       "needs": {
         "title": "Necesidades"

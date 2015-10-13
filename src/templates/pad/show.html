@@ -32,7 +32,7 @@
 
           <div class="list-group-item project-description">
             <div class="project-description-header">
-              <h5 ng-if="!ed.editting"><span translate>project.section.description.title</span><span class="project-notes-tip" >&nbsp;(Tap to edit)</span></h5>
+              <h5 ng-if="!ed.editting"><span translate>project.section.description.title</span><span class="project-notes-tip" ng-if="project.isContributor()" translate>&nbsp;project.section.description.tip</span></h5>
 
               <div class="pad-edit-btn"> <!-- TODO Add stop edit button -->
                 <button class="btn btn-link btn-xs" ng-if="!ed.editting"

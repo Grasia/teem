@@ -113,7 +113,8 @@
         "title": "Name"
       },
       "description": {
-        "title": "Notes"
+        "title": "Notes",
+        "tip": "(Tap to edit)"
       },
       "needs": {
         "title": "Needs"
