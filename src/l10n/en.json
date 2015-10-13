@@ -52,7 +52,7 @@
       "placeholder": "Find your community"
     },
     "communities": "Communities",
-    "no_selected_tip": "Start selecting a community"
+    "no_selected_tip": "Please, select a community in the app menu "
   },
   "login": {
     "button": "Login",
@@ -93,7 +93,7 @@
   },
   "project": {
     "create": {
-      "tip": "Pear2Pear is a tool to make and develop proposals within communities. Please, create a new initiative or project.",
+      "tip": "Please, start creating a new initiative or project.",
       "button": "Create initiative or project"
     },
     "edit": {
