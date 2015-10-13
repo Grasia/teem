@@ -15,7 +15,10 @@
       <div class="scrollable">
         <div class="scrollable-header">
           <div class="list-group-item project-support" ng-if="!ed.editting">
-            <h5 translate>project.section.participate.title</h5>
+            <div>
+              <h5><span translate>project.section.participate.title</span><i class="fa fa-heart h5-icon"></i></h5>
+            </div>
+
             <div class="project-supports">
               <div class="project-supports-section">
                 <div class="project-avatars swellrt-avatars" ng-model="project.contributors" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
