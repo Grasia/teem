@@ -141,7 +141,7 @@
       },
       "button": "Share",
       "mode" : {
-        "public": "Public to anyone",
+        "public": "Visible",
         "link": "Only with Link ",
         "invite": "Invite"
       },

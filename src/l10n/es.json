@@ -142,7 +142,7 @@
       },
       "button": "Compartir",
       "mode" : {
-        "public": "Público para todos",
+        "public": "Visible",
         "link": "Sólo con enlace",
         "invite": "Invitación"
       },
