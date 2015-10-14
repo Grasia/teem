@@ -536,8 +536,7 @@ gulp.task('deploy:files', function() {
 });
 
 gulp.task('deploy', function(done) {
-  // var tasks = ['deploy:swellrt', 'deploy:files'];
-  var tasks = ['deploy:files'];
+  var tasks = ['deploy:swellrt', 'deploy:files'];
   seq(tasks, done);
 });
 
