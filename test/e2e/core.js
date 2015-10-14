@@ -38,11 +38,12 @@ describe('Pear2Pear', function() {
       var communitySearchInput = by.css('.community-search input');
       var toggleCommunitySearchBtn = by.css('.sidebar-toggle');
 
-      browser.wait(function() {
-        return browser.isElementPresent(toggleCommunitySearchBtn);
-      }, timeout);
+      element(communitySearchInput).isDisplayed().then(function(displayed){
+        if (!displayed){
+          element(toggleCommunitySearchBtn).click();
+        }
+      });
 
-      element(toggleCommunitySearchBtn).click();
 
       browser.wait(function() {
         return element(communitySearchInput).isDisplayed() &&
