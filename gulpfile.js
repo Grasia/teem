@@ -561,7 +561,7 @@ gulp.task('deploy', function(done) {
 ============================================*/
 
 gulp.task('cd', function(done) {
-  seq('build', 'test', 'manifest', 'deploy', done);
+  seq('build', 'manifest', 'test', 'deploy', done);
 });
 
 
