@@ -156,7 +156,8 @@ var gulp           = require('gulp'),
   karma          = require('karma').server,
   angularProtractor = require('gulp-angular-protractor'),
   ghPages        = require('gulp-gh-pages'),
-  dockerSwellrt  = require('gulp-docker-swellrt');
+  dockerSwellrt  = require('gulp-docker-swellrt'),
+  manifest       = require('gulp-manifest');
 
 
 /*================================================
@@ -342,6 +343,21 @@ gulp.task('js', function() {
     .pipe(gulp.dest(path.join(config.dest, 'js')));
   });
 
+/*===================================================================
+=                Generate HTML5 Cache Manifest files                =
+===================================================================*/
+
+gulp.task('manifest', function(){
+  gulp.src([ config.dest + '/**/*' ], { base: config.dest })
+    .pipe(manifest({
+      cache: [
+        config.swellrt.server + '/swellrt/swellrt.nocache.js'
+      ],
+      exclude: 'app.manifest',
+      hash: true
+     }))
+    .pipe(gulp.dest(config.dest));
+});
 
 /*===================================================================
 =            Watch for source changes and rebuild/reload            =
@@ -545,7 +561,7 @@ gulp.task('deploy', function(done) {
 ============================================*/
 
 gulp.task('cd', function(done) {
-  seq('build', 'test', 'deploy', done);
+  seq('build', 'test', 'manifest', 'deploy', done);
 });
 
 
