@@ -5,7 +5,10 @@
   <div ng-show="!sync()" translate-values="{time: '{{lastDataSync().toLocaleString()}}'}" translate>
     connection.sync
   </div>
-  <div ng-show="!connected() || !sync()" translate>
-    connection.tip
+  <div>
+    <span ng-show="!connected() || !sync()" translate>
+      connection.tip
+    </span>
+    <span class="fa fa-refresh" ng-click="refresh()"></span>
   </div>
 </div>

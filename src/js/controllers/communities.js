@@ -24,14 +24,19 @@ angular.module('Pear2Pear')
     // FIXME: model prototype
     $scope.urlId = url.urlId;
 
-    $scope.refreshCommunityList = function() {
-      CommunitiesSvc.all().then(function(communities){
-        $scope.communities = communities;
-      });
-    };
+    // To be defined in SwellRTSession.onLoad callback when SwellRT is ready
+    $scope.refreshCommunityList = function(){};
 
     SwellRTSession.onLoad(function(){
+
+      $scope.refreshCommunityList = function() {
+        CommunitiesSvc.all().then(function(communities){
+          $scope.communities = communities;
+        });
+      };
+
       $scope.refreshCommunityList();
+
       $scope.create = function(name) {
         CommunitiesSvc.create(
           { name: name || $scope.newCommunityName.name },
