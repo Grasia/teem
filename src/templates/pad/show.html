@@ -39,11 +39,11 @@
 
               <div class="pad-edit-btn"> <!-- TODO Add stop edit button -->
                 <button class="btn btn-link btn-xs" ng-if="!ed.editting"
-                        ng-click="ed.editting = !ed.editting; angular.element(editor).focus()">
+                        ng-click="toggleFullScreenEdit()">
                         <i class="fa fa-expand"></i>
                 </button>
                 <button class="btn btn-link btn-xs" ng-if="ed.editting"
-                        ng-click="ed.editting = !ed.editting;">
+                        ng-click="toggleFullScreenEdit()">
                         <i class="fa fa-compress"></i>
                 </button>
               </div>

@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('PadCtrl', [
-              'SwellRTSession', 'url', '$rootScope', '$scope', '$route', '$location', '$timeout', 'SharedState', 'ProjectsSvc',
-              function(SwellRTSession, url, $rootScope, $scope, $route, $location, $timeout, SharedState, ProjectsSvc){
+              'SwellRTSession', 'url', '$rootScope', '$scope', '$route', '$location', '$timeout', 'SharedState', 'ProjectsSvc', '$rootElement',
+              function(SwellRTSession, url, $rootScope, $scope, $route, $location, $timeout, SharedState, ProjectsSvc, $rootElement){
 
     $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
@@ -53,7 +53,8 @@ angular.module('Pear2Pear')
       'focusin',
       function(){
         $timeout(function(){
-          $scope.ed.editting= true;
+          document.getElementById('pad').focus();
+          $scope.toggleFullScreenEdit();
         });
       });
 
@@ -68,6 +69,20 @@ angular.module('Pear2Pear')
 
     $scope.ed = {
       editting: false
+    };
+
+    $scope.toggleFullScreenEdit = function() {
+
+      $scope.ed.editting = !$scope.ed.editting;
+
+      if ($scope.ed.editting) {
+        $rootElement.removeClass('has-navbar-top');
+        document.getElementById('pad').focus();
+      } else {
+        $rootElement.addClass('has-navbar-top');
+      }
+
+      $rootScope.hideNavigation = $scope.ed.editting;
     };
 
   }]);
