@@ -17,9 +17,9 @@ angular.module('Pear2Pear')
         new Date(this.lastProjectVisit[proj.id]):new Date(0);
 
       if (lastVisit.getTime() < proj.pad.lastmodtime){
-        return 0;
-      } else {
         return 1;
+      } else {
+        return 0;
       }
     };
 
