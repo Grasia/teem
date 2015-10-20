@@ -49,7 +49,7 @@ angular.module('Pear2Pear')
 
     $scope.showProjects = function(id) {
       CommunitiesSvc.setCurrent(url.urlId(id));
-      $location.path('/communities/' + url.urlId(id) + '/projects');
+      $location.path('/communities/' + url.urlId(id) + '/projects').search('section', null);
     };
 
     $scope.$on('mobile-angular-ui.state.changed.uiSidebarLeft', function() {
