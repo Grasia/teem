@@ -219,7 +219,7 @@ angular.module('Pear2Pear')
 
     var current = function() {
       return window.localStorage.getItem('communityId');
-    }
+    };
 
     return {
       find : find,
