@@ -52,10 +52,12 @@ angular.module('Pear2Pear')
     angular.element(document.querySelector('.swellrt-editor')).on(
       'focusin',
       function(){
-        $timeout(function(){
-          document.getElementById('pad').focus();
-          $scope.toggleFullScreenEdit();
-        });
+        if ($scope.project.isContributor()){
+          $timeout(function(){
+            document.getElementById('pad').focus();
+            $scope.toggleFullScreenEdit();
+          });
+        }
       });
 
     // Do not leave pad without giving a title to the project
