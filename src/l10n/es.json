@@ -90,7 +90,8 @@
       "title": "Info"
     },
     "placeholder": "Empieza escribiendo la descripción del proyecto en este documento colaborativo, para que otras participantes conozcan el proyecto y se involucren en él",
-    "edit": "Editar"
+    "edit": "Editar",
+    "android5Alert": "¡Vaya!, la edición colaborativa no funciona en Android 5, el Sistema Operativo de tu teléfono. Oops, collaborative writting does not works in Android 5, your phone OS... Cualquier edición que hagas en el pad se perderá. Afortunadamente, arreglar esto es una de nuestras prioridades, prueba de nuevo en unos días."
   },
   "project": {
     "create": {
