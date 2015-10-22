@@ -35,7 +35,9 @@ var config = {
       './bower_components/angular-animate/angular-animate.js',
       './bower_components/angular-toArrayFilter/toArrayFilter.js',
       './bower_components/swiper/dist/js/swiper.js',
-      './bower_components/pear2pear-loading/js/pear2pear-loading.js'
+      './bower_components/pear2pear-loading/js/pear2pear-loading.js',
+      './bower_components/avatar/build/avatar.js',
+      './bower_components/avatar/vendor/md5.js'
     ],
 
     fonts: [

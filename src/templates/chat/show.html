@@ -16,7 +16,7 @@
         <div ng-repeat="msg in project.chat" class="" hm-swiperight="addToPad(msg.text);" pear-chat-scroll>
           <li ng-if="dayChange(msg, $index)" class="day-change">{{dayChange(msg, $index)}}</li>
           <li class="chat-message {{standpoint(msg)}}">
-            <span class="swellrt-avatars avatar" ng-model="msg.who"></span>
+            <span avatars="msg.who"></span>
             <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
               {{msg.who.split('@')[0]}}
             </div>

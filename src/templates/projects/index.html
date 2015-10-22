@@ -20,8 +20,8 @@
           <div class="media">
 
             <div class="media-left media-middle">
-              <div class="project-avatars swellrt-avatars visible-xs-inline" ng-model="project.contributors"></div>
-              <div class="project-avatars swellrt-avatars hidden-xs" ng-model="project.contributors" swellrt-avatar-options="{numberOfAvatars : 3}"></div>
+              <div class="project-avatars visible-xs-inline" avatars="project.contributors"></div>
+              <div class="project-avatars hidden-xs" avatars="project.contributors"></div>
             </div>
 
             <!-- CROWDDOING -->
@@ -94,7 +94,7 @@
                     </div>
 
                     <div ng-if="!lastChat(project).isNotification">
-                      <div class="author-avatar swellrt-avatars" ng-model="lastChat(project).who" swellrt-avatar-options="{size: 20}"> </div>
+                      <div class="author-avatar" avatars="lastChat(project).who"> </div>
                       <div class="author-name">{{lastChat(project).author()}}</div>
                       <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
                     </div>
