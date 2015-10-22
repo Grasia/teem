@@ -85,10 +85,11 @@ angular.module('Pear2Pear')
             );
           });
           scope.keyEventsHandler = function(event){
-            if ((event.charCode === 0) && (event.keyCode === 13)){
+            if (event.which === 13) {
               event.target.blur();
             }
-            if ((event.charCode === 0) && (event.keyCode === 8) && (scope.need.text === '') ){
+            if ((event.which === 8) && (scope.need.text === '')) {
+              event.preventDefault();
               scope.updateNeed(scope.need);
             }
           };
@@ -154,7 +155,9 @@ angular.module('Pear2Pear')
           };
           this.removeNeed = function (need) {
             var i = $scope.needs.indexOf(need);
+            console.log($route.current);
             $scope.needs.splice(i,1);
+            console.log($route.current);
           };
 
           this.comments = {};

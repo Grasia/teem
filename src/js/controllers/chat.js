@@ -110,4 +110,11 @@ angular.module('Pear2Pear')
       };
       return undefined;
     };
+
+    $scope.keyDown = function(event){
+      if (event.which === 13) {
+        $scope.send();
+      }
+    };
+
   }]);
