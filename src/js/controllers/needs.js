@@ -84,6 +84,7 @@ angular.module('Pear2Pear')
               }
             );
           });
+
           scope.keyEventsHandler = function(event){
             if (event.which === 13) {
               event.target.blur();
@@ -91,6 +92,12 @@ angular.module('Pear2Pear')
             if ((event.which === 8) && (scope.need.text === '')) {
               event.preventDefault();
               scope.updateNeed(scope.need);
+            }
+          };
+
+          scope.keyDown = function(event){
+            if (event.which === 13) {
+              scope.sendComment();
             }
           };
 

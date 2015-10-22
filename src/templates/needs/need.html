@@ -44,7 +44,7 @@
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
         <div class="input-group">
-          <textarea class="form-control" rows="1" msd-elastic="\n" ng-model="newComment.text" placeholder="{{ 'need.comment.input' | translate}}">
+          <textarea class="form-control" rows="1" msd-elastic="\n" ng-model="newComment.text" placeholder="{{ 'need.comment.input' | translate}}" ng-keydown="keyDown($event)">
           </textarea>
           <span class="input-group-addon">
             <i class="fa fa-chevron-circle-right need-comment-input-button" ng-click="sendComment()"></i>
