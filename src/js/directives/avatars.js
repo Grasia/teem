@@ -21,7 +21,13 @@ angular.module('Pear2Pear')
           $timeout(function() {
             var d = angular.element('<img class="avatar"></img>');
             element.append(d[0]);
-            var avatarConfig = {'useGravatar': false, 'initials': userId[0], 'initial_bg': palette[parseInt(window.md5(userId).substring(0,5),16) % palette.length], 'initial_fg': 'white'};
+            var avatarConfig = {
+              'useGravatar': false,
+              'initials': userId[0].toUpperCase(),
+              'initial_bg': palette[parseInt(window.md5(userId).substring(0,5),16) % palette.length], 'initial_fg': 'white',
+              'initial_weight': 200,
+              'initial_font_family': '"Dax Wide Regular", sans-serif'
+            };
             new window.Avatar(d[0], avatarConfig);
           });
         };
