@@ -18,12 +18,6 @@
 
 
           <div class="media">
-
-            <div class="media-left media-middle">
-              <div class="project-avatars visible-xs-inline" avatars="project.contributors"></div>
-              <div class="project-avatars hidden-xs" avatars="project.contributors"></div>
-            </div>
-
             <!-- CROWDDOING -->
             <div class="media-body" ng-if="nav('crowddoing')">
 
@@ -32,6 +26,9 @@
               </h4>
 
               <div class="project-sections projects-sections-crowddoing">
+                <div class="project-participants">
+                  <span ng-repeat="c in project.contributors">{{ $index > 0 ? ', ' : '' }}{{ c.split('@')[0]}}</span>
+                </div>
 
                 <!-- Project stats -->
                 <div class="stats">
@@ -73,6 +70,10 @@
 
               <div class="project-sections projects-sections-mydoing" >
 
+                <div class="project-participants">
+                  <span ng-repeat="c in project.contributors">{{ $index > 0 ? ', ' : '' }}{{ c.split('@')[0]}}</span>
+                </div>
+                
                 <!-- Project stats -->
                 <div class="stats">
                       <div class="title" translate>project.section.needs.title</div>
