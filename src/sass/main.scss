@@ -10,8 +10,7 @@
 
 
 .empty-communities-tip, .empty-tasks-tip {
-  font-size: 1.8em;
-  color: #47c9eb;
+  @extend .tip;
   background: url(../images/arrow-up.png) no-repeat right top;
   padding-right: 50px;
   height: 75px;
@@ -21,12 +20,14 @@
 }
 
 .empty-communities-tip-msg, .empty-tasks-tip-msg {
+  @extend .tip;
   display: table-cell;
   vertical-align: bottom;
 
 }
 
 .empty-tasks-tip {
+  @extend .tip;
   margin-top: 20px;
 }
 
@@ -34,8 +35,7 @@
 /* Tasks */
 
 .checkbox-tip {
-  font-size: 1.8em;
-  color: #47c9eb;
+  @extend .tip;
   background: url(../images/arrow-down.png) no-repeat left 15px;
   padding-left: 50px;
   height: 75px;
@@ -49,6 +49,7 @@
   }
 
 .checkbox-tip * {
+  @extend .tip;
   -webkit-transform:scaleY(-1);
   -moz-transform:scaleY(-1);
   -ms-transform:scaleY(-1);
@@ -109,8 +110,7 @@
 /* Communities */
 
 .group-task-tip {
-  font-size: 1.8em;
-  color: #47c9eb;
+  @extend .tip;
   background: url(../images/arrow-down.png) no-repeat left 15px;
   padding-left: 50px;
   height: 75px;
@@ -124,6 +124,7 @@
   }
 
 .group-task-tip * {
+  @extend .tip;
   -webkit-transform:scaleY(-1);
   -moz-transform:scaleY(-1);
   -ms-transform:scaleY(-1);
