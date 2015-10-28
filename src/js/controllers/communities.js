@@ -11,7 +11,7 @@ angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/communities', {
-        templateUrl: 'communities/community-none.html',
+        templateUrl: 'communities/index.html',
         controller: 'CommunitiesCtrl'
       });
   }])

@@ -71,6 +71,10 @@
       "cancel": "cancel"
     }
   },
+  "menu": {
+    "communities": "Find or create your community",
+    "title": "Pear2Pear"
+  },
   "need": {
     "comment": {
       "input": "Write your comment here...",
