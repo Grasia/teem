@@ -127,14 +127,14 @@
       "support": {
         "btn": {
           "do": "I like",
-          "doing": "I don't like"
+          "undo": "I don't like"
         },
         "title": "Likes"
       },
       "participate": {
         "btn": {
           "do": "Join",
-          "doing": "Leave"
+          "undo": "Leave"
         },
         "title": "Participants"
       }

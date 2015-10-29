@@ -128,14 +128,14 @@
       "support": {
         "btn": {
           "do": "Me gusta",
-          "doing": "Ya no me gusta"
+          "undo": "No me gusta"
         },
         "title": "Me gusta"
       },
       "participate": {
         "btn": {
           "do": "Participar",
-          "doing": "No participar"
+          "undo": "No participar"
         },
         "title": "Participantes"
       }

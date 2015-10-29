@@ -4,14 +4,14 @@
     <span class="cta-icon">
       <i ng-class="project.isSupporter()? 'fa fa-thumbs-up': 'fa fa-thumbs-o-up'"></i>
     </span>
-    <span translate>project.section.support.btn.do</span>
+    <span translate>{{ project.isSupporter() ? 'project.section.support.btn.undo' : 'project.section.support.btn.do' }}</span>
   </button>
 
   <button class="btn btn-info cta-btn-2" ng-class="project.isContributor()? 'active':''" ng-click="toggleContributor()">
       <span class="cta-icon">
-        <i ng-class="project.isContributor()? 'fa fa-new-participant':'fa fa-remove-participant'"></i>
+        <i ng-class="project.isContributor()? 'fa fa-remove-participant':'fa fa-new-participant'"></i>
       </span>
-      <span translate>project.section.participate.btn.do</span>
+      <span translate>{{ project.isContributor() ? 'project.section.participate.btn.undo' : 'project.section.participate.btn.do' }}</span>
   </button>
 
 </div>
