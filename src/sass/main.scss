@@ -2,6 +2,7 @@
  * DEPRECATED!!!!
  * We should move this contents to their own stylesheet
  */
+
 .blue { color: #47c9eb; }
 .grey { color: #696969; }
 .green { color: #c1d97a; }
@@ -214,11 +215,6 @@ button.generic-edit {
 [data-ng-click],
 [x-ng-click] {
     cursor: pointer;
-}
-
-.h5-icon {
-  color: $grey;
-  margin-left: 0.5em;
 }
 
 /*
