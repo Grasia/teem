@@ -28,6 +28,7 @@ angular.module('Pear2Pear')
       });
 
       var slide = new Swiper('.swiper-container', {
+        autoplay: 5000,
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev'
       });
