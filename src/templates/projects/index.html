@@ -27,6 +27,7 @@
 
               <div class="project-sections projects-sections-crowddoing">
                 <div class="project-participants">
+                  <i class="fa i-participant"></i>
                   <span ng-repeat="c in project.contributors">{{ $index > 0 ? ', ' : '' }}{{ c.split('@')[0]}}</span>
                 </div>
 
@@ -46,14 +47,6 @@
                     <span class="inline-title">
                       <i class="fa i-support"></i>
                     </span>
-
-                    <span class="inline-value">{{ contributorCount(project) }}</span>
-                    <!--   <span class="inline-tittle" translate>project.section.participate.title</span> -->
-                    <span class="inline-title">
-                        <span class="fa-stack">
-                          <i class="fa fa-heart fa-stack-1x"></i>
-                        </span>
-                    </span>
                 </div>
 
               </div>
@@ -69,6 +62,7 @@
               <div class="project-sections projects-sections-mydoing" >
 
                 <div class="project-participants">
+                  <i class="fa i-participant"></i>
                   <span ng-repeat="c in project.contributors">{{ $index > 0 ? ', ' : '' }}{{ c.split('@')[0]}}</span>
                 </div>
 
