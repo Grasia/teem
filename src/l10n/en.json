@@ -46,7 +46,7 @@
     "name": "Community name",
     "participants": "People in the community",
     "project": {
-      "number": "projects"
+      "number": "workspaces"
     },
     "search": {
       "placeholder": "Find your community"
@@ -85,7 +85,7 @@
     },
     "new": {
       "placeholder": "New need",
-      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the project"
+      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the workspace"
     }
   },
   "pad": {
@@ -98,15 +98,15 @@
   },
   "project": {
     "create": {
-      "tip": "Please, start creating a new initiative or project.",
-      "button": "Create initiative or project"
+      "tip": "Please, start creating a new workspace.",
+      "button": "Create workspace"
     },
     "edit": {
       "button": "Edit",
       "title": "Edit project"
     },
     "index": {
-      "title": "Projects"
+      "title": "Workspaces"
     },
     "info": {
       "nav": {
@@ -140,7 +140,7 @@
       }
     },
     "share": {
-      "title": "Share project '{{title}}'",
+      "title": "Share workspace '{{title}}'",
       "description": {
         "link": "Link to share:",
         "permission": "Change access permissions:"
@@ -152,18 +152,18 @@
         "invite": "Invite"
       },
       "info" : {
-        "public" : "This project is visible in the community's project list",
-        "link" : "Only people with the link can see the project"
+        "public" : "This workspace is visible in the community's workspace list",
+        "link" : "Only people with the link can see the workspace"
       }
     },
     "task_list_label": "Project tasks:",
     "title" : {
-      "placeholder" : "<Write here project's name>",
+      "placeholder" : "<Write here workspace's name>",
       "reminder": {
-        "button_cancel": "Yes, discard project",
-        "button_continue": "No, keep project",
-        "body_one": "This project doesn't have a name yet!",
-        "body_two": "Do you really want to discard the project?"
+        "button_cancel": "Yes, discard workspace",
+        "button_continue": "No, keep workspacd",
+        "body_one": "This workspace doesn't have a name yet!",
+        "body_two": "Do you really want to discard the workspace?"
       }
     },
     "project_name": "Project name",

@@ -47,7 +47,7 @@
     "name": "Nombre de la comunidad",
     "participants": "Gente en la comunidad",
     "project": {
-      "number": "proyectos"
+      "number": "espacios de trabajo"
     },
     "search": {
       "placeholder": "Encuentra tu comunidad"
@@ -86,28 +86,28 @@
     },
     "new": {
       "placeholder": "Nueva necesidad",
-      "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el proyecto"
+      "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el espacio de trabajo"
     }
   },
   "pad": {
     "nav": {
       "title": "Info"
     },
-    "placeholder": "Empieza escribiendo la descripción del proyecto en este documento colaborativo, para que otras participantes conozcan el proyecto y se involucren en él",
+    "placeholder": "Empieza escribiendo la descripción del espacio en este documento colaborativo, para que otras participantes conozcan el proyecto y se involucren en él",
     "edit": "Editar",
     "android5Alert": "¡Vaya!, la edición colaborativa no funciona en Android 5. Cualquier edición que hagas en el pad se perderá. Arreglar esto es una de nuestras prioridades, prueba de nuevo en unos días."
   },
   "project": {
     "create": {
-      "tip": "Empieza creando una nueva iniciativa o proyecto...",
-      "button": "Crear iniciativa o proyecto"
+      "tip": "Empieza creando un nuevo espacio de trabajo",
+      "button": "Crear espacio de trabajo"
     },
     "edit": {
       "button": "Editar",
       "title": "Editar proyecto"
     },
     "index": {
-      "title": "Proyectos"
+      "title": "Espacios de trabajo"
     },
     "info": {
       "nav": {
@@ -141,7 +141,7 @@
       }
     },
     "share": {
-      "title": "Compartir proyecto '{{title}}'",
+      "title": "Compartir espacio de trabajo '{{title}}'",
       "description": {
         "link": "Link to project:",
         "permission": "Cambiar permisos de acceso:"
@@ -153,18 +153,18 @@
         "invite": "Invitación"
       },
       "info" : {
-        "public" : "Este proyecto es visible en la comunidad",
-        "link" : "Sólo personas con el enlace pueden ver el proyecto"
+        "public" : "Este espacio de trabajo es visible en la comunidad",
+        "link" : "Sólo personas con el enlace pueden ver el espacio de trabajo"
       }
     },
-    "task_list_label": "Tareas del proyecto:",
+    "task_list_label": "Tareas del espacio de trabajo:",
     "title" : {
-      "placeholder" : "<Escribir nombre del proyecto>",
+      "placeholder" : "<Escribir nombre del espacio de trabajo>",
       "reminder": {
-        "button_cancel": "Si, descartar el proyecto",
-        "button_continue": "No, seguir en el proyecto",
-        "body_one": "El proyecto no tiene nombre!",
-        "body_two": "Deseas descartar el proyecto?"
+        "button_cancel": "Si, descartar el espacio de trabajo",
+        "button_continue": "No, seguir en el espacio de trabajo",
+        "body_one": "El espacio de trabajo no tiene nombre!",
+        "body_two": "Deseas descartar el espacio de trabajo?"
       }
     },
     "project_name": "Nombre del proyecto",
