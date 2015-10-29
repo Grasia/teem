@@ -88,6 +88,45 @@ angular.module('Pear2Pear')
       return myProjs.promise;
     };
 
+    Community.prototype.myAndPublicProjects = function(){
+      var projs = $q.defer();
+
+      var query = {
+        _aggregate: [
+          {
+            $match: {
+              'root.type': 'project',
+              $or: [
+                { 'root.contributors': SwellRTSession.users.current() },
+                { 'root.shareMode': 'public' }
+              ]
+            }
+          }
+        ]};
+
+      var comId = this.id;
+      if (comId){
+        query._aggregate[0].$match['root.communities'] = comId;
+      }
+
+      SwellRT.query(
+        query,
+        function(result) {
+
+          var res = [];
+
+          angular.forEach(result.result, function(val){
+            res.push(val.root);
+          });
+
+          projs.resolve(res);
+        },
+        function(error){
+          projs.reject(error);
+        });
+      return projs.promise;
+    };
+
     // Service functions
 
     var openedCommunities = {};

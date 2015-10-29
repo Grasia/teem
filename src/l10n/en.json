@@ -129,6 +129,7 @@
           "do": "I like",
           "undo": "I don't like"
         },
+        "number": "likes",
         "title": "Likes"
       },
       "participate": {

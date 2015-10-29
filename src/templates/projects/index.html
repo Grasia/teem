@@ -21,64 +21,47 @@
       <div class="list-group">
         <div class="project-item list-group-item" ng-repeat="project in projects" ng-click="showProject(project.id)" ng-if="project.title!==''">
 
-
           <div class="media">
-            <!-- CROWDDOING -->
-            <div class="media-body" ng-if="nav('crowddoing')">
-
+            <div class="media-body">
               <h4 class="media-heading">
                 <span class="project-item-title">{{project.title}}</span>
               </h4>
 
-              <div class="project-sections projects-sections-crowddoing">
+              <div class="project-sections">
                 <div class="project-participants">
                   <i class="fa i-participant"></i>
                   <span ng-repeat="c in project.contributors">{{ $index > 0 ? ', ' : '' }}{{ c.split('@')[0]}}</span>
                 </div>
 
-                <!-- Project stats -->
-                <div class="stats">
-                      <div class="title" translate>project.section.needs.title</div>
-                      <div class="progress">
-                        <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
-                          <span class="sr-only">{{progressPercentage(project)}}% Complete</span>
-                        </div>
-                      </div>
+                <div class="project-section-needs">
+                  <div class="needs-icon">
+                    <i class="fa i-need"></i>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-count">{{completedNeeds(project)}} / {{totalNeeds(project)}}</div>
+                    <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
+                  </div>
                 </div>
 
-                <div class="inline-content">
-                    <span class="inline-value">{{ supporterCount(project) }}</span>
-                    <!-- <span class="inline-tittle" translate>project.section.support.title</span> -->
-                    <span class="inline-title">
-                      <i class="fa i-support"></i>
+                <div class="project-section-notifications pull-right" ng-if="project.isContributor">
+                  <span class="inline-title">
+                    <span class="fa-stack">
+                      <i class="fa fa-pencil-square-o fa-stack-1x" ng-class="(padEditionCount(project)>0)? 'active':''"></i>
                     </span>
+                  </span>
+
+                  <span class="inline-value">{{newMessagesCount(project)}}</span>
+                  <span class="inline-title">
+                    <span class="fa-stack" ng-click="showProject(project.id, 'chat')">
+                      <i class="fa fa-comments-o fa-stack-1x" ng-class="(newMessagesCount(project)>0)? 'active':''"></i>
+                    </span>
+                  </span>
                 </div>
 
-              </div>
-            </div>
-
-            <!-- MYDOING -->
-            <div class="media-body" ng-if="nav('mydoing')">
-
-              <h4 class="media-heading">
-                <span class="project-item-title">{{project.title}}</span>
-              </h4>
-
-              <div class="project-sections projects-sections-mydoing" >
-
-                <div class="project-participants">
-                  <i class="fa i-participant"></i>
-                  <span ng-repeat="c in project.contributors">{{ $index > 0 ? ', ' : '' }}{{ c.split('@')[0]}}</span>
-                </div>
-
-                <!-- Project stats -->
-                <div class="stats">
-                      <div class="title" translate>project.section.needs.title</div>
-                      <div class="progress">
-                        <div class="progress-bar" ng-class="'progress-bar-' + progressType(project)" role="progressbar" ng-attr-aria-valuenow="{{progressPercentage(project)}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': progressPercentage(project) + '%' }">
-                          <span class="sr-only">{{progressPercentage(project)}}% Complete</span>
-                        </div>
-                      </div>
+                <div class="project-section-supporters">
+                  <span><i class="fa i-support"></i></span>
+                  <span>{{ supporterCount(project) }}</span>
+                  <span translate>project.section.support.number</span>
                 </div>
 
                 <!-- Actions -->
@@ -100,38 +83,10 @@
                     <div ng-if="lastChat(project).isNotification">
                       <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')" translate translate-values="lastChat(project).translateValues">{{lastChat(project).text}}</div>
                     </div>
-
                   </div>
-
-                  <!-- Editions -->
-                  <!--
-                  <span class="inline-value">{{padEditionCount(project)}}</span>
-                  -->
-                  <span class="inline-title">
-                    <span class="fa-stack">
-                      <i class="fa fa-pencil-square-o fa-stack-1x" ng-class="(padEditionCount(project)>0)? 'active':''"></i>
-                    </span>
-                  </span>
-
-                  <span class="inline-value">{{newMessagesCount(project)}}</span>
-                  <span class="inline-title">
-                    <span class="fa-stack" ng-click="showProject(project.id, 'chat')">
-                      <i class="fa fa-comments-o fa-stack-1x" ng-class="(newMessagesCount(project)>0)? 'active':''"></i>
-                    </span>
-                  </span>
-
-                  </div>
-                </div>
-
+              </div>
             </div>
-
-            </div>
-
-
-
           </div>
-
-
         </div>
 
         <div ng-show="emptyProjects()" class="new-project-item list-group-item">

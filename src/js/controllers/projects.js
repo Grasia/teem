@@ -33,32 +33,27 @@ angular.module('Pear2Pear')
       // get the count of new edits and chats for a list of projects and store them in the project properties
       function getNewsCounts(projs) {
        angular.forEach(projs, function(proj) {
-         ProfilesSvc.current().then(function(prof){
-           $timeout(function(){
-             proj.newMessagesCount = prof.getNewMessagesCount(proj);
-             proj.padEditionCount = prof.getPadEditionCount(proj);
+         if (proj.contributors.indexOf(SwellRTSession.users.current()) > -1) {
+           proj.isContributor = true;
+
+           ProfilesSvc.current().then(function(prof){
+             $timeout(function(){
+               proj.newMessagesCount = prof.getNewMessagesCount(proj);
+               proj.padEditionCount = prof.getPadEditionCount(proj);
+             });
            });
-         });
+         }
        });
       }
-      if (isSection('mydoing')) {
-        com.then(function(community){
-          community.myProjects().then(
-            function (projects){
-              getNewsCounts(projects);
-              console.log(projects);
-              $scope.projects = projects;
 
-            });
-        });
-      } else {
-        com.then(function(community){
-          community.getProjects().then(
-            function (projects){
-              $scope.projects = projects;
-            });
-        });
-      }
+      com.then(function(community){
+        community.myAndPublicProjects().then(
+          function (projects){
+            getNewsCounts(projects);
+
+            $scope.projects = projects;
+          });
+      });
 
       $scope.new_ = function () {
         ProjectsSvc.create(function(p) {
@@ -105,19 +100,8 @@ angular.module('Pear2Pear')
 
     // This function should belong to the model
     // In the prototype or something similar
-    $scope.progressPercentage = function(project) {
-      var size,
-          completed = 0;
-
-      if (project.needs === undefined) {
-        return 0;
-      }
-
-      size = project.needs.length;
-
-      if (size === 0) {
-        return 0;
-      }
+    $scope.completedNeeds = function(project) {
+      var completed = 0;
 
       angular.forEach(project.needs, function(need) {
         if (need.completed === 'true') {
@@ -125,7 +109,25 @@ angular.module('Pear2Pear')
         }
       });
 
-      return completed * 100 / size;
+      return completed;
+    };
+
+    $scope.totalNeeds = function(project) {
+      if (project.needs === undefined) {
+        return 0;
+      }
+
+      return project.needs.length;
+    };
+
+    $scope.progressPercentage = function(project) {
+      var size = $scope.totalNeeds(project);
+
+      if (size === 0) {
+        return 0;
+      }
+
+      return $scope.completedNeeds(project) * 100 / size;
     };
 
     $scope.progressType = function(project) {
