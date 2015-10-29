@@ -6,7 +6,7 @@
     </div>
     <div class="need-section need-text">
       <input ng-if="project.isContributor()" type="text"
-             class="need-name overflow-ellipsis col-md-11"
+             class="need-name"
              ng-class="need.completed === 'true' ? 'text-strike' : ''"
              ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
              ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
