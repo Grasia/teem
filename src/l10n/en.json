@@ -57,7 +57,7 @@
   "login": {
     "button": "Login",
     "copy": {
-      "explore": "Explore what people is doing in your community",
+      "explore": "Explore what people are doing in your community",
       "propose": "Propose your project, find support and collaborators",
       "work": "Work in your project and expose your needs"
     },
@@ -67,8 +67,8 @@
     "welcome_msg": "The tool to promote your proposals in your communities",
     "should_be_logged": {
       "message": "Sorry! You should be logged in to do that action.",
-      "loggin_now": "Loggin now",
-      "cancel": "cancel"
+      "loggin_now": "Log in",
+      "cancel": "Cancel"
     }
   },
   "menu": {
@@ -169,7 +169,7 @@
       "placeholder" : "<Write here workspace's name>",
       "reminder": {
         "button_cancel": "Yes, discard workspace",
-        "button_continue": "No, keep workspacd",
+        "button_continue": "No, keep workspace",
         "body_one": "This workspace doesn't have a name yet!",
         "body_two": "Do you really want to discard the workspace?"
       }
@@ -228,7 +228,7 @@
     "create": "Create"
   },
   "connection": {
-    "lost": "Connection lost: trying to reconnect...",
+    "lost": "Connection lost. Trying to reconnect...",
     "sync": "Your changes from {{time.toLocaleString()}} have not been saved.",
     "tip": "If the problem persist, copy somewhere else your last changes and reload the application"
   },

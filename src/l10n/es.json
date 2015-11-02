@@ -78,7 +78,7 @@
   },
   "need": {
     "comment": {
-      "input": "Write your comment here...",
+      "input": "Escribe tu comentario aquí...",
       "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
     },
     "nav": {
@@ -169,10 +169,10 @@
     "title" : {
       "placeholder" : "<Escribir nombre del espacio de trabajo>",
       "reminder": {
-        "button_cancel": "Si, descartar el espacio de trabajo",
-        "button_continue": "No, seguir en el espacio de trabajo",
-        "body_one": "El espacio de trabajo no tiene nombre!",
-        "body_two": "Deseas descartar el espacio de trabajo?"
+        "button_cancel": "Sí, descartar el espacio de trabajo",
+        "button_continue": "No, seguir con el espacio de trabajo",
+        "body_one": "¡El espacio de trabajo no tiene nombre!",
+        "body_two": "¿Deseas descartar el espacio de trabajo?"
       }
     },
     "project_name": "Nombre del proyecto",
@@ -191,17 +191,17 @@
 
   "session": {
     "title": "Cuéntanos un poco sobre ti",
-    "intro": "<strong>Gracias por probar nuestro prototipo!</strong> <br> Por favor, rellena este cuestionario para ayudarnos a comprender un poco más sobre la forma en la que vas a usar nuestra herramienta.",
-    "community": "En qué comunidad participas?" ,
+    "intro": "<strong>¡Gracias por probar nuestro prototipo!</strong> <br> Por favor, rellena este cuestionario para ayudarnos a comprender un poco más sobre la forma en la que vas a usar nuestra herramienta.",
+    "community": "¿En qué comunidad participas?" ,
     "gender": "Sexo",
     "gender_male": "Hombre",
     "gender_female": "Mujer",
-    "age": "Cuántos años tienes?",
-    "role": "Cual es tu relación con la comunidad?",
+    "age": "¿Cuántos años tienes?",
+    "role": "¿Cuál es tu relación con la comunidad?",
     "role_90_radio": "Estoy interesado en lo que hace la comunidad",
     "role_9_radio": "Colaboro ocasionalmente con la comunidad",
     "role_1_radio": "Estoy muy implicado en la comunidad",
-    "tech": "Cual es tu experiencia con programas de ordenador y aplicaciones para móbiles?",
+    "tech": "¿Cuál es tu experiencia con programas de ordenador y aplicaciones para móviles?",
     "tech_low": "Baja",
     "tech_medium": "Intermedia",
     "tech_high": "Alta",
@@ -211,8 +211,8 @@
   "collab": {
     "learn_space": "Espacio de Aprendizaje",
     "collaboration_space": "Espacio de Colaboración",
-    "join": "Unirte a la actividad?",
-    "yes": "Si!",
+    "join": "¿Unirte a la actividad?",
+    "yes": "Sí!",
     "no" : "No",
     "activity": "Actividad",
     "new_activity": "Nueva actividad",
@@ -228,7 +228,7 @@
     "create": "Crear"
   },
   "connection": {
-    "lost": "Conexión perdida: tratando de reconectar...",
+    "lost": "Conexión perdida. Tratando de reconectar...",
     "sync": "Tus cambios desde {{time}} no se han guardado.",
     "tip": "Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
   }
