@@ -7,14 +7,14 @@ angular.module('Pear2Pear')
 
     function setPalette(hexColorArray){
       palette = hexColorArray;
-    };
+    }
 
-    function link(scope, element, attrs) {
+    function link(scope, element) {
       scope.$watch('avatars', function(value){
         if (!value || value.length === 0){
           return;
         }
-        var avatars = [];
+
         element.empty();
 
         var createAppendAvatar = function(userId){
@@ -43,11 +43,11 @@ angular.module('Pear2Pear')
           });
         }
       });
-    };
+    }
 
     return {
       scope: {
-        avatars: '=' 
+        avatars: '='
       },
       link: link,
       setPalette: setPalette
