@@ -19,8 +19,14 @@ angular.module('Pear2Pear')
 
         var createAppendAvatar = function(userId){
           $timeout(function() {
-            var d = angular.element('<img class="avatar"></img>');
-            element.append(d[0]);
+            var div = angular.element('<div class="avatar"></div>'),
+                img = angular.element('<img></img>'),
+                name = angular.element('<div class="avatar-name">' + userId.split('@')[0] + '</div>');
+
+            div.append(img[0]);
+            div.append(name[0]);
+            element.append(div[0]);
+
             var avatarConfig = {
               'useGravatar': false,
               'initials': userId[0].toUpperCase(),
@@ -28,7 +34,7 @@ angular.module('Pear2Pear')
               'initial_weight': 200,
               'initial_font_family': '"Dax Wide Regular", sans-serif'
             };
-            new window.Avatar(d[0], avatarConfig);
+            new window.Avatar(img[0], avatarConfig);
           });
         };
 
