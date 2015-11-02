@@ -24,7 +24,11 @@ angular.module('Pear2Pear')
                 name = angular.element('<div class="avatar-name">' + userId.split('@')[0] + '</div>');
 
             div.append(img[0]);
-            div.append(name[0]);
+
+            if (scope.avatarsName()) {
+              div.append(name[0]);
+            }
+
             element.append(div[0]);
 
             var avatarConfig = {
@@ -53,7 +57,8 @@ angular.module('Pear2Pear')
 
     return {
       scope: {
-        avatars: '='
+        avatars: '=',
+        avatarsName: '&'
       },
       link: link,
       setPalette: setPalette
