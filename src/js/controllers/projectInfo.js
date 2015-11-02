@@ -18,7 +18,8 @@ angular.module('Pear2Pear')
   }])
   .controller('ProjectInfoCtrl', [
               'SwellRTSession', 'url', '$scope', '$location', '$route', '$timeout', 'time', 'CommunitiesSvc', 'ProjectsSvc',
-              function (SwellRTSession, url, $scope, $location, $route, $timeout, time, CommunitiesSvc, ProjectsSvc) {
+              function (SwellRTSession, url, $scope, $location, $route, $timeout, time, CommunitiesSvc, ProjectsSvc)
+  {
 
     $scope.urlId= url.urlId;
 
