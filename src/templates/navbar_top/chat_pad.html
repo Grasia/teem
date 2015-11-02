@@ -4,7 +4,21 @@
 </div>
 
 <div ui-content-for="nav-right">
-  <a ui-turn-on="shareModalCreate"><i class="fa" ng-class="shareIcon()"></i></a>
+  <div class="btn-group pull-right nav-right-menu">
+    <a ui-turn-on="dropdownProjectMenu" class="btn">
+      <i class="fa fa-ellipsis-v"></i>
+    </a>
+    <ul ui-state="dropdownProjectMenu" class="dropdown-menu ng-hide"
+        ui-outer-click="Ui.turnOff('dropdownProjectMenu')"
+        ui-outer-click-if="Ui.active('dropdownProjectMenu')"
+        role="menu" ui-show="dropdownProjectMenu"
+        ui-turn-off="dropdownProjectMenu">
+
+      <li><a ui-turn-on="shareModalCreate"><span translate>project.menu.share</span></a></li>
+      <li><a like like-copy-on="project.menu.unlike" like-copy-off="project.menu.like" like-model="project"></a></li>
+      <li><a join join-copy-on="project.menu.leave" join-copy-off="project.menu.join" join-model="project"></a></li>
+    </ul>
+  </div>
 </div>
 
 <div ui-content-for="nav-navigation">

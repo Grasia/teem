@@ -113,6 +113,13 @@
         "title": "Information"
       }
     },
+    "menu": {
+      "join": "Join workspace",
+      "leave": "Leave workspace",
+      "like": "I like this",
+      "share": "Share workspace",
+      "unlike": "I don't like this"
+    },
     "section": {
       "name": {
         "title": "Name"
