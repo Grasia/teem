@@ -56,8 +56,8 @@
     </div>
 </div>
 
-<div ng-if="!ed.editting">
-  <div like-join project="project"></div>
+<div ng-if="!project.isContributor()">
+  <div like-join></div>
 </div>
 
 <!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
