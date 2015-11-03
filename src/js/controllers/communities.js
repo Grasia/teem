@@ -15,7 +15,9 @@ angular.module('Pear2Pear')
         controller: 'CommunitiesCtrl'
       });
   }])
-  .controller('CommunitiesCtrl', ['$scope', 'SwellRTSession', 'url', '$location', 'CommunitiesSvc', function ($scope, SwellRTSession, url, $location, CommunitiesSvc) {
+  .controller('CommunitiesCtrl', [
+  '$scope', 'SwellRTSession', 'url', '$location', 'CommunitiesSvc', '$timeout',
+  function ($scope, SwellRTSession, url, $location, CommunitiesSvc, $timeout) {
 
     $scope.newCommunityName = {
       name : ''
@@ -46,6 +48,22 @@ angular.module('Pear2Pear')
           });
       };
     });
+
+    $scope.search = function() {
+      $scope.searching = true;
+      // Need the timeout for the focus to work
+      $timeout(function() {
+        document.querySelector('.community-search input').focus();
+      });
+    };
+
+    $scope.new_ = function() {
+      $scope.creating = true;
+      // Need the timeout for the focus to work
+      $timeout(function() {
+        document.querySelector('.community-search input').focus();
+      });
+    };
 
     $scope.showProjects = function(id) {
       CommunitiesSvc.setCurrent(url.urlId(id));

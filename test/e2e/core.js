@@ -34,18 +34,25 @@ describe('Pear2Pear', function() {
         );
       }, timeout);
 
+      var communitySearchButton = by.css('.community-search .btn');
+      browser.wait(function() {
+        return browser.isElementPresent(communitySearchButton);
+      }, timeout);
+
+      element(communitySearchButton).click();
+
       var communitySearchInput = by.css('.community-search input');
 
       browser.wait(function() {
-        return browser.isElementPresent(communitySearchInput);
+        return element(communitySearchInput).isDisplayed();
       }, timeout);
 
       element(communitySearchInput).sendKeys('Testing Community');
 
-      var newCommunityButton = by.css('.new-community-item .btn');
+      var newCommunityButton = by.css('.community-create-btn');
 
       browser.wait(function() {
-        return browser.isElementPresent(newCommunityButton);
+        return element(newCommunityButton).isDisplayed();
       }, timeout);
 
       element(newCommunityButton).click();

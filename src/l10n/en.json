@@ -44,12 +44,17 @@
     },
     "leave": "Leave this community",
     "name": "Community name",
+    "new": {
+      "button": "...or create a new one"
+    },
     "participants": "People in the community",
     "project": {
       "number": "workspaces"
     },
     "search": {
-      "placeholder": "Find your community"
+      "button": "Find your community...",
+      "placeholder": "Community name",
+      "suggestions": "Some suggestions"
     },
     "communities": "Communities",
     "no_selected_tip": "Please, select a community in the app menu "
