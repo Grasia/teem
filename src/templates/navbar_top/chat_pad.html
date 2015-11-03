@@ -21,6 +21,12 @@
   </div>
 </div>
 
+<div ui-content-for="nav-title">
+  <div class="project-title overflow-ellipsis">
+    <input id="title_input" type="text" ng-model="project.title" placeholder="{{ 'project.title.placeholder' | translate }}">
+  </div>
+</div>
+
 <div ui-content-for="nav-navigation">
   <div class="btn-group justified">
     <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/pad?section={{section()}}" class="nav-pad {{nav('pad')}}" | translate>pad.nav.title</a>
