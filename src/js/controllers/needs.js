@@ -172,7 +172,7 @@ angular.module('Pear2Pear')
           var comments = this.comments;
 
           this.toggleCommentsVisibility = function toggleCommentsVisibility(need) {
-            comments.visible = (comments.visible === null)?need:null;
+            comments.visible = (comments.visible === need) ? null : need;
           };
 
           this.areCommentsVisible = function areCommentsVisible(need) {
