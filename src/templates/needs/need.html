@@ -38,7 +38,7 @@
             {{comment.author.split('@')[0]}}
           </span>
         </h5>
-        {{comment.text}}
+        <div ng-bind-html="comment.text | linky"></div>
       </div>
     </div>
     <div class="new-need-comment">
