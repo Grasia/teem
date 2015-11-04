@@ -49,20 +49,18 @@ angular.module('Pear2Pear')
       };
     });
 
-    $scope.search = function() {
-      $scope.searching = true;
-      // Need the timeout for the focus to work
-      $timeout(function() {
-        document.querySelector('.community-search input').focus();
-      });
-    };
-
     $scope.new_ = function() {
       $scope.creating = true;
       // Need the timeout for the focus to work
       $timeout(function() {
         document.querySelector('.community-search input').focus();
       });
+    };
+
+    $scope.reset = function() {
+      if ($scope.newCommunityName.name === '') {
+        $scope.creating = false;
+      }
     };
 
     $scope.showProjects = function(id) {

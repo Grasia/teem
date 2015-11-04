@@ -34,17 +34,10 @@ describe('Pear2Pear', function() {
         );
       }, timeout);
 
-      var communitySearchButton = by.css('.community-search .btn');
-      browser.wait(function() {
-        return browser.isElementPresent(communitySearchButton);
-      }, timeout);
-
-      element(communitySearchButton).click();
-
       var communitySearchInput = by.css('.community-search input');
 
       browser.wait(function() {
-        return element(communitySearchInput).isDisplayed();
+        return browser.isElementPresent(communitySearchInput);
       }, timeout);
 
       element(communitySearchInput).sendKeys('Testing Community');

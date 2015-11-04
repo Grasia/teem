@@ -33,7 +33,8 @@
     "add_participant": "Añadir participante",
     "create": {
       "button": "Crear la comunidad \"{{name}}\"",
-      "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!"
+      "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!",
+      "placeholder": "Nombre de la comunidad"
     },
     "edit": "Editar",
     "leave": "Abandonar esta comunidad",
@@ -53,8 +54,7 @@
       "number": "espacios de trabajo"
     },
     "search": {
-      "button": "Encuentra tu comunidad...",
-      "placeholder": "Nombre de la comunidad",
+      "placeholder": "Encuentra tu comunidad...",
       "suggestions": "Algunas sugerencias"
     },
     "communities": "Comunidades",
