@@ -49,12 +49,6 @@ angular.module('Pear2Pear')
       $location.path('frontpage');
     };
 
-    $scope.isAndroid5 = function(){
-      var ua = navigator.userAgent.toLowerCase();
-      var match = ua.match(/android\s([0-9\.]*)/);
-      return match ? parseInt(match[1], 10) === 5 : false;
-    };
-
     angular.element(document.querySelector('.swellrt-editor')).on(
       'focusin',
       function(){

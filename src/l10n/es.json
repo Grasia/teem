@@ -99,8 +99,7 @@
       "title": "Info"
     },
     "placeholder": "Empieza escribiendo la descripción del espacio en este documento colaborativo, para que otras participantes conozcan el proyecto y se involucren en él",
-    "edit": "Editar",
-    "android5Alert": "¡Vaya!, la edición colaborativa no funciona en Android 5. Cualquier edición que hagas en el pad se perderá. Arreglar esto es una de nuestras prioridades, prueba de nuevo en unos días."
+    "edit": "Editar"
   },
   "project": {
     "create": {
