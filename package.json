@@ -4,8 +4,10 @@
   "description": "Pear2Pear is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
   "repository": "https://github.com/P2Pvalue/pear2pear",
   "license": "AGPL",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
+    "bower": "^1.6.5",
     "gulp": "^3.8.1",
     "gulp-angular-filesort": "^1.0.1",
     "gulp-angular-protractor": "0.0.5",
