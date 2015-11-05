@@ -4,25 +4,25 @@
 
 <div class="scrollable-content">
   <div id="communities" class="section communities">
-      <div class="community-search">
-        <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-search fa-fw" ng-hide="creating"></i></span>
-          <input type="text"
-           class="form-control"
-           ng-model="newCommunityName.name"
-           ng-blur="reset()"
-           translate
-           placeholder="{{ creating ? 'community.create.placeholder' : 'community.search.placeholder' | translate }}">
-        </div>
+    <div class="community-search">
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="fa fa-search fa-fw" ng-hide="creating"></i></span>
+        <input type="text"
+         class="form-control"
+         ng-model="newCommunityName.name"
+         ng-blur="reset()"
+         translate
+         placeholder="{{ creating ? 'community.create.placeholder' : 'community.search.placeholder' | translate }}">
       </div>
-      <div class="community-create">
-        <a class="btn btn-primary btn-block btn-lg" ng-if="! newCommunityName.name" ng-click="new_()" overflow-ellipsis>
-          <span translate>community.new.button</span>
-        </a>
-        <a class="btn btn-primary btn-block btn-lg community-create-btn" ng-if="newCommunityName.name" ng-click="create(newCommunityName.name)" overflow-ellipsis>
-          <span translate translate-values="{ name: '{{newCommunityName.name}}' }">community.create.button</span>
-        </a>
-      </div>
+    </div>
+    <div class="community-create">
+      <a class="btn btn-primary btn-block btn-lg" ng-if="! newCommunityName.name" ng-click="new_()" overflow-ellipsis>
+        <span translate>community.new.button</span>
+      </a>
+      <a class="btn btn-primary btn-block btn-lg community-create-btn" ng-if="newCommunityName.name" ng-click="create(newCommunityName.name)" overflow-ellipsis>
+        <span translate translate-values="{ name: '{{newCommunityName.name}}' }">community.create.button</span>
+      </a>
+    </div>
 
     <div class="community-list list-group">
       <div class="community-item list-group-item"
