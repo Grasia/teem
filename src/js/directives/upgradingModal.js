@@ -25,6 +25,12 @@ angular.module('Pear2Pear')
           $timeout();
         });
 
+        appCache.addEventListener('error', function() {
+          scope.upgrading = false;
+          // Need to apply scope
+          $timeout();
+        });
+
         appCache.addEventListener('updateready', function() {
           scope.upgrading = false;
           // Need to apply scope
