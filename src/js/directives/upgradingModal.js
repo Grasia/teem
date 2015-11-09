@@ -21,10 +21,13 @@ angular.module('Pear2Pear')
 
         appCache.addEventListener('cached', function() {
           scope.upgrading = false;
+          // Need to apply scope
+          $timeout();
         });
 
         appCache.addEventListener('updateready', function() {
           scope.upgrading = false;
+          // Need to apply scope
           $timeout(function() {
             appCache.swapCache();
           });
