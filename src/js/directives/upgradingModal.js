@@ -3,8 +3,8 @@
 
 angular.module('Pear2Pear')
   .directive('upgradingModal', [
-  '$window',
-  function($window) {
+  '$window', '$timeout',
+  function($window, $timeout) {
     return {
       scope: true,
       link: function(scope){
@@ -25,7 +25,9 @@ angular.module('Pear2Pear')
 
         appCache.addEventListener('updateready', function() {
           scope.upgrading = false;
-          appCache.swapCache();
+          $timeout(function() {
+            appCache.swapCache();
+          });
         });
       },
       templateUrl: 'upgrading-modal.html'
