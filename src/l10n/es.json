@@ -188,6 +188,10 @@
       "title": "Noticias"
     }
   },
+  "upgrading": {
+    "explanation": "Trabajamos duro para mejorar P2Pvalue y hacerla útil para tus comunidades. Las actualizaciones arreglan fallos y proporcionan nuevas funcionalidades",
+    "title": "Actualizando..."
+  },
   "page_title": "Prototipo P2Pvalue",
   "bottom_navbar": {
 

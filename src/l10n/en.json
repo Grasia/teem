@@ -187,6 +187,10 @@
       "title": "News"
     }
   },
+  "upgrading": {
+    "explanation": "We are working hard to improve Pear2Pear and make it useful for your communities. Upgrades bring new features and bug fixes",
+    "title": "Upgrading..."
+  },
   "page_title": "P2Pvalue Prototype",
   "bottom_navbar": {
 
