@@ -3,10 +3,11 @@
 
 angular.module('Pear2Pear')
   .directive('upgradingModal', [
-  'SharedState', '$window',
-  function(SharedState, $window) {
+  '$window',
+  function($window) {
     return {
-      link: function(){
+      scope: true,
+      link: function(scope){
         var appCache = $window.applicationCache;
 
         // Browsers not supporting Application Cache
@@ -15,15 +16,15 @@ angular.module('Pear2Pear')
         }
 
         appCache.addEventListener('downloading', function() {
-          SharedState.turnOn('upgradingSharedState');
+          scope.upgrading = true;
         });
 
         appCache.addEventListener('cached', function() {
-          SharedState.turnOff('upgradingSharedState');
+          scope.upgrading = false;
         });
 
         appCache.addEventListener('updateready', function() {
-          SharedState.turnOff('upgradingSharedState');
+          scope.upgrading = false;
           appCache.swapCache();
         });
       },
