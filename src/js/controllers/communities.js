@@ -10,14 +10,14 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities', {
+      .when('/communities/:new?', {
         templateUrl: 'communities/index.html',
         controller: 'CommunitiesCtrl'
       });
   }])
   .controller('CommunitiesCtrl', [
-  '$scope', 'SwellRTSession', 'url', '$location', 'CommunitiesSvc', '$timeout',
-  function ($scope, SwellRTSession, url, $location, CommunitiesSvc, $timeout) {
+  '$scope', 'SwellRTSession', 'url', '$location', 'CommunitiesSvc', '$timeout', '$routeParams',
+  function ($scope, SwellRTSession, url, $location, CommunitiesSvc, $timeout, $routeParams) {
 
     $scope.newCommunityName = {
       name : ''
@@ -56,6 +56,10 @@ angular.module('Pear2Pear')
         document.querySelector('.community-search input').focus();
       });
     };
+
+    if ($routeParams.new) {
+      $scope.new_();
+    }
 
     $scope.reset = function() {
       if ($scope.newCommunityName.name === '') {

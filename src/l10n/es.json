@@ -78,6 +78,10 @@
     }
   },
   "menu": {
+    "communities": {
+      "create": "Crea una comunidad",
+      "find": "Encuentra tu comunidad"
+    },
     "communities": "Encuentra o crea tu comunidad",
     "title": "Pear2Pear"
   },

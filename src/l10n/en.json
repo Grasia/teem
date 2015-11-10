@@ -77,7 +77,10 @@
     }
   },
   "menu": {
-    "communities": "Find or create your community",
+    "communities": {
+      "create": "Create new community",
+      "find": "Find your community"
+    },
     "title": "Pear2Pear"
   },
   "need": {
