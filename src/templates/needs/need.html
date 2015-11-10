@@ -1,26 +1,29 @@
 <div class="list-group-item need-item" ng-if="project.isContributor() || need.completed !== 'add'">
   <div class="need-sections" ng-click="toggleCommentsVisibility(need)">
-    <div class="need-section need-section-status">
-      <div class="ineed-check-container pull-left" ng-click="$event.stopPropagation(); toggleCompleted(need, $event)" ng-class="(need.completed === 'true') ? 'need-checkbox-true' :  ((need.completed === 'false') ? 'need-checkbox-false' : 'need-checkbox-add')">
-      </div>
-    </div>
-    <div class="need-section need-text">
-      <input ng-if="project.isContributor()" type="text"
-             class="need-name"
-             ng-class="need.completed === 'true' ? 'text-strike' : ''"
-             ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
-             ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
-             ng-click="$event.stopPropagation()">
-      <div ng-if="!project.isContributor()" class="need-section need-text" ng-class="need.completed === 'true' ? 'text-strike' : ''">
-        {{ need.text }}
-      </div>
-    </div>
     <div class="need-section need-section-comments" ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
       <div class="need-comments-count">
         {{ need.comments.length || 0 }}
       </div>
       <div class="need-comments-icon">
         <i class="fa fa-comment"></i>
+      </div>
+    </div>
+    <div class="need-section need-section-status">
+      <div class="ineed-check-container pull-left" ng-click="$event.stopPropagation(); toggleCompleted(need, $event)" ng-class="(need.completed === 'true') ? 'need-checkbox-true' :  ((need.completed === 'false') ? 'need-checkbox-false' : 'need-checkbox-add')">
+      </div>
+    </div>
+    <div class="need-section need-section-text">
+      <textarea ng-if="project.isContributor()"
+                class="need-name"
+                rows="1"
+                msd-elastic="\n"
+                ng-class="need.completed === 'true' ? 'text-strike' : ''"
+                ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
+                ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
+                ng-click="$event.stopPropagation()">
+      </textarea>
+      <div ng-if="!project.isContributor()" class="section-text-readonly" ng-class="need.completed === 'true' ? 'text-strike' : ''">
+        {{ need.text }}
       </div>
     </div>
   </div>
