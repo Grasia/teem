@@ -36,6 +36,7 @@ angular.module('Pear2Pear')
           // Need to apply scope
           $timeout(function() {
             appCache.swapCache();
+            $window.location.reload();
           });
         });
       },
