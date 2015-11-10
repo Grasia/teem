@@ -345,6 +345,16 @@ gulp.task('js', function() {
     .pipe(gulp.dest(path.join(config.dest, 'js')));
   });
 
+/*==================================
+=            Cordova files         =
+==================================*/
+
+gulp.task('cordova', function() {
+  return gulp.src('src/vendor/cordova/**/*')
+    .pipe(gulp.dest(path.join(config.dest, 'js/cordova')));
+});
+
+
 /*===================================================================
 =                Generate HTML5 Cache Manifest files                =
 ===================================================================*/
@@ -396,7 +406,7 @@ gulp.task('weinre', function() {
 ======================================*/
 
 gulp.task('build', function(done) {
-  var tasks = ['html', 'fonts', 'l10n', 'images', 'sass', 'js'];
+  var tasks = ['html', 'fonts', 'l10n', 'images', 'sass', 'js', 'cordova'];
   seq('clean', tasks, done);
 });
 
