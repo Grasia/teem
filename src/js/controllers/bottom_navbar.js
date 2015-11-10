@@ -28,7 +28,7 @@ angular.module('Pear2Pear')
     };
     $scope.$watch(function () {
       return $window.innerHeight;
-    }, function(value) {
+    }, function() {
     });
 
     $window.addEventListener('resize', function () {

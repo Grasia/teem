@@ -19,6 +19,7 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
+    "__session": false,
     "angular": false,
     "browser": false,
     "expect": false,

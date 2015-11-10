@@ -57,12 +57,12 @@ angular
       return window.encodeURIComponent(
         window.encodeURIComponent(
           window.btoa(str)));
-    }
+    };
   })
   .filter('unescapeBase64', function(){
     return function(str){
       return window.atob(
         window.decodeURIComponent(
           window.decodeURIComponent(str)));
-    }
+    };
   });

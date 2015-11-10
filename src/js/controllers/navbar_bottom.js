@@ -18,11 +18,11 @@ angular.module('Pear2Pear')
       } else {
         return 'crowddoing';
       }
-    };
+    }
 
     function isSection(s) {
       return s === section();
-    };
+    }
 
     $scope.nav = function(id) {
       return isSection(id) ? 'selected' : '';

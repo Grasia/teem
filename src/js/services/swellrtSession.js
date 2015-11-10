@@ -59,7 +59,7 @@ angular.module('Pear2Pear')
           return user === users.current();
         },
         loggedIn: function() {
-          return users.current() != 'undefined' && users.current() !== null;
+          return users.current() !== 'undefined' && users.current() !== null;
         },
         clearCurrent: function() {
           window.localStorage.removeItem('userId');

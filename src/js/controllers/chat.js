@@ -107,7 +107,7 @@ angular.module('Pear2Pear')
       var d = new Date(msg.time);
       if (index > 0 && d.getDate() !== new Date($scope.project.chat[index -1].time).getDate()){
         return time.date(d);
-      };
+      }
       return undefined;
     };
 

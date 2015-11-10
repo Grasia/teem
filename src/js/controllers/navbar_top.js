@@ -20,7 +20,7 @@ angular.module('Pear2Pear')
           return null;
         };
 
-        $scope.$on('$routeChangeSuccess', function(event) {
+        $scope.$on('$routeChangeSuccess', function() {
           if ($route.current && $route.current.params.id){
             SwellRTSession.onLoad(function(){
               ProjectsSvc.find($route.current.params.id)

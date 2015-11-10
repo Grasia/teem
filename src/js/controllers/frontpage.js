@@ -27,7 +27,7 @@ angular.module('Pear2Pear')
         $rootScope.hideNavigation = false;
       });
 
-      var slide = new Swiper('.swiper-container', {
+      new Swiper('.swiper-container', {
         autoplay: 5000,
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev'
