@@ -2,7 +2,7 @@
 
 <div class="scrollable" hm-swiperight="showChat();">
   <div class="scrollable-content section">
-    <div need-list needs="project.needs"/>
+    <div need-list needs="project.needs" ng-class="project.isContributor() ? '' : 'has-cta'"/>
   </div>
 </div>
 
