@@ -4,8 +4,8 @@ angular.module('Pear2Pear')
   .directive('join', function() {
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SwellRTSession',
-      function($scope, $element, $attrs, SwellRTSession) {
+      '$scope', '$element', '$attrs', 'SwellRTSession', '$timeout',
+      function($scope, $element, $attrs, SwellRTSession, $timeout) {
         $scope.joinIcon = $attrs.joinIcon;
         $scope.joinCopyOn  = $attrs.joinCopyOn;
         $scope.joinCopyOff = $attrs.joinCopyOff;
@@ -13,7 +13,7 @@ angular.module('Pear2Pear')
         $element.on('click', function() {
           SwellRTSession.loginRequired(function() {
             $scope.project.toggleContributor();
-            $scope.$apply();
+            $timeout()
           });
         });
       }],
