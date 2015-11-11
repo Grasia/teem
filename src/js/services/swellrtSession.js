@@ -10,7 +10,7 @@
 
 angular.module('Pear2Pear')
   .factory(
-    'SwellRTSession', ['$q', '$timeout', function($q, $timeout){
+    'SwellRTSession', ['$q', '$timeout', 'SharedState', function($q, $timeout, SharedState){
 
       var swellRTDef = $q.defer();
       var swellRTpromise = swellRTDef.promise;
@@ -171,11 +171,24 @@ angular.module('Pear2Pear')
           });
       };
 
+      function loginRequired(cb) {
+        if (! users.loggedIn()) {
+          SharedState.turnOn('shouldLoginSharedState');
+          // Invoque $timout to refresh scope and actually show modal
+          $timeout(function() {
+            return;
+          });
+        } else {
+          cb();
+        }
+      }
+
       return {
         users: users,
         registerUser: registerUser,
         startSession: startSession,
         stopSession: stopSession,
+        loginRequired: loginRequired,
         setFatalExceptionHandler: setFatalExceptionHandler,
         // TODO no restart session without user saying so
         // TODO stop session before start session after a timeout

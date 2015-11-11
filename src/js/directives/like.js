@@ -4,20 +4,18 @@ angular.module('Pear2Pear')
   .directive('like', function() {
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SwellRTSession', 'SharedState',
-      function($scope, $element, $attrs, SwellRTSession, SharedState) {
+      '$scope', '$element', '$attrs', 'SwellRTSession', '$timeout',
+      function($scope, $element, $attrs, SwellRTSession, $timeout) {
         $scope.likeIcon = $attrs.likeIcon;
         $scope.likeCopyOn  = $attrs.likeCopyOn;
         $scope.likeCopyOff = $attrs.likeCopyOff;
 
         $element.on('click', function() {
-          if (! SwellRTSession.users.loggedIn()) {
-            SharedState.turnOn('shouldLoginSharedState');
-            return;
-          }
+          SwellRTSession.loginRequired(function() {
+            $scope.project.toggleSupport();
+            $scope.$apply();
+          });
 
-          $scope.project.toggleSupport();
-          $scope.$apply();
         });
       }],
       templateUrl: 'like.html'
