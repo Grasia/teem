@@ -57,6 +57,14 @@
       "placeholder": "Encuentra tu comunidad...",
       "suggestions": "Algunas sugerencias"
     },
+    "welcome": {
+      "message": "Ahora podéis impulsar la comunidad con Pear2Pear",
+      "next": {
+        "title": "¿Lo siguiente?",
+        "workspace": "Crea un espacio de trabajo"
+      },
+      "title": "¡Bienvenid@s!"
+    },
     "communities": "Comunidades",
     "no_selected_tip": "Por favor, selecciona una comunidad en el menú principal"
   },

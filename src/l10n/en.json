@@ -56,6 +56,14 @@
       "placeholder": "Find your community...",
       "suggestions": "Some suggestions"
     },
+    "welcome": {
+      "message": "Now you can foster your community with Pear2Pear",
+      "next": {
+        "title": "What's next?",
+        "workspace": "Create a workspace"
+      },
+      "title": "Welcome aboard!"
+    },
     "communities": "Communities",
     "no_selected_tip": "Please, select a community in the app menu "
   },
