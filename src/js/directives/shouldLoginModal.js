@@ -5,8 +5,10 @@ angular.module('Pear2Pear')
     return {
       controller: ['$scope', 'SharedState', '$location', function($scope, SharedState, $location){
         $scope.login = function(){
+          var currentPath = $location.path();
+
           SharedState.turnOff('shouldLoginSharedState');
-          $location.path('frontpage');
+          $location.path('frontpage').search('redirect', currentPath);
         };
         $scope.cancel = function(){
           SharedState.turnOff('shouldLoginSharedState');
