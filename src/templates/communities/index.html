@@ -16,10 +16,10 @@
       </div>
     </div>
     <div class="community-create">
-      <a class="btn btn-primary btn-block btn-lg" ng-if="! newCommunityName.name" ng-click="new_()" overflow-ellipsis>
+      <a class="btn btn-default btn-block btn-lg" ng-if="! newCommunityName.name" ng-click="new_()" overflow-ellipsis>
         <span translate>community.new.button</span>
       </a>
-      <a class="btn btn-primary btn-block btn-lg community-create-btn" ng-if="newCommunityName.name" ng-click="create(newCommunityName.name)" overflow-ellipsis>
+      <a class="btn btn-default btn-block btn-lg community-create-btn" ng-if="newCommunityName.name" ng-click="create(newCommunityName.name)" overflow-ellipsis>
         <span translate translate-values="{ name: '{{newCommunityName.name}}' }">community.create.button</span>
       </a>
     </div>
