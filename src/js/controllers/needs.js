@@ -116,17 +116,19 @@ angular.module('Pear2Pear')
 
           scope.areCommentsVisible = needsCtrl.areCommentsVisible;
           scope.sendComment = function(){
-            ProjectsSvc.find($route.current.params.id).then(function(project){
-              project.addNeedComment(scope.need, scope.newComment.text);
-              project.addChatNotification(
-                'need.comment.notification',
-                {
-                  user: SwellRTSession.users.current().split('@')[0],
-                  need: scope.need.text,
-                  comment: scope.newComment.text
-                }
-              );
-              scope.newComment.text = '';
+            SwellRTSession.loginRequired(function() {
+              ProjectsSvc.find($route.current.params.id).then(function(project){
+                project.addNeedComment(scope.need, scope.newComment.text);
+                project.addChatNotification(
+                  'need.comment.notification',
+                  {
+                    user: SwellRTSession.users.current().split('@')[0],
+                    need: scope.need.text,
+                    comment: scope.newComment.text
+                  }
+                );
+                scope.newComment.text = '';
+              });
             });
           };
           scope.hour = needsCtrl.hour;
