@@ -10,7 +10,7 @@ angular.module('Pear2Pear')
     }
 
     function link(scope, element) {
-      scope.$watch('avatars', function(value){
+      scope.$watchCollection('avatars', function(value){
         if (!value || value.length === 0){
           return;
         }
