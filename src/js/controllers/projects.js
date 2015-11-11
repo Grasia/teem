@@ -56,11 +56,12 @@ angular.module('Pear2Pear')
       });
 
       $scope.new_ = function () {
-        ProjectsSvc.create(function(p) {
-
-          //FIXME model prototype
-          $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(p.id) + '/pad');
-        }, $scope.community.id);
+        SwellRTSession.loginRequired(function() {
+          ProjectsSvc.create(function(p) {
+            //FIXME model prototype
+            $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(p.id) + '/pad');
+          }, $scope.community.id);
+        });
       };
     });
 
