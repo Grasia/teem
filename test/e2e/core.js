@@ -59,7 +59,7 @@ describe('Pear2Pear', function() {
       // Wait until pear has loaded the projects
       browser.wait(element(projectList).evaluate('projects.create'), timeout);
 
-      var newProjectButton = by.css('.cta-btn');
+      var newProjectButton = by.css('.btn-new-project');
 
       browser.wait(function() {
         return browser.isElementPresent(newProjectButton);
