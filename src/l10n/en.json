@@ -1,36 +1,36 @@
 {
-  "tasks": {
-    "edit": {
-      "title": "Edit task"
-    },
-    "index": {
-      "title": "Task list"
-    },
-    "new": {
-      "title": "New task"
-    },
-    "new_task" : "New task",
-    "reminders" : "My reminders",
-    "task_assigned_to" : "Assigned to",
-    "task_checkbox_tip" : "Click done tasks here",
-    "task_description" : "Task description",
-    "task_list" : "Task list",
-    "task_name" : "Task name",
-    "deadline" : "Deadline",
-    "reminders" : "My reminders",
-    "reminders_for_android" : "Reminders available for our",
-    "android_app" : "Android app",
-    "empty_tasks_tip" : "Add a new task",
-    "task_checkbox_tip" : "Click done tasks here"
+  "app": {
+    "name": "Pear2Pear"
   },
+  "bottom_navbar": {},
   "chat": {
     "input": "Message",
     "nav": {
       "title": "Chat"
     }
   },
+  "collab": {
+    "activity": "Activity",
+    "collaborate": "Collaborate",
+    "collaboration_space": "Collaboration Space",
+    "empty_collab_tip": "add a new activity",
+    "join": "Join this activity?",
+    "learn": "Learn",
+    "learn_space": "Learn Space",
+    "name": "Name",
+    "new_activity": "New activity",
+    "no": "No",
+    "objectives": "Objectives...",
+    "what_can_be_learned": "photography, painting",
+    "yes": "Yes!"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "create": "Create"
+  },
   "community": {
     "add_participant": "Add participant",
+    "communities": "Communities",
     "create": {
       "button": "Create \"{{name}}\" community",
       "description": "Can't you find what you were looking for? Register your community!",
@@ -48,6 +48,7 @@
     "new": {
       "button": "...or create a new one"
     },
+    "no_selected_tip": "Please, select a community in the app menu ",
     "participants": "People in the community",
     "project": {
       "number": "workspaces"
@@ -63,9 +64,12 @@
         "workspace": "Create a workspace"
       },
       "title": "Welcome aboard!"
-    },
-    "communities": "Communities",
-    "no_selected_tip": "Please, select a community in the app menu "
+    }
+  },
+  "connection": {
+    "lost": "Connection lost. Trying to reconnect...",
+    "sync": "Your changes from {{time.toLocaleString()}} have not been saved.",
+    "tip": "If the problem persist, copy somewhere else your last changes and reload the application"
   },
   "login": {
     "button": "Login",
@@ -74,15 +78,15 @@
       "propose": "Propose your project, find support and collaborators",
       "work": "Work in your project and expose your needs"
     },
-    "name": "Nickname",
-    "tip": "Start entering your nickname",
     "error": "Please, choose a nickname composed by letters, numbers and dots",
-    "welcome_msg": "The tool to promote your proposals in your communities",
+    "name": "Nickname",
     "should_be_logged": {
-      "message": "Sorry! You should be logged in to do that action.",
+      "cancel": "Cancel",
       "loggin_now": "Log in",
-      "cancel": "Cancel"
-    }
+      "message": "Sorry! You should be logged in to do that action."
+    },
+    "tip": "Start entering your nickname",
+    "welcome_msg": "The tool to promote your proposals in your communities"
   },
   "menu": {
     "communities": {
@@ -100,21 +104,22 @@
       "title": "Needs"
     },
     "new": {
-      "placeholder": "New need",
-      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the workspace"
+      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the workspace",
+      "placeholder": "New need"
     }
   },
   "pad": {
+    "edit": "Edit",
     "nav": {
       "title": "Info"
     },
-    "placeholder": "Start writting your project description in this collaborative document pad, so other participants know about your project and join it",
-    "edit": "Edit"
+    "placeholder": "Start writting your project description in this collaborative document pad, so other participants know about your project and join it"
   },
+  "page_title": "P2Pvalue Prototype",
   "project": {
     "create": {
-      "tip": "Please, start creating a new workspace.",
-      "button": "Create workspace"
+      "button": "Create workspace",
+      "tip": "Please, start creating a new workspace."
     },
     "edit": {
       "button": "Edit",
@@ -135,16 +140,26 @@
       "share": "Share workspace",
       "unlike": "I don't like this"
     },
+    "project_description": "Description",
+    "project_name": "Project name",
+    "project_status": "Status",
     "section": {
+      "description": {
+        "tip": "(Tap to edit)",
+        "title": "Notes"
+      },
       "name": {
         "title": "Name"
       },
-      "description": {
-        "title": "Notes",
-        "tip": "(Tap to edit)"
-      },
       "needs": {
         "title": "Needs"
+      },
+      "participate": {
+        "btn": {
+          "do": "Join",
+          "undo": "Leave"
+        },
+        "title": "Participants"
       },
       "support": {
         "btn": {
@@ -153,45 +168,75 @@
         },
         "number": "likes",
         "title": "Likes"
-      },
-      "participate": {
-        "btn": {
-          "do": "Join",
-          "undo": "Leave"
-        },
-        "title": "Participants"
       }
     },
     "share": {
-      "title": "Share workspace '{{title}}'",
+      "button": "Share",
       "description": {
         "link": "Link to share:",
         "permission": "Change access permissions:"
       },
-      "button": "Share",
-      "mode" : {
-        "public": "Visible",
-        "link": "Only with Link ",
-        "invite": "Invite"
+      "info": {
+        "link": "Only people with the link can see the workspace",
+        "public": "This workspace is visible in the community's workspace list"
       },
-      "info" : {
-        "public" : "This workspace is visible in the community's workspace list",
-        "link" : "Only people with the link can see the workspace"
-      }
+      "mode": {
+        "invite": "Invite",
+        "link": "Only with Link ",
+        "public": "Visible"
+      },
+      "title": "Share workspace '{{title}}'"
     },
     "task_list_label": "Project tasks:",
-    "title" : {
-      "placeholder" : "<Write here workspace's name>",
+    "title": {
+      "placeholder": "<Write here workspace's name>",
       "reminder": {
-        "button_cancel": "Yes, discard workspace",
-        "button_continue": "No, keep workspace",
         "body_one": "This workspace doesn't have a name yet!",
-        "body_two": "Do you really want to discard the workspace?"
+        "body_two": "Do you really want to discard the workspace?",
+        "button_cancel": "Yes, discard workspace",
+        "button_continue": "No, keep workspace"
       }
+    }
+  },
+  "session": {
+    "age": "Age",
+    "community": "In which community do you participate?",
+    "gender": "Gender",
+    "gender_female": "female",
+    "gender_male": "male",
+    "intro": "<strong>Thanks for testing our prototype!</strong> <br> Please, fill the info bellow to help us understand a little bit more about the way you will use our application.",
+    "role": "What is your relation with the community?",
+    "role_1_radio": "I am very involved in the community",
+    "role_90_radio": "I am interested in what the community does",
+    "role_9_radio": "I collaborate ocasionally with the community",
+    "send_user_data": "Send",
+    "tech": "How is your experience with computer programs and moblie applications?",
+    "tech_high": "High",
+    "tech_low": "Low",
+    "tech_medium": "Medium",
+    "title": "Tell us a little bit about you"
+  },
+  "tasks": {
+    "android_app": "Android app",
+    "deadline": "Deadline",
+    "edit": {
+      "title": "Edit task"
     },
-    "project_name": "Project name",
-    "project_status": "Status",
-    "project_description": "Description"
+    "empty_tasks_tip": "Add a new task",
+    "index": {
+      "title": "Task list"
+    },
+    "new": {
+      "title": "New task"
+    },
+    "new_task": "New task",
+    "reminders": "My reminders",
+    "reminders_for_android": "Reminders available for our",
+    "task_assigned_to": "Assigned to",
+    "task_checkbox_tip": "Click done tasks here",
+    "task_description": "Task description",
+    "task_list": "Task list",
+    "task_name": "Task name"
   },
   "timeline": {
     "show": {
@@ -201,57 +246,5 @@
   "upgrading": {
     "explanation": "We are working hard to improve Pear2Pear and make it useful for your communities. Upgrades bring new features and bug fixes",
     "title": "Upgrading..."
-  },
-  "page_title": "P2Pvalue Prototype",
-  "bottom_navbar": {
-
-  },
-
-  "session": {
-    "title": "Tell us a little bit about you",
-    "intro": "<strong>Thanks for testing our prototype!</strong> <br> Please, fill the info bellow to help us understand a little bit more about the way you will use our application.",
-    "community": "In which community do you participate?" ,
-    "gender": "Gender",
-    "gender_male": "male",
-    "gender_female": "female",
-    "age": "Age",
-    "role": "What is your relation with the community?",
-    "role_90_radio": "I am interested in what the community does",
-    "role_9_radio": "I collaborate ocasionally with the community",
-    "role_1_radio": "I am very involved in the community",
-    "tech": "How is your experience with computer programs and moblie applications?",
-    "tech_low": "Low",
-    "tech_medium": "Medium",
-    "tech_high": "High",
-
-    "send_user_data": "Send"
-  },
-
-  "collab": {
-    "learn_space": "Learn Space",
-    "collaboration_space": "Collaboration Space",
-    "join": "Join this activity?",
-    "yes": "Yes!",
-    "no" : "No",
-    "activity": "Activity",
-    "new_activity": "New activity",
-    "learn": "Learn",
-    "collaborate": "Collaborate",
-    "name": "Name",
-    "objectives": "Objectives...",
-    "what_can_be_learned": "photography, painting",
-    "empty_collab_tip": "add a new activity"
-  },
-  "common": {
-    "cancel": "Cancel",
-    "create": "Create"
-  },
-  "connection": {
-    "lost": "Connection lost. Trying to reconnect...",
-    "sync": "Your changes from {{time.toLocaleString()}} have not been saved.",
-    "tip": "If the problem persist, copy somewhere else your last changes and reload the application"
-  },
-  "app" : {
-    "name" : "Pear2Pear"
   }
 }
