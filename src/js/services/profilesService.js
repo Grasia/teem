@@ -6,15 +6,25 @@ angular.module('Pear2Pear')
     var Profile = function(){
     };
 
-    Profile.prototype.timestampProjectAccess = function(projId){
-      this.lastProjectVisit[projId] = (new Date()).toJSON();
+    Profile.prototype.timestampPadAccess = function(projId){
+      if (!this.lastPadVisit) this.lastPadVisit = {};
+      this.lastPadVisit[projId] = (new Date()).toJSON();
     };
 
+    Profile.prototype.timestampChatAccess = function(projId){
+      if (!this.lastChatVisit) this.lastChatVisit = {};
+      this.lastChatVisit[projId] = (new Date()).toJSON();
+    };
+
+    Profile.prototype.timestampNeedsAccess = function(projId){
+      if (!this.lastNeedsVisit) this.lastNeedsVisit = {};
+      this.lastNeedsVisit[projId] = (new Date()).toJSON();
+    };
 
     Profile.prototype.getPadEditionCount = function(proj){
       var lastVisit =
-        (this.lastProjectVisit[proj.id])?
-        new Date(this.lastProjectVisit[proj.id]):new Date(0);
+        (this.lastPadVisit[proj.id])?
+        new Date(this.lastPadVisit[proj.id]):new Date(0);
 
       if (lastVisit.getTime() < proj.pad.lastmodtime){
         return 1;
@@ -25,8 +35,8 @@ angular.module('Pear2Pear')
 
     Profile.prototype.getNewMessagesCount = function(proj){
       var lastVisit =
-        (this.lastProjectVisit[proj.id])?
-        new Date(this.lastProjectVisit[proj.id]):new Date(0);
+        (this.lastChatVisit[proj.id])?
+        new Date(this.lastChatVisit[proj.id]):new Date(0);
 
       var chatsLength = proj.chat.length;
 
@@ -65,7 +75,6 @@ angular.module('Pear2Pear')
             $timeout(function(){
               proxy.type = 'userProfile';
               proxy.userName = userName;
-              proxy.lastProjectVisit = {};
               def.resolve(proxy);
             });
           });

@@ -53,10 +53,6 @@ angular.module('Pear2Pear')
           $scope.project.setShareMode(mode);
         };
 
-        $scope.timestampProjectAccess = function(){
-          $scope.project.timestampProjectAccess();
-        };
-
         //FIXME repeated code in ProjectInfoCtrl
         // Refactorize to service
         function section() {

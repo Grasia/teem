@@ -17,19 +17,30 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('NeedsCtrl', [
-              'SwellRTSession', 'url', '$scope', '$route', 'ProjectsSvc',
-              function(SwellRTSession, url, $scope, $route, ProjectsSvc){
+              'SwellRTSession', 'url', '$scope', '$route', 'ProjectsSvc', 'ProfilesSvc',
+              function(SwellRTSession, url, $scope, $route, ProjectsSvc, ProfilesSvc){
 
     $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
+    var projId = url.decodeUrlId($route.current.params.id);
+
+    var timestampNeedsAccess = function(){
+      ProfilesSvc.current().then(function(prof){
+        prof.timestampNeedsAccess(projId);
+      });
+    };
 
     SwellRTSession.onLoad(function(){
       ProjectsSvc.find($route.current.params.id).then(
         function(proxy){
           $scope.project = proxy;
-          $scope.project.timestampProjectAccess();
         }
       );
+      timestampNeedsAccess();
+    });
+
+    $scope.$on('$routeChangeStart', function(){
+      timestampNeedsAccess();
     });
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262

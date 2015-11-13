@@ -15,6 +15,11 @@ angular.module('Pear2Pear')
         if (id === undefined) { return ''; }
 
         return base64.urlencode(id);
+      },
+      decodeUrlId : function(urlId){
+        if (urlId === undefined) { return ''; }
+
+        return base64.urldecode(urlId);
       }
     };
   }]);
