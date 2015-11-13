@@ -48,7 +48,7 @@ angular.module('Pear2Pear')
     var createdProfiles = {};
 
     var current = function(){
-      return getProfile(SwellRTSession.users.current());
+      return getOrCreateProfile(SwellRTSession.users.current());
     };
 
     // check that the profile does not exists before calling this method
