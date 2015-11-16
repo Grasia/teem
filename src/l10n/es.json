@@ -86,7 +86,10 @@
     "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades"
   },
   "menu": {
-    "communities": "Encuentra o crea tu comunidad",
+    "communities": {
+      "create": "Crea una comunidad",
+      "find": "Explora las comunidades"
+    },
     "title": "Pear2Pear"
   },
   "need": {
