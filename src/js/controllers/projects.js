@@ -131,6 +131,17 @@ angular.module('Pear2Pear')
       return $scope.completedNeeds(project) * 100 / size;
     };
 
+    // Show at least 1%
+    $scope.progressPercentageNotZero = function(project) {
+      var value = $scope.progressPercentage(project);
+
+      if (value === 0 && $scope.totalNeeds(project) > 0) {
+        return 1;
+      }
+
+      return value;
+    };
+
     $scope.progressType = function(project) {
       var percentage = $scope.progressPercentage(project);
 
