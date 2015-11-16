@@ -17,8 +17,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-              'SwellRTSession', 'url', '$scope', '$location', '$route', 'time', 'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout',
-              function (SwellRTSession, url, $scope, $location, $route, time, CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout) {
+  'SwellRTSession', 'url', '$scope', '$location', '$route', 'time', 'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout',
+  function (SwellRTSession, url, $scope, $location, $route, time, CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout) {
 
     $scope.urlId= url.urlId;
 
@@ -32,18 +32,18 @@ angular.module('Pear2Pear')
 
       // get the count of new edits and chats for a list of projects and store them in the project properties
       function getNewsCounts(projs) {
-       angular.forEach(projs, function(proj) {
-         if (proj.contributors.indexOf(SwellRTSession.users.current()) > -1) {
-           proj.isContributor = true;
+        angular.forEach(projs, function(proj) {
+          if (proj.contributors.indexOf(SwellRTSession.users.current()) > -1) {
+            proj.isContributor = true;
 
-           ProfilesSvc.current().then(function(prof){
-             $timeout(function(){
-               proj.newMessagesCount = prof.getNewMessagesCount(proj);
-               proj.padEditionCount = prof.getPadEditionCount(proj);
-             });
-           });
-         }
-       });
+            ProfilesSvc.current().then(function(prof){
+              $timeout(function(){
+                proj.newMessagesCount = prof.getNewMessagesCount(proj);
+                proj.padEditionCount = prof.getPadEditionCount(proj);
+              });
+            });
+          }
+        });
       }
 
       com.then(function(community){
