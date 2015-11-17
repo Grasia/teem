@@ -1,7 +1,4 @@
 <div class="connection-alert alert alert-warning" ng-show="!connected() || !sync()">
-  <button class="btn btn-default pull-right" ng-click="refresh()">
-    <i class="fa fa-refresh"></i> <span translate>connection.refresh</span>
-  </button>
   <div ng-show="!connected()" translate>
     connection.lost
   </div>
@@ -13,4 +10,9 @@
       connection.tip
     </span>
   </div>
+
+  <button class="btn btn-default pull-right" ng-click="refresh()">
+    <i class="fa fa-refresh"></i> <span translate>connection.refresh</span>
+  </button>
+  <div class="clearfix"></div>
 </div>
