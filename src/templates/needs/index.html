@@ -1,6 +1,6 @@
 <div ng-include="'navbar_top/chat_pad.html'"></div>
 
-<div class="scrollable" hm-swiperight="showChat();" hm-manager-options="{ cssProps: { userSelect: true } }">
+<div class="scrollable" hm-swiperight="showChat();" hm-manager-options='{ "cssProps": { "userSelect": true } }'>
   <div class="scrollable-content section">
     <div need-list project="project" needs="project.needs" ng-class="project.isContributor() ? '' : 'has-cta'"/>
   </div>
