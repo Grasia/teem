@@ -1,49 +1,41 @@
 <div ng-include="'navbar_top/chat_pad.html'"></div>
 
-<div class="section project">
-  <div class="section" hm-swiperight="showChat()">
-    <div class="list-group">
-      <div class="scrollable">
-        <div>
-          <div class="list-group-item project-support" ng-if="!ed.editting">
-            <div>
-              <h5><i class="fa i-participant"></i><span translate>project.section.participate.title</span></h5>
-            </div>
+<div class="project" hm-swiperight="showChat()">
+  <div class="scrollable">
+    <div class="scrollable-header">
+      <div class="section project-support" ng-if="!ed.editting">
+        <h5><i class="fa i-participant"></i><span translate>project.section.participate.title</span></h5>
 
-            <div class="project-supports">
-              <div class="project-supports-section">
-                <div avatars="project.contributors" avatars-name="true"></div>
-              </div>
-              <div class="project-supports-section">
-                <div class="project-support-number">
-                  {{ project.contributors.length }}
-                </div>
-              </div>
-            </div>
+        <div class="project-supports">
+          <div class="project-supports-section">
+            <div avatars="project.contributors" avatars-name="true"></div>
           </div>
-        </div>
-        <div class="scrollable-content">
-
-          <div class="list-group-item project-description">
-            <div class="project-description-header">
-              <h5 ng-if="!ed.editting"><span translate>project.section.description.title</span><span class="project-notes-tip" ng-if="project.isContributor()" translate>&nbsp;project.section.description.tip</span></h5>
-
-              <div class="pad-edit-btn"> <!-- TODO Add stop edit button -->
-                <button class="btn btn-link btn-xs" ng-if="!ed.editting"
-                        ng-click="toggleFullScreenEdit()">
-                        <i class="fa fa-expand"></i>
-                </button>
-                <button class="btn btn-link btn-xs" ng-if="ed.editting"
-                        ng-click="toggleFullScreenEdit()">
-                        <i class="fa fa-compress"></i>
-                </button>
-              </div>
+          <div class="project-supports-section">
+            <div class="project-support-number">
+              {{ project.contributors.length }}
             </div>
-            <div id="pad" class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}" block-edit="{{!project.isContributor()}}"></div>
           </div>
         </div>
       </div>
     </div>
+    <div class="scrollable-content">
+      <div class="section project-description">
+        <div class="project-description-header">
+          <h5 ng-if="!ed.editting"><span translate>project.section.description.title</span><span class="project-notes-tip" ng-if="project.isContributor()" translate>&nbsp;project.section.description.tip</span></h5>
+
+          <div class="pad-edit-btn"> <!-- TODO Add stop edit button -->
+            <button class="btn btn-link btn-xs" ng-if="!ed.editting"
+            ng-click="toggleFullScreenEdit()">
+            <i class="fa fa-expand"></i>
+          </button>
+          <button class="btn btn-link btn-xs" ng-if="ed.editting"
+          ng-click="toggleFullScreenEdit()">
+          <i class="fa fa-compress"></i>
+        </button>
+      </div>
+    </div>
+    <div id="pad" class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}" block-edit="{{!project.isContributor()}}"></div>
+  </div>
 </div>
 
 <div ng-if="!project.isContributor()">
