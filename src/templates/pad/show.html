@@ -34,7 +34,12 @@
         </button>
       </div>
     </div>
-    <div id="pad" class="swellrt-editor" ng-model="project.pad" placeholder="{{ 'pad.placeholder' | translate }}" block-edit="{{!project.isContributor()}}"></div>
+    <div id="pad"
+         class="swellrt-editor"
+         editable="{{project.isContributor()}}"
+         ng-model="project.pad"
+         placeholder="{{ 'pad.placeholder' | translate }}"
+         block-edit="{{!project.isContributor()}}"></div>
   </div>
 </div>
 
