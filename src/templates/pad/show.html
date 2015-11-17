@@ -19,7 +19,8 @@
       </div>
     </div>
     <div class="scrollable-content">
-      <div class="section project-description">
+      <div class="section project-description"
+           ng-class="ed.editting ? 'project-description-editing' : ''">
         <div class="project-description-header">
           <h5 ng-if="!ed.editting"><span translate>project.section.description.title</span><span class="project-notes-tip" ng-if="project.isContributor()" translate>&nbsp;project.section.description.tip</span></h5>
 

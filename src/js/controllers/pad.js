@@ -94,8 +94,6 @@ angular.module('Pear2Pear')
       } else {
         $rootElement.addClass('has-navbar-top');
       }
-
-      $rootScope.hideNavigation = $scope.ed.editting;
     };
 
   }]);
