@@ -130,7 +130,7 @@
 
 .project-description
   // swellrt-editor overflows the div
-  height: 90%
+  height: 100%
   border-bottom: 30px solid #FFFFFF
 .project-description-editing
   padding-top: 87px
@@ -143,6 +143,7 @@
       padding: 5px
     &[editable=true]
       > div
+        overflow: auto
         @extend .form-control
 
 .swellrt-placeholder:empty
