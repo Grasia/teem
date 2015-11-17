@@ -67,7 +67,8 @@
     }
   },
   "connection": {
-    "lost": "Connection lost. Trying to reconnect...",
+    "lost": "Reconnecting...",
+    "refresh": "Reload",
     "sync": "Your changes from {{time.toLocaleString()}} have not been saved.",
     "tip": "If the problem persist, copy somewhere else your last changes and reload the application"
   },

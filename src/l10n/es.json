@@ -64,7 +64,8 @@
     }
   },
   "connection": {
-    "lost": "Conexión perdida. Tratando de reconectar...",
+    "lost": "Reconectando...",
+    "refresh": "Recargar",
     "sync": "Tus cambios desde {{time}} no se han guardado.",
     "tip": "Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
   },
