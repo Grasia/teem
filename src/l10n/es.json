@@ -98,6 +98,12 @@
       "input": "Escribe tu comentario aquí...",
       "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
     },
+    "index": {
+      "empty": {
+        "contributor": "Anota tus necesidades para que te echen una mano",
+        "reader": "Este espacio de trabajo no ha publicado ninguna necesidad aún"
+      }
+    },
     "nav": {
       "title": "Necesidades"
     },

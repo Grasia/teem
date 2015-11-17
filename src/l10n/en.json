@@ -101,6 +101,12 @@
       "input": "Write your comment here...",
       "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at need \"{{need}}\""
     },
+    "index": {
+      "empty": {
+        "contributor": "Write down your needs so others can help you",
+        "reader": "This workspace has not published any needs yet"
+      }
+    },
     "nav": {
       "title": "Needs"
     },

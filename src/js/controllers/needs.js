@@ -155,6 +155,7 @@ angular.module('Pear2Pear')
         templateUrl: 'needs/list.html',
         transclude: true,
         scope: {
+          project: '=',
           needs: '='
         },
         controller: function($scope, $route, SwellRTSession, ProjectsSvc, time) {

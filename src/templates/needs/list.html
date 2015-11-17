@@ -1,3 +1,7 @@
+<div class="alert alert-info" ng-if="needs.length === 0" translate>
+  {{ 'need.index.empty.' + (project.isContributor() ? 'contributor' : 'reader') }}
+</div>
+
 <div class="list-group project-needs-list project-needs">
   <div ng-repeat="need in needs">
     <div need-display need="need">
