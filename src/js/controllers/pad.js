@@ -85,15 +85,10 @@ angular.module('Pear2Pear')
     };
 
     $scope.toggleFullScreenEdit = function() {
-
       $scope.ed.editting = !$scope.ed.editting;
 
       if ($scope.ed.editting) {
-        $rootElement.removeClass('has-navbar-top');
         document.getElementById('pad').focus();
-      } else {
-        $rootElement.addClass('has-navbar-top');
       }
     };
-
   }]);
