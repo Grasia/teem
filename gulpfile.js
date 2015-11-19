@@ -372,7 +372,10 @@ gulp.task('js', function() {
 ==================================*/
 
 gulp.task('cordova', function() {
-  return gulp.src('cordova/platforms/android/assets/www/{cordova_plugins.js, cordova.js, plugins/**/*}')
+  return gulp.src(['./cordova/platforms/android/assets/www/cordova_plugins.js',
+                   './cordova/platforms/android/assets/www/cordova.js',
+                   './cordova/platforms/android/assets/www/plugins/**/*'],
+                  {base: './cordova/platforms/android/assets/www/'})
     .pipe(gulp.dest(path.join(config.dest, 'js/cordova')));
 });
 
