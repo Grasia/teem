@@ -61,6 +61,20 @@ var config = {
     path: './bower_components/angular-swellrt'
   },
 
+  /*
+   * Application Configuration
+   *
+   * Variables injected to AngularJs config value in src/js/app.js
+   *
+   * Example:
+   * config.app.support = {
+   *   communityId: 'local.net/s+EWN1NKmVbsO',
+   *   projectId:   'local.net/s+3WKINJhZMp8'
+   * };
+   */
+  app: {
+  },
+
   server: {
     host: '0.0.0.0',
     port: '8000'
@@ -331,7 +345,10 @@ gulp.task('jshint', function() {
 gulp.task('js', function() {
     streamqueue({ objectMode: true },
       gulp.src(config.vendor.js),
-      gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
+      gulp.src('./src/js/**/*.js').
+      pipe(ngFilesort()).
+      pipe(replace('value(\'config\', {}). // inject:app:config',
+                   'value(\'config\', ' + JSON.stringify(config.app) + ').')),
       gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Pear2Pear' }))
     )
     .pipe(sourcemaps.init())

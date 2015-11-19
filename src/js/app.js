@@ -26,6 +26,11 @@ angular
     'ab-base64',
     'angular-toArrayFilter'
   ]).
+  // Application config
+  // See config.js.sample for examples
+  // WARNING: If you check this line, please check the replace
+  // string in gulpfile.js
+  value('config', {}). // inject:app:config
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {

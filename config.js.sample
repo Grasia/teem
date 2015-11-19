@@ -32,7 +32,16 @@ module.exports = function(config) {
   //   siteId = 1,
   // };
 
-    
+  // WaveIds of the community and project when the support
+  // activity is done.
+  // If present, a support link will be displayed in the app menu
+  //
+  // Example:
+  // config.app.support = {
+  //   communityId: 'local.net/s+EWN1NKmVbsO',
+  //   projectId:   'local.net/s+3WKINJhZMp8'
+  // };
+
   // 3rd party components
 
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');

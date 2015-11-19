@@ -14,6 +14,11 @@ angular.module('Pear2Pear')
       .when('/communities/:comId/projects', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
+      })
+      .when('/communities/:comId/projects/:id', {
+        redirectTo: function(params) {
+          return '/communities/' + params.comId + '/projects/' + params.id + '/pad';
+        }
       });
   }])
   .controller('ProjectsCtrl', [
