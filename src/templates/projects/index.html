@@ -6,6 +6,10 @@
   </div>
 </div>
 
+<div ui-content-for="sidebar">
+  <div class="sidebar sidebar-left" ng-include="'menu.html'" ng-controller="MenuCtrl"></div>
+</div>
+
 <div ui-content-for="nav-title">
   <div class="overflow-ellipsis">{{ community.name }}</div>
 </div>
@@ -111,10 +115,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div ui-content-for="sidebar">
-  <div class="sidebar sidebar-left" ng-include="'menu.html'" ng-controller="MenuCtrl"></div>
 </div>
 
 <div class="cta-placeholder" ng-if="!emptyProjects()">
