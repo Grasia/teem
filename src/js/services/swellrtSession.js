@@ -101,16 +101,16 @@ angular.module('Pear2Pear')
 
             dataSync = true;
             lastDataSync = new Date();
+
             if (dataStatusTimeout){
               $timeout.cancel(dataStatusTimeout);
               dataStatusTimeout = undefined;
             }
-          }
-          else {
+          } else {
             if (!dataStatusTimeout){
               dataStatusTimeout = $timeout(function(){
                 dataSync = false;
-              }, 3000);
+              }, 5000);
             }
           }
         });
