@@ -161,9 +161,8 @@ angular.module('Pear2Pear')
           };
           this.removeNeed = function (need) {
             var i = $scope.needs.indexOf(need);
-            console.log($route.current);
+            
             $scope.needs.splice(i,1);
-            console.log($route.current);
           };
 
           this.comments = {};
