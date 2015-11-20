@@ -158,10 +158,6 @@ angular.module('Pear2Pear')
               need.time = (new Date()).toJSON();
 
               $scope.needs.push(need);
-
-              ProjectsSvc.find($route.current.params.id).then(function(project){
-                project.addContributor();
-              });
             }
           };
           this.removeNeed = function (need) {
