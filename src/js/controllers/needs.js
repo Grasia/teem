@@ -152,8 +152,12 @@ angular.module('Pear2Pear')
         },
         controller: function($scope, $route, SwellRTSession, ProjectsSvc, time) {
           this.addNeed = function (need) {
-            if (need.text !== ''){
+            console.dir(need);
+            if (need.text !== undefined && need.text !== ''){
+              need.author = SwellRTSession.users.current();
+
               $scope.needs.push(need);
+
               ProjectsSvc.find($route.current.params.id).then(function(project){
                 project.addContributor();
               });
@@ -161,7 +165,7 @@ angular.module('Pear2Pear')
           };
           this.removeNeed = function (need) {
             var i = $scope.needs.indexOf(need);
-            
+
             $scope.needs.splice(i,1);
           };
 

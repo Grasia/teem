@@ -16,7 +16,7 @@
       <textarea ng-if="project.isContributor()"
                 class="need-name"
                 rows="1"
-                msd-elastic="\n"
+                msd-elastic
                 ng-class="need.completed === 'true' ? 'text-strike' : ''"
                 ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
                 ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
@@ -27,6 +27,9 @@
       </div>
     </div>
     <div class="clearfix"></div>
+    <div class="need-section need-section-author">
+      <span translate translate-values="{ author: need.author.split('@')[0] }" ng-if="need.text !== '' && need.author">need.by</span>
+    </div>
   </div>
   <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">
     <div class="media" ng-repeat="comment in need.comments">
