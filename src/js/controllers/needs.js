@@ -155,6 +155,7 @@ angular.module('Pear2Pear')
             console.dir(need);
             if (need.text !== undefined && need.text !== ''){
               need.author = SwellRTSession.users.current();
+              need.time = (new Date()).toJSON();
 
               $scope.needs.push(need);
 
