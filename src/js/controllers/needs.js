@@ -130,14 +130,6 @@ angular.module('Pear2Pear')
             SwellRTSession.loginRequired(function() {
               ProjectsSvc.find($route.current.params.id).then(function(project){
                 project.addNeedComment(scope.need, scope.newComment.text);
-                project.addChatNotification(
-                  'need.comment.notification',
-                  {
-                    user: SwellRTSession.users.current().split('@')[0],
-                    need: scope.need.text,
-                    comment: scope.newComment.text
-                  }
-                );
                 scope.newComment.text = '';
               });
             });
@@ -164,13 +156,6 @@ angular.module('Pear2Pear')
               $scope.needs.push(need);
               ProjectsSvc.find($route.current.params.id).then(function(project){
                 project.addContributor();
-                project.addChatNotification(
-                  'need.new.notification',
-                  {
-                    user: SwellRTSession.users.current().split('@')[0],
-                    need: need.text
-                  }
-                );
               });
             }
           };
