@@ -28,7 +28,14 @@
     </div>
     <div class="clearfix"></div>
     <div class="need-section need-section-author">
-      <span translate translate-values="{ author: need.author.split('@')[0] }" ng-if="need.text !== '' && need.author">need.by</span>
+      <span translate
+            translate-values="{
+              author: need.author.split('@')[0],
+              time: '{{need.time | amTimeAgo }}'
+            }"
+            ng-if="need.text !== '' && need.author">
+        need.by
+      </span>
     </div>
   </div>
   <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">

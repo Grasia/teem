@@ -95,7 +95,7 @@
     "title": "Pear2Pear"
   },
   "need": {
-    "by": "Añadida por {{author}}",
+    "by": "Añadida {{time}} por {{author}}",
     "comment": {
       "input": "Escribe tu comentario aquí...",
       "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
