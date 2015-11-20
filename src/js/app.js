@@ -47,7 +47,7 @@ angular
       .registerAvailableLanguageKeys(['en', 'es'], {
         'en_*': 'en',
         'es_*': 'es'
-       })
+      })
       .fallbackLanguage('en')
       .determinePreferredLanguage();
   })
