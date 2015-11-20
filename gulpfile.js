@@ -37,7 +37,12 @@ var config = {
       './bower_components/swiper/dist/js/swiper.js',
       './bower_components/pear2pear-loading/js/pear2pear-loading.js',
       './bower_components/avatar/build/avatar.js',
-      './bower_components/avatar/vendor/md5.js'
+      './bower_components/avatar/vendor/md5.js',
+      './bower_components/moment/moment.js',
+      './bower_components/moment/locale/en.js',
+      './bower_components/moment/locale/es.js',
+      './bower_components/angular-moment/angular-moment.js',
+
     ],
 
     fonts: [

@@ -24,7 +24,8 @@ angular
     'SwellRTService',
     'hmTouchEvents',
     'ab-base64',
-    'angular-toArrayFilter'
+    'angular-toArrayFilter',
+    'angularMoment'
   ]).
   // Application config
   // See config.js.sample for examples
@@ -47,9 +48,14 @@ angular
       .registerAvailableLanguageKeys(['en', 'es'], {
         'en_*': 'en',
         'es_*': 'es'
+        // When adding more languages, do not forget to add them for "moment"
+        // in the vendor.js section of gulpfile.js 
       })
       .fallbackLanguage('en')
       .determinePreferredLanguage();
+  })
+  .run(function(amMoment, $translate) {
+    amMoment.changeLocale($translate.proposedLanguage() || $translate.use());
   })
   .filter('base64', function(){
     return window.btoa;
