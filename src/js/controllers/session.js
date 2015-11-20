@@ -64,6 +64,28 @@ angular.module('Pear2Pear')
       SwellRTSession.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
 
+    if (window.cordova) {
+      document.addEventListener('deviceready', function(){
+        var push = PushNotification.init({ "android": {"senderID": "843281102628"}, "ios": {
+    "alert": "true",
+    "badge": "true",
+    "sound": "true"
+  }, 
+  "windows": {}});
+        window.alert('foo', push);
+        push.on('registration', function(data) {
+          window.alert(data);
+        });
+        push.on('notification', function(data) {
+          window.alert(data);
+        });
+        push.on('error', function(e) {
+          window.alert(e);
+        });
+
+      }, false);
+    }
+
 
     // Check for stored session information
     if (SwellRTSession.users.current() !== null) {
