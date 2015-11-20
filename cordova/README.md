@@ -8,9 +8,10 @@ Initialize Android platform:
 
   cordova platform add android
 
-Whitelist plugin:
-
-  cordova plugin add https://github.com/apache/cordova-plugin-whitelist.git
+### Create the emulator
+- Use Android SDK Manager to download Android SDKs, e.g. files under Android 5.0.1 (API 21) and from the Extras folder ```Google Play Services```
+- Create an AVD from the Android Virtual Device Manager:
+    - The Android emulator target should be of the form ```Google APIs (Google inc.) API Level 21```
 
 ### Run the application in the Android emulator
 
