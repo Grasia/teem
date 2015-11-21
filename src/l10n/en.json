@@ -67,10 +67,11 @@
     }
   },
   "connection": {
-    "lost": "Reconnecting...",
+    "lost": "Connection lost. Trying to reconnect...",
     "refresh": "Reload",
-    "sync": "Your changes from {{time.toLocaleString()}} have not been saved.",
-    "tip": "If the problem persist, copy somewhere else your last changes and reload the application"
+    "saved": "All changes are saved",
+    "saving": "Saving...",
+    "sync": "Your changes since {{time}} have not been saved. If the problem persist, copy somewhere else your last changes and reload the application"
   },
   "login": {
     "button": "Login",

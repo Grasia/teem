@@ -64,10 +64,11 @@
     }
   },
   "connection": {
-    "lost": "Reconectando...",
+    "lost": "Conexión perdida. Tratando de reconectar...",
     "refresh": "Recargar",
-    "sync": "Tus cambios desde {{time}} no se han guardado.",
-    "tip": "Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
+    "saved": "Todos los cambios guardados",
+    "saving": "Guardando...",
+    "sync": "Tus cambios desde {{time}} no se han guardado. Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
   },
   "login": {
     "button": "Entrar",

@@ -15,6 +15,19 @@ angular.module('Pear2Pear')
       var swellRTDef = $q.defer();
       var swellRTpromise = swellRTDef.promise;
 
+      // TODO no restart session without user saying so
+      // TODO stop session before start session after a timeout
+      // TODO if reconnected, get again all objects
+      var status = {
+        // Connection status:
+        // notConnected: connection has not been atempted
+        // connecting: establishing connection
+        // connected: everything alright!
+        // disconnected: something bad happened
+        connection: 'notConnected',
+        sync: true,
+      };
+
       window.onSwellRTReadyCalled = false;
 
       window.onSwellRTReady = function(){
@@ -26,10 +39,6 @@ angular.module('Pear2Pear')
         window.onSwellRTReady();
       }
 
-      var sessionConnected = false;
-      var dataSync = true;
-      var lastDataSync;
-      var connecting = false;
 
 
       // TODO use this to handle fatal exceptions
@@ -37,7 +46,7 @@ angular.module('Pear2Pear')
         swellRTpromise.then(function(){
           SwellRT.on(SwellRT.events.FATAL_EXCEPTION, function(){
             $timeout(function(){
-              sessionConnected = false;
+              status.connection = 'disconnected';
             });
             handler();
           });
@@ -82,44 +91,36 @@ angular.module('Pear2Pear')
       swellRTpromise.then(function(){
         SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
           $timeout(function(){
-            sessionConnected = true;
+            status.connection = 'connected';
           });
         });
 
         SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
           $timeout(function(){
-            sessionConnected = false;
+            status.connection = 'disconnected';
           });
         });
-
-        var dataStatusTimeout;
 
         SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
           if (data.inFlightSize === 0 &&
               data.uncommittedSize === 0 &&
               data.unacknowledgedSize  === 0) {
 
-            dataSync = true;
-            lastDataSync = new Date();
-
-            if (dataStatusTimeout){
-              $timeout.cancel(dataStatusTimeout);
-              dataStatusTimeout = undefined;
-            }
+            status.sync = true;
+            status.lastSync = new Date();
+            $timeout();
           } else {
-            if (!dataStatusTimeout){
-              dataStatusTimeout = $timeout(function(){
-                dataSync = false;
-              }, 5000);
-            }
+            status.sync = false;
+            $timeout();
           }
         });
       });
       // check variable connecting before calling startSession
       var startSession = function(userName, password, onSuccess, onError) {
-        connecting = true;
+        status.connection = 'connecting';
+
         swellRTpromise.then(function(){
-          if (sessionConnected) {
+          if (status.connection === 'connected') {
             if (userName && __session.address &&
                 __session.address.split('@')[0] === userName.split('@')[0]) {
               return; // Session already started
@@ -143,11 +144,10 @@ angular.module('Pear2Pear')
               sessionDef.resolve(SwellRT);
               onSuccess();
 
-              sessionConnected = true;
-              connecting = false;
+              status.connection = 'connected';
             }, function() {
               onError();
-              connecting = false;
+              status.connection = 'disconnected';
             });
         });
       };
@@ -162,9 +162,7 @@ angular.module('Pear2Pear')
 
         startSession(
           user, pass, function(){
-            $timeout(
-              function() {
-              });
+            $timeout();
           },
           function(error) {
             console.log(error);
@@ -175,9 +173,7 @@ angular.module('Pear2Pear')
         if (! users.loggedIn()) {
           SharedState.turnOn('shouldLoginSharedState');
           // Invoque $timout to refresh scope and actually show modal
-          $timeout(function() {
-            return;
-          });
+          $timeout();
         } else {
           cb();
         }
@@ -190,24 +186,11 @@ angular.module('Pear2Pear')
         stopSession: stopSession,
         loginRequired: loginRequired,
         setFatalExceptionHandler: setFatalExceptionHandler,
-        // TODO no restart session without user saying so
-        // TODO stop session before start session after a timeout
-        // TODO if reconnected, get again all objects
-        status: {
-          isConnected: function(){
-            return sessionConnected;
-          },
-          isDataSync: function(){
-            return dataSync;
-          },
-          lastDataSync: function(){
-            return lastDataSync;
-          }
-        },
-
+        status: status,
         // TODO refactor with Prototype version of proxy objects to avoid the use of onLoad
         onLoad: function(f) {
-          if (!sessionConnected && !connecting){
+          if (status.connection === 'notConnected' ||
+              status.connection === 'disconnected'){
             autoStartSession();
           }
           sessionDef.promise.then(f);

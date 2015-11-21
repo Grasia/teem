@@ -1,4 +1,16 @@
-.connection-alert
-  margin-bottom: 0px
+.notification-area
+  .alert
+    margin-bottom: 0px
   .fa
     color: inherit
+  .connection-status-save
+    position: relative
+    font-size: 0.8em
+    .alert
+      padding: 8px
+    > div
+      position: absolute
+      top: 0
+      left: 50%
+      transform: translateX(-50%);
+      z-index: 10000
