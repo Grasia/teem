@@ -74,6 +74,9 @@
     "saving": "Saving...",
     "sync": "Your changes since {{time}} have not been saved. If the problem persist, copy somewhere else your last changes and reload the application"
   },
+  "loading": {
+    "title": "Loading..."
+  },
   "login": {
     "button": "Login",
     "copy": {

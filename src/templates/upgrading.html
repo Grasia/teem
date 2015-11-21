@@ -1,17 +1,11 @@
  <div class="modal modal-overlay" ng-if="upgrading">
-   <div class="modal-dialog">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h4 class="modal-title" translate>upgrading.title</h4>
-       </div>
-       <div class="modal-body">
-         <div translate>
-           upgrading.explanation
-         </div>
-         <div class="upgrading-icon">
-           <i class="fa fa-spinner fa-pulse fa-5x"></i>
-         </div>
-       </div>
+   <div class="upgrading-content">
+     <div class="upgrading-icon">
+       <i class="fa i-loading-big"></i>
      </div>
+     <h4 class="modal-title" translate>upgrading.title</h4>
+   </div>
+   <div class="upgrading-message" translate>
+     upgrading.explanation
    </div>
  </div>

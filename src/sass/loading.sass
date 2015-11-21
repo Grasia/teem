@@ -1,0 +1,19 @@
+.loading-content,
+.upgrading-content
+  position: fixed
+  top: 50%
+  left: 50%
+  -webkit-transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%)
+  h4
+    margin-top: 15px
+.upgrading-message
+  @extend .upgrading-content
+  width: 100%
+  margin-top: 110px
+  padding-left: 15px
+  padding-right: 15px
+
+@media (min-width: 1024px)
+  .upgrading-message
+    text-align: center

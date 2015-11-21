@@ -71,6 +71,9 @@
     "saving": "Guardando...",
     "sync": "Tus cambios desde {{time}} no se han guardado. Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
   },
+  "loading": {
+    "title": "Cargando..."
+  },
   "login": {
     "button": "Entrar",
     "copy": {
