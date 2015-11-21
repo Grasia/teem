@@ -67,6 +67,7 @@
     }
   },
   "connection": {
+    "init": "Connecting...",
     "lost": "Connection lost. Trying to reconnect...",
     "refresh": "Reload",
     "saved": "All changes are saved",
