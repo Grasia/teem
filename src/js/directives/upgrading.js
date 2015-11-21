@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('Pear2Pear')
-  .directive('upgradingModal', [
+  .directive('upgrading', [
   '$window', '$timeout',
   function($window, $timeout) {
     return {
@@ -40,6 +40,6 @@ angular.module('Pear2Pear')
           });
         });
       },
-      templateUrl: 'upgrading-modal.html'
+      templateUrl: 'upgrading.html'
     };
   }]);
