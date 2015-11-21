@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('Pear2Pear')
-  .factory('CommunitiesSvc', ['swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', 'SwellRTCommon', 'ProjectsSvc', function(swellRT, $q, $timeout, base64, SwellRTSession, SwellRTCommon, ProjectsSvc){
+  .factory('CommunitiesSvc', [
+  'swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', 'SwellRTCommon', 'ProjectsSvc',
+  function(swellRT, $q, $timeout, base64, SwellRTSession, SwellRTCommon, ProjectsSvc){
 
     var Community = function(){};
 
