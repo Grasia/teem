@@ -13,7 +13,7 @@ angular.module('Pear2Pear')
         $element.on('click', function() {
           SwellRTSession.loginRequired(function() {
             $scope.project.toggleContributor();
-            $timeout()
+            $timeout();
           });
         });
       }],
