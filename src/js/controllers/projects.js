@@ -22,16 +22,21 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-  'SwellRTSession', 'url', '$scope', '$location', '$route', 'time', 'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout',
-  function (SwellRTSession, url, $scope, $location, $route, time, CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout) {
+  'SwellRTSession', 'url', '$scope', '$location', '$route', 'time',
+  'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
+  function (SwellRTSession, url, $scope, $location, $route, time,
+  CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
 
     $scope.urlId= url.urlId;
 
     var comUrlId = $route.current.params.comId;
 
     SwellRTSession.onLoad(function(){
-      var com = CommunitiesSvc.find(comUrlId);
-      com.then(function(community){
+      var communityPromise = CommunitiesSvc.find(comUrlId);
+
+      Loading.create(communityPromise);
+
+      communityPromise.then(function(community){
         $scope.community = community;
       });
 
@@ -51,8 +56,11 @@ angular.module('Pear2Pear')
         });
       }
 
-      com.then(function(community){
-        community.myAndPublicProjects().then(
+      communityPromise.then(function(community){
+        var projectPromise = community.myAndPublicProjects();
+        Loading.create(projectPromise);
+
+        projectPromise.then(
           function (projects){
             getNewsCounts(projects);
 

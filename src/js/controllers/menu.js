@@ -10,8 +10,8 @@
 
 angular.module('Pear2Pear')
   .controller('MenuCtrl', [
-  '$scope', 'config', 'url', 'SwellRTSession', 'CommunitiesSvc',
-  function($scope, config, url, SwellRTSession, CommunitiesSvc){
+  '$scope', 'config', 'url', 'SwellRTSession', 'CommunitiesSvc', 'Loading',
+  function($scope, config, url, SwellRTSession, CommunitiesSvc, Loading){
     if (config.support) {
       $scope.support = {
         communityId: url.urlId(config.support.communityId),
@@ -20,7 +20,11 @@ angular.module('Pear2Pear')
     }
 
     SwellRTSession.onLoad(function(){
-      CommunitiesSvc.participating().then(function(communities) {
+      var communitiesPromise = CommunitiesSvc.participating();
+
+      Loading.create(communitiesPromise);
+
+      communitiesPromise.then(function(communities) {
         $scope.myCommunities = communities;
       });
     });
