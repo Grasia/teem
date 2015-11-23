@@ -40,13 +40,19 @@
     "index": {
       "title": "Comunidades"
     },
-    "leave": "Abandonar esta comunidad",
+    "menu": {
+      "join": "Unirse a esta comunidad",
+      "leave": "Abandonar esta comunidad"
+    },
     "name": "Nombre de la comunidad",
     "new": {
       "button": "...o crea una nueva"
     },
     "no_selected_tip": "Por favor, selecciona una comunidad en el menú principal",
     "participants": "Gente en la comunidad",
+    "participate": {
+      "button": "Unirse a la comunidad"
+    },
     "project": {
       "number": "espacios de trabajo"
     },

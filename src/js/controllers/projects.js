@@ -70,6 +70,12 @@ angular.module('Pear2Pear')
       };
     });
 
+    $scope.participate = function() {
+      SwellRTSession.loginRequired(function() {
+        $scope.community.addParticipant();
+      });
+    };
+
     //FIXME repeated code in ProjectInfoCtrl
     // Refactorize to service
     function section() {

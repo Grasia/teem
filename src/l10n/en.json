@@ -43,13 +43,19 @@
     "index": {
       "title": "Communities"
     },
-    "leave": "Leave this community",
+    "menu": {
+      "join": "Join this community",
+      "leave": "Leave this community"
+    },
     "name": "Community name",
     "new": {
       "button": "...or create a new one"
     },
     "no_selected_tip": "Please, select a community in the app menu ",
     "participants": "People in the community",
+    "participate": {
+      "button": "Join community"
+    },
     "project": {
       "number": "workspaces"
     },

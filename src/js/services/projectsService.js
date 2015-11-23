@@ -5,15 +5,6 @@ angular.module('Pear2Pear')
 
     var Project = function(){};
 
-    Project.prototype.addContributor = function(user) {
-      if (!user){
-        user = SwellRTSession.users.current();
-      }
-      if (user && this.contributors.indexOf(user) < 0){
-        this.contributors.push(user);
-      }
-    };
-
     Project.prototype.setShareMode = function(shareMode){
       this.shareMode = shareMode;
     };
@@ -39,18 +30,46 @@ angular.module('Pear2Pear')
       }
     };
 
-    Project.prototype.toggleContributor = function(){
-      if (SwellRTSession.users.current() === null) {
-        return;
+    Project.prototype.isContributor = function(user){
+      if (!user){
+        user = SwellRTSession.users.current();
       }
-      var index = this.contributors.indexOf(SwellRTSession.users.current());
+      return this.contributors.indexOf(user) > -1;
+    };
 
-      if (index > -1) {
-        this.contributors.splice(index, 1);
-      } else {
-        this.contributors.push(SwellRTSession.users.current());
+    Project.prototype.addContributor = function(user) {
+      if (!user){
+        user = SwellRTSession.users.current();
+      }
+      if (user && this.contributors.indexOf(user) < 0){
+        this.contributors.push(user);
       }
     };
+
+    Project.prototype.removeContributor = function(user) {
+      if (!user){
+        user = SwellRTSession.users.current();
+      }
+
+      this.contributors.splice(
+        this.contributors.indexOf(user),
+        1);
+    };
+
+    Project.prototype.toggleContributor = function(){
+      if (!SwellRTSession.users.loggedIn()) {
+        return;
+      }
+
+      var user = SwellRTSession.users.current();
+
+      if (this.isContributor(user)) {
+        this.removeContributor(user);
+      } else {
+        this.addContributor(user);
+      }
+    };
+
     Project.prototype.addChatMessage = function(message){
       this.chat.push({
           text: message,
@@ -76,13 +95,6 @@ angular.module('Pear2Pear')
         user = SwellRTSession.users.current();
       }
       return this.supporters.indexOf(user) > -1;
-    };
-
-    Project.prototype.isContributor = function(user){
-      if (!user){
-        user = SwellRTSession.users.current();
-      }
-      return this.contributors.indexOf(user) > -1;
     };
 
     // Service functions //

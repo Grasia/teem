@@ -129,6 +129,68 @@ angular.module('Pear2Pear')
       return projs.promise;
     };
 
+    Community.prototype.isParticipant = function(user){
+      // Migrating from participants === undefined
+      if (this.participants === undefined) {
+        this.participants = [];
+      }
+
+      if (!user){
+        user = SwellRTSession.users.current();
+      }
+      return this.participants.indexOf(user) > -1;
+    };
+
+    Community.prototype.addParticipant = function(user) {
+      if (!user){
+        if (!SwellRTSession.users.loggedIn()) {
+          return;
+        }
+
+        user = SwellRTSession.users.current();
+      }
+
+      if (this.isParticipant(user)) {
+        return;
+      }
+
+      this.participants.push(user);
+    };
+
+    Community.prototype.removeParticipant = function(user) {
+      if (!user){
+        if (!SwellRTSession.users.loggedIn()) {
+          return;
+        }
+
+        user = SwellRTSession.users.current();
+      }
+
+      if (! this.isParticipant(user)) {
+        return;
+      }
+
+      this.participants.splice(
+        this.participants.indexOf(user),
+        1);
+    };
+
+    Community.prototype.toggleParticipant = function(user) {
+      if (!user){
+        if (!SwellRTSession.users.loggedIn()) {
+          return;
+        }
+
+        user = SwellRTSession.users.current();
+      }
+
+      if (this.isParticipant(user)) {
+        this.removeParticipant(user);
+      } else {
+        this.addParticipant(user);
+      }
+    };
+
     // Service functions
 
     var openedCommunities = {};
@@ -182,6 +244,7 @@ angular.module('Pear2Pear')
           p.type = 'community';
           p.name = data.name;
           p.id = id;
+          p.participants = [SwellRTSession.users.current()];
           p.projects = [];
           d.resolve(p);
         });
