@@ -103,7 +103,8 @@
   "menu": {
     "communities": {
       "create": "Create new community",
-      "find": "Explore communities"
+      "find": "Explore communities",
+      "title": "Communities"
     },
     "support": "Get support",
     "title": "Pear2Pear"

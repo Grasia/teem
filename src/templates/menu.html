@@ -4,9 +4,17 @@
 
   <div class="scrollable-content">
     <div class="list-group">
-      <a class="list-group-item" href="#/communities" translate>menu.communities.find</a>
-      <a class="list-group-item" href="#/communities/new" translate>menu.communities.create</a>
-      <a class="list-group-item" href="#/communities/{{support.communityId}}/projects/{{support.projectId}}" ng-if="support" translate>menu.support</a>
+      <div class="list-group-item list-group-item-header">
+        <a href="#/communities/new" class="pull-right"><i class="fa fa-plus-circle"></i></a>
+        <a href="#/communities" class="pull-right"><i class="fa fa-search"></i></a>
+        <a href="#/communities" translate>menu.communities.title</a>
+      </div>
+      <div ng-repeat="community in myCommunities">
+        <a class="list-group-item list-group-item-child" ng-href="#/communities/{{urlId(community.id)}}/projects">
+          {{community.name}}
+        </a>
+      </div>
+      <a class="list-group-item list-group-item-header" href="#/communities/{{support.communityId}}/projects/{{support.projectId}}" ng-if="support" translate>menu.support</a>
     </div>
   </div>
 </div>

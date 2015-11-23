@@ -317,6 +317,42 @@ angular.module('Pear2Pear')
       return communities.promise;
     };
 
+    // The communities the user is participating in
+    var participating = function() {
+      if (!SwellRTSession.users.loggedIn()) {
+        return [];
+      }
+
+      return $q(function(resolve, reject) {
+        var query = {
+          _aggregate: [
+            {
+              $match: {
+                'root.type': 'community',
+                'root.participants': SwellRTSession.users.current()
+              }
+            }
+          ]};
+
+        SwellRT.query(
+          query,
+          function(result) {
+
+            var res = [];
+
+            angular.forEach(result.result, function(val){
+              res.push(val.root);
+            });
+
+            resolve(res);
+          },
+          function(error){
+            reject(error);
+          }
+        );
+      });
+    };
+
     var setCurrent = function(communityId) {
       return window.localStorage.setItem('communityId', communityId);
     };
@@ -329,6 +365,7 @@ angular.module('Pear2Pear')
       find : find,
       create: create,
       all: all,
+      participating: participating,
       setCurrent: setCurrent,
       current: current
     };

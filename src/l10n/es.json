@@ -100,7 +100,8 @@
   "menu": {
     "communities": {
       "create": "Crea una comunidad",
-      "find": "Explora las comunidades"
+      "find": "Explora las comunidades",
+      "title": "Comunidades"
     },
     "support": "Ayuda",
     "title": "Pear2Pear"
