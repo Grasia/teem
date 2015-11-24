@@ -45,7 +45,7 @@ angular.module('Pear2Pear')
 
     // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
     $scope.nav = function(id) {
-      return id === 'needs' ? 'active' : '';
+      return id === 'needs' ? 'selected' : '';
     };
   }])
   .directive(
