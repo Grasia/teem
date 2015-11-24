@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Pear2Pear')
-  .factory('ProfilesSvc', ['swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', function(swellRT, $q, $timeout, base64, SwellRTSession){
+  .factory('ProfilesSvc', ['swellRT', '$q', '$timeout', 'SwellRTSession', function(swellRT, $q, $timeout, SwellRTSession){
 
     var Profile = function(){
     };
