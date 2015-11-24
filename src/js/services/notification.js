@@ -11,7 +11,8 @@ angular.module('Pear2Pear')
   .factory( 'NotificationSvc', [function(){
 
     var push;
-
+    var registrationId;
+    
     var register = function(userName) {
       if (window.cordova) {
         push = PushNotification.init(
@@ -19,8 +20,9 @@ angular.module('Pear2Pear')
 
         push.on('registration', function(data) {
           console.log('Registration:', data);
+          registrationId = data.registrationId;
           // TODO register user with device id:
-          // theGCMServer.registerUser(userName, data.registrationId);
+          // theGCMServer.registerUser(userName, registrationId);
         });
 
         push.on('error', function(e) {
@@ -47,6 +49,8 @@ angular.module('Pear2Pear')
           throw 'Push notifications have not been initialized';
         }
         push.unregister(onSuccess, onError);
+        // TODO unregister user with device id:
+          // theGCMServer.unregisterUser(userName, registrationId);
       }
     }
 

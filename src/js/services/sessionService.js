@@ -85,6 +85,11 @@ angular.module('Pear2Pear')
         swellRTpromise.then(function(){
           SwellRT.stopSession();
           users.clearCurrent();
+          NotificationSvc.unRegister(
+            undefined,
+            function(error){
+              console.log(error);
+            });
         });
       };
 
@@ -137,8 +142,14 @@ angular.module('Pear2Pear')
               SwellRTConfig.swellrtServerDomain = __session.domain;
               if (userName){
                 users.setCurrent(__session.address);
+                NotificationSvc.register(userName);
               } else {
                 users.clearCurrent();
+                NotificationSvc.unRegister(
+                  undefined,
+                  function(error){
+                    console.log(error);
+                  });
               }
 
               sessionDef.resolve(SwellRT);
