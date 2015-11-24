@@ -1,5 +1,5 @@
-<div class="connection-alert alert alert-warning" ng-show="status.disconnected || status.notConnected">
-  <div ng-show="status.notConnected" translate>
+<div class="connection-alert alert alert-warning" ng-show="status.connecting || status.disconnected">
+  <div ng-show="status.connecting" translate>
     connection.init
   </div>
   <div ng-show="status.disconnected" translate>
