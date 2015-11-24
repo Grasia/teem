@@ -52,25 +52,4 @@ angular.module('Pear2Pear')
         $scope.setShared = function setShared(mode){
           $scope.project.setShareMode(mode);
         };
-
-        //FIXME repeated code in ProjectInfoCtrl
-        // Refactorize to service
-        function section() {
-          if ($route.current.params.section) {
-            return $route.current.params.section;
-          } else {
-            return 'crowddoing';
-          }
-        }
-
-        $scope.section = section;
-
-        function isSection(s) {
-          console.log(section());
-          return s === section();
-        }
-
-        $scope.mode = function(id) {
-          return isSection(id);
-        };
       }]);
