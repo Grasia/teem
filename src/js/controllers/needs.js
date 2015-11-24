@@ -18,8 +18,9 @@ angular.module('Pear2Pear')
   }])
   .controller('NeedsCtrl', [
   'SwellRTSession', 'url', '$scope', '$route', 'ProjectsSvc', 'ProfilesSvc',
-  function(SwellRTSession, url, $scope, $route, ProjectsSvc, ProfilesSvc){
-
+  'Loading',
+  function(SwellRTSession, url, $scope, $route, ProjectsSvc, ProfilesSvc,
+  Loading){
     $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
     var projId = url.decodeUrlId($route.current.params.id);
@@ -31,10 +32,12 @@ angular.module('Pear2Pear')
     };
 
     SwellRTSession.onLoad(function(){
-      ProjectsSvc.find($route.current.params.id).then(
-        function(proxy){
-          $scope.project = proxy;
-        }
+      Loading.create(
+        ProjectsSvc.find($route.current.params.id).then(
+          function(proxy){
+            $scope.project = proxy;
+          }
+        )
       );
       timestampNeedsAccess();
     });

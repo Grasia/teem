@@ -32,8 +32,10 @@ angular.module('Pear2Pear')
     };
   })
   .controller('ChatCtrl', [
-              'SwellRTSession', 'url', '$scope', '$rootScope', '$route', '$location', '$animate', 'time', 'ProjectsSvc', 'ProfilesSvc',
-              function(SwellRTSession, url, $scope, $rootScope, $route, $location, $animate, time, ProjectsSvc, ProfilesSvc){
+  'SwellRTSession', 'url', '$scope', '$rootScope', '$route', '$location',
+  '$animate', 'time', 'ProjectsSvc', 'ProfilesSvc', 'Loading',
+  function(SwellRTSession, url, $scope, $rootScope, $route, $location,
+  $animate, time, ProjectsSvc, ProfilesSvc, Loading){
 
     $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
@@ -46,10 +48,13 @@ angular.module('Pear2Pear')
     };
 
     SwellRTSession.onLoad(function(){
-      ProjectsSvc.find($route.current.params.id).then(
-        function(proxy){
-          $scope.project = proxy;
-        });
+      Loading.create(
+        ProjectsSvc.find($route.current.params.id).then(
+          function(proxy){
+            $scope.project = proxy;
+          }
+        )
+      );
       timestampChatAccess();
     });
 

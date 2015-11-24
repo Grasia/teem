@@ -18,9 +18,9 @@ angular.module('Pear2Pear')
   }])
   .controller('PadCtrl', [
   'SwellRTSession', 'url', '$rootScope', '$scope', '$route', '$location',
-  '$timeout', 'SharedState', 'ProjectsSvc', 'ProfilesSvc',
+  '$timeout', 'SharedState', 'ProjectsSvc', 'ProfilesSvc', 'Loading',
   function(SwellRTSession, url, $rootScope, $scope, $route, $location,
-  $timeout, SharedState, ProjectsSvc, ProfilesSvc) {
+  $timeout, SharedState, ProjectsSvc, ProfilesSvc, Loading) {
 
     $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
@@ -33,10 +33,12 @@ angular.module('Pear2Pear')
     };
 
     SwellRTSession.onLoad(function(){
-      ProjectsSvc.find($route.current.params.id)
-        .then(function(proxy) {
-          $scope.project = proxy;
-        });
+      Loading.create(
+        ProjectsSvc.find($route.current.params.id)
+         .then(function(proxy) {
+           $scope.project = proxy;
+         })
+      );
       timestampPadAccess();
     });
 
