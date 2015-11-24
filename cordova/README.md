@@ -48,3 +48,9 @@ Then copy build.json.example to build.json
 
 And customize it with the path to the keystore
 
+To build the package:
+
+  cordova build --release
+
+The package will be stored at `cordova/platforms/android/build/outputs/apk/android-release.apk`
+
