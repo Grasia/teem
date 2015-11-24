@@ -5,8 +5,8 @@ angular.module('Pear2Pear')
     return {
       scope: true,
       controller: [
-      '$scope', 'SwellRTSession', '$window', '$timeout',
-      function($scope, SwellRTSession, $window, $timeout){
+      '$scope', 'SessionSvc', '$window', '$timeout',
+      function($scope, SessionSvc, $window, $timeout){
         var saveTimeout;
 
         $scope.status = {
@@ -17,7 +17,7 @@ angular.module('Pear2Pear')
         };
 
         $scope.$watchCollection(function() {
-          return SwellRTSession.status;
+          return SessionSvc.status;
         }, function(current, former) {
           // Always reset saved state
           if ($scope.status.saved) {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Pear2Pear')
-  .factory('ProfilesSvc', ['swellRT', '$q', '$timeout', 'SwellRTSession', function(swellRT, $q, $timeout, SwellRTSession){
+  .factory('ProfilesSvc', ['swellRT', '$q', '$timeout', 'SessionSvc', function(swellRT, $q, $timeout, SessionSvc){
 
     var Profile = function(){
     };
@@ -58,7 +58,7 @@ angular.module('Pear2Pear')
     var createdProfiles = {};
 
     var current = function(){
-      return getOrCreateProfile(SwellRTSession.users.current());
+      return getOrCreateProfile(SessionSvc.users.current());
     };
 
     // check that the profile does not exists before calling this method
@@ -122,12 +122,12 @@ angular.module('Pear2Pear')
 
     var getOrCreateProfile = function(){
       var profileDef = $q.defer();
-      getProfile(SwellRTSession.users.current()).then(
+      getProfile(SessionSvc.users.current()).then(
         function(prof){
           profileDef.resolve(prof);
         }, function(error) {
           if (error === 'Profile not found'){
-            createProfile(SwellRTSession.users.current()).then(
+            createProfile(SessionSvc.users.current()).then(
               function(p) {
                 profileDef.resolve(p);
               },

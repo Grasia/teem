@@ -17,9 +17,9 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('PadCtrl', [
-  'SwellRTSession', 'url', '$rootScope', '$scope', '$route', '$location',
+  'SessionSvc', 'url', '$rootScope', '$scope', '$route', '$location',
   '$timeout', 'SharedState', 'ProjectsSvc', 'ProfilesSvc', 'Loading',
-  function(SwellRTSession, url, $rootScope, $scope, $route, $location,
+  function(SessionSvc, url, $rootScope, $scope, $route, $location,
   $timeout, SharedState, ProjectsSvc, ProfilesSvc, Loading) {
 
     $scope.urlId = url.urlId;
@@ -32,7 +32,7 @@ angular.module('Pear2Pear')
       });
     };
 
-    SwellRTSession.onLoad(function(){
+    SessionSvc.onLoad(function(){
       Loading.create(ProjectsSvc.find($route.current.params.id)).
         then(function(proxy) {
           $scope.project = proxy;

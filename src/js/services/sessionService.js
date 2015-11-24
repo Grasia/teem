@@ -2,15 +2,15 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.service:SwellRTSession
+ * @name Pear2Pear.service:SessionSvc
  * @description
- * # SwellRTSession service
+ * # SessionSvc service
  * Provides an API to handle SwellRT sessions and network events
  */
 
 angular.module('Pear2Pear')
   .factory(
-    'SwellRTSession', ['$q', '$timeout', 'SharedState', function($q, $timeout, SharedState){
+    'SessionSvc', ['$q', '$timeout', 'SharedState', 'NotificationSvc', function($q, $timeout, SharedState, NotificationSvc){
 
       var swellRTDef = $q.defer();
       var swellRTpromise = swellRTDef.promise;

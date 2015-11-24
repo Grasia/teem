@@ -21,8 +21,8 @@ angular.module('Pear2Pear')
   }])
 
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SwellRTSession', '$timeout', 'CommunitiesSvc',
-    function($scope, $location, $route, SwellRTSession, $timeout, CommunitiesSvc) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'CommunitiesSvc',
+    function($scope, $location, $route, SessionSvc, $timeout, CommunitiesSvc) {
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
@@ -44,8 +44,8 @@ angular.module('Pear2Pear')
     $scope.login = function() {
       var startSession = function(){
         // TODO change password when register is available
-        SwellRTSession.startSession(
-          $scope.user.nick, SwellRTSession.users.password,
+        SessionSvc.startSession(
+          $scope.user.nick, SessionSvc.users.password,
           function(){
             $timeout(function(){
               if ($route.current.params.redirect) {
@@ -61,34 +61,11 @@ angular.module('Pear2Pear')
           }
         );
       };
-      SwellRTSession.registerUser($scope.user.nick, '$password$', startSession, startSession);
+      SessionSvc.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
 
-    if (window.cordova) {
-      document.addEventListener('deviceready', function(){
-        var push = PushNotification.init({ "android": {"senderID": "843281102628"}, "ios": {
-    "alert": "true",
-    "badge": "true",
-    "sound": "true"
-  }, 
-  "windows": {}});
-        window.alert('foo', push);
-        push.on('registration', function(data) {
-          window.alert(data);
-        });
-        push.on('notification', function(data) {
-          window.alert(data);
-        });
-        push.on('error', function(e) {
-          window.alert(e);
-        });
-
-      }, false);
-    }
-
-
     // Check for stored session information
-    if (SwellRTSession.users.current() !== null) {
+    if (SessionSvc.users.current() !== null) {
       if (CommunitiesSvc.current() && !$route.current.params.redirect){
         $route.current.params.section = 'mydoing';
         $route.updateParams($route.current.params);

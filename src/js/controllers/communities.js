@@ -16,10 +16,9 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('CommunitiesCtrl', [
-  '$scope', 'SwellRTSession', 'url', '$location', 'CommunitiesSvc', '$timeout',
-  '$routeParams', 'Loading',
-  function ($scope, SwellRTSession, url, $location, CommunitiesSvc, $timeout,
-  $routeParams, Loading) {
+
+    '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', '$routeParams', 'Loading',
+    function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, $routeParams, Loading) {
 
     $scope.newCommunityName = {
       name : ''
@@ -28,7 +27,8 @@ angular.module('Pear2Pear')
     // FIXME: model prototype
     $scope.urlId = url.urlId;
 
-    SwellRTSession.onLoad(function(){
+
+    SessionSvc.onLoad(function(){
       Loading.create(CommunitiesSvc.all()).
         then(function(communities){
           $scope.communities = communities;

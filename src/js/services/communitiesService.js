@@ -2,8 +2,8 @@
 
 angular.module('Pear2Pear')
   .factory('CommunitiesSvc', [
-  'swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', 'SwellRTCommon', 'ProjectsSvc',
-  function(swellRT, $q, $timeout, base64, SwellRTSession, SwellRTCommon, ProjectsSvc){
+  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc){
 
     var Community = function(){};
 
@@ -62,7 +62,7 @@ angular.module('Pear2Pear')
           {
             $match: {
               'root.type': 'project',
-              'root.contributors': SwellRTSession.users.current()
+              'root.contributors': SessionSvc.users.current()
             }
           }
         ]};
@@ -99,7 +99,7 @@ angular.module('Pear2Pear')
             $match: {
               'root.type': 'project',
               $or: [
-                { 'root.contributors': SwellRTSession.users.current() },
+                { 'root.contributors': SessionSvc.users.current() },
                 { 'root.shareMode': 'public' }
               ]
             }
@@ -136,18 +136,18 @@ angular.module('Pear2Pear')
       }
 
       if (!user){
-        user = SwellRTSession.users.current();
+        user = SessionSvc.users.current();
       }
       return this.participants.indexOf(user) > -1;
     };
 
     Community.prototype.addParticipant = function(user) {
       if (!user){
-        if (!SwellRTSession.users.loggedIn()) {
+        if (!SessionSvc.users.loggedIn()) {
           return;
         }
 
-        user = SwellRTSession.users.current();
+        user = SessionSvc.users.current();
       }
 
       if (this.isParticipant(user)) {
@@ -159,11 +159,11 @@ angular.module('Pear2Pear')
 
     Community.prototype.removeParticipant = function(user) {
       if (!user){
-        if (!SwellRTSession.users.loggedIn()) {
+        if (!SessionSvc.users.loggedIn()) {
           return;
         }
 
-        user = SwellRTSession.users.current();
+        user = SessionSvc.users.current();
       }
 
       if (! this.isParticipant(user)) {
@@ -177,11 +177,11 @@ angular.module('Pear2Pear')
 
     Community.prototype.toggleParticipant = function(user) {
       if (!user){
-        if (!SwellRTSession.users.loggedIn()) {
+        if (!SessionSvc.users.loggedIn()) {
           return;
         }
 
-        user = SwellRTSession.users.current();
+        user = SessionSvc.users.current();
       }
 
       if (this.isParticipant(user)) {
@@ -244,7 +244,7 @@ angular.module('Pear2Pear')
           p.type = 'community';
           p.name = data.name;
           p.id = id;
-          p.participants = [SwellRTSession.users.current()];
+          p.participants = [SessionSvc.users.current()];
           p.projects = [];
           d.resolve(p);
         });
@@ -319,7 +319,7 @@ angular.module('Pear2Pear')
 
     // The communities the user is participating in
     var participating = function() {
-      if (!SwellRTSession.users.loggedIn()) {
+      if (!SessionSvc.users.loggedIn()) {
         return [];
       }
 
@@ -329,7 +329,7 @@ angular.module('Pear2Pear')
             {
               $match: {
                 'root.type': 'community',
-                'root.participants': SwellRTSession.users.current()
+                'root.participants': SessionSvc.users.current()
               }
             }
           ]};

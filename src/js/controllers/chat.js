@@ -32,9 +32,9 @@ angular.module('Pear2Pear')
     };
   })
   .controller('ChatCtrl', [
-  'SwellRTSession', 'url', '$scope', '$rootScope', '$route', '$location',
+  'SessionSvc', 'url', '$scope', '$rootScope', '$route', '$location',
   '$animate', 'time', 'ProjectsSvc', 'ProfilesSvc', 'Loading',
-  function(SwellRTSession, url, $scope, $rootScope, $route, $location,
+  function(SessionSvc, url, $scope, $rootScope, $route, $location,
   $animate, time, ProjectsSvc, ProfilesSvc, Loading){
 
     $scope.urlId = url.urlId;
@@ -47,7 +47,7 @@ angular.module('Pear2Pear')
       });
     };
 
-    SwellRTSession.onLoad(function(){
+    SessionSvc.onLoad(function(){
       Loading.create(ProjectsSvc.find($route.current.params.id)).
         then(function(proxy){
           $scope.project = proxy;
@@ -83,10 +83,10 @@ angular.module('Pear2Pear')
 
 
     $scope.standpoint = function(msg){
-      if (!SwellRTSession.users.current()) {
+      if (!SessionSvc.users.current()) {
         return msg.standpoint || 'their';
       }
-      return msg.standpoint || (SwellRTSession.users.isCurrent(msg.who) ? 'mine' : 'their');
+      return msg.standpoint || (SessionSvc.users.isCurrent(msg.who) ? 'mine' : 'their');
     };
 
     $scope.theirStandpoint = function(msg) {

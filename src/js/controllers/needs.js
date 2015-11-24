@@ -17,9 +17,9 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('NeedsCtrl', [
-  'SwellRTSession', 'url', '$scope', '$route', 'ProjectsSvc', 'ProfilesSvc',
+  'SessionSvc', 'url', '$scope', '$route', 'ProjectsSvc', 'ProfilesSvc',
   'Loading',
-  function(SwellRTSession, url, $scope, $route, ProjectsSvc, ProfilesSvc,
+  function(SessionSvc, url, $scope, $route, ProjectsSvc, ProfilesSvc,
   Loading){
     $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
@@ -31,7 +31,7 @@ angular.module('Pear2Pear')
       });
     };
 
-    SwellRTSession.onLoad(function(){
+    SessionSvc.onLoad(function(){
       Loading.create(ProjectsSvc.find($route.current.params.id)).
         then(function(proxy){
           $scope.project = proxy;
@@ -51,7 +51,7 @@ angular.module('Pear2Pear')
   }])
   .directive(
     'needDisplay',
-    function(SwellRTSession, ProjectsSvc, $route){
+    function(SessionSvc, ProjectsSvc, $route){
       return {
         require: '^needList',
         scope: {
@@ -89,7 +89,7 @@ angular.module('Pear2Pear')
               needsCtrl.removeNeed(need);
             }
           };
-          SwellRTSession.onLoad(function(){
+          SessionSvc.onLoad(function(){
             ProjectsSvc.find($route.current.params.id).then(
               function(project){
                 scope.project = project;
@@ -128,7 +128,7 @@ angular.module('Pear2Pear')
 
           scope.areCommentsVisible = needsCtrl.areCommentsVisible;
           scope.sendComment = function(){
-            SwellRTSession.loginRequired(function() {
+            SessionSvc.loginRequired(function() {
               ProjectsSvc.find($route.current.params.id).then(function(project){
                 project.addNeedComment(scope.need, scope.newComment.text);
                 scope.newComment.text = '';
@@ -151,11 +151,11 @@ angular.module('Pear2Pear')
           project: '=',
           needs: '='
         },
-        controller: function($scope, $route, SwellRTSession, ProjectsSvc, time) {
+        controller: function($scope, $route, SessionSvc, ProjectsSvc, time) {
           this.addNeed = function (need) {
             console.dir(need);
             if (need.text !== undefined && need.text !== ''){
-              need.author = SwellRTSession.users.current();
+              need.author = SessionSvc.users.current();
               need.time = (new Date()).toJSON();
 
               $scope.needs.push(need);

@@ -22,9 +22,9 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('ProjectsCtrl', [
-  'SwellRTSession', 'url', '$scope', '$location', '$route', 'time',
+  'SessionSvc', 'url', '$scope', '$location', '$route', 'time',
   'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
-  function (SwellRTSession, url, $scope, $location, $route, time,
+  function (SessionSvc, url, $scope, $location, $route, time,
   CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
 
     $scope.urlId= url.urlId;
@@ -34,7 +34,7 @@ angular.module('Pear2Pear')
     // get the count of new edits and chats for a list of projects and store them in the project properties
     function getNewsCounts(projs) {
       angular.forEach(projs, function(proj) {
-        if (proj.contributors.indexOf(SwellRTSession.users.current()) > -1) {
+        if (proj.contributors.indexOf(SessionSvc.users.current()) > -1) {
           proj.isContributor = true;
 
           ProfilesSvc.current().then(function(prof){
@@ -47,7 +47,7 @@ angular.module('Pear2Pear')
       });
     }
 
-    SwellRTSession.onLoad(function(){
+    SessionSvc.onLoad(function(){
       Loading.create(CommunitiesSvc.find(comUrlId)).
         then(function(community){
           $scope.community = community;
@@ -61,7 +61,7 @@ angular.module('Pear2Pear')
         });
 
       $scope.new_ = function () {
-        SwellRTSession.loginRequired(function() {
+        SessionSvc.loginRequired(function() {
           ProjectsSvc.create(function(p) {
             //FIXME model prototype
             $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(p.id) + '/pad');
@@ -71,7 +71,7 @@ angular.module('Pear2Pear')
     });
 
     $scope.participate = function() {
-      SwellRTSession.loginRequired(function() {
+      SessionSvc.loginRequired(function() {
         $scope.community.addParticipant();
       });
     };

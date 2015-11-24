@@ -1,9 +1,18 @@
 'use strict';
 
 angular.module('Pear2Pear')
-  .factory('ProjectsSvc', ['swellRT', '$q', '$timeout', 'base64', 'SwellRTSession', 'SwellRTCommon', 'ProfilesSvc', function(swellRT, $q, $timeout, base64, SwellRTSession, SwellRTCommon, ProfilesSvc){
+  .factory('ProjectsSvc', ['swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProfilesSvc', function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProfilesSvc){
 
     var Project = function(){};
+
+    Project.prototype.addContributor = function(user) {
+      if (!user){
+        user = SessionSvc.users.current();
+      }
+      if (user && this.contributors.indexOf(user) < 0){
+        this.contributors.push(user);
+      }
+    };
 
     Project.prototype.setShareMode = function(shareMode){
       this.shareMode = shareMode;
@@ -18,37 +27,21 @@ angular.module('Pear2Pear')
     };
 
     Project.prototype.toggleSupport = function(){
-      if (SwellRTSession.users.current() === null) {
+      if (SessionSvc.users.current() === null) {
         return;
       }
-      var index = this.supporters.indexOf(SwellRTSession.users.current());
+      var index = this.supporters.indexOf(SessionSvc.users.current());
 
       if (index > -1) {
         this.supporters.splice(index, 1);
       } else {
-        this.supporters.push(SwellRTSession.users.current());
-      }
-    };
-
-    Project.prototype.isContributor = function(user){
-      if (!user){
-        user = SwellRTSession.users.current();
-      }
-      return this.contributors.indexOf(user) > -1;
-    };
-
-    Project.prototype.addContributor = function(user) {
-      if (!user){
-        user = SwellRTSession.users.current();
-      }
-      if (user && this.contributors.indexOf(user) < 0){
-        this.contributors.push(user);
+        this.supporters.push(SessionSvc.users.current());
       }
     };
 
     Project.prototype.removeContributor = function(user) {
       if (!user){
-        user = SwellRTSession.users.current();
+        user = SessionSvc.users.current();
       }
 
       this.contributors.splice(
@@ -57,11 +50,12 @@ angular.module('Pear2Pear')
     };
 
     Project.prototype.toggleContributor = function(){
-      if (!SwellRTSession.users.loggedIn()) {
+      if (SessionSvc.users.current() === null) {
         return;
       }
+      var index = this.contributors.indexOf(SessionSvc.users.current());
 
-      var user = SwellRTSession.users.current();
+      var user = SessionSvc.users.current();
 
       if (this.isContributor(user)) {
         this.removeContributor(user);
@@ -73,7 +67,7 @@ angular.module('Pear2Pear')
     Project.prototype.addChatMessage = function(message){
       this.chat.push({
           text: message,
-          who: SwellRTSession.users.current(),
+          who: SessionSvc.users.current(),
           time: (new Date()).toJSON()
         });
       this.addContributor();
@@ -86,15 +80,22 @@ angular.module('Pear2Pear')
       need.comments.push({
         text: comment,
         time: (new Date()).toJSON(),
-        author: SwellRTSession.users.current()
+        author: SessionSvc.users.current()
       });
     };
 
     Project.prototype.isSupporter = function(user){
       if (!user){
-        user = SwellRTSession.users.current();
+        user = SessionSvc.users.current();
       }
       return this.supporters.indexOf(user) > -1;
+    };
+
+    Project.prototype.isContributor = function(user){
+      if (!user){
+        user = SessionSvc.users.current();
+      }
+      return this.contributors.indexOf(user) > -1;
     };
 
     // Service functions //
@@ -141,9 +142,9 @@ angular.module('Pear2Pear')
           proxyProj.chat = [];
           proxyProj.pad = new swellRT.TextObject();
           proxyProj.needs = [];
-          proxyProj.promoter = SwellRTSession.users.current();
+          proxyProj.promoter = SessionSvc.users.current();
           proxyProj.supporters = [];
-          proxyProj.contributors = [SwellRTSession.users.current()];
+          proxyProj.contributors = [SessionSvc.users.current()];
           proxyProj.shareMode = 'public';
           d.resolve(proxyProj);
         });
