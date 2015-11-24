@@ -10,7 +10,7 @@ http://p2pvalue.eu/
         UCM P2Pvalue
     </author>
     <content src="https://p.p2pvalue.eu/?cordova=android" />
-    <allow-navigation href="https://p.p2pvalue.eu/?cordova=android" />
+    <allow-navigation href="https://p.p2pvalue.eu/*" />
     <access origin="*" />
     <platform name="android">
       <icon src="res/icon.png" density="ldpi" />
