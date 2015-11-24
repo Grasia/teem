@@ -17,8 +17,10 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('PadCtrl', [
-  'SwellRTSession', 'url', '$rootScope', '$scope', '$route', '$location', '$timeout', 'SharedState', 'ProjectsSvc', 'ProfilesSvc',
-  function(SwellRTSession, url, $rootScope, $scope, $route, $location, $timeout, SharedState, ProjectsSvc, ProfilesSvc) {
+  'SwellRTSession', 'url', '$rootScope', '$scope', '$route', '$location',
+  '$timeout', 'SharedState', 'ProjectsSvc', 'ProfilesSvc',
+  function(SwellRTSession, url, $rootScope, $scope, $route, $location,
+  $timeout, SharedState, ProjectsSvc, ProfilesSvc) {
 
     $scope.urlId = url.urlId;
     $scope.communityId = $route.current.params.comId;
