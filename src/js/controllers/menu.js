@@ -20,12 +20,9 @@ angular.module('Pear2Pear')
     }
 
     SwellRTSession.onLoad(function(){
-      var communitiesPromise = CommunitiesSvc.participating();
-
-      Loading.create(communitiesPromise);
-
-      communitiesPromise.then(function(communities) {
-        $scope.myCommunities = communities;
-      });
+      Loading.create(CommunitiesSvc.participating()).
+        then(function(communities) {
+          $scope.myCommunities = communities;
+        });
     });
   }]);

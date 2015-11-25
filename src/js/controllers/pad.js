@@ -33,12 +33,11 @@ angular.module('Pear2Pear')
     };
 
     SwellRTSession.onLoad(function(){
-      Loading.create(
-        ProjectsSvc.find($route.current.params.id)
-         .then(function(proxy) {
-           $scope.project = proxy;
-         })
-      );
+      Loading.create(ProjectsSvc.find($route.current.params.id)).
+        then(function(proxy) {
+          $scope.project = proxy;
+        });
+
       timestampPadAccess();
     });
 

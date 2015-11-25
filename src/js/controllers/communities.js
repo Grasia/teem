@@ -29,10 +29,10 @@ angular.module('Pear2Pear')
     $scope.urlId = url.urlId;
 
     SwellRTSession.onLoad(function(){
-      Loading.create(
-        CommunitiesSvc.all().then(function(communities){
+      Loading.create(CommunitiesSvc.all()).
+        then(function(communities){
           $scope.communities = communities;
-        }));
+        });
 
       $scope.create = function(name) {
         CommunitiesSvc.create(

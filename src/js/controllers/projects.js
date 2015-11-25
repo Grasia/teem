@@ -31,42 +31,35 @@ angular.module('Pear2Pear')
 
     var comUrlId = $route.current.params.comId;
 
-    SwellRTSession.onLoad(function(){
-      var communityPromise = CommunitiesSvc.find(comUrlId);
+    // get the count of new edits and chats for a list of projects and store them in the project properties
+    function getNewsCounts(projs) {
+      angular.forEach(projs, function(proj) {
+        if (proj.contributors.indexOf(SwellRTSession.users.current()) > -1) {
+          proj.isContributor = true;
 
-      Loading.create(communityPromise);
-
-      communityPromise.then(function(community){
-        $scope.community = community;
-      });
-
-      // get the count of new edits and chats for a list of projects and store them in the project properties
-      function getNewsCounts(projs) {
-        angular.forEach(projs, function(proj) {
-          if (proj.contributors.indexOf(SwellRTSession.users.current()) > -1) {
-            proj.isContributor = true;
-
-            ProfilesSvc.current().then(function(prof){
-              $timeout(function(){
-                proj.newMessagesCount = prof.getNewMessagesCount(proj);
-                proj.padEditionCount = prof.getPadEditionCount(proj);
-              });
+          ProfilesSvc.current().then(function(prof){
+            $timeout(function(){
+              proj.newMessagesCount = prof.getNewMessagesCount(proj);
+              proj.padEditionCount = prof.getPadEditionCount(proj);
             });
-          }
-        });
-      }
-
-      communityPromise.then(function(community){
-        var projectPromise = community.myAndPublicProjects();
-        Loading.create(projectPromise);
-
-        projectPromise.then(
-          function (projects){
-            getNewsCounts(projects);
-
-            $scope.projects = projects;
           });
+        }
       });
+    }
+
+    SwellRTSession.onLoad(function(){
+      Loading.create(CommunitiesSvc.find(comUrlId)).
+        then(function(community){
+          $scope.community = community;
+        }).
+        then(function(community){
+          Loading.create(community.myAndPublicProjects()).
+            then(function (projects){
+              getNewsCounts(projects);
+
+              $scope.projects = projects;
+            });
+        });
 
       $scope.new_ = function () {
         SwellRTSession.loginRequired(function() {
