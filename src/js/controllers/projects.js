@@ -51,8 +51,7 @@ angular.module('Pear2Pear')
       Loading.create(CommunitiesSvc.find(comUrlId)).
         then(function(community){
           $scope.community = community;
-        }).
-        then(function(community){
+          
           Loading.create(community.myAndPublicProjects()).
             then(function (projects){
               getNewsCounts(projects);
