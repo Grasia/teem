@@ -29,7 +29,11 @@
     "add_participant": "Añadir participante",
     "communities": "Comunidades",
     "create": {
-      "button": "Crear la comunidad \"{{name}}\"",
+      "button": {
+        "empty": "Crear",
+        "name": "Crear la comunidad \"{{name}}\""
+      },
+
       "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!",
       "placeholder": "Nombre de la comunidad"
     },
