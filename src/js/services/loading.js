@@ -38,7 +38,9 @@ angular.module('Pear2Pear')
      function create(promise) {
        on();
 
-       return promise.then(success, error);
+       promise.then(success, error);
+
+       return promise;
      }
 
      return {
