@@ -85,7 +85,7 @@ angular.module('Pear2Pear')
         swellRTpromise.then(function(){
           SwellRT.stopSession();
           users.clearCurrent();
-          NotificationSvc.unRegister(
+          NotificationSvc.unregister(
             undefined,
             function(error){
               console.log(error);
