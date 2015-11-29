@@ -145,7 +145,7 @@ angular.module('Pear2Pear')
                 NotificationSvc.register(userName);
               } else {
                 users.clearCurrent();
-                NotificationSvc.unRegister(
+                NotificationSvc.unregister(
                   undefined,
                   function(error){
                     console.log(error);
