@@ -33,7 +33,12 @@
           {{ creating ? 'community.create.button.empty' : 'community.new.button' }}
         </span>
       </a>
-      <a class="btn btn-default btn-block btn-lg community-create-btn" ng-if="newCommunityName.name" ng-click="create(newCommunityName.name)" overflow-ellipsis>
+      <a class="btn btn-default btn-block btn-lg community-create-btn"
+         ng-if="newCommunityName.name"
+         ng-click="create(newCommunityName.name)"
+         analytics-on="click"
+         analytics-event="Create community"
+         overflow-ellipsis>
         <span translate translate-values="{ name: '{{newCommunityName.name}}' }">community.create.button.name</span>
       </a>
     </div>

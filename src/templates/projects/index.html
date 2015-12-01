@@ -126,7 +126,13 @@
             community.welcome.message
           </p>
           <h2 translate>community.welcome.next.title</h2>
-          <button class="btn btn-primary btn-new-project" ng-click="new_()" translate>community.welcome.next.workspace</button>
+          <button class="btn btn-primary btn-new-project"
+                  ng-click="new_()"
+                  analytics-on="click"
+                  analytics-event="Create project"
+                  translate>
+            community.welcome.next.workspace
+          </button>
         </div>
       </div>
     </div>
@@ -142,7 +148,9 @@
 
   <button class="btn btn-info cta-btn"
           ng-click="new_()"
-          ng-if="community.isParticipant()">
+          ng-if="community.isParticipant()"
+          analytics-on="click"
+          analytics-event="Create project">
       <span translate>project.create.button</span>
   </button>
 </div>
