@@ -9,8 +9,9 @@
  */
 
 angular.module('Pear2Pear')
-  .factory(
-    'SessionSvc', ['$q', '$timeout', 'SharedState', 'NotificationSvc', function($q, $timeout, SharedState, NotificationSvc){
+  .factory('SessionSvc', [
+  '$q', '$timeout', 'SharedState', 'NotificationSvc',
+  function($q, $timeout, SharedState, NotificationSvc) {
 
       var swellRTDef = $q.defer();
       var swellRTpromise = swellRTDef.promise;
