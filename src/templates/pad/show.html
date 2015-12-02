@@ -22,32 +22,29 @@
       <div class="section project-description"
            ng-class="ed.editting ? 'project-description-editing' : ''">
         <div class="project-description-header">
-          <h5 ng-if="!ed.editting"><span translate>project.section.description.title</span><span class="project-notes-tip" ng-if="project.isContributor()" translate>&nbsp;project.section.description.tip</span></h5>
-
-          <div class="pad-edit-btn"> <!-- TODO Add stop edit button -->
-            <button class="btn btn-link btn-xs" ng-if="!ed.editting"
-            ng-click="toggleFullScreenEdit()">
-            <i class="fa fa-expand"></i>
-          </button>
-          <button class="btn btn-link btn-xs" ng-if="ed.editting"
-          ng-click="toggleFullScreenEdit()">
-          <i class="fa fa-compress"></i>
-        </button>
+          <h5 ng-if="!ed.editting">
+            <span translate>project.section.description.title</span>
+            <span class="project-notes-tip" ng-if="project.isContributor()" translate>
+              &nbsp;project.section.description.tip
+            </span>
+          </h5>
+        </div>
+        <div id="pad"
+             class="swellrt-editor"
+             editable="{{project.isContributor()}}"
+             ng-model="project.pad"
+             placeholder="{{ 'pad.placeholder' | translate }}"
+             ui-outer-click="toggleFullScreenEdit()"
+             ui-outer-click-if="ed.editting"
+             block-edit="{{!project.isContributor()}}"></div>
+        </div>
       </div>
     </div>
-    <div id="pad"
-         class="swellrt-editor"
-         editable="{{project.isContributor()}}"
-         ng-model="project.pad"
-         placeholder="{{ 'pad.placeholder' | translate }}"
-         ui-outer-click="toggleFullScreenEdit()"
-         ui-outer-click-if="ed.editting"
-         block-edit="{{!project.isContributor()}}"></div>
   </div>
-</div>
 
-<div ng-if="!project.isContributor()">
-  <div like-join></div>
+  <div ng-if="!project.isContributor()">
+    <div like-join></div>
+  </div>
 </div>
 
 <!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
