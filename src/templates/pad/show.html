@@ -31,11 +31,10 @@
         </div>
         <div id="pad"
              class="swellrt-editor"
+             swellrt-editor-on-ready="padReady()"
              editable="{{project.isContributor()}}"
              ng-model="project.pad"
              placeholder="{{ 'pad.placeholder' | translate }}"
-             ui-outer-click="toggleFullScreenEdit()"
-             ui-outer-click-if="ed.editting"
              block-edit="{{!project.isContributor()}}"></div>
         </div>
       </div>

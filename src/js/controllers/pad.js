@@ -63,16 +63,44 @@ angular.module('Pear2Pear')
       $location.path('frontpage');
     };
 
-    angular.element(document.querySelector('.swellrt-editor')).on(
-      'focusin',
-      function(){
-        if ($scope.project.isContributor()){
-          $timeout(function(){
-            document.getElementById('pad').focus();
-            $scope.toggleFullScreenEdit();
-          });
+    $scope.ed = {
+      editting: false
+    };
+
+    $scope.padReady = function() {
+      // FIXME
+      // SwellRT editor is created with .wave-editor-off
+      // Should use .wave-editor-on when SwellRT editor callback is available
+      // https://github.com/P2Pvalue/swellrt/issues/84
+      var editor = angular.element(document.getElementById('pad').children[0]);
+
+      $scope.$watch(function(){
+        return editor.attr('class');
+      },
+      function(newClass) {
+        if (newClass === 'wave-editor-on') {
+          editor.
+            on('focus', function() {
+              $scope.editOn();
+            }).
+            on('blur', function() {
+              $scope.editOff();
+            });
         }
       });
+    };
+
+    $scope.editOn = function() {
+      $scope.ed.editting = true;
+
+      $timeout();
+    };
+
+    $scope.editOff = function() {
+      $scope.ed.editting = false;
+
+      $timeout();
+    };
 
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
@@ -82,16 +110,4 @@ angular.module('Pear2Pear')
         SharedState.turnOn('projectTitleReminder');
       }
     });
-
-    $scope.ed = {
-      editting: false
-    };
-
-    $scope.toggleFullScreenEdit = function() {
-      $scope.ed.editting = !$scope.ed.editting;
-
-      if ($scope.ed.editting) {
-        document.getElementById('pad').focus();
-      }
-    };
   }]);
