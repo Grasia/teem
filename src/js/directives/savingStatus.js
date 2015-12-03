@@ -7,13 +7,11 @@ angular.module('Pear2Pear')
     return {
       link: function(scope, element) {
         element.on('focus', function() {
-          console.log('ea');
           SessionSvc.showSaving = true;
 
           $timeout();
         }).
         on('blur', function() {
-          console.log('ae');
           SessionSvc.showSaving = false;
 
           $timeout();
