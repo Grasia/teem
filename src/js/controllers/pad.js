@@ -93,12 +93,16 @@ angular.module('Pear2Pear')
     $scope.editOn = function() {
       $scope.ed.editting = true;
 
+      SessionSvc.showSaving = true;
+
       $timeout();
     };
 
     $scope.editOff = function() {
       $scope.ed.editting = false;
 
+      SessionSvc.showSaving = false;
+      
       $timeout();
     };
 

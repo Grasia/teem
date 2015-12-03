@@ -30,9 +30,12 @@ angular.module('Pear2Pear')
           $scope.status.desync = ! current.sync;
           $scope.status.lastSync = current.lastSync;
 
+          $scope.status.saving = $scope.status.desync && SessionSvc.showSaving;
+
           if (current.connection === 'connected' &&
               current.sync &&
-              ! former.sync) {
+              ! former.sync &&
+              SessionSvc.showSaving) {
             showSave();
           }
         });

@@ -16,6 +16,7 @@
       <textarea ng-if="project.isContributor()"
                 class="need-name"
                 rows="1"
+                saving-status
                 msd-elastic
                 ng-class="need.completed === 'true' ? 'text-strike' : ''"
                 ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
