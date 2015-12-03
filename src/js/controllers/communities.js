@@ -16,9 +16,8 @@ angular.module('Pear2Pear')
       });
   }])
   .controller('CommunitiesCtrl', [
-
-    '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', '$routeParams', 'Loading',
-    function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, $routeParams, Loading) {
+  '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', '$routeParams', 'Loading',
+  function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, $routeParams, Loading) {
 
     $scope.newCommunityName = {
       name : ''
