@@ -320,7 +320,9 @@ angular.module('Pear2Pear')
     // The communities the user is participating in
     var participating = function() {
       if (!SessionSvc.users.loggedIn()) {
-        return [];
+        return $q(function(resolve) {
+          resolve([]);
+        });
       }
 
       return $q(function(resolve, reject) {
