@@ -78,8 +78,6 @@ describe('Pear2Pear', function() {
       element(by.css('.swellrt-editor')).click();
       element(by.css('.wave-editor-on')).sendKeys('Grow your community with Pear2Pear');
 
-      element(by.css('.fa-compress')).click();
-
       element(by.css('a.nav-chat')).click();
 
       var chatText = 'This is a nice opportunity to discuss about testing';
