@@ -8,7 +8,7 @@
  */
 
 angular.module('Teem')
-  .factory( 'NotificationSvc', [function(){
+  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', function($location, url, $timeout){
 
     var push;
     var registrationId;
@@ -27,6 +27,17 @@ angular.module('Teem')
 
         push.on('error', function(e) {
           console.log(e);
+        });
+
+        push.on('notification', function(data) {
+
+          // navigate to notification's workspace if received in background
+          if (!data.additionalData.foreground) {
+
+            // Note: data.additionalData.commId is the first community in which the project is
+            $location.path('/communities/' + url.urlId(data.additionalData.commId) + '/projects/' + url.urlId(data.additionalData.projId));
+            $timeout();
+          }
         });
       }
     }
