@@ -68,6 +68,7 @@
       "suggestions": "Some suggestions"
     },
     "settings": {
+      "close": "Done",
       "description": {
         "label": "Community description",
         "placeholder": "Tell people what is your community about..."

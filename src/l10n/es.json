@@ -66,6 +66,7 @@
       "suggestions": "Algunas sugerencias"
     },
     "settings": {
+      "close": "Hecho",
       "description": {
         "label": "Descripción de la comunidad",
         "placeholder": "Cuéntale a la gente de qué va tu comunidad..."
