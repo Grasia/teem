@@ -50,7 +50,10 @@
            ng-click="showProjects(community.id)">
         <h4 class="community-title" ng-bind-html="community.name | highlight:newCommunityName.name">
         </h4>
-        <div>
+        <div class="community-description">
+          {{community.description}}
+        </div>
+        <div class="community-numbers">
           <span class="community-projects-number">{{community.numProjects || 0}}</span>
           <span translate>community.project.number</span>
         </div>
