@@ -1,31 +1,33 @@
-<div class="connection-alert alert alert-warning" ng-show="status.connecting || status.disconnected">
-  <div ng-show="status.connecting" translate>
-    connection.init
-  </div>
-  <div ng-show="status.disconnected" translate>
-    connection.lost
-  </div>
-  <div ng-show="status.desync" translate-values="{time: '{{status.lastSync | amTimeAgo }}'}" translate>
-    connection.sync
-  </div>
-
-  <button class="btn btn-default pull-right" ng-click="refresh()">
-    <i class="fa fa-refresh"></i> <span translate>connection.refresh</span>
-  </button>
-  <div class="clearfix"></div>
-</div>
-
-<div class="connection-status-save" ng-if="status.saving || status.saved">
-  <div class="connection-saving" ng-if="status.saving">
-    <div class="alert alert-warning">
-      <i class="fa fa-spinner fa-pulse"></i>
-      <span translate>connection.saving</span>
+<div class="connection-status">
+  <div class="connection-alert alert alert-warning" ng-show="status.connecting || status.disconnected">
+    <div ng-show="status.connecting" translate>
+      connection.init
     </div>
+    <div ng-show="status.disconnected" translate>
+      connection.lost
+    </div>
+    <div ng-show="status.desync" translate-values="{time: '{{status.lastSync | amTimeAgo }}'}" translate>
+      connection.sync
+    </div>
+
+    <button class="btn btn-default pull-right" ng-click="refresh()">
+      <i class="fa fa-refresh"></i> <span translate>connection.refresh</span>
+    </button>
+    <div class="clearfix"></div>
   </div>
-  <div class="connection-saved" ng-if="status.saved">
-    <div class="alert alert-success">
-      <i class="fa fa-check"></i>
-      <span translate>connection.saved</span>
+
+  <div class="connection-status-save" ng-if="status.saving || status.saved">
+    <div class="connection-saving" ng-if="status.saving">
+      <div class="alert alert-warning">
+        <i class="fa fa-spinner fa-pulse"></i>
+        <span translate>connection.saving</span>
+      </div>
+    </div>
+    <div class="connection-saved" ng-if="status.saved">
+      <div class="alert alert-success">
+        <i class="fa fa-check"></i>
+        <span translate>connection.saved</span>
+      </div>
     </div>
   </div>
 </div>

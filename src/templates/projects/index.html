@@ -157,7 +157,7 @@
 </div>
 
 <div ui-content-for="modals">
-  <div class="modal" ui-if="communitySettings" ui-state="communitySettings">
+  <div class="modal modal-community-settings" ui-if="communitySettings" ui-state="communitySettings">
     <div class="modal-backdrop in" ui-turn-off="communitySettings"></div>
 
     <div class="modal-dialog">
@@ -169,6 +169,8 @@
         </div>
         <div class="modal-body">
           <form class="community-settings">
+            <div connection-status></div>
+
             <div class="form-group">
               <label for="communityName" translate>community.settings.name.label</label>
               <input type="text"
