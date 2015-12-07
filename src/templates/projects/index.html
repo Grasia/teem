@@ -126,14 +126,48 @@
           <p translate>
             community.welcome.message
           </p>
-          <h2 translate>community.welcome.next.title</h2>
-          <button class="btn btn-primary btn-new-project"
-                  ng-click="new_()"
-                  analytics-on="click"
-                  analytics-event="Create project"
-                  translate>
-            community.welcome.next.workspace
-          </button>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h2 translate>community.welcome.next.title</h2>
+            </div>
+
+            <ul class="list-group">
+              <li class="list-group-item">
+                <div translate>
+                  community.welcome.next.description.tip
+                </div>
+
+                <div>
+                  <button class="btn btn-primary btn-new-project pull-right"
+                          ui-turn-on="communitySettings"
+                          translate>
+                    community.welcome.next.description.button
+                  </button>
+                </div>
+                <div class="clearfix">
+                  <!-- Fix floating button -->
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div translate>
+                  community.welcome.next.workspace.tip
+                </div>
+
+                <div>
+                  <button class="btn btn-primary btn-new-project pull-right"
+                          ng-click="new_()"
+                          analytics-on="click"
+                          analytics-event="Create project"
+                          translate>
+                    community.welcome.next.workspace.button
+                  </button>
+                </div>
+                <div class="clearfix">
+                  <!-- Fix floating button -->
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

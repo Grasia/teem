@@ -81,7 +81,14 @@
       "message": "Ahora podéis impulsar la comunidad con Pear2Pear",
       "next": {
         "title": "¿Lo siguiente?",
-        "workspace": "Crea un espacio de trabajo"
+        "description": {
+          "button": "Añade una descripción de tu comunidad",
+          "tip": "Introduce una descripción de tu comunidad, para que otros puedan descubrirla más fácilmente y unirse"
+        },
+        "workspace": {
+          "button": "Crea un espacio de trabajo",
+          "tip": "Empieza compartiendo tu próximo projecto o iniciativa de tu comunidad"
+        }
       },
       "title": "¡Enhorabuena!"
     }

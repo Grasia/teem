@@ -83,7 +83,14 @@
       "message": "Now you can foster your community with Pear2Pear",
       "next": {
         "title": "What's next?",
-        "workspace": "Create a workspace"
+        "description": {
+          "button": "Add community description",
+          "tip": "Introduce a description about your community, so others can discover you easily and join"
+        },
+        "workspace": {
+          "button": "Create a workspace",
+          "tip": "Start sharing your next project or iniciative of your community"
+        }
       },
       "title": "Congratulations!"
     }
