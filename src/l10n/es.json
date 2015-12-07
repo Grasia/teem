@@ -46,7 +46,8 @@
     },
     "menu": {
       "join": "Unirse a esta comunidad",
-      "leave": "Abandonar esta comunidad"
+      "leave": "Abandonar esta comunidad",
+      "settings": "Ajustes"
     },
     "name": "Nombre de la comunidad",
     "new": {
@@ -63,6 +64,17 @@
     "search": {
       "placeholder": "Encuentra tu comunidad...",
       "suggestions": "Algunas sugerencias"
+    },
+    "settings": {
+      "description": {
+        "label": "Descripción de la comunidad",
+        "placeholder": "Cuéntale a la gente de qué va tu comunidad..."
+      },
+      "name": {
+        "label": "Nombre de la comunidad",
+        "placeholder": "El nombre de tu comunidad..."
+      },
+      "title": "Ajustes de la comunidad"
     },
     "welcome": {
       "message": "Ahora podéis impulsar la comunidad con Pear2Pear",

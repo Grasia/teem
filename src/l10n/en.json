@@ -48,7 +48,8 @@
     },
     "menu": {
       "join": "Join this community",
-      "leave": "Leave this community"
+      "leave": "Leave this community",
+      "settings": "Settings"
     },
     "name": "Community name",
     "new": {
@@ -65,6 +66,17 @@
     "search": {
       "placeholder": "Find your community...",
       "suggestions": "Some suggestions"
+    },
+    "settings": {
+      "description": {
+        "label": "Community description",
+        "placeholder": "Tell people what is your community about..."
+      },
+      "name": {
+        "label": "Community name",
+        "placeholder": "Your community name..."
+      },
+      "title": "Community settings"
     },
     "welcome": {
       "message": "Now you can foster your community with Pear2Pear",

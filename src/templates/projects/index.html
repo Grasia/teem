@@ -21,6 +21,7 @@
         role="menu" ui-show="dropdownProjectMenu"
         ui-turn-off="dropdownProjectMenu">
 
+      <li><a ui-turn-on="communitySettings"><span translate>community.menu.settings</span></a></li>
       <li><a participate participate-copy-on="community.menu.leave" participate-copy-off="community.menu.join" participate-model="community"></a></li>
     </ul>
   </div>
@@ -154,3 +155,39 @@
       <span translate>project.create.button</span>
   </button>
 </div>
+
+<div ui-content-for="modals">
+  <div class="modal" ui-if="communitySettings" ui-state="communitySettings">
+    <div class="modal-backdrop in" ui-turn-off="communitySettings"></div>
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close"
+                  ui-turn-off="communitySettings">&times;</button>
+            <h4 class="modal-title" translate translate-values="{ name: '{{ community.name }}' }">community.settings.title</h4>
+        </div>
+        <div class="modal-body">
+          <form class="community-settings">
+            <div class="form-group">
+              <label for="communityName" translate>community.settings.name.label</label>
+              <input type="text"
+                     class="form-control"
+                     id="communityName"
+                     ng-model="community.name"
+                     saving-status
+                     placeholder="{{ 'community.settings.name.placeholder' | translate }}">
+            </div>
+            <div class="form-group">
+              <label for="communityDescription" translate>community.settings.description.label</label>
+              <textarea class="form-control"
+                        msd-elastic="\n"
+                        ng-model="community.description"
+                        saving-status
+                        placeholder="{{ 'community.settings.description.placeholder' | translate}}"></textarea>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
