@@ -21,7 +21,7 @@
         role="menu" ui-show="dropdownProjectMenu"
         ui-turn-off="dropdownProjectMenu">
 
-      <li><a ui-turn-on="communitySettings"><span translate>community.menu.settings</span></a></li>
+      <li ng-if="community.isParticipant()"><a ui-turn-on="communitySettings"><span translate>community.menu.settings</span></a></li>
       <li><a participate participate-copy-on="community.menu.leave" participate-copy-off="community.menu.join" participate-model="community"></a></li>
     </ul>
   </div>
