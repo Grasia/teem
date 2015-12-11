@@ -102,10 +102,67 @@ angular.module('Pear2Pear')
 
     var openedProjects = {};
 
-    var find = function(urlId) {
+    /*
+     * Build options for all query
+     */
+    function buildAllQuery(options) {
+      var query = {
+        _aggregate: [
+          {
+            $match: {
+              'root.type': 'project'
+            }
+          }
+        ]
+      };
 
+      if (options.contributor) {
+        query._aggregate[0].$match['root.contributors'] = options.contributor;
+      }
+
+      if (options.community) {
+        query._aggregate[0].$match['root.communities'] = options.community;
+      }
+
+      if (options.publicAndContributor) {
+        query._aggregate[0].$match.$or = [
+          { 'root.contributors': options.publicAndContributor },
+          { 'root.shareMode': 'public' }
+        ];
+      }
+
+      return query;
+    }
+
+    /*
+     * Find all the projects that meet some condition
+     */
+    function all(options) {
+      var query = buildAllQuery(options);
+
+      return $q(function(resolve, reject) {
+        var res = [];
+
+        SwellRT.query(query, function(result) {
+
+          angular.forEach(result.result, function(val){
+            res.push(val.root);
+          });
+
+          resolve(res);
+        },
+        function(error){
+          console.log(error);
+
+          reject([]);
+        });
+      });
+    };
+
+    var find = function(urlId) {
       var id = base64.urldecode(urlId);
       var def = $q.defer();
+
       if (!openedProjects[id]) {
         openedProjects[id] = def.promise;
         SwellRT.openModel(id, function(model){
@@ -156,6 +213,7 @@ angular.module('Pear2Pear')
     };
 
     return {
+      all: all,
       find: find,
       create: create
     };
