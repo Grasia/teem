@@ -41,7 +41,7 @@
   <div class="scrollable">
     <div class="scrollable-content">
       <div class="list-group" ng-if="!emptyProjects()">
-        <div class="project-item list-group-item" ng-repeat="project in projects" ng-click="showProject(project.id)" ng-if="project.title!==''">
+        <div class="project-item list-group-item" ng-repeat="project in projects" ng-click="showProject(project)" ng-if="project.title!==''">
 
           <div class="media">
             <div class="media-body">
@@ -89,7 +89,7 @@
 
                     <span class="inline-value">{{newMessagesCount(project)}}</span>
                     <span class="inline-title">
-                      <span class="fa-stack" ng-click="showProject(project.id, 'chat')">
+                      <span class="fa-stack" ng-click="showProject(project, 'chat')">
                         <i class="fa fa-comments-o fa-stack-1x" ng-class="(newMessagesCount(project)>0)? 'active':''"></i>
                       </span>
                     </span>
@@ -108,7 +108,7 @@
 
                     <!-- Messages -->
                     <div class="project-last-message hidden-xs" ng-show="lastChat(project)">
-                      <div class="message-time" ng-click="showProject(project.id, 'chat')">
+                      <div class="message-time" ng-click="showProject(project, 'chat')">
                         <i class="fa fa-comment-o"></i>
                         {{lastChat(project).time}}
                       </div>
@@ -116,11 +116,11 @@
                       <div ng-if="!lastChat(project).isNotification">
                         <div class="author-avatar" avatars="lastChat(project).who"> </div>
                         <div class="author-name">{{lastChat(project).author()}}</div>
-                        <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')">{{lastChat(project).text}}</div>
+                        <div class="message-text overflow-ellipsis" ng-click="showProject(project, 'chat')">{{lastChat(project).text}}</div>
                       </div>
 
                       <div ng-if="lastChat(project).isNotification">
-                        <div class="message-text overflow-ellipsis" ng-click="showProject(project.id, 'chat')" translate translate-values="lastChat(project).translateValues">{{lastChat(project).text}}</div>
+                        <div class="message-text overflow-ellipsis" ng-click="showProject(project, 'chat')" translate translate-values="lastChat(project).translateValues">{{lastChat(project).text}}</div>
                       </div>
                     </div>
                   </div>

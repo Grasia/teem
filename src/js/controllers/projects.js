@@ -119,11 +119,8 @@ angular.module('Pear2Pear')
       }
     };
 
-    $scope.showProject = function(id, tabName) {
-      // FIXME: it shows an error because community is not loaded yet
-      if ($scope.community) {
-        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id) + '/' + (tabName || 'pad'));
-      }
+    $scope.showProject = function(project, tabName) {
+      $location.path('/communities/' + url.urlId(project.communities[0]) + '/projects/' + url.urlId(project.id) + '/' + (tabName || 'pad'));
     };
 
     // This function should belong to the model
