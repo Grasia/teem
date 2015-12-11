@@ -10,15 +10,23 @@
 angular.module('Pear2Pear')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:new?', {
+      .when('/communities', {
         templateUrl: 'communities/index.html',
         controller: 'CommunitiesCtrl'
+      })
+      .when('/communities/new', {
+        templateUrl: 'communities/index.html',
+        controller: 'CommunitiesCtrl'
+      })
+      .when('/communities/:communityId', {
+        redirectTo: function(params) {
+          return '/communities/' + params.communityId + '/projects';
+        }
       });
   }])
   .controller('CommunitiesCtrl', [
-  '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', '$routeParams', 'Loading',
-  function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, $routeParams, Loading) {
-
+  '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', 'Loading',
+  function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, Loading) {
     $scope.newCommunityName = {
       name : ''
     };
@@ -51,7 +59,7 @@ angular.module('Pear2Pear')
       });
     };
 
-    if ($routeParams.new) {
+    if ($location.path() === '/communities/new') {
       $scope.new_();
     }
 

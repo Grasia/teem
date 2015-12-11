@@ -129,6 +129,9 @@
       "find": "Explore communities",
       "title": "Communities"
     },
+    "projects": {
+      "title": "Workspaces"
+    },
     "support": "Get support",
     "title": "Pear2Pear"
   },
@@ -240,6 +243,9 @@
         "button_cancel": "Yes, discard workspace",
         "button_continue": "No, keep workspace"
       }
+    },
+    "welcome": {
+      "tip": "Not involved in anything yet? <a href=\"#/communities\">Find a community</a> to join or <a href=\"#/communities/new\">create your community</a>"
     }
   },
   "session": {

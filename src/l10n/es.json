@@ -127,6 +127,9 @@
       "find": "Explora las comunidades",
       "title": "Comunidades"
     },
+    "projects": {
+      "title": "Espacios de trabajo"
+    },
     "support": "Ayuda",
     "title": "Pear2Pear"
   },
@@ -238,6 +241,9 @@
         "button_cancel": "Sí, descartar el espacio de trabajo",
         "button_continue": "No, seguir con el espacio de trabajo"
       }
+    },
+    "welcome": {
+      "tip": "¿No participas en nada todavía? <a href=\"#/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"#/communities/new\">crea tu comunidad</a>"
     }
   },
   "session": {

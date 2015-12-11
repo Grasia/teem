@@ -80,9 +80,11 @@ angular.module('Pear2Pear')
 
     var openedCommunities = {};
 
-    var find = function(urlId) {
+    function findByUrlId(urlId) {
+      return find(base64.urldecode(urlId));
+    }
 
-      var id = base64.urldecode(urlId);
+    var find = function(id) {
       var comDef = $q.defer();
       var community = comDef.promise;
 
@@ -249,6 +251,7 @@ angular.module('Pear2Pear')
     };
 
     return {
+      findByUrlId: findByUrlId,
       find : find,
       create: create,
       all: all,

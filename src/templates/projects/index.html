@@ -28,11 +28,12 @@
 </div>
 
 <div ui-content-for="nav-title">
-  <div class="overflow-ellipsis">{{ community.name }}</div>
+  <div class="overflow-ellipsis" ng-if="community">{{ community.name }}</div>
+  <div ng-if="! community" translate>project.index.title</div>
 </div>
 
 <div ui-content-for="nav-subtitle">
-  <span ng-if="!emptyProjects()" translate>project.index.title</span>
+  <span ng-if="community && !emptyProjects()" translate>project.index.title</span>
 </div>
 
 
@@ -49,13 +50,22 @@
               </h4>
 
               <div class="project-sections">
+                <div class="project-communities" ng-if="! community">
+                  <span class="project-section-icon">
+                    <i class="fa i-community"></i>
+                  </span>
+                  <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="#/communities/{{ urlId(c.id) }}">{{ c.name }}</a></span>
+                </div>
+
                 <div class="project-participants">
-                  <i class="fa i-participant"></i>
+                  <span class="project-section-icon">
+                    <i class="fa i-participant"></i>
+                  </span>
                   <span ng-repeat="c in project.contributors">{{ $index > 0 ? ', ' : '' }}{{ c.split('@')[0]}}</span>
                 </div>
 
                 <div class="project-section-needs">
-                  <div class="needs-icon">
+                  <div class="needs-icon project-section-icon">
                     <i class="fa i-need"></i>
                   </div>
                   <div class="progress">
@@ -86,7 +96,9 @@
                   </div>
 
                   <div class="project-section-supporters">
-                    <span><i class="fa i-support"></i></span>
+                    <span class="project-section-icon">
+                      <i class="fa i-support"></i>
+                    </span>
                     <span>{{ supporterCount(project) }}</span>
                     <span translate>project.section.support.number</span>
                   </div>
@@ -120,7 +132,13 @@
       </div>
 
 
-      <div class="community-welcome" ng-if="emptyProjects()">
+      <div class="projects-welcome" ng-if="! community && emptyProjects()">
+        <div class="alert alert-info">
+          <span translate>project.welcome.tip</span>
+        </div>
+      </div>
+
+      <div class="community-welcome" ng-if="community && emptyProjects()">
         <div class="jumbotron">
           <h1 translate>community.welcome.title</h1>
           <p translate>
@@ -174,7 +192,7 @@
   </div>
 </div>
 
-<div class="cta-placeholder" ng-if="!emptyProjects()">
+<div class="cta-placeholder" ng-if="community && !emptyProjects()">
   <button class="btn btn-info cta-btn"
           ng-click="participate()"
           ng-if="!community.isParticipant()">

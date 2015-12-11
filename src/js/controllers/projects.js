@@ -15,6 +15,10 @@ angular.module('Pear2Pear')
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
+      .when('/projects', {
+        templateUrl: 'projects/index.html',
+        controller: 'ProjectsCtrl'
+      })
       .when('/communities/:comId/projects/:id', {
         redirectTo: function(params) {
           return '/communities/' + params.comId + '/projects/' + params.id + '/pad';
@@ -47,18 +51,45 @@ angular.module('Pear2Pear')
       });
     }
 
-    SessionSvc.onLoad(function(){
-      Loading.create(CommunitiesSvc.find(comUrlId)).
-        then(function(community){
-          $scope.community = community;
+    function getCommunities(projects) {
+      angular.forEach(projects, function(p) {
+        angular.forEach(p.communities, function(id) {
+          CommunitiesSvc.find(id).then(function(c) {
+            $timeout(function() {
+              if (! p.loadedCommunities) {
+                p.loadedCommunities = [];
+              }
 
-          Loading.create(community.myAndPublicProjects()).
-            then(function (projects){
-              getNewsCounts(projects);
+              p.loadedCommunities.push(c);
+            });
+          });
+        });
+      });
+    }
+
+    SessionSvc.onLoad(function(){
+      if ($route.current.params.comId) {
+        Loading.create(CommunitiesSvc.findByUrlId(comUrlId)).
+          then(function(community){
+            $scope.community = community;
+
+            Loading.create(community.myAndPublicProjects()).
+              then(function (projects){
+                getNewsCounts(projects);
+
+                $scope.projects = projects;
+              });
+          });
+      } else {
+        if (SessionSvc.users.loggedIn()) {
+          Loading.create(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
+            then(function(projects) {
+              getCommunities(projects);
 
               $scope.projects = projects;
             });
-        });
+        }
+      }
 
       $scope.new_ = function () {
         SessionSvc.loginRequired(function() {
@@ -89,7 +120,10 @@ angular.module('Pear2Pear')
     };
 
     $scope.showProject = function(id, tabName) {
-      $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id) + '/' + (tabName || 'pad'));
+      // FIXME: it shows an error because community is not loaded yet
+      if ($scope.community) {
+        $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(id) + '/' + (tabName || 'pad'));
+      }
     };
 
     // This function should belong to the model
