@@ -84,6 +84,7 @@ angular.module('Pear2Pear')
         if (SessionSvc.users.loggedIn()) {
           Loading.create(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
             then(function(projects) {
+              getNewsCounts(projects);
               getCommunities(projects);
 
               $scope.projects = projects;
