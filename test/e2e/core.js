@@ -93,7 +93,7 @@ describe('Pear2Pear', function() {
       var comId = browser.driver.executeScript('return window.localStorage.communityId;');
 
       comId.then(function(communityId){
-        expect(browser.getLocationAbsUrl()).toBe('/communities/' + communityId + '/projects?section=mydoing');
+        expect(browser.getLocationAbsUrl()).toBe('/communities/' + communityId + '/projects');
       });
     });
   });

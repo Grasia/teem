@@ -51,7 +51,7 @@ angular.module('Pear2Pear')
       Loading.create(CommunitiesSvc.find(comUrlId)).
         then(function(community){
           $scope.community = community;
-          
+
           Loading.create(community.myAndPublicProjects()).
             then(function (projects){
               getNewsCounts(projects);
@@ -74,24 +74,6 @@ angular.module('Pear2Pear')
       SessionSvc.loginRequired(function() {
         $scope.community.addParticipant();
       });
-    };
-
-    //FIXME repeated code in ProjectInfoCtrl
-    // Refactorize to service
-    function section() {
-      if ($route.current.params.section) {
-        return $route.current.params.section;
-      } else {
-        return 'crowddoing';
-      }
-    }
-
-    function isSection(s) {
-      return s === section();
-    }
-
-    $scope.nav = function(id) {
-      return isSection(id) ? 'selected' : '';
     };
 
     // TODO: repeated code in NavbarTopCtrl
