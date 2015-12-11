@@ -82,7 +82,7 @@
 
                   <div class="project-section-notifications pull-right" ng-if="project.isContributor">
                     <span class="inline-title">
-                      <span class="fa-stack">
+                      <span class="fa-stack" ng-click="showProject(project, 'pad')">
                         <i class="fa fa-pencil-square-o fa-stack-1x" ng-class="(padEditionCount(project)>0)? 'active':''"></i>
                       </span>
                     </span>
