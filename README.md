@@ -1,28 +1,28 @@
-# Pear2Pear
+# Teem
 
-Pear2Pear is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)
+Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)
 
 http://p2pvalue.eu/
 
 ## Getting Started
 
-To get you started you can simply clone the pear2pear repository and install the dependencies:
+To get you started you can simply clone the teem repository and install the dependencies:
 
 ### Prerequisites
 
-You need git to clone the pear2pear repository. You can get git from
+You need git to clone the teem repository. You can get git from
 [http://git-scm.com/](http://git-scm.com/).
 
-We also use a number of node.js tools to initialize and test pear2pear You must have node.js and
+We also use a number of node.js tools to initialize and test teem You must have node.js and
 its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
 
-### Clone pear2pear
+### Clone teem
 
-Clone the pear2pear repository using [git][git]:
+Clone the teem repository using [git][git]:
 
 ```
-git clone https://github.com/P2Pvalue/pear2pear.git
-cd pear2pear
+git clone https://github.com/P2Pvalue/teem.git
+cd teem
 ```
 
 ### Install Dependencies
@@ -47,7 +47,7 @@ folders in your project.
 
 ### Install SwellRT
 
-Pear2Pear uses [SwellRT](https://github.com/P2Pvalue/swellrt), a real-time federated collaboration framework.
+Teem uses [SwellRT](https://github.com/P2Pvalue/swellrt), a real-time federated collaboration framework.
 
 You need to run SwellRT, which is extremelly easy using Docker. [Install Docker](https://docs.docker.com/installation/)
 
@@ -77,11 +77,11 @@ Now browse to the app at `http://localhost:8000/`
 
 ## Testing
 
-There are two kinds of tests in the pear2pear application: Unit tests and End to End tests.
+There are two kinds of tests in the teem application: Unit tests and End to End tests.
 
 ### Running Unit Tests
 
-The pear2pear app comes preconfigured with unit tests. These are written in
+The teem app comes preconfigured with unit tests. These are written in
 [Jasmine][jasmine], which we run with the [Karma Test Runner][karma]. We provide a Karma
 configuration file to run them.
 
@@ -110,7 +110,7 @@ npm run test-single-run
 
 ### End to end testing
 
-The pear2pear app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
+The teem app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
 are run with the [Protractor][protractor] End-to-End test runner.  It uses native events and has
 special features for Angular applications.
 
@@ -125,7 +125,7 @@ can interact with it.
 npm start
 ```
 
-In addition, since Protractor is built upon WebDriver we need to install this.  The pear2pear
+In addition, since Protractor is built upon WebDriver we need to install this.  The teem
 project comes with a predefined script to do this:
 
 ```
