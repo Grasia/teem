@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="eu.p2pvalue.pear2pear" version="0.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Pear2Pear</name>
+<widget id="eu.p2pvalue.pear2pear" version="0.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Teem</name>
     <description>
-Pear2Pear is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)
+Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)
 
 http://p2pvalue.eu/
     </description>
     <author email="p2pv@ucm.es" href="http://p2pvalue.eu">
         UCM P2Pvalue
     </author>
-    <content src="https://p.p2pvalue.eu/?cordova=android" />
-    <allow-navigation href="https://p.p2pvalue.eu/*" />
+    <content src="https://app.teem.works/?cordova=android" />
+    <allow-navigation href="https://app.teem.works/*" />
     <access origin="*" />
     <platform name="android">
       <icon src="res/icon.png" density="ldpi" />
