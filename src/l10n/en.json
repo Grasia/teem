@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Pear2Pear"
+    "name": "Teem"
   },
   "bottom_navbar": {},
   "chat": {
@@ -80,7 +80,7 @@
       "title": "Community settings"
     },
     "welcome": {
-      "message": "Now you can foster your community with Pear2Pear",
+      "message": "Now you can foster your community with Teem",
       "next": {
         "title": "What's next?",
         "description": {
@@ -133,7 +133,7 @@
       "title": "Workspaces"
     },
     "support": "Get support",
-    "title": "Pear2Pear"
+    "title": "Teem"
   },
   "need": {
     "by": "Added {{time}} by {{author}}",
@@ -162,7 +162,6 @@
     },
     "placeholder": "You want to work on..."
   },
-  "page_title": "P2Pvalue Prototype",
   "project": {
     "create": {
       "button": "Create workspace",
@@ -294,7 +293,7 @@
     }
   },
   "upgrading": {
-    "explanation": "We are working hard to improve Pear2Pear and make it useful for your communities. Upgrades bring new features and bug fixes",
+    "explanation": "We are working hard to improve Teem and make it useful for your communities. Upgrades bring new features and bug fixes",
     "title": "Upgrading..."
   }
 }

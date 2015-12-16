@@ -78,7 +78,7 @@
       "title": "Ajustes de la comunidad"
     },
     "welcome": {
-      "message": "Ahora podéis impulsar la comunidad con Pear2Pear",
+      "message": "Ahora podéis impulsar la comunidad con Teem",
       "next": {
         "title": "¿Lo siguiente?",
         "description": {
@@ -131,7 +131,7 @@
       "title": "Espacios de trabajo"
     },
     "support": "Ayuda",
-    "title": "Pear2Pear"
+    "title": "Teem"
   },
   "need": {
     "by": "Añadida {{time}} por {{author}}",
@@ -160,7 +160,6 @@
     },
     "placeholder": "Quieres trabajar en..."
   },
-  "page_title": "Prototipo P2Pvalue",
   "project": {
     "create": {
       "button": "Crear espacio de trabajo",
@@ -292,7 +291,7 @@
     }
   },
   "upgrading": {
-    "explanation": "Trabajamos duro para mejorar P2Pvalue y hacerla útil para tus comunidades. Las actualizaciones arreglan fallos y proporcionan nuevas funcionalidades",
+    "explanation": "Trabajamos duro para mejorar Teem y hacerla útil para tus comunidades. Las actualizaciones arreglan fallos y proporcionan nuevas funcionalidades",
     "title": "Actualizando..."
   }
 }
