@@ -1,39 +1,17 @@
 {
-  "bottom_navbar": {},
   "chat": {
     "input": "Mensaje",
     "nav": {
       "title": "Chat"
     }
   },
-  "collab": {
-    "activity": "Actividad",
-    "collaborate": "Colabora",
-    "collaboration_space": "Espacio de Colaboración",
-    "empty_collab_tip": "add a new activity",
-    "join": "¿Unirte a la actividad?",
-    "learn": "Aprender",
-    "learn_space": "Espacio de Aprendizaje",
-    "name": "Nombre",
-    "new_activity": "Nueva actividad",
-    "no": "No",
-    "objectives": "Objetivos...",
-    "what_can_be_learned": "fotografía, pintura",
-    "yes": "Sí!"
-  },
-  "common": {
-    "cancel": "Cancelar",
-    "create": "Crear"
-  },
   "community": {
-    "add_participant": "Añadir participante",
     "communities": "Comunidades",
     "create": {
       "button": {
         "empty": "Crear",
         "name": "Crear la comunidad \"{{name}}\""
       },
-
       "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!",
       "placeholder": "Nombre de la comunidad"
     },
@@ -53,7 +31,6 @@
     "new": {
       "button": "...o crea una nueva"
     },
-    "no_selected_tip": "Por favor, selecciona una comunidad en el menú principal",
     "participants": "Gente en la comunidad",
     "participate": {
       "button": "Unirse a esta comunidad"
@@ -231,7 +208,6 @@
       },
       "title": "Compartir espacio de trabajo '{{title}}'"
     },
-    "task_list_label": "Tareas del espacio de trabajo:",
     "title": {
       "placeholder": "<Escribir nombre del espacio de trabajo>",
       "reminder": {
@@ -243,51 +219,6 @@
     },
     "welcome": {
       "tip": "¿No participas en nada todavía? <a href=\"#/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"#/communities/new\">crea tu comunidad</a>"
-    }
-  },
-  "session": {
-    "age": "¿Cuántos años tienes?",
-    "community": "¿En qué comunidad participas?",
-    "gender": "Sexo",
-    "gender_female": "Mujer",
-    "gender_male": "Hombre",
-    "intro": "<strong>¡Gracias por probar nuestro prototipo!</strong> <br> Por favor, rellena este cuestionario para ayudarnos a comprender un poco más sobre la forma en la que vas a usar nuestra herramienta.",
-    "role": "¿Cuál es tu relación con la comunidad?",
-    "role_1_radio": "Estoy muy implicado en la comunidad",
-    "role_90_radio": "Estoy interesado en lo que hace la comunidad",
-    "role_9_radio": "Colaboro ocasionalmente con la comunidad",
-    "send_user_data": "Enviar",
-    "tech": "¿Cuál es tu experiencia con programas de ordenador y aplicaciones para móviles?",
-    "tech_high": "Alta",
-    "tech_low": "Baja",
-    "tech_medium": "Intermedia",
-    "title": "Cuéntanos un poco sobre ti"
-  },
-  "tasks": {
-    "android_app": "app Android",
-    "deadline": "Fecha límite",
-    "edit": {
-      "title": "Editar tarea"
-    },
-    "empty_tasks_tip": "Añade una tarea nueva",
-    "index": {
-      "title": "Lista de tareas"
-    },
-    "new": {
-      "title": "Nueva tarea"
-    },
-    "new_task": "Nueva tarea",
-    "reminders": "Mis recordatorios",
-    "reminders_for_android": "Recordatorios disponibles en nuestra",
-    "task_assigned_to": "Asignada a",
-    "task_checkbox_tip": "Haz click aquí en las tareas terminadas",
-    "task_description": "Descripción de la tarea",
-    "task_list": "Lista de tareas",
-    "task_name": "Nombre de la tarea"
-  },
-  "timeline": {
-    "show": {
-      "title": "Noticias"
     }
   },
   "upgrading": {

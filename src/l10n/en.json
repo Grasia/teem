@@ -1,35 +1,11 @@
 {
-  "app": {
-    "name": "Teem"
-  },
-  "bottom_navbar": {},
   "chat": {
     "input": "Message",
     "nav": {
       "title": "Chat"
     }
   },
-  "collab": {
-    "activity": "Activity",
-    "collaborate": "Collaborate",
-    "collaboration_space": "Collaboration Space",
-    "empty_collab_tip": "add a new activity",
-    "join": "Join this activity?",
-    "learn": "Learn",
-    "learn_space": "Learn Space",
-    "name": "Name",
-    "new_activity": "New activity",
-    "no": "No",
-    "objectives": "Objectives...",
-    "what_can_be_learned": "photography, painting",
-    "yes": "Yes!"
-  },
-  "common": {
-    "cancel": "Cancel",
-    "create": "Create"
-  },
   "community": {
-    "add_participant": "Add participant",
     "communities": "Communities",
     "create": {
       "button": {
@@ -55,7 +31,6 @@
     "new": {
       "button": "...or create a new one"
     },
-    "no_selected_tip": "Please, select a community in the app menu ",
     "participants": "People in the community",
     "participate": {
       "button": "Join community"
@@ -233,7 +208,6 @@
       },
       "title": "Share workspace '{{title}}'"
     },
-    "task_list_label": "Project tasks:",
     "title": {
       "placeholder": "<Write here workspace's name>",
       "reminder": {
@@ -245,51 +219,6 @@
     },
     "welcome": {
       "tip": "Not involved in anything yet? <a href=\"#/communities\">Find a community</a> to join or <a href=\"#/communities/new\">create your community</a>"
-    }
-  },
-  "session": {
-    "age": "Age",
-    "community": "In which community do you participate?",
-    "gender": "Gender",
-    "gender_female": "female",
-    "gender_male": "male",
-    "intro": "<strong>Thanks for testing our prototype!</strong> <br> Please, fill the info bellow to help us understand a little bit more about the way you will use our application.",
-    "role": "What is your relation with the community?",
-    "role_1_radio": "I am very involved in the community",
-    "role_90_radio": "I am interested in what the community does",
-    "role_9_radio": "I collaborate ocasionally with the community",
-    "send_user_data": "Send",
-    "tech": "How is your experience with computer programs and moblie applications?",
-    "tech_high": "High",
-    "tech_low": "Low",
-    "tech_medium": "Medium",
-    "title": "Tell us a little bit about you"
-  },
-  "tasks": {
-    "android_app": "Android app",
-    "deadline": "Deadline",
-    "edit": {
-      "title": "Edit task"
-    },
-    "empty_tasks_tip": "Add a new task",
-    "index": {
-      "title": "Task list"
-    },
-    "new": {
-      "title": "New task"
-    },
-    "new_task": "New task",
-    "reminders": "My reminders",
-    "reminders_for_android": "Reminders available for our",
-    "task_assigned_to": "Assigned to",
-    "task_checkbox_tip": "Click done tasks here",
-    "task_description": "Task description",
-    "task_list": "Task list",
-    "task_name": "Task name"
-  },
-  "timeline": {
-    "show": {
-      "title": "News"
     }
   },
   "upgrading": {

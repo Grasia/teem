@@ -1,0 +1,23 @@
+.overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-strike {
+  text-decoration: line-through;
+}
+
+.body {
+  color: #696969
+}
+
+.app-body {
+  color: #696969
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
