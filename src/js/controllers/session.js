@@ -28,7 +28,7 @@ angular.module('Teem')
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
 
     $scope.user = {
-      nick : ""
+      nick : ''
     };
 
     var redirect = function(params) {
