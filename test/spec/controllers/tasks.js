@@ -3,7 +3,7 @@
 describe('Controller: TasksCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('Pear2Pear'));
+  beforeEach(module('Teem'));
 
   var TasksCtrl,
     scope;

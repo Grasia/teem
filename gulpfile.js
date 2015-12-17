@@ -35,7 +35,6 @@ var config = {
       './bower_components/angular-animate/angular-animate.js',
       './bower_components/angular-toArrayFilter/toArrayFilter.js',
       './bower_components/swiper/dist/js/swiper.js',
-      './bower_components/pear2pear-loading/js/pear2pear-loading.js',
       './bower_components/avatar/build/avatar.js',
       './bower_components/avatar/vendor/md5.js',
       './bower_components/moment/moment.js',
@@ -47,7 +46,6 @@ var config = {
 
     fonts: [
       './bower_components/font-awesome/fonts/fontawesome-webfont.*',
-      './bower_components/pear2pear-loading/fonts/pear2pear.*',
       './src/fonts/*'
     ]
   },
@@ -58,7 +56,7 @@ var config = {
     // WaveIds have to exist in wave server and be public
     communityListWaveId: 'local.net/gen+12345abcd2',
     docker: {
-      name: 'pear2pear-swellrt'
+      name: 'teem-swellrt'
     }
   },
 
@@ -106,7 +104,7 @@ var config = {
       branch: 'dist'
     },
     swellrt: {
-      name:  'pear2pear-swellrt',
+      name:  'teem-swellrt',
       image: 'p2pvalue/swellrt',
       args: ' -p 9898:9898 -h swellrt'
     }
@@ -354,7 +352,7 @@ gulp.task('js', function() {
       pipe(ngFilesort()).
       pipe(replace('value(\'config\', {}). // inject:app:config',
                    'value(\'config\', ' + JSON.stringify(config.app) + ').')),
-      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Pear2Pear' }))
+      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
     )
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))

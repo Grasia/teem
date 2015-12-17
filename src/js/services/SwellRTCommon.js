@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory('SwellRTCommon', [function(){
 
     var makeModelPublic = function(model){
@@ -15,4 +15,3 @@ angular.module('Pear2Pear')
       makeModelPublic: makeModelPublic
     };
   }]);
-

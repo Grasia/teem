@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:HelpCtrl
+ * @name Teem.controller:HelpCtrl
  * @description
  * # HelpCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/collab/work/:id', {
@@ -35,7 +35,7 @@ angular.module('Pear2Pear')
   }])
 
   .controller('HelpCtrl', ['$scope', '$location', '$route', function($scope, $location, $route){
-    
+
     $scope.$parent.hideNavigation = false;
     var apply = function () {
       var p = $scope.$$phase;
@@ -55,7 +55,7 @@ angular.module('Pear2Pear')
         window.SwellRT.closeModel(
           window.swellrtConfig.helpWaveId);
       }
-      
+
       window.SwellRT.openModel(
         window.swellrtConfig.helpWaveId,
         function (model) {
@@ -87,7 +87,7 @@ angular.module('Pear2Pear')
             $scope.help[i] = JSON.parse(model.root.get($scope.communityId).values[i].getValue());
           }
           apply();
-          
+
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);
         });
@@ -106,7 +106,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.init();
-    
+
     $scope.helpForm = {};
     $scope.addHelpRequest = function(what, details,support,learn) {
       var s = JSON.stringify({
@@ -144,7 +144,7 @@ angular.module('Pear2Pear')
         function(n){
           return n[name];
         });
-     
+
       var categs;
       if (arrays.length === 0){
         categs = [];
@@ -163,15 +163,15 @@ angular.module('Pear2Pear')
         return !pos || item !== a[pos - 1];
       });
     };
-    
+
     $scope.new_ = function () {
       $location.path($location.path() + '/new').replace();
     };
-    
+
     $scope.show = function (itemId) {
       $location.path('/collab/show/' + $scope.communityId + '/' + itemId);
     };
-    
+
     //switch view, call it with 'learn' or 'collab'
     $scope.nav = function(where){
       $location.path('/collab/' + where + '/' + $scope.communityId);

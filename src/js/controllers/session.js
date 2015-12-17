@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:SessionCtrl
+ * @name Teem.controller:SessionCtrl
  * @description
  * # SessionCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/session/new', {

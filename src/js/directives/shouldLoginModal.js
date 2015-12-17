@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .directive('shouldLoginModal', function() {
     return {
       controller: ['$scope', 'SharedState', '$location', function($scope, SharedState, $location){

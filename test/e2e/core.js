@@ -2,7 +2,7 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
-describe('Pear2Pear', function() {
+describe('Teem', function() {
   var random = require('./random');
 
   beforeAll(function() {
@@ -76,7 +76,7 @@ describe('Pear2Pear', function() {
       element(editTitle).sendKeys('Testing');
 
       element(by.css('.swellrt-editor')).click();
-      element(by.css('.wave-editor-on')).sendKeys('Grow your community with Pear2Pear');
+      element(by.css('.wave-editor-on')).sendKeys('Grow your community with Teem');
 
       element(by.css('a.nav-chat')).click();
 

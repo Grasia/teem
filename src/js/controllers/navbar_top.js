@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:NavbarTopCtrl
+ * @name Teem.controller:NavbarTopCtrl
  * @description
  * # NavbarTop Ctrl
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .controller(
     'NavbarTopCtrl', [
       'SessionSvc', '$scope', '$route', 'ProjectsSvc',

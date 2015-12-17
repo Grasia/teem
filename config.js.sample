@@ -3,12 +3,12 @@ module.exports = function(config) {
 
   config.server.host = '0.0.0.0';
   config.server.port = '8000';
-  
+
   // Set to false to disable it:
   // config.server = false;
 
   // Weinre Remote debug server
-  
+
   config.weinre.httpPort = 8001;
   config.weinre.boundHost = 'localhost';
 
@@ -51,9 +51,9 @@ module.exports = function(config) {
   // config.deploy.files.origin = 'origin'
   //
   // config.deploy.swellrt.args =
-  //   '-v /usr/local/etc/pear2pear-swellrt:/usr/local/swellrt/config ' +
-  //   '-v /var/local/log/pear2pear-swellrt:/usr/local/swellrt/log ' +
-  //   '--link pear2pear-swellrt-mongo:mongo ' +
+  //   '-v /usr/local/etc/teem-swellrt:/usr/local/swellrt/config ' +
+  //   '-v /var/local/log/teem-swellrt:/usr/local/swellrt/log ' +
+  //   '--link teem-swellrt-mongo:mongo ' +
   //   '-h swellrt.p2pvalue.eu -p 127.0.0.1:9899:9898';
   // config.deploy.swellrt.ssh = {
   //   host: 'swellrt.p2pvalue.eu',

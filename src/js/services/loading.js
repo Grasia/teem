@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory('Loading', [
   '$timeout',
    function($timeout) {

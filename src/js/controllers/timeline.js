@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:TimelineCtrl
+ * @name Teem.controller:TimelineCtrl
  * @description
  * # TimelineCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/timeline', {
@@ -268,4 +268,3 @@ angular.module('Pear2Pear')
       }
     };
   }]);
-

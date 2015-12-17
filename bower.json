@@ -1,5 +1,5 @@
 {
-  "name": "pear2pear",
+  "name": "teem",
   "version": "0.0.0",
   "dependencies": {
     "angular": "1.x",
@@ -23,7 +23,6 @@
     "json3": "3.x",
     "mobile-angular-ui": ">= 1.2.0-rc.3",
     "modernizr": "~2.8.3",
-    "pear2pear-loading": "^0.4.0",
     "ryanmullins-angular-hammer": "~2.1.10",
     "swiper": "~3.1.0",
     "angular-moment": "~0.10.3",

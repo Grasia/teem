@@ -1,8 +1,8 @@
 {
-  "name": "pear2pear",
+  "name": "teem",
   "version": "0.0.3",
-  "description": "Pear2Pear is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
-  "repository": "https://github.com/P2Pvalue/pear2pear",
+  "description": "Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
+  "repository": "https://github.com/P2Pvalue/teem",
   "license": "AGPL",
   "dependencies": {
   },

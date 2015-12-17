@@ -3,7 +3,7 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
-describe('Pear2Pear', function() {
+describe('Teem', function() {
 
   beforeAll(function() {
     browser.driver.executeScript("window.localStorage.clear();");

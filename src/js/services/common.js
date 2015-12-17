@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.service:time
+ * @name Teem.service:time
  * @description
  * # time service
  * It provides several time common functions to be used by several controllers
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory('time', [ function() {
     return {
       hour: function(date){

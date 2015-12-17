@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:NeedsCtrl
+ * @name Teem.controller:NeedsCtrl
  * @description
  * # Needs Ctrl
  * Show Needs for a given project
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/communities/:comId/projects/:id/needs', {
@@ -36,7 +36,7 @@ angular.module('Pear2Pear')
         then(function(proxy){
           $scope.project = proxy;
         });
-        
+
       timestampNeedsAccess();
     });
 

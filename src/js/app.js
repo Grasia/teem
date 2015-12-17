@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name Pear2Pear
+ * @name Teem
  * @description
- * # Pear2Pear
+ * # Teem
  *
  * Main module of the application.
  */
 angular
-  .module('Pear2Pear', [
+  .module('Teem', [
     'pasvaz.bindonce',
     'pascalprecht.translate',
     'ngRoute',
@@ -49,7 +49,7 @@ angular
         'en_*': 'en',
         'es_*': 'es'
         // When adding more languages, do not forget to add them for "moment"
-        // in the vendor.js section of gulpfile.js 
+        // in the vendor.js section of gulpfile.js
       })
       .fallbackLanguage('en')
       .determinePreferredLanguage();

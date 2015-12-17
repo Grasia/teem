@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.service:SessionSvc
+ * @name Teem.service:SessionSvc
  * @description
  * # SessionSvc service
  * Provides an API to handle SwellRT sessions and network events
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory('SessionSvc', [
   '$q', '$timeout', 'SharedState', 'NotificationSvc',
   function($q, $timeout, SharedState, NotificationSvc) {

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:ProjectsCtrl
+ * @name Teem.controller:ProjectsCtrl
  * @description
  * # ProjectsCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/communities/:comId/projects', {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory('CommunitiesSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc){

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .directive('likeJoin', function() {
     return {
       templateUrl: 'like-join.html'

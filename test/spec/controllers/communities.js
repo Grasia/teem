@@ -3,7 +3,7 @@
 describe('Controller: CommunitiesCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('Pear2Pear'));
+  beforeEach(module('Teem'));
 
   var CommunitiesCtrl,
     scope;

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.service:url
+ * @name Teem.service:url
  * @description
  * # url service
  * It provides several url common functions to be used by several controllers
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory('url', ['base64', function(base64) {
     return {
       urlId : function(id){

@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .directive('upgrading', [
   '$window', '$timeout',
   function($window, $timeout) {

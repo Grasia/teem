@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:ChatCtrl
+ * @name Teem.controller:ChatCtrl
  * @description
  * # Chat Ctrl
  * Show Chat for a given project
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/communities/:comId/projects/:id/chat', {
@@ -52,7 +52,7 @@ angular.module('Pear2Pear')
         then(function(proxy){
           $scope.project = proxy;
         });
-        
+
       timestampChatAccess();
     });
 

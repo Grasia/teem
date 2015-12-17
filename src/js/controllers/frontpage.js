@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:FrontpageCtrl
+ * @name Teem.controller:FrontpageCtrl
  * @description
  * # FrontpageCtrl
  * Landing page
  */
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/frontpage', {

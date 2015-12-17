@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:TestimoniesCtrl
+ * @name Teem.controller:TestimoniesCtrl
  * @description
  * # TestimoniesCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/testimon/:id', {
@@ -37,7 +37,7 @@ angular.module('Pear2Pear')
         window.SwellRT.closeModel(
           window.swellrtConfig.testimoniesWaveId);
       }
-      
+
       window.SwellRT.openModel(
         window.swellrtConfig.testimoniesWaveId,
         function (model) {
@@ -69,7 +69,7 @@ angular.module('Pear2Pear')
             $scope.testimonies[i] = JSON.parse(model.root.get($scope.communityId).values[i].getValue());
           }
           apply();
-          
+
         }, function (error) {
           window.alert('Error accessing the collaborative list ' + error);
         });
@@ -88,7 +88,7 @@ angular.module('Pear2Pear')
     };
 
     $scope.init();
-    
+
     $scope.testimForm = {};
     $scope.customTestimony = function(name, text) {
       if (!name) {

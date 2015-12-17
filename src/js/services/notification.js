@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.service:NotificationSvc
+ * @name Teem.service:NotificationSvc
  * @description
  * # Notification service
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory( 'NotificationSvc', [function(){
 
     var push;
     var registrationId;
-    
+
     var register = function(userName) {
       if (window.cordova) {
         push = PushNotification.init(

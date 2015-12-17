@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:BottomNavbarCtrl
+ * @name Teem.controller:BottomNavbarCtrl
  * @description
  * # BottomNavbarCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
-angular.module('Pear2Pear')
+angular.module('Teem')
   .controller('BottomNavbarCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
     $scope.context = 'news';
     $scope.timeline = function () {

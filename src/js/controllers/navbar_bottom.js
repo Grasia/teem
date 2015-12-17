@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:NavbarBottomCtrl
+ * @name Teem.controller:NavbarBottomCtrl
  * @description
  * # NavbarBottom Ctrl
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .controller('NavbarBottomCtrl', ['url', '$scope', '$route', function(url, $scope, $route){
 
     $scope.projectsUrl = function(communityId){

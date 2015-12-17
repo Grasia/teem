@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:ChatCtrl
+ * @name Teem.controller:ChatCtrl
  * @description
  * # Chat Ctrl
  * Show Pad for a given project
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/communities/:comId/projects/:id/pad', {
@@ -102,7 +102,7 @@ angular.module('Pear2Pear')
       $scope.ed.editting = false;
 
       SessionSvc.showSaving = false;
-      
+
       $timeout();
     };
 

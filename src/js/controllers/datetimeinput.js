@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:DateTimeInputCtrl
+ * @name Teem.controller:DateTimeInputCtrl
  * @description
  * # DateTimeInputCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
-angular.module('Pear2Pear')
+angular.module('Teem')
   .controller('DateTimeInputCtrl', ['$scope', function($scope){
     $scope.supportsDateInput = Modernizr.inputtypes.date;
     $scope.supportsTimeInput = Modernizr.inputtypes.time;

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name Pear2Pear.controller:HelpCtrl
+ * @name Teem.controller:HelpCtrl
  * @description
  * # HelpCtrl
- * Controller of the Pear2Pear
+ * Controller of the Teem
  */
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .controller('MenuCtrl', [
   '$scope', 'config', 'url', 'SessionSvc', 'CommunitiesSvc', 'Loading',
   function($scope, config, url, SessionSvc, CommunitiesSvc, Loading){

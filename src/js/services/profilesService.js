@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Pear2Pear')
+angular.module('Teem')
   .factory('ProfilesSvc', ['swellRT', '$q', '$timeout', 'SessionSvc', function(swellRT, $q, $timeout, SessionSvc){
 
     var Profile = function(){
