@@ -180,7 +180,7 @@
           "do": "Join",
           "undo": "Leave"
         },
-        "title": "Participants"
+        "title": "{{count}} participants"
       },
       "support": {
         "btn": {

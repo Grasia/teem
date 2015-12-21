@@ -180,7 +180,7 @@
           "do": "Participar",
           "undo": "Abandonar"
         },
-        "title": "Participantes"
+        "title": "{{count}} participantes"
       },
       "support": {
         "btn": {

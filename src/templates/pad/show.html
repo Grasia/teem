@@ -4,16 +4,16 @@
   <div class="scrollable">
     <div class="scrollable-header">
       <div class="section project-support" ng-if="!ed.editting">
-        <h5><i class="fa i-participant"></i><span translate>project.section.participate.title</span></h5>
+        <h5>
+          <i class="fa i-participant"></i>
+          <span translate translate-values="{ count: '{{ project.contributors.length }}'}">
+            project.section.participate.title
+          </span>
+        </h5>
 
         <div class="project-supports">
           <div class="project-supports-section">
-            <div avatars="project.contributors" avatars-name="true"></div>
-          </div>
-          <div class="project-supports-section">
-            <div class="project-support-number">
-              {{ project.contributors.length }}
-            </div>
+            <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
           </div>
         </div>
       </div>
