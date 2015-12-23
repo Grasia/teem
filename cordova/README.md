@@ -8,6 +8,12 @@ Initialize Android platform:
 
   cordova platform add android
 
+-Whitelist plugin:
+    cordova plugin add https://github.com/apache/cordova-plugin-whitelist.git
+
+-Phonegap push plugin:
+    cordova plugin add phonegap-plugin-push
+
 ### Create the emulator
 - Use Android SDK Manager to download Android SDKs, e.g. files under Android 5.0.1 (API 21) and from the Extras folder ```Google Play Services```
 - Create an AVD from the Android Virtual Device Manager:
@@ -39,6 +45,11 @@ You can access weinre from your browser at:
 
 Being `external-ip` with the ip of your internet device (eth0, wlan0, etc..)
 
+### Update Teem served cordova files:
+
+-  copy the new or updated files from platform/android/assets/www/plugins/ to ../src/vendor/cordova/
+-  add them and commit them with git.
+
 ### Releasing and signing the apk
 
 You need to get the keystore from your organization private repo or generate your own.
@@ -54,4 +65,3 @@ To build the package:
   cordova build --release
 
 The package will be stored at `cordova/platforms/android/build/outputs/apk/android-release.apk`
-
