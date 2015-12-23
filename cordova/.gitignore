@@ -1,7 +1,4 @@
 /plugins/
 /platforms/
-!/platforms/android/assets/www/cordova.js
-!/platforms/android/assets/www/cordova_plugins.js
-!/platforms/android/assets/www/plugins/
 /build.json
 
