@@ -45,7 +45,12 @@ You can access weinre from your browser at:
 
 Being `external-ip` with the ip of your internet device (eth0, wlan0, etc..)
 
-### Update Teem served cordova files:
+### When adding a new plugin to the app
+
+Cordova's js files are distributed with the web application. We need to copy them
+to other folder, which is checked-in in git.
+
+After adding a new plugin:
 
 -  copy the new or updated files from platform/android/assets/www/plugins/ to ../src/vendor/cordova/
 -  add them and commit them with git.
