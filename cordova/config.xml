@@ -13,6 +13,7 @@ http://p2pvalue.eu/
     <allow-navigation href="https://app.teem.works/*" />
     <access origin="*" />
     <platform name="android">
+      <preference name="android-minSdkVersion" value="13" />
       <icon src="res/icon.png" density="ldpi" />
       <icon src="res/icon.png" density="mdpi" />
       <icon src="res/icon.png" density="hdpi" />
