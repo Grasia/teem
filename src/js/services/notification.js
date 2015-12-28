@@ -21,8 +21,8 @@ angular.module('Teem')
         push.on('registration', function(data) {
           console.log('Registration:', data);
           registrationId = data.registrationId;
-          // TODO register user with device id:
-          // theGCMServer.registerUser(userName, registrationId);
+
+          SwellRT.notifications.register(registrationId);
         });
 
         push.on('error', function(e) {
@@ -60,8 +60,8 @@ angular.module('Teem')
           throw 'Push notifications have not been initialized';
         }
         push.unregister(onSuccess, onError);
-        // TODO unregister user with device id:
-          // theGCMServer.unregisterUser(userName, registrationId);
+
+        SwellRT.unregister(registrationId);
       }
     }
 
