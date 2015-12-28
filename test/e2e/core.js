@@ -17,11 +17,12 @@ describe('Teem', function() {
     });
 
     it('should create a project and share it', function() {
-      /*
-       * If it is not loaded in 10 seconds, we have a problem in mobiles
-       * Please do not increase this
-       */
+       // If it is not loaded in 10 seconds, we have a problem in mobiles
+       // Please do not increase this
       var timeout = 10000;
+      // When we change SwellRT version, there is more delay until the
+      // server starts
+      var swellrtTimeout = 100000;
       var login = random.emailUser();
       var loginButton = element(by.css('input:enabled[type=submit]'));
 
@@ -38,7 +39,7 @@ describe('Teem', function() {
 
       browser.wait(function() {
         return browser.isElementPresent(communitySearchInput);
-      }, timeout);
+      }, swellrtTimeout);
 
       element(communitySearchInput).sendKeys('Testing Community');
 
