@@ -17,8 +17,8 @@ describe('Teem', function() {
     });
 
     it('should create a project and share it', function() {
-       // If it is not loaded in 10 seconds, we have a problem in mobiles
-       // Please do not increase this
+      // If it is not loaded in 10 seconds, we have a problem in mobiles
+      // Please do not increase this
       var timeout = 10000;
       // When we change SwellRT version, there is more delay until the
       // server starts
