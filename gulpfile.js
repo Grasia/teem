@@ -129,6 +129,11 @@ if (! config.swellrt.server) {
 config.vendor.js.push(config.angularSwellrt.path + '/angular-swellrt.js');
 config.angularSwellrt.swellrt = require(config.angularSwellrt.path + '/swellrt.json');
 
+// Track SwellRT version in SwellRT config
+// This way, clients are updated with the new SwellRT version
+// despite the code does not change
+config.swellrt.version = config.angularSwellrt.swellrt.version;
+
 // Fill docker options
 if (config.swellrt.docker && !config.swellrt.docker.tag) {
   config.swellrt.docker.tag = config.angularSwellrt.swellrt.version;
