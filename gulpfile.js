@@ -53,8 +53,6 @@ var config = {
   swellrt: {
     host: 'demo-swellrt.p2pvalue.eu',
     protocol: 'https://',
-    // WaveIds have to exist in wave server and be public
-    communityListWaveId: 'local.net/gen+12345abcd2',
     docker: {
       name: 'teem-swellrt'
     }
