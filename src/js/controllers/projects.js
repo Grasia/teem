@@ -18,11 +18,6 @@ angular.module('Teem')
       .when('/projects', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
-      })
-      .when('/communities/:comId/projects/:id', {
-        redirectTo: function(params) {
-          return '/communities/' + params.comId + '/projects/' + params.id + '/pad';
-        }
       });
   }])
   .controller('ProjectsCtrl', [
@@ -36,17 +31,11 @@ angular.module('Teem')
     var comUrlId = $route.current.params.comId;
 
     // get the count of new edits and chats for a list of projects and store them in the project properties
+    // Refactoring...
     function getNewsCounts(projs) {
       angular.forEach(projs, function(proj) {
         if (proj.contributors.indexOf(SessionSvc.users.current()) > -1) {
           proj.isContributor = true;
-
-          ProfilesSvc.current().then(function(prof){
-            $timeout(function(){
-              proj.newMessagesCount = prof.getNewMessagesCount(proj);
-              proj.padEditionCount = prof.getPadEditionCount(proj);
-            });
-          });
         }
       });
     }
@@ -96,7 +85,7 @@ angular.module('Teem')
         SessionSvc.loginRequired(function() {
           ProjectsSvc.create(function(p) {
             //FIXME model prototype
-            $location.path('/communities/' + url.urlId($scope.community.id) + '/projects/' + url.urlId(p.id) + '/pad');
+            $location.path('/projects/' + url.urlId(p.id));
           }, $scope.community.id);
         });
       };
@@ -189,12 +178,35 @@ angular.module('Teem')
       return project.contributors.length;
     };
 
+    function lastAccess(project, section) {
+      var access = project.lastAccess &&
+        project.lastAccess[section] &&
+        project.lastAccess[section][SessionSvc.users.current()];
+
+      return (access ? new Date(access) : new Date(0));
+    }
+
     $scope.newMessagesCount = function(project) {
-      return project.newMessagesCount;
+      var access = lastAccess(project, 'chat');
+
+      if (project.chat.length > 0){
+        var i = project.chat.length - 1;
+
+        while (i > -1 && (new Date(project.chat[i].time) > access)) {
+          i --;
+        }
+        return project.chat.length - 1 - i;
+      } else {
+        return 0;
+      }
     };
 
     $scope.padEditionCount = function(project) {
-      return project.padEditionCount;
+      if (lastAccess(project, 'pad').getTime() < project.pad.lastmodtime) {
+        return 1;
+      } else {
+        return 0;
+      }
     };
 
     $scope.hour = function(msg) {

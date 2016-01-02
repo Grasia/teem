@@ -6,50 +6,6 @@ angular.module('Teem')
     var Profile = function(){
     };
 
-    Profile.prototype.timestampPadAccess = function(projId){
-      if (!this.lastPadVisit) this.lastPadVisit = {};
-      this.lastPadVisit[projId] = (new Date()).toJSON();
-    };
-
-    Profile.prototype.timestampChatAccess = function(projId){
-      if (!this.lastChatVisit) this.lastChatVisit = {};
-      this.lastChatVisit[projId] = (new Date()).toJSON();
-    };
-
-    Profile.prototype.timestampNeedsAccess = function(projId){
-      if (!this.lastNeedsVisit) this.lastNeedsVisit = {};
-      this.lastNeedsVisit[projId] = (new Date()).toJSON();
-    };
-
-    Profile.prototype.getPadEditionCount = function(proj){
-      var lastVisit =
-        (this.lastPadVisit[proj.id])?
-        new Date(this.lastPadVisit[proj.id]):new Date(0);
-
-      if (lastVisit.getTime() < proj.pad.lastmodtime){
-        return 1;
-      } else {
-        return 0;
-      }
-    };
-
-    Profile.prototype.getNewMessagesCount = function(proj){
-      var lastVisit =
-        (this.lastChatVisit[proj.id])?
-        new Date(this.lastChatVisit[proj.id]):new Date(0);
-
-      var chatsLength = proj.chat.length;
-
-      if (chatsLength > 0){
-        var i = chatsLength - 1;
-        while (i > -1 && (new Date(proj.chat[i].time) > lastVisit)) {
-          i --;
-        }
-        return chatsLength -1 -i;
-      } else {
-        return 0;
-      }
-    };
     // Service methods //
 
     // map of opened profiles

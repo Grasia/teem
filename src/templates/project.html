@@ -1,0 +1,67 @@
+<div ng-include="'navbar_top/chat_pad.html'"></div>
+
+<div class="project">
+  <div ui-state="projectTab">
+    <div ui-if="projectTab == 'pad'">
+      <div class="scrollable">
+        <div class="scrollable-header">
+          <div class="section project-support" ng-if="!ed.editting">
+            <h5>
+              <i class="fa i-participant"></i>
+              <span translate translate-values="{ count: '{{ project.contributors.length }}'}">
+                project.section.participate.title
+              </span>
+            </h5>
+
+            <div class="project-supports">
+              <div class="project-supports-section">
+                <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scrollable-content">
+          <pad></pad>
+        </div>
+      </div>
+    </div>
+
+    <div ui-if="projectTab == 'needs'">
+      <div class="scrollable">
+        <div class="scrollable-content section">
+          <div need-list project="project" needs="project.needs" ng-class="project.isContributor() ? '' : 'has-cta'"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ng-if is not compatible with ui-if -->
+    <div ng-if="project.isContributor()">
+      <div ui-if="projectTab == 'chat'">
+        <chat></chat>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="!project.isContributor()">
+    <div like-join></div>
+  </div>
+</div>
+
+<!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
+<div ui-content-for="modals2">
+  <div class="modal modal-overlay" ui-if="projectTitleReminder" ui-state="projectTitleReminder">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p translate>project.title.reminder.body_one</p>
+          <strong><p translate>project.title.reminder.body_two</p></strong>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default project-title-reminder-btn" ng-click="cancelProject()" translate>project.title.reminder.button_cancel</button>
+          <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button_continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

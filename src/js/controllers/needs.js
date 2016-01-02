@@ -16,39 +16,6 @@ angular.module('Teem')
         controller: 'NeedsCtrl'
       });
   }])
-  .controller('NeedsCtrl', [
-  'SessionSvc', 'url', '$scope', '$route', 'ProjectsSvc', 'ProfilesSvc',
-  'Loading',
-  function(SessionSvc, url, $scope, $route, ProjectsSvc, ProfilesSvc,
-  Loading){
-    $scope.urlId = url.urlId;
-    $scope.communityId = $route.current.params.comId;
-    var projId = url.decodeUrlId($route.current.params.id);
-
-    var timestampNeedsAccess = function(){
-      ProfilesSvc.current().then(function(prof){
-        prof.timestampNeedsAccess(projId);
-      });
-    };
-
-    SessionSvc.onLoad(function(){
-      Loading.create(ProjectsSvc.find($route.current.params.id)).
-        then(function(proxy){
-          $scope.project = proxy;
-        });
-
-      timestampNeedsAccess();
-    });
-
-    $scope.$on('$routeChangeStart', function(){
-      timestampNeedsAccess();
-    });
-
-    // Should use activeLinks, but https://github.com/mcasimir/mobile-angular-ui/issues/262
-    $scope.nav = function(id) {
-      return id === 'needs' ? 'selected' : '';
-    };
-  }])
   .directive(
     'needDisplay',
     function(SessionSvc, ProjectsSvc, $route){

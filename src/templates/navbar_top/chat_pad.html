@@ -1,5 +1,5 @@
 <div ui-content-for="nav-left">
-  <a href="#/communities/{{communityId}}/projects">
+  <a href="#/communities/{{urlId(project.communities[0])}}/projects">
     <i class="fa fa-chevron-left"></i>
   </a>
 </div>
@@ -38,11 +38,22 @@
 
 <div ui-content-for="nav-navigation">
   <div class="btn-group justified">
-    <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/pad" class="nav-pad {{nav('pad')}}" | translate>pad.nav.title</a>
-    <a ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/needs" class="nav-pad {{nav('needs')}}" | translate>need.nav.title</a>
-    <a ng-if="project.isContributor()" ng-href="#/communities/{{communityId}}/projects/{{urlId(project.id)}}/chat" class="nav-chat {{nav('chat')}}" | translate>chat.nav.title </a>
+    <a ui-set="{'projectTab': 'pad'}"
+       ui-class="{'active': projectTab == 'pad'}"
+       class="nav-pad"
+       translate>pad.nav.title</a>
+    <a ui-set="{'projectTab': 'needs'}"
+       ui-class="{'active': projectTab == 'needs'}"
+       class="nav-pad"
+       translate>need.nav.title</a>
+    <a ui-set="{'projectTab': 'chat'}"
+       ui-class="{'active': projectTab == 'chat'}"
+       class="nav-pad"
+       ng-if="project.isContributor()"
+       translate>chat.nav.title</a>
   </div>
 </div>
+
 
 <div ui-content-for="modals">
   <div class="modal" ui-if="shareModalCreate" ui-state="shareModalCreate">

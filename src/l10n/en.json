@@ -161,14 +161,14 @@
       "share": "Share workspace",
       "unlike": "I don't like this"
     },
+    "pad": {
+      "tip": "(Tap to edit)",
+      "title": "Notes"
+    },
     "project_description": "Description",
     "project_name": "Project name",
     "project_status": "Status",
     "section": {
-      "description": {
-        "tip": "(Tap to edit)",
-        "title": "Notes"
-      },
       "name": {
         "title": "Name"
       },

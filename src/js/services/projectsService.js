@@ -18,12 +18,20 @@ angular.module('Teem')
       this.shareMode = shareMode;
     };
 
-    //TODO profiles Service and bring this method there
-    Project.prototype.timestampProjectAccess = function(){
-      var proj = this;
-      ProfilesSvc.current().then(function(profile) {
-        profile.lastProjectVisit[proj.id] = (new Date()).toJSON();
-      });
+    /*
+     * Record when the user had her last access to one project section
+     */
+    Project.prototype.timestampAccess = function(section){
+      if (! this.isContributor()) {
+        return;
+      }
+
+      this.lastAccess = this.lastAccess || {};
+
+      this.lastAccess[section] = this.lastAccess[section] || {};
+
+      this.lastAccess[section][SessionSvc.users.current()] =
+        (new Date()).toJSON();
     };
 
     Project.prototype.toggleSupport = function(){
@@ -157,7 +165,7 @@ angular.module('Teem')
           reject([]);
         });
       });
-    };
+    }
 
     var find = function(urlId) {
       var id = base64.urldecode(urlId);
@@ -199,6 +207,7 @@ angular.module('Teem')
           proxyProj.chat = [];
           proxyProj.pad = new swellRT.TextObject();
           proxyProj.needs = [];
+          proxyProj.lastAccess = {};
           proxyProj.promoter = SessionSvc.users.current();
           proxyProj.supporters = [];
           proxyProj.contributors = [SessionSvc.users.current()];

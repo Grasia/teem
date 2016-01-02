@@ -161,14 +161,14 @@
       "share": "Compartir espacio",
       "unlike": "No me gusta"
     },
+    "pad": {
+      "tip": "(Tap para editar)",
+      "title": "Notas"
+    },
     "project_description": "Descripción",
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
     "section": {
-      "description": {
-        "tip": "(Tap para editar)",
-        "title": "Notas"
-      },
       "name": {
         "title": "Nombre"
       },
