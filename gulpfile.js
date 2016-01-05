@@ -350,11 +350,16 @@ gulp.task('jshint', function() {
 
 gulp.task('js', function() {
     streamqueue({ objectMode: true },
+      // Vendor: angular, mobile-angular-ui, etc.
       gulp.src(config.vendor.js),
-      gulp.src('./src/js/**/*.js').
-      pipe(ngFilesort()).
+      // app.js is configured
+      gulp.src('./src/js/app.js').
       pipe(replace('value(\'config\', {}). // inject:app:config',
                    'value(\'config\', ' + JSON.stringify(config.app) + ').')),
+      // rest of app logic
+      gulp.src(['./src/js/**/*.js', '!./src/js/app.js']).
+      pipe(ngFilesort()),
+      // app templates
       gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
     )
     .pipe(sourcemaps.init())
