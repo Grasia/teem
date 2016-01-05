@@ -29,9 +29,7 @@
     </div>
     <div class="community-create">
       <a class="btn btn-default btn-block btn-lg" ng-if="! newCommunityName.name" ng-click="new_()" overflow-ellipsis>
-        <span translate>
-          {{ creating ? 'community.create.button.empty' : 'community.new.button' }}
-        </span>
+        {{ creating ? 'community.create.button.empty' : 'community.new.button' | translate }}
       </a>
       <a class="btn btn-default btn-block btn-lg community-create-btn"
          ng-if="newCommunityName.name"
