@@ -197,7 +197,7 @@ gulp.on('error', function(e) {
 
 gulp.task('clean', function (cb) {
   return gulp.src([
-    path.join(config.dest, 'index.html'),
+    path.join(config.dest, '*.html'),
     path.join(config.dest, 'images'),
     path.join(config.dest, 'css'),
     path.join(config.dest, 'js'),
@@ -357,7 +357,7 @@ gulp.task('js', function() {
     pipe(replace('value(\'config\', {}). // inject:app:config',
                  'value(\'config\', ' + JSON.stringify(config.app) + ').')),
     // rest of app logic
-    gulp.src(['./src/js/**/*.js', '!./src/js/app.js']).
+    gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js']).
     pipe(ngFilesort()),
     // app templates
     gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
@@ -371,7 +371,12 @@ gulp.task('js', function() {
     sourceMappingURLPrefix: '/js/'
   }))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
+
+  gulp.src('./src/js/widgets.js')
+  .pipe(uglify())
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
 });
+
 
 /*==================================
 =            Cordova files         =
