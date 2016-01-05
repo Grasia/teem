@@ -18,19 +18,37 @@ angular.module('Teem')
       this.shareMode = shareMode;
     };
 
+    Project.prototype.getTimestampAccess = function() {
+      var access;
+
+      this.lastAccesses = this.lastAccesses || [];
+
+      angular.forEach(this.lastAccesses, function(a) {
+        if (a.user === SessionSvc.users.current()) {
+          access = a;
+        }
+      });
+
+      if (! access) {
+        access = {
+          user: SessionSvc.users.current()
+        };
+
+        this.lastAccesses.push(access);
+      }
+
+      return access;
+    };
+
     /*
      * Record when the user had her last access to one project section
      */
-    Project.prototype.timestampAccess = function(section){
+    Project.prototype.setTimestampAccess = function(section){
       if (! this.isContributor()) {
         return;
       }
 
-      this.lastAccess = this.lastAccess || {};
-
-      this.lastAccess[section] = this.lastAccess[section] || {};
-
-      this.lastAccess[section][SessionSvc.users.current()] =
+      this.getTimestampAccess()[section] =
         (new Date()).toJSON();
     };
 
@@ -58,10 +76,9 @@ angular.module('Teem')
     };
 
     Project.prototype.toggleContributor = function(){
-      if (SessionSvc.users.current() === null) {
+      if (! SessionSvc.users.loggedIn()) {
         return;
       }
-      var index = this.contributors.indexOf(SessionSvc.users.current());
 
       var user = SessionSvc.users.current();
 
@@ -94,13 +111,21 @@ angular.module('Teem')
 
     Project.prototype.isSupporter = function(user){
       if (!user){
+        if (! SessionSvc.users.loggedIn()) {
+          return false;
+        }
+
         user = SessionSvc.users.current();
       }
       return this.supporters.indexOf(user) > -1;
     };
 
     Project.prototype.isContributor = function(user){
-      if (!user){
+      if (! user){
+        if (! SessionSvc.users.loggedIn()) {
+          return false;
+        }
+
         user = SessionSvc.users.current();
       }
       return this.contributors.indexOf(user) > -1;
@@ -207,7 +232,7 @@ angular.module('Teem')
           proxyProj.chat = [];
           proxyProj.pad = new swellRT.TextObject();
           proxyProj.needs = [];
-          proxyProj.lastAccess = {};
+          proxyProj.lastAccesses = [];
           proxyProj.promoter = SessionSvc.users.current();
           proxyProj.supporters = [];
           proxyProj.contributors = [SessionSvc.users.current()];

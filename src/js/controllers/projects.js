@@ -179,11 +179,15 @@ angular.module('Teem')
     };
 
     function lastAccess(project, section) {
-      var access = project.lastAccess &&
-        project.lastAccess[section] &&
-        project.lastAccess[section][SessionSvc.users.current()];
+      var access;
 
-      return (access ? new Date(access) : new Date(0));
+      angular.forEach(project.lastAccesses || [], function(a) {
+        if (a.user === SessionSvc.users.current()) {
+          access = a;
+        }
+      });
+
+      return (access && access[section] ? new Date(access[section]) : new Date(0));
     }
 
     $scope.newMessagesCount = function(project) {

@@ -45,7 +45,7 @@ angular.module('Teem')
         then(function(proxy) {
           $scope.project = proxy;
 
-          $scope.project.timestampAccess(currentTab());
+          $scope.project.setTimestampAccess(currentTab());
         });
     });
 
@@ -59,14 +59,14 @@ angular.module('Teem')
       { defaultValue: currentTab() });
 
     $scope.$on('mobile-angular-ui.state.changed.projectTab', function(e, newVal, oldVal) {
-      $scope.project.timestampAccess(oldVal);
-      $scope.project.timestampAccess(newVal);
+      $scope.project.setTimestampAccess(oldVal);
+      $scope.project.setTimestampAccess(newVal);
 
       $location.search({ tab: newVal});
     });
 
     $scope.$on('$routeChangeStart', function() {
-      $scope.project.timestampAccess(currentTab());
+      $scope.project.setTimestampAccess(currentTab());
     });
 
     $scope.cancelProject = function() {
