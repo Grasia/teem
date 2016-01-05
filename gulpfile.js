@@ -213,16 +213,16 @@ gulp.task('clean', function (cb) {
 ==========================================*/
 
 gulp.task('connect', function() {
-if (typeof config.server === 'object') {
-  connect.server({
-    root: config.dest,
-    host: config.server.host,
-    port: config.server.port,
-    livereload: true
-  });
-} else {
-  throw new Error('Connect is not configured');
-}
+  if (typeof config.server === 'object') {
+    connect.server({
+      root: config.dest,
+      host: config.server.host,
+      port: config.server.port,
+      livereload: true
+    });
+  } else {
+    throw new Error('Connect is not configured');
+  }
 });
 
 /*==============================================================
@@ -230,8 +230,8 @@ if (typeof config.server === 'object') {
 ==============================================================*/
 
 gulp.task('livereload', function () {
-gulp.src(path.join(config.dest, '*.html'))
-  .pipe(connect.reload());
+  gulp.src(path.join(config.dest, '*.html'))
+    .pipe(connect.reload());
 });
 
 
@@ -349,29 +349,29 @@ gulp.task('jshint', function() {
 // - Precompile templates to ng templateCache
 
 gulp.task('js', function() {
-    streamqueue({ objectMode: true },
-      // Vendor: angular, mobile-angular-ui, etc.
-      gulp.src(config.vendor.js),
-      // app.js is configured
-      gulp.src('./src/js/app.js').
-      pipe(replace('value(\'config\', {}). // inject:app:config',
-                   'value(\'config\', ' + JSON.stringify(config.app) + ').')),
-      // rest of app logic
-      gulp.src(['./src/js/**/*.js', '!./src/js/app.js']).
-      pipe(ngFilesort()),
-      // app templates
-      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
-    )
-    .pipe(sourcemaps.init())
-    .pipe(concat('app.js'))
-    .pipe(ngAnnotate())
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('.', {
-      sourceMappingURLPrefix: '/js/'
-    }))
-    .pipe(gulp.dest(path.join(config.dest, 'js')));
-  });
+  streamqueue({ objectMode: true },
+    // Vendor: angular, mobile-angular-ui, etc.
+    gulp.src(config.vendor.js),
+    // app.js is configured
+    gulp.src('./src/js/app.js').
+    pipe(replace('value(\'config\', {}). // inject:app:config',
+                 'value(\'config\', ' + JSON.stringify(config.app) + ').')),
+    // rest of app logic
+    gulp.src(['./src/js/**/*.js', '!./src/js/app.js']).
+    pipe(ngFilesort()),
+    // app templates
+    gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
+  )
+  .pipe(sourcemaps.init())
+  .pipe(concat('app.js'))
+  .pipe(ngAnnotate())
+  .pipe(uglify())
+  .pipe(rename({suffix: '.min'}))
+  .pipe(sourcemaps.write('.', {
+    sourceMappingURLPrefix: '/js/'
+  }))
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
+});
 
 /*==================================
 =            Cordova files         =
@@ -395,8 +395,8 @@ gulp.task('manifest', function(){
       ],
       exclude: 'app.manifest',
       hash: true
-     }))
-    .pipe(gulp.dest(config.dest));
+    }))
+  .pipe(gulp.dest(config.dest));
 });
 
 /*===================================================================
@@ -455,7 +455,7 @@ gulp.task('unit-test', function(done) {
     configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
   }, function() {
-      done();
+    done();
   });
 });
 
@@ -559,26 +559,26 @@ gulp.task('deploy:swellrt', function(done) {
         }).
         on('close', function() {
           setTimeout(function() {
-          console.dir('on close: ' + data);
+            console.dir('on close: ' + data);
 
-          var container = JSON.parse(data)[0];
+            var container = JSON.parse(data)[0];
 
-          if (container) {
-            if (container.Config.Image === taggedImage) {
-              // Right image is deployed
-              console.log('swellrt already running');
-              done();
-              connection.end();
+            if (container) {
+              if (container.Config.Image === taggedImage) {
+                // Right image is deployed
+                console.log('swellrt already running');
+                done();
+                connection.end();
+              } else {
+                console.log('updating swellrt');
+                stop(container.Id, function() {
+                  start();
+                });
+              }
             } else {
-              console.log('updating swellrt');
-              stop(container.Id, function() {
-                start();
-              });
+              console.log('swellrt not running');
+              start();
             }
-          } else {
-            console.log('swellrt not running');
-            start();
-          }
           }, 5000);
         }).
         stderr.on('data', function(data) { console.log('STDERR: ' + data); });
