@@ -13,13 +13,8 @@ angular.module('Teem')
       when('/session/new', {
         templateUrl: 'session/new.html',
         controller:'SessionCtrl'
-      })
-    .when('/session/userdata',{
-      templateUrl: 'session/userdata.html',
-      controller:'SessionCtrl'
-    });
+      });
   }])
-
   .controller('SessionCtrl', [
     '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'CommunitiesSvc',
     function($scope, $location, $route, SessionSvc, $timeout, CommunitiesSvc) {
