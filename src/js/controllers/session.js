@@ -16,24 +16,14 @@ angular.module('Teem')
       });
   }])
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'CommunitiesSvc',
-    function($scope, $location, $route, SessionSvc, $timeout, CommunitiesSvc) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState',
+    function($scope, $location, $route, SessionSvc, $timeout, SharedState) {
     $scope.session = {};
 
     $scope.loginRegexp = new RegExp('^[a-zA-Z0-9\.]+$');
 
     $scope.user = {
       nick : ''
-    };
-
-    var redirect = function(params) {
-      $timeout(function(){
-        var redirect = params.redirect;
-        // redirects are of the form /community/:communityId/project/projectId
-        var communityId = redirect.split('/')[2];
-        CommunitiesSvc.setCurrent(communityId);
-        $location.url(redirect);
-      });
     };
 
     $scope.login = function() {
@@ -43,12 +33,7 @@ angular.module('Teem')
           $scope.user.nick, SessionSvc.users.password,
           function(){
             $timeout(function(){
-              if ($route.current.params.redirect) {
-                redirect($route.current.params);
-              }
-              else {
-                $location.path('/communities');
-              }
+              SharedState.turnOff('shouldLoginSharedState');
             });
           },
           function(error){
@@ -58,15 +43,4 @@ angular.module('Teem')
       };
       SessionSvc.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
-
-    // Check for stored session information
-    if (SessionSvc.users.current() !== null) {
-      if (CommunitiesSvc.current() && !$route.current.params.redirect){
-        $location.path('/communities/' + CommunitiesSvc.current() + '/projects');
-      } else if ($route.current.params.redirect) {
-        redirect($route.current.params);
-      } else {
-        $location.path('/communities');
-      }
-    }
   }]);

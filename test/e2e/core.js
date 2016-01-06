@@ -24,9 +24,24 @@ describe('Teem', function() {
       // server starts
       var swellrtTimeout = 100000;
       var login = random.emailUser();
-      var loginButton = element(by.css('input:enabled[type=submit]'));
 
-      element(by.css('input#login')).sendKeys(login);
+      var newCommunityButton = by.css('.community-new-btn');
+
+      browser.wait(function() {
+        return element(newCommunityButton).isDisplayed();
+      }, timeout);
+
+      element(newCommunityButton).click();
+
+      var loginInput = by.css('input#login');
+
+      browser.wait(function() {
+        return browser.isElementPresent(loginInput);
+      }, timeout);
+
+      element(loginInput).sendKeys(login);
+
+      var loginButton = element(by.css('input:enabled[type=submit]'));
 
       browser.wait(function() {
         return loginButton.click().then(
@@ -43,13 +58,9 @@ describe('Teem', function() {
 
       element(communitySearchInput).sendKeys('Testing Community');
 
-      var newCommunityButton = by.css('.community-create-btn');
+      var createCommunityButton = by.css('.community-create-btn');
 
-      browser.wait(function() {
-        return element(newCommunityButton).isDisplayed();
-      }, timeout);
-
-      element(newCommunityButton).click();
+      element(createCommunityButton).click();
 
       var projectList = by.css('.projects');
 
@@ -88,14 +99,6 @@ describe('Teem', function() {
 
       expect(element.all(by.css('.chat-message-text')).last().getText())
         .toEqual(chatText);
-
-      browser.get('/#/frontpage');
-
-      var comId = browser.driver.executeScript('return window.localStorage.communityId;');
-
-      comId.then(function(communityId){
-        expect(browser.getLocationAbsUrl()).toBe('/communities/' + communityId + '/projects');
-      });
     });
   });
 });

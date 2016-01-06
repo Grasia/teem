@@ -1,6 +1,9 @@
 <div class="frontpage">
-  <div class="section">
-    <div class="swiper-container">
+  <div class="scrollable">
+    <div class="scrollable-content">
+
+  <div class="section frontpage-slider">
+    <div class="swiper-container frontpage-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <img src="images/app-logo.png" class="welcome-logo img-responsive"/>
@@ -36,7 +39,11 @@
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
-
-    <div ng-include="'session/form.html'" ng-controller="SessionCtrl"></div>
   </div>
+
+  <div class="frontpage-communities section">
+    <communities></communities>
+  </div>
+</div>
+</div>
 </div>

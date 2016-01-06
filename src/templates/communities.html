@@ -1,0 +1,46 @@
+<div id="communities" class="section communities">
+  <div class="scrollable">
+    <div class="scrollable-header">
+      <div class="community-search">
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon"><i class="fa fa-search fa-fw" ng-hide="creating"></i></span>
+          <input type="text"
+                 class="form-control"
+                 ng-model="newCommunityName.name"
+                 ng-blur="reset()"
+                 translate
+                 placeholder="{{ creating ? 'community.create.placeholder' : 'community.search.placeholder' | translate }}">
+        </div>
+      </div>
+      <div class="community-create">
+        <a class="btn btn-default btn-block btn-lg community-new-btn" ng-if="! newCommunityName.name" ng-click="new_()" overflow-ellipsis>
+          {{ creating ? 'community.create.button.empty' : 'community.new.button' | translate }}
+        </a>
+        <a class="btn btn-default btn-block btn-lg community-create-btn"
+           ng-if="newCommunityName.name"
+           ng-click="create(newCommunityName.name)"
+           analytics-on="click"
+           analytics-event="Create community"
+           overflow-ellipsis>
+        <span translate translate-values="{ name: '{{newCommunityName.name}}' }">community.create.button.name</span>
+      </a>
+    </div>
+    </div>
+    <div class="scrollable-content">
+      <div class="community-list list-group">
+        <div class="community-item list-group-item"
+        ng-hide="creating && newCommunityName.name === ''"
+        ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0' | filter:newCommunityName:strict"
+        ng-click="showProjects(community.id)">
+        <h4 class="community-title" ng-bind-html="community.name | highlight:newCommunityName.name">
+        </h4>
+        <div class="community-description">
+          {{community.description}}
+        </div>
+        <div class="community-numbers">
+          <span class="community-projects-number">{{community.numProjects || 0}}</span>
+          <span translate>community.project.number</span>
+        </div>
+      </div>
+    </div>
+  </div>
