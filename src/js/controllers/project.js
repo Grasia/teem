@@ -69,6 +69,10 @@ angular.module('Teem')
       $scope.project.setTimestampAccess(currentTab());
     });
 
+    $scope.linkCurrentProject = function() {
+      return $location.absUrl();
+    };
+
     $scope.cancelProject = function() {
       SharedState.turnOff('projectTitleReminder');
       $scope.project.type = 'deleted';
