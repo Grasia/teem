@@ -348,8 +348,8 @@ gulp.task('jshint', function() {
 // - Orders ng deps automatically
 // - Precompile templates to ng templateCache
 
-gulp.task('js', function() {
-  streamqueue({ objectMode: true },
+gulp.task('js:app', function() {
+  return streamqueue({ objectMode: true },
     // Vendor: angular, mobile-angular-ui, etc.
     gulp.src(config.vendor.js),
     // app.js is configured
@@ -371,12 +371,20 @@ gulp.task('js', function() {
     sourceMappingURLPrefix: '/js/'
   }))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
+});
 
-  gulp.src('./src/js/widgets.js')
+gulp.task('js:widgets', function() {
+  return gulp.src('./src/js/widgets.js')
   .pipe(uglify())
   .pipe(gulp.dest(path.join(config.dest, 'js')));
 });
 
+
+gulp.task('js', function(callback) {
+  var tasks = ['js:app', 'js:widgets'];
+
+  seq(tasks, callback);
+});
 
 /*==================================
 =            Cordova files         =
@@ -598,6 +606,7 @@ gulp.task('deploy:files', function() {
 
 gulp.task('deploy', function(done) {
   var tasks = ['deploy:swellrt', 'deploy:files'];
+
   seq(tasks, done);
 });
 
