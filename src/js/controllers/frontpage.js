@@ -13,12 +13,12 @@ angular.module('Teem')
       when('/frontpage', {
         templateUrl: 'frontpage.html',
         controller:'FrontpageCtrl'
-    });
+      });
   }])
 
   .controller('FrontpageCtrl', [
-    '$rootScope', '$scope', '$rootElement',
-    function($rootScope, $scope, $rootElement) {
+    '$rootScope', '$scope', '$rootElement', 'SessionSvc', '$location',
+    function($rootScope, $scope, $rootElement, SessionSvc, $location) {
       $rootScope.hideNavigation = true;
       $rootElement.removeClass('has-navbar-top');
 
@@ -32,4 +32,11 @@ angular.module('Teem')
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev'
       });
-  }]);
+
+      if (SessionSvc.users.loggedIn()) {
+        $rootElement.addClass('has-navbar-top');
+        $rootScope.hideNavigation = false;
+
+        $location.path('/projects');
+      }
+    }]);
