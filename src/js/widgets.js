@@ -8,14 +8,18 @@
 
   var projects = d.querySelectorAll('.teem-project');
 
-  function buildProject(div) {
-    var iframe = d.createElement('iframe');
-    iframe.setAttribute('src', sourceUrl + 'widget.html#/communities/bG9jYWwubmV0L3MrNjl1OE5KV1NZUUE/projects/bG9jYWwubmV0L3MralJKWU90V3JOaEE/pad');
+  function buildProject(e) {
+    var projectId,
+        iframe = d.createElement('iframe');
     iframe.style.border = 'none';
     iframe.width = '100%';
     iframe.height = '100%';
 
-    div.appendChild(iframe);
+    projectId = e.getAttribute('data-id');
+
+    iframe.setAttribute('src', sourceUrl + 'widget.html#/projects/' + projectId);
+
+    e.appendChild(iframe);
   }
 
   for (var i = 0; i < projects.length; i++) {
