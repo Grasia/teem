@@ -3,10 +3,8 @@
  * We should use less
  */
 .has-navbar-top .app-body
-  padding-top: 86px
+  //padding-top: 86px
 .navbar-absolute-top
-  /* Change navbar-top height to accomodate navbar-top-navigation */
-  min-height: 85px
   border-bottom-width: 0px
   &, .fa, a
     color: $navbar-top-color
@@ -59,22 +57,6 @@
   .justified
     table-layout: fixed
 
-.navbar-top-navigation
-  position: absolute
-  top: 50px
-  text-align: center
-  min-height: 30px
-  .justified
-    table-layout: fixed
-  a
-    font-size: 1.1em
-    padding-top: 5px
-    padding-bottom: 5px
-    text-transform: uppercase
-    &.active,
-    &.selected
-      font-weight: bold
-      border-bottom: 4px solid $navbar-top-underscore
 .nav-right-menu
   a
     text-transform: none

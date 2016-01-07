@@ -1,7 +1,25 @@
-<div ng-include="'navbar_top/chat_pad.html'"></div>
+<div ng-include="'navbar_top/project.html'"></div>
 
 <div class="project">
-  <div ui-state="projectTab">
+  <div class="project-navigation">
+    <div class="btn-group justified">
+      <a ui-set="{'projectTab': 'pad'}"
+         ui-class="{'active': projectTab == 'pad'}"
+         class="nav-pad"
+         translate>pad.nav.title</a>
+      <a ui-set="{'projectTab': 'needs'}"
+         ui-class="{'active': projectTab == 'needs'}"
+         class="nav-needs"
+         translate>need.nav.title</a>
+      <a ui-set="{'projectTab': 'chat'}"
+         ui-class="{'active': projectTab == 'chat'}"
+         class="nav-chat"
+         ng-if="project.isContributor()"
+         translate>chat.nav.title</a>
+    </div>
+  </div>
+
+  <div ui-state="projectTab" class="project-tabs">
     <div ui-if="projectTab == 'pad'">
       <div class="scrollable">
         <div class="scrollable-header">

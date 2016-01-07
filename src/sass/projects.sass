@@ -1,12 +1,11 @@
+/* Project list */
+
 #projects
   .list-group
     margin-bottom: 40px
 
 .project-item-title
   font-weight: bold
-
-.project-subtitle
-  font-size: 0.6em
 
 .project-sections
   margin-top: 0.8em
@@ -83,6 +82,35 @@
     padding-right: 5px
 .new-project-pad
   margin: 1em
+
+/* Single project */
+
+.project
+  height: 100%
+
+.project-navigation
+  &, a
+    color: $navbar-top-color
+    background-color: $navbar-top-background-color
+  text-align: center
+  min-height: 30px
+  .justified
+    table-layout: fixed
+  a
+    font-size: 1.1em
+    padding-top: 5px
+    padding-bottom: 5px
+    text-transform: uppercase
+    &.active,
+    &.selected
+      font-weight: bold
+      border-bottom: 4px solid $navbar-top-underscore
+
+.project-tabs
+  display: block
+  position: relative
+  height: 100%
+  overflow: hidden
 .project-pad-header
   width: 100%
   display: table
