@@ -19,44 +19,46 @@
     </div>
   </div>
 
-  <div ui-state="projectTab" class="project-tabs">
-    <div ui-if="projectTab == 'pad'">
-      <div class="scrollable">
-        <div class="scrollable-header">
-          <div class="section project-support" ng-if="!ed.editting">
-            <h5>
-              <i class="fa i-participant"></i>
-              <span translate translate-values="{ count: '{{ project.contributors.length }}'}">
-                project.section.participate.title
-              </span>
-            </h5>
+  <div class="project-tabs-container">
+    <div ui-state="projectTab" class="project-tabs">
+      <div ui-if="projectTab == 'pad'">
+        <div class="scrollable">
+          <div class="scrollable-header">
+            <div class="section project-support" ng-if="!ed.editting">
+              <h5>
+                <i class="fa i-participant"></i>
+                <span translate translate-values="{ count: '{{ project.contributors.length }}'}">
+                  project.section.participate.title
+                </span>
+              </h5>
 
-            <div class="project-supports">
-              <div class="project-supports-section">
-                <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
+              <div class="project-supports">
+                <div class="project-supports-section">
+                  <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="scrollable-content">
-          <pad></pad>
-        </div>
-      </div>
-    </div>
-
-    <div ui-if="projectTab == 'needs'">
-      <div class="scrollable">
-        <div class="scrollable-content section">
-          <div need-list project="project" needs="project.needs" ng-class="project.isContributor() ? '' : 'has-cta'"/>
+          <div class="scrollable-content">
+            <pad></pad>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- ng-if is not compatible with ui-if -->
-    <div ng-if="project.isContributor()">
-      <div ui-if="projectTab == 'chat'">
-        <chat></chat>
+      <div ui-if="projectTab == 'needs'">
+        <div class="scrollable">
+          <div class="scrollable-content section">
+            <div need-list project="project" needs="project.needs" ng-class="project.isContributor() ? '' : 'has-cta'"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ng-if is not compatible with ui-if -->
+      <div ng-if="project.isContributor()">
+        <div ui-if="projectTab == 'chat'">
+          <chat></chat>
+        </div>
       </div>
     </div>
   </div>

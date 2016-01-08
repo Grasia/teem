@@ -86,14 +86,22 @@
 /* Single project */
 
 .project
+  position: relative
+  overflow: hidden
   height: 100%
 
 .project-navigation
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  z-index: 1000
+  width: 100%
+  min-height: 30px
+  text-align: center
   &, a
     color: $navbar-top-color
     background-color: $navbar-top-background-color
-  text-align: center
-  min-height: 30px
   .justified
     table-layout: fixed
   a
@@ -106,11 +114,18 @@
       font-weight: bold
       border-bottom: 4px solid $navbar-top-underscore
 
-.project-tabs
+.project-tabs-container
   display: block
-  position: relative
-  height: 100%
   overflow: hidden
+  height: 100%
+  padding-top: 31px
+
+.project-tabs
+  position: relative
+  display: block
+  overflow: hidden
+  height: 100%
+  width: 100%
 .project-pad-header
   width: 100%
   display: table
