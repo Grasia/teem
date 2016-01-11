@@ -31,12 +31,14 @@
     "new": {
       "button": "...o crea una nueva"
     },
-    "participants": "Gente en la comunidad",
+    "participants": {
+      "number": "{{count}} participantes"
+    },
     "participate": {
       "button": "Unirse a esta comunidad"
     },
     "project": {
-      "number": "espacios de trabajo"
+      "count": "{{count}} espacios de trabajo"
     },
     "search": {
       "placeholder": "Encuentra tu comunidad...",

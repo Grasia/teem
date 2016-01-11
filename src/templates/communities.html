@@ -38,8 +38,10 @@
           {{community.description}}
         </div>
         <div class="community-numbers">
-          <span class="community-projects-number">{{community.numProjects || 0}}</span>
-          <span translate>community.project.number</span>
+          <span class="project-icon"><i class="fa i-project"></i></span>
+          <span class="project-count" translate translate-values="{ count: '{{ community.numProjects || 0}}'}">community.project.count</span>
+          <span class="participants-icon"><i class="fa i-community"></i></span>
+          <span translate translate-values="{ count: '{{ community.participants.length || 0}}'}">community.participants.number</span>
         </div>
       </div>
     </div>
