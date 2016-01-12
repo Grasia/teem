@@ -19,6 +19,7 @@
         <a class="btn btn-default btn-block btn-lg community-create-btn"
            ng-if="newCommunityName.name"
            ng-click="create(newCommunityName.name)"
+           ng-disabled="created"
            analytics-on="click"
            analytics-event="Create community"
            overflow-ellipsis>

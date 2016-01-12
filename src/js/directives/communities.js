@@ -28,6 +28,8 @@ angular.module('Teem')
 
           $scope.create = function(name) {
             SessionSvc.loginRequired(function() {
+              $scope.created = true;
+
               CommunitiesSvc.create(
                 { name: name || $scope.newCommunityName.name },
                 function(community) {
