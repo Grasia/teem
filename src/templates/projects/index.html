@@ -169,6 +169,7 @@
                 <div>
                   <button class="btn btn-primary btn-new-project pull-right"
                           ng-click="new_()"
+                          ng-disabled="created"
                           analytics-on="click"
                           analytics-event="Create project"
                           translate>
@@ -197,6 +198,7 @@
   <button class="btn btn-info cta-btn"
           ng-click="new_()"
           ng-if="community.isParticipant()"
+          ng-disabled="created"
           analytics-on="click"
           analytics-event="Create project">
       <span translate>project.create.button</span>
