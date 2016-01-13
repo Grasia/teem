@@ -61,7 +61,6 @@ angular.module('Teem')
         };
 
         $scope.showProjects = function(id) {
-          CommunitiesSvc.setCurrent(url.urlId(id));
           $location.path('/communities/' + url.urlId(id) + '/projects');
         };
       }],

@@ -242,21 +242,11 @@ angular.module('Teem')
       });
     };
 
-    var setCurrent = function(communityId) {
-      return window.localStorage.setItem('communityId', communityId);
-    };
-
-    var current = function() {
-      return window.localStorage.getItem('communityId');
-    };
-
     return {
       findByUrlId: findByUrlId,
       find : find,
       create: create,
       all: all,
-      participating: participating,
-      setCurrent: setCurrent,
-      current: current
+      participating: participating
     };
   }]);
