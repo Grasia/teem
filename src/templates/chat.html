@@ -21,7 +21,12 @@
     <div class="scrollable-footer">
       <form class="chat-send" ng-submit="send()">
         <div class="input-group">
-          <textarea class="form-control" rows="1" msd-elastic="\n" ng-model="newMsg" placeholder="{{ 'chat.input' | translate}}" ng-keydown="keyDown($event)">
+          <textarea class="form-control chat-textarea"
+                    rows="1"
+                    msd-elastic="\n"
+                    ng-model="newMsg"
+                    placeholder="{{ 'chat.input' | translate}}"
+                    ng-keydown="keyDown($event)">
           </textarea>
           <span class="input-group-addon">
             <i class="fa fa-chevron-circle-right chat-input-button" ng-click="send()"></i>

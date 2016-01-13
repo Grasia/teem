@@ -46,6 +46,8 @@ angular.module('Teem')
             $scope.project.addChatMessage(msg);
 
             $scope.newMsg = '';
+
+            document.querySelector('.chat-textarea').focus();
           };
 
           // Scroll to bottom after adding a message
