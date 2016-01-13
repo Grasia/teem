@@ -58,21 +58,21 @@ angular.module('Teem')
     var users = {
       password: '$password$',
       current: function() {
-        return window.localStorage.getItem('userId');
-      },
-      setCurrent: function(name) {
-        var cleanedName = name ? name.trim() : name;
+        if (typeof(__session) === 'undefined') {
+          return undefined;
+        }
 
-        return window.localStorage.setItem('userId', cleanedName);
+        if (__session.address.match(/^_anonymous_/)) {
+          return undefined;
+        }
+
+        return __session.address;
       },
       isCurrent: function(user) {
         return user === users.current();
       },
       loggedIn: function() {
-        return users.current() !== 'undefined' && users.current() !== null;
-      },
-      clearCurrent: function() {
-        window.localStorage.removeItem('userId');
+        return users.current() !== undefined;
       }
     };
 
@@ -85,7 +85,6 @@ angular.module('Teem')
     var stopSession = function(){
       swellRTpromise.then(function(){
         SwellRT.stopSession();
-        users.clearCurrent();
         NotificationSvc.unregister(
           undefined,
           function(error){
@@ -128,7 +127,7 @@ angular.module('Teem')
       swellRTpromise.then(function(){
         if (status.connection === 'connected') {
           if (userName && __session.address &&
-              __session.address.split('@')[0] === userName.split('@')[0]) {
+              __session.address === userName) {
             return; // Session already started
           }
           // close other user's session
@@ -142,10 +141,8 @@ angular.module('Teem')
           function(){
             SwellRTConfig.swellrtServerDomain = __session.domain;
             if (userName){
-              users.setCurrent(__session.address);
               NotificationSvc.register(userName);
             } else {
-              users.clearCurrent();
               NotificationSvc.unregister(
                 undefined,
                 function(error){
@@ -166,11 +163,6 @@ angular.module('Teem')
 
     var autoStartSession = function(){
       var user, pass;
-
-      if (users.current() !== null) {
-        user = users.current();
-        pass = users.password;
-      }
 
       startSession(
         user, pass, function(){
