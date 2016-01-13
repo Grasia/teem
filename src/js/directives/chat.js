@@ -98,6 +98,8 @@ angular.module('Teem')
           $scope.keyDown = function(event){
             if (event.which === 13) {
               $scope.send();
+
+              event.preventDefault();
             }
           };
         }
