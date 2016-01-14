@@ -8,7 +8,7 @@
  */
 
 angular.module('Teem')
-  .controller('NavbarBottomCtrl', ['url', '$scope', '$route', function(url, $scope, $route){
+  .controller('NavbarBottomCtrl', ['url', '$scope', function(url, $scope){
 
     $scope.projectsUrl = function(communityId){
       if (communityId) {
