@@ -57,7 +57,7 @@ angular.module('Teem')
             }
           };
           SessionSvc.onLoad(function(){
-            ProjectsSvc.find($route.current.params.id).then(
+            ProjectsSvc.findByUrlId($route.current.params.id).then(
               function(project){
                 scope.project = project;
               }
@@ -96,7 +96,7 @@ angular.module('Teem')
           scope.areCommentsVisible = needsCtrl.areCommentsVisible;
           scope.sendComment = function(){
             SessionSvc.loginRequired(function() {
-              ProjectsSvc.find($route.current.params.id).then(function(project){
+              ProjectsSvc.findByUrlId($route.current.params.id).then(function(project){
                 project.addNeedComment(scope.need, scope.newComment.text);
                 scope.newComment.text = '';
               });
