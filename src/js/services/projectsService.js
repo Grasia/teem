@@ -194,8 +194,11 @@ angular.module('Teem')
       });
     }
 
-    var find = function(urlId) {
-      var id = base64.urldecode(urlId);
+    function findByUrlId(urlId) {
+      return find(base64.urldecode(urlId));
+    }
+
+    var find = function(id) {
       var def = $q.defer();
 
       if (!openedProjects[id]) {
@@ -250,6 +253,7 @@ angular.module('Teem')
 
     return {
       all: all,
+      findByUrlId: findByUrlId,
       find: find,
       create: create
     };

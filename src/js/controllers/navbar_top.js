@@ -23,7 +23,7 @@ angular.module('Teem')
         $scope.$on('$routeChangeSuccess', function() {
           if ($route.current && $route.current.params.id){
             SessionSvc.onLoad(function(){
-              ProjectsSvc.find($route.current.params.id)
+              ProjectsSvc.findByUrlId($route.current.params.id)
                 .then(function(proxy) {
                   $scope.project = proxy;
                 });

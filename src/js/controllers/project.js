@@ -41,7 +41,7 @@ angular.module('Teem')
     }
 
     SessionSvc.onLoad(function(){
-      Loading.create(ProjectsSvc.find($route.current.params.id)).
+      Loading.create(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(proxy) {
           $scope.project = proxy;
 
