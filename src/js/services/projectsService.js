@@ -198,7 +198,7 @@ angular.module('Teem')
       return find(base64.urldecode(urlId));
     }
 
-    var find = function(id) {
+    function find(id) {
       var def = $q.defer();
 
       if (!openedProjects[id]) {
@@ -214,9 +214,9 @@ angular.module('Teem')
         });
       }
       return openedProjects[id];
-    };
+    }
 
-    var create = function(callback, communityId) {
+    function create(callback, communityId) {
       var d = $q.defer();
       var id = SwellRT.createModel(function(model){
         openedProjects[id] = d.promise;
@@ -249,7 +249,7 @@ angular.module('Teem')
       d.promise.then(callback);
 
       return d.promise;
-    };
+    }
 
     return {
       all: all,
