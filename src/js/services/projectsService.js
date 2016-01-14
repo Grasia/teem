@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('Teem')
-  .factory('ProjectsSvc', ['swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProfilesSvc', function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProfilesSvc){
+  .factory('ProjectsSvc', [
+  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProfilesSvc',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProfilesSvc){
 
     var Project = function(){};
 
