@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('ProjectsSvc', [
-  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProfilesSvc',
-  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProfilesSvc){
+  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon){
 
     var Project = function(){};
 

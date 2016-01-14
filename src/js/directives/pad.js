@@ -13,9 +13,9 @@ angular.module('Teem')
     return {
       controller: [
         'SessionSvc', 'url', '$rootScope', '$scope', '$route', '$location',
-        '$timeout', 'SharedState', 'ProjectsSvc', 'ProfilesSvc',
+        '$timeout',
         function(SessionSvc, url, $rootScope, $scope, $route, $location,
-        $timeout, SharedState, ProjectsSvc, ProfilesSvc) {
+        $timeout) {
 
           $scope.ed = {
             editting: false
