@@ -21,7 +21,6 @@ angular.module('Teem')
             var scrollableContentController = bottom.controller('scrollableContent');
 
             if (scrollableContentController) {
-              console.log(newMessages);
               if (newMessages && newMessages.length > 0){
                 scrollableContentController.scrollTo(newMessages);
               } else {

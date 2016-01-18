@@ -182,45 +182,6 @@ angular.module('Teem')
       return project.contributors.length;
     };
 
-    function lastAccess(project, section, pos) {
-      var access;
-
-      angular.forEach(project.lastAccesses || [], function(a) {
-        if (a.user === SessionSvc.users.current()) {
-          access = a;
-        }
-      });
-
-      if (!pos) {
-        pos = 'last';
-      }
-
-      return (access && access[section] && access[section][pos] ? new Date(access[section][pos]) : new Date(0));
-    }
-
-    $scope.newMessagesCount = function(project) {
-      var access = lastAccess(project, 'chat');
-
-      if (project.chat.length > 0){
-        var i = project.chat.length - 1;
-
-        while (i > -1 && (new Date(project.chat[i].time) > access)) {
-          i --;
-        }
-        return project.chat.length - 1 - i;
-      } else {
-        return 0;
-      }
-    };
-
-    $scope.padEditionCount = function(project) {
-      if (lastAccess(project, 'pad').getTime() < project.pad.lastmodtime) {
-        return 1;
-      } else {
-        return 0;
-      }
-    };
-
     $scope.hour = function(msg) {
       return time.hour(new Date(msg.time));
     };
@@ -228,7 +189,7 @@ angular.module('Teem')
     var lastChatsCache = [];
 
     $scope.lastChat = function(project){
-      if ($scope.newMessagesCount(project) > 0){
+      if (project.newMessagesCount(project) > 0){
         if (!lastChatsCache[project.id] || lastChatsCache[project.id].index !== project.chat.length-1) {
           var lastChat = project.chat[project.chat.length-1];
           lastChatsCache[project.id] = {

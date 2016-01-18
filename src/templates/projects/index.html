@@ -78,14 +78,14 @@
                   <div class="project-section-notifications pull-right" ng-if="project.isContributor">
                     <span class="inline-title">
                       <span class="fa-stack" ng-click="showProject(project, 'pad')">
-                        <i class="fa fa-pencil-square-o fa-stack-1x" ng-class="(padEditionCount(project)>0)? 'active':''"></i>
+                        <i class="fa fa-pencil-square-o fa-stack-1x" ng-class="(project.padEditionCount()>0)? 'active':''"></i>
                       </span>
                     </span>
 
-                    <span class="inline-value">{{newMessagesCount(project)}}</span>
+                    <span class="inline-value">{{project.newMessagesCount()}}</span>
                     <span class="inline-title">
                       <span class="fa-stack" ng-click="showProject(project, 'chat')">
-                        <i class="fa fa-comments-o fa-stack-1x" ng-class="(newMessagesCount(project)>0)? 'active':''"></i>
+                        <i class="fa fa-comments-o fa-stack-1x" ng-class="(project.newMessagesCount()>0)? 'active':''"></i>
                       </span>
                     </span>
                   </div>
