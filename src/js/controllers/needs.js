@@ -56,6 +56,7 @@ angular.module('Teem')
               needsCtrl.removeNeed(need);
             }
           };
+
           SessionSvc.onLoad(function(){
             ProjectsSvc.findByUrlId($route.current.params.id).then(
               function(project){
@@ -94,6 +95,7 @@ angular.module('Teem')
           };
 
           scope.areCommentsVisible = needsCtrl.areCommentsVisible;
+
           scope.sendComment = function(){
             SessionSvc.loginRequired(function() {
               ProjectsSvc.findByUrlId($route.current.params.id).then(function(project){
@@ -102,7 +104,27 @@ angular.module('Teem')
               });
             });
           };
+
           scope.hour = needsCtrl.hour;
+
+          scope.newComments = function(need){
+            if (!need.comments || !scope.project){
+              return false;
+            }
+
+            var prevAccess = new Date(scope.project.getTimestampAccess().needs.prev);
+            var lastComment = new Date(need.comments[need.comments.length -1].time);
+            return prevAccess < lastComment;
+          };
+
+          scope.isNewNeed = function(need){
+            if (!scope.project){
+              return false;
+            }
+            var prevAccess = new Date(scope.project.getTimestampAccess().needs.prev);
+            var needTime = new Date(need.time);
+            return prevAccess < needTime;
+          };
         },
         templateUrl: 'needs/need.html',
         transclude: true
@@ -126,6 +148,7 @@ angular.module('Teem')
               need.time = (new Date()).toJSON();
 
               $scope.needs.push(need);
+              $scope.project.setTimestampAccess('needs', true);
             }
           };
           this.removeNeed = function (need) {

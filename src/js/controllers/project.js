@@ -110,6 +110,22 @@ angular.module('Teem')
       $location.path('frontpage');
     };
 
+    $scope.hasChanged = function(section){
+
+      if(!$scope.project || ! $scope.project.lastChange(section)){
+        return false;
+      }
+
+      var lastChange = $scope.project.lastChange(section);
+      var lastAccess;
+          if ($scope.project.getTimestampAccess()[section]) {
+            lastAccess = new Date(($scope.project.getTimestampAccess()[section]).last);
+          } else {
+            lastAccess = new Date(0);
+          }
+      return lastChange > lastAccess;
+    };
+
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
       if ($scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
