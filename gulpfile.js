@@ -172,7 +172,7 @@ var gulp           = require('gulp'),
   path           = require('path'),
   watch          = require('gulp-watch'),
   jshint         = require('gulp-jshint'),
-  karma          = require('karma').server,
+  karma          = require('karma').Server,
   angularProtractor = require('gulp-angular-protractor'),
   ghPages        = require('gulp-gh-pages'),
   dockerSwellrt  = require('gulp-docker-swellrt'),
@@ -462,12 +462,10 @@ gulp.task('docker:swellrt', function(done) {
 ======================================*/
 
 gulp.task('test:unit', function(done) {
-  karma.start({
+  new karma({
     configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
-  }, function() {
-    done();
-  });
+  }, done).start();
 });
 
 /*================================================

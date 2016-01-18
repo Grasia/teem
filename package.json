@@ -4,8 +4,7 @@
   "description": "Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
   "repository": "https://github.com/P2Pvalue/teem",
   "license": "AGPL",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "bower": "^1.6.5",
     "gulp": "^3.9.0",
@@ -36,7 +35,7 @@
     "jscs": "^2.1.1",
     "jscs-angular": "^1.2.1",
     "jshint-stylish": "^1.0.2",
-    "karma": "^0.12.32",
+    "karma": "^0.13.19",
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "run-sequence": "^0.3.6",
