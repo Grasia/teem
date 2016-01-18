@@ -15,6 +15,15 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '../',
 
+    preprocessors: {
+      'src/templates/**/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'src/templates/',
+      moduleName: 'Teem'
+    },
+
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
@@ -22,12 +31,21 @@ module.exports = function(config) {
     files: gulpConfig.vendor.js.concat([
       'bower_components/angular-mocks/angular-mocks.js',
       'src/js/**/!(widgets).js',
+      'src/templates/**/*.html',
+      {
+        pattern: 'src/l10n/**/*.json',
+        included: false
+      },
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ]),
 
     // list of files / patterns to exclude
     exclude: [],
+
+    proxies: {
+      '/l10n/': '/base/src/l10n/'
+    },
 
     // web server port
     port: 8080,
@@ -47,7 +65,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
     ],
 
     // Continuous Integration mode
