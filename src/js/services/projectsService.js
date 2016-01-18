@@ -216,7 +216,7 @@ angular.module('Teem')
       return openedProjects[id];
     }
 
-    function create(callback, communityId) {
+    function create(options, callback) {
       var d = $q.defer();
       var id = SwellRT.createModel(function(model){
         openedProjects[id] = d.promise;
@@ -231,7 +231,8 @@ angular.module('Teem')
 
         $timeout(function(){
           proxyProj.type = 'project';
-          proxyProj.communities = (communityId) ? [communityId] : [];
+          proxyProj.communities =
+           (options.communityId) ? [ options.communityId ] : [];
           proxyProj.id = id;
           proxyProj.title = '';
           proxyProj.chat = [];
