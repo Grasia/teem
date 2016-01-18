@@ -12,7 +12,6 @@ var config = {
 
   vendor: {
     js: [
-      './bower_components/jquery/dist/jquery.js',
       './bower_components/modernizr/modernizr.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
@@ -24,7 +23,6 @@ var config = {
       './bower_components/angular-elastic/elastic.js',
       './bower_components/angular-bindonce/bindonce.js',
       './bower_components/angular-utf8-base64/angular-utf8-base64.js',
-      './bower_components/waypoints/waypoints.js',
       './bower_components/SHA-1/sha1.js',
       './bower_components/angulartics/src/angulartics.js',
       './bower_components/angulartics/src/angulartics-piwik.js',
@@ -38,7 +36,6 @@ var config = {
       './bower_components/avatar/build/avatar.js',
       './bower_components/avatar/vendor/md5.js',
       './bower_components/moment/moment.js',
-      './bower_components/moment/locale/en.js',
       './bower_components/moment/locale/es.js',
       './bower_components/angular-moment/angular-moment.js',
 
