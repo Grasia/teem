@@ -21,7 +21,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: gulpConfig.vendor.js.concat([
       'bower_components/angular-mocks/angular-mocks.js',
-      'src/js/**/*.js',
+      'src/js/**/!(widgets).js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ]),
