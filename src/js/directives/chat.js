@@ -15,12 +15,18 @@ angular.module('Teem')
       if (scope.$last) {
         $timeout(function() {
           var bottom = angular.element(element);
+          var newMessages = angular.element(document.getElementById('newMessages'));
 
           if (bottom) {
             var scrollableContentController = bottom.controller('scrollableContent');
 
             if (scrollableContentController) {
-              scrollableContentController.scrollTo(bottom);
+              console.log(newMessages);
+              if (newMessages && newMessages.length > 0){
+                scrollableContentController.scrollTo(newMessages);
+              } else {
+                scrollableContentController.scrollTo(bottom);
+              }
             }
           }
         }, 50);
