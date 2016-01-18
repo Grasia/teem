@@ -182,7 +182,7 @@ angular.module('Teem')
       return project.contributors.length;
     };
 
-    function lastAccess(project, section) {
+    function lastAccess(project, section, pos) {
       var access;
 
       angular.forEach(project.lastAccesses || [], function(a) {
@@ -191,7 +191,11 @@ angular.module('Teem')
         }
       });
 
-      return (access && access[section] ? new Date(access[section]) : new Date(0));
+      if (!pos) {
+        pos = 'last';
+      }
+
+      return (access && access[section] && access[section][pos] ? new Date(access[section][pos]) : new Date(0));
     }
 
     $scope.newMessagesCount = function(project) {

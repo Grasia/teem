@@ -23,7 +23,9 @@ angular.module('Teem')
     Project.prototype.getTimestampAccess = function() {
       var access;
 
-      this.lastAccesses = this.lastAccesses || [];
+      if (this.lastAccesses === undefined) {
+        this.lastAccesses = [];
+      }
 
       angular.forEach(this.lastAccesses, function(a) {
         if (a.user === SessionSvc.users.current()) {
@@ -43,15 +45,82 @@ angular.module('Teem')
     };
 
     /*
-     * Record when the user had her last access to one project section
+     * Record when the user had her last and previous access to one project section
      */
-    Project.prototype.setTimestampAccess = function(section){
+    Project.prototype.setTimestampAccess = function(section, overridePrev){
       if (! this.isContributor()) {
         return;
       }
 
-      this.getTimestampAccess()[section] =
-        (new Date()).toJSON();
+      var timestamp = this.getTimestampAccess()[section];
+
+      if (timestamp === undefined) {
+        timestamp = {};
+      }
+
+      if (timestamp instanceof Date) {
+        timestamp = {
+          last: timestamp
+        };
+      }
+
+      if(! overridePrev){
+        timestamp.prev = timestamp.last || (new Date()).toJSON();
+      } else {
+        timestamp.prev = (new Date()).toJSON();
+      }
+
+      timestamp.last = (new Date()).toJSON();
+
+      this.getTimestampAccess()[section] = timestamp;
+
+    };
+
+    // section in {'chat', 'pad', 'needs'}
+    Project.prototype.lastChange = function(section){
+      if (section === undefined) {
+        //cast to Date
+        return new Date(Math.max(
+          this.lastChange('chat'),
+          this.lastChange('pad'),
+          this.lastChange('needs')
+        ));
+      } else {
+        switch (section) {
+
+        case 'chat':
+          if (this.chat.length > 0) {
+            return new Date(this.chat[this.chat.length -1].time);
+          } else {
+            return new Date(0);
+          }
+          break;
+
+        case 'pad':
+          return new Date(this.pad.lastmodtime) || new Date(0);
+
+        case 'needs':
+          var lastChange = new Date(0);
+          angular.forEach(this.needs, function(n){
+            lastChange = Math.max(
+              lastChange,
+              new Date(n.time),
+              (function() {
+                var lastComment = new Date(0);
+                angular.forEach(n.comments, function(c){
+                  lastComment = Math.max(lastComment, new Date(c.time));
+                });
+                return lastComment;
+              }())
+            );
+          });
+          // cast to Date
+          return new Date(lastChange);
+
+        default:
+          return new Date(0);
+        }
+      }
     };
 
     Project.prototype.toggleSupport = function(){
@@ -98,6 +167,7 @@ angular.module('Teem')
           time: (new Date()).toJSON()
         });
       this.addContributor();
+      this.setTimestampAccess('chat', true);
     };
 
     Project.prototype.addNeedComment = function(need, comment){
@@ -109,6 +179,7 @@ angular.module('Teem')
         time: (new Date()).toJSON(),
         author: SessionSvc.users.current()
       });
+      this.setTimestampAccess('needs', true);
     };
 
     Project.prototype.isSupporter = function(user){

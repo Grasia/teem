@@ -73,7 +73,6 @@ angular.module('Teem')
       Loading.create(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(proxy) {
           $scope.project = proxy;
-
           $scope.project.setTimestampAccess(currentTab());
         });
     });
@@ -94,8 +93,10 @@ angular.module('Teem')
       $location.search({ tab: newVal});
     });
 
-    $scope.$on('$routeChangeStart', function() {
-      $scope.project.setTimestampAccess(currentTab());
+    $scope.$on('$routeChangeStart', function(event, next, current) {
+      if (current.params.tab !== undefined) {
+        $scope.project.setTimestampAccess(current.params.tab);
+      }
     });
 
     $scope.linkCurrentProject = function() {

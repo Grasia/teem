@@ -97,6 +97,18 @@ angular.module('Teem')
             return undefined;
           };
 
+          $scope.firstNewMessage = function (msg, index){
+            var d = new Date(msg.time);
+
+            if ($scope.project.getTimestampAccess().chat) {
+              var previousAccess = new Date($scope.project.getTimestampAccess().chat.prev);
+              if (index > 0 && d > previousAccess && previousAccess > new Date($scope.project.chat[index -1].time)){
+                return true;
+              }
+            }
+            return false;
+          };
+
           $scope.keyDown = function(event){
             if (event.which === 13) {
               $scope.send();
