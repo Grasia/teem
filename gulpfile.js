@@ -461,7 +461,7 @@ gulp.task('docker:swellrt', function(done) {
 =        Unit testing with Karma       =
 ======================================*/
 
-gulp.task('unit-test', function(done) {
+gulp.task('test:unit', function(done) {
   karma.start({
     configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
@@ -475,7 +475,7 @@ gulp.task('unit-test', function(done) {
 =================================================*/
 
 
-gulp.task('e2e-test', function(done) {
+gulp.task('test:e2e', function(done) {
   connect.server({
     root: config.dest,
     host: config.serverTest.host,
@@ -503,7 +503,7 @@ gulp.task('test', function(done){
     tasks.push('docker:swellrt');
   }
 
-  tasks.push('unit-test', 'e2e-test');
+  tasks.push('test:unit', 'test:e2e');
   seq(tasks, done);
 });
 
