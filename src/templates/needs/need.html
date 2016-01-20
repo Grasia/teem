@@ -1,20 +1,18 @@
 <div class="list-group-item need-item" ng-if="project.isContributor() || need.completed !== 'add'">
   <div class="need-sections" ng-click="toggleCommentsVisibility(need)">
     <div class="need-section need-section-comments" ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
-      <div class="need-comments-count">
+      <span class="need-comments-count">
         {{ need.comments.length || 0 }}
-      </div>
-      <div class="need-comments-icon">
-        <i class="fa fa-comment"></i>
-        <span class="fa fa-circle notification-indicator" ng-if="newComments(need)"></span>
-      </div>
+      </span>
+      <span class="need-comments-icon">
+        <i class="fa fa-comment" ng-class="newComments(need)? 'notify-comments':''"></i>
+      </span>
     </div>
     <div class="need-section need-section-status">
       <div class="ineed-check-container pull-left" ng-click="$event.stopPropagation(); toggleCompleted(need, $event)" ng-class="(need.completed === 'true') ? 'need-checkbox-true' :  ((need.completed === 'false') ? 'need-checkbox-false' : 'need-checkbox-add')">
       </div>
-      <span class="fa fa-circle notification-indicator" ng-if="isNewNeed(need)"></span>
     </div>
-    <div class="need-section need-section-text">
+    <div class="need-section need-section-text" ng-class="isNewNeed(need)? 'notify-need':''">
       <textarea ng-if="project.isContributor()"
                 class="need-name"
                 rows="1"
