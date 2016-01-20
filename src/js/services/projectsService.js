@@ -159,6 +159,10 @@ angular.module('Teem')
         query._aggregate[0].$match['root.communities'] = options.community;
       }
 
+      if (options.localId) {
+        query._aggregate[0].$match['root.localId'] = options.localId;
+      }
+
       if (options.publicAndContributor) {
         query._aggregate[0].$match.$or = [
           { 'root.contributors': options.publicAndContributor },
@@ -179,7 +183,6 @@ angular.module('Teem')
         var res = [];
 
         SwellRT.query(query, function(result) {
-
           angular.forEach(result.result, function(val){
             res.push(val.root);
           });

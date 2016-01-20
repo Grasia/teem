@@ -17,6 +17,9 @@ angular.module('Teem')
         // Change between tabs without re-rendering the view
         reloadOnSearch: false
       })
+      .when('/communities/:communityId/projects/fetch/:id', {
+        controller: 'FetchProject'
+      })
       .when('/communities/:communityId/projects/:id', {
         redirectTo: function(params) {
           return '/projects/' + params.id;
@@ -27,6 +30,32 @@ angular.module('Teem')
           return '/projects/' + params.id + '?tab=' + params.tab;
         }
       });
+  }])
+  .controller('FetchProject', [
+  'ProjectsSvc', 'url', '$route', '$location',
+  function(ProjectsSvc, url, $route, $location) {
+    var communityId = url.decodeUrlId($route.current.params.communityId),
+        localId     = $route.current.params.id;
+
+    ProjectsSvc.all({
+      community: communityId,
+      localId: localId
+    }).then(function(projects) {
+      var project = projects[0];
+
+      if (project) {
+        $location.path('/projects/' + url.urlId(project.id));
+        return;
+      }
+
+      ProjectsSvc.create({
+        communityId:  communityId
+      }).then(function(project) {
+        project.localId = localId;
+
+        $location.path('/projects/' + url.urlId(project.id));
+      });
+    });
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route',
