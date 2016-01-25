@@ -1,15 +1,19 @@
-<div class="session-form">
-  <div class="tip" ng-hide="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>login.tip</div>
-  <div class="error-tip" ng-show="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>login.error</div>
+<div class="session-form row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <div class="tip" ng-hide="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>session.login.tip</div>
+    <div class="error-tip" ng-show="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>session.login.error</div>
 
-  <form class="login-form" role="form" name="loginForm">
-    <div class="input-group" ng-class="(loginForm.login.$invalid  && loginForm.login.$dirty && !loginForm.login.$error.required ) ? 'has-error' : ''">
-      <label class="control-label sr-only" for="login" translate>login.name</label>
-      <input type="text" class="form-control" id="login" name="login" ng-model="user.nick" placeholder="{{ 'login.name' | translate }}"
-             ng-pattern="loginRegexp" ng-model-options="{ debounce: 250 }" required/>
-      <span class="input-group-btn">
-        <input type="submit" class="btn btn-info" ng-click="login(name)" value="{{'login.button' | translate}}"  ng-disabled="loginForm.login.$invalid" >
-      </span>
-    </div>
-  </form>
+    <form class="login-form" role="form" name="loginForm">
+      <div ng-class="(loginForm.login.$invalid  && loginForm.login.$dirty && !loginForm.login.$error.required ) ? 'has-error' : ''">
+        <label class="control-label sr-only" for="login" translate>session.login.name</label>
+        <input type="text" class="form-control" id="login" name="login" ng-model="user.nick" placeholder="{{ 'session.login.name' | translate }}"
+               ng-pattern="loginRegexp" ng-model-options="{ debounce: 250 }" required autofocus/>
+        <label class="control-label sr-only" for="password" translate>session.login.password</label>
+        <input type="password" class="form-control " id="password" name="password", ng-model="user.password" placeholder="{{'session.login.password' | translate }}" required>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login(name)" value="{{'session.login.button' | translate}}"  ng-disabled="loginForm.login.$invalid" >
+        <a href="" class="btn" translate>session.forgotten_password.button</a>
+        <a href="" class="btn" translate>session.register.button</a>
+      </div>
+    </form>
+  </div>
 </div>

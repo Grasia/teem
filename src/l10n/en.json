@@ -91,17 +91,6 @@
   "loading": {
     "title": "Loading..."
   },
-  "login": {
-    "button": "Login",
-    "error": "Please, choose a nickname composed by letters, numbers and dots",
-    "name": "Nickname",
-    "should_be_logged": {
-      "cancel": "Cancel",
-      "loggin_now": "Log in",
-      "message": "Sorry! You should be logged in to do that action."
-    },
-    "tip": "Enter your nickname"
-  },
   "menu": {
     "communities": {
       "create": "Create new community",
@@ -223,6 +212,19 @@
     },
     "welcome": {
       "tip": "Not involved in anything yet? <a href=\"#/communities\">Find a community</a> to join or <a href=\"#/communities/new\">create your community</a>"
+    }
+  },
+  "session": {
+    "login": {
+      "button": "Login",
+      "error": "Please, choose a nickname composed by letters, numbers and dots",
+      "name": "Nickname",
+      "should_be_logged": {
+        "cancel": "Cancel",
+        "loggin_now": "Log in",
+        "message": "Sorry! You should be logged in to do that action."
+      },
+      "tip": "Enter your nickname"
     }
   },
   "upgrading": {
