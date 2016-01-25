@@ -80,16 +80,19 @@
     "saving": "Guardando...",
     "sync": "Tus cambios desde {{time}} no se han guardado. Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
   },
-  "loading": {
-    "title": "Cargando..."
-  },
-  "login": {
-    "button": "Entrar",
+  "frontpage": {
     "copy": {
       "explore": "Explora lo que la gente está haciendo en tu comunidad",
       "propose": "Propón tu proyecto, encuentra apoyos y colaboradores",
       "work": "Trabaja en tu proyecto y expón tus necesidades"
     },
+    "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades"
+  },
+  "loading": {
+    "title": "Cargando..."
+  },
+  "login": {
+    "button": "Entrar",
     "error": "Por favor, escoge un nick formado sólo por letras, números y puntos",
     "name": "Nick",
     "should_be_logged": {
@@ -97,8 +100,7 @@
       "loggin_now": "Iniciar sesión",
       "message": "Por favor, inicia sesión para realizar esta acción."
     },
-    "tip": "Introduce tu nick",
-    "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades"
+    "tip": "Introduce tu nick"
   },
   "menu": {
     "communities": {
