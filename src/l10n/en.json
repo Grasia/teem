@@ -81,16 +81,19 @@
     "saving": "Saving...",
     "sync": "Your changes since {{time}} have not been saved. If the problem persist, copy somewhere else your last changes and reload the application"
   },
-  "loading": {
-    "title": "Loading..."
-  },
-  "login": {
-    "button": "Login",
+  "frontpage": {
     "copy": {
       "explore": "Explore what people are doing in your community",
       "propose": "Propose your project, find support and collaborators",
       "work": "Work in your project and expose your needs"
     },
+    "welcome_msg": "The tool to promote your proposals in your communities"
+  },
+  "loading": {
+    "title": "Loading..."
+  },
+  "login": {
+    "button": "Login",
     "error": "Please, choose a nickname composed by letters, numbers and dots",
     "name": "Nickname",
     "should_be_logged": {
@@ -98,8 +101,7 @@
       "loggin_now": "Log in",
       "message": "Sorry! You should be logged in to do that action."
     },
-    "tip": "Enter your nickname",
-    "welcome_msg": "The tool to promote your proposals in your communities"
+    "tip": "Enter your nickname"
   },
   "menu": {
     "communities": {
