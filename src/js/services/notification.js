@@ -13,10 +13,10 @@ angular.module('Teem')
     var push;
     var registrationId;
 
-    var register = function(userName) {
+    var register = function() {
       if (window.cordova) {
         push = PushNotification.init(
-          { "android": {"senderID": "843281102628"}});
+          { 'android': {'senderID': '843281102628'}});
 
         push.on('registration', function(data) {
           console.log('Registration:', data);
@@ -40,7 +40,7 @@ angular.module('Teem')
           }
         });
       }
-    }
+    };
 
     var onNotification = function(callback) {
       if(window.cordova){
@@ -52,7 +52,7 @@ angular.module('Teem')
           callback(data);
         });
       }
-    }
+    };
 
     var unregister = function(onSuccess, onError){
       if(window.cordova){
@@ -63,7 +63,7 @@ angular.module('Teem')
 
         SwellRT.unregister(registrationId);
       }
-    }
+    };
 
     return {
       register: register,

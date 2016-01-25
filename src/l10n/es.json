@@ -3,7 +3,8 @@
     "input": "Mensaje",
     "nav": {
       "title": "Chat"
-    }
+    },
+    "new_messages": "Mensajes nuevos"
   },
   "community": {
     "communities": "Comunidades",

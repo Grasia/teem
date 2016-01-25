@@ -73,7 +73,6 @@ angular.module('Teem')
       Loading.create(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(proxy) {
           $scope.project = proxy;
-
           $scope.project.setTimestampAccess(currentTab());
         });
     });
@@ -94,8 +93,10 @@ angular.module('Teem')
       $location.search({ tab: newVal});
     });
 
-    $scope.$on('$routeChangeStart', function() {
-      $scope.project.setTimestampAccess(currentTab());
+    $scope.$on('$routeChangeStart', function(event, next, current) {
+      if (current.params.tab !== undefined) {
+        $scope.project.setTimestampAccess(current.params.tab);
+      }
     });
 
     $scope.linkCurrentProject = function() {
@@ -107,6 +108,22 @@ angular.module('Teem')
       $scope.project.type = 'deleted';
       $scope.project.communities = [];
       $location.path('frontpage');
+    };
+
+    $scope.hasChanged = function(section){
+
+      if(!$scope.project || ! $scope.project.lastChange(section)){
+        return false;
+      }
+
+      var lastChange = $scope.project.lastChange(section);
+      var lastAccess;
+          if ($scope.project.getTimestampAccess()[section]) {
+            lastAccess = new Date(($scope.project.getTimestampAccess()[section]).last);
+          } else {
+            lastAccess = new Date(0);
+          }
+      return lastChange > lastAccess;
     };
 
     // Do not leave pad without giving a title to the project

@@ -5,25 +5,15 @@ angular.module('Teem')
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon){
 
-    var Project = function(){};
+    // class that expose only read methods of the project object
+    var ReadOnlyProject = function(){};
 
-    Project.prototype.addContributor = function(user) {
-      if (!user){
-        user = SessionSvc.users.current();
-      }
-      if (user && this.contributors.indexOf(user) < 0){
-        this.contributors.push(user);
-      }
-    };
-
-    Project.prototype.setShareMode = function(shareMode){
-      this.shareMode = shareMode;
-    };
-
-    Project.prototype.getTimestampAccess = function() {
+    ReadOnlyProject.prototype.getTimestampAccess = function() {
       var access;
 
-      this.lastAccesses = this.lastAccesses || [];
+      if (this.lastAccesses === undefined) {
+        this.lastAccesses = [];
+      }
 
       angular.forEach(this.lastAccesses, function(a) {
         if (a.user === SessionSvc.users.current()) {
@@ -42,16 +32,165 @@ angular.module('Teem')
       return access;
     };
 
+        // section in {'chat', 'pad', 'needs'}
+    ReadOnlyProject.prototype.lastChange = function(section){
+      if (section === undefined) {
+        //cast to Date
+        return new Date(Math.max(
+          this.lastChange('chat'),
+          this.lastChange('pad'),
+          this.lastChange('needs')
+        ));
+      } else {
+        switch (section) {
+
+        case 'chat':
+          if (this.chat && this.chat.length > 0) {
+            return new Date(this.chat[this.chat.length -1].time);
+          } else {
+            return new Date(0);
+          }
+          break;
+
+        case 'pad':
+          return new Date(this.pad.lastmodtime) || new Date(0);
+
+        case 'needs':
+          var lastChange = new Date(0);
+          angular.forEach(this.needs, function(n){
+            lastChange = Math.max(
+              lastChange,
+              new Date(n.time),
+              (function() {
+                var lastComment = new Date(0);
+                angular.forEach(n.comments, function(c){
+                  lastComment = Math.max(lastComment, new Date(c.time));
+                });
+                return lastComment;
+              }())
+            );
+          });
+          // cast to Date
+          return new Date(lastChange);
+
+        default:
+          return new Date(0);
+        }
+      }
+    };
+
+    // section in {'chat', 'pad', 'needs'}
+    // pos in {'last','prev'}
+    ReadOnlyProject.prototype.lastAccess = function(section, pos) {
+      var access;
+
+      angular.forEach(this.lastAccesses || [], function(a) {
+        if (a.user === SessionSvc.users.current()) {
+          access = a;
+        }
+      });
+
+      if (!pos) {
+        pos = 'last';
+      }
+
+      return (access && access[section] && access[section][pos] ? new Date(access[section][pos]) : new Date(0));
+
+    };
+
+    ReadOnlyProject.prototype.newMessagesCount = function() {
+      var access = this.lastAccess('chat');
+
+      if (this.chat.length > 0){
+        var i = this.chat.length - 1;
+
+        while (i > -1 && (new Date(this.chat[i].time) > access)) {
+          i --;
+        }
+        return this.chat.length - 1 - i;
+      } else {
+        return 0;
+      }
+    };
+
+    ReadOnlyProject.prototype.padEditionCount = function() {
+      if (this.lastAccess('pad').getTime() < this.pad.lastmodtime) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+
+    ReadOnlyProject.prototype.isSupporter = function(user){
+      if (!user){
+        if (! SessionSvc.users.loggedIn()) {
+          return false;
+        }
+
+        user = SessionSvc.users.current();
+      }
+      return this.supporters.indexOf(user) > -1;
+    };
+
+    ReadOnlyProject.prototype.isContributor = function(user){
+      if (! user){
+        if (! SessionSvc.users.loggedIn()) {
+          return false;
+        }
+
+        user = SessionSvc.users.current();
+      }
+      return this.contributors.indexOf(user) > -1;
+    };
+
+    var Project = function(){};
+
+    //inheritance
+    Project.prototype = Object.create(ReadOnlyProject.prototype);
+
+    Project.prototype.addContributor = function(user) {
+      if (!user){
+        user = SessionSvc.users.current();
+      }
+      if (user && this.contributors.indexOf(user) < 0){
+        this.contributors.push(user);
+      }
+    };
+
+    Project.prototype.setShareMode = function(shareMode){
+      this.shareMode = shareMode;
+    };
+
     /*
-     * Record when the user had her last access to one project section
+     * Record when the user had her last and previous access to one project section
      */
-    Project.prototype.setTimestampAccess = function(section){
+    Project.prototype.setTimestampAccess = function(section, overridePrev){
       if (! this.isContributor()) {
         return;
       }
 
-      this.getTimestampAccess()[section] =
-        (new Date()).toJSON();
+      var timestamp = this.getTimestampAccess()[section];
+
+      if (timestamp === undefined) {
+        timestamp = {};
+      }
+
+      if (timestamp instanceof Date) {
+        timestamp = {
+          last: timestamp
+        };
+      }
+
+      if(! overridePrev){
+        timestamp.prev = timestamp.last || (new Date()).toJSON();
+      } else {
+        timestamp.prev = (new Date()).toJSON();
+      }
+
+      timestamp.last = (new Date()).toJSON();
+
+      this.getTimestampAccess()[section] = timestamp;
+
     };
 
     Project.prototype.toggleSupport = function(){
@@ -98,6 +237,7 @@ angular.module('Teem')
           time: (new Date()).toJSON()
         });
       this.addContributor();
+      this.setTimestampAccess('chat', true);
     };
 
     Project.prototype.addNeedComment = function(need, comment){
@@ -109,28 +249,7 @@ angular.module('Teem')
         time: (new Date()).toJSON(),
         author: SessionSvc.users.current()
       });
-    };
-
-    Project.prototype.isSupporter = function(user){
-      if (!user){
-        if (! SessionSvc.users.loggedIn()) {
-          return false;
-        }
-
-        user = SessionSvc.users.current();
-      }
-      return this.supporters.indexOf(user) > -1;
-    };
-
-    Project.prototype.isContributor = function(user){
-      if (! user){
-        if (! SessionSvc.users.loggedIn()) {
-          return false;
-        }
-
-        user = SessionSvc.users.current();
-      }
-      return this.contributors.indexOf(user) > -1;
+      this.setTimestampAccess('needs', true);
     };
 
     // Service functions //
@@ -184,7 +303,16 @@ angular.module('Teem')
 
         SwellRT.query(query, function(result) {
           angular.forEach(result.result, function(val){
-            res.push(val.root);
+
+            var v = new ReadOnlyProject();
+
+            for (var k in val.root){
+              if (val.root.hasOwnProperty(k)){
+                v[k] = val.root[k];
+              }
+            }
+
+            res.push(v);
           });
 
           resolve(res);
