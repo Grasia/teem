@@ -8,9 +8,15 @@ module.exports = function(config) {
   // config.server = false;
 
   // Weinre Remote debug server
-
-  config.weinre.httpPort = 8001;
-  config.weinre.boundHost = 'localhost';
+  //
+  //config.weinre = {
+  //  httpPort:     8001,
+  //  boundHost:    'localhost',
+  //  verbose:      false,
+  //  debug:        false,
+  // readTimeout:  5,
+  // deathTimeout: 15
+  //};
 
   // Set to false to disable it:
   // config.weinre = false;

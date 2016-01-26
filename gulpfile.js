@@ -83,14 +83,7 @@ var config = {
     port: '9001'
   },
 
-  weinre: {
-    httpPort:     8001,
-    boundHost:    'localhost',
-    verbose:      false,
-    debug:        false,
-    readTimeout:  5,
-    deathTimeout: 15
-  },
+  weinre: false,
 
   piwik: false,
 
