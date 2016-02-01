@@ -24,15 +24,13 @@ angular.module('Teem')
       nick : ''
     };
 
-    var validateFormName = function(form) {
+    function validateFormName(form) {
       var forms = ['login', 'register', 'forgotten_password', 'recover_password'];
-      var isValid = forms.reduce(function(last, current) {
-        return last || form == current;
-      }, false);
+      var isValid = forms.indexOf(form) !== -1;
       return isValid? form : 'login';
     }
 
-    var login = function() {
+    function login() {
       var fields = $scope.current().values;
       var startSession = function(){
         // TODO change password when register is available
@@ -52,17 +50,17 @@ angular.module('Teem')
       console.log("login", fields);
     };
 
-    var register = function() {
+    function register() {
       // TODO
       console.log("register", $scope.current().values);
     }
 
-    var forgotten_password = function() {
+    function forgotten_password() {
       // TODO
       console.log("forgotten", $scope.current().values);
     }
 
-    var recover_password = function() {
+    function recover_password() {
       // TODO
       console.log("recover", $scope.current().values);
     }
@@ -73,11 +71,8 @@ angular.module('Teem')
         fields: {
           nick: {
             name: "nick",
-            pattern: new RegExp('^[a-zA-Z0-9\.]+$'),
-            model_options: "{debounce: 250}",
             required: true,
             autofocus: true
-
           },
           password: {
             name: "password",
@@ -92,17 +87,20 @@ angular.module('Teem')
           {
             name: "nick",
             required: true,
-            autofocus: true
+            autofocus: true,
+            pattern: /^[a-zA-Z0-9\.]+$/
           },
           {
             name: "password",
             type: "password",
-            required: true
+            required: true,
+            pattern: /^.{6,}$/
           },
           {
             name: "password_repeat",
             type: "password",
-            required: true
+            required: true,
+            validation: "current().values.password != current().values.password_repeat ? 'Passwords do not match' : ''"
           },
           {
             name: "email",
