@@ -129,7 +129,8 @@ angular.module('Teem')
           },
           {
             name: "password_repeat",
-            type: "password"
+            type: "password",
+            validation: "current().values.password != current().values.password_repeat ? 'Passwords do not match' : ''"
           }
         ],
         submit: recover_password

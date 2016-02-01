@@ -91,17 +91,6 @@
   "loading": {
     "title": "Cargando..."
   },
-  "login": {
-    "button": "Entrar",
-    "error": "Por favor, escoge un nick formado sólo por letras, números y puntos",
-    "name": "Nick",
-    "should_be_logged": {
-      "cancel": "Cancelar",
-      "loggin_now": "Iniciar sesión",
-      "message": "Por favor, inicia sesión para realizar esta acción."
-    },
-    "tip": "Introduce tu nick"
-  },
   "menu": {
     "communities": {
       "create": "Crea una comunidad",
@@ -223,6 +212,42 @@
     },
     "welcome": {
       "tip": "¿No participas en nada todavía? <a href=\"#/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"#/communities/new\">crea tu comunidad</a>"
+    }
+  },
+  "session": {
+    "login": {
+      "button": "Entrar",
+      "error": "Por favor, escoge un nick formado sólo por letras, números y puntos",
+      "nick": "Nick",
+      "should_be_logged": {
+        "cancel": "Cancelar",
+        "loggin_now": "Iniciar sesión",
+        "message": "Por favor, inicia sesión para realizar esta acción."
+      },
+      "password": "Contraseña",
+      "tip": "Introduce tu nick"
+    },
+    "register": {
+      "button": "Registar",
+      "email": "E-mail (opcional)",
+      "error": "Comprueba los campos",
+      "nick": "Nick",
+      "password": "Contraseña",
+      "password_repeat": "Repite la contraseña",
+      "tip": "Crear una cuenta"
+    },
+    "forgotten_password": {
+      "button": "Recuperar contraseña",
+      "email": "E-mail",
+      "error": "Introduce una cuenta de correo correcta",
+      "tip": "Te enviaremos un correo para que puedas recuperar la contraseña."
+    },
+    "recover_password": {
+      "button": "Recuperar contraseña",
+      "error": "Las contraseñas tienen que coincidir",
+      "password": "Nueva contraseña",
+      "password_repeat": "Repite nueva contraseña",
+      "tip": "Introduce una nueva contraseña para tu ."
     }
   },
   "upgrading": {

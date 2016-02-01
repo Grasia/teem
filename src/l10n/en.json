@@ -218,13 +218,36 @@
     "login": {
       "button": "Login",
       "error": "Please, choose a nickname composed by letters, numbers and dots",
-      "name": "Nickname",
+      "nick": "Nickname",
       "should_be_logged": {
         "cancel": "Cancel",
         "loggin_now": "Log in",
         "message": "Sorry! You should be logged in to do that action."
       },
+      "password": "Password",
       "tip": "Enter your nickname"
+    },
+    "register": {
+      "button": "Register",
+      "email": "E-mail (optional)",
+      "error": "Please, check the fields",
+      "nick": "Nick",
+      "password": "Password",
+      "password_repeat": "Repeat the password",
+      "tip": "Create an account"
+    },
+    "forgotten_password": {
+      "button": "Recover password",
+      "error": "Invalid e-mail address",
+      "email": "E-mail",
+      "tip": "We will send you an email with which you will be able to recover the password."
+    },
+    "recover_password": {
+      "button": "Recover password",
+      "error": "Passwords must match",
+      "password": "New password",
+      "password_repeat": "Repeat new password",
+      "tip": "Enter a new password for your account."
     }
   },
   "upgrading": {
