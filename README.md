@@ -1,6 +1,6 @@
 # Teem
 
-Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)
+Teem is the P2Pvalue collaboration tool for Common-based Peer Production Communities (CBPPs)
 
 http://p2pvalue.eu/
 
@@ -10,15 +10,24 @@ To get you started you can simply clone the teem repository and install the depe
 
 ### Prerequisites
 
-You need git to clone the teem repository. You can get git from
-[http://git-scm.com/](http://git-scm.com/).
+You need [git](http://git-scm.com/) to download the teem repository, [Node.js](http://nodejs.org/)
+to run the code, and `npm` (node.js's package manager) to install the dependencies.
 
-We also use a number of node.js tools to initialize and test teem You must have node.js and
-its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
+You can use [Docker](https://docs.docker.com/installation/) to have
+[SwellRT](https://github.com/P2Pvalue/swellrt) running. SwellRT is a real-time
+federated collaboration framework, which is installed and executed automatically by Teem though Docker.
+
+You should add your user into the `docker` group to have the necessary permissions. Try:
+
+```
+sudo adduser <your_user> docker
+```
+
+And then restart your computer.
 
 ### Clone teem
 
-Clone the teem repository using [git][git]:
+Clone the teem repository using `git`:
 
 ```
 git clone https://github.com/P2Pvalue/teem.git
@@ -30,8 +39,8 @@ cd teem
 We have two kinds of dependencies in this project: tools and angular framework code.  The tools help
 us manage and test the application.
 
-* We get the tools we depend upon via `npm`, the [node package manager][npm].
-* We get the angular code via `bower`, a [client-side code package manager][bower].
+* We get the tools we depend upon via `npm`, the node package manager.
+* We get the angular code via `bower`, a client-side code package manager.
 
 We have preconfigured `npm` to automatically run `bower` so we can simply do:
 
@@ -45,15 +54,6 @@ folders in your project.
 * `node_modules` - contains the npm packages for the tools we need
 * `bower_components` - contains the angular framework files
 
-### Install SwellRT
-
-Teem uses [SwellRT](https://github.com/P2Pvalue/swellrt), a real-time federated collaboration framework.
-
-You need to run SwellRT, which is extremelly easy using Docker. [Install Docker](https://docs.docker.com/installation/)
-
-An instance of SwellRT will be automagically started for you
-
-
 ### Optional: Change configuration options
 
 You can customize several options, such as server port, Weinre, SwellRT address via `config.js`
@@ -66,9 +66,10 @@ edit config.js
 ### Run the Application
 
 We have preconfigured the project with a simple development web server.  The simplest way to start
-this server is:
+this server is installing `gulp` and running it.
 
 ```
+sudo npm install -g gulp
 gulp
 ```
 
@@ -82,7 +83,7 @@ There are two kinds of tests in the teem application: Unit tests and End to End 
 ### Running Unit Tests
 
 The teem app comes preconfigured with unit tests. These are written in
-[Jasmine][jasmine], which we run with the [Karma Test Runner][karma]. We provide a Karma
+Jasmine, which we run with the Karma Test Runner. We provide a Karma
 configuration file to run them.
 
 * the configuration is found at `karma.conf.js`
@@ -110,8 +111,8 @@ npm run test-single-run
 
 ### End to end testing
 
-The teem app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
-are run with the [Protractor][protractor] End-to-End test runner.  It uses native events and has
+The teem app comes with end-to-end tests, again written in Jasmine. These tests
+are run with the Protractor End-to-End test runner.  It uses native events and has
 special features for Angular applications.
 
 * the configuration is found at `e2e-tests/protractor-conf.js`
@@ -148,4 +149,3 @@ development server.
 ## Contact
 
 For more information on P2Pvalue project please check out http://p2pvalue.eu/
-
