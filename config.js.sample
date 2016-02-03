@@ -24,7 +24,7 @@ module.exports = function(config) {
   // SwellRT server
 
   config.swellrt.protocol = 'http://';
-  config.swellrt.host = 'swellrt';
+  config.swellrt.host = 'localhost';
   config.swellrt.port = '9898';
 
   // angular-swellrt
