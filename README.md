@@ -10,17 +10,18 @@ To get you started you can simply clone the teem repository and install the depe
 
 ### Prerequisites
 
-You need [git](http://git-scm.com/) to download the teem repository, [Node.js](http://nodejs.org/)
+You need [git](http://git-scm.com/) to download the teem repository, [Node.js](http://nodejs.org/) (v4.2.x)
 to run the code, and `npm` (node.js's package manager) to install the dependencies.
 
-You can use [Docker](https://docs.docker.com/installation/) to have
+You can use [Docker](https://docs.docker.com/installation/) (v1.9.x) to have
 [SwellRT](https://github.com/P2Pvalue/swellrt) running. SwellRT is a real-time
 federated collaboration framework, which is installed and executed automatically by Teem though Docker.
 
-You should add your user into the `docker` group to have the necessary permissions. Try:
+Add your user into the `docker` group to have the necessary permissions. In GNU/Linux, try:
 
 ```
-sudo adduser <your_user> docker
+wget -qO- https://get.docker.com/ | sh
+sudo usermod -aG docker <your_user>
 ```
 
 And then restart your computer.

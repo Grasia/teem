@@ -48,8 +48,8 @@ var config = {
   },
 
   swellrt: {
-    host: 'demo-swellrt.p2pvalue.eu',
-    protocol: 'https://',
+    host: 'localhost:9898',
+    protocol: 'http://',
     docker: {
       name: 'teem-swellrt'
     }
