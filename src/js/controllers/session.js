@@ -43,4 +43,12 @@ angular.module('Teem')
       };
       SessionSvc.registerUser($scope.user.nick, '$password$', startSession, startSession);
     };
+
+    $scope.isLoggedIn = function() {
+      return SessionSvc.users.loggedIn();
+    };
+
+    $scope.logout = function() {
+      SessionSvc.stopSession();
+    };
   }]);
