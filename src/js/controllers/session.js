@@ -141,4 +141,11 @@ angular.module('Teem')
       return $scope.form[$scope.form.current];
     };
 
+    $scope.isLoggedIn = function() {
+      return SessionSvc.users.loggedIn();
+    };
+
+    $scope.logout = function() {
+      SessionSvc.stopSession();
+    };
   }]);

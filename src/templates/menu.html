@@ -18,6 +18,9 @@
         </a>
       </div>
       <a class="list-group-item list-group-item-header" href="#/communities/{{support.communityId}}/projects/{{support.projectId}}" ng-if="support" translate>menu.support</a>
+      <div ng-controller="SessionCtrl">
+        <a class="list-group-item list-group-item-header" ng-click="logout()" ng-if="isLoggedIn()" translate>menu.logout</a>
+      </div>
     </div>
   </div>
 </div>
