@@ -51,8 +51,8 @@ angular
         // When adding more languages, do not forget to add them for "moment"
         // in the vendor.js section of gulpfile.js
       })
-      .fallbackLanguage('en')
-      .determinePreferredLanguage();
+      .determinePreferredLanguage()
+      .fallbackLanguage('en');
   })
   .run(function(amMoment, $translate) {
     amMoment.changeLocale($translate.proposedLanguage() || $translate.use());
