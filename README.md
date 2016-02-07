@@ -11,7 +11,7 @@ To get you started you can simply clone the teem repository and install the depe
 ### Prerequisites
 
 You need [git](http://git-scm.com/) to download the teem repository, [Node.js](http://nodejs.org/) (v4.2.x)
-to run the code, and `npm` (node.js's package manager) to install the dependencies.
+to run the code, and [npm](https://www.npmjs.com/) (node.js's package manager) to install the dependencies.
 
 You can use [Docker](https://docs.docker.com/installation/) (v1.9.x) to have
 [SwellRT](https://github.com/P2Pvalue/swellrt) running. SwellRT is a real-time
