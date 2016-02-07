@@ -1,6 +1,6 @@
 # Teem
 
-Teem is the P2Pvalue collaboration tool for Common-based Peer Production Communities (CBPPs)
+Teem is the [P2Pvalue](http://p2pvalue.eu/) collaboration tool for [common-based peer production communities (CBPPs)](https://en.wikipedia.org/wiki/Commons-based_peer_production)
 
 http://teem.works/
 
