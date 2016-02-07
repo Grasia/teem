@@ -2,7 +2,7 @@
 
 Teem is the P2Pvalue collaboration tool for Common-based Peer Production Communities (CBPPs)
 
-http://p2pvalue.eu/
+http://teem.works/
 
 ## Getting Started
 
