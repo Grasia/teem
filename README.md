@@ -84,7 +84,7 @@ There are two kinds of tests in the teem application: Unit tests and End to End 
 To run both, you need the Java Development Kit (such as OpenJDK 7), and run:
 
 ```
-gulp tests
+gulp test
 ```
 
 ### Unit Tests
