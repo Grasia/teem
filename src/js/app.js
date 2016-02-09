@@ -51,6 +51,8 @@ angular
         // When adding more languages, do not forget to add them for "moment"
         // in the vendor.js section of gulpfile.js
       })
+      // Do not change order of next two elements
+      // https://github.com/angular-translate/angular-translate/issues/920#issuecomment-180550269
       .determinePreferredLanguage()
       .fallbackLanguage('en');
   })
