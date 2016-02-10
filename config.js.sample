@@ -20,6 +20,9 @@ module.exports = function(config) {
 
   // SwellRT server
 
+  // Don't use Docker for SwellRT
+  // config.swellrt.docker = false;
+
   config.swellrt.protocol = 'http://';
   config.swellrt.host = 'localhost';
   config.swellrt.port = '9898';
