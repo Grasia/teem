@@ -229,7 +229,7 @@
     },
     "register": {
       "button": "Registar",
-      "email": "E-mail (opcional)",
+      "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
       "error": "Comprueba los campos",
       "nick": "Nick",
       "password": "Contraseña",

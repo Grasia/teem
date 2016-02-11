@@ -229,7 +229,7 @@
     },
     "register": {
       "button": "Register",
-      "email": "E-mail (optional)",
+      "email": "E-mail (optional, but needed to recover password)",
       "error": "Please, check the fields",
       "nick": "Nick",
       "password": "Password",
