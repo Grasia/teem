@@ -14,6 +14,7 @@ angular.module('Teem')
         templateUrl: 'session/new.html',
         controller:'SessionCtrl'
       });
+    // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
   .controller('SessionCtrl', [
     '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState',
@@ -46,23 +47,53 @@ angular.module('Teem')
           }
         );
       };
-      //SessionSvc.registerUser(fields.nick, fields.password, startSession, startSession);
       console.log("login", fields);
     };
 
     function register() {
-      // TODO
-      console.log("register", $scope.current().values);
-    }
+      var fields = $scope.current().values;
+      console.log("register", fields);
+      //TODO: proper error callback
+      SessionSvc.registerUser(fields.nick, fields.password, login(),
+                              function(e){console.log(e);});
+    };
 
     function forgotten_password() {
-      // TODO
-      console.log("forgotten", $scope.current().values);
-    }
+
+      var fields = $scope.current().values;
+      console.log("forgotten", fields);
+
+      // TODO: proper success and error handling
+      var onSuccess = function(){
+        console.log('Success: "Forgotten password" command run on SwellRT');
+      };
+
+      var onError = function(){
+        console.log('Error: Something went wrong running "forgotten password" command on SwellRT');
+      };
+
+      var recoverUrl =  $location.protocol + '://' + $location.host + '/session/recover_passworq?token=$token&id=$user-id';
+
+      SessionSvc.forgottenPassword(fields.email, recoverUrl, onSuccess, onError);
+    };
 
     function recover_password() {
-      // TODO
-      console.log("recover", $scope.current().values);
+
+      var fields = $scope.current().values;
+      console.log("recover", fields);
+
+      var params =  $location.search();
+
+      var onSuccess = function(){
+        login();
+      };
+
+      // TODO: proper error handling
+      var onError = function(){
+        console.log('Error: Something went wrong running password recovery command on SwellRT');
+      };
+
+      SessionSvc.recoverPassword(params.id, params.token, fields.password, onSuccess, onError);
     }
 
     $scope.form = {
