@@ -6,6 +6,9 @@
     },
     "new_messages": "New messages"
   },
+  "common": {
+    "save": "Save"
+  },
   "community": {
     "communities": "Communities",
     "create": {
@@ -142,6 +145,14 @@
       "title": "Info"
     },
     "placeholder": "You want to work on..."
+  },
+  "profile": {
+    "your": "Your profile",
+    "avatar": {
+      "avatar": "Avatar",
+      "change": "Change picture...",
+      "delete": "Delete picture"
+    }
   },
   "project": {
     "create": {
