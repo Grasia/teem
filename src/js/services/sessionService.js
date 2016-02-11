@@ -164,6 +164,14 @@ angular.module('Teem')
       });
     };
 
+    var forgottenPassword = function(email, recoverUrl, onSuccess, onError) {
+      SwellRT.recoverPassword(email, recoverUrl, onSuccess, onError);
+    };
+
+    var recoverPassword = function(id, token, password, onSuccess, onError) {
+      SwellRT.setPassword(id, token, password, onSuccess, onError);
+    };
+
     var autoStartSession = function(){
       var user, pass;
 
@@ -196,6 +204,8 @@ angular.module('Teem')
       registerUser: registerUser,
       startSession: startSession,
       stopSession: stopSession,
+      recoverPassword: recoverPassword,
+      forgottenPassword: forgottenPassword,
       loginRequired: loginRequired,
       setFatalExceptionHandler: setFatalExceptionHandler,
       status: status,
