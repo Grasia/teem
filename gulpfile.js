@@ -38,6 +38,7 @@ var config = {
       './bower_components/moment/moment.js',
       './bower_components/moment/locale/es.js',
       './bower_components/angular-moment/angular-moment.js',
+      './bower_components/ng-img-crop/compile/unminified/ng-img-crop.js'
 
     ],
 

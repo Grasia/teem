@@ -25,7 +25,8 @@ angular
     'hmTouchEvents',
     'ab-base64',
     'angular-toArrayFilter',
-    'angularMoment'
+    'angularMoment',
+    'ngImgCrop'
   ]).
   // Application config
   // See config.js.sample for examples
