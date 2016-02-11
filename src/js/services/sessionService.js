@@ -85,6 +85,9 @@ angular.module('Teem')
     var stopSession = function(){
       swellRTpromise.then(function(){
         SwellRT.stopSession();
+        users.clearCurrent();
+        // Start anonymous session to continue the communication with SwellRT
+        autoStartSession();
         NotificationSvc.unregister(
           undefined,
           function(error){
