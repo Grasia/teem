@@ -249,7 +249,7 @@
       "error": "Las contraseñas tienen que coincidir",
       "password": "Nueva contraseña",
       "password_repeat": "Repite nueva contraseña",
-      "tip": "Introduce una nueva contraseña para tu ."
+      "tip": "Introduce una nueva contraseña para tu cuenta."
     }
   },
   "upgrading": {
