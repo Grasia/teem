@@ -17,30 +17,33 @@ angular.module('Teem')
       });
   }])
   .controller('ProfileCtrl', ['$scope', 'SessionSvc', function ($scope, SessionSvc) {
-    $scope.user = SessionSvc.users.current();
-    $scope.rawAvatar = '';
-    $scope.croppedAvatar = '';
-    $scope.cropping = false;
-
-    function handleFileSelect(evt) {
-      $scope.cropping = true;
-      var file = evt.currentTarget.files[0];
-      var reader = new FileReader();
-      reader.onload = function (evt) {
-        $scope.$apply(function($scope) {
-          $scope.rawAvatar = evt.target.result;
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-    angular.element(document.querySelector('#avatar')).on('change', handleFileSelect);
-
-    $scope.saveAvatar = function() {
-      $scope.cropping = false;
-    };
-
-    $scope.deleteAvatar = function() {
+    SessionSvc.loginRequired(function() {
+      //FIXME: Session.users.current() is not updated at this point.
+      $scope.user = SessionSvc.users.current();
       $scope.rawAvatar = '';
       $scope.croppedAvatar = '';
-    };
+      $scope.cropping = false;
+
+      function handleFileSelect(evt) {
+        $scope.cropping = true;
+        var file = evt.currentTarget.files[0];
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+          $scope.$apply(function($scope) {
+            $scope.rawAvatar = evt.target.result;
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+      angular.element(document.querySelector('#avatar')).on('change', handleFileSelect);
+
+      $scope.saveAvatar = function() {
+        $scope.cropping = false;
+      };
+
+      $scope.deleteAvatar = function() {
+        $scope.rawAvatar = '';
+        $scope.croppedAvatar = '';
+      };
+    });
   }]);
