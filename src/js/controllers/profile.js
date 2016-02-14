@@ -22,7 +22,7 @@ angular.module('Teem')
     $scope.croppedAvatar = '';
     $scope.cropping = false;
 
-    var handleFileSelect=function(evt) {
+    function handleFileSelect(evt) {
       $scope.cropping = true;
       var file = evt.currentTarget.files[0];
       var reader = new FileReader();
@@ -32,7 +32,7 @@ angular.module('Teem')
         });
       };
       reader.readAsDataURL(file);
-    };
+    }
     angular.element(document.querySelector('#avatar')).on('change', handleFileSelect);
 
     $scope.saveAvatar = function() {
