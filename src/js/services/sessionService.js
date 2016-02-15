@@ -57,6 +57,10 @@ angular.module('Teem')
     var sessionDef = $q.defer();
     var users = {
       password: '$password$',
+      callbacks: {
+        login: [],
+        logout: []
+      },
       current: function() {
         if (typeof(__session) === 'undefined') {
           return undefined;
@@ -68,11 +72,38 @@ angular.module('Teem')
 
         return __session.address;
       },
+
+      setCurrent: function(name) {
+        var cleanedName = name ? name.trim() : name;
+        var current = window.localStorage.setItem('userId', cleanedName);
+        users.callbacks.login.forEach(function(cb) {
+          cb();
+        });
+        users.callbacks.login = [];
+        return current;
+      },
+      clearCurrent: function() {
+        users.callbacks.logout.forEach(function(cb) {
+          cb();
+        });
+        users.callbacks.logout = [];
+        window.localStorage.removeItem('userId');
+      },
       isCurrent: function(user) {
         return user === users.current();
       },
       loggedIn: function() {
         return users.current() !== undefined;
+      },
+      on: function(event, cb) {
+        if (event === 'login') {
+          users.callbacks.login[0] = cb;
+        } else if (event === 'logout') {
+          users.callbacks.logout[0] = cb;
+        }
+        // Write ".push(cb)" instead of "[0] = cb" for multiple callback support,
+        // but calling to users.on() twice with the same callback will execute
+        // that callback twice.
       }
     };
 
@@ -189,6 +220,7 @@ angular.module('Teem')
         SharedState.turnOn('shouldLoginSharedState');
         // Invoque $timout to refresh scope and actually show modal
         $timeout();
+        users.on('login', cb);
       } else {
         cb();
       }
