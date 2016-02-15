@@ -78,7 +78,7 @@ angular.module('Teem')
         console.log('Error: Something went wrong running "forgotten password" command on SwellRT');
       };
 
-      var recoverUrl =  $location.protocol + '://' + $location.host + '/session/recover_passworq?token=$token&id=$user-id';
+      var recoverUrl =  $location.protocol() + '://' + $location.host() + '/session/recover_passworq?token=$token&id=$user-id';
 
       SessionSvc.forgottenPassword(fields.email, recoverUrl, onSuccess, onError);
     }
