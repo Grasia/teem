@@ -18,7 +18,6 @@ angular.module('Teem')
   }])
   .controller('ProfileCtrl', ['$scope', 'SessionSvc', function ($scope, SessionSvc) {
     SessionSvc.loginRequired(function() {
-      //FIXME: Session.users.current() is not updated at this point.
       $scope.user = SessionSvc.users.current();
       $scope.rawAvatar = '';
       $scope.croppedAvatar = '';
