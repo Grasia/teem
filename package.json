@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
   "repository": "https://github.com/P2Pvalue/teem",
-  "license": "AGPL",
+  "license": "AGPL-1.0",
   "dependencies": {},
   "devDependencies": {
     "bower": "^1.6.5",
