@@ -8,7 +8,12 @@ var SwellRT = {
   on: function() {},
   events: {},
   createModel: function() {},
-  query: function() {}
+  query: function() {},
+  startSession: function() {}
+};
+
+var __session = {
+  domain: 'local.net'
 };
 
 function SwellRTModel() {

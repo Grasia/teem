@@ -462,6 +462,14 @@ gulp.task('test:unit', function(done) {
   }, done).start();
 });
 
+gulp.task('test:unit:loop', function(done) {
+  new karma({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: false
+  }, done).start();
+});
+
+
 /*================================================
 =        End to end testing with protractor      =
 =================================================*/
