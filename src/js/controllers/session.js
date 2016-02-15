@@ -25,15 +25,15 @@ angular.module('Teem')
       nick : ''
     };
 
-    function validateFormName(form) {
+    function normalizeFormName(form) {
       var forms = ['login', 'register', 'forgotten_password', 'recover_password'];
-      var isValid = forms.indexOf(form) !== -1;
-      return isValid? form : 'login';
+      var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
+      return isValid? form.toLowerCase() : 'login';
     }
 
     function login() {
       var fields = $scope.current().values;
-      var startSession = function(){
+      var startSession = function() {
         // TODO change password when register is available
         SessionSvc.startSession(
           fields.nick, SessionSvc.users.password,
@@ -47,21 +47,21 @@ angular.module('Teem')
           }
         );
       };
-      console.log("login", fields);
-    };
+      console.log('login', fields);
+    }
 
     function register() {
       var fields = $scope.current().values;
-      console.log("register", fields);
+      console.log('register', fields);
       //TODO: proper error callback
       SessionSvc.registerUser(fields.nick, fields.password, login(),
                               function(e){console.log(e);});
-    };
+    }
 
-    function forgotten_password() {
+    function forgottenPassword() {
 
       var fields = $scope.current().values;
-      console.log("forgotten", fields);
+      console.log('forgotten', fields);
 
       // TODO: proper success and error handling
       var onSuccess = function(){
@@ -75,12 +75,12 @@ angular.module('Teem')
       var recoverUrl =  $location.protocol + '://' + $location.host + '/session/recover_passworq?token=$token&id=$user-id';
 
       SessionSvc.forgottenPassword(fields.email, recoverUrl, onSuccess, onError);
-    };
+    }
 
-    function recover_password() {
+    function recoverPassword() {
 
       var fields = $scope.current().values;
-      console.log("recover", fields);
+      console.log('recover', fields);
 
       var params =  $location.search();
 
@@ -97,17 +97,17 @@ angular.module('Teem')
     }
 
     $scope.form = {
-      current: validateFormName($route.current.params.form),
+      current: normalizeFormName($route.current.params.form),
       login: {
         fields: {
           nick: {
-            name: "nick",
+            name: 'nick',
             required: true,
             autofocus: true
           },
           password: {
-            name: "password",
-            type: "password",
+            name: 'password',
+            type: 'password',
             required: true
           }
         },
@@ -116,26 +116,26 @@ angular.module('Teem')
       register: {
         fields: [
           {
-            name: "nick",
+            name: 'nick',
             required: true,
             autofocus: true,
             pattern: /^[a-zA-Z0-9\.]+$/
           },
           {
-            name: "password",
-            type: "password",
+            name: 'password',
+            type: 'password',
             required: true,
             pattern: /^.{6,}$/
           },
           {
-            name: "password_repeat",
-            type: "password",
+            name: 'password_repeat',
+            type: 'password',
             required: true,
-            validation: "current().values.password != current().values.password_repeat ? 'Passwords do not match' : ''"
+            validation: 'current().values.password != current().values.password_repeat ? "Passwords do not match" : ""'
           },
           {
-            name: "email",
-            type: "email",
+            name: 'email',
+            type: 'email',
             required: false
           }
         ],
@@ -144,27 +144,27 @@ angular.module('Teem')
       forgotten_password: {
         fields: [
           {
-            name: "email",
-            type: "email",
+            name: 'email',
+            type: 'email',
             required: true
           }
         ],
-        submit: forgotten_password
+        submit: forgottenPassword
       },
       recover_password: {
         fields: [
           {
-            name: "password",
-            type: "password",
+            name: 'password',
+            type: 'password',
             autofocus: true
           },
           {
-            name: "password_repeat",
-            type: "password",
-            validation: "current().values.password != current().values.password_repeat ? 'Passwords do not match' : ''"
+            name: 'password_repeat',
+            type: 'password',
+            validation: 'current().values.password != current().values.password_repeat ? "Passwords do not match" : ""'
           }
         ],
-        submit: recover_password
+        submit: recoverPassword
       }
     };
 
