@@ -25,6 +25,10 @@ angular.module('Teem')
       nick : ''
     };
 
+    $scope.error = {
+      current : null
+    };
+
     function normalizeFormName(form) {
       var forms = ['login', 'register', 'forgotten_password', 'recover_password'];
       var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
@@ -36,32 +40,34 @@ angular.module('Teem')
       var startSession = function() {
         // TODO change password when register is available
         SessionSvc.startSession(
-          fields.nick, SessionSvc.users.password,
+          fields.nick, fields.password,
           function(){
             $timeout(function(){
               SharedState.turnOff('shouldLoginSharedState');
             });
           },
           function(error){
-            console.log(error);
+            if (error === 'ACCESS_FORBIDDEN_EXCEPTION') {
+              $timeout(function(){
+                $scope.error.current = 'wrong_email_or_password';
+              });
+            }
           }
         );
       };
-      console.log('login', fields);
+      startSession();
     }
 
     function register() {
       var fields = $scope.current().values;
-      console.log('register', fields);
       //TODO: proper error callback
-      SessionSvc.registerUser(fields.nick, fields.password, login(),
+      SessionSvc.registerUser(fields.nick, fields.password, login,
                               function(e){console.log(e);});
     }
 
     function forgottenPassword() {
 
       var fields = $scope.current().values;
-      console.log('forgotten', fields);
 
       // TODO: proper success and error handling
       var onSuccess = function(){
@@ -80,7 +86,6 @@ angular.module('Teem')
     function recoverPassword() {
 
       var fields = $scope.current().values;
-      console.log('recover', fields);
 
       var params =  $location.search();
 

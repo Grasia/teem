@@ -157,8 +157,8 @@ angular.module('Teem')
             onSuccess();
 
             status.connection = 'connected';
-          }, function() {
-            onError();
+          }, function(error) {
+            onError(error);
             status.connection = 'disconnected';
           });
       });

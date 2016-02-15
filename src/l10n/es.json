@@ -217,7 +217,10 @@
   "session": {
     "login": {
       "button": "Entrar",
-      "error": "Por favor, escoge un nick formado sólo por letras, números y puntos",
+      "error": {
+        "validation": "Por favor, escoge un nick formado sólo por letras, números y puntos",
+        "wrong_email_or_password": "Email o contraseña incorrectos."
+      },
       "nick": "Nick",
       "should_be_logged": {
         "cancel": "Cancelar",
@@ -230,7 +233,9 @@
     "register": {
       "button": "Registar",
       "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
-      "error": "Comprueba los campos",
+      "error": {
+        "validation": "Comprueba los campos"
+      },
       "nick": "Nick",
       "password": "Contraseña",
       "password_repeat": "Repite la contraseña",
@@ -239,12 +244,16 @@
     "forgotten_password": {
       "button": "Recuperar contraseña",
       "email": "E-mail",
-      "error": "Introduce una cuenta de correo correcta",
+      "error": {
+        "validation": "Introduce una cuenta de correo correcta"
+      },
       "tip": "Te enviaremos un correo para que puedas recuperar la contraseña."
     },
     "recover_password": {
       "button": "Recuperar contraseña",
-      "error": "Las contraseñas tienen que coincidir",
+      "error": {
+        "validation": "Las contraseñas tienen que coincidir"
+      },
       "password": "Nueva contraseña",
       "password_repeat": "Repite nueva contraseña",
       "tip": "Introduce una nueva contraseña para tu cuenta."
