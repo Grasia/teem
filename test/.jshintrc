@@ -35,7 +35,8 @@
     "it": false,
     "jasmine": false,
     "spyOn": false,
-    "SwellRT": false
+    "SwellRT": false,
+    "__session": false
   }
 }
 
