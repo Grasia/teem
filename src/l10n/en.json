@@ -228,7 +228,10 @@
   "session": {
     "login": {
       "button": "Login",
-      "error": "Please, choose a nickname composed by letters, numbers and dots",
+      "error": {
+        "validation": "Please, choose a nickname composed by letters, numbers and dots",
+        "wrong_email_or_password": "Incorrect email or password."
+      },
       "nick": "Nickname",
       "should_be_logged": {
         "cancel": "Cancel",
@@ -241,7 +244,9 @@
     "register": {
       "button": "Register",
       "email": "E-mail (optional, but needed to recover password)",
-      "error": "Please, check the fields",
+      "error": {
+        "validation": "Please, check the fields"
+      },
       "nick": "Nick",
       "password": "Password",
       "password_repeat": "Repeat the password",
@@ -249,13 +254,17 @@
     },
     "forgotten_password": {
       "button": "Recover password",
-      "error": "Invalid e-mail address",
+      "error": {
+        "validation": "Invalid e-mail address"
+      },
       "email": "E-mail",
       "tip": "We will send you an email with which you will be able to recover the password."
     },
     "recover_password": {
       "button": "Recover password",
-      "error": "Passwords must match",
+      "error": {
+        "validation": "Passwords must match"
+      },
       "password": "New password",
       "password_repeat": "Repeat new password",
       "tip": "Enter a new password for your account."

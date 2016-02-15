@@ -1,7 +1,10 @@
 <div class="session-form row">
   <div class="col-xs-6 col-xs-offset-3">
+    <div id="error_alert" class="alert alert-danger" ng-show="error.current !== null" translate>
+      {{'session.' + form.current + '.error.' + error.current}}
+    </div>
     <div class="tip" ng-hide="sessionForm.$invalid && sendAttempt">{{"session."+form.current+".tip" | translate}}</div>
-    <div class="error-tip" ng-show="sessionForm.$invalid && sendAttempt">{{"session."+form.current+".error" | translate}}</div>
+    <div class="error-tip" ng-show="sessionForm.$invalid && sendAttempt">{{"session."+form.current+".error.validation" | translate}}</div>
 
     <form class="session-form" role="form" name="sessionForm">
       <div>
