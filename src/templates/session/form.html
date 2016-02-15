@@ -10,10 +10,10 @@
           <input type="{{field.type || 'text'}}" class="form-control" ng-attr-id="{{field.name}}" ng-attr-name="{{field.name}}" ng-attr-placeholder="{{ 'session.'+form.current+'.'+field.name | translate }}"
              ng-pattern="field.pattern" ng-required="{{field.required}}" ng-attr-autofocus="{{field.autofocus}}" ng-model="current().values[field.name]" validation-error="{{field.validation}}" />
         </div>
-        <input type="submit" class="btn btn-lg btn-primary btn-block" ng-click="!sessionForm.$invalid ? current().submit() : sendAttempt = true" value="{{'session.'+form.current+'.button' | translate}}">
-        <a ng-click="form.current='login'" ng-if="form.current!='login'" class="btn" translate>session.login.button</a>
-        <a ng-click="form.current='forgotten_password'" ng-if="form.current=='login'" class="btn" translate>session.forgotten_password.button</a>
-        <a ng-click="form.current='register'" ng-if="form.current=='login'" class="btn" translate>session.register.button</a>
+        <input type="submit" class="btn btn-lg btn-primary btn-block session-submit-btn" ng-click="!sessionForm.$invalid ? current().submit() : sendAttempt = true" value="{{'session.'+form.current+'.button' | translate}}">
+        <a ng-click="form.current='login'" ng-if="form.current!='login'" class="btn session-login-form-btn" translate>session.login.button</a>
+        <a ng-click="form.current='forgotten_password'" ng-if="form.current=='login'" class="btn session-forgotten-password-form-btn" translate>session.forgotten_password.button</a>
+        <a ng-click="form.current='register'" ng-if="form.current=='login'" class="btn session-register-form-btn" translate>session.register.button</a>
       </div>
     </form>
   </div>
