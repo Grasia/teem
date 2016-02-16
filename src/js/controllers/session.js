@@ -17,8 +17,8 @@ angular.module('Teem')
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState',
-    function($scope, $location, $route, SessionSvc, $timeout, SharedState) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'SimpleAlertSvc',
+    function($scope, $location, $route, SessionSvc, $timeout, SharedState, SimpleAlertSvc) {
     $scope.session = {};
 
     $scope.user = {
@@ -28,17 +28,23 @@ angular.module('Teem')
     $scope.error = {
       current : null
     };
-
     function normalizeFormName(form) {
       var forms = ['login', 'register', 'forgotten_password', 'recover_password'];
       var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
       return isValid? form.toLowerCase() : 'login';
     }
 
+    var inform = function(text){
+      SimpleAlertSvc.alert(text, 'info');
+      $timeout(function(){
+        SharedState.turnOff('shouldLoginSharedState');
+      });
+    };
+
     function login() {
       var fields = $scope.current().values;
       var startSession = function() {
-        // TODO change password when register is available
+
         SessionSvc.startSession(
           fields.nick, fields.password,
           function(){
@@ -60,22 +66,38 @@ angular.module('Teem')
 
     function register() {
       var fields = $scope.current().values;
-      //TODO: proper error callback
-      SessionSvc.registerUser(fields.nick, fields.password, login,
-                              function(e){console.log(e);});
+
+      var onSuccess = function(){
+        login();
+      };
+
+      var onError = function(e){
+        console.log(e);
+        // TODO capture if existing user to call following code:
+        // if (e = "something meaning user exists...") {
+        //   $timeout(function(){
+        //     $scope.error.current = "existing_user";
+        //   });
+        // };
+      };
+
+      SessionSvc.registerUser(fields.nick, fields.password, onSuccess, onError);
     }
 
     function forgottenPassword() {
 
       var fields = $scope.current().values;
 
-      // TODO: proper success and error handling
       var onSuccess = function(){
         console.log('Success: "Forgotten password" command run on SwellRT');
+        inform('session.forgotten_password.success');
       };
 
       var onError = function(){
         console.log('Error: Something went wrong running "forgotten password" command on SwellRT');
+          $timeout(function(){
+            $scope.error.current = 'unknown';
+          });
       };
 
       var recoverUrl =  $location.protocol() + '://' + $location.host() + '/session/recover_passworq?token=$token&id=$user-id';
@@ -91,11 +113,18 @@ angular.module('Teem')
 
       var onSuccess = function(){
         login();
+        inform('session.recover_password.success');
       };
 
-      // TODO: proper error handling
-      var onError = function(){
-        console.log('Error: Something went wrong running password recovery command on SwellRT');
+      var onError = function(error){
+        console.log('Error: Something went wrong running password recovery command on SwellRT', error);
+          $timeout(function(){
+            if (error === 'ACCESS_FORBIDDEN_EXCEPTION') {
+              $scope.error.current = 'authorization';
+            } else {
+              $scope.error.current = 'unknown';
+            }
+          });
       };
 
       SessionSvc.recoverPassword(params.id, params.token, fields.password, onSuccess, onError);
