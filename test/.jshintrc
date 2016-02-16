@@ -36,6 +36,8 @@
     "jasmine": false,
     "spyOn": false,
     "SwellRT": false,
+    "xdescribe": false,
+    "xit": false,
     "__session": false
   }
 }
