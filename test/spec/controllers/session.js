@@ -61,9 +61,7 @@ describe('SessionCtrl', function() {
 
           success();
         });
-      });
 
-      it('should login', function() {
         scope = $rootScope.$new();
 
         SessionCtrl = $controller('SessionCtrl', {
@@ -79,12 +77,19 @@ describe('SessionCtrl', function() {
         scope.form.login.submit();
 
         $timeout.flush();
+      });
 
+      it('should call SwellRT', function() {
         expect(SwellRT.startSession).
         toHaveBeenCalled();
+      });
 
+      it('should pass the right credentials', function() {
         expect(calledNick).toBe(nick);
         expect(calledPassword).toBe(password);
+      });
+
+      it('should set current user', function() {
         expect(SessionSvc.users.current()).toBe(nick + '@' + __session.domain);
       });
     });
