@@ -39,7 +39,7 @@ describe('SessionCtrl', function() {
     SessionSvc = _SessionSvc_;
   }));
 
-  describe('when loggin in', function() {
+  describe('when logging in', function() {
     beforeEach(function() {
       $route.current = {
         params: {
