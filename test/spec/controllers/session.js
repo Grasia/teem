@@ -116,6 +116,70 @@ describe('SessionCtrl', function() {
         }
       };
     });
+
+    describe('and SwellRT will send the ok', function() {
+      var calledNick, calledPassword;
+
+      beforeEach(function() {
+        spyOn(SwellRT, 'registerUser').
+        and.callFake(function(domain, nick, password, success) {
+          calledNick = nick;
+          calledPassword = password;
+
+          success();
+        });
+
+        // TODO email
+        // TODO calling also to sessionStart?
+
+        scope = $rootScope.$new();
+
+        SessionCtrl = $controller('SessionCtrl', {
+          $route: $route,
+          $scope: scope
+        });
+
+        scope.form.login.values = {
+          nick: nick,
+          password: password,
+          password_repeat: password,
+          email: email
+        };
+
+        scope.form.login.submit();
+
+        $timeout.flush();
+      });
+
+      it('should call SwellRT', function() {
+        expect(SwellRT.registerUser).
+        toHaveBeenCalled();
+      });
+
+      it('should pass the right credentials', function() {
+        expect(calledNick).toBe(nick);
+        expect(calledPassword).toBe(password);
+      });
+
+      /* TODO sessionStart also?
+      it('should set current user', function() {
+        expect(SessionSvc.users.current()).toBe(nick + '@' + __session.domain);
+      });
+      */
+    });
+
+    describe('and SwellRT will send an error', function() {
+      beforeEach(function() {
+        spyOn(SwellRT, 'startSession').
+        and.callFake(function(domain, nick, password, success, error) {
+          error();
+        });
+      });
+
+      it('should show the error', function() {
+        // TODO
+      });
+    });
   });
 
   describe('when forgot password', function() {
