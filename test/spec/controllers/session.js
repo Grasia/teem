@@ -27,8 +27,8 @@ describe('SessionCtrl', function() {
       nick = 'testingnick',
       password = 'testingpassword',
       email = 'testing@local.net';
- 
- 
+
+
   // Initialize the controller and a mock scope
   beforeEach(inject(function (_$controller_, _$route_, _$rootScope_, _$timeout_, _swellRT_, _SessionSvc_) {
     $controller = _$controller_;
@@ -40,16 +40,19 @@ describe('SessionCtrl', function() {
   }));
 
   describe('when loggin in', function() {
-    var calledNick, calledPassword;
-
     beforeEach(function() {
       $route.current = {
         params: {
           form: 'login'
         }
       };
+    });
 
-      spyOn(SwellRT, 'startSession').
+    describe('and SwellRT will send the ok', function() {
+      var calledNick, calledPassword;
+
+      beforeEach(function() {
+        spyOn(SwellRT, 'startSession').
         and.callFake(function(domain, nick, password, success) {
           calledNick = nick;
           calledPassword = password;
@@ -57,33 +60,46 @@ describe('SessionCtrl', function() {
           __session.address = nick + '@' + __session.domain;
 
           success();
+        });
+      });
+
+      it('should login', function() {
+        scope = $rootScope.$new();
+
+        SessionCtrl = $controller('SessionCtrl', {
+          $route: $route,
+          $scope: scope
+        });
+
+        scope.form.login.values = {
+          nick: nick,
+          password: password
+        };
+
+        scope.form.login.submit();
+
+        $timeout.flush();
+
+        expect(SwellRT.startSession).
+        toHaveBeenCalled();
+
+        expect(calledNick).toBe(nick);
+        expect(calledPassword).toBe(password);
+        expect(SessionSvc.users.current()).toBe(nick + '@' + __session.domain);
       });
     });
 
-    it('should call SwellRT', function() {
-      scope = $rootScope.$new();
-
-      SessionCtrl = $controller('SessionCtrl', {
-        $route: $route,
-        $scope: scope
+    describe('and SwellRT will send an error', function() {
+      beforeEach(function() {
+        spyOn(SwellRT, 'startSession').
+        and.callFake(function(domain, nick, password, success, error) {
+          error();
+        });
       });
 
-      scope.form.login.values = {
-        nick: nick,
-        password: password
-      };
-
-      scope.form.login.submit();
-
-      $timeout.flush();
-
-      expect(SwellRT.startSession).
-        toHaveBeenCalled();
-
-      expect(calledNick).toBe(nick);
-      expect(calledPassword).toBe(password);
-      expect(SessionSvc.users.current()).toBe(nick + '@' + __session.domain);
-
+      it('should show the error', function() {
+        // TODO
+      });
     });
   });
 
