@@ -26,7 +26,7 @@ describe('SessionCtrl', function() {
       swellRT,
       nick = 'testingnick',
       password = 'testingpassword',
-      email = 'testing@local.net'
+      email = 'testing@local.net',
       token = 'abcde';
 
 
