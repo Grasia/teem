@@ -26,7 +26,8 @@ describe('SessionCtrl', function() {
       swellRT,
       nick = 'testingnick',
       password = 'testingpassword',
-      email = 'testing@local.net';
+      email = 'testing@local.net'
+      token = 'abcde';
 
 
   // Initialize the controller and a mock scope
@@ -48,7 +49,7 @@ describe('SessionCtrl', function() {
       };
     });
 
-    describe('and SwellRT will send the ok', function() {
+    describe('and SwellRT sends the ok', function() {
       var calledNick, calledPassword;
 
       beforeEach(function() {
@@ -94,7 +95,7 @@ describe('SessionCtrl', function() {
       });
     });
 
-    describe('and SwellRT will send an error', function() {
+    describe('and SwellRT sends an error', function() {
       beforeEach(function() {
         spyOn(SwellRT, 'startSession').
         and.callFake(function(domain, nick, password, success, error) {
@@ -117,14 +118,25 @@ describe('SessionCtrl', function() {
       };
     });
 
-    describe('and SwellRT will send the ok', function() {
-      var calledNick, calledPassword;
+    describe('and SwellRT sends the ok', function() {
+      var sessionNick, sessionPassword,
+          registerNick, registerPassword;
 
       beforeEach(function() {
+        spyOn(SwellRT, 'startSession').
+        and.callFake(function(domain, nick, password, success) {
+          sessionNick = nick;
+          sessionPassword = password;
+
+          __session.address = nick + '@' + __session.domain;
+
+          success();
+        });
+
         spyOn(SwellRT, 'registerUser').
         and.callFake(function(domain, nick, password, success) {
-          calledNick = nick;
-          calledPassword = password;
+          registerNick = nick;
+          registerPassword = password;
 
           success();
         });
@@ -139,38 +151,44 @@ describe('SessionCtrl', function() {
           $scope: scope
         });
 
-        scope.form.login.values = {
+        scope.form.register.values = {
           nick: nick,
           password: password,
           password_repeat: password,
           email: email
         };
 
-        scope.form.login.submit();
+        scope.form.register.submit();
 
         $timeout.flush();
       });
 
-      it('should call SwellRT', function() {
+      it('should call SwellRT.registerUser', function() {
         expect(SwellRT.registerUser).
         toHaveBeenCalled();
       });
 
-      it('should pass the right credentials', function() {
-        expect(calledNick).toBe(nick);
-        expect(calledPassword).toBe(password);
+      it('should call SwellRT.startSession', function() {
+        expect(SwellRT.startSession).
+        toHaveBeenCalled();
       });
 
-      /* TODO sessionStart also?
+      it('should pass the right credentials', function() {
+        expect(registerNick).toBe(nick);
+        expect(registerPassword).toBe(password);
+
+        expect(sessionNick).toBe(nick);
+        expect(sessionPassword).toBe(password);
+      });
+
       it('should set current user', function() {
         expect(SessionSvc.users.current()).toBe(nick + '@' + __session.domain);
       });
-      */
     });
 
-    describe('and SwellRT will send an error', function() {
+    describe('and SwellRT sends an error', function() {
       beforeEach(function() {
-        spyOn(SwellRT, 'startSession').
+        spyOn(SwellRT, 'registerUser').
         and.callFake(function(domain, nick, password, success, error) {
           error();
         });
@@ -190,6 +208,58 @@ describe('SessionCtrl', function() {
         }
       };
     });
+
+    describe('and SwellRT sends the ok', function() {
+      var calledEmail, calledUrl;
+
+      beforeEach(function() {
+        spyOn(SwellRT, 'recoverPassword').
+        and.callFake(function(email, url, success) {
+          calledEmail = email;
+          calledUrl = url;
+
+          success();
+        });
+
+        scope = $rootScope.$new();
+
+        SessionCtrl = $controller('SessionCtrl', {
+          $route: $route,
+          $scope: scope
+        });
+
+        scope.form.forgotten_password.values = {
+          email: email
+        };
+
+        scope.form.forgotten_password.submit();
+
+        $timeout.flush();
+      });
+
+      it('should call SwellRT', function() {
+        expect(SwellRT.recoverPassword).
+        toHaveBeenCalled();
+      });
+
+      it('should pass the right email', function() {
+        expect(calledEmail).toBe(email);
+        // TODO: expect(calledUrl).toBe(url);
+      });
+    });
+
+    describe('and SwellRT sends an error', function() {
+      beforeEach(function() {
+        spyOn(SwellRT, 'recoverPassword').
+        and.callFake(function(email, url, success, error) {
+          error();
+        });
+      });
+
+      it('should show the error', function() {
+        // TODO
+      });
+    });
   });
 
   describe('when recovering password', function() {
@@ -199,6 +269,46 @@ describe('SessionCtrl', function() {
           form: 'recover_password'
         }
       };
+    });
+
+    describe('and SwellRT sends the ok', function() {
+      var calledToken, calledPassword;
+
+      beforeEach(function() {
+        spyOn(SwellRT, 'setPassword').
+        and.callFake(function(id, token, password, success) {
+          calledToken = token;
+          calledPassword = password;
+
+          success();
+        });
+
+        scope = $rootScope.$new();
+
+        SessionCtrl = $controller('SessionCtrl', {
+          $route: $route,
+          $scope: scope
+        });
+
+        scope.form.recover_password.values = {
+          password: password,
+          password_repeat: password
+        };
+
+        scope.form.recover_password.submit();
+
+        $timeout.flush();
+      });
+
+      it('should call SwellRT', function() {
+        expect(SwellRT.setPassword).
+        toHaveBeenCalled();
+      });
+
+      it('should pass the password', function() {
+        expect(calledPassword).toBe(password);
+        // TODO: token
+      });
     });
   });
 });
