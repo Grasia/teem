@@ -245,6 +245,7 @@
       "button": "Register",
       "email": "E-mail (optional, but needed to recover password)",
       "error": {
+        "existing_user": "The username is already registered, please chose another one.",
         "validation": "Please, check the fields"
       },
       "nick": "Nick",
@@ -255,14 +256,18 @@
     "forgotten_password": {
       "button": "Recover password",
       "error": {
+        "unknown": "Ups! something went wrong while sending you the password recovery email",
         "validation": "Invalid e-mail address"
       },
       "email": "E-mail",
+      "success": "We have sent you an email to recover your password",
       "tip": "We will send you an email with which you will be able to recover the password."
     },
     "recover_password": {
       "button": "Recover password",
       "error": {
+        "authorization": "We could not reestablish your password. Maybe the link has expired or you have already established your password with it.",
+        "unknown":"Ups, something went wrong while establishing your new password, please try again.",
         "validation": "Passwords must match"
       },
       "password": "New password",

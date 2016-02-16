@@ -245,6 +245,7 @@
       "button": "Registar",
       "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
       "error": {
+        "existing_user": "El nombre de usuario ya está en uso, por favor, elige otro.",
         "validation": "Comprueba los campos"
       },
       "nick": "Nick",
@@ -254,19 +255,24 @@
     },
     "forgotten_password": {
       "button": "Recuperar contraseña",
-      "email": "E-mail",
       "error": {
+        "unknown": "Ups! algo ha salido mal enviando el correo de recuperación de contraseña.",
         "validation": "Introduce una cuenta de correo correcta"
       },
+      "email": "E-mail",
+      "success" : "Te hemos enviado un correo para que puedas recuperar la contraseña.",
       "tip": "Te enviaremos un correo para que puedas recuperar la contraseña."
     },
     "recover_password": {
       "button": "Recuperar contraseña",
       "error": {
+        "authorization": "No pudimos reestablecer tu contraseña. Puede que el enlace haya caducado o que ya hayas establecido la contraseña con el.",
+        "unknown": "Ups! algo ha salido mal al intentar etablecer tu nueva contraseña, por favor, inténtalo de nuevo.",
         "validation": "Las contraseñas tienen que coincidir"
       },
       "password": "Nueva contraseña",
       "password_repeat": "Repite nueva contraseña",
+      "success": "Contraseña cambiada.",
       "tip": "Introduce una nueva contraseña para tu cuenta."
     }
   },
