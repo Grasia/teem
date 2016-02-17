@@ -215,6 +215,10 @@
     }
   },
   "session": {
+    "set_email": {
+      "error": "Ups, something went wrong saving your email address",
+      "success": "Your email address has been saved"
+    },
     "login": {
       "button": "Login",
       "error": {

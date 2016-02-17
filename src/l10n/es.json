@@ -215,6 +215,10 @@
     }
   },
   "session": {
+    "set_email": {
+      "error": "Ups, algo ha salido mal guardando tu email",
+      "success": "Tu email ha sido guardado"
+    },
     "login": {
       "button": "Entrar",
       "error": {
