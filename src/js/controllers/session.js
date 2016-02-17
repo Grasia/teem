@@ -73,12 +73,11 @@ angular.module('Teem')
 
       var onError = function(e){
         console.log(e);
-        // TODO capture if existing user to call following code:
-        // if (e = "something meaning user exists...") {
-        //   $timeout(function(){
-        //     $scope.error.current = "existing_user";
-        //   });
-        // };
+          if (e === 'ACCOUNT_ALREADY_EXISTS') {
+            $timeout(function(){
+              $scope.error.current = 'existing_user';
+            });
+          }
       };
 
       SessionSvc.registerUser(fields.nick, fields.password, onSuccess, onError);
