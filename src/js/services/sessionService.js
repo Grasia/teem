@@ -225,6 +225,17 @@ angular.module('Teem')
       SwellRT.setPassword(id, tokenOrPassword, password, onSuccess, onError);
     };
 
+    var updateUserProfile = function(data, onSuccess, onError) {
+      SwellRT.updateUserProfile(data, function(res){
+
+        if (res.error) {
+          onError(res.error);
+          } else if (res.data) {
+            onSuccess(res.data);
+          }
+      });
+    };
+
     var autoStartSession = function(){
       var user, pass;
 
@@ -261,6 +272,7 @@ angular.module('Teem')
       stopSession: stopSession,
       recoverPassword: recoverPassword,
       forgottenPassword: forgottenPassword,
+      updateUserProfile: updateUserProfile,
       loginRequired: loginRequired,
       setFatalExceptionHandler: setFatalExceptionHandler,
       status: status,

@@ -34,8 +34,8 @@ angular.module('Teem')
       return isValid? form.toLowerCase() : 'login';
     }
 
-    var inform = function(text){
-      SimpleAlertSvc.alert(text, 'info');
+    var inform = function(text, mode){
+      SimpleAlertSvc.alert(text, mode || 'info');
       $timeout(function(){
         SharedState.turnOff('shouldLoginSharedState');
       });
@@ -132,6 +132,28 @@ angular.module('Teem')
       }
     }
 
+    var migration = function(){
+
+      recoverPassword();
+
+      var fields = $scope.current().values;
+
+      if (fields.email) {
+
+        var successEmail = function() {
+          inform('session.set_email.success');
+        };
+
+        var errorEmail = function() {
+          inform('session.set_email.error', 'alert');
+        };
+
+        SessionSvc.updateUserProfile({email: fields.email}, successEmail, errorEmail);
+      }
+
+
+    };
+
     $scope.form = {
       current: (SharedState.get('shouldLoginSharedState') !== true) ?
         SharedState.get('shouldLoginSharedState')
@@ -224,7 +246,7 @@ angular.module('Teem')
             required: true
           }
         ],
-        submit: recoverPassword
+        submit: migration
       }
     };
 
