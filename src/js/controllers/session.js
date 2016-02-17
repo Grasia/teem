@@ -22,14 +22,14 @@ angular.module('Teem')
     $scope.session = {};
 
     $scope.user = {
-      nick : ''
+      nick : SessionSvc.users.currentNick()
     };
 
     $scope.error = {
       current : null
     };
     function normalizeFormName(form) {
-      var forms = ['login', 'register', 'forgotten_password', 'recover_password'];
+      var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
       var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
       return isValid? form.toLowerCase() : 'login';
     }
@@ -112,7 +112,7 @@ angular.module('Teem')
 
       var onSuccess = function(){
         login();
-        inform('session.recover_password.success');
+        inform('session.' + $scope.form.current + '.success');
       };
 
       var onError = function(error){
@@ -125,12 +125,17 @@ angular.module('Teem')
             }
           });
       };
-
-      SessionSvc.recoverPassword(params.id, params.token, fields.password, onSuccess, onError);
+      if (params.id && params.token) {
+        SessionSvc.recoverPassword(params.id, params.token, fields.password, onSuccess, onError);
+      } else if (fields.password) {
+        SessionSvc.recoverPassword(SessionSvc.users.current(), SessionSvc.users.password, fields.password, onSuccess, onError);
+      }
     }
 
     $scope.form = {
-      current: normalizeFormName($route.current.params.form),
+      current: (SharedState.get('shouldLoginSharedState') !== true) ?
+        SharedState.get('shouldLoginSharedState')
+        : normalizeFormName($route.current.params.form),
       login: {
         fields: {
           nick: {
@@ -195,6 +200,28 @@ angular.module('Teem')
             name: 'password_repeat',
             type: 'password',
             validation: 'current().values.password != current().values.password_repeat ? "Passwords do not match" : ""'
+          }
+        ],
+        submit: recoverPassword
+      },
+      migration: {
+        fields: [
+          {
+            name: 'password',
+            type: 'password',
+            autofocus: true,
+            required: true
+          },
+          {
+            name: 'password_repeat',
+            type: 'password',
+            validation: 'current().values.password != current().values.password_repeat ? "Passwords do not match" : ""',
+            required: true
+          },
+          {
+            name: 'email',
+            type: 'email',
+            required: true
           }
         ],
         submit: recoverPassword
