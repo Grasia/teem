@@ -80,7 +80,7 @@ angular.module('Teem')
           }
       };
 
-      SessionSvc.registerUser(fields.nick, fields.password, onSuccess, onError);
+      SessionSvc.registerUser(fields.nick, fields.password, fields.email, onSuccess, onError);
     }
 
     function forgottenPassword() {
