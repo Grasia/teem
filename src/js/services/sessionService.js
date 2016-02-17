@@ -73,6 +73,14 @@ angular.module('Teem')
         return __session.address;
       },
 
+      currentNick: function() {
+        var address = window.localStorage.getItem('userId');
+        if (address !== null){
+          return address.split('@')[0];
+        }
+        return undefined;
+      },
+
       setCurrent: function(name) {
         var cleanedName = name ? name.trim() : name;
         var current = window.localStorage.setItem('userId', cleanedName);
@@ -213,8 +221,8 @@ angular.module('Teem')
       SwellRT.recoverPassword(email, recoverUrl, onSuccess, onError);
     };
 
-    var recoverPassword = function(id, token, password, onSuccess, onError) {
-      SwellRT.setPassword(id, token, password, onSuccess, onError);
+    var recoverPassword = function(id, tokenOrPassword, password, onSuccess, onError) {
+      SwellRT.setPassword(id, tokenOrPassword, password, onSuccess, onError);
     };
 
     var autoStartSession = function(){
@@ -222,6 +230,12 @@ angular.module('Teem')
 
       startSession(
         user, pass, function(){
+
+          // migrating users with default password
+          if (user !== undefined) {
+            console.log(user);
+            SharedState.set('shouldLoginSharedState', 'migration');
+          }
           $timeout();
         },
         function(error) {

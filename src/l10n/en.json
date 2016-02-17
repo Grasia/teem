@@ -241,6 +241,17 @@
       "password": "Password",
       "tip": "Enter your nickname"
     },
+    "migration": {
+      "button": "Done!",
+      "email": "E-mail (optional, but needed to recover password)",
+      "error": {
+        "unknown": "Ups, something went wrong while establishing your new password, please try again."
+      },
+      "password": "Password",
+      "password_repeat": "Repeat the password",
+      "success": "Congratulations! your account is now protected by your password.",
+      "tip": "Hi <strong>{{nick}}</strong>, your account in Teem needs to be protected by a password, please, choose one."
+    },
     "register": {
       "button": "Register",
       "email": "E-mail (optional, but needed to recover password)",
@@ -272,6 +283,7 @@
       },
       "password": "New password",
       "password_repeat": "Repeat new password",
+      "success": "Password changed.",
       "tip": "Enter a new password for your account."
     }
   },

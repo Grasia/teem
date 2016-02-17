@@ -241,6 +241,17 @@
       "password": "Contraseña",
       "tip": "Introduce tu nick"
     },
+    "migration": {
+      "button": "Hecho!",
+      "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
+      "error": {
+        "unknown": "Ups! algo ha salido mal al reestrablecer tu contraseña."
+      },
+      "password": "Contraseña",
+      "password_repeat": "Repite la contraseña",
+      "success": "Enhorabuena! tu cuenta ya está protegida por contraseña.",
+      "tip": "Hola <strong>{{nick}}</strong>, tu cuenta en teem debe estar protegida por contraseña, por favor, elige una."
+    },
     "register": {
       "button": "Registar",
       "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
