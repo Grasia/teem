@@ -10,8 +10,8 @@
 
 angular.module('Teem')
   .factory('SessionSvc', [
-  '$q', '$timeout', 'SharedState', 'NotificationSvc',
-  function($q, $timeout, SharedState, NotificationSvc) {
+  '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale',
+  function($q, $timeout, SharedState, NotificationSvc, $locale) {
 
     var swellRTDef = $q.defer();
     var swellRTpromise = swellRTDef.promise;
@@ -76,9 +76,23 @@ angular.module('Teem')
       }
     };
 
-    var registerUser = function(userName, password, onSuccess, onError) {
+    var registerUser = function(userName, password, email, onSuccess, onError) {
       swellRTpromise.then(function(){
-        SwellRT.registerUser(SwellRTConfig.server, userName, password, onSuccess, onError);
+        var data = {
+          id: userName,
+          password: password,
+          email: email,
+          locale: $locale.id
+        };
+        SwellRT.createUser(SwellRTConfig.server, data, function(res){
+          if (res.error) {
+            onError(res.error);
+
+          } else if (res.data) {
+            onSuccess();
+
+          }
+        });
       });
     };
 
