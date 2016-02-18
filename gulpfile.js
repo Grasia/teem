@@ -94,8 +94,7 @@ var config = {
     },
     swellrt: {
       name:  'teem-swellrt',
-      image: 'p2pvalue/swellrt',
-      args: ' -p 9898:9898 -h swellrt'
+      config: '/usr/local/etc/docker-compose/teem-swellrt.yml'
     }
   }
 };
@@ -512,14 +511,13 @@ gulp.task('test', function(done){
 ====================================*/
 
 gulp.task('deploy:swellrt', function(done) {
-  var taggedImage = config.deploy.swellrt.image + ':' + config.deploy.swellrt.tag,
-      connection = new ssh();
+  var connection = new ssh();
 
-  function start() {
-    var cmd = 'docker run ' +
-      config.deploy.swellrt.args +
-      ' --name ' + config.deploy.swellrt.name +
-      ' -d ' + taggedImage;
+  connection.on('ready', function() {
+    var cmd = 'SWELLRT_VERSION=' + config.deploy.swellrt.tag +
+          ' docker-compose -f ' + config.deploy.swellrt.config + 
+          ' -p ' + config.deploy.swellrt.name +
+          ' up -d';
 
     console.log(cmd);
 
@@ -534,63 +532,6 @@ gulp.task('deploy:swellrt', function(done) {
         on('close', function() {
           done();
           connection.end();
-        }).
-        stderr.on('data', function(data) { console.log('STDERR: ' + data); });
-    });
-  }
-
-  function stop(id, cb) {
-    var cmd = 'docker stop ' + id + ' && docker rm ' + id;
-
-    connection.exec(cmd, function(err, stream) {
-      if (err) { throw err ; }
-
-      stream.
-        on('data', function(d) {
-          console.log('ssh: ' + d);
-        }).
-        on('close', function() {
-          cb();
-        }).
-        stderr.on('data', function(data) { console.log('STDERR: ' + data); });
-    });
-  }
-
-
-  connection.on('ready', function() {
-    connection.exec('docker inspect ' + config.deploy.swellrt.name, function(err, stream) {
-      if (err) { throw err ; }
-
-      var data = '';
-
-      stream.
-        on('data', function(d) {
-          data += d;
-          console.dir('on data: ' + data);
-        }).
-        on('close', function() {
-          setTimeout(function() {
-            console.dir('on close: ' + data);
-
-            var container = JSON.parse(data)[0];
-
-            if (container) {
-              if (container.Config.Image === taggedImage) {
-                // Right image is deployed
-                console.log('swellrt already running');
-                done();
-                connection.end();
-              } else {
-                console.log('updating swellrt');
-                stop(container.Id, function() {
-                  start();
-                });
-              }
-            } else {
-              console.log('swellrt not running');
-              start();
-            }
-          }, 5000);
         }).
         stderr.on('data', function(data) { console.log('STDERR: ' + data); });
     });
