@@ -28,6 +28,12 @@ angular.module('Teem')
     $scope.error = {
       current : null
     };
+
+    $scope.$watch('form.current', function() {
+      $scope.error.current = null;
+    });
+
+
     function normalizeFormName(form) {
       var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
       var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
