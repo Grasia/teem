@@ -15,12 +15,17 @@ angular.module('Teem')
       if (scope.$last) {
         $timeout(function() {
           var bottom = angular.element(element);
+          var newMessages = angular.element(document.getElementById('newMessages'));
 
           if (bottom) {
             var scrollableContentController = bottom.controller('scrollableContent');
 
             if (scrollableContentController) {
-              scrollableContentController.scrollTo(bottom);
+              if (newMessages && newMessages.length > 0){
+                scrollableContentController.scrollTo(newMessages);
+              } else {
+                scrollableContentController.scrollTo(bottom);
+              }
             }
           }
         }, 50);
@@ -95,6 +100,18 @@ angular.module('Teem')
               return time.date(d);
             }
             return undefined;
+          };
+
+          $scope.firstNewMessage = function (msg, index){
+            var d = new Date(msg.time);
+
+            if ($scope.project.getTimestampAccess().chat) {
+              var previousAccess = new Date($scope.project.getTimestampAccess().chat.prev);
+              if (index > 0 && d > previousAccess && previousAccess > new Date($scope.project.chat[index -1].time)){
+                return true;
+              }
+            }
+            return false;
           };
 
           $scope.keyDown = function(event){

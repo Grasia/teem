@@ -253,5 +253,4 @@ angular.module('Teem')
     $scope.current = function() {
       return $scope.form[$scope.form.current];
     };
-
   }]);

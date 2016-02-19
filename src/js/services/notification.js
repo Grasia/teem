@@ -13,10 +13,10 @@ angular.module('Teem')
     var push;
     var registrationId;
 
-    var register = function(userName) {
+    var register = function() {
       if (window.cordova) {
         push = PushNotification.init(
-          { "android": {"senderID": "843281102628"}});
+          { 'android': {'senderID': '843281102628'}});
 
         push.on('registration', function(data) {
           console.log('Registration:', data);
@@ -40,30 +40,32 @@ angular.module('Teem')
           }
         });
       }
-    }
+    };
 
     var onNotification = function(callback) {
       if(window.cordova){
         if (push === undefined) {
-          throw 'Push notifications have not been initialized';
+          console.log('Push notifications have not been initialized');
+          return;
         }
         push.on('notification', function(data) {
           console.log('Notification:', data);
           callback(data);
         });
       }
-    }
+    };
 
     var unregister = function(onSuccess, onError){
       if(window.cordova){
         if (push === undefined) {
-          throw 'Push notifications have not been initialized';
+          console.log('Push notifications have not been initialized');
+          return;
         }
         push.unregister(onSuccess, onError);
 
         SwellRT.unregister(registrationId);
       }
-    }
+    };
 
     return {
       register: register,

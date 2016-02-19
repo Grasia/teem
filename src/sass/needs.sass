@@ -16,11 +16,13 @@
   @extend .need-checkbox
   @extend .need-checkbox-checked
   @extend .fa-check-square-o
+  margin-right: 0 !important
 
 .need-checkbox-false
   @extend .fa
   @extend .need-checkbox
   @extend .fa-square-o
+  margin-right: 0 !important
 
 .need-checkbox-add
   @extend .fa
@@ -51,6 +53,8 @@
     &.need-section-text
       margin-left: 40px
       margin-right: 30px
+      &.notify-need
+        font-weight: bold
       .section-text-readonly
         padding-top: 3px
     &.need-section-author
@@ -64,7 +68,9 @@
       width: 30px
       padding-top: 2px
       .fa
-        color: inherit
+        color: $grey
+        &.notify-comments
+          color: $yellow
     &.need-section-comments.active
       color: inherit
   .comment-time
@@ -75,6 +81,9 @@
   .need-comments
     padding-left: 40px
     margin-top: 20px
+  .need-comments-count
+    color: $blue-count
+    font-weight: bold
   .new-need-comment
     margin-top: 10px
   .need-comment-input-button

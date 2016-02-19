@@ -8,17 +8,23 @@ module.exports = function(config) {
   // config.server = false;
 
   // Weinre Remote debug server
-
-  config.weinre.httpPort = 8001;
-  config.weinre.boundHost = 'localhost';
-
-  // Set to false to disable it:
-  // config.weinre = false;
+  //
+  // config.weinre = {
+  //   httpPort:     8001,
+  //   boundHost:    'localhost',
+  //   verbose:      false,
+  //   debug:        false,
+  //   readTimeout:  5,
+  //   deathTimeout: 15
+  // };
 
   // SwellRT server
 
+  // Don't use Docker for SwellRT
+  // config.swellrt.docker = false;
+
   config.swellrt.protocol = 'http://';
-  config.swellrt.host = 'swellrt';
+  config.swellrt.host = 'localhost';
   config.swellrt.port = '9898';
 
   // angular-swellrt

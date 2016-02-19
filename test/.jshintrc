@@ -36,6 +36,7 @@
     "jasmine": false,
     "spyOn": false,
     "SwellRT": false,
+    "SwellRTModel": false
     "xdescribe": false,
     "xit": false,
     "__session": false

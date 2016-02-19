@@ -25,7 +25,8 @@ angular
     'hmTouchEvents',
     'ab-base64',
     'angular-toArrayFilter',
-    'angularMoment'
+    'angularMoment',
+    'ngImgCrop'
   ]).
   // Application config
   // See config.js.sample for examples
@@ -51,8 +52,10 @@ angular
         // When adding more languages, do not forget to add them for "moment"
         // in the vendor.js section of gulpfile.js
       })
-      .fallbackLanguage('en')
-      .determinePreferredLanguage();
+      // Do not change order of next two elements
+      // https://github.com/angular-translate/angular-translate/issues/920#issuecomment-180550269
+      .determinePreferredLanguage()
+      .fallbackLanguage('en');
   })
   .run(function(amMoment, $translate) {
     amMoment.changeLocale($translate.proposedLanguage() || $translate.use());

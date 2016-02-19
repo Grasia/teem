@@ -3,7 +3,8 @@
     "input": "Message",
     "nav": {
       "title": "Chat"
-    }
+    },
+    "new_messages": "New messages"
   },
   "community": {
     "communities": "Communities",
@@ -97,6 +98,7 @@
       "find": "Explore communities",
       "title": "Communities"
     },
+    "logout": "Log out",
     "projects": {
       "title": "Workspaces"
     },
@@ -129,6 +131,15 @@
       "title": "Info"
     },
     "placeholder": "You want to work on..."
+  },
+  "profile": {
+    "title": "Your profile",
+    "avatar": {
+      "avatar": "Avatar",
+      "change": "Change picture...",
+      "delete": "Delete picture",
+      "save": "Save"
+    }
   },
   "project": {
     "create": {

@@ -3,7 +3,8 @@
     "input": "Mensaje",
     "nav": {
       "title": "Chat"
-    }
+    },
+    "new_messages": "Mensajes nuevos"
   },
   "community": {
     "communities": "Comunidades",
@@ -97,6 +98,7 @@
       "find": "Explora las comunidades",
       "title": "Comunidades"
     },
+    "logout": "Cerrar sesión",
     "projects": {
       "title": "Espacios de trabajo"
     },
@@ -129,6 +131,15 @@
       "title": "Info"
     },
     "placeholder": "Quieres trabajar en..."
+  },
+  "profile": {
+    "title": "Tu perfil",
+    "avatar": {
+      "avatar": "Avatar",
+      "change": "Cambiar imagen...",
+      "delete": "Eliminar imagen",
+      "save": "Guardar"
+    }
   },
   "project": {
     "create": {
