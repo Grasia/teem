@@ -105,7 +105,7 @@ angular.module('Teem')
           });
       };
 
-      var recoverUrl =  $location.protocol() + '://' + $location.host() + '/' + $location.port() + '#/session/recover_password?token=$token&id=$user-id';
+      var recoverUrl =  $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/#/session/recover_password?token=$token&id=$user-id';
 
       SessionSvc.forgottenPassword(fields.email, recoverUrl, onSuccess, onError);
     }
@@ -198,7 +198,7 @@ angular.module('Teem')
             name: 'password_repeat',
             type: 'password',
             required: true,
-            validation: 'current().values.password != current().values.password_repeat ? "Passwords do not match" : ""'
+            validation: 'current().values.password !== current().values.password_repeat ? "Passwords do not match" : ""'
           },
           {
             name: 'email',
@@ -228,7 +228,7 @@ angular.module('Teem')
           {
             name: 'password_repeat',
             type: 'password',
-            validation: 'current().values.password != current().values.password_repeat ? "Passwords do not match" : ""'
+            validation: 'current().values.password !== current().values.password_repeat ? "Passwords do not match" : ""'
           }
         ],
         submit: recoverPassword
@@ -244,7 +244,7 @@ angular.module('Teem')
           {
             name: 'password_repeat',
             type: 'password',
-            validation: 'current().values.password != current().values.password_repeat ? "Passwords do not match" : ""',
+            validation: 'current().values.password !== current().values.password_repeat ? "Passwords do not match" : ""',
             required: true
           },
           {
