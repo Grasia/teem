@@ -81,22 +81,6 @@ angular.module('Teem')
         return undefined;
       },
 
-      setCurrent: function(name) {
-        var cleanedName = name ? name.trim() : name;
-        var current = window.localStorage.setItem('userId', cleanedName);
-        users.callbacks.login.forEach(function(cb) {
-          cb();
-        });
-        users.callbacks.login = [];
-        return current;
-      },
-      clearCurrent: function() {
-        users.callbacks.logout.forEach(function(cb) {
-          cb();
-        });
-        users.callbacks.logout = [];
-        window.localStorage.removeItem('userId');
-      },
       isCurrent: function(user) {
         return user === users.current();
       },
@@ -138,7 +122,6 @@ angular.module('Teem')
     var stopSession = function(){
       swellRTpromise.then(function(){
         SwellRT.stopSession();
-        users.clearCurrent();
         // Start anonymous session to continue the communication with SwellRT
         autoStartSession();
         NotificationSvc.unregister(
