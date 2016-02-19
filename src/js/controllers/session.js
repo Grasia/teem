@@ -160,9 +160,10 @@ angular.module('Teem')
 
     };
 
+    var sharedState = SharedState.get('shouldLoginSharedState');
+
     $scope.form = {
-      current: (SharedState.get('shouldLoginSharedState') !== true) ?
-        SharedState.get('shouldLoginSharedState')
+      current: (sharedState !== undefined && sharedState !== true) ? sharedState
         : normalizeFormName($route.current.params.form),
       login: {
         fields: {
