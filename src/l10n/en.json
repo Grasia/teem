@@ -234,7 +234,7 @@
       "button": "Login",
       "error": {
         "validation": "Please, choose a nickname composed by letters, numbers and dots",
-        "wrong_email_or_password": "Incorrect email or password."
+        "wrong_email_or_password": "Incorrect nick or password."
       },
       "nick": "Nickname",
       "should_be_logged": {
