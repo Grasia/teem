@@ -108,7 +108,7 @@ angular.module('Teem')
           scope.hour = needsCtrl.hour;
 
           scope.newComments = function(need){
-            if (!need.comments || !scope.project || !scope.project.getTimestampAccess().needs){
+            if (!need.comments || !scope.project || SessionSvc.users.isLoggedIn()){
               return false;
             }
 
@@ -118,7 +118,7 @@ angular.module('Teem')
           };
 
           scope.isNewNeed = function(need){
-            if (!scope.project || !scope.project.getTimestampAccess().needs){
+            if (!scope.project || !SessionSvc.users.isLoggedIn()){
               return false;
             }
             var prevAccess = new Date(scope.project.getTimestampAccess().needs.prev);
