@@ -162,6 +162,8 @@ angular.module('Teem')
 
     var sharedState = SharedState.get('shouldLoginSharedState');
 
+    var passwordMustMatch = 'current().values.password !== current().values.password_repeat ? (\'session.password_must_match\' | translate) : ""';
+
     $scope.form = {
       current: (sharedState !== undefined && sharedState !== true) ? sharedState
         : normalizeFormName($route.current.params.form),
@@ -198,7 +200,7 @@ angular.module('Teem')
             name: 'password_repeat',
             type: 'password',
             required: true,
-            validation: 'current().values.password !== current().values.password_repeat ? "Passwords do not match" : ""'
+            validation: passwordMustMatch,
           },
           {
             name: 'email',
@@ -228,7 +230,7 @@ angular.module('Teem')
           {
             name: 'password_repeat',
             type: 'password',
-            validation: 'current().values.password !== current().values.password_repeat ? "Passwords do not match" : ""'
+            validation: passwordMustMatch
           }
         ],
         submit: recoverPassword
@@ -244,7 +246,7 @@ angular.module('Teem')
           {
             name: 'password_repeat',
             type: 'password',
-            validation: 'current().values.password !== current().values.password_repeat ? "Passwords do not match" : ""',
+            validation: passwordMustMatch,
             required: true
           },
           {

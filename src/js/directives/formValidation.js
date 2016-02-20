@@ -9,7 +9,6 @@ angular.module('Teem')
     require: 'ngModel',
     link: function (scope, elm, attrs, ctl) {
       scope.$watch(attrs.validationError, function (errorMsg) {
-        console.log(errorMsg);
         elm[0].setCustomValidity(errorMsg || '');
         ctl.$setValidity('validationError', !errorMsg);
       });
