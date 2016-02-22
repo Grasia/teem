@@ -15,8 +15,8 @@
         </div>
         <input type="submit" class="btn btn-lg btn-primary btn-block session-submit-btn" ng-click="!sessionForm.$invalid ? current().submit() : sendAttempt = true" value="{{'session.'+form.current+'.button' | translate}}">
         <a ng-click="form.current='login'" ng-if="form.current!='login'" class="btn session-login-form-btn" translate>session.login.button</a>
-        <a ng-click="form.current='forgotten_password'" ng-if="form.current=='login'" class="btn session-forgotten-password-form-btn" translate>session.forgotten_password.button</a>
-        <a ng-click="form.current='register'" ng-if="form.current=='login'" class="btn session-register-form-btn" translate>session.register.button</a>
+        <a ng-click="form.current='register'" ng-if="form.current!='register'" class="btn session-register-form-btn" translate>session.register.button</a>
+        <a ng-click="form.current='forgotten_password'" ng-if="form.current!='forgotten_password'" class="btn session-forgotten-password-form-btn" translate>session.forgotten_password.button</a>
       </div>
     </form>
   </div>
