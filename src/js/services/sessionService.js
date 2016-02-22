@@ -62,7 +62,8 @@ angular.module('Teem')
         logout: []
       },
       current: function() {
-        if (typeof(__session) === 'undefined') {
+        if (typeof(__session) === 'undefined' ||
+          typeof(__session.address) === 'undefined') {
           return undefined;
         }
 

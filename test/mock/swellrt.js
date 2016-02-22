@@ -10,9 +10,12 @@ var SwellRT = {
   createModel:  function() {},
   query:        function() {},
   recoverPassword: function() {},
-  registerUser: function() {},
+  createUser: function() {},
   setPassword:  function() {},
-  startSession: function() {}
+  startSession: function() {},
+  user: {
+    ANONYMOUS: '_anonymous_'
+  }
 };
 
 var __session = {

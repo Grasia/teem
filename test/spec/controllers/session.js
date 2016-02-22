@@ -120,7 +120,7 @@ describe('SessionCtrl', function() {
 
     describe('and SwellRT sends the ok', function() {
       var sessionNick, sessionPassword,
-          registerNick, registerPassword;
+          registerNick, registerPassword, registerEmail;
 
       beforeEach(function() {
         spyOn(SwellRT, 'startSession').
@@ -133,12 +133,13 @@ describe('SessionCtrl', function() {
           success();
         });
 
-        spyOn(SwellRT, 'registerUser').
-        and.callFake(function(domain, nick, password, success) {
-          registerNick = nick;
-          registerPassword = password;
+        spyOn(SwellRT, 'createUser').
+        and.callFake(function(domain, data, callback) {
+          registerNick = data.id;
+          registerPassword = data.password;
+          registerEmail = data.email;
 
-          success();
+          callback({data: data});
         });
 
         // TODO email
@@ -163,8 +164,8 @@ describe('SessionCtrl', function() {
         $timeout.flush();
       });
 
-      it('should call SwellRT.registerUser', function() {
-        expect(SwellRT.registerUser).
+      it('should call SwellRT.createUser', function() {
+        expect(SwellRT.createUser).
         toHaveBeenCalled();
       });
 
@@ -188,9 +189,9 @@ describe('SessionCtrl', function() {
 
     describe('and SwellRT sends an error', function() {
       beforeEach(function() {
-        spyOn(SwellRT, 'registerUser').
-        and.callFake(function(domain, nick, password, success, error) {
-          error();
+        spyOn(SwellRT, 'createUser').
+        and.callFake(function(domain, data, callback) {
+          callback({error: 'some error'});
         });
       });
 
