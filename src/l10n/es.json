@@ -243,7 +243,7 @@
         "message": "Por favor, inicia sesión para realizar esta acción."
       },
       "password": "Contraseña",
-      "tip": "Introduce tu nick"
+      "tip": "Introduce tu nick y contraseña"
     },
     "migration": {
       "button": "Hecho!",
