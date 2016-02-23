@@ -134,7 +134,7 @@ describe('SessionCtrl', function() {
         });
 
         spyOn(SwellRT, 'createUser').
-        and.callFake(function(domain, data, callback) {
+        and.callFake(function(data, callback) {
           registerNick = data.id;
           registerPassword = data.password;
           registerEmail = data.email;
@@ -190,7 +190,7 @@ describe('SessionCtrl', function() {
     describe('and SwellRT sends an error', function() {
       beforeEach(function() {
         spyOn(SwellRT, 'createUser').
-        and.callFake(function(domain, data, callback) {
+        and.callFake(function(data, callback) {
           callback({error: 'some error'});
         });
       });
