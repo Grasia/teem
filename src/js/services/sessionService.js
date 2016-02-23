@@ -63,7 +63,8 @@ angular.module('Teem')
       },
       current: function() {
         if (typeof(__session) === 'undefined' ||
-          typeof(__session.address) === 'undefined') {
+            __session === null ||
+            typeof(__session.address) === 'undefined') {
           return undefined;
         }
 
