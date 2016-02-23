@@ -36,11 +36,10 @@ angular.module('Teem')
       window.onSwellRTReadyCalled = true;
     };
 
+    // FIXME this is wrong, SwellRT might be present but not ready
     if (window.SwellRT && !window.onSwellRTReadyCalled){
       window.onSwellRTReady();
     }
-
-
 
     // TODO use this to handle fatal exceptions
     var setFatalExceptionHandler = function(handler){
@@ -109,7 +108,7 @@ angular.module('Teem')
           email: email,
           locale: $locale.id
         };
-        SwellRT.createUser(SwellRTConfig.server, data, function(res){
+        SwellRT.createUser(data, function(res){
           if (res.error) {
             onError(res.error);
 
@@ -222,22 +221,42 @@ angular.module('Teem')
     };
 
     var autoStartSession = function(){
+
+      status.connection = 'connecting';
+
       var user, pass;
 
-      startSession(
-        user, pass, function(){
+      swellRTpromise.then(function(){
+        SwellRT.resumeSession(
+          function(){
+            sessionDef.resolve(SwellRT);
+          },
+          function(error){
+            console.log(error);
+            // remove this after passwordless user migration is done
+            if (localStorage.userId !== null) {
+              user = localStorage.userId;
+              pass = users.password;
+            }
 
-          // migrating users with default password
-          if (user !== undefined) {
-            console.log(user);
-            SharedState.set('shouldLoginSharedState', 'migration');
-          }
-          $timeout();
-        },
-        function(error) {
-          console.log(error);
+            // remove this start session call with default password when passwordless user migration is consideded successful
+            // keep SwellRT.resumeSession call
+            startSession(
+              user, pass, function(){
+                // migrating users with default password
+                if (user !== undefined) {
+                  SharedState.set('shouldLoginSharedState', 'migration');
+                  $timeout();
+                }
+              },
+              // this branch is expected for users that have already set their passwords
+              function(error) {
+                console.log(error);
+              });
+
+          });
         });
-    };
+      };
 
     function loginRequired(cb) {
       if (! users.loggedIn()) {
@@ -267,6 +286,7 @@ angular.module('Teem')
             status.connection === 'disconnected'){
           autoStartSession();
         }
+
         sessionDef.promise.then(f);
       }
     };

@@ -117,7 +117,6 @@ angular.module('Teem')
       var params =  $location.search();
 
       var onSuccess = function(){
-        login();
         inform('session.' + $scope.form.current + '.success');
       };
 
