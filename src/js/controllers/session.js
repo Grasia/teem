@@ -162,7 +162,7 @@ angular.module('Teem')
 
     var sharedState = SharedState.get('shouldLoginSharedState');
 
-    var passwordMustMatch = 'current().values.password !== current().values.password_repeat ? (\'session.password_must_match\' | translate) : ""';
+    var passwordMustMatch = '(current().values.password && (current().values.password !== current().values.password_repeat)) ? (\'session.password_must_match\' | translate) : ""';
 
     $scope.form = {
       current: (sharedState !== undefined && sharedState !== true) ? sharedState
