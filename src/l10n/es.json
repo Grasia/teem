@@ -276,7 +276,7 @@
       },
       "email": "E-mail",
       "success" : "Te hemos enviado un correo para que puedas recuperar la contraseña.",
-      "tip": "Te enviaremos un correo para que puedas recuperar la contraseña."
+      "tip": "Te enviaremos un correo para recuperar la contraseña."
     },
     "password_must_match": "Las contraseñas tienen que coincidir",
     "recover_password": {

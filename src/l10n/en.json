@@ -277,7 +277,7 @@
       },
       "email": "E-mail",
       "success": "We have sent you an email to recover your password",
-      "tip": "We will send you an email with which you will be able to recover the password."
+      "tip": "We will send you an email to recover the password."
     },
     "recover_password": {
       "button": "Recover password",
