@@ -17,6 +17,7 @@ angular
     'ngAnimate',
     'ngMessages',
     'mobile-angular-ui',
+    'ui-notification',
     'ui.select',
     'ui.bootstrap',
     'monospaced.elastic',

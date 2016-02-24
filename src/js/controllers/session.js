@@ -17,8 +17,8 @@ angular.module('Teem')
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState',
-    function($scope, $location, $route, SessionSvc, $timeout, SharedState) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
+    function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {
     $scope.session = {};
 
     $scope.user = {
@@ -39,12 +39,17 @@ angular.module('Teem')
       return isValid? form.toLowerCase().replace('_p', 'P') : 'login';
     }
 
-    var inform = function(text, mode){
-      //SimpleAlertSvc.alert(text, mode || 'info');
+    function notify(text, mode){
+      mode = mode || 'primary';
+      if (['primary', 'error', 'success', 'info', 'warning'].indexOf(mode) === -1) {
+        throw mode + ' is not an available mode in notify().';
+      }
+      Notification[mode]({message: text, templateUrl: 'ui-notification.html'});
+
       $timeout(function(){
         SharedState.turnOff('shouldLoginSharedState');
       });
-    };
+    }
 
     $scope.submit = function() {
       $scope.submit[$scope.form.current]();
@@ -98,7 +103,7 @@ angular.module('Teem')
 
       var onSuccess = function(){
         console.log('Success: "Forgotten password" command run on SwellRT');
-        inform('session.forgottenPassword.success');
+        notify('session.forgottenPassword.success');
       };
 
       var onError = function(){
@@ -120,7 +125,7 @@ angular.module('Teem')
       var params =  $location.search();
 
       var onSuccess = function(){
-        inform('session.' + $scope.form.current + '.success');
+        notify('session.' + $scope.form.current + '.success');
       };
 
       var onError = function(error){
@@ -149,11 +154,11 @@ angular.module('Teem')
       if (fields.email) {
 
         var successEmail = function() {
-          inform('session.set_email.success');
+          notify('session.set_email.success');
         };
 
         var errorEmail = function() {
-          inform('session.set_email.error', 'alert');
+          notify('session.set_email.error', Notification.error);
         };
 
         SessionSvc.updateUserProfile({email: fields.email}, successEmail, errorEmail);
