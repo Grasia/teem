@@ -257,7 +257,7 @@
       "tip": "Hola <strong>{{nick}}</strong>, tu cuenta en teem debe estar protegida por contraseña, por favor, elige una."
     },
     "register": {
-      "button": "Registar",
+      "button": "Registrarse",
       "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
       "error": {
         "existing_user": "El nombre de usuario ya está en uso, por favor, elige otro.",
