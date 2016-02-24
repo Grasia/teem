@@ -17,8 +17,8 @@ angular.module('Teem')
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'SimpleAlertSvc',
-    function($scope, $location, $route, SessionSvc, $timeout, SharedState, SimpleAlertSvc) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState',
+    function($scope, $location, $route, SessionSvc, $timeout, SharedState) {
     $scope.session = {};
 
     $scope.user = {
@@ -33,22 +33,25 @@ angular.module('Teem')
       $scope.error.current = null;
     });
 
-
     function normalizeFormName(form) {
       var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
       var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
-      return isValid? form.toLowerCase() : 'login';
+      return isValid? form.toLowerCase().replace('_p', 'P') : 'login';
     }
 
     var inform = function(text, mode){
-      SimpleAlertSvc.alert(text, mode || 'info');
+      //SimpleAlertSvc.alert(text, mode || 'info');
       $timeout(function(){
         SharedState.turnOff('shouldLoginSharedState');
       });
     };
 
-    function login() {
-      var fields = $scope.current().values;
+    $scope.submit = function() {
+      $scope.submit[$scope.form.current]();
+    };
+
+    $scope.submit.login = function() {
+      var fields = $scope.form.values;
       var startSession = function() {
 
         SessionSvc.startSession(
@@ -68,13 +71,13 @@ angular.module('Teem')
         );
       };
       startSession();
-    }
+    };
 
-    function register() {
-      var fields = $scope.current().values;
+    $scope.submit.register = function() {
+      var fields = $scope.form.values;
 
       var onSuccess = function(){
-        login();
+        $scope.submit.login();
       };
 
       var onError = function(e){
@@ -87,15 +90,15 @@ angular.module('Teem')
       };
 
       SessionSvc.registerUser(fields.nick, fields.password, fields.email, onSuccess, onError);
-    }
+    };
 
-    function forgottenPassword() {
+    $scope.submit.forgottenPassword = function() {
 
-      var fields = $scope.current().values;
+      var fields = $scope.form.values;
 
       var onSuccess = function(){
         console.log('Success: "Forgotten password" command run on SwellRT');
-        inform('session.forgotten_password.success');
+        inform('session.forgottenPassword.success');
       };
 
       var onError = function(){
@@ -108,11 +111,11 @@ angular.module('Teem')
       var recoverUrl =  $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/#/session/recover_password?token=$token&id=$user-id';
 
       SessionSvc.forgottenPassword(fields.email, recoverUrl, onSuccess, onError);
-    }
+    };
 
-    function recoverPassword() {
+    $scope.submit.recoverPassword = function() {
 
-      var fields = $scope.current().values;
+      var fields = $scope.form.values;
 
       var params =  $location.search();
 
@@ -135,13 +138,13 @@ angular.module('Teem')
       } else if (fields.password) {
         SessionSvc.recoverPassword(SessionSvc.users.current(), SessionSvc.users.password, fields.password, onSuccess, onError);
       }
-    }
+    };
 
-    var migration = function(){
+    $scope.submit.migration = function() {
 
-      recoverPassword();
+      $scope.submit.recoverPassword();
 
-      var fields = $scope.current().values;
+      var fields = $scope.form.values;
 
       if (fields.email) {
 
@@ -159,107 +162,33 @@ angular.module('Teem')
 
     };
 
-    var sharedState = SharedState.get('shouldLoginSharedState');
+    $scope.isFieldVisible = function(field) {
+      return $scope.form[$scope.form.current].indexOf(field) !== -1;
+    };
 
-    var passwordMustMatch = '(current().values.password && (current().values.password !== current().values.password_repeat)) ? (\'session.password_must_match\' | translate) : ""';
+    var nickPattern = /^[a-zA-Z0-9\.]+$/;
+    var passwordPattern = /^.{6,}$/;
 
-    $scope.form = {
-      current: (sharedState !== undefined && sharedState !== true) ? sharedState
-        : normalizeFormName($route.current.params.form),
-      login: {
-        fields: {
-          nick: {
-            name: 'nick',
-            required: true,
-            autofocus: true
-          },
-          password: {
-            name: 'password',
-            type: 'password',
-            required: true
-          }
-        },
-        submit: login
+    $scope.validation = {
+      required: function() {
+        return $scope.form.current !== 'login';
       },
-      register: {
-        fields: [
-          {
-            name: 'nick',
-            required: true,
-            autofocus: true,
-            pattern: /^[a-zA-Z0-9\.]+$/
-          },
-          {
-            name: 'password',
-            type: 'password',
-            required: true,
-            pattern: /^.{6,}$/
-          },
-          {
-            name: 'password_repeat',
-            type: 'password',
-            required: true,
-            validation: passwordMustMatch,
-          },
-          {
-            name: 'email',
-            type: 'email',
-            required: false
-          }
-        ],
-        submit: register
+      nickPattern: function() {
+        return $scope.form.current !== 'login' ? nickPattern : null;
       },
-      forgotten_password: {
-        fields: [
-          {
-            name: 'email',
-            type: 'email',
-            required: true
-          }
-        ],
-        submit: forgottenPassword
-      },
-      recover_password: {
-        fields: [
-          {
-            name: 'password',
-            type: 'password',
-            autofocus: true
-          },
-          {
-            name: 'password_repeat',
-            type: 'password',
-            validation: passwordMustMatch
-          }
-        ],
-        submit: recoverPassword
-      },
-      migration: {
-        fields: [
-          {
-            name: 'password',
-            type: 'password',
-            autofocus: true,
-            required: true
-          },
-          {
-            name: 'password_repeat',
-            type: 'password',
-            validation: passwordMustMatch,
-            required: true
-          },
-          {
-            name: 'email',
-            type: 'email',
-            required: true
-          }
-        ],
-        submit: migration
+      passwordPattern: function() {
+        return $scope.form.current !== 'login' ? passwordPattern : null;
       }
     };
 
-    $scope.current = function() {
-      return $scope.form[$scope.form.current];
+    $scope.form = {
+      current: normalizeFormName($route.current.params.form || String(SharedState.get('shouldLoginSharedState'))),
+      values: {},
+      login: ['nick', 'password'],
+      register: ['nick', 'password', 'passwordRepeat', 'email'],
+      forgottenPassword: ['email'],
+      recoverPassword: ['password', 'passwordRepeat'],
+      migration: ['password', 'passwordRepeat', 'email']
     };
 
     $scope.isLoggedIn = function() {

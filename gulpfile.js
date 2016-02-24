@@ -18,6 +18,7 @@ var config = {
       './bower_components/angular-translate/angular-translate.js',
       './bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
+      './bower_components/angular-messages/angular-messages.js',
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       './bower_components/angular-ui-select/dist/select.js',
       './bower_components/angular-elastic/elastic.js',
@@ -515,7 +516,7 @@ gulp.task('deploy:swellrt', function(done) {
 
   connection.on('ready', function() {
     var cmd = 'SWELLRT_VERSION=' + config.deploy.swellrt.tag +
-          ' docker-compose -f ' + config.deploy.swellrt.config + 
+          ' docker-compose -f ' + config.deploy.swellrt.config +
           ' -p ' + config.deploy.swellrt.name +
           ' up -d';
 

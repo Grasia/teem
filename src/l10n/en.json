@@ -233,7 +233,6 @@
     "login": {
       "button": "Login",
       "error": {
-        "validation": "Please, choose a nickname composed by letters, numbers and dots",
         "wrong_email_or_password": "Incorrect nick or password."
       },
       "nick": "Nickname",
@@ -252,42 +251,65 @@
         "unknown": "Ups, something went wrong while establishing your new password, please try again."
       },
       "password": "Password",
-      "password_repeat": "Repeat the password",
+      "passwordRepeat": "Repeat the password",
       "success": "Congratulations! your account is now protected by your password.",
       "tip": "Hi <strong>{{nick}}</strong>, your account in Teem needs to be protected by a password, please, choose one."
     },
-    "password_must_match": "Both passwords must match",
     "register": {
       "button": "Register",
-      "email": "E-mail (optional, but needed to recover password)",
+      "email": "E-mail",
       "error": {
+        "email": {
+          "email": "You did not enter your email address correctly",
+          "required": "You forgot to enter your email"
+        },
         "existing_user": "The username is already registered, please chose another one.",
-        "validation": "Please, check the fields"
+        "nick": {
+          "pattern": "Please, choose a nickname composed by letters, numbers and dots",
+          "required": "You forgot to enter your nick name"
+        },
+        "password": {
+          "pattern": "Password must contain at least 8 characters",
+          "required": "You forgot to enter a password"
+        },
+        "passwordRepeat": {
+          "match": "Both passwords must match",
+          "required": "You forgot to repeat the password"
+        }
       },
       "nick": "Nick",
       "password": "Password",
-      "password_repeat": "Repeat the password",
+      "passwordRepeat": "Repeat the password",
       "tip": "Create an account"
     },
-    "forgotten_password": {
+    "forgottenPassword": {
       "button": "Recover password",
       "error": {
-        "unknown": "Ups! something went wrong while sending you the password recovery email",
-        "validation": "Invalid e-mail address"
+        "email": {
+          "email": "You did not enter your email address correctly",
+          "required": "You forgot to enter your email"
+        },
+        "unknown": "Ups! something went wrong while sending you the password recovery email"
       },
       "email": "E-mail",
       "success": "We have sent you an email to recover your password",
       "tip": "We will send you an email to recover the password."
     },
-    "recover_password": {
+    "recoverPassword": {
       "button": "Recover password",
       "error": {
         "authorization": "We could not reestablish your password. Maybe the link has expired or you have already established your password with it.",
-        "unknown":"Ups, something went wrong while establishing your new password, please try again.",
-        "validation": "Both passwords must match"
+        "password": {
+          "pattern": "Password must contain at least 8 characters",
+          "required": "You forgot to enter a password"
+        },
+        "passwordRepeat": {
+          "required": "You forgot to repeat the password"
+        },
+        "unknown":"Ups, something went wrong while establishing your new password, please try again."
       },
       "password": "New password",
-      "password_repeat": "Repeat new password",
+      "passwordRepeat": "Repeat new password",
       "success": "Password changed.",
       "tip": "Enter a new password for your account."
     }

@@ -4,13 +4,14 @@ angular.module('Teem')
 .directive('availableNick', function() {
   //TODO
 })
-.directive('validationError', function () {
+// https://yearofmoo.github.io/ngMessages/
+.directive('matchValidator', function() {
   return {
     require: 'ngModel',
-    link: function (scope, elm, attrs, ctl) {
-      scope.$watch(attrs.validationError, function (errorMsg) {
-        elm[0].setCustomValidity(errorMsg || '');
-        ctl.$setValidity('validationError', !errorMsg);
+    link : function(scope, element, attrs, ngModel) {
+      ngModel.$parsers.push(function(value) {
+        ngModel.$setValidity('match', value === scope.$eval(attrs.matchValidator));
+        return value;
       });
     }
   };

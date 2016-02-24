@@ -15,6 +15,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngAnimate',
+    'ngMessages',
     'mobile-angular-ui',
     'ui.select',
     'ui.bootstrap',

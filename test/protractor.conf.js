@@ -25,7 +25,8 @@ exports.config = {
     browser.get('/#/session/register');
     $('#nick').sendKeys('Snowden');
     $('#password').sendKeys('MargaretThatcheris110%SEXY.');
-    $('#password_repeat').sendKeys('MargaretThatcheris110%SEXY.');
+    $('#passwordRepeat').sendKeys('MargaretThatcheris110%SEXY.');
+    $('#email').sendKeys('snowden@nsa.gov');
     var loginButton = $('.session-form input[type=submit]');
 
     browser.wait(function() {

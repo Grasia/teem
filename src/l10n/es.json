@@ -233,7 +233,6 @@
     "login": {
       "button": "Entrar",
       "error": {
-        "validation": "Por favor, escoge un nick formado sólo por letras, números y puntos",
         "wrong_email_or_password": "Nick o contraseña incorrectos."
       },
       "nick": "Nick",
@@ -252,42 +251,65 @@
         "unknown": "Ups! algo ha salido mal al reestrablecer tu contraseña."
       },
       "password": "Contraseña",
-      "password_repeat": "Repite la contraseña",
+      "passwordRepeat": "Repite la contraseña",
       "success": "Enhorabuena! tu cuenta ya está protegida por contraseña.",
       "tip": "Hola <strong>{{nick}}</strong>, tu cuenta en teem debe estar protegida por contraseña, por favor, elige una."
     },
     "register": {
-      "button": "Registrarse",
-      "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
+      "button": "Registarse",
+      "email": "E-mail",
       "error": {
+        "email": {
+          "email": "Introduce una cuenta de correo correcta",
+          "required": "Olvidaste poner tu e-mail"
+        },
         "existing_user": "El nombre de usuario ya está en uso, por favor, elige otro.",
-        "validation": "Comprueba los campos"
+        "nick": {
+          "pattern": "Por favor, escoge un nick formado sólo por letras, números y puntos",
+          "required": "Te olvidaste de meter el nick"
+        },
+        "password": {
+          "pattern": "La contraseña tiene que tener al menos 8 carácteres",
+          "required": "Te olvidaste de poner una contraseña"
+        },
+        "passwordRepeat": {
+          "match": "Las contraseñas tienen que coincidir",
+          "required": "Te olvidaste de repetir la contraseña"
+        },
       },
       "nick": "Nick",
       "password": "Contraseña",
-      "password_repeat": "Repite la contraseña",
+      "passwordRepeat": "Repite la contraseña",
       "tip": "Crear una cuenta"
     },
-    "forgotten_password": {
+    "forgottenPassword": {
       "button": "Recuperar contraseña",
       "error": {
-        "unknown": "Ups! algo ha salido mal enviando el correo de recuperación de contraseña.",
-        "validation": "Introduce una cuenta de correo correcta"
+        "email": {
+          "email": "Introduce una cuenta de correo correcta",
+          "required": "Olvidaste poner tu e-mail"
+        },
+        "unknown": "Ups! algo ha salido mal enviando el correo de recuperación de contraseña."
       },
       "email": "E-mail",
       "success" : "Te hemos enviado un correo para que puedas recuperar la contraseña.",
       "tip": "Te enviaremos un correo para recuperar la contraseña."
     },
-    "password_must_match": "Las contraseñas tienen que coincidir",
-    "recover_password": {
+    "recoverPassword": {
       "button": "Recuperar contraseña",
       "error": {
         "authorization": "No pudimos reestablecer tu contraseña. Puede que el enlace haya caducado o que ya hayas establecido la contraseña con el.",
-        "unknown": "Ups! algo ha salido mal al intentar etablecer tu nueva contraseña, por favor, inténtalo de nuevo.",
-        "validation": "Las contraseñas tienen que coincidir"
+        "password": {
+          "pattern": "La contraseña tiene que tener al menos 8 carácteres",
+          "required": "Te olvidaste de poner una contraseña"
+        },
+        "passwordRepeat": {
+          "required": "Te olvidaste de repetir la contraseña"
+        },
+        "unknown": "Ups! algo ha salido mal al intentar etablecer tu nueva contraseña, por favor, inténtalo de nuevo."
       },
       "password": "Nueva contraseña",
-      "password_repeat": "Repite nueva contraseña",
+      "passwordRepeat": "Repite nueva contraseña",
       "success": "Contraseña cambiada.",
       "tip": "Introduce una nueva contraseña para tu cuenta."
     }

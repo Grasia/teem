@@ -70,12 +70,12 @@ describe('SessionCtrl', function() {
           $scope: scope
         });
 
-        scope.form.login.values = {
+        scope.form.values = {
           nick: nick,
           password: password
         };
 
-        scope.form.login.submit();
+        scope.submit.login();
 
         $timeout.flush();
       });
@@ -152,14 +152,14 @@ describe('SessionCtrl', function() {
           $scope: scope
         });
 
-        scope.form.register.values = {
+        scope.form.values = {
           nick: nick,
           password: password,
-          password_repeat: password,
+          passwordRepeat: password,
           email: email
         };
 
-        scope.form.register.submit();
+        scope.submit.register();
 
         $timeout.flush();
       });
@@ -229,11 +229,11 @@ describe('SessionCtrl', function() {
           $scope: scope
         });
 
-        scope.form.forgotten_password.values = {
+        scope.form.values = {
           email: email
         };
 
-        scope.form.forgotten_password.submit();
+        scope.submit.forgottenPassword();
 
         $timeout.flush();
       });
@@ -291,12 +291,12 @@ describe('SessionCtrl', function() {
           $scope: scope
         });
 
-        scope.form.recover_password.values = {
+        scope.form.values = {
           password: password,
-          password_repeat: password
+          passwordRepeat: password
         };
 
-        scope.form.recover_password.submit();
+        scope.submit.recoverPassword();
 
         $timeout.flush();
       });
