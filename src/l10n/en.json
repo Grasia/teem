@@ -233,7 +233,7 @@
     "login": {
       "button": "Login",
       "error": {
-        "wrong_email_or_password": "Incorrect nick or password."
+        "wrong_email_or_password": "Incorrect nick or password"
       },
       "nick": "Nickname",
       "should_be_logged": {

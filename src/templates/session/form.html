@@ -1,7 +1,7 @@
 <div class="session-form row">
   <div class="col-xs-6 col-xs-offset-3">
-    <div id="error_alert" class="alert alert-danger" ng-show="error.current !== null" translate>
-      {{'session.' + form.current + '.error.' + error.current}}
+    <div id="error_alert" class="alert alert-danger" ng-show="error.current !== null">
+      {{'session.' + form.current + '.error.' + error.current | translate}}
     </div>
     <div class="tip" translate-values="{ nick: '{{user.nick}}'}" translate>{{"session."+form.current+".tip"}}</div>
 
