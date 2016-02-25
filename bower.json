@@ -36,6 +36,7 @@
     "angular-scenario": "1.x"
   },
   "resolutions": {
-    "hammerjs": "~2.0.4"
+    "hammerjs": "~2.0.4",
+    "angular": ">=1.2.26 <=1.5"
   }
 }
