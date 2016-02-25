@@ -88,10 +88,12 @@ angular.module('Teem')
       var onError = function(e){
         console.log(e);
           if (e === 'ACCOUNT_ALREADY_EXISTS') {
-            $timeout(function(){
-              $scope.error.current = 'existing_user';
-            });
+            $scope.error.current = 'existing_user';
+          } else {
+            $scope.error.current = 'unknown';
           }
+
+          $timeout();
       };
 
       SessionSvc.registerUser(fields.nick, fields.password, fields.email, onSuccess, onError);
