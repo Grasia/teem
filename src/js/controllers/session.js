@@ -64,7 +64,7 @@ angular.module('Teem')
           function(){
             $timeout(function(){
               SharedState.turnOff('shouldLoginSharedState');
-              notify('session.login.success');
+              notify('session.login.success', 'success');
             });
           },
           function(error){
