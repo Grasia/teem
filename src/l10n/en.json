@@ -241,6 +241,7 @@
         "loggin_now": "Log in",
         "message": "Sorry! You should be logged in to do that action."
       },
+      "success": "Welcome!",
       "password": "Password",
       "tip": "Enter your nickname and password"
     },

@@ -241,6 +241,7 @@
         "loggin_now": "Iniciar sesión",
         "message": "Por favor, inicia sesión para realizar esta acción."
       },
+      "success": "¡Bienvenida/o!",
       "password": "Contraseña",
       "tip": "Introduce tu nick y contraseña"
     },
