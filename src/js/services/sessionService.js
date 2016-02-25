@@ -193,10 +193,8 @@ angular.module('Teem')
             sessionDef.resolve(SwellRT);
             onSuccess();
 
-            status.connection = 'connected';
           }, function(error) {
             onError(error);
-            status.connection = 'disconnected';
           });
       });
     };
@@ -226,37 +224,46 @@ angular.module('Teem')
 
       var user, pass;
 
-      swellRTpromise.then(function(){
-        SwellRT.resumeSession(
-          function(){
-            sessionDef.resolve(SwellRT);
-          },
-          function(error){
-            console.log(error);
-            // remove this after passwordless user migration is done
-            if (localStorage.userId !== null) {
-              user = localStorage.userId;
-              pass = users.password;
+      // remove this after passwordless user migration is done
+      if (localStorage.userId !== undefined) {
+        user = localStorage.userId;
+        pass = users.password;
+
+        // remove this start session call with default password when passwordless user migration is consideded successful
+        // keep SwellRT.resumeSession call
+        startSession(
+          user, pass, function(){
+            // migrating users with default password
+            if (user !== undefined) {
+              SharedState.set('shouldLoginSharedState', 'migration');
+              $timeout();
             }
-
-            // remove this start session call with default password when passwordless user migration is consideded successful
-            // keep SwellRT.resumeSession call
-            startSession(
-              user, pass, function(){
-                // migrating users with default password
-                if (user !== undefined) {
-                  SharedState.set('shouldLoginSharedState', 'migration');
-                  $timeout();
-                }
-              },
-              // this branch is expected for users that have already set their passwords
-              function(error) {
-                console.log(error);
-              });
-
+          },
+          // with localStorage.userId but not default password
+          function(error) {
+            console.log(error);
+            delete localStorage.userId;
+            autoStartSession();
           });
-        });
-      };
+      } else {
+        swellRTpromise.then(function(){
+          SwellRT.resumeSession(
+            function(){
+              sessionDef.resolve(SwellRT);
+            },
+            function(error){
+              console.log(error);
+              // Anonymous session (user and pass are null)
+              startSession(
+                user, pass, function(){},
+                function(error) {
+                  console.log(error);
+                });
+            });
+          });
+      }
+
+  };
 
     function loginRequired(cb) {
       if (! users.loggedIn()) {
