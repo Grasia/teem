@@ -104,15 +104,13 @@ angular.module('Teem')
       var fields = $scope.form.values;
 
       var onSuccess = function(){
-        console.log('Success: "Forgotten password" command run on SwellRT');
         notify('session.forgottenPassword.success');
       };
 
       var onError = function(){
-        console.log('Error: Something went wrong running "forgotten password" command on SwellRT');
-          $timeout(function(){
-            $scope.error.current = 'unknown';
-          });
+        $timeout(function(){
+          $scope.error.current = 'unknown';
+        });
       };
 
       var recoverUrl =  $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/#/session/recover_password?token=$token&id=$user-id';
