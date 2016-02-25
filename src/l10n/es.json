@@ -276,7 +276,7 @@
         "passwordRepeat": {
           "match": "Las contraseñas tienen que coincidir",
           "required": "Te olvidaste de repetir la contraseña"
-        },
+        }
       },
       "nick": "Nick",
       "password": "Contraseña",
