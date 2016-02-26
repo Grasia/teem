@@ -145,23 +145,36 @@ angular.module('Teem')
             }
           });
       };
-      if (params.id && params.token) {
-        SessionSvc.recoverPassword(params.id, params.token, fields.password, onSuccess, onError);
-      } else if (fields.password) {
-        SessionSvc.recoverPassword(SessionSvc.users.current(), SessionSvc.users.password, fields.password, onSuccess, onError);
-      }
+
+      SessionSvc.recoverPassword(params.id, params.token, fields.password, onSuccess, onError);
     };
 
     $scope.submit.migration = function() {
-
-      $scope.submit.recoverPassword();
-
       var fields = $scope.form.values;
+
+      var onSuccess = function(){
+        delete localStorage.userId;
+        
+        notify('session.' + $scope.form.current + '.success', 'success');
+      };
+
+      var onError = function(error){
+        console.log('Error: Something went wrong running password recovery command on SwellRT', error);
+          $timeout(function(){
+            if (error === 'ACCESS_FORBIDDEN_EXCEPTION') {
+              $scope.error.current = 'authorization';
+            } else {
+              $scope.error.current = 'unknown';
+            }
+          });
+      };
+
+      SessionSvc.recoverPassword(SessionSvc.users.current(), SessionSvc.users.password, fields.password, onSuccess, onError);
 
       if (fields.email) {
 
         var successEmail = function() {
-          notify('session.set_email.success');
+          notify('session.set_email.success', 'success');
         };
 
         var errorEmail = function() {
@@ -170,8 +183,6 @@ angular.module('Teem')
 
         SessionSvc.updateUserProfile({email: fields.email}, successEmail, errorEmail);
       }
-
-
     };
 
     $scope.isFieldVisible = function(field) {

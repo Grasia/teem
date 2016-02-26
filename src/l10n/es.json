@@ -247,14 +247,14 @@
     },
     "migration": {
       "button": "Hecho!",
-      "email": "E-mail (opcional, pero necesario para recuperar tu contraseña)",
+      "email": "E-mail para recuperar tu contraseña, ¡siempre las olvidamos!",
       "error": {
         "unknown": "Ups! algo ha salido mal al reestrablecer tu contraseña."
       },
       "password": "Contraseña",
       "passwordRepeat": "Repite la contraseña",
       "success": "Enhorabuena! tu cuenta ya está protegida por contraseña.",
-      "tip": "Hola <strong>{{nick}}</strong>, tu cuenta en teem debe estar protegida por contraseña, por favor, elige una."
+      "tip": "Hola <strong>{{nick}}</strong>, estamos protegiendo las cuentas de usuario en Teem. Por favor, elige tu contraseña:"
     },
     "register": {
       "button": "Registarse",

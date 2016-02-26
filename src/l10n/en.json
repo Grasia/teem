@@ -247,14 +247,14 @@
     },
     "migration": {
       "button": "Done!",
-      "email": "E-mail (optional, but needed to recover password)",
+      "email": "E-mail to recover password, we all forget them!",
       "error": {
         "unknown": "Ups, something went wrong while establishing your new password, please try again."
       },
       "password": "Password",
-      "passwordRepeat": "Repeat the password",
+      "passwordRepeat": "Confirm password",
       "success": "Congratulations! your account is now protected by your password.",
-      "tip": "Hi <strong>{{nick}}</strong>, your account in Teem needs to be protected by a password, please, choose one."
+      "tip": "Hi <strong>{{nick}}</strong>! We are protecting user accounts in Teem. Please, set your password:"
     },
     "register": {
       "button": "Register",
@@ -280,7 +280,7 @@
       },
       "nick": "Nick",
       "password": "Password",
-      "passwordRepeat": "Repeat the password",
+      "passwordRepeat": "Confirm password",
       "tip": "Create an account"
     },
     "forgottenPassword": {
