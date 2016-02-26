@@ -128,6 +128,11 @@ angular.module('Teem')
       var onSuccess = function(){
         delete localStorage.userId;
         notify('session.' + $scope.form.current + '.success', 'success');
+
+        fields.nick = params.id;
+        $scope.submit.login();
+
+        $location.path('/').search('token', null).search('id', null);
       };
 
       var onError = function(error){
