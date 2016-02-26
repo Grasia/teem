@@ -127,7 +127,7 @@ angular.module('Teem')
 
       var onSuccess = function(){
         delete localStorage.userId;
-        notify('session.' + $scope.form.current + '.success');
+        notify('session.' + $scope.form.current + '.success', 'success');
       };
 
       var onError = function(error){

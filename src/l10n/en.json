@@ -311,7 +311,7 @@
       },
       "password": "New password",
       "passwordRepeat": "Repeat new password",
-      "success": "Password changed.",
+      "success": "Password changed successfully!",
       "tip": "Enter a new password for your account."
     }
   },
