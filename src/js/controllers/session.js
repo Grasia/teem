@@ -151,8 +151,12 @@ angular.module('Teem')
 
       var onSuccess = function(){
         delete localStorage.userId;
+
+        Notification.success('session.' + $scope.form.current + '.success');
         
-        notify('session.' + $scope.form.current + '.success', 'success');
+        $timeout(function(){
+          SharedState.turnOff('shouldLoginSharedState');
+        });
       };
 
       var onError = function(error){
