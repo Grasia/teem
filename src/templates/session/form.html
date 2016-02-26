@@ -53,9 +53,9 @@
           </small>
         </div>
         <input type="submit" class="btn btn-lg btn-primary btn-block session-submit-btn" ng-disabled="sessionForm.$invalid" value="{{'session.'+form.current+'.button' | translate}}">
-        <a ng-click="form.current='login'" ng-if="form.current!='login'" class="btn session-login-form-btn" translate>session.login.button</a>
-        <a ng-click="form.current='register'" ng-if="form.current!='register'" class="btn session-register-form-btn" translate>session.register.button</a>
-        <a ng-click="form.current='forgottenPassword'" ng-if="form.current!='forgottenPassword'" class="btn session-forgotten-password-form-btn" translate>session.forgottenPassword.button</a>
+        <a ng-click="form.current='login'" ng-if="form.current=='register' || form.current=='forgottenPassword'" class="btn session-login-form-btn" translate>session.login.button</a>
+        <a ng-click="form.current='register'" ng-if="form.current=='login' || form.current=='forgottenPassword'" class="btn session-register-form-btn" translate>session.register.button</a>
+        <a ng-click="form.current='forgottenPassword'" ng-if="form.current=='login' || form.current=='register'" class="btn session-forgotten-password-form-btn" translate>session.forgottenPassword.button</a>
       </div>
     </form>
   </div>
