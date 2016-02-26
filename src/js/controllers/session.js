@@ -39,18 +39,6 @@ angular.module('Teem')
       return isValid? form.toLowerCase().replace('_p', 'P') : 'login';
     }
 
-    function notify(text, mode){
-      mode = mode || 'primary';
-      if (['primary', 'error', 'success', 'info', 'warning'].indexOf(mode) === -1) {
-        throw mode + ' is not an available mode in notify().';
-      }
-      Notification[mode]({message: text, templateUrl: 'ui-notification.html'});
-
-      $timeout(function(){
-        SharedState.turnOff('shouldLoginSharedState');
-      });
-    }
-
     $scope.submit = function() {
       $scope.submit[$scope.form.current]();
     };
@@ -62,9 +50,12 @@ angular.module('Teem')
         SessionSvc.startSession(
           fields.nick, fields.password,
           function(){
+            // TODO: Should we move it to a service?
+            var notificationScope = $scope.$new(true);
+            notificationScope.values = {nick: fields.nick};
+            Notification.success({message: 'session.login.success', scope: notificationScope});
             $timeout(function(){
               SharedState.turnOff('shouldLoginSharedState');
-              notify('session.login.success', 'success');
             });
           },
           function(error){
@@ -105,7 +96,10 @@ angular.module('Teem')
       var fields = $scope.form.values;
 
       var onSuccess = function(){
-        notify('session.forgottenPassword.success');
+        Notification.success('session.forgottenPassword.success');
+        $timeout(function(){
+          SharedState.turnOff('shouldLoginSharedState');
+        });
       };
 
       var onError = function(){
@@ -127,7 +121,10 @@ angular.module('Teem')
 
       var onSuccess = function(){
         delete localStorage.userId;
-        notify('session.' + $scope.form.current + '.success', 'success');
+        Notification.success('session.' + $scope.form.current + '.success');
+        $timeout(function(){
+          SharedState.turnOff('shouldLoginSharedState');
+        });
 
         fields.nick = params.id;
         $scope.submit.login();
@@ -174,11 +171,17 @@ angular.module('Teem')
       if (fields.email) {
 
         var successEmail = function() {
-          notify('session.set_email.success', 'success');
+          Notification.success('session.set_email.success');
+          $timeout(function(){
+            SharedState.turnOff('shouldLoginSharedState');
+          });
         };
 
         var errorEmail = function() {
-          notify('session.set_email.error', Notification.error);
+          Notification.error('session.set_email.error');
+          $timeout(function(){
+            SharedState.turnOff('shouldLoginSharedState');
+          });
         };
 
         SessionSvc.updateUserProfile({email: fields.email}, successEmail, errorEmail);
