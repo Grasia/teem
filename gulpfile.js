@@ -8,7 +8,7 @@
 
 var config = {
   dest: 'www',
-  minify_images: true,
+  minifyImages: true,
 
   vendor: {
     js: [
@@ -234,7 +234,7 @@ gulp.task('livereload', function () {
 gulp.task('images', function () {
   var stream = gulp.src('src/images/**/*');
 
-  if (config.minify_images) {
+  if (config.minifyImages) {
     stream = stream.pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
