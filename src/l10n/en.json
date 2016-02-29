@@ -1,6 +1,7 @@
 {
   "chat": {
-    "input": "Message",
+    "button": "Send",
+    "input": "Write your message here",
     "nav": {
       "title": "Chat"
     },

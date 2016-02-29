@@ -29,8 +29,8 @@
                     placeholder="{{ 'chat.input' | translate}}"
                     ng-keydown="keyDown($event)">
           </textarea>
-          <span class="input-group-addon">
-            <i class="fa fa-chevron-circle-right chat-input-button" ng-click="send()"></i>
+          <span class="input-group-addon" ng-click="send()" translate>
+            chat.button
           </span>
         </div>
       </form>
