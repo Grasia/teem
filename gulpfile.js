@@ -9,6 +9,7 @@
 var config = {
   dest: 'www',
   minifyImages: true,
+  uglify: true,
 
   vendor: {
     js: [
@@ -144,6 +145,7 @@ module.exports.config = config;
 ========================================*/
 
 var gulp           = require('gulp'),
+  gulpif         = require('gulp-if'),
   seq            = require('run-sequence'),
   connect        = require('gulp-connect'),
   sass           = require('gulp-sass'),
@@ -357,7 +359,7 @@ gulp.task('js:app', function() {
   .pipe(sourcemaps.init())
   .pipe(concat('app.js'))
   .pipe(ngAnnotate())
-  .pipe(uglify())
+  .pipe(gulpif(config.uglify, uglify()))
   .pipe(rename({suffix: '.min'}))
   .pipe(sourcemaps.write('.', {
     sourceMappingURLPrefix: '/js/'
