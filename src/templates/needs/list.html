@@ -11,7 +11,7 @@
 </div>
 
 <div class="list-group project-needs-list project-needs">
-  <div ng-repeat="need in needs">
+  <div ng-repeat="need in needs | orderBy: 'completed'">
     <div need-display need="need">
     </div>
   </div>
