@@ -150,6 +150,59 @@ angular.module('Teem')
         }
         return this.contributors.indexOf(user) > -1;
       }
+
+      completedNeeds () {
+        var completed = 0;
+
+        angular.forEach(this.needs, function(need) {
+          if (need.completed === 'true') {
+            completed++;
+          }
+        });
+
+        return completed;
+      }
+
+      totalNeeds () {
+        if (this.needs === undefined) {
+          return 0;
+        }
+
+        return this.needs.length;
+      }
+
+      progressPercentage () {
+        var size = this.totalNeeds();
+
+        if (size === 0) {
+          return 0;
+        }
+
+        return this.completedNeeds() * 100 / size;
+      }
+
+      // Show at least 1%
+      progressPercentageNotZero () {
+        var value = this.progressPercentage();
+
+        if (value === 0 && this.totalNeeds() > 0) {
+          return 1;
+        }
+
+        return value;
+      }
+
+      progressType () {
+        var percentage = this.progressPercentage();
+
+        if (percentage < 33) {
+          return 'danger';
+        } else if (percentage > 66) {
+          return 'success';
+        } else {
+          return 'warning';
+        }
+      }
     }
 
     class Project extends ProjectReadOnly {

@@ -117,61 +117,6 @@ angular.module('Teem')
       $location.path('/communities/' + url.urlId(project.communities[0]) + '/projects/' + url.urlId(project.id) + '/' + (tabName || 'pad'));
     };
 
-    // This function should belong to the model
-    // In the prototype or something similar
-    $scope.completedNeeds = function(project) {
-      var completed = 0;
-
-      angular.forEach(project.needs, function(need) {
-        if (need.completed === 'true') {
-          completed++;
-        }
-      });
-
-      return completed;
-    };
-
-    $scope.totalNeeds = function(project) {
-      if (project.needs === undefined) {
-        return 0;
-      }
-
-      return project.needs.length;
-    };
-
-    $scope.progressPercentage = function(project) {
-      var size = $scope.totalNeeds(project);
-
-      if (size === 0) {
-        return 0;
-      }
-
-      return $scope.completedNeeds(project) * 100 / size;
-    };
-
-    // Show at least 1%
-    $scope.progressPercentageNotZero = function(project) {
-      var value = $scope.progressPercentage(project);
-
-      if (value === 0 && $scope.totalNeeds(project) > 0) {
-        return 1;
-      }
-
-      return value;
-    };
-
-    $scope.progressType = function(project) {
-      var percentage = $scope.progressPercentage(project);
-
-      if (percentage < 33) {
-        return 'danger';
-      } else if (percentage > 66) {
-        return 'success';
-      } else {
-        return 'warning';
-      }
-    };
-
     $scope.supporterCount = function(project) {
       // Migrate project.support
       return project.supporters.length;

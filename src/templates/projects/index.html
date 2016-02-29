@@ -63,17 +63,6 @@
                   <div class="needs-icon project-section-icon">
                     <i class="fa i-need"></i>
                   </div>
-                  <div class="progress">
-                    <div class="progress-count">{{completedNeeds(project)}} / {{totalNeeds(project)}}</div>
-                    <div class="progress-bar"
-                         ng-class="'progress-bar-' + progressType(project)"
-                         role="progressbar"
-                         ng-attr-aria-valuenow="{{progressPercentageNotZero(project)}}"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         ng-style="{ 'width': progressPercentageNotZero(project) + '%' }">
-                    </div>
-                  </div>
 
                   <div class="project-section-notifications pull-right" ng-if="project.isContributor">
                     <span class="inline-title">

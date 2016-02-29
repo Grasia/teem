@@ -1,3 +1,11 @@
+<h1>{{ project.title }}</h1>
+
+<div class="needs-tip" translate>
+  need.tip
+</div>
+
+<need-progress-bar></need-progress-bar>
+
 <div class="alert alert-info" ng-if="needs.length === 0" translate>
   {{ 'need.index.empty.' + (project.isContributor() ? 'contributor' : 'reader') }}
 </div>
