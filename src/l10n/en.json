@@ -108,7 +108,7 @@
   "need": {
     "by": "Added {{time}} by {{author}}",
     "comment": {
-      "input": "Write your comment here...",
+      "input": "What can you help with?",
       "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at need \"{{need}}\""
     },
     "index": {
@@ -122,7 +122,7 @@
     },
     "new": {
       "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the workspace",
-      "placeholder": "New need"
+      "placeholder": "Add a new need"
     },
     "tip": "This is what we need to achieve the project"
   },

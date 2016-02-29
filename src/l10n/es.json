@@ -108,7 +108,7 @@
   "need": {
     "by": "Añadida {{time}} por {{author}}",
     "comment": {
-      "input": "Escribe tu comentario aquí...",
+      "input": "¿En qué puedes echar una mano?",
       "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
     },
     "index": {
@@ -122,7 +122,7 @@
     },
     "new": {
       "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el espacio de trabajo",
-      "placeholder": "Nueva necesidad"
+      "placeholder": "Añade una nueva necesidad"
     },
     "tip": "Esto es lo que necesitamos para llevar a cabo el proyecto"
   },
