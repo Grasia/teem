@@ -1,11 +1,10 @@
 <div class="list-group-item need-item" ng-if="project.isContributor() || need.completed !== 'add'">
   <div class="need-sections" ng-click="toggleCommentsVisibility(need)">
     <div class="need-section need-section-comments" ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
-      <span class="need-comments-count">
-        {{ need.comments.length || 0 }}
-      </span>
       <span class="need-comments-icon">
-        <i class="fa fa-comment" ng-class="newComments(need)? 'notify-comments':''"></i>
+        <i class="fa fa-comment"
+           ng-class="newComments(need)? 'notify-comments':''"
+           ng-attr-data-count="{{ need.comments.length || 0 }}"></i>
       </span>
     </div>
     <div class="need-section need-section-status">

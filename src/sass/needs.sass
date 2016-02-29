@@ -81,9 +81,17 @@
   .need-comments
     padding-left: 40px
     margin-top: 20px
-  .need-comments-count
-    color: $blue-count
-    font-weight: bold
+  .need-comments-icon
+    i
+      font-size: 1.5em
+      position: relative
+      &:after
+        content:attr(data-count)
+        font-size: 0.5em
+        position: absolute
+        top: 0.5em
+        right: 0.5em
+        color: white
   .new-need-comment
     margin-top: 10px
   .need-comment-input-button
