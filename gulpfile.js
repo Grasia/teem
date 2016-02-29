@@ -149,6 +149,7 @@ var gulp           = require('gulp'),
   seq            = require('run-sequence'),
   connect        = require('gulp-connect'),
   sass           = require('gulp-sass'),
+  babel          = require('gulp-babel'),
   uglify         = require('gulp-uglify'),
   sourcemaps     = require('gulp-sourcemaps'),
   cssmin         = require('gulp-cssmin'),
@@ -345,18 +346,30 @@ gulp.task('jshint', function() {
 gulp.task('js:app', function() {
   return streamqueue({ objectMode: true },
     // Vendor: angular, mobile-angular-ui, etc.
-    gulp.src(config.vendor.js),
+    gulp.src(config.vendor.js)
+    .pipe(sourcemaps.init()),
     // app.js is configured
-    gulp.src('./src/js/app.js').
-    pipe(replace('value(\'config\', {}). // inject:app:config',
-                 'value(\'config\', ' + JSON.stringify(config.app) + ').')),
+    gulp.src('./src/js/app.js')
+    .pipe(sourcemaps.init())
+    .pipe(replace('value(\'config\', {}). // inject:app:config',
+                  'value(\'config\', ' + JSON.stringify(config.app) + ').'))
+    .pipe(babel({
+      presets: ['es2015']
+    })),
     // rest of app logic
-    gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js']).
-    pipe(ngFilesort()),
+    gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js'])
+    .pipe(sourcemaps.init())
+    .pipe(ngFilesort())
+    .pipe(babel({
+      presets: ['es2015']
+    })),
     // app templates
     gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
   )
-  .pipe(sourcemaps.init())
   .pipe(concat('app.js'))
   .pipe(ngAnnotate())
   .pipe(gulpif(config.uglify, uglify()))
