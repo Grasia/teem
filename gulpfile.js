@@ -359,10 +359,10 @@ gulp.task('js:app', function() {
     // rest of app logic
     gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js'])
     .pipe(sourcemaps.init())
-    .pipe(ngFilesort())
     .pipe(babel({
       presets: ['es2015']
-    })),
+    }))
+    .pipe(ngFilesort()),
     // app templates
     gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
     .pipe(sourcemaps.init())
