@@ -293,7 +293,7 @@
         "unknown": "Ups! algo ha salido mal enviando el correo de recuperación de contraseña."
       },
       "email": "E-mail",
-      "success" : "Te hemos enviado un correo para que puedas recuperar la contraseña.",
+      "success" : "Si esta es la dirección que introdujiste al registrarte, recibirás un correo para que puedas recuperar la contraseña.",
       "tip": "Te enviaremos un correo para recuperar la contraseña."
     },
     "recoverPassword": {

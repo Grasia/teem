@@ -293,7 +293,7 @@
         "unknown": "Ups! something went wrong while sending you the password recovery email"
       },
       "email": "E-mail",
-      "success": "We have sent you an email to recover your password",
+      "success": "If this is the address you introduced at sign up, you will receive an email to recover your password",
       "tip": "We will send you an email to recover the password."
     },
     "recoverPassword": {
