@@ -142,8 +142,18 @@ blockquote cite:before
   border-color: $button-primary-background-color
 
 .form-control
+  border: 0
+  outline: 0
+  background: transparent
+  border-bottom: 2px solid $placeholder-color
+  -webkit-box-shadow: none
+  box-shadow: none
   @include placeholder
     color: $placeholder-color
+
+.has-error .form-control, .has-error .form-control:focus
+  -webkit-box-shadow: none
+  box-shadow: none
 
 h5
   color: $heading-secondary-color
