@@ -2,7 +2,32 @@
   <div class="community-gallery">
     Community Gallery
   </div>
-  
+
   <h1>{{community.name}}</h1>
+
+  <div class="row">
+    <div class="community-participant-count col-xs-3">
+      <i class="fa i-participants"></i>
+      {{ community.participants.length }}
+    </div>
+    <div class="community-participant-count col-xs-3">
+      TODO: like to community
+    </div>
+    <div class="community-participant-count col-xs-6">
+      <button class="btn btn-primary"></button>
+    </div>
+  </div>
+
+  <div class="community-description">
+    {{community.description}}
+
+    TODO: ver mas
+  </div>
+
+  <h2 translate>community.project.title</h2>
+  <div class="community-projects-count" translate translate-values="{ count: '{{ community.numProjects || 0}}'}">
+    community.project.count
+  </div>
+  TODO: numProjects query
 
 </div>

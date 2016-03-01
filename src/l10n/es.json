@@ -40,7 +40,8 @@
       "button": "Unirse a esta comunidad"
     },
     "project": {
-      "count": "{{count}} espacios de trabajo"
+      "count": "{{count}} espacios de trabajo",
+      "title": "Teems"
     },
     "search": {
       "placeholder": "Encuentra tu comunidad...",
