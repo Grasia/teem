@@ -40,8 +40,9 @@
       "button": "Join this community"
     },
     "project": {
-      "count": "{{count}} working groups",
-      "title": "Teems"
+      "count": "{{count}} teems",
+      "title": "Teems",
+      "working_group_count": "{{count}} working groups"
     },
     "search": {
       "placeholder": "Find your community...",
