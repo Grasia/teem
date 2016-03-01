@@ -23,7 +23,6 @@ angular.module('Teem')
             }
           });
         }
-        console.dir($route.current.params);
 
         SessionSvc.onLoad(function(){
           Loading.create(CommunitiesSvc.findByUrlId($route.current.params.id)).
