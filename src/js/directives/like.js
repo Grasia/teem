@@ -7,6 +7,7 @@ angular.module('Teem')
       '$scope', '$element', '$attrs', 'SessionSvc', '$timeout',
       function($scope, $element, $attrs, SessionSvc, $timeout) {
         $scope.likeIcon = $attrs.likeIcon;
+        $scope.likeCount = $attrs.likeCount;
         $scope.likeCopyOn  = $attrs.likeCopyOn;
         $scope.likeCopyOff = $attrs.likeCopyOff;
 

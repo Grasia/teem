@@ -51,6 +51,21 @@
 
             <pad></pad>
 
+            <div class="section project-actions">
+              <div class="col-xs-6 project-actions-like">
+                <button class="btn btn-link"
+                        ng-class="project.isSupporter() ? 'active' : ''"
+                        like
+                        like-icon="true",
+                        like-count="true"
+                        like-model="project">
+                </button>
+              </div>
+              <div class="col-xs-6 project-actions-share">
+                <a ui-turn-on="shareModalCreate"><i class="fa i-share"></i></a>
+              </div>
+            </div>
+
             <div class="section project-participants" ng-if="!ed.editting">
               <h2 translate translate-values="{ count: '{{ project.contributors.length }}'}">
                   project.section.participats.title
