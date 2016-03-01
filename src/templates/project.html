@@ -32,7 +32,12 @@
               <div class="project-photo">
                 project photo
               </div>
-              <h1>{{project.title}}</h1>
+              <h1 ng-if="! project.isContributor()">{{project.title}}</h1>
+              <input id="title_input"
+                     type="text"
+                     ng-model="project.title"
+                     ng-if="project.isContributor()"
+                     placeholder="{{ 'project.title.placeholder' | translate }}">
               <div class="project-communities">
                 <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="/communities/{{ urlId(c.id) }}">{{ c.name }}</a></span>
                 todo: project.loadedCommunities

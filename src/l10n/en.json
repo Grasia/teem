@@ -220,7 +220,7 @@
       "title": "Teems"
     },
     "title": {
-      "placeholder": "<Write here workspace's name>",
+      "placeholder": "Title",
       "reminder": {
         "body_one": "This workspace doesn't have a name yet!",
         "body_two": "Do you really want to discard the workspace?",
