@@ -151,7 +151,7 @@ angular.module('Teem')
         return this.contributors.indexOf(user) > -1;
       }
 
-      completedNeeds () {
+      needCompletedCount () {
         var completed = 0;
 
         angular.forEach(this.needs, function(need) {
@@ -163,7 +163,11 @@ angular.module('Teem')
         return completed;
       }
 
-      totalNeeds () {
+      needIncompletedCount () {
+        return this.needCount() - this.needCompletedCount();
+      }
+
+      needCount () {
         if (this.needs === undefined) {
           return 0;
         }
@@ -172,20 +176,20 @@ angular.module('Teem')
       }
 
       progressPercentage () {
-        var size = this.totalNeeds();
+        var size = this.needCount();
 
         if (size === 0) {
           return 0;
         }
 
-        return this.completedNeeds() * 100 / size;
+        return this.needCompletedCount() * 100 / size;
       }
 
       // Show at least 1%
       progressPercentageNotZero () {
         var value = this.progressPercentage();
 
-        if (value === 0 && this.totalNeeds() > 0) {
+        if (value === 0 && this.needCount() > 0) {
           return 1;
         }
 
