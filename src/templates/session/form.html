@@ -1,10 +1,12 @@
+<div ui-content-for="nav-title">
+  <div class="overflow-ellipsis">{{'session.'+form.current+'.button' | translate}}</div>
+</div>
 <div class="session-form row">
   <div class="col-xs-6 col-xs-offset-3">
     <div id="error_alert" class="alert alert-danger" ng-show="error.current !== null">
       {{'session.' + form.current + '.error.' + error.current | translate}}
     </div>
     <div class="tip" translate-values="{ nick: '{{user.nick}}'}" translate>{{"session."+form.current+".tip"}}</div>
-
     <form class="session-form" role="form" name="sessionForm" ng-submit="submit()" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
       <div>
         <div ng-if="isFieldVisible('nick')"  class="form-group" ng-class="{ 'has-error': sessionForm.nick.$touched && sessionForm.nick.$invalid }">
