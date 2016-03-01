@@ -34,7 +34,7 @@ angular.module('Teem')
                 { name: name || $scope.newCommunityName.name },
                 function(community) {
                   // TODO: bring following call to controller code
-                  $scope.showProjects(community.id);
+                  $scope.showCommunity(community.id);
                 });
             });
           };
@@ -60,8 +60,8 @@ angular.module('Teem')
           }
         };
 
-        $scope.showProjects = function(id) {
-          $location.path('/communities/' + url.urlId(id) + '/projects');
+        $scope.showCommunity = function(id) {
+          $location.path('/communities/' + url.urlId(id));
         };
       }],
       templateUrl: 'communities/communities.html'

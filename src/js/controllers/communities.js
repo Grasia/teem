@@ -16,9 +16,7 @@ angular.module('Teem')
       .when('/communities/new', {
         templateUrl: 'communities/index.html'
       })
-      .when('/communities/:communityId', {
-        redirectTo: function(params) {
-          return '/communities/' + params.communityId + '/projects';
-        }
+      .when('/communities/:id', {
+        templateUrl: 'communities/show.html'
       });
   }]);

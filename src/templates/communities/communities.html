@@ -32,7 +32,7 @@
         <div class="community-item col-sm-6 col-md-4"
              ng-hide="creating && newCommunityName.name === ''"
              ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0' | filter:newCommunityName:strict"
-             ng-click="showProjects(community.id)">
+             ng-click="showCommunity(community.id)">
           <div class="thumbnail">
             <img alt="community photo" />
             <div class="caption">
