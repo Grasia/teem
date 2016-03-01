@@ -27,24 +27,37 @@
     <div ui-state="projectTab" class="project-tabs">
       <div ui-if="projectTab == 'pad'">
         <div class="scrollable">
-          <div class="scrollable-header">
-            <div class="section project-support" ng-if="!ed.editting">
-              <h5>
-                <i class="fa i-participant"></i>
-                <span translate translate-values="{ count: '{{ project.contributors.length }}'}">
-                  project.section.participate.title
-                </span>
-              </h5>
-
-              <div class="project-supports">
-                <div class="project-supports-section">
-                  <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="scrollable-content">
+            <div class="section project-header" ng-if="!ed.editting">
+              <div class="project-photo">
+                project photo
+              </div>
+              <h1>{{project.title}}</h1>
+              <div class="project-communities">
+                <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="/communities/{{ urlId(c.id) }}">{{ c.name }}</a></span>
+                todo: project.loadedCommunities
+              </div>
+              <button class="btn btn-primary"
+                      ng-if="!project.isContributor()"
+                      join
+                      join-icon="false",
+                      join-model="project"
+                      join-copy-on="project.participate.btn.undo"
+                      join-copy-off="project.participate.btn.do"
+                      analytics-on="click"
+                      analytics-event="Join project">
+              </button>
+            </div>
+
             <pad></pad>
+
+            <div class="section project-participants" ng-if="!ed.editting">
+              <h2 translate translate-values="{ count: '{{ project.contributors.length }}'}">
+                  project.section.participats.title
+              </h2>
+
+              <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
+            </div>
           </div>
         </div>
       </div>

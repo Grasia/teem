@@ -171,6 +171,12 @@
       "tip": "(Tap to edit)",
       "title": "Notes"
     },
+    "participate": {
+      "btn": {
+        "do": "Join this Teem",
+        "undo": "Leave"
+      }
+    },
     "project_description": "Description",
     "project_name": "Project name",
     "project_status": "Status",
@@ -181,12 +187,8 @@
       "needs": {
         "title": "Needs"
       },
-      "participate": {
-        "btn": {
-          "do": "Join",
-          "undo": "Leave"
-        },
-        "title": "{{count}} participants"
+      "participats": {
+        "title": "Participants ({{count}})"
       },
       "support": {
         "btn": {

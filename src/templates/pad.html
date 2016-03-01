@@ -1,13 +1,5 @@
 <div class="section project-pad"
      ng-class="ed.editting ? 'project-pad-editing' : ''">
-  <div class="project-pad-header">
-    <h5 ng-if="!ed.editting">
-      <span translate>project.pad.title</span>
-      <span class="project-pad-tip" ng-if="project.isContributor()" translate>
-        &nbsp;project.pad.tip
-      </span>
-    </h5>
-  </div>
   <div id="pad"
        class="swellrt-editor"
        swellrt-editor-on-ready="padReady()"
