@@ -14,7 +14,12 @@
       TODO: like to community
     </div>
     <div class="community-participant-count col-xs-6">
-      <button class="btn btn-primary"></button>
+      <button class="btn btn-primary"
+              ng-if="! community.isParticipant()"
+              participate
+              participate-copy-off="community.participate.button"
+              participate-model="community">
+      </button>
     </div>
   </div>
 

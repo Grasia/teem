@@ -37,7 +37,7 @@
       "number": "{{count}} participants"
     },
     "participate": {
-      "button": "Join community"
+      "button": "Join this community"
     },
     "project": {
       "count": "{{count}} working groups",
