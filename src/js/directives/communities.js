@@ -64,6 +64,6 @@ angular.module('Teem')
           $location.path('/communities/' + url.urlId(id) + '/projects');
         };
       }],
-      templateUrl: 'communities.html'
+      templateUrl: 'communities/communities.html'
     };
   });
