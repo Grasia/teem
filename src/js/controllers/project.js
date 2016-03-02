@@ -70,7 +70,7 @@ angular.module('Teem')
     }
 
     SessionSvc.onLoad(function(){
-      Loading.create(ProjectsSvc.findByUrlId($route.current.params.id)).
+      Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(proxy) {
           $scope.project = proxy;
           $scope.project.setTimestampAccess(currentTab());

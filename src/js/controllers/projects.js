@@ -58,11 +58,11 @@ angular.module('Teem')
 
     SessionSvc.onLoad(function(){
       if ($route.current.params.comId) {
-        Loading.create(CommunitiesSvc.findByUrlId(comUrlId)).
+        Loading.show(CommunitiesSvc.findByUrlId(comUrlId)).
           then(function(community){
             $scope.community = community;
 
-            Loading.create(community.myAndPublicProjects()).
+            Loading.show(community.myAndPublicProjects()).
               then(function (projects){
                 getNewsCounts(projects);
 
@@ -71,7 +71,7 @@ angular.module('Teem')
           });
       } else {
         if (SessionSvc.users.loggedIn()) {
-          Loading.create(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
+          Loading.show(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
             then(function(projects) {
               getNewsCounts(projects);
               getCommunities(projects);

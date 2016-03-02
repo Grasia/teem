@@ -35,7 +35,7 @@ angular.module('Teem')
        off();
      }
 
-     function create(promise) {
+     function show(promise) {
        on();
 
        promise.then(success, error);
@@ -44,7 +44,7 @@ angular.module('Teem')
      }
 
      return {
-       create: create,
+       show: show,
        status: status
      };
    }]);

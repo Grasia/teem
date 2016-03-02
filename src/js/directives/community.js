@@ -25,11 +25,11 @@ angular.module('Teem')
         }
 
         SessionSvc.onLoad(function(){
-          Loading.create(CommunitiesSvc.findByUrlId($route.current.params.id)).
+          Loading.show(CommunitiesSvc.findByUrlId($route.current.params.id)).
             then(function(community){
               $scope.community = community;
 
-              Loading.create(community.myAndPublicProjects()).
+              Loading.show(community.myAndPublicProjects()).
               then(function (projects){
                 getNewsCounts(projects);
 

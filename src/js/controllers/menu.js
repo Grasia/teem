@@ -20,7 +20,7 @@ angular.module('Teem')
     }
 
     SessionSvc.onLoad(function(){
-      Loading.create(CommunitiesSvc.participating()).
+      Loading.show(CommunitiesSvc.participating()).
         then(function(communities) {
           $scope.myCommunities = communities;
         });

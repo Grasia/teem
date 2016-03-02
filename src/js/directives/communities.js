@@ -21,7 +21,7 @@ angular.module('Teem')
         $scope.urlId = url.urlId;
 
         SessionSvc.onLoad(function(){
-          Loading.create(CommunitiesSvc.all()).
+          Loading.show(CommunitiesSvc.all()).
             then(function(communities){
               $scope.communities = communities;
             });
