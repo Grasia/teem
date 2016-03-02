@@ -11,15 +11,17 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/projects/:id', {
+      .when('/projects/:id/:new?', {
         templateUrl: 'project.html',
         controller: 'ProjectCtrl',
         // Change between tabs without re-rendering the view
         reloadOnSearch: false
       })
+      // Getting a project from projects widget
       .when('/communities/:communityId/projects/fetch/:id', {
         controller: 'FetchProject'
       })
+      // Old stuff
       .when('/communities/:communityId/projects/:id', {
         redirectTo: function(params) {
           return '/projects/' + params.id;

@@ -80,18 +80,5 @@ angular.module('Teem')
             });
         }
       }
-
-      $scope.new_ = function () {
-        SessionSvc.loginRequired(function() {
-          $scope.created = true;
-
-          ProjectsSvc.create({
-            communityId: $scope.community.id
-          }, function(p) {
-            //FIXME model prototype
-            $location.path('/projects/' + url.urlId(p.id));
-          });
-        });
-      };
     });
   }]);

@@ -28,6 +28,8 @@
   </div>
 </div>
 
+<project-plus project-plus-community="community"></project-plus>
+
 <div class="projects-welcome" ng-if="! community && emptyProjects()">
   <div class="alert alert-info">
     <span translate>project.welcome.tip</span>
@@ -82,23 +84,6 @@
       </div>
     </li>
   </ul>
-</div>
-
-<div class="cta-placeholder" ng-if="community && !emptyProjects()">
-  <button class="btn btn-info cta-btn"
-          ng-click="participate()"
-          ng-if="!community.isParticipant()">
-      <span translate>community.participate.button</span>
-  </button>
-
-  <button class="btn btn-info cta-btn"
-          ng-click="new_()"
-          ng-if="community.isParticipant()"
-          ng-disabled="created"
-          analytics-on="click"
-          analytics-event="Create project">
-      <span translate>project.create.button</span>
-  </button>
 </div>
 
 <div ui-content-for="modals" ng-if="community">

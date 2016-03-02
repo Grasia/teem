@@ -14,11 +14,16 @@ angular.module('Teem')
               this[k] = val.root[k];
             }
           }
+
         }
       }
 
-      urlId () {
-        return base64.urlencode(this.id);
+      get urlId () {
+        if (! this._urlId) {
+          this._urlId = base64.urlencode(this.id);
+        }
+
+        return this._urlId;
       }
 
       myAndPublicProjects () {
