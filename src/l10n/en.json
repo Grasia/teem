@@ -189,7 +189,7 @@
       "needs": {
         "title": "Needs"
       },
-      "participats": {
+      "participants": {
         "title": "Participants ({{count}})"
       },
       "support": {
