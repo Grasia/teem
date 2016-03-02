@@ -1,9 +1,6 @@
 'use strict';
 
 angular.module('Teem')
-.directive('availableNick', function() {
-  //TODO
-})
 // https://yearofmoo.github.io/ngMessages/
 .directive('matchValidator', function() {
   return {

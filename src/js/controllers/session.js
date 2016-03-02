@@ -39,6 +39,12 @@ angular.module('Teem')
       return isValid? form.toLowerCase().replace('_p', 'P') : 'login';
     }
 
+    $scope.goToForm = function(sessionForm, form) {
+      sessionForm.$setUntouched();
+      $scope.form.current = form;
+      document.querySelector('form[name='+sessionForm.$name+'] input').focus();
+    };
+
     $scope.submit = function() {
       $scope.submit[$scope.form.current]();
     };
@@ -153,7 +159,7 @@ angular.module('Teem')
         delete localStorage.userId;
 
         Notification.success('session.' + $scope.form.current + '.success');
-        
+
         $timeout(function(){
           SharedState.turnOff('shouldLoginSharedState');
         });
