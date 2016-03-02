@@ -30,9 +30,10 @@
   </div>
 
   <h2 class="community-project-title" translate>community.project.title</h2>
-  <div class="community-projects-count" translate translate-values="{ count: '{{ community.numProjects || 0}}'}">
+  <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
     community.project.working_group_count
   </div>
-  TODO: numProjects query
+
+  <projects project-list="projects"></projects>
 
 </div>

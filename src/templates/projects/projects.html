@@ -1,37 +1,31 @@
-<div class="section projects">
-  <div class="scrollable">
-    <div class="scrollable-content">
-      <div class="list-group" ng-if="!emptyProjects()">
-        <div class="project-item list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
+<div class="projects list-group" ng-if="!emptyProjects()">
+  <div class="project-item list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
 
-          <div class="media">
-            <div class="media-left">
-              <img class="media-object" alt="Teem photo" />
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">
-                <span class="project-item-title">{{project.title}}</span>
-              </h4>
+    <div class="media">
+      <div class="media-left">
+        <img class="media-object" alt="Teem photo" />
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <span class="project-item-title">{{project.title}}</span>
+        </h4>
 
-              <div class="project_description">
-                todo: coger el texto del pad, sin cargar el pad?
-              </div>
+        <div class="project_description">
+          todo: coger el texto del pad, sin cargar el pad?
+        </div>
 
-              <div class="project-sections">
-                <div class="project-sections-participants col-xs-4">
-                  <i class="fa i-community"></i> {{ project.contributors.length }}
+        <div class="project-sections">
+          <div class="project-sections-participants col-xs-4">
+            <i class="fa i-community"></i> {{ project.contributors.length }}
 
-                </div>
+          </div>
 
-                <div class="project-sections-needs col-xs-4">
-                  <i class="fa i-need"></i> {{ project.needIncompletedCount() }}
-                </div>
+          <div class="project-sections-needs col-xs-4">
+            <i class="fa i-need"></i> {{ project.needIncompletedCount() }}
+          </div>
 
-                <div class="project-sections-chat col-xs-4">
-                  <i class="fa i-message"></i> {{ project.newMessagesCount() }}
-                </div>
-              </div>
-            </div>
+          <div class="project-sections-chat col-xs-4">
+            <i class="fa i-message"></i> {{ project.newMessagesCount() }}
           </div>
         </div>
       </div>

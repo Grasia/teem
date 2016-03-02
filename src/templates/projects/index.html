@@ -20,7 +20,13 @@
   <div ng-if="! community" translate>project.index.title</div>
 </div>
 
-<projects project-list="projects"></projects>
+<div class="section projects">
+  <div class="scrollable">
+    <div class="scrollable-content">
+      <projects project-list="projects"></projects>
+    </div>
+  </div>
+</div>
 
 <div class="projects-welcome" ng-if="! community && emptyProjects()">
   <div class="alert alert-info">
