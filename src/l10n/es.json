@@ -34,7 +34,8 @@
       "button": "...o crea una nueva"
     },
     "participants": {
-      "number": "{{count}} participantes"
+      "number": "{{count}} participantes",
+      "title":  "Participantes ({{count}})"
     },
     "participate": {
       "button": "Unirme a esta comunidad"
