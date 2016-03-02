@@ -1,7 +1,7 @@
 <div ng-include="'navbar_top/project.html'"></div>
 
 <div class="project">
-  <div class="project-navigation">
+  <div class="project-navigation" ng-if="! isNew()">
     <div class="btn-group justified">
       <a ui-set="{'projectTab': 'pad'}"
          ui-class="{'active': projectTab == 'pad'}"
@@ -32,13 +32,24 @@
               <div class="project-photo">
                 project photo
               </div>
-              <h1 ng-if="! project.isContributor()">{{project.title}}</h1>
-              <input id="title_input"
-                     type="text"
-                     ng-model="project.title"
-                     ng-if="project.isContributor()"
-                     placeholder="{{ 'project.title.placeholder' | translate }}">
-              <div class="project-communities">
+              <h1 ng-if="! edittingTitle">
+                {{project.title}}
+                <button class="btn btn-link" ng-click="showEditTitle()">
+                  <i class="fa fa-pencil-square-o" ></i>
+                </button>
+              </h1>
+              <div class="input-group" ng-if="edittingTitle">
+                <input type="text"
+                       class="form-control"
+                       ng-model="project.title"
+                       placeholder="{{ 'project.title.placeholder' | translate }}">
+                <div class="input-group-addon" ng-if="! isNew()">
+                  <button class="btn btn-link" ng-click="hideEditTitle()">
+                    <i class="fa fa-check"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="project-communities" ng-if="! isNew()">
                 <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="/communities/{{ urlId(c.id) }}">{{ c.name }}</a></span>
                 todo: project.loadedCommunities
               </div>
@@ -56,7 +67,7 @@
 
             <pad></pad>
 
-            <div class="section project-actions">
+            <div class="section project-actions" ng-if="!isNew() && !ed.editting">
               <div class="col-xs-6 project-actions-like">
                 <button class="btn btn-link"
                         ng-class="project.isSupporter() ? 'active' : ''"
@@ -71,12 +82,20 @@
               </div>
             </div>
 
-            <div class="section project-participants" ng-if="!ed.editting">
+            <div class="section project-participants" ng-if="!isNew() && !ed.editting">
               <h2 translate translate-values="{ count: '{{ project.contributors.length }}'}">
                   project.section.participants.title
               </h2>
 
               <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
+            </div>
+            <div class="section project-new-buttons" ng-if="isNew()">
+              <div class="col-xs-6">
+                <button class="btn btn-default" ng-click="cancelNew()" translate>project.new.btn.cancel</button>
+              </div>
+              <div class="col-xs-6 text-right">
+                <button class="btn btn-default" ng-click="confirmNew()" translate>project.new.btn.confirm</button>
+              </div>
             </div>
           </div>
         </div>

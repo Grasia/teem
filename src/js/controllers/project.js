@@ -65,11 +65,7 @@ angular.module('Teem')
   function (SessionSvc, url, $scope, $rootScope, $location, $route,
   SharedState, ProjectsSvc, Loading) {
 
-    $scope.urlId = url.urlId;
-
-    function currentTab() {
-      return $location.search().tab || 'pad';
-    }
+    $scope.edittingTitle = $route.current.params.new !== undefined;
 
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
@@ -79,14 +75,41 @@ angular.module('Teem')
         });
     });
 
+    function currentTab() {
+      return $location.search().tab || 'pad';
+    }
+
+    SharedState.initialize($scope, 'projectTab', {
+      defaultValue: currentTab()
+    });
+
+    $scope.isNew = function() {
+      return $route.current.params.new;
+    };
+
+    $scope.cancelNew = function() {
+
+    };
+
+    $scope.confirmNew = function() {
+      //$route.current.params.new = undefined;
+      $location.path('/projects/' + $scope.project.urlId);
+    };
+
+    $scope.showEditTitle = function() {
+      $scope.edittingTitle = true;
+    };
+
+    $scope.hideEditTitle = function() {
+      $scope.edittingTitle = false;
+    };
+
     $scope.titleReminder = function titleReminder() {
       SharedState.turnOff('projectTitleReminder');
 
       document.querySelector('.project-title input').focus();
     };
 
-    SharedState.initialize($scope, 'projectTab',
-      { defaultValue: currentTab() });
 
     $scope.$on('mobile-angular-ui.state.changed.projectTab', function(e, newVal, oldVal) {
       $scope.project.setTimestampAccess(oldVal);

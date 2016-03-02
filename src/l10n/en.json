@@ -170,6 +170,12 @@
       "share": "Share workspace",
       "unlike": "I don't like this"
     },
+    "new": {
+      "btn": {
+        "cancel": "Cancel",
+        "confirm": "Save"
+      }
+    },
     "pad": {
       "tip": "(Tap to edit)",
       "title": "Notes"

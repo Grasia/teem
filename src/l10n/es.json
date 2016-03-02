@@ -170,6 +170,12 @@
       "share": "Compartir espacio",
       "unlike": "No me gusta"
     },
+    "new": {
+      "btn": {
+        "cancel": "Cancelar",
+        "confirm": "Guardar"
+      }
+    },
     "pad": {
       "tip": "(Tap para editar)",
       "title": "Notas"
