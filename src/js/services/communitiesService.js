@@ -17,6 +17,10 @@ angular.module('Teem')
         }
       }
 
+      urlId () {
+        return base64.urlencode(this.id);
+      }
+
       myAndPublicProjects () {
         return ProjectsSvc.all({
            publicAndContributor: SessionSvc.users.current(),
