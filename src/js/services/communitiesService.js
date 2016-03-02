@@ -5,76 +5,90 @@ angular.module('Teem')
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc){
 
-    var Community = function(){};
+    class CommunityReadOnly {
 
-    Community.prototype.myAndPublicProjects = function(){
-      return ProjectsSvc.all({
-         publicAndContributor: SessionSvc.users.current(),
-         community: this.id
-       });
-    };
-
-    Community.prototype.isParticipant = function(user){
-      // Migrating from participants === undefined
-      if (this.participants === undefined) {
-        this.participants = [];
+      constructor (val) {
+        if (val) {
+          for (var k in val.root){
+            if (val.root.hasOwnProperty(k)){
+              this[k] = val.root[k];
+            }
+          }
+        }
       }
 
-      if (!user){
-        user = SessionSvc.users.current();
+      myAndPublicProjects () {
+        return ProjectsSvc.all({
+           publicAndContributor: SessionSvc.users.current(),
+           community: this.id
+         });
       }
-      return this.participants.indexOf(user) > -1;
-    };
 
-    Community.prototype.addParticipant = function(user) {
-      if (!user){
-        if (!SessionSvc.users.loggedIn()) {
+      isParticipant (user) {
+        // Migrating from participants === undefined
+        if (this.participants === undefined) {
+          this.participants = [];
+        }
+
+        if (!user){
+          user = SessionSvc.users.current();
+        }
+        return this.participants.indexOf(user) > -1;
+      }
+    }
+
+    class Community extends CommunityReadOnly {
+
+      addParticipant (user) {
+        if (!user){
+          if (!SessionSvc.users.loggedIn()) {
+            return;
+          }
+
+          user = SessionSvc.users.current();
+        }
+
+        if (this.isParticipant(user)) {
           return;
         }
 
-        user = SessionSvc.users.current();
+        this.participants.push(user);
       }
 
-      if (this.isParticipant(user)) {
-        return;
-      }
+      removeParticipant (user) {
+        if (!user){
+          if (!SessionSvc.users.loggedIn()) {
+            return;
+          }
 
-      this.participants.push(user);
-    };
+          user = SessionSvc.users.current();
+        }
 
-    Community.prototype.removeParticipant = function(user) {
-      if (!user){
-        if (!SessionSvc.users.loggedIn()) {
+        if (! this.isParticipant(user)) {
           return;
         }
 
-        user = SessionSvc.users.current();
+        this.participants.splice(
+          this.participants.indexOf(user),
+          1);
       }
 
-      if (! this.isParticipant(user)) {
-        return;
-      }
+      toggleParticipant (user) {
+        if (!user){
+          if (!SessionSvc.users.loggedIn()) {
+            return;
+          }
 
-      this.participants.splice(
-        this.participants.indexOf(user),
-        1);
-    };
-
-    Community.prototype.toggleParticipant = function(user) {
-      if (!user){
-        if (!SessionSvc.users.loggedIn()) {
-          return;
+          user = SessionSvc.users.current();
         }
 
-        user = SessionSvc.users.current();
+        if (this.isParticipant(user)) {
+          this.removeParticipant(user);
+        } else {
+          this.addParticipant(user);
+        }
       }
-
-      if (this.isParticipant(user)) {
-        this.removeParticipant(user);
-      } else {
-        this.addParticipant(user);
-      }
-    };
+    }
 
     // Service functions
 
@@ -162,7 +176,7 @@ angular.module('Teem')
         },
         function(result){
           angular.forEach(result.result, function(val) {
-            comms[val.root.id] = val.root;
+            comms[val.root.id] = new CommunityReadOnly(val);
           });
 
           foundCommunities.resolve(comms);
