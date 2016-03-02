@@ -24,15 +24,16 @@ angular.module('Teem')
          });
       }
 
-      isParticipant (user) {
+      isParticipant (user = SessionSvc.users.current()) {
+        if (! user) {
+          return false();
+        }
+
         // Migrating from participants === undefined
         if (this.participants === undefined) {
           this.participants = [];
         }
 
-        if (!user){
-          user = SessionSvc.users.current();
-        }
         return this.participants.indexOf(user) > -1;
       }
     }
