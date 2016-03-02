@@ -21,11 +21,15 @@
           </div>
 
           <div class="project-sections-needs col-xs-4">
-            <i class="fa i-need"></i> {{ project.needIncompletedCount() }}
+            <a ng-click="showProject(project, 'needs')">
+              <i class="fa i-need"></i> {{ project.needIncompletedCount() }}
+            </a>
           </div>
 
           <div class="project-sections-chat col-xs-4">
-            <i class="fa i-message"></i> {{ project.newMessagesCount() }}
+            <a ng-click="showProject(project, 'chat')">
+              <i class="fa i-message"></i> {{ project.newMessagesCount() }}
+            </a>
           </div>
         </div>
       </div>
