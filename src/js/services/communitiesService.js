@@ -35,7 +35,7 @@ angular.module('Teem')
 
       isParticipant (user = SessionSvc.users.current()) {
         if (! user) {
-          return false();
+          return false;
         }
 
         // Migrating from participants === undefined
