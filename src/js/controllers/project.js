@@ -65,8 +65,6 @@ angular.module('Teem')
   function (SessionSvc, url, $scope, $rootScope, $location, $route,
   SharedState, ProjectsSvc, Loading) {
 
-    $scope.edittingTitle = $route.current.params.new !== undefined;
-
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(proxy) {
@@ -84,16 +82,19 @@ angular.module('Teem')
     });
 
     $scope.isNew = function() {
-      return $route.current.params.new;
+      return $location.search().form === 'new';
     };
+
+    $scope.edittingTitle = $scope.isNew();
 
     $scope.cancelNew = function() {
 
     };
 
     $scope.confirmNew = function() {
-      //$route.current.params.new = undefined;
-      $location.path('/projects/' + $scope.project.urlId);
+      $scope.hideEditTitle();
+      
+      $location.search('form', undefined);
     };
 
     $scope.showEditTitle = function() {

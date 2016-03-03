@@ -43,8 +43,8 @@
                        class="form-control"
                        ng-model="project.title"
                        placeholder="{{ 'project.title.placeholder' | translate }}">
-                <div class="input-group-addon" ng-if="! isNew()">
-                  <button class="btn btn-link" ng-click="hideEditTitle()">
+                <div class="input-group-addon">
+                  <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
                     <i class="fa fa-check"></i>
                   </button>
                 </div>
