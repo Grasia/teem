@@ -11,9 +11,10 @@ angular.module('Teem')
   .directive('community', function() {
     return {
       controller: [
-      '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', 'Loading', '$route',
-      function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, Loading, $route) {
-
+      '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout',
+      'Loading', '$route', 'NewForm',
+      function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout,
+                Loading, $route, NewForm) {
 
         // get the count of new edits and chats for a list of projects and store them in the project properties
         // Refactoring...
@@ -38,6 +39,8 @@ angular.module('Teem')
               });
             });
         });
+
+        NewForm.initialize($scope, 'community');
       }],
       templateUrl: 'communities/community.html'
     };

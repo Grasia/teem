@@ -5,7 +5,7 @@
 
   <h1>{{community.name}}</h1>
 
-  <div class="row">
+  <div class="row" ng-if="!isNew()">
     <div class="community-participant-count col-xs-3">
       <i class="fa i-participants"></i>
       {{ community.participants.length }}
@@ -29,14 +29,19 @@
     TODO: ver mas
   </div>
 
-  <h2 class="community-project-title" translate>community.project.title</h2>
-  <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
-    community.project.working_group_count
+  <div class="community-projects" ng-if="!isNew()">
+
+    <h2 class="community-project-title" translate>community.project.title</h2>
+    <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
+      community.project.working_group_count
+    </div>
+
+    <projects project-list="projects"></projects>
+
+    <plus plus-type="project" plus-community="community"></plus>
   </div>
 
-  <projects project-list="projects"></projects>
-
-  <div class="community-participants">
+  <div class="community-participants" ng-if="!isNew()">
     <h2 translate translate-values="{ count: '{{ community.participants.length }}'}">
       community.participants.title
     </h2>
@@ -44,5 +49,5 @@
     <div avatars="community.participants" avatars-name="false" class="avatars"></div>
   </div>
 
-  <plus plus-type="project" plus-community="community"></plus>
+  <div ng-include="'new-form/buttons.html'"></div>
 </div>

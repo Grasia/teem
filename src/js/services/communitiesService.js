@@ -98,6 +98,10 @@ angular.module('Teem')
           this.addParticipant(user);
         }
       }
+
+      delete () {
+        this.type = 'deleted';
+      }
     }
 
     // Service functions
