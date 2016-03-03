@@ -130,6 +130,12 @@
     },
     "tip": "Esto es lo que necesitamos para llevar a cabo el proyecto"
   },
+  "newForm": {
+    "btn": {
+      "cancel": "Cancelar",
+      "confirm": "Guardar"
+    }
+  },
   "pad": {
     "edit": "Editar",
     "nav": {
@@ -169,12 +175,6 @@
       "like": "Me gusta",
       "share": "Compartir espacio",
       "unlike": "No me gusta"
-    },
-    "new": {
-      "btn": {
-        "cancel": "Cancelar",
-        "confirm": "Guardar"
-      }
     },
     "pad": {
       "tip": "(Tap para editar)",

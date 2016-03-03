@@ -130,6 +130,12 @@
     },
     "tip": "This is what we need to achieve the project"
   },
+  "newForm": {
+    "btn": {
+      "cancel": "Cancel",
+      "confirm": "Save"
+    }
+  },
   "pad": {
     "edit": "Edit",
     "nav": {
@@ -169,12 +175,6 @@
       "like": "I like this",
       "share": "Share workspace",
       "unlike": "I don't like this"
-    },
-    "new": {
-      "btn": {
-        "cancel": "Cancel",
-        "confirm": "Save"
-      }
     },
     "pad": {
       "tip": "(Tap to edit)",

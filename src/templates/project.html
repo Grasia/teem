@@ -89,14 +89,7 @@
 
               <div avatars="project.contributors" avatars-name="true" class="avatars"></div>
             </div>
-            <div class="section project-new-buttons" ng-if="isNew()">
-              <div class="col-xs-6">
-                <button class="btn btn-default" ng-click="cancelNew()" translate>project.new.btn.cancel</button>
-              </div>
-              <div class="col-xs-6 text-right">
-                <button class="btn btn-default" ng-click="confirmNew()" translate>project.new.btn.confirm</button>
-              </div>
-            </div>
+            <div ng-include="'new-form/buttons.html'"></div>
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ angular.module('Teem')
       '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', 'Loading', '$route',
       function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, Loading, $route) {
 
+
         // get the count of new edits and chats for a list of projects and store them in the project properties
         // Refactoring...
         function getNewsCounts(projs) {

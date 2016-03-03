@@ -61,9 +61,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm',
   function (SessionSvc, url, $scope, $rootScope, $location, $route,
-  SharedState, ProjectsSvc, Loading, $window) {
+  SharedState, ProjectsSvc, Loading, $window, NewForm) {
 
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
@@ -81,23 +81,10 @@ angular.module('Teem')
       defaultValue: currentTab()
     });
 
-    $scope.isNew = function() {
-      return $location.search().form === 'new';
-    };
+    NewForm.initialize($scope, 'project');
+
 
     $scope.edittingTitle = $scope.isNew();
-
-    $scope.cancelNew = function() {
-      $scope.project.delete();
-
-      $window.history.back();
-    };
-
-    $scope.confirmNew = function() {
-      $scope.hideEditTitle();
-
-      $location.search('form', undefined);
-    };
 
     $scope.showEditTitle = function() {
       $scope.edittingTitle = true;
