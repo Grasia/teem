@@ -12,7 +12,7 @@ angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/projects/:id/:new?', {
-        templateUrl: 'project.html',
+        templateUrl: 'projects/project.html',
         controller: 'ProjectCtrl',
         // Change between tabs without re-rendering the view
         reloadOnSearch: false
