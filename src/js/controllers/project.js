@@ -61,9 +61,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route',
-  'SharedState', 'ProjectsSvc', 'Loading',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window',
   function (SessionSvc, url, $scope, $rootScope, $location, $route,
-  SharedState, ProjectsSvc, Loading) {
+  SharedState, ProjectsSvc, Loading, $window) {
 
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
@@ -88,12 +88,14 @@ angular.module('Teem')
     $scope.edittingTitle = $scope.isNew();
 
     $scope.cancelNew = function() {
+      $scope.project.delete();
 
+      $window.history.back();
     };
 
     $scope.confirmNew = function() {
       $scope.hideEditTitle();
-      
+
       $location.search('form', undefined);
     };
 
@@ -131,8 +133,9 @@ angular.module('Teem')
 
     $scope.cancelProject = function() {
       SharedState.turnOff('projectTitleReminder');
-      $scope.project.type = 'deleted';
-      $scope.project.communities = [];
+
+      $scope.project.delete();
+
       $location.path('frontpage');
     };
 

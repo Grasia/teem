@@ -321,6 +321,11 @@ angular.module('Teem')
         });
         this.setTimestampAccess('needs', true);
       }
+
+      delete () {
+        this.type = 'deleted';
+        this.communities = [];
+      }
     }
 
     // Service functions //
