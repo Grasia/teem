@@ -395,6 +395,17 @@ angular.module('Teem')
       });
     }
 
+    function contributing () {
+
+      if (!SessionSvc.users.loggedIn()) {
+        return $q(function(resolve) {
+          resolve([]);
+        });
+      }
+
+      return all({ contributor: SessionSvc.users.current()});
+    }
+
     function findByUrlId(urlId) {
       return find(base64.urldecode(urlId));
     }
@@ -454,9 +465,10 @@ angular.module('Teem')
     }
 
     return {
-      all: all,
-      findByUrlId: findByUrlId,
-      find: find,
-      create: create
+      all,
+      contributing,
+      findByUrlId,
+      find,
+      create
     };
   }]);

@@ -1,5 +1,8 @@
 .menu-header
-  color: $menu-header-color
+  a
+    color: $menu-header-color
+  a:hover
+    text-decoration: none
   background: $menu-header-background-color
   font-size: 3em
   line-height: 1.2em
@@ -17,10 +20,17 @@
 .menu-session-body
   display: inline-block
   width: 66%
+.menu-session-nick
+  color: $menu-session-nick-color
+  font-size: 1.4em
 .menu-session-tip
   color: $menu-session-tip-color
 .menu-session-action
-  text-transform: uppercase
+  &, button
+    color: $menu-session-action-color
+    text-transform: uppercase
+  button
+    padding-left: 0px
 .menu-content
   .list-group-item
     background: $menu-background-color

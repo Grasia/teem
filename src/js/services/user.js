@@ -28,6 +28,10 @@ angular.module('Teem')
       }
 
       static current () {
+        if (! this.loggedIn()) {
+          return undefined;
+        }
+
         return new User(this.currentId());
       }
 
@@ -40,7 +44,7 @@ angular.module('Teem')
       }
 
       static loggedIn () {
-        return this.currentId !== undefined;
+        return this.currentId() !== undefined;
       }
 
       constructor (id) {

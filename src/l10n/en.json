@@ -105,6 +105,9 @@
     },
     "session": {
       "action": "Get involved!",
+      "communities": "{{count}} communities",
+      "logout": "Log out",
+      "projects": "{{count}} teems",
       "tip": "Sign up to create your communities and teems"
     },
     "title": "Teem"

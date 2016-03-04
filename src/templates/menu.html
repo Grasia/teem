@@ -1,10 +1,10 @@
 
 <div class="menu">
   <div class="menu-header" ui-turn-off="uiSidebarLeft">
-    &times;
+    <a>&times;</a>
   </div>
   <div class="menu-session">
-    <a class="menu-session-guest" href="#/session/register" ng-if="!loggedIn()">
+    <div class="menu-session-guest" ng-click="register()" ng-if="!loggedIn()">
       <div class="menu-session-img">
         <img src="" alt="[bicho]" />
       </div>
@@ -16,7 +16,7 @@
           menu.session.action
         </div>
       </div>
-    </a>
+    </div>
 
     <div class="menu-session-logged-in" ng-if="loggedIn()">
       <div class="menu-session-img">
@@ -24,18 +24,18 @@
       </div>
       <div class="menu-session-body">
         <div class="menu-session-nick">
-          {{user.name}}
+          {{userNick}}
         </div>
         <div class="menu-session-tip">
-          <div>
-            {{user.communitiesCount}}
+          <div translate translate-values="{count: '{{userCommunitiesCount}}'}">
+            menu.session.communities
           </div>
-          <div>
-            {{user.teemsCount}}
+          <div translate translate-values="{count: '{{userProjectsCount}}'}">
+            menu.session.projects
           </div>
         </div>
         <div class="menu-session-action">
-          <button class="btn btn-link" translate>
+          <button class="btn btn-link" ng-click="logout()" translate>
             menu.session.logout
           </button>
         </div>
