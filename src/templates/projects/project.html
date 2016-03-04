@@ -28,7 +28,7 @@
       <div ui-if="projectTab == 'pad'">
         <div class="scrollable">
           <div class="scrollable-content">
-            <div class="section project-header" ng-if="!ed.editting">
+            <div class="section project-header" ng-if="!pad.editting">
               <div class="project-photo">
                 project photo
               </div>
@@ -67,7 +67,7 @@
 
             <pad></pad>
 
-            <div class="section project-actions" ng-if="!isNew() && !ed.editting">
+            <div class="section project-actions" ng-if="!isNew() && !pad.editting">
               <div class="col-xs-6 project-actions-like">
                 <button class="btn btn-link"
                         ng-class="project.isSupporter() ? 'active' : ''"
@@ -82,7 +82,7 @@
               </div>
             </div>
 
-            <div class="section project-participants" ng-if="!isNew() && !ed.editting">
+            <div class="section project-participants" ng-if="!isNew() && !pad.editting">
               <h2 translate translate-values="{ count: '{{ project.contributors.length }}'}">
                   project.section.participants.title
               </h2>

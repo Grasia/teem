@@ -17,7 +17,7 @@ angular.module('Teem')
         function(SessionSvc, url, $rootScope, $scope, $route, $location,
         $timeout) {
 
-          $scope.ed = {
+          $scope.pad = {
             editting: false
           };
 
@@ -45,7 +45,7 @@ angular.module('Teem')
           };
 
           $scope.editOn = function() {
-            $scope.ed.editting = true;
+            $scope.pad.editting = true;
 
             SessionSvc.showSaving = true;
 
@@ -53,7 +53,7 @@ angular.module('Teem')
           };
 
           $scope.editOff = function() {
-            $scope.ed.editting = false;
+            $scope.pad.editting = false;
 
             SessionSvc.showSaving = false;
 
