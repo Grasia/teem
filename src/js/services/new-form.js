@@ -13,6 +13,8 @@ angular.module('Teem')
           cancelNew () {
             scope[objectName].delete();
 
+            $location.search('form', undefined);
+
             $window.history.back();
           },
           confirmNew () {
