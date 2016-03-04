@@ -223,7 +223,10 @@ angular.module('Teem')
 
       queries.then(function(){
         angular.forEach(nums, function(val){
-          comms[val._id].numProjects = val.number;
+          // There might be orphaned projects
+          if (comms[val._id]) {
+            comms[val._id].numProjects = val.number;
+          }
         });
 
         communities.resolve(comms);
