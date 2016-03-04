@@ -101,6 +101,8 @@ angular.module('Teem')
 
       delete () {
         this.type = 'deleted';
+
+        //TODO remove pointers from project.communities
       }
     }
 
