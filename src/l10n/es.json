@@ -38,7 +38,8 @@
       "title":  "Participantes ({{count}})"
     },
     "participate": {
-      "button": "Unirme a esta comunidad"
+      "button": "Unirme a esta comunidad",
+      "message": "Formas parte de esta comunidad"
     },
     "project": {
       "count": "{{count}} teems",

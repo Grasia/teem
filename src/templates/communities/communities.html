@@ -1,4 +1,4 @@
-<div class="section communities">
+<div class="communities">
   <div class="scrollable">
     <div class="scrollable-content">
       <div class="community-list">
@@ -23,14 +23,21 @@
                   {{ community.participants.length }}
                 </div>
                 <div class="community-count community-like-count col-xs-3">
-                  TODO: like to community
+                  TODO: like
                 </div>
                 <div class="col-xs-6">
-                  <button class="btn btn-primary"
+                  <button class="btn btn-primary pull-right"
                           ng-if="! community.isParticipant()"
                           participate
                           participate-copy-off="community.participate.button"
                           participate-model="community">
+                  </button>
+
+                  <span class="community-participating-message"
+                        ng-if="community.isParticipant()"
+                        translate>
+                    community.participate.message
+                  </span>
                 </button>
                 </div>
               </div>
