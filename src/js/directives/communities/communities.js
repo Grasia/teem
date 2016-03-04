@@ -27,7 +27,7 @@ angular.module('Teem')
             });
 
           $scope.create = function(name) {
-            SessionSvc.loginRequired(function() {
+            SessionSvc.loginRequired($scope, function() {
               $scope.created = true;
 
               CommunitiesSvc.create(
@@ -41,7 +41,7 @@ angular.module('Teem')
         });
 
         $scope.new_ = function() {
-          SessionSvc.loginRequired(function() {
+          SessionSvc.loginRequired($scope, function() {
             $scope.creating = true;
             // Need the timeout for the focus to work
             $timeout(function() {

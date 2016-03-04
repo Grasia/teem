@@ -17,7 +17,7 @@ angular.module('Teem')
       });
   }])
   .controller('ProfileCtrl', ['$scope', 'SessionSvc', function ($scope, SessionSvc) {
-    SessionSvc.loginRequired(function() {
+    SessionSvc.loginRequired($scope, function() {
       $scope.user = SessionSvc.users.current();
       $scope.rawAvatar = '';
       $scope.croppedAvatar = '';

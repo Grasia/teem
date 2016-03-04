@@ -13,7 +13,7 @@ angular.module('Teem')
 
         SessionSvc.onLoad(function(){
           $scope.create = function () {
-            SessionSvc.loginRequired(function() {
+            SessionSvc.loginRequired($scope, function() {
               let params = {};
 
               if ($scope.type === 'community') {

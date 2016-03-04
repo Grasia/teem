@@ -11,7 +11,9 @@
 angular.module('Teem')
   .factory('SessionSvc', [
   '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
-  function($q, $timeout, SharedState, NotificationSvc, $locale, User) {
+  '$rootScope',
+  function($q, $timeout, SharedState, NotificationSvc, $locale, User,
+           $rootScope) {
 
     var swellRTDef = $q.defer();
     var swellRTpromise = swellRTDef.promise;
@@ -87,16 +89,6 @@ angular.module('Teem')
         // console.log('Deprecated. Use User.loggedIn() instead');
 
         return User.loggedIn();
-      },
-      on: function(event, cb) {
-        if (event === 'login') {
-          users.callbacks.login[0] = cb;
-        } else if (event === 'logout') {
-          users.callbacks.logout[0] = cb;
-        }
-        // Write ".push(cb)" instead of "[0] = cb" for multiple callback support,
-        // but calling to users.on() twice with the same callback will execute
-        // that callback twice.
       }
     };
 
@@ -181,7 +173,10 @@ angular.module('Teem')
           function(){
             SwellRTConfig.swellrtServerDomain = __session.domain;
             if (userName){
+              // We should use events form Notification broadcast
               NotificationSvc.register(userName);
+
+              $rootScope.$broadcast('teem.login');
             } else {
               NotificationSvc.unregister(
                 undefined,
@@ -265,12 +260,13 @@ angular.module('Teem')
 
   };
 
-    function loginRequired(cb) {
+    function loginRequired(scope, cb) {
       if (! users.loggedIn()) {
         SharedState.turnOn('shouldLoginSharedState');
         // Invoque $timout to refresh scope and actually show modal
         $timeout();
-        users.on('login', cb);
+
+        scope.$on('teem.login', cb);
       } else {
         cb();
       }

@@ -11,7 +11,7 @@ angular.module('Teem')
         $scope.joinCopyOff = $attrs.joinCopyOff;
 
         $element.on('click', function() {
-          SessionSvc.loginRequired(function() {
+          SessionSvc.loginRequired($scope, function() {
             $scope.project.toggleContributor();
             $timeout();
           });

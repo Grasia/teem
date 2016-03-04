@@ -97,7 +97,7 @@ angular.module('Teem')
           scope.areCommentsVisible = needsCtrl.areCommentsVisible;
 
           scope.sendComment = function(){
-            SessionSvc.loginRequired(function() {
+            SessionSvc.loginRequired(scope, function() {
               ProjectsSvc.findByUrlId($route.current.params.id).then(function(project){
                 project.addNeedComment(scope.need, scope.newComment.text);
                 scope.newComment.text = '';
