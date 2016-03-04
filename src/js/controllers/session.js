@@ -227,10 +227,6 @@ angular.module('Teem')
       migration: ['password', 'passwordRepeat', 'email']
     };
 
-    $scope.isLoggedIn = function() {
-      return SessionSvc.users.loggedIn();
-    };
-
     $scope.logout = function() {
       SessionSvc.stopSession();
     };

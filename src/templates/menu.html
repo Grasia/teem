@@ -1,26 +1,50 @@
 
-<div class="scrollable menu">
-  <div class="scrollable-header overflow-ellipsis" ui-turn-off="uiSidebarLeft">
-    <a href="#/" translate>menu.title</a>
+<div class="menu">
+  <div class="menu-header" ui-turn-off="uiSidebarLeft">
+    &times;
   </div>
+  <div class="menu-session">
+    <a class="menu-session-guest" href="#/session/register" ng-if="!loggedIn()">
+      <div class="menu-session-img">
+        <img src="" alt="[bicho]" />
+      </div>
+      <div class="menu-session-body">
+        <div class="menu-session-tip" translate>
+          menu.session.tip
+        </div>
+        <div class="menu-session-action" translate>
+          menu.session.action
+        </div>
+      </div>
+    </a>
 
-  <div class="scrollable-content">
-    <a class="list-group-item list-group-item-header" href="#/projects" translate>menu.projects.title</a>
-    <div class="list-group">
-      <div class="list-group-item list-group-item-header">
-        <a href="#/communities/new" class="pull-right"><i class="fa fa-plus-circle"></i></a>
-        <a href="#/communities" class="pull-right"><i class="fa fa-search"></i></a>
-        <a href="#/communities" translate>menu.communities.title</a>
+    <div class="menu-session-logged-in" ng-if="loggedIn()">
+      <div class="menu-session-img">
+        <img src="" alt="[avatar]" />
       </div>
-      <div ng-repeat="community in myCommunities">
-        <a class="list-group-item list-group-item-child" ng-href="#/communities/{{urlId(community.id)}}/projects">
-          {{community.name}}
-        </a>
-      </div>
-      <a class="list-group-item list-group-item-header" href="#/communities/{{support.communityId}}/projects/{{support.projectId}}" ng-if="support" translate>menu.support</a>
-      <div ng-controller="SessionCtrl">
-        <a class="list-group-item list-group-item-header" ng-click="logout()" ng-if="isLoggedIn()" translate>menu.logout</a>
+      <div class="menu-session-body">
+        <div class="menu-session-nick">
+          {{user.name}}
+        </div>
+        <div class="menu-session-tip">
+          <div>
+            {{user.communitiesCount}}
+          </div>
+          <div>
+            {{user.teemsCount}}
+          </div>
+        </div>
+        <div class="menu-session-action">
+          <button class="btn btn-link" translate>
+            menu.session.logout
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="menu-content list-group">
+    <a class="list-group-item" href="#/projects" translate>menu.projects.title</a>
+    <a class="list-group-item" href="#/communities" translate>menu.communities.title</a>
   </div>
 </div>

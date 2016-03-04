@@ -98,15 +98,15 @@
   },
   "menu": {
     "communities": {
-      "create": "Crea una comunidad",
-      "find": "Explora las comunidades",
       "title": "Comunidades"
     },
-    "logout": "Cerrar sesión",
     "projects": {
       "title": "Teems"
     },
-    "support": "Ayuda",
+    "session": {
+      "action": "¡Participa!",
+      "tip": "Regístrate para crear tus comunidades y teems"
+    },
     "title": "Teem"
   },
   "need": {
