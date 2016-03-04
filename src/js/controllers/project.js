@@ -65,6 +65,8 @@ angular.module('Teem')
   function (SessionSvc, url, $scope, $rootScope, $location, $route,
   SharedState, ProjectsSvc, Loading, $window, NewForm) {
 
+    var edittingTitle = false;
+
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(proxy) {
@@ -83,15 +85,16 @@ angular.module('Teem')
 
     NewForm.initialize($scope, 'project');
 
-
-    $scope.edittingTitle = $scope.isNew();
+    $scope.edittingTitle = function() {
+      return edittingTitle || $scope.isNew();
+    };
 
     $scope.showEditTitle = function() {
-      $scope.edittingTitle = true;
+      edittingTitle = true;
     };
 
     $scope.hideEditTitle = function() {
-      $scope.edittingTitle = false;
+      edittingTitle = false;
     };
 
     $scope.titleReminder = function titleReminder() {

@@ -16,8 +16,6 @@ angular.module('Teem')
             $window.history.back();
           },
           confirmNew () {
-            scope.hideEditTitle();
-
             $location.search('form', undefined);
           }
         };

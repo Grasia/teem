@@ -32,13 +32,13 @@
               <div class="project-photo">
                 project photo
               </div>
-              <h1 ng-if="! edittingTitle">
+              <h1 ng-if="! edittingTitle()">
                 {{project.title}}
                 <button class="btn btn-link" ng-click="showEditTitle()">
                   <i class="fa fa-pencil-square-o" ></i>
                 </button>
               </h1>
-              <div class="input-group" ng-if="edittingTitle">
+              <div class="input-group" ng-if="edittingTitle()">
                 <input type="text"
                        class="form-control"
                        ng-model="project.title"
