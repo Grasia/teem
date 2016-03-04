@@ -56,8 +56,8 @@ angular.module('Teem')
     SessionSvc.onLoad(function() {
       if (User.loggedIn()) {
         userData();
-      } else {
-        SessionSvc.users.on('login', userData);
       }
+
+      $scope.$on('teem.login', userData);
     });
   }]);
