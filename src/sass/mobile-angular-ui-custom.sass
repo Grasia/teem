@@ -19,21 +19,15 @@ body
   font-family: 'Lato', sans-serif
 
 .app
-  background-color: $empty-bg-color
+  background-color: $app-background-color
 
 .container
   max-width: 600px
   padding-top: 10px
   padding-bottom: 10px
-  background-color: #f9f9f9
 
-label
-  color: #999999
-
-.btn-info
-  color: #fff
-  background-color: #5bc0de
-  border-color: #46b8da
+a
+  color: $light-blue
 
 .select2-container, .select2-drop
 
@@ -79,38 +73,6 @@ div.timeline-icon
 
 //
 
-// blockquote style based on http://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/
-
-blockquote
-  font-family: Georgia, serif
-  font-size: 18px
-  font-style: italic
-  width: 500px
-  margin: 0.25em 0
-  padding: 0.25em 40px
-  line-height: 1.45
-  position: relative
-  color: #383838
-  border-left: 0px
-
-blockquote:before
-  display: block
-  content: "\201C"
-  font-size: 80px
-  position: absolute
-  left: +0px
-  top: -20px
-  color: #7a7a7a
-
-blockquote cite
-  color: #999999
-  font-size: 14px
-  display: block
-  margin-top: 5px
-
-blockquote cite:before
-  content: "\2014 \2009"
-
 .panel .panel-heading
   padding: 10px 10px 10px
 
@@ -126,17 +88,12 @@ blockquote cite:before
   &, &.active, &:hover
     background-color: $button-primary-background-color
     border-color: $button-primary-background-color
-    .fa
-      color: #fff
+
 .btn-group
   .btn-default
-    .fa
-      color: #333
     &.active
       border-color: $button-primary-background-color
       background-color: $button-primary-selected-background-color
-      .fa
-        color: #fff
 .list-group-item.active
   background-color: $button-primary-background-color
   border-color: $button-primary-background-color
@@ -156,7 +113,7 @@ blockquote cite:before
   box-shadow: none
 
 .modal-overlay
-  background: $empty-bg-color
+  background: white
 
 h5
   color: $heading-secondary-color

@@ -18,15 +18,14 @@
                 community.project.count
               </div>
               <div class="community-item-footer row">
-                <div class="community-participant-count col-xs-3">
+                <div class="community-count community-participant-count col-xs-3">
                   <i class="fa i-participants"></i>
                   {{ community.participants.length }}
                 </div>
-                <div class="community-participant-count col-xs-3">
+                <div class="community-count community-like-count col-xs-3">
                   TODO: like to community
                 </div>
-                <div class="community-participant-count col-xs-6">
-
+                <div class="col-xs-6">
                   <button class="btn btn-primary"
                           ng-if="! community.isParticipant()"
                           participate

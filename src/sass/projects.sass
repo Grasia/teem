@@ -1,28 +1,17 @@
 /* Project list */
 
 .project-item-title
+  color: $projects-title-color
   font-weight: bold
 
 .notification-indicator
-  color: $yellow !important
+  color: $notification-point-color
   position: absolute
   font-size: 0.7em
 
 .project-sections
   margin-top: 0.8em
   width: 100%
-  .inline-content
-    padding-right: 2em
-    text-align: right
-    .project-last-message
-      text-align: left
-    font-size: 1.0em
-  .inline-value
-    font-weight: bold
-    color: $blue-count
-  .inline-title
-  h5
-    text-align: center
   .project-avatars
     margin-top: -5px
   .progress
@@ -88,6 +77,10 @@
     padding-right: 5px
 .new-project-pad
   margin: 1em
+
+.project-count
+  &, a
+    color: $projects-icons-color
 
 /* Single project */
 
@@ -160,11 +153,6 @@
 .project-title-reminder-btn
   margin-bottom: 0.4em
 
-.project-item .fa
-  color: $grey
-  &.fa.active
-    color: inherit
-
 .project-heading
   width: 100%
   display: table
@@ -180,6 +168,12 @@
     .project-support-number
       text-align: right
 
+.project-actions
+  &, a, button
+    color: $projects-icons-color
+
+.project-participants
+  background: $project-participants-background-color
 
 .project-pad
   // swellrt-editor overflows the div
@@ -197,7 +191,7 @@
         @extend .form-control
 
 .swellrt-placeholder:empty
-  color: $grey
+  color: $placeholder-color
 
 .hidden-input
   position: absolute

@@ -15,18 +15,18 @@
         </div>
 
         <div class="project-sections">
-          <div class="project-sections-participants col-xs-4">
+          <div class="project-count project-sections-participants col-xs-4">
             <i class="fa i-community"></i> {{ project.contributors.length }}
 
           </div>
 
-          <div class="project-sections-needs col-xs-4">
+          <div class="project-count project-sections-needs col-xs-4">
             <a ng-click="showProject(project, 'needs')">
               <i class="fa i-need"></i> {{ project.needIncompletedCount() }}
             </a>
           </div>
 
-          <div class="project-sections-chat col-xs-4">
+          <div class="project-count project-sections-chat col-xs-4">
             <a ng-click="showProject(project, 'chat')">
               <i class="fa i-message"></i> {{ project.newMessagesCount() }}
             </a>

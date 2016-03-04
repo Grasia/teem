@@ -34,7 +34,7 @@
               </div>
               <h1 ng-if="! edittingTitle()">
                 {{project.title}}
-                <button class="btn btn-link" ng-click="showEditTitle()">
+                <button class="btn btn-link" ng-if="project.isContributor()" ng-click="showEditTitle()">
                   <i class="fa fa-pencil-square-o" ></i>
                 </button>
               </h1>
