@@ -22,7 +22,7 @@ angular.module('Teem')
     }
 
     $scope.register = function () {
-      SharedState.turnOn('shouldLoginSharedState');
+      SharedState.set('shouldLoginSharedState', 'register');
     };
 
     $scope.loggedIn = function () {
