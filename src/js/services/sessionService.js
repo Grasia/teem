@@ -10,8 +10,8 @@
 
 angular.module('Teem')
   .factory('SessionSvc', [
-  '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale',
-  function($q, $timeout, SharedState, NotificationSvc, $locale) {
+  '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
+  function($q, $timeout, SharedState, NotificationSvc, $locale, User) {
 
     var swellRTDef = $q.defer();
     var swellRTpromise = swellRTDef.promise;
@@ -61,32 +61,32 @@ angular.module('Teem')
         logout: []
       },
       current: function() {
-        if (typeof(__session) === 'undefined' ||
-            __session === null ||
-            typeof(__session.address) === 'undefined') {
-          return undefined;
-        }
+        // console.log('Deprecated. Use User.currentId() instead');
 
-        if (__session.address.match(/^_anonymous_/)) {
-          return undefined;
-        }
-
-        return __session.address;
+        return User.currentId();
       },
 
       currentNick: function() {
         var address = window.localStorage.getItem('userId');
+
         if (address !== null){
-          return address.split('@')[0];
+          // console.log('Deprecated. Use User.current().nick instead');
+
+          return User.current().nick;
         }
+
         return undefined;
       },
 
       isCurrent: function(user) {
-        return user === users.current();
+        // console.log('Deprecated. Use User.isCurrent() instead');
+
+        return User.isCurrent(user);
       },
       loggedIn: function() {
-        return users.current() !== undefined;
+        // console.log('Deprecated. Use User.loggedIn() instead');
+
+        return User.loggedIn();
       },
       on: function(event, cb) {
         if (event === 'login') {
