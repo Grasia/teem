@@ -88,6 +88,8 @@
   position: relative
   overflow: hidden
   height: 100%
+  h1
+    font-size: 1.42em
 
 .project-navigation
   position: absolute
@@ -98,7 +100,7 @@
   min-height: 30px
   text-align: center
   &, a
-    color: $navbar-top-color
+    color: $navbar-top-inactive-color
     background-color: $navbar-top-background-color
   .justified
     table-layout: fixed
@@ -109,6 +111,7 @@
     text-transform: uppercase
     &.active,
     &.selected
+      color: $navbar-top-color
       font-weight: bold
       border-bottom: 4px solid $navbar-top-underscore
 
@@ -136,6 +139,10 @@
       padding-left: 0.5em
   .project-editor
     display: block
+.project-edit-title-btn
+  i
+    color: $icon-count-color
+    font-size: 1.33em
 
 .project-support-number
   text-align: center
