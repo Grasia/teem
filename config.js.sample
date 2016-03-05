@@ -10,6 +10,9 @@ module.exports = function(config) {
   // Do not use uglify: faster
   // config.uglify = false;
 
+  // Do not minify css
+  // config.cssmin = false;
+
   // Weinre Remote debug server
   //
   // config.weinre = {

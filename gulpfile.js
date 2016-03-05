@@ -10,6 +10,7 @@ var config = {
   dest: 'www',
   minifyImages: true,
   uglify: true,
+  cssmin: true,
 
   vendor: {
     js: [
@@ -318,7 +319,7 @@ gulp.task('sass', function () {
       }
     }))
     */
-    .pipe(cssmin())
+    .pipe(gulpif(config.cssmin, cssmin()))
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.', {
       sourceMappingURLPrefix: '/css/'
