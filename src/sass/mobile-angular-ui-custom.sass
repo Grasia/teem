@@ -1,7 +1,12 @@
+// font-weight lighter does not work in font faces
+// http://stackoverflow.com/questions/10627810/chrome-19-not-recognising-font-weight-lighter
+
+$font-weight-light: 100
+
 @font-face
   font-family: 'Lato'
   src: url(../fonts/Lato-Light.ttf)
-  font-weight: lighter
+  font-weight: $font-weight-light
 
 @font-face
   font-family: 'Lato'
