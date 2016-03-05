@@ -6,9 +6,9 @@
   <h1>{{community.name}}</h1>
 
   <div class="row" ng-if="!isNew()">
-    <div class="community-count community-participant-count col-xs-3">
+    <div class="icon-count community-participant-count col-xs-3">
       <i class="fa i-participants"></i>
-      {{ community.participants.length }}
+      <span class="icon-count-number">{{ community.participants.length }}</span>
     </div>
     <div class="community-count community-like-count col-xs-3">
       TODO: like to community

@@ -15,20 +15,23 @@
         </div>
 
         <div class="project-sections">
-          <div class="project-count project-sections-participants col-xs-4">
-            <i class="fa i-community"></i> {{ project.contributors.length }}
+          <div class="icon-count project-sections-participants col-xs-4">
+            <i class="fa i-community"></i>
+            <span class="icon-count-number">{{ project.contributors.length }}</span>
 
           </div>
 
-          <div class="project-count project-sections-needs col-xs-4">
+          <div class="icon-count project-sections-needs col-xs-4">
             <a ng-click="showProject(project, 'needs')">
-              <i class="fa i-need"></i> {{ project.needIncompletedCount() }}
+              <i class="fa i-need"></i>
+              <span class="icon-count-number">{{ project.needIncompletedCount() }}</span>
             </a>
           </div>
 
-          <div class="project-count project-sections-chat col-xs-4">
+          <div class="icon-count project-sections-chat col-xs-4">
             <a ng-click="showProject(project, 'chat')">
-              <i class="fa i-message"></i> {{ project.newMessagesCount() }}
+              <i class="fa i-message"></i>
+              <span class="icon-count-number">{{ project.newMessagesCount() }}</span>
             </a>
           </div>
         </div>
