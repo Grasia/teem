@@ -1,53 +1,62 @@
-<div class="section community">
-  <div class="community-gallery">
-    Community Gallery
-  </div>
+<div class="community">
+  <div class="scrollable">
+    <div class="scrollable-content">
 
-  <h1>{{community.name}}</h1>
+      <div class="community-gallery">
+        Community Gallery
+      </div>
 
-  <div class="row" ng-if="!isNew()">
-    <div class="icon-count community-participant-count col-xs-3">
-      <i class="fa i-participants"></i>
-      <span class="icon-count-number">{{ community.participants.length }}</span>
+      <div class="community-info section">
+        <h1>{{community.name}}</h1>
+
+        <div class="row" ng-if="!isNew()">
+          <div class="icon-count community-participant-count col-xs-3">
+            <i class="fa i-participants"></i>
+            <span class="icon-count-number">{{ community.participants.length }}</span>
+          </div>
+          <div class="community-count community-like-count col-xs-3">
+            TODO: like to community
+          </div>
+          <div class="col-xs-6">
+            <button class="btn btn-primary"
+                    ng-if="! community.isParticipant()"
+                    participate
+                    participate-copy-off="community.participate.button"
+                    participate-model="community">
+            </button>
+          </div>
+        </div>
+
+        <div class="community-description">
+
+          {{community.description}}
+
+          TODO: ver mas
+        </div>
+
+        <div ng-include="'new-form/buttons.html'"></div>
+      </div>
+
+      <div class="community-projects section" ng-if="!isNew()">
+
+        <h2 class="community-project-title" translate>community.project.title</h2>
+        <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
+          community.project.working_group_count
+        </div>
+
+        <projects project-list="projects"></projects>
+
+        <plus plus-type="project" plus-community="community"></plus>
+      </div>
+
+      <div class="community-participants section" ng-if="!isNew()">
+        <h2 translate translate-values="{ count: '{{ community.participants.length }}'}">
+          community.participants.title
+        </h2>
+
+        <div avatars="community.participants" avatars-name="false" class="avatars"></div>
+      </div>
     </div>
-    <div class="community-count community-like-count col-xs-3">
-      TODO: like to community
-    </div>
-    <div class="col-xs-6">
-      <button class="btn btn-primary"
-              ng-if="! community.isParticipant()"
-              participate
-              participate-copy-off="community.participate.button"
-              participate-model="community">
-      </button>
-    </div>
+
   </div>
-
-  <div class="community-description">
-    {{community.description}}
-
-    TODO: ver mas
-  </div>
-
-  <div class="community-projects" ng-if="!isNew()">
-
-    <h2 class="community-project-title" translate>community.project.title</h2>
-    <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
-      community.project.working_group_count
-    </div>
-
-    <projects project-list="projects"></projects>
-
-    <plus plus-type="project" plus-community="community"></plus>
-  </div>
-
-  <div class="community-participants" ng-if="!isNew()">
-    <h2 translate translate-values="{ count: '{{ community.participants.length }}'}">
-      community.participants.title
-    </h2>
-
-    <div avatars="community.participants" avatars-name="false" class="avatars"></div>
-  </div>
-
-  <div ng-include="'new-form/buttons.html'"></div>
 </div>
