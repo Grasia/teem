@@ -14,16 +14,16 @@
                 {{ community.description }}
                 TODO: get only 2 lines
               </div>
-              <div class="community-project-count" translate translate-values="{ count: '{{ community.numProjects || 0}}'}">
+              <div class="h3 community-project-count" translate translate-values="{ count: '{{ community.numProjects || 0}}'}">
                 community.project.count
               </div>
               <div class="community-item-footer row">
-                <div class="community-count community-participant-count col-xs-3">
+                <div class="icon-count community-participant-count col-xs-3">
                   <i class="fa i-participants"></i>
-                  {{ community.participants.length }}
+                  <span class="icon-count-number">{{ community.participants.length }}</span>
                 </div>
-                <div class="community-count community-like-count col-xs-3">
-                  TODO: like
+                <div class="icon-count community-like-count col-xs-3">
+                  <span class="icon-count-number">TODO: like</span>
                 </div>
                 <div class="col-xs-6">
                   <button class="btn btn-primary pull-right"
