@@ -38,9 +38,9 @@
                   <i class="fa fa-pencil-square-o" ></i>
                 </button>
               </h1>
-              <div class="input-group" ng-if="edittingTitle()">
+              <div class="input-group project-title-form" ng-if="edittingTitle()">
                 <input type="text"
-                       class="form-control"
+                       class="form-control project-title-input"
                        ng-model="project.title"
                        placeholder="{{ 'project.title.placeholder' | translate }}">
                 <div class="input-group-addon">
@@ -96,7 +96,7 @@
 
       <div ui-if="projectTab == 'needs'">
         <div class="scrollable">
-          <div class="scrollable-content section">
+          <div class="scrollable-content">
             <div need-list project="project" needs="project.needs" ng-class="project.isContributor() ? '' : 'has-cta'"/>
             </div>
           </div>
