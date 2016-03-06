@@ -1,4 +1,4 @@
-<div class="needs-header section">
+<div class="section needs-header">
   <h1>{{ project.title }}</h1>
 
   <div class="needs-tip" translate>
@@ -8,7 +8,7 @@
   <need-progress-bar></need-progress-bar>
 </div>
 
-<div class="need-list section">
+<div class="section need-list">
   <div class="alert alert-info" ng-if="needs.length === 0" translate>
     {{ 'need.index.empty.' + (project.isContributor() ? 'contributor' : 'reader') }}
   </div>

@@ -3,11 +3,22 @@
 
 .needs-header
   background: $needs-header-background-color
+  padding-top: 1em
+
+.needs-tip
+  padding: 0.3em 0 1.42em 0
+  font-size: 1.14em
+
+.need-list
+  background: $needs-list-background-color
+  .list-group-item
+    background: inherit
 
 .need-check-container
   width: 30px
 
 .need-checkbox
+  color: $icon-color
   font-size: 1.6em
 
 .need-checkbox-checked
@@ -31,6 +42,7 @@
   @extend .fa-plus
 
 .need-name
+  font-size: 1.21em
   cursor: auto
   border: none
   width: 100%
@@ -69,10 +81,13 @@
         &.notify-comments
     &.need-section-comments.active
       color: inherit
+  .comment-author-name
+    color: $need-comment-author-name-color
+    font-weight: bold
   .comment-time
     text-align: right
-    color: $heading-secondary-color
-    font-weight: bold
+    color: $need-comment-time-color
+    font-size: .86em
   .need-comments
     padding-left: 40px
     margin-top: 20px
@@ -82,18 +97,19 @@
       position: relative
       &:after
         content:attr(data-count)
-        font-size: 0.5em
+        color: $need-comment-count-color
+        font-size: 0.57em
         position: absolute
         top: 0.5em
         right: 0.5em
   .new-need-comment
     margin-top: 10px
   .need-comment-input-button
-    font-size: 2em
+    font-size: 1.21em
   .input-group
     textarea
+      font-size: 1.21em
       resize: none
       border-right: 0px
-    span
-      padding-top: 2px
-      padding-bottom: 2px
+    textarea:focus + .input-group-addon
+      @extend .form-control:focus
