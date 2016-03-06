@@ -1,0 +1,31 @@
+ <div class="modal modal-overlay" ui-if="uploadPictureSharedState" ui-state="uploadPictureSharedState">
+   <div class="modal-dialog scrollable">
+     <div class="modal-content scrollable-content">
+       <div class="modal-header">
+         <button class="close"
+                 ui-turn-off="uploadPictureSharedState">&times;</button>
+         <h4 class="modal-title" translate>picture.title</h4>
+       </div>
+       <div class="modal-body">
+
+         <div ng-hide="pictureFile">
+           <div ngf-drop ngf-select ng-model="pictureFile" class="drop-box"
+           ngf-drag-over-class="'dragover'" accept="image/*"
+           ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
+         </div>
+
+         <div ng-show="pictureFile">
+           <p translate>picture.crop</p>
+           <div class="cropArea">
+             <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"></img-crop>
+           </div>
+         </div>
+
+       </div>
+       <div class="modal-footer">
+         <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
+         <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
+       </div>
+     </div>
+   </div>
+ </div>

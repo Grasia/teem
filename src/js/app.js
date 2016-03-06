@@ -28,7 +28,8 @@ angular
     'ab-base64',
     'angular-toArrayFilter',
     'angularMoment',
-    'ngImgCrop'
+    'ngImgCrop',
+    'ngFileUpload'
   ]).
   // Application config
   // See config.js.sample for examples

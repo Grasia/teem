@@ -180,21 +180,22 @@ angular.module('Teem')
 
       if (fields.email) {
 
-        var successEmail = function() {
+        var onComplete = function(res) {
+          if (res.error) {
+            Notification.error('session.set_email.error');
+            $timeout(function(){
+              SharedState.turnOff('shouldLoginSharedState');
+            });
+            return;
+          }
+
           Notification.success('session.set_email.success');
           $timeout(function(){
             SharedState.turnOff('shouldLoginSharedState');
           });
         };
 
-        var errorEmail = function() {
-          Notification.error('session.set_email.error');
-          $timeout(function(){
-            SharedState.turnOff('shouldLoginSharedState');
-          });
-        };
-
-        SessionSvc.updateUserProfile({email: fields.email}, successEmail, errorEmail);
+        SessionSvc.updateUserProfile({email: fields.email}, onComplete);
       }
     };
 

@@ -148,13 +148,26 @@
     },
     "placeholder": "You want to work on..."
   },
+  "picture": {
+    "crop": "Drag to select the area you want to show of the picture",
+    "delete": "Remove current picture",
+    "upload": "Drop an image here or click to upload",
+    "save": "Save",
+    "title": "Upload a picture"
+  },
   "profile": {
     "title": "Your profile",
     "avatar": {
       "avatar": "Avatar",
       "change": "Change picture...",
-      "delete": "Delete picture",
-      "save": "Save"
+      "remove": {
+        "error": "We couldn't remove your avatar",
+        "success": "Your avatar has been removed successfully"
+      },
+      "upload": {
+        "error": "We couldn't upload the avatar",
+        "success": "Your avatar has been uploaded successfully"
+      }
     }
   },
   "project": {

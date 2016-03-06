@@ -148,13 +148,26 @@
     },
     "placeholder": "Quieres trabajar en..."
   },
+  "picture": {
+    "crop": "Arrastra para seleccionar la parte que quieres que se vea de la foto",
+    "delete": "Elimina la foto actual",
+    "upload": "Arrastra una imagen aquí, o haz clic para subir una",
+    "save": "Guardar",
+    "title": "Subir una foto"
+  },
   "profile": {
     "title": "Tu perfil",
     "avatar": {
       "avatar": "Avatar",
       "change": "Cambiar imagen...",
-      "delete": "Eliminar imagen",
-      "save": "Guardar"
+      "remove": {
+        "error": "No hemos podido eliminar tu avatar",
+        "success": "Tu avatar ha sido eliminado satisfactoriamente"
+      },
+      "upload": {
+        "error": "No hemos podido subir el avatar",
+        "success": "El avatar ha sido subido satisfactoriamente"
+      }
     }
   },
   "project": {

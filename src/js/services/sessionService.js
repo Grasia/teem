@@ -56,6 +56,7 @@ angular.module('Teem')
     };
 
     var sessionDef = $q.defer();
+    var sessionPromise = sessionDef.promise;
     var users = {
       password: '$password$',
       callbacks: {
@@ -202,14 +203,15 @@ angular.module('Teem')
       SwellRT.setPassword(id, tokenOrPassword, password, onSuccess, onError);
     };
 
-    var updateUserProfile = function(data, onSuccess, onError) {
-      SwellRT.updateUserProfile(data, function(res){
+    function getUserProfile(data, cb) {
+      sessionPromise.then(function() {
+        SwellRT.getUserProfile(data, cb);
+      });
+    }
 
-        if (res.error) {
-          onError(res.error);
-          } else if (res.data) {
-            onSuccess(res.data);
-          }
+    var updateUserProfile = function(data, cb) {
+      sessionPromise.then(function(){
+        SwellRT.updateUserProfile(data, cb);
       });
     };
 
@@ -261,15 +263,17 @@ angular.module('Teem')
   };
 
     function loginRequired(scope, cb) {
-      if (! users.loggedIn()) {
-        SharedState.turnOn('shouldLoginSharedState');
-        // Invoque $timout to refresh scope and actually show modal
-        $timeout();
+      sessionPromise.then(function() {
+        if (! users.loggedIn()) {
+          SharedState.turnOn('shouldLoginSharedState');
+          // Invoque $timout to refresh scope and actually show modal
+          $timeout();
 
-        scope.$on('teem.login', cb);
-      } else {
-        cb();
-      }
+          scope.$on('teem.login', cb);
+        } else {
+          cb();
+        }
+      });
     }
 
     return {
@@ -279,6 +283,7 @@ angular.module('Teem')
       stopSession: stopSession,
       recoverPassword: recoverPassword,
       forgottenPassword: forgottenPassword,
+      getUserProfile: getUserProfile,
       updateUserProfile: updateUserProfile,
       loginRequired: loginRequired,
       setFatalExceptionHandler: setFatalExceptionHandler,
@@ -290,7 +295,7 @@ angular.module('Teem')
           autoStartSession();
         }
 
-        sessionDef.promise.then(f);
+        sessionPromise.then(f);
       }
     };
   }]);
