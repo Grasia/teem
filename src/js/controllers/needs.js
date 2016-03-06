@@ -82,7 +82,6 @@ angular.module('Teem')
           };
 
           scope.focusElem = function(event){
-            console.log(event.target.parentNode.parentNode.children);
             event.target.parentNode.parentNode.children[1].children[0].focus();
           };
 
@@ -142,7 +141,6 @@ angular.module('Teem')
         },
         controller: function($scope, $route, SessionSvc, ProjectsSvc, time) {
           this.addNeed = function (need) {
-            console.dir(need);
             if (need.text !== undefined && need.text !== ''){
               need.author = SessionSvc.users.current();
               need.time = (new Date()).toJSON();
