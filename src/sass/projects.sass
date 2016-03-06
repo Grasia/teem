@@ -143,6 +143,20 @@
     color: $icon-count-color
     font-size: 1.33em
 
+.project
+  .swellrt-editor
+    > div
+      padding: 5px
+    &[editable=true]
+      background: $pad-background-color
+      border: 1px solid $pad-border-color
+      padding: .21em
+      > div
+        outline: 0
+
+.swellrt-placeholder:empty
+  color: $placeholder-color
+
 .project-support-number
   text-align: center
   font-size: 34px
@@ -184,24 +198,3 @@
     font-size: 1.42em
     font-weight: $font-weight-light
     @extend .participant-title
-
-.project-pad
-  // swellrt-editor overflows the div
-  //height: 100%
-.project
-  .swellrt-editor
-    > div
-      padding: 5px
-    &[editable=true]
-      background: $pad-background-color
-      border: 1px solid $pad-border-color
-      padding: .21em
-      > div
-        outline: 0
-
-.swellrt-placeholder:empty
-  color: $placeholder-color
-
-.hidden-input
-  position: absolute
-  top: -100px
