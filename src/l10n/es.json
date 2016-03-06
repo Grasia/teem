@@ -149,7 +149,7 @@
     "placeholder": "Quieres trabajar en..."
   },
   "picture": {
-    "crop": "Arrastra para seleccionar la parte que quieres que se vea de la foto",
+    "crop": "Para recortar la imagen, arrastra la zona iluminada, i después, haz clic en guardar",
     "delete": "Elimina la foto actual",
     "upload": "Arrastra una imagen aquí, o haz clic para subir una",
     "save": "Guardar",

@@ -6,7 +6,9 @@
   <div class="menu-session">
     <div class="menu-session-guest" ng-click="register()" ng-if="!loggedIn()">
       <div class="menu-session-img">
-        <img src="" alt="[bicho]" />
+        <div class="avatar-large">
+          <img src="http://placehold.it/69x69?text=bicho" />
+        </div>
       </div>
       <div class="menu-session-body">
         <div class="menu-session-nick" translate>
@@ -23,11 +25,11 @@
 
     <div class="menu-session-logged-in" ng-if="loggedIn()">
       <div class="menu-session-img">
-        <img src="" alt="[avatar]" />
+        <div avatars="user.id" avatars-conf="{large: true}" class="avatars"></div>
       </div>
       <div class="menu-session-body">
         <div class="menu-session-nick">
-          {{userNick}}
+          {{user.nick}}
         </div>
         <div class="menu-session-tip">
           <div translate translate-values="{count: '{{userCommunitiesCount}}'}">

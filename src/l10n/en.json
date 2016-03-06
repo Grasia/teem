@@ -149,7 +149,7 @@
     "placeholder": "You want to work on..."
   },
   "picture": {
-    "crop": "Drag to select the area you want to show of the picture",
+    "crop": "To crop the picture, drag the lighter zone, and then clic on save",
     "delete": "Remove current picture",
     "upload": "Drop an image here or click to upload",
     "save": "Save",

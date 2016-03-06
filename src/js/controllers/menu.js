@@ -38,7 +38,7 @@ angular.module('Teem')
     // We probably need to refactor this
 
     function userData () {
-      $scope.userNick = User.current().nick;
+      $scope.user = User.current();
 
       CommunitiesSvc.participating().then(function(communities) {
         $timeout(function () {
