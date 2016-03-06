@@ -35,7 +35,7 @@
     },
     "participants": {
       "number": "{{count}} participants",
-      "title": "Participants ({{count}})"
+      "title": "Participants <span class=\"participant-count\">({{count}})</span>"
     },
     "participate": {
       "button": "Join this community",
@@ -202,7 +202,7 @@
         "title": "Needs"
       },
       "participants": {
-        "title": "Participants ({{count}})"
+        "title": "Participants <span class=\"participant-count\">({{count}})</span>"
       },
       "support": {
         "btn": {

@@ -68,7 +68,7 @@
             <pad></pad>
 
             <div class="section project-actions" ng-if="!isNew() && !pad.editting">
-              <div class="col-xs-6 project-actions-like">
+              <div class="icon-count col-xs-6 project-actions-like">
                 <button class="btn btn-link"
                         ng-class="project.isSupporter() ? 'active' : ''"
                         like
@@ -77,7 +77,7 @@
                         like-model="project">
                 </button>
               </div>
-              <div class="col-xs-6 project-actions-share">
+              <div class="icon-count col-xs-6 project-actions-share">
                 <a ui-turn-on="shareModalCreate"><i class="fa i-share"></i></a>
               </div>
             </div>
