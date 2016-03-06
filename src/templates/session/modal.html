@@ -1,23 +1,14 @@
 <div class="modal modal-overlay" ui-if="shouldLoginSharedState" ui-state="shouldLoginSharedState">
-  <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
-    <div class="navbar-brand navbar-brand-center nav-title" ui-yield-to="nav-title"></div>
-
-    <div class="btn-group pull-left">
-      <div class="btn btn-navbar nav-left" ui-yield-to="nav-left">
-        <div class="btn-group pull-left">
-          <div ui-toggle="shouldLoginSharedState" class="btn">
-            <i class="fa fa-times"></i>
-          </div>
-        </div>
+  <div class="scrollable">
+    <div class="scrollable-header session-header" ng-controller="SessionCtrl">
+      <div class="btn-group pull-left session-header-left">
+         <a ui-turn-off="shouldLoginSharedState">&times;</a>
+      </div>
+      <div class="session-header-title">
+        {{'session.'+form.current+'.button' | translate}}
       </div>
     </div>
-
-    <div class="btn-group pull-right">
-      <div class="btn btn-navbar nav-right" ui-yield-to="nav-right"></div>
-    </div>
-  </div>
-  <div class="app-body scrollable">
-    <div class="app-content scrollable-content">
+    <div class="scrollable-content">
       <div ng-include="'session/form.html'" ng-controller="SessionCtrl"></div>
     </div>
   </div>
