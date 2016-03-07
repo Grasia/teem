@@ -25,7 +25,7 @@
           </div>
         </div>
 
-        <div class="row" ng-if="!isNew()">
+        <div class="row" ng-if="!isNew() && !edittingTitle()">
           <div class="icon-count community-participant-count col-xs-3">
             <i class="fa i-participants"></i>
             <span class="icon-count-number">{{ community.participants.length }}</span>
@@ -42,15 +42,18 @@
           </div>
         </div>
 
-        <div class="community-description">
-
+        <div class="community-description" ng-if="! edittingTitle()">
           {{community.description}}
-
-          TODO: ver mas
         </div>
 
+        <div class="description-form" ng-if="edittingTitle()">
+          <textarea class="form-control description-input"
+                    rows="5"
+                    ng-model="community.description"
+                    placeholder="{{ 'community.description.placeholder' | translate }}">
+          </textarea>
+        </div>
       </div>
-      <div ng-include="'new-form/buttons.html'"></div>
 
       <div class="community-projects section" ng-if="!isNew()">
 
@@ -72,6 +75,8 @@
         <div avatars="community.participants" class="avatars"></div>
       </div>
     </div>
-
+    <div class="scrollable-footer" ng-if="isNew()">
+      <div ng-include="'new-form/buttons.html'"></div>
+    </div>
   </div>
 </div>

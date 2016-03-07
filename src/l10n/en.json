@@ -17,6 +17,9 @@
       "description": "Can't you find what you were looking for? Register your community!",
       "placeholder": "Community name"
     },
+    "description": {
+      "placeholder": "What are you doing? A good description helps other people to recognize your work and join. For instance: \"Wikipedia is the free encyclopedia anyone can edit\""
+    },
     "edit": {
       "button": "Edit",
       "title": "Edit community"
