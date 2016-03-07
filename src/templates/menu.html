@@ -6,8 +6,8 @@
   <div class="menu-session">
     <div class="menu-session-guest" ng-click="register()" ng-if="!loggedIn()">
       <div class="menu-session-img">
-        <div class="avatar-large">
-          <img src="http://placehold.it/69x69?text=bicho" />
+        <div class="avatar">
+          <img src="images/anonymous_avatar.png" />
         </div>
       </div>
       <div class="menu-session-body">
@@ -25,7 +25,7 @@
 
     <div class="menu-session-logged-in" ng-if="loggedIn()">
       <div class="menu-session-img">
-        <div avatars="user.id" avatars-conf="{large: true}" class="avatars"></div>
+        <div avatars="user.id" class="avatars"></div>
       </div>
       <div class="menu-session-body">
         <div class="menu-session-nick">

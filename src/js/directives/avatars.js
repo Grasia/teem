@@ -13,7 +13,7 @@ angular.module('Teem')
       var createAppendAvatar = function(userId, url){
         $timeout(function() {
           var conf = scope.avatarsConf() || {};
-          var div = angular.element('<div class="avatar'+(conf.large ? '-large' : '')+'"></div>'),
+          var div = angular.element('<div class="avatar'+(conf.size ? '-'+conf.size : '')+'"></div>'),
               img = angular.element('<img></img>'),
               name = angular.element('<div class="avatar-name">' + userId.split('@')[0] + '</div>');
 

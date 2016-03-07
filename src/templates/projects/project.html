@@ -29,8 +29,10 @@
         <div class="scrollable">
           <div class="scrollable-content">
             <div class="section project-header" ng-if="!pad.editting">
-              <div class="project-photo">
-                project photo
+              <div class="row">
+                <div class="col-sm-4 col-sm-offset-4 project-photo-responsive">
+                  <img src="images/default_project.png">
+                </div>
               </div>
               <h1 ng-if="! edittingTitle()">
                 {{project.title}}
@@ -86,7 +88,7 @@
                   project.section.participants.title
               </h2>
 
-              <div avatars="project.contributors" avatars-conf="{names: true}" class="avatars"></div>
+              <div avatars="project.contributors" avatars-conf="{size: 'small'}" class="avatars"></div>
             </div>
             <div ng-include="'new-form/buttons.html'"></div>
           </div>
