@@ -16,12 +16,27 @@ module.exports = function(config) {
     basePath: '../',
 
     preprocessors: {
-      'src/templates/**/*.html': ['ng-html2js']
+      'src/templates/**/*.html': ['ng-html2js'],
+      'src/js/**/!(widgets).js': ['babel'],
+      'test/mock/**/*.js': ['babel'],
+      'test/spec/**/*.js': ['babel']
     },
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'src/templates/',
       moduleName: 'Teem'
+    },
+
+    babelPreprocessor: {
+      options: {
+        presets: ['es2015']
+      },
+      filename: function (file) {
+        return file.originalPath.replace(/\.js$/, '.es5.js');
+      },
+      sourceFileName: function (file) {
+        return file.originalPath;
+      }
     },
 
     // testing framework to use (jasmine/mocha/qunit/...)
@@ -66,7 +81,8 @@ module.exports = function(config) {
     plugins: [
       'karma-phantomjs-launcher',
       'karma-jasmine',
-      'karma-ng-html2js-preprocessor'
+      'karma-ng-html2js-preprocessor',
+      'karma-babel-preprocessor'
     ],
 
     // Continuous Integration mode
