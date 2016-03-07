@@ -34,13 +34,13 @@
               </div>
               <h1 ng-if="! edittingTitle()">
                 {{project.title}}
-                <button class="btn btn-link project-edit-title-btn pull-right" ng-if="project.isContributor()" ng-click="showEditTitle()">
+                <button class="btn btn-link edit-title-btn pull-right" ng-if="project.isContributor()" ng-click="showEditTitle()">
                   <i class="fa fa-pencil-square-o" ></i>
                 </button>
               </h1>
-              <div class="input-group project-title-form" ng-if="edittingTitle()">
+              <div class="input-group title-form" ng-if="edittingTitle()">
                 <input type="text"
-                       class="form-control project-title-input"
+                       class="form-control title-input"
                        ng-model="project.title"
                        placeholder="{{ 'project.title.placeholder' | translate }}">
                 <div class="input-group-addon">

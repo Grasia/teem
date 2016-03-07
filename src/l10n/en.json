@@ -62,6 +62,9 @@
       },
       "title": "Community settings"
     },
+    "title": {
+      "placeholder": "Community name"
+    },
     "welcome": {
       "message": "Now you can foster your community with Teem",
       "next": {

@@ -7,7 +7,23 @@
       </div>
 
       <div class="community-info section">
-        <h1>{{community.name}}</h1>
+        <h1 ng-if="! edittingTitle()">
+          {{community.name}}
+          <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
+            <i class="fa fa-pencil-square-o" ></i>
+          </button>
+        </h1>
+        <div class="input-group title-form" ng-if="edittingTitle()">
+          <input type="text"
+                 class="form-control title-input"
+                 ng-model="community.name"
+                 placeholder="{{ 'community.title.placeholder' | translate }}">
+          <div class="input-group-addon">
+            <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
+              <i class="fa fa-check"></i>
+            </button>
+          </div>
+        </div>
 
         <div class="row" ng-if="!isNew()">
           <div class="icon-count community-participant-count col-xs-3">
@@ -15,7 +31,6 @@
             <span class="icon-count-number">{{ community.participants.length }}</span>
           </div>
           <div class="community-count community-like-count col-xs-3">
-            TODO: like to community
           </div>
           <div class="col-xs-6">
             <button class="btn btn-primary"

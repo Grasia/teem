@@ -62,6 +62,9 @@
       },
       "title": "Ajustes de la comunidad"
     },
+    "title": {
+      "placeholder": "Nombre de la comunidad"
+    },
     "welcome": {
       "message": "Ahora podéis impulsar la comunidad con Teem",
       "next": {

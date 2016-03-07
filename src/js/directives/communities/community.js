@@ -16,6 +16,8 @@ angular.module('Teem')
       function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout,
                 Loading, $route, NewForm) {
 
+        var edittingTitle = false;
+
         // get the count of new edits and chats for a list of projects and store them in the project properties
         // Refactoring...
         function getNewsCounts(projs) {
@@ -41,6 +43,18 @@ angular.module('Teem')
         });
 
         NewForm.initialize($scope, 'community');
+
+        $scope.edittingTitle = function() {
+          return edittingTitle || $scope.isNew();
+        };
+
+        $scope.showEditTitle = function() {
+          edittingTitle = true;
+        };
+
+        $scope.hideEditTitle = function() {
+          edittingTitle = false;
+        };
       }],
       templateUrl: 'communities/community.html'
     };
