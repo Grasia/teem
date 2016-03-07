@@ -60,18 +60,24 @@ angular.module('Teem')
     });
   }])
   .controller('ProjectCtrl', [
-  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm',
-  function (SessionSvc, url, $scope, $rootScope, $location, $route,
-  SharedState, ProjectsSvc, Loading, $window, NewForm) {
+  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc',
+  function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout,
+  SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc) {
 
     var edittingTitle = false;
 
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
-        then(function(proxy) {
-          $scope.project = proxy;
+        then(function(project) {
+          $scope.project = project;
           $scope.project.setTimestampAccess(currentTab());
+
+          CommunitiesSvc.allByIds(project.communities).then(function (communities) {
+            $timeout(function() {
+              $scope.communities = communities;
+            });
+          });
         });
     });
 

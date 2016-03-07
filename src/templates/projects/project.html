@@ -50,8 +50,7 @@
                 </div>
               </div>
               <div class="project-communities" ng-if="! isNew()">
-                <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="/communities/{{ urlId(c.id) }}">{{ c.name }}</a></span>
-                todo: project.loadedCommunities
+                <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="#/communities/{{ c.urlId }}">{{ c.name }}</a></span>
               </div>
               <button class="btn btn-primary"
                       ng-if="!project.isContributor()"

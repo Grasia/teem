@@ -237,6 +237,25 @@ angular.module('Teem')
       return communities.promise;
     };
 
+    function allByIds (ids) {
+      return $q(function(resolve, reject) {
+        SwellRT.query({
+          'root.type': 'community',
+          'root.id': { $in: ids }
+        }, function (response) {
+          var communities = [];
+
+          angular.forEach(response.result, function(c) {
+            communities.push(new CommunityReadOnly(c));
+          });
+
+          resolve(communities);
+        }, function (error) {
+          reject(error);
+        });
+      });
+    }
+
     // The communities the user is participating in
     var participating = function() {
       if (!SessionSvc.users.loggedIn()) {
@@ -276,10 +295,11 @@ angular.module('Teem')
     };
 
     return {
-      findByUrlId: findByUrlId,
-      find : find,
-      create: create,
-      all: all,
-      participating: participating
+      findByUrlId,
+      find,
+      create,
+      all,
+      allByIds,
+      participating
     };
   }]);
