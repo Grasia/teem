@@ -24,14 +24,15 @@
 .session-header
   background-color: $navbar-top-background-color
   color: $navbar-top-color
+  min-height: 50px
 .session-header-left
-  @extend .nav-left
-  padding-left: 10px
+  @extend .btn, .btn-navbar, .nav-left
   a
-    font-size: 1.8em
+    font-size: 3em
+    line-height: .9em
     color: $navbar-top-color
 .session-header-title
-  @extend .nav-title
+  @extend .navbar-brand, .navbar-brand-center, .nav-title,
 
 .session-form
   .tip, .error-tip
