@@ -5,25 +5,30 @@
 describe('Teem', function() {
 
   beforeAll(function() {
-    browser.get('index.html');
+    browser.get('/');
 
     browser.driver.executeScript('window.localStorage.clear();');
   });
 
   describe('1% core user', function() {
     beforeAll(function() {
-      browser.get('index.html');
+      browser.get('/#/communities');
     });
 
     it('should create a project and share it', function() {
       // If it is not loaded in 10 seconds, we have a problem in mobiles
       // Please do not increase this
-      var timeout = 10000;
-      // When we change SwellRT version, there is more delay until the
-      // server starts
-      var swellrtTimeout = 100000;
+      var timeout = 10000,
+          community = {
+            name: 'Testing Community',
+            description: 'Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an.'
+          },
+          project = {
+            title: 'Testing Project',
+            pad: 'Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam.'
+          };
 
-      var newCommunityButton = by.css('.community-new-btn');
+      var newCommunityButton = by.css('.plus');
 
       browser.wait(function() {
         return element(newCommunityButton).isDisplayed();
@@ -50,45 +55,52 @@ describe('Teem', function() {
         );
       }, timeout);
 
-      var communitySearchInput = by.css('.community-search input');
+      var communityNameInput = by.css('input.title-input');
 
       browser.wait(function() {
-        return browser.isElementPresent(communitySearchInput);
-      }, swellrtTimeout);
-
-      element(communitySearchInput).sendKeys('Testing Community');
-
-      var createCommunityButton = by.css('.community-create-btn');
-
-      element(createCommunityButton).click();
-
-      var projectList = by.css('.projects');
-
-      browser.wait(function() {
-        return browser.isElementPresent(projectList);
+        return browser.isElementPresent(communityNameInput);
       }, timeout);
 
-      // Wait until pear has loaded the projects
-      browser.wait(element(projectList).evaluate('projects.create'), timeout);
+      element(communityNameInput).sendKeys(community.name);
 
-      var newProjectButton = by.css('.btn-new-project');
+      element(by.css('textarea.description-input')).sendKeys(community.description);
 
-      browser.wait(function() {
-        return browser.isElementPresent(newProjectButton);
-      }, timeout);
+      element(by.css('.new-form-confirm-btn')).click();
 
-      element(newProjectButton).click();
-
-      var editTitle = by.css('.project-title input');
+      var communityNameEl = by.css('.community-info h1');
 
       browser.wait(function() {
-        return browser.isElementPresent(editTitle);
+        return browser.isElementPresent(communityNameEl);
       }, timeout);
 
-      element(editTitle).sendKeys('Testing');
+      expect(element(communityNameEl).getText()).toBe(community.name);
+
+      expect(element(by.css('.community-description')).getText()).toBe(community.description);
+
+      element(by.css('.plus')).click();
+
+      var projectTitleInput = by.css('input.title-input');
+
+      browser.wait(function() {
+        return browser.isElementPresent(projectTitleInput);
+      }, timeout);
+
+      element(projectTitleInput).sendKeys(project.title);
 
       element(by.css('.swellrt-editor')).click();
-      element(by.css('.wave-editor-on')).sendKeys('Grow your community with Teem');
+      element(by.css('.wave-editor-on')).sendKeys(project.pad);
+
+      element(by.css('.new-form-confirm-btn')).click();
+
+      var projectTitleEl = by.css('.project-header h1');
+
+      browser.wait(function() {
+        return browser.isElementPresent(projectTitleEl);
+      }, timeout);
+
+      expect(element(projectTitleEl).getText()).toBe(project.title);
+
+      expect(element(by.css('#pad ul:first-child')).getText()).toBe(project.pad);
 
       element(by.css('a.nav-chat')).click();
 

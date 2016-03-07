@@ -26,8 +26,7 @@ describe('SessionCtrl', function() {
       swellRT,
       nick = 'testingnick',
       password = 'testingpassword',
-      email = 'testing@local.net',
-      token = 'abcde';
+      email = 'testing@local.net';
 
 
   // Initialize the controller and a mock scope
