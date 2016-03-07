@@ -159,7 +159,6 @@ angular.module('Teem')
 
         $timeout(function(){
           p.type = 'community';
-          p.name = data.name;
           p.id = id;
           p.participants = [SessionSvc.users.current()];
           p.projects = [];
