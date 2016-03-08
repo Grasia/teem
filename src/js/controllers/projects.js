@@ -11,7 +11,11 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:comId/projects', {
+      .when('/communities/:communityId/projects', {
+        templateUrl: 'projects/index.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/home/projects', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
@@ -25,10 +29,17 @@ angular.module('Teem')
   'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
   function (SessionSvc, url, $scope, $location, $route, time,
   CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
+    var communityId = $route.current.params.communityId;
 
-    $scope.urlId= url.urlId;
+    $scope.translationData = {};
 
-    var comUrlId = $route.current.params.comId;
+    if (communityId) {
+      $scope.context = 'community';
+    } else if ($location.path() === '/home/projects') {
+      $scope.context = 'home';
+    } else {
+      $scope.context = 'public';
+    }
 
     function getCommunities(projects) {
       angular.forEach(projects, function(p) {
@@ -47,26 +58,43 @@ angular.module('Teem')
     }
 
     SessionSvc.onLoad(function(){
-      if ($route.current.params.comId) {
-        Loading.show(CommunitiesSvc.findByUrlId(comUrlId)).
-          then(function(community){
-            $scope.community = community;
+      switch ($scope.context) {
+        case 'community':
+          Loading.show(CommunitiesSvc.findByUrlId($route.current.params.communityId)).
+            then(function(community){
+              $scope.community = community;
 
-            Loading.show(community.myAndPublicProjects()).
-              then(function (projects){
+              $scope.translationData.community = community.name;
+
+              Loading.show(community.myAndPublicProjects()).
+                then(function (projects){
+
+                  $scope.projects = projects;
+
+                });
+            });
+
+          break;
+        case 'home':
+          SessionSvc.loginRequired($scope, function() {
+            Loading.show(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
+              then(function(projects) {
+                getCommunities(projects);
 
                 $scope.projects = projects;
+
+                $scope.translationData.count = projects.length;
               });
           });
-      } else {
-        if (SessionSvc.users.loggedIn()) {
-          Loading.show(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
+
+          break;
+        default:
+          Loading.show(ProjectsSvc.all({ shareMode: 'public' })).
             then(function(projects) {
               getCommunities(projects);
 
               $scope.projects = projects;
             });
-        }
       }
     });
   }]);

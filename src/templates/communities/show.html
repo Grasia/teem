@@ -2,4 +2,20 @@
   <div class="overflow-ellipsis" translate>{{community.name}}</div>
 </div>
 
+<div ui-content-for="nav-right">
+  <div class="btn-group pull-right nav-right-menu">
+    <a ui-turn-on="dropdownProjectMenu" class="btn">
+      <i class="fa fa-ellipsis-v"></i>
+    </a>
+    <ul ui-state="dropdownProjectMenu" class="dropdown-menu ng-hide"
+        ui-outer-click="Ui.turnOff('dropdownProjectMenu')"
+        ui-outer-click-if="Ui.active('dropdownProjectMenu')"
+        role="menu" ui-show="dropdownProjectMenu"
+        ui-turn-off="dropdownProjectMenu">
+
+      <li><a participate participate-copy-on="community.menu.leave" participate-copy-off="community.menu.join" participate-model="community"></a></li>
+    </ul>
+  </div>
+</div>
+
 <community></community>

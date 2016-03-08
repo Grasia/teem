@@ -107,6 +107,9 @@
     "communities": {
       "title": "Communities"
     },
+    "homeProjects": {
+      "title": "My Teems"
+    },
     "projects": {
       "title": "Teems"
     },
@@ -186,6 +189,18 @@
       "title": "Edit project"
     },
     "index": {
+      "community": {
+        "tip": "These are the {{community}} work groups",
+        "title": "Teems"
+      },
+      "home": {
+        "tip": "You are working with these {{count}} work groups",
+        "title": "My teems"
+      },
+      "public": {
+        "tip": "Communities are busy with these work groups",
+        "title": "Teems"
+      },
       "title": "Teems"
     },
     "info": {

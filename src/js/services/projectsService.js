@@ -351,6 +351,10 @@ angular.module('Teem')
         query._aggregate[0].$match['root.localId'] = options.localId;
       }
 
+      if (options.shareMode) {
+        query._aggregate[0].$match['root.shareMode'] = 'public';
+      }
+
       if (options.publicAndContributor) {
         query._aggregate[0].$match.$or = [
           { 'root.contributors': options.publicAndContributor },

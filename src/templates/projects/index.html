@@ -1,28 +1,14 @@
-<div ui-content-for="nav-right">
-  <div class="btn-group pull-right nav-right-menu">
-    <a ui-turn-on="dropdownProjectMenu" class="btn">
-      <i class="fa fa-ellipsis-v"></i>
-    </a>
-    <ul ui-state="dropdownProjectMenu" class="dropdown-menu ng-hide"
-        ui-outer-click="Ui.turnOff('dropdownProjectMenu')"
-        ui-outer-click-if="Ui.active('dropdownProjectMenu')"
-        role="menu" ui-show="dropdownProjectMenu"
-        ui-turn-off="dropdownProjectMenu">
-
-      <li ng-if="community.isParticipant()"><a ui-turn-on="communitySettings"><span translate>community.menu.settings</span></a></li>
-      <li><a participate participate-copy-on="community.menu.leave" participate-copy-off="community.menu.join" participate-model="community"></a></li>
-    </ul>
-  </div>
-</div>
-
 <div ui-content-for="nav-title">
-  <div class="overflow-ellipsis" ng-if="community">{{ community.name }}</div>
-  <div ng-if="! community" translate>project.index.title</div>
+  <span translate>project.index.title</span>
 </div>
 
-<div class="section projects">
-  <div class="scrollable">
-    <div class="scrollable-content">
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section projects">
+      <h1>{{'project.index.' + context + '.title' | translate}}</h1>
+      <div class="project-index-tip">
+        {{'project.index.' + context + '.tip' | translate: translationData}}
+      </div>
       <projects project-list="projects"></projects>
     </div>
   </div>
@@ -35,101 +21,3 @@
     <span translate>project.welcome.tip</span>
   </div>
 </div>
-
-<div class="community-welcome" ng-if="community && emptyProjects()">
-  <div class="jumbotron">
-    <h1 translate>community.welcome.title</h1>
-    <p translate>
-      community.welcome.message
-    </p>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2 translate>community.welcome.next.title</h2>
-      </div>
-
-      <ul class="list-group">
-        <li class="list-group-item">
-          <div translate>
-            community.welcome.next.description.tip
-          </div>
-
-          <div>
-            <button class="btn btn-primary pull-right"
-            ui-turn-on="communitySettings"
-            translate>
-            community.welcome.next.description.button
-          </button>
-        </div>
-        <div class="clearfix">
-          <!-- Fix floating button -->
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div translate>
-          community.welcome.next.workspace.tip
-        </div>
-
-        <div>
-          <button class="btn btn-primary btn-new-project pull-right"
-          ng-click="new_()"
-          ng-disabled="created"
-          analytics-on="click"
-          analytics-event="Create project"
-          translate>
-          community.welcome.next.workspace.button
-        </button>
-      </div>
-      <div class="clearfix">
-        <!-- Fix floating button -->
-      </div>
-    </li>
-  </ul>
-</div>
-
-<div ui-content-for="modals" ng-if="community">
-  <div class="modal modal-community-settings" ui-if="communitySettings" ui-state="communitySettings">
-    <div class="modal-backdrop in" ui-turn-off="communitySettings"></div>
-
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close"
-                  ui-turn-off="communitySettings">&times;</button>
-            <h4 class="modal-title" translate translate-values="{ name: '{{ community.name }}' }">community.settings.title</h4>
-        </div>
-        <div class="modal-body">
-          <form class="community-settings">
-            <div connection-status></div>
-
-            <div class="form-group">
-              <label for="communityName" translate>community.settings.name.label</label>
-              <input type="text"
-                     class="form-control"
-                     id="communityName"
-                     ng-model="community.name"
-                     saving-status
-                     placeholder="{{ 'community.settings.name.placeholder' | translate }}">
-            </div>
-            <div class="form-group">
-              <label for="communityDescription" translate>community.settings.description.label</label>
-              <textarea class="form-control"
-                        msd-elastic="\n"
-                        ng-model="community.description"
-                        saving-status
-                        placeholder="{{ 'community.settings.description.placeholder' | translate}}"></textarea>
-            </div>
-            <div class="form-group">
-              <button ui-turn-off="communitySettings"
-                      class="btn btn-default pull-right"
-                      translate>
-                community.settings.close
-              </button>
-            </div>
-            <div class="clearfix">
-              <!-- Fix floating close button -->
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
