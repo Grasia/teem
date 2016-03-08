@@ -36,7 +36,7 @@ angular.module('Teem')
       }
 
       static isCurrent (id) {
-        if (! this.loggedIn) {
+        if (! this.loggedIn()) {
           return false;
         }
 
