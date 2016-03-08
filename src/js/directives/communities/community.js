@@ -18,16 +18,6 @@ angular.module('Teem')
 
         var edittingTitle = false;
 
-        // get the count of new edits and chats for a list of projects and store them in the project properties
-        // Refactoring...
-        function getNewsCounts(projs) {
-          angular.forEach(projs, function(proj) {
-            if (proj.contributors.indexOf(SessionSvc.users.current()) > -1) {
-              proj.isContributor = true;
-            }
-          });
-        }
-
         SessionSvc.onLoad(function(){
           Loading.show(CommunitiesSvc.findByUrlId($route.current.params.id)).
             then(function(community){
@@ -35,7 +25,6 @@ angular.module('Teem')
 
               Loading.show(community.myAndPublicProjects()).
               then(function (projects){
-                getNewsCounts(projects);
 
                 $scope.projects = projects;
               });
