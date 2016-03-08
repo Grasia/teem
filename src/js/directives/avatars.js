@@ -55,7 +55,6 @@ angular.module('Teem')
           if (res.error) {
             return;
           }
-          console.log(res.data);
           angular.forEach(res.data, function(user) {
             createAppendAvatar(user.id, user.avatarUrl);
           });
