@@ -88,6 +88,10 @@ var config = {
     port: '9001'
   },
 
+  serverTestKarma: {
+    port: '8090'
+  },
+
   weinre: false,
 
   piwik: false,

@@ -63,7 +63,7 @@ module.exports = function(config) {
     },
 
     // web server port
-    port: 8080,
+    port: gulpConfig.serverTestKarma.port,
 
     // Start these browsers, currently available:
     // - Chrome
