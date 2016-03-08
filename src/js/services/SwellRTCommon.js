@@ -4,7 +4,7 @@ angular.module('Teem')
   .factory('SwellRTCommon', [function(){
 
     var makeModelPublic = function(model){
-      model.addParticipant('@' + SwellRTConfig.swellrtServerDomain, null,
+      model.addParticipant('@' + __session.domain, null,
         function(err) {
           console.log('ERROR: ' + err);
         }
