@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('ProjectsSvc', [
-  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon',
-  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon){
+  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User){
 
     // class that expose only read methods of the project object
     class ProjectReadOnly {
@@ -137,24 +137,17 @@ angular.module('Teem')
         }
       }
 
-      isSupporter (user) {
-        if (!user){
-          if (! SessionSvc.users.loggedIn()) {
-            return false;
-          }
-
-          user = SessionSvc.users.current();
+      isSupporter (user = User.current()) {
+        if (!user) {
+          return false;
         }
+
         return this.supporters.indexOf(user) > -1;
       }
 
-      isContributor (user) {
-        if (! user){
-          if (! SessionSvc.users.loggedIn()) {
-            return false;
-          }
-
-          user = SessionSvc.users.current();
+      isContributor (user = User.current()) {
+        if (! user) {
+          return false;
         }
         return this.contributors.indexOf(user) > -1;
       }
