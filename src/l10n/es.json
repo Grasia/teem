@@ -362,7 +362,7 @@
       "passwordRepeat": "Repite nueva contraseña",
       "success": "¡Contraseña cambiada con éxito!",
       "tip": "Introduce una nueva contraseña para tu cuenta.",
-      "tip_title": "Ya casi está"
+      "tip_title": "Ya casi está",
       "title": "Recuperar contraseña"
     }
   },
