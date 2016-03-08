@@ -42,7 +42,6 @@ angular.module('Teem')
     $scope.goToForm = function(sessionForm, form) {
       sessionForm.$setUntouched();
       $scope.form.current = form;
-      document.querySelector('form[name='+sessionForm.$name+'] input').focus();
     };
 
     $scope.submit = function() {

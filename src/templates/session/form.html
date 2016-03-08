@@ -18,7 +18,7 @@
         <div ng-if="isFieldVisible('nick')"  class="form-group" ng-class="{ 'has-error': sessionForm.nick.$touched && sessionForm.nick.$invalid }">
           <label class="control-label sr-only" for="nick">{{ 'session.'+form.current+'.nick' | translate }}</label>
           <input type="text" class="form-control" id="nick" name="nick" ng-attr-placeholder="{{ 'session.'+form.current+'.nick' | translate }}"
-          autofocus ng-model="form.values.nick" ng-required="validation.required()" ng-pattern="validation.nickPattern()" />
+          ng-model="form.values.nick" ng-required="validation.required()" ng-pattern="validation.nickPattern()" />
           <span class="field-error" ng-messages="sessionForm.nick.$error" ng-if="sessionForm.nick.$touched">
             <span ng-message="required" translate>session.register.error.nick.required</span>
             <span ng-message="pattern" translate>session.register.error.nick.pattern</span>
