@@ -52,7 +52,7 @@ a, a:hover, a:focus, .btn-link, .btn-link:hover, .btn-link:focus
     margin: auto
 
 .btn-primary
-  &, &.active, &:hover
+  &, &.active, &:hover, &[disabled], &[disabled]:hover
     background-color: $button-primary-background-color
     border-color: $button-primary-background-color
 
@@ -68,6 +68,7 @@ a, a:hover, a:focus, .btn-link, .btn-link:hover, .btn-link:focus
 .form-control, .input-group-addon
   border: 0
   outline: 0
+  color: $form-control-color
   background: transparent
   border-bottom: 1px solid $placeholder-color
   -webkit-box-shadow: none
@@ -83,6 +84,10 @@ input:focus + .input-group-addon
   -webkit-box-shadow: none
   box-shadow: none
 
+.ng-dirty input, input, textarea
+  &.ng-invalid
+    border-color: inherit
+
 .modal-overlay
   background: white
 
@@ -92,7 +97,7 @@ h5
 
 
 .has-navbar-bottom .app-body
-  padding-bottom: 36px;
+  padding-bottom: 36px
 
 img
   max-width: auto

@@ -275,6 +275,8 @@
       "error": {
         "wrong_email_or_password": "Perdona, nick o contraseña incorrecta"
       },
+      "link": "Entra aquí",
+      "link_prev": "¿Ya estás en Teem?",
       "nick": "Nick",
       "should_be_logged": {
         "cancel": "Cancelar",
@@ -283,7 +285,7 @@
       },
       "success": "¡Bienvenida/o {{nick}}!",
       "password": "Contraseña",
-      "tip": "Introduce tu nick y contraseña"
+      "title": "Entrar"
     },
     "migration": {
       "button": "Hecho!",
@@ -294,10 +296,12 @@
       "password": "Contraseña",
       "passwordRepeat": "Repite la contraseña",
       "success": "Enhorabuena! tu cuenta ya está protegida por contraseña.",
-      "tip": "Hola <strong>{{nick}}</strong>, estamos protegiendo las cuentas de usuario en Teem. Por favor, elige tu contraseña:"
+      "tip": "Estamos protegiendo las cuentas de usuario en Teem. Por favor, elige tu contraseña:",
+      "tip_title": "Hola <strong>{{nick}}</strong>!",
+      "title": "Escoje una contraseña"
     },
     "register": {
-      "button": "Registarse",
+      "button": "Entrar",
       "email": "E-mail",
       "error": {
         "email": {
@@ -318,13 +322,15 @@
           "required": "Te olvidaste de repetir la contraseña"
         }
       },
+      "link": "Registrate aquí",
+      "link_prev": "¿No estás todavía en Teem?",
       "nick": "Nick",
       "password": "Contraseña",
       "passwordRepeat": "Repite la contraseña",
-      "tip": "Crear una cuenta"
+      "title": "Regístrate"
     },
     "forgottenPassword": {
-      "button": "Recuperar contraseña",
+      "button": "Enviar",
       "error": {
         "email": {
           "email": "Introduce una cuenta de correo correcta",
@@ -333,13 +339,16 @@
         "unknown": "Ups! algo ha salido mal enviando el correo de recuperación de contraseña."
       },
       "email": "E-mail",
+      "link": "¿Olvidaste tu contraseña?",
       "success" : "Si esta es la dirección que introdujiste al registrarte, recibirás un correo para que puedas recuperar la contraseña.",
-      "tip": "Te enviaremos un correo para recuperar la contraseña."
+      "tip": "Recibirás un email con instrucciones sobre cómo restablecer tu contraseña.",
+      "tip_title": "¡Que no cunda el pánico!",
+      "title": "Recuperar contraseña"
     },
     "recoverPassword": {
-      "button": "Recuperar contraseña",
+      "button": "Guardar",
       "error": {
-        "authorization": "No pudimos reestablecer tu contraseña. Puede que el enlace haya caducado o que ya hayas establecido la contraseña con el.",
+        "authorization": "No pudimos restablecer tu contraseña. Puede que el enlace haya caducado o que ya hayas establecido la contraseña con el.",
         "password": {
           "pattern": "La contraseña tiene que tener al menos 8 carácteres",
           "required": "Te olvidaste de poner una contraseña"
@@ -352,7 +361,9 @@
       "password": "Nueva contraseña",
       "passwordRepeat": "Repite nueva contraseña",
       "success": "¡Contraseña cambiada con éxito!",
-      "tip": "Introduce una nueva contraseña para tu cuenta."
+      "tip": "Introduce una nueva contraseña para tu cuenta.",
+      "tip_title": "Ya casi está"
+      "title": "Recuperar contraseña"
     }
   },
   "upgrading": {

@@ -271,10 +271,12 @@
       "success": "Your email address has been saved"
     },
     "login": {
-      "button": "Login",
+      "button": "Enter",
       "error": {
         "wrong_email_or_password": "Wrong nick or password. Sorry!"
       },
+      "link": "Login here",
+      "link_prev": "Are you already in Teem?",
       "nick": "Nickname",
       "should_be_logged": {
         "cancel": "Cancel",
@@ -283,7 +285,7 @@
       },
       "success": "Welcome {{nick}}!",
       "password": "Password",
-      "tip": "Enter your nickname and password"
+      "title": "Log in"
     },
     "migration": {
       "button": "Done!",
@@ -294,10 +296,12 @@
       "password": "Password",
       "passwordRepeat": "Confirm password",
       "success": "Congratulations! your account is now protected by your password.",
-      "tip": "Hi <strong>{{nick}}</strong>! We are protecting user accounts in Teem. Please, set your password:"
+      "tip": "We are protecting user accounts in Teem. Please, set your password.",
+      "tip_title": "Hi <strong>{{nick}}</strong>!",
+      "title": "Enter a password"
     },
     "register": {
-      "button": "Register",
+      "button": "Enter",
       "email": "E-mail",
       "error": {
         "email": {
@@ -318,13 +322,15 @@
           "required": "You forgot to repeat the password"
         }
       },
+      "link": "Register here",
+      "link_prev": "Are not you in Teem yet?",
       "nick": "Nick",
       "password": "Password",
       "passwordRepeat": "Confirm password",
-      "tip": "Create an account"
+      "title": "Register"
     },
     "forgottenPassword": {
-      "button": "Recover password",
+      "button": "Send",
       "error": {
         "email": {
           "email": "You did not enter your email address correctly",
@@ -333,11 +339,14 @@
         "unknown": "Ups! something went wrong while sending you the password recovery email"
       },
       "email": "E-mail",
+      "link": "Did you forget your password?",
       "success": "If this is the address you introduced at sign up, you will receive an email to recover your password",
-      "tip": "We will send you an email to recover the password."
+      "tip": "You will receive an email with instructions to recover your password.",
+      "tip_title": "Do not panic!",
+      "title": "Recover password"
     },
     "recoverPassword": {
-      "button": "Recover password",
+      "button": "Save",
       "error": {
         "authorization": "We could not reestablish your password. Maybe the link has expired or you have already established your password with it.",
         "password": {
@@ -352,7 +361,9 @@
       "password": "New password",
       "passwordRepeat": "Repeat new password",
       "success": "Password changed successfully!",
-      "tip": "Enter a new password for your account."
+      "tip": "Enter a new password for your account.",
+      "tip_title": "We are almost there",
+      "title": "Recover password"
     }
   },
   "upgrading": {
