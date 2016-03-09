@@ -32,6 +32,20 @@
     object-fit: cover
     max-height: 300px
 
+.crop-box
+  border: 5px dashed $grey
+  width: 100%
+  height: 350px
+  overflow: hidden
+  width: 100%
+  height: 350px
+
+.drop-box
+  @extend .crop-box
+  text-align: center
+  padding: 50px 10px
+  &.dragover
+    border-color: $purple
 
 // ng-img-crop support
 img-crop
@@ -48,9 +62,3 @@ img-crop
     outline: none
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
     /* mobile webkit */
-
-.cropArea
-  background: #E4E4E4
-  overflow: hidden
-  width: 500px
-  height: 350px

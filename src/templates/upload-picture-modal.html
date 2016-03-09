@@ -6,17 +6,17 @@
                  ui-turn-off="uploadPictureSharedState">&times;</button>
          <h4 class="modal-title" translate>picture.title</h4>
        </div>
-       <div class="modal-body">
+       <div class="modal-body row">
 
-         <div ng-hide="pictureFile">
+         <div ng-hide="pictureFile" class="col-sm-6 col-sm-offset-3">
            <div ngf-drop ngf-select ng-model="pictureFile" class="drop-box"
            ngf-drag-over-class="'dragover'" accept="image/*"
            ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
          </div>
 
-         <div ng-show="pictureFile">
+         <div ng-show="pictureFile" class="col-sm-6 col-sm-offset-3">
            <p translate>picture.crop</p>
-           <div class="cropArea">
+           <div class="crop-box">
              <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"></img-crop>
            </div>
          </div>

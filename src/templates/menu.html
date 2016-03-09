@@ -23,8 +23,8 @@
       </div>
     </div>
 
-    <div class="menu-session-logged-in" ng-if="loggedIn()">
-      <div class="menu-session-img">
+    <div class="menu-session-logged-in" ng-if="loggedIn()" ng-controller="ProfileCtrl">
+      <div class="menu-session-img" ui-set="{uploadPictureSharedState: updateAvatar}" ui-state="uploadPictureSharedState">
         <div avatars="user.id" class="avatars"></div>
       </div>
       <div class="menu-session-body">
