@@ -31,8 +31,6 @@ angular.module('Teem')
 
     $scope.logout = function () {
       SessionSvc.stopSession();
-
-      SessionSvc.users.on('login', userData);
     };
 
     // We probably need to refactor this
