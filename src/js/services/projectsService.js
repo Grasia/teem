@@ -146,7 +146,6 @@ angular.module('Teem')
       }
 
       isContributor (user = User.current()) {
-        console.dir(user);
         if (! user) {
           return false;
         }
