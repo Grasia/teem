@@ -1,6 +1,19 @@
-h5
-  .fa
-    color: $grey
+i
+  color: $icon-color
+.btn-primary
+  i
+    color: $button-primary-color
+
+.icon-count
+  i
+    font-size: 1.42em
+    line-height: 1.42em
+    vertical-align: middle
+  .icon-count-number
+    color: $icon-count-number-color
+    font-size: .86em
+    margin-left: .25em
+    vertical-align: middle
 
 .i-loading
   @extend .fa-spinner
@@ -11,9 +24,13 @@ h5
   @extend .fa-5x
 
 .i-need
-  @extend .fa-check-circle
+  @extend .fa-check-square-o
 
-.i-community
+.i-message
+  @extend .fa-comment
+
+.i-community,
+.i-participants
   @extend .fa-group
 
 .i-project
@@ -27,8 +44,14 @@ h5
   @extend .fa-user-times
 
 .i-support
-  @extend .fa-arrow-circle-up
+  @extend .fa-heart
 .i-support-new
-  @extend .fa-arrow-circle-up
+  @extend .fa-heart-o
 .i-support-remove
-  @extend .fa-dot-circle-o
+  @extend .fa-heart
+
+.i-share
+  @extend .fa-share-square-o
+
+.i-send
+  @extend .fa-send

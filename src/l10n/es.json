@@ -1,6 +1,7 @@
 {
   "chat": {
-    "input": "Mensaje",
+    "button": "Enviar",
+    "input": "Escribe aquí tu mensaje",
     "nav": {
       "title": "Chat"
     },
@@ -15,6 +16,9 @@
       },
       "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!",
       "placeholder": "Nombre de la comunidad"
+    },
+    "description": {
+      "placeholder": "¿A qué os dedicáis? Una buena descripción ayuda a que otras personas reconozcan vuestro trabajo y se os unan. Por ejemplo: \"Wikipedia es la enciclopedia de contenido libre que todos pueden editar\""
     },
     "edit": {
       "button": "Editar",
@@ -33,13 +37,17 @@
       "button": "...o crea una nueva"
     },
     "participants": {
-      "number": "{{count}} participantes"
+      "number": "{{count}} participantes",
+      "title": "Participantes <span class=\"participant-count\">({{count}})</span>"
     },
     "participate": {
-      "button": "Unirse a esta comunidad"
+      "button": "Unirme a esta comunidad",
+      "message": "Formas parte de esta comunidad"
     },
     "project": {
-      "count": "{{count}} espacios de trabajo"
+      "count": "{{count}} teems",
+      "title": "Teems",
+      "working_group_count": "{{count}} espacios de trabajo"
     },
     "search": {
       "placeholder": "Encuentra tu comunidad...",
@@ -56,6 +64,9 @@
         "placeholder": "El nombre de tu comunidad..."
       },
       "title": "Ajustes de la comunidad"
+    },
+    "title": {
+      "placeholder": "Nombre de la comunidad"
     },
     "welcome": {
       "message": "Ahora podéis impulsar la comunidad con Teem",
@@ -92,34 +103,30 @@
   "loading": {
     "title": "Cargando..."
   },
-  "login": {
-    "button": "Entrar",
-    "error": "Por favor, escoge un nick formado sólo por letras, números y puntos",
-    "name": "Nick",
-    "should_be_logged": {
-      "cancel": "Cancelar",
-      "loggin_now": "Iniciar sesión",
-      "message": "Por favor, inicia sesión para realizar esta acción."
-    },
-    "tip": "Introduce tu nick"
-  },
   "menu": {
     "communities": {
-      "create": "Crea una comunidad",
-      "find": "Explora las comunidades",
       "title": "Comunidades"
     },
-    "logout": "Cerrar sesión",
-    "projects": {
-      "title": "Espacios de trabajo"
+    "homeProjects": {
+      "title": "Mis Teems"
     },
-    "support": "Ayuda",
+    "projects": {
+      "title": "Teems"
+    },
+    "session": {
+      "action": "¡Participa!",
+      "communities": "{{count}} comunidades",
+      "guest": "visitante",
+      "logout": "Salir",
+      "projects": "{{count}} teems",
+      "tip": "Regístrate para crear tus comunidades y teems"
+    },
     "title": "Teem"
   },
   "need": {
     "by": "Añadida {{time}} por {{author}}",
     "comment": {
-      "input": "Escribe tu comentario aquí...",
+      "input": "¿En qué puedes echar una mano?",
       "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
     },
     "index": {
@@ -133,7 +140,14 @@
     },
     "new": {
       "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el espacio de trabajo",
-      "placeholder": "Nueva necesidad"
+      "placeholder": "Añade una nueva necesidad"
+    },
+    "tip": "Esto es lo que necesitamos para llevar a cabo el proyecto"
+  },
+  "newForm": {
+    "btn": {
+      "cancel": "Cancelar",
+      "confirm": "Guardar"
     }
   },
   "pad": {
@@ -143,13 +157,26 @@
     },
     "placeholder": "Quieres trabajar en..."
   },
+  "picture": {
+    "crop": "Para recortar la imagen, arrastra la zona iluminada, i después, haz clic en guardar",
+    "delete": "Elimina la foto actual",
+    "upload": "Arrastra una imagen aquí, o haz clic para subir una",
+    "save": "Guardar",
+    "title": "Subir una foto"
+  },
   "profile": {
     "title": "Tu perfil",
     "avatar": {
       "avatar": "Avatar",
       "change": "Cambiar imagen...",
-      "delete": "Eliminar imagen",
-      "save": "Guardar"
+      "remove": {
+        "error": "No hemos podido eliminar tu avatar",
+        "success": "Tu avatar ha sido eliminado satisfactoriamente"
+      },
+      "upload": {
+        "error": "No hemos podido subir el avatar",
+        "success": "El avatar ha sido subido satisfactoriamente"
+      }
     }
   },
   "project": {
@@ -162,7 +189,19 @@
       "title": "Editar proyecto"
     },
     "index": {
-      "title": "Espacios de trabajo"
+      "community": {
+        "tip": "Estos son los grupos de trabajo de {{community}}",
+        "title": "Teems"
+      },
+      "home": {
+        "tip": "Estás trabajando en estos {{count}} grupos",
+        "title": "Mis teems"
+      },
+      "public": {
+        "tip": "Las comunidades están trabajando en estos grupos",
+        "title": "Teems"
+      },
+      "title": "Teems"
     },
     "info": {
       "nav": {
@@ -180,6 +219,12 @@
       "tip": "(Tap para editar)",
       "title": "Notas"
     },
+    "participate": {
+      "btn": {
+        "do": "Unirme a este Teem",
+        "undo": "Abandonar"
+      }
+    },
     "project_description": "Descripción",
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
@@ -190,12 +235,8 @@
       "needs": {
         "title": "Necesidades"
       },
-      "participate": {
-        "btn": {
-          "do": "Participar",
-          "undo": "Abandonar"
-        },
-        "title": "{{count}} participantes"
+      "participants": {
+        "title":  "Participantes ({{count}})"
       },
       "support": {
         "btn": {
@@ -223,8 +264,11 @@
       },
       "title": "Compartir espacio de trabajo '{{title}}'"
     },
+    "show": {
+      "title": "Teems"
+    },
     "title": {
-      "placeholder": "<Escribir nombre del espacio de trabajo>",
+      "placeholder": "Título",
       "reminder": {
         "body_one": "¡El espacio de trabajo no tiene nombre!",
         "body_two": "¿Deseas descartar el espacio de trabajo?",
@@ -234,6 +278,107 @@
     },
     "welcome": {
       "tip": "¿No participas en nada todavía? <a href=\"#/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"#/communities/new\">crea tu comunidad</a>"
+    }
+  },
+  "session": {
+    "set_email": {
+      "error": "Ups, algo ha salido mal guardando tu email",
+      "success": "Tu email ha sido guardado"
+    },
+    "login": {
+      "button": "Entrar",
+      "error": {
+        "wrong_email_or_password": "Perdona, nick o contraseña incorrecta"
+      },
+      "link": "Entra aquí",
+      "link_prev": "¿Ya estás en Teem?",
+      "nick": "Nick",
+      "should_be_logged": {
+        "cancel": "Cancelar",
+        "loggin_now": "Iniciar sesión",
+        "message": "Por favor, inicia sesión para realizar esta acción."
+      },
+      "success": "¡Bienvenida/o {{nick}}!",
+      "password": "Contraseña",
+      "title": "Entrar"
+    },
+    "migration": {
+      "button": "Hecho!",
+      "email": "E-mail para recuperar tu contraseña, ¡siempre las olvidamos!",
+      "error": {
+        "unknown": "Ups! algo ha salido mal al reestrablecer tu contraseña."
+      },
+      "password": "Contraseña",
+      "passwordRepeat": "Repite la contraseña",
+      "success": "Enhorabuena! tu cuenta ya está protegida por contraseña.",
+      "tip": "Estamos protegiendo las cuentas de usuario en Teem. Por favor, elige tu contraseña:",
+      "tip_title": "Hola <strong>{{nick}}</strong>!",
+      "title": "Escoje una contraseña"
+    },
+    "register": {
+      "button": "Entrar",
+      "email": "E-mail",
+      "error": {
+        "email": {
+          "email": "Introduce una cuenta de correo correcta",
+          "required": "Olvidaste poner tu e-mail"
+        },
+        "existing_user": "El nombre de usuario ya está en uso, por favor, elige otro.",
+        "nick": {
+          "pattern": "Por favor, escoge un nick formado sólo por letras, números y puntos",
+          "required": "Te olvidaste de meter el nick"
+        },
+        "password": {
+          "pattern": "La contraseña tiene que tener al menos 8 carácteres",
+          "required": "Te olvidaste de poner una contraseña"
+        },
+        "passwordRepeat": {
+          "match": "Las contraseñas tienen que coincidir",
+          "required": "Te olvidaste de repetir la contraseña"
+        }
+      },
+      "link": "Registrate aquí",
+      "link_prev": "¿No estás todavía en Teem?",
+      "nick": "Nick",
+      "password": "Contraseña",
+      "passwordRepeat": "Repite la contraseña",
+      "title": "Regístrate"
+    },
+    "forgottenPassword": {
+      "button": "Enviar",
+      "error": {
+        "email": {
+          "email": "Introduce una cuenta de correo correcta",
+          "required": "Olvidaste poner tu e-mail"
+        },
+        "unknown": "Ups! algo ha salido mal enviando el correo de recuperación de contraseña."
+      },
+      "email": "E-mail",
+      "link": "¿Olvidaste tu contraseña?",
+      "success" : "Si esta es la dirección que introdujiste al registrarte, recibirás un correo para que puedas recuperar la contraseña.",
+      "tip": "Recibirás un email con instrucciones sobre cómo restablecer tu contraseña.",
+      "tip_title": "¡Que no cunda el pánico!",
+      "title": "Recuperar contraseña"
+    },
+    "recoverPassword": {
+      "button": "Guardar",
+      "error": {
+        "authorization": "No pudimos restablecer tu contraseña. Puede que el enlace haya caducado o que ya hayas establecido la contraseña con el.",
+        "password": {
+          "pattern": "La contraseña tiene que tener al menos 8 carácteres",
+          "required": "Te olvidaste de poner una contraseña"
+        },
+        "passwordRepeat": {
+          "required": "Te olvidaste de repetir la contraseña"
+        },
+        "unknown": "Ups! algo ha salido mal al intentar etablecer tu nueva contraseña, por favor, inténtalo de nuevo."
+      },
+      "password": "Nueva contraseña",
+      "passwordRepeat": "Repite nueva contraseña",
+      "success": "¡Contraseña cambiada con éxito!",
+      "tip": "Introduce una nueva contraseña para tu cuenta.",
+      "tip_title": "Ya casi está",
+      "title": "Recuperar contraseña"
     }
   },
   "upgrading": {

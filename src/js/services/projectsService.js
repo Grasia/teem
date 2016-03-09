@@ -2,255 +2,324 @@
 
 angular.module('Teem')
   .factory('ProjectsSvc', [
-  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon',
-  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon){
+  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User){
 
     // class that expose only read methods of the project object
-    var ReadOnlyProject = function(){};
-
-    ReadOnlyProject.prototype.getTimestampAccess = function() {
-      var access;
-
-      if (this.lastAccesses === undefined) {
-        this.lastAccesses = [];
-      }
-
-      angular.forEach(this.lastAccesses, function(a) {
-        if (a.user === SessionSvc.users.current()) {
-          access = a;
+    class ProjectReadOnly {
+      constructor (val) {
+        if (val) {
+          for (var k in val.root){
+            if (val.root.hasOwnProperty(k)){
+              this[k] = val.root[k];
+            }
+          }
         }
-      });
-
-      if (! access) {
-        access = {
-          user: SessionSvc.users.current()
-        };
-
-        this.lastAccesses.push(access);
       }
 
-      return access;
-    };
+      get urlId () {
+        if (! this._urlId) {
+          this._urlId = base64.urlencode(this.id);
+        }
 
-        // section in {'chat', 'pad', 'needs'}
-    ReadOnlyProject.prototype.lastChange = function(section){
-      if (section === undefined) {
-        //cast to Date
-        return new Date(Math.max(
-          this.lastChange('chat'),
-          this.lastChange('pad'),
-          this.lastChange('needs')
-        ));
-      } else {
-        switch (section) {
+        return this._urlId;
+      }
 
-        case 'chat':
-          if (this.chat && this.chat.length > 0) {
-            return new Date(this.chat[this.chat.length -1].time);
-          } else {
+      getTimestampAccess () {
+        var access;
+
+        if (this.lastAccesses === undefined) {
+          this.lastAccesses = [];
+        }
+
+        angular.forEach(this.lastAccesses, function(a) {
+          if (a.user === SessionSvc.users.current()) {
+            access = a;
+          }
+        });
+
+        if (! access) {
+          access = {
+            user: SessionSvc.users.current()
+          };
+
+          this.lastAccesses.push(access);
+        }
+
+        return access;
+      }
+
+      // section in {'chat', 'pad', 'needs'}
+      lastChange (section) {
+        if (section === undefined) {
+          //cast to Date
+          return new Date(Math.max(
+            this.lastChange('chat'),
+            this.lastChange('pad'),
+            this.lastChange('needs')
+          ));
+        } else {
+          switch (section) {
+
+          case 'chat':
+            if (this.chat && this.chat.length > 0) {
+              return new Date(this.chat[this.chat.length -1].time);
+            } else {
+              return new Date(0);
+            }
+            break;
+
+          case 'pad':
+            return new Date(this.pad.lastmodtime) || new Date(0);
+
+          case 'needs':
+            var lastChange = new Date(0);
+            angular.forEach(this.needs, function(n){
+              lastChange = Math.max(
+                lastChange,
+                new Date(n.time),
+                (function() {
+                  var lastComment = new Date(0);
+                  angular.forEach(n.comments, function(c){
+                    lastComment = Math.max(lastComment, new Date(c.time));
+                  });
+                  return lastComment;
+                }())
+              );
+            });
+            // cast to Date
+            return new Date(lastChange);
+
+          default:
             return new Date(0);
           }
-          break;
-
-        case 'pad':
-          return new Date(this.pad.lastmodtime) || new Date(0);
-
-        case 'needs':
-          var lastChange = new Date(0);
-          angular.forEach(this.needs, function(n){
-            lastChange = Math.max(
-              lastChange,
-              new Date(n.time),
-              (function() {
-                var lastComment = new Date(0);
-                angular.forEach(n.comments, function(c){
-                  lastComment = Math.max(lastComment, new Date(c.time));
-                });
-                return lastComment;
-              }())
-            );
-          });
-          // cast to Date
-          return new Date(lastChange);
-
-        default:
-          return new Date(0);
         }
       }
-    };
 
-    // section in {'chat', 'pad', 'needs'}
-    // pos in {'last','prev'}
-    ReadOnlyProject.prototype.lastAccess = function(section, pos) {
-      var access;
+      // section in {'chat', 'pad', 'needs'}
+      // pos in {'last','prev'}
+      lastAccess (section, pos) {
+        var access;
 
-      angular.forEach(this.lastAccesses || [], function(a) {
-        if (a.user === SessionSvc.users.current()) {
-          access = a;
+        angular.forEach(this.lastAccesses || [], function(a) {
+          if (a.user === SessionSvc.users.current()) {
+            access = a;
+          }
+        });
+
+        if (!pos) {
+          pos = 'last';
         }
-      });
 
-      if (!pos) {
-        pos = 'last';
+        return (access && access[section] && access[section][pos] ? new Date(access[section][pos]) : new Date(0));
       }
 
-      return (access && access[section] && access[section][pos] ? new Date(access[section][pos]) : new Date(0));
+      newMessagesCount () {
+        var access = this.lastAccess('chat');
 
-    };
+        if (this.chat.length > 0){
+          var i = this.chat.length - 1;
 
-    ReadOnlyProject.prototype.newMessagesCount = function() {
-      var access = this.lastAccess('chat');
-
-      if (this.chat.length > 0){
-        var i = this.chat.length - 1;
-
-        while (i > -1 && (new Date(this.chat[i].time) > access)) {
-          i --;
+          while (i > -1 && (new Date(this.chat[i].time) > access)) {
+            i --;
+          }
+          return this.chat.length - 1 - i;
+        } else {
+          return 0;
         }
-        return this.chat.length - 1 - i;
-      } else {
-        return 0;
       }
-    };
 
-    ReadOnlyProject.prototype.padEditionCount = function() {
-      if (this.lastAccess('pad').getTime() < this.pad.lastmodtime) {
-        return 1;
-      } else {
-        return 0;
+      padEditionCount () {
+        if (this.lastAccess('pad').getTime() < this.pad.lastmodtime) {
+          return 1;
+        } else {
+          return 0;
+        }
       }
-    };
 
-    ReadOnlyProject.prototype.isSupporter = function(user){
-      if (!user){
-        if (! SessionSvc.users.loggedIn()) {
+      isSupporter (user = User.current()) {
+        if (!user) {
           return false;
         }
 
-        user = SessionSvc.users.current();
+        return this.supporters.indexOf(user.id) > -1;
       }
-      return this.supporters.indexOf(user) > -1;
-    };
 
-    ReadOnlyProject.prototype.isContributor = function(user){
-      if (! user){
-        if (! SessionSvc.users.loggedIn()) {
+      isContributor (user = User.current()) {
+        if (! user) {
           return false;
         }
-
-        user = SessionSvc.users.current();
-      }
-      return this.contributors.indexOf(user) > -1;
-    };
-
-    var Project = function(){};
-
-    //inheritance
-    Project.prototype = Object.create(ReadOnlyProject.prototype);
-
-    Project.prototype.addContributor = function(user) {
-      if (!user){
-        user = SessionSvc.users.current();
-      }
-      if (user && this.contributors.indexOf(user) < 0){
-        this.contributors.push(user);
-      }
-    };
-
-    Project.prototype.setShareMode = function(shareMode){
-      this.shareMode = shareMode;
-    };
-
-    /*
-     * Record when the user had her last and previous access to one project section
-     */
-    Project.prototype.setTimestampAccess = function(section, overridePrev){
-      if (! this.isContributor()) {
-        return;
+        return this.contributors.indexOf(user.id) > -1;
       }
 
-      var timestamp = this.getTimestampAccess()[section];
+      needCompletedCount () {
+        var completed = 0;
 
-      if (timestamp === undefined) {
-        timestamp = {};
+        angular.forEach(this.needs, function(need) {
+          if (need.completed === 'true') {
+            completed++;
+          }
+        });
+
+        return completed;
       }
 
-      if (timestamp instanceof Date) {
-        timestamp = {
-          last: timestamp
-        };
+      needIncompletedCount () {
+        return this.needCount() - this.needCompletedCount();
       }
 
-      if(! overridePrev){
-        timestamp.prev = timestamp.last || (new Date()).toJSON();
-      } else {
-        timestamp.prev = (new Date()).toJSON();
+      needCount () {
+        if (this.needs === undefined) {
+          return 0;
+        }
+
+        return this.needs.length;
       }
 
-      timestamp.last = (new Date()).toJSON();
+      progressPercentage () {
+        var size = this.needCount();
 
-      this.getTimestampAccess()[section] = timestamp;
+        if (size === 0) {
+          return 0;
+        }
 
-    };
-
-    Project.prototype.toggleSupport = function(){
-      if (SessionSvc.users.current() === null) {
-        return;
-      }
-      var index = this.supporters.indexOf(SessionSvc.users.current());
-
-      if (index > -1) {
-        this.supporters.splice(index, 1);
-      } else {
-        this.supporters.push(SessionSvc.users.current());
-      }
-    };
-
-    Project.prototype.removeContributor = function(user) {
-      if (!user){
-        user = SessionSvc.users.current();
+        return Math.round(this.needCompletedCount() * 100 / size);
       }
 
-      this.contributors.splice(
-        this.contributors.indexOf(user),
-        1);
-    };
+      // Show at least 1%
+      progressPercentageNotZero () {
+        var value = this.progressPercentage();
 
-    Project.prototype.toggleContributor = function(){
-      if (! SessionSvc.users.loggedIn()) {
-        return;
+        if (value === 0 && this.needCount() > 0) {
+          return 1;
+        }
+
+        return value;
       }
 
-      var user = SessionSvc.users.current();
+      progressType () {
+        var percentage = this.progressPercentage();
 
-      if (this.isContributor(user)) {
-        this.removeContributor(user);
-      } else {
-        this.addContributor(user);
+        if (percentage < 33) {
+          return 'danger';
+        } else if (percentage > 66) {
+          return 'success';
+        } else {
+          return 'warning';
+        }
       }
-    };
+    }
 
-    Project.prototype.addChatMessage = function(message){
-      this.chat.push({
+    class Project extends ProjectReadOnly {
+
+      addContributor (user) {
+        if (!user){
+          user = SessionSvc.users.current();
+        }
+        if (user && this.contributors.indexOf(user) < 0){
+          this.contributors.push(user);
+        }
+      }
+
+      setShareMode (shareMode) {
+        this.shareMode = shareMode;
+      }
+
+      /*
+       * Record when the user had her last and previous access to one project section
+       */
+      setTimestampAccess (section, overridePrev) {
+        if (! this.isContributor()) {
+          return;
+        }
+
+        var timestamp = this.getTimestampAccess()[section];
+
+        if (timestamp === undefined) {
+          timestamp = {};
+        }
+
+        if (timestamp instanceof Date) {
+          timestamp = {
+            last: timestamp
+          };
+        }
+
+        if(! overridePrev){
+          timestamp.prev = timestamp.last || (new Date()).toJSON();
+        } else {
+          timestamp.prev = (new Date()).toJSON();
+        }
+
+        timestamp.last = (new Date()).toJSON();
+
+        this.getTimestampAccess()[section] = timestamp;
+      }
+
+      toggleSupport () {
+        if (SessionSvc.users.current() === null) {
+          return;
+        }
+        var index = this.supporters.indexOf(SessionSvc.users.current());
+
+        if (index > -1) {
+          this.supporters.splice(index, 1);
+        } else {
+          this.supporters.push(SessionSvc.users.current());
+        }
+      }
+
+      removeContributor (user) {
+        if (!user){
+          user = SessionSvc.users.current();
+        }
+
+        this.contributors.splice(
+          this.contributors.indexOf(user),
+          1);
+      }
+
+      toggleContributor () {
+        if (! SessionSvc.users.loggedIn()) {
+          return;
+        }
+
+        var user = SessionSvc.users.current();
+
+        if (this.isContributor(user)) {
+          this.removeContributor(user);
+        } else {
+          this.addContributor(user);
+        }
+      }
+
+      addChatMessage (message) {
+        this.chat.push({
           text: message,
           who: SessionSvc.users.current(),
           time: (new Date()).toJSON()
         });
-      this.addContributor();
-      this.setTimestampAccess('chat', true);
-    };
-
-    Project.prototype.addNeedComment = function(need, comment){
-      if (!need.comments){
-        need.comments = [];
+        this.addContributor();
+        this.setTimestampAccess('chat', true);
       }
-      need.comments.push({
-        text: comment,
-        time: (new Date()).toJSON(),
-        author: SessionSvc.users.current()
-      });
-      this.setTimestampAccess('needs', true);
-    };
+
+      addNeedComment (need, comment) {
+        if (!need.comments){
+          need.comments = [];
+        }
+        need.comments.push({
+          text: comment,
+          time: (new Date()).toJSON(),
+          author: SessionSvc.users.current()
+        });
+        this.setTimestampAccess('needs', true);
+      }
+
+      delete () {
+        this.type = 'deleted';
+        this.communities = [];
+      }
+    }
 
     // Service functions //
 
@@ -282,6 +351,10 @@ angular.module('Teem')
         query._aggregate[0].$match['root.localId'] = options.localId;
       }
 
+      if (options.shareMode) {
+        query._aggregate[0].$match['root.shareMode'] = 'public';
+      }
+
       if (options.publicAndContributor) {
         query._aggregate[0].$match.$or = [
           { 'root.contributors': options.publicAndContributor },
@@ -304,13 +377,7 @@ angular.module('Teem')
         SwellRT.query(query, function(result) {
           angular.forEach(result.result, function(val){
 
-            var v = new ReadOnlyProject();
-
-            for (var k in val.root){
-              if (val.root.hasOwnProperty(k)){
-                v[k] = val.root[k];
-              }
-            }
+            var v = new ProjectReadOnly(val);
 
             res.push(v);
           });
@@ -323,6 +390,17 @@ angular.module('Teem')
           reject([]);
         });
       });
+    }
+
+    function contributing () {
+
+      if (!SessionSvc.users.loggedIn()) {
+        return $q(function(resolve) {
+          resolve([]);
+        });
+      }
+
+      return all({ contributor: SessionSvc.users.current()});
     }
 
     function findByUrlId(urlId) {
@@ -384,9 +462,10 @@ angular.module('Teem')
     }
 
     return {
-      all: all,
-      findByUrlId: findByUrlId,
-      find: find,
-      create: create
+      all,
+      contributing,
+      findByUrlId,
+      find,
+      create
     };
   }]);

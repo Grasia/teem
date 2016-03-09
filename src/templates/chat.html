@@ -6,20 +6,19 @@
           <li id="newMessages" ng-if="firstNewMessage(msg, $index)" class="new-messages" translate>chat.new_messages</li>
           <li ng-if="dayChange(msg, $index)" class="day-change">{{dayChange(msg, $index)}}</li>
           <li class="chat-message {{standpoint(msg)}}">
-            <span avatars="msg.who"></span>
+            <div class="chat-message-time">
+              {{hour(msg)}}
+            </div>
             <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
               {{msg.who.split('@')[0]}}
             </div>
             <div class="chat-message-text" ng-if="!isNotificationMessage(msg)" ng-bind-html="msg.text | linky"></div>
             <div class="chat-message-text" ng-if="isNotificationMessage(msg)" ng-bind-html="msg.text" translate={{msg.text}} translate-values="msg.translateValues"></div>
-            <div class="chat-message-time">
-              {{hour(msg)}}
-            </div>
           </li>
         </div>
       </ul>
     </div>
-    <div class="scrollable-footer">
+    <div class="scrollable-footer chat-send-bar">
       <form class="chat-send" ng-submit="send()">
         <div class="input-group">
           <textarea class="form-control chat-textarea"
@@ -29,9 +28,11 @@
                     placeholder="{{ 'chat.input' | translate}}"
                     ng-keydown="keyDown($event)">
           </textarea>
-          <span class="input-group-addon">
-            <i class="fa fa-chevron-circle-right chat-input-button" ng-click="send()"></i>
-          </span>
+          <div class="input-group-addon">
+            <button class="btn btn-primary chat-input-button" ng-click="send()">
+              <i class="fa i-send"></i>
+            </button>
+          </div>
         </div>
       </form>
     </div>

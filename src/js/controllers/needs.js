@@ -82,7 +82,6 @@ angular.module('Teem')
           };
 
           scope.focusElem = function(event){
-            console.log(event.target.parentNode.parentNode.children);
             event.target.parentNode.parentNode.children[1].children[0].focus();
           };
 
@@ -97,7 +96,7 @@ angular.module('Teem')
           scope.areCommentsVisible = needsCtrl.areCommentsVisible;
 
           scope.sendComment = function(){
-            SessionSvc.loginRequired(function() {
+            SessionSvc.loginRequired(scope, function() {
               ProjectsSvc.findByUrlId($route.current.params.id).then(function(project){
                 project.addNeedComment(scope.need, scope.newComment.text);
                 scope.newComment.text = '';
@@ -108,7 +107,7 @@ angular.module('Teem')
           scope.hour = needsCtrl.hour;
 
           scope.newComments = function(need){
-            if (!need.comments || !scope.project){
+            if (!need.comments || !scope.project || SessionSvc.users.loggedIn()){
               return false;
             }
 
@@ -118,7 +117,7 @@ angular.module('Teem')
           };
 
           scope.isNewNeed = function(need){
-            if (!scope.project){
+            if (!scope.project || !SessionSvc.users.loggedIn()){
               return false;
             }
             var prevAccess = new Date(scope.project.getTimestampAccess().needs.prev);
@@ -142,7 +141,6 @@ angular.module('Teem')
         },
         controller: function($scope, $route, SessionSvc, ProjectsSvc, time) {
           this.addNeed = function (need) {
-            console.dir(need);
             if (need.text !== undefined && need.text !== ''){
               need.author = SessionSvc.users.current();
               need.time = (new Date()).toJSON();

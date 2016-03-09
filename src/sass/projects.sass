@@ -1,32 +1,24 @@
 /* Project list */
 
-#projects
-  .list-group
-    margin-bottom: 40px
-
+.projects
+  h1
+    text-transform: uppercase
+    font-size: 1.42em
+    color: $projects-title-color
+.project-index-tip
+  margin-bottom: 10px
 .project-item-title
+  color: $project-item-title-color
   font-weight: bold
 
 .notification-indicator
-  color: $yellow !important
+  color: $notification-point-color
   position: absolute
   font-size: 0.7em
 
 .project-sections
   margin-top: 0.8em
   width: 100%
-  .inline-content
-    padding-right: 2em
-    text-align: right
-    .project-last-message
-      text-align: left
-    font-size: 1.0em
-  .inline-value
-    font-weight: bold
-    color: $blue-count
-  .inline-title
-  h5
-    text-align: center
   .project-avatars
     margin-top: -5px
   .progress
@@ -37,7 +29,11 @@
     i
       text-align: right !important
 .project-communities
-  margin-bottom: 5px
+  a
+    color: inherit
+    font-size: 1.21em
+.project-join
+  margin-top: 10px
 .project-section-needs
   margin-top: 10px
   .needs-icon
@@ -58,6 +54,9 @@
     display: inline-block
     width: 15px
 
+.project-actions-share
+  margin-top: 10px
+  text-align: right
 
 .project-section-notifications
   margin-top: 10px
@@ -85,8 +84,14 @@
   .message-time
     float: left
     padding-right: 5px
+.project-pad
+  padding-top: 0
 .new-project-pad
   margin: 1em
+
+.project-count
+  &, a
+    @extend .icon-count
 
 /* Single project */
 
@@ -94,6 +99,9 @@
   position: relative
   overflow: hidden
   height: 100%
+  h1
+    font-size: 1.42em
+    margin-bottom: .14em
 
 .project-navigation
   position: absolute
@@ -104,7 +112,7 @@
   min-height: 30px
   text-align: center
   &, a
-    color: $navbar-top-color
+    color: $navbar-top-inactive-color
     background-color: $navbar-top-background-color
   .justified
     table-layout: fixed
@@ -115,6 +123,7 @@
     text-transform: uppercase
     &.active,
     &.selected
+      color: $navbar-top-color
       font-weight: bold
       border-bottom: 4px solid $navbar-top-underscore
 
@@ -143,11 +152,19 @@
   .project-editor
     display: block
 
-.project-pad-tip
-  @extend h5
-  font-size: 0.8em
-  font-style: italic
-  padding-left: 1em
+.project
+  .swellrt-editor
+    > div
+      padding: 5px
+    &[editable=true]
+      background: $pad-background-color
+      border: 1px solid $pad-border-color
+      padding: .21em
+      > div
+        outline: 0
+
+.swellrt-placeholder:empty
+  color: $placeholder-color
 
 .project-support-number
   text-align: center
@@ -165,11 +182,6 @@
 .project-title-reminder-btn
   margin-bottom: 0.4em
 
-.project-item .fa
-  color: $grey
-  &.fa.active
-    color: inherit
-
 .project-heading
   width: 100%
   display: table
@@ -185,26 +197,13 @@
     .project-support-number
       text-align: right
 
+.project-actions
+  &, a, button
+    @extend .icon-count
 
-.project-pad
-  // swellrt-editor overflows the div
-  height: 100%
-  border-bottom: 30px solid #FFFFFF
-.project
-  .swellrt-editor
-    height : 100%
-    > div
-      min-height : 100%
-      background: #FFFFFF
-      padding: 5px
-    &[editable=true]
-      > div
-        overflow: auto
-        @extend .form-control
-
-.swellrt-placeholder:empty
-  color: $grey
-
-.hidden-input
-  position: absolute
-  top: -100px
+.project-participants
+  background: $project-participants-background-color
+  h2
+    font-size: 1.42em
+    font-weight: $font-weight-light
+    @extend .participant-title

@@ -1,0 +1,82 @@
+<div class="community">
+  <div class="scrollable">
+    <div class="scrollable-content">
+
+      <div class="community-gallery">
+        <img src="images/default-community.png">
+      </div>
+
+      <div class="community-info section">
+        <h1 ng-if="! edittingTitle()">
+          {{community.name}}
+          <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
+            <i class="fa fa-pencil-square-o" ></i>
+          </button>
+        </h1>
+        <div class="input-group title-form" ng-if="edittingTitle()">
+          <input type="text"
+                 class="form-control title-input"
+                 ng-model="community.name"
+                 placeholder="{{ 'community.title.placeholder' | translate }}">
+          <div class="input-group-addon">
+            <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
+              <i class="fa fa-check"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="row" ng-if="!isNew() && !edittingTitle()">
+          <div class="icon-count community-participant-count col-xs-3">
+            <i class="fa i-participants"></i>
+            <span class="icon-count-number">{{ community.participants.length }}</span>
+          </div>
+          <div class="community-count community-like-count col-xs-3">
+          </div>
+          <div class="col-xs-6">
+            <button class="btn btn-primary pull-right"
+                    ng-if="! community.isParticipant()"
+                    participate
+                    participate-copy-off="community.participate.button"
+                    participate-model="community">
+            </button>
+          </div>
+        </div>
+
+        <div class="community-description" ng-if="! edittingTitle()">
+          {{community.description}}
+        </div>
+
+        <div class="description-form" ng-if="edittingTitle()">
+          <textarea class="form-control description-input"
+                    rows="5"
+                    ng-model="community.description"
+                    placeholder="{{ 'community.description.placeholder' | translate }}">
+          </textarea>
+        </div>
+      </div>
+
+      <div class="community-projects section" ng-if="!isNew()">
+
+        <h2 class="community-project-title" translate>community.project.title</h2>
+        <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
+          community.project.working_group_count
+        </div>
+
+        <projects project-list="projects"></projects>
+
+        <plus plus-type="project" plus-community="community"></plus>
+      </div>
+
+      <div class="community-participants section" ng-if="!isNew()">
+        <h2 translate translate-values="{ count: '{{ community.participants.length }}'}">
+          community.participants.title
+        </h2>
+
+        <div avatars="community.participants" avatars-conf="{size: 'small'}" class="avatars"></div>
+      </div>
+    </div>
+    <div class="scrollable-footer" ng-if="isNew()">
+      <div ng-include="'new-form/buttons.html'"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+// font-weight lighter does not work in font faces
+// http://stackoverflow.com/questions/10627810/chrome-19-not-recognising-font-weight-lighter
+
+$font-weight-light: 100
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/Lato-Light.ttf)
+  font-weight: $font-weight-light
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/Lato-Regular.ttf)
+  font-weight: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/Lato-Bold.ttf)
+  font-weight: bold
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+  font-family: 'Lato', sans-serif
+  font-weight: normal
+  color: $dark-grey
+
+.app, .section, .list-group-item
+  background-color: $app-background-color
+
+.container
+  max-width: 600px
+  padding-top: 10px
+  padding-bottom: 10px
+
+.sidebar-left
+  background: $menu-background-color
+
+a, a:hover, a:focus, .btn-link, .btn-link:hover, .btn-link:focus
+  color: $light-blue
+
+.media-heading
+  font-weight: bold
+
+.panel .panel-heading
+  padding: 10px 10px 10px
+
+.btn-primary
+  &, &.active, &:hover, &[disabled], &[disabled]:hover
+    background-color: $button-primary-background-color
+    border-color: $button-primary-background-color
+
+.btn-group
+  .btn-default
+    &.active
+      border-color: $button-primary-background-color
+      background-color: $button-primary-selected-background-color
+.list-group-item.active
+  background-color: $button-primary-background-color
+  border-color: $button-primary-background-color
+
+.form-control, .input-group-addon
+  border: 0
+  outline: 0
+  color: $form-control-color
+  background: transparent
+  border-bottom: 1px solid $placeholder-color
+  -webkit-box-shadow: none
+  box-shadow: none
+  @include placeholder
+    color: $placeholder-color
+.form-control:focus
+  border-bottom: 2px solid $input-focus-border-color
+input:focus + .input-group-addon
+  @extend .form-control:focus
+
+.has-error .form-control, .has-error .form-control:focus
+  -webkit-box-shadow: none
+  box-shadow: none
+
+.ng-dirty input, input, textarea
+  &.ng-invalid
+    border-color: inherit
+
+.modal-overlay
+  background: white
+
+h5
+  color: $heading-secondary-color
+  font-weight: bold
+
+
+.has-navbar-bottom .app-body
+  padding-bottom: 36px
+
+img
+  max-width: auto
+
+// Decrease .scrollable-header z-index
+// https://github.com/mcasimir/mobile-angular-ui/issues/324
+.scrollable-header
+  z-index: 999

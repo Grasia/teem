@@ -11,7 +11,11 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:comId/projects', {
+      .when('/communities/:communityId/projects', {
+        templateUrl: 'projects/index.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/home/projects', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
@@ -25,19 +29,16 @@ angular.module('Teem')
   'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
   function (SessionSvc, url, $scope, $location, $route, time,
   CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
+    var communityId = $route.current.params.communityId;
 
-    $scope.urlId= url.urlId;
+    $scope.translationData = {};
 
-    var comUrlId = $route.current.params.comId;
-
-    // get the count of new edits and chats for a list of projects and store them in the project properties
-    // Refactoring...
-    function getNewsCounts(projs) {
-      angular.forEach(projs, function(proj) {
-        if (proj.contributors.indexOf(SessionSvc.users.current()) > -1) {
-          proj.isContributor = true;
-        }
-      });
+    if (communityId) {
+      $scope.context = 'community';
+    } else if ($location.path() === '/home/projects') {
+      $scope.context = 'home';
+    } else {
+      $scope.context = 'public';
     }
 
     function getCommunities(projects) {
@@ -57,174 +58,43 @@ angular.module('Teem')
     }
 
     SessionSvc.onLoad(function(){
-      if ($route.current.params.comId) {
-        Loading.create(CommunitiesSvc.findByUrlId(comUrlId)).
-          then(function(community){
-            $scope.community = community;
+      switch ($scope.context) {
+        case 'community':
+          Loading.show(CommunitiesSvc.findByUrlId($route.current.params.communityId)).
+            then(function(community){
+              $scope.community = community;
 
-            Loading.create(community.myAndPublicProjects()).
-              then(function (projects){
-                getNewsCounts(projects);
+              $scope.translationData.community = community.name;
+
+              Loading.show(community.myAndPublicProjects()).
+                then(function (projects){
+
+                  $scope.projects = projects;
+
+                });
+            });
+
+          break;
+        case 'home':
+          SessionSvc.loginRequired($scope, function() {
+            Loading.show(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
+              then(function(projects) {
+                getCommunities(projects);
 
                 $scope.projects = projects;
+
+                $scope.translationData.count = projects.length;
               });
           });
-      } else {
-        if (SessionSvc.users.loggedIn()) {
-          Loading.create(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
+
+          break;
+        default:
+          Loading.show(ProjectsSvc.all({ shareMode: 'public' })).
             then(function(projects) {
-              getNewsCounts(projects);
               getCommunities(projects);
 
               $scope.projects = projects;
             });
-        }
       }
-
-      $scope.new_ = function () {
-        SessionSvc.loginRequired(function() {
-          $scope.created = true;
-
-          ProjectsSvc.create({
-            communityId: $scope.community.id
-          }, function(p) {
-            //FIXME model prototype
-            $location.path('/projects/' + url.urlId(p.id));
-          });
-        });
-      };
     });
-
-    $scope.participate = function() {
-      SessionSvc.loginRequired(function() {
-        $scope.community.addParticipant();
-      });
-    };
-
-    // TODO: repeated code in NavbarTopCtrl
-    $scope.shareIcon = function shareIcon(project) {
-      switch (project.shareMode) {
-        case 'link':
-          return 'fa-link';
-        case 'public':
-          return 'fa-globe';
-        default:
-          return '';
-      }
-    };
-
-    $scope.showProject = function(project, tabName) {
-      $location.path('/communities/' + url.urlId(project.communities[0]) + '/projects/' + url.urlId(project.id) + '/' + (tabName || 'pad'));
-    };
-
-    // This function should belong to the model
-    // In the prototype or something similar
-    $scope.completedNeeds = function(project) {
-      var completed = 0;
-
-      angular.forEach(project.needs, function(need) {
-        if (need.completed === 'true') {
-          completed++;
-        }
-      });
-
-      return completed;
-    };
-
-    $scope.totalNeeds = function(project) {
-      if (project.needs === undefined) {
-        return 0;
-      }
-
-      return project.needs.length;
-    };
-
-    $scope.progressPercentage = function(project) {
-      var size = $scope.totalNeeds(project);
-
-      if (size === 0) {
-        return 0;
-      }
-
-      return $scope.completedNeeds(project) * 100 / size;
-    };
-
-    // Show at least 1%
-    $scope.progressPercentageNotZero = function(project) {
-      var value = $scope.progressPercentage(project);
-
-      if (value === 0 && $scope.totalNeeds(project) > 0) {
-        return 1;
-      }
-
-      return value;
-    };
-
-    $scope.progressType = function(project) {
-      var percentage = $scope.progressPercentage(project);
-
-      if (percentage < 33) {
-        return 'danger';
-      } else if (percentage > 66) {
-        return 'success';
-      } else {
-        return 'warning';
-      }
-    };
-
-    $scope.supporterCount = function(project) {
-      // Migrate project.support
-      return project.supporters.length;
-    };
-
-    $scope.contributorCount = function(project) {
-      // Migrate project.support
-      return project.contributors.length;
-    };
-
-    $scope.hour = function(msg) {
-      return time.hour(new Date(msg.time));
-    };
-
-    var lastChatsCache = [];
-
-    $scope.lastChat = function(project){
-      if (project.newMessagesCount(project) > 0){
-        if (!lastChatsCache[project.id] || lastChatsCache[project.id].index !== project.chat.length-1) {
-          var lastChat = project.chat[project.chat.length-1];
-          lastChatsCache[project.id] = {
-            index: project.chat.length-1,
-            who: lastChat.who,
-            author: function() {
-              if (!lastChat) {
-                return '';
-              }
-              return lastChat.who.split('@')[0] + ':';
-            },
-            time: $scope.hour(lastChat),
-            text: lastChat.text,
-            isNotification: lastChat.standpoint === 'notification',
-            translateValues: lastChat.translateValues
-          };
-        }
-        return lastChatsCache[project.id];
-      }
-      return undefined;
-    };
-
-    $scope.emptyProjects = function(){
-      return $scope.projects && (Object.keys($scope.projects).length === 0);
-    };
-
-    $scope.projectsUrl = function(communityId){
-      if (communityId) {
-        return '#/communities/' + $scope.urlId(communityId) + '/projects';
-      } else {
-        return '#/communities';
-      }
-    };
-
-    $scope.editor = {
-      editting: false
-    };
   }]);

@@ -1,24 +1,41 @@
-.menu
-  background-color: white
-  .scrollable-header
-    @extend .nav-title
-    height: 50px
-    background-color: $menu-heading
-    color: white
-    text-align: left
-    padding-left: 1em
-    padding-top: 0.5em
-    padding-bottom: 0.5em
-    a
-      color: inherit
-  .list-group-item-header
-    color: #555
-    font-weight: bold
-    a
-      color: inherit
-    i
-      font-size: 1.4em
-      color: inherit
-      margin-left: 10px
-  .list-group-item-child
-    padding-left: 30px
+.menu-header
+  min-height: 50px
+  a
+    color: $menu-header-color
+  a:hover
+    text-decoration: none
+  background: $menu-header-background-color
+  font-size: 3em
+  line-height: 1.2em
+  padding-left: .2em
+.menu-session
+  background: $menu-session-background-color
+  padding-top: 10px
+  padding-bottom: 10px
+.menu-session-guest
+  display: block
+  width: 100%
+.menu-session-img
+  display: inline-block
+  width: 33%
+.menu-session-body
+  display: inline-block
+  width: 66%
+.menu-session-nick
+  color: $menu-session-nick-color
+  font-weight: bold
+  font-size: 1.43em
+.menu-session-tip
+  color: $menu-session-tip-color
+.menu-session-action
+  &, button
+    color: $menu-session-action-color
+    text-transform: uppercase
+  button
+    padding-left: 0px
+.menu-content
+  .list-group-item
+    background: $menu-background-color
+    color: $menu-item-color
+    font-size: 2.14em
+    font-weight: $font-weight-light

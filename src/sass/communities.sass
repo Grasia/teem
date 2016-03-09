@@ -1,19 +1,40 @@
-.communities-index
-  .scrollable-header
-    padding-top: 5px
+.communities
+  h3
+    color: $community-title-color
+    text-transform: uppercase
+    font-size: 1.42em
+    height: 2.24em
+.community-list
+  padding-top: 20px
 
-.community-title
-  font-family: "Dax Wide Regular", sans-serif
-  font-size: 1.2em
-  font-weight: bold
+.community-item
+  .caption
+    color: $community-description-color
+  .community-description
+    height: 3em
+    overflow: hidden
+
 
 .community-description
-  margin-bottom: 10px
-.community-numbers
-  .fa
-    color: $grey
-  .project-count
-    margin-right: 15px
+  margin-top: 20px
+  margin-bottom: 20px
+
+.community-project-title
+  margin-bottom: 0px
+.community-projects-count
+  margin-bottom: 5px
+
+.community
+  display: block
+  h1, h2
+    font-size: 1.42em
+  h2
+    font-weight: $font-weight-light
+
+.community-participants
+  background: $community-participants-background-color
+  h2
+    @extend .participant-title
 
 .community-search
   background-color: white
@@ -34,8 +55,7 @@
       padding-top: 1em
       padding-bottom: 1em
 
-.community-list
-  margin-top: 10px
+
 
 .select-community-tip
   margin: 2em
@@ -50,3 +70,12 @@
 .modal-community-settings
   .connection-status
     margin-top: -16px
+.community-project-title
+  text-transform: uppercase
+.community-project-count
+  font-size: 1.42em
+  font-weight: $font-weight-light
+.community-participating-message
+  font-weight: bold
+  padding-top: .53em
+  padding-bottom: .53em

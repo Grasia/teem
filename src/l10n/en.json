@@ -1,6 +1,7 @@
 {
   "chat": {
-    "input": "Message",
+    "button": "Send",
+    "input": "Write your message here",
     "nav": {
       "title": "Chat"
     },
@@ -15,6 +16,9 @@
       },
       "description": "Can't you find what you were looking for? Register your community!",
       "placeholder": "Community name"
+    },
+    "description": {
+      "placeholder": "What are you doing? A good description helps other people to recognize your work and join. For instance: \"Wikipedia is the free encyclopedia anyone can edit\""
     },
     "edit": {
       "button": "Edit",
@@ -33,13 +37,17 @@
       "button": "...or create a new one"
     },
     "participants": {
-      "number": "{{count}} participants"
+      "number": "{{count}} participants",
+      "title": "Participants <span class=\"participant-count\">({{count}})</span>"
     },
     "participate": {
-      "button": "Join community"
+      "button": "Join this community",
+      "message": "You are part of this community"
     },
     "project": {
-      "count": "{{count}} workspaces"
+      "count": "{{count}} teems",
+      "title": "Teems",
+      "working_group_count": "{{count}} working groups"
     },
     "search": {
       "placeholder": "Find your community...",
@@ -56,6 +64,9 @@
         "placeholder": "Your community name..."
       },
       "title": "Community settings"
+    },
+    "title": {
+      "placeholder": "Community name"
     },
     "welcome": {
       "message": "Now you can foster your community with Teem",
@@ -92,34 +103,30 @@
   "loading": {
     "title": "Loading..."
   },
-  "login": {
-    "button": "Login",
-    "error": "Please, choose a nickname composed by letters, numbers and dots",
-    "name": "Nickname",
-    "should_be_logged": {
-      "cancel": "Cancel",
-      "loggin_now": "Log in",
-      "message": "Sorry! You should be logged in to do that action."
-    },
-    "tip": "Enter your nickname"
-  },
   "menu": {
     "communities": {
-      "create": "Create new community",
-      "find": "Explore communities",
       "title": "Communities"
     },
-    "logout": "Log out",
-    "projects": {
-      "title": "Workspaces"
+    "homeProjects": {
+      "title": "My Teems"
     },
-    "support": "Get support",
+    "projects": {
+      "title": "Teems"
+    },
+    "session": {
+      "action": "Join us!",
+      "communities": "{{count}} communities",
+      "guest": "guest",
+      "logout": "Log out",
+      "projects": "{{count}} teems",
+      "tip": "Register and create your communities and Teems"
+    },
     "title": "Teem"
   },
   "need": {
     "by": "Added {{time}} by {{author}}",
     "comment": {
-      "input": "Write your comment here...",
+      "input": "How can you lend a hand?",
       "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at need \"{{need}}\""
     },
     "index": {
@@ -133,7 +140,14 @@
     },
     "new": {
       "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the workspace",
-      "placeholder": "New need"
+      "placeholder": "Add a new need"
+    },
+    "tip": "This is what we need to get the project going"
+  },
+  "newForm": {
+    "btn": {
+      "cancel": "Cancel",
+      "confirm": "Save"
     }
   },
   "pad": {
@@ -143,13 +157,26 @@
     },
     "placeholder": "You want to work on..."
   },
+  "picture": {
+    "crop": "To crop the picture, drag the lighter zone, and then clic on save",
+    "delete": "Remove current picture",
+    "upload": "Drop an image here or click to upload",
+    "save": "Save",
+    "title": "Upload a picture"
+  },
   "profile": {
     "title": "Your profile",
     "avatar": {
       "avatar": "Avatar",
       "change": "Change picture...",
-      "delete": "Delete picture",
-      "save": "Save"
+      "remove": {
+        "error": "We couldn't remove your avatar",
+        "success": "Your avatar has been removed successfully"
+      },
+      "upload": {
+        "error": "We couldn't upload the avatar",
+        "success": "Your avatar has been uploaded successfully"
+      }
     }
   },
   "project": {
@@ -162,7 +189,19 @@
       "title": "Edit project"
     },
     "index": {
-      "title": "Workspaces"
+      "community": {
+        "tip": "These are the {{community}} work groups",
+        "title": "Teems"
+      },
+      "home": {
+        "tip": "You are working with these {{count}} groups",
+        "title": "My teems"
+      },
+      "public": {
+        "tip": "Communities are working in these groups",
+        "title": "Teems"
+      },
+      "title": "Teems"
     },
     "info": {
       "nav": {
@@ -180,6 +219,12 @@
       "tip": "(Tap to edit)",
       "title": "Notes"
     },
+    "participate": {
+      "btn": {
+        "do": "Add me to this Teem",
+        "undo": "Leave"
+      }
+    },
     "project_description": "Description",
     "project_name": "Project name",
     "project_status": "Status",
@@ -190,12 +235,8 @@
       "needs": {
         "title": "Needs"
       },
-      "participate": {
-        "btn": {
-          "do": "Join",
-          "undo": "Leave"
-        },
-        "title": "{{count}} participants"
+      "participants": {
+        "title": "Participants <span class=\"participant-count\">({{count}})</span>"
       },
       "support": {
         "btn": {
@@ -223,8 +264,11 @@
       },
       "title": "Share workspace '{{title}}'"
     },
+    "show": {
+      "title": "Teems"
+    },
     "title": {
-      "placeholder": "<Write here workspace's name>",
+      "placeholder": "Title",
       "reminder": {
         "body_one": "This workspace doesn't have a name yet!",
         "body_two": "Do you really want to discard the workspace?",
@@ -234,6 +278,107 @@
     },
     "welcome": {
       "tip": "Not involved in anything yet? <a href=\"#/communities\">Find a community</a> to join or <a href=\"#/communities/new\">create your community</a>"
+    }
+  },
+  "session": {
+    "set_email": {
+      "error": "Ups, something went wrong saving your email address",
+      "success": "Your email address has been saved"
+    },
+    "login": {
+      "button": "Enter",
+      "error": {
+        "wrong_email_or_password": "Wrong nick or password. Sorry!"
+      },
+      "link": "Login here",
+      "link_prev": "Are you already in Teem?",
+      "nick": "Nickname",
+      "should_be_logged": {
+        "cancel": "Cancel",
+        "loggin_now": "Log in",
+        "message": "Sorry! You should be logged in to do that action."
+      },
+      "success": "Welcome {{nick}}!",
+      "password": "Password",
+      "title": "Log in"
+    },
+    "migration": {
+      "button": "Done!",
+      "email": "E-mail to recover password, we all forget them!",
+      "error": {
+        "unknown": "Ups, something went wrong while establishing your new password, please try again."
+      },
+      "password": "Password",
+      "passwordRepeat": "Confirm password",
+      "success": "Congratulations! your account is now protected by your password.",
+      "tip": "We are protecting user accounts in Teem. Please, set your password.",
+      "tip_title": "Welcome back <strong>{{nick}}</strong>!",
+      "title": "Enter a password"
+    },
+    "register": {
+      "button": "Enter",
+      "email": "E-mail",
+      "error": {
+        "email": {
+          "email": "You did not enter your email address correctly",
+          "required": "You forgot to enter your email"
+        },
+        "existing_user": "The username is already registered, please chose another one.",
+        "nick": {
+          "pattern": "Please, choose a nickname composed by letters, numbers and dots",
+          "required": "You forgot to enter your nick name"
+        },
+        "password": {
+          "pattern": "Password must contain at least 8 characters",
+          "required": "You forgot to enter a password"
+        },
+        "passwordRepeat": {
+          "match": "Both passwords must match",
+          "required": "You forgot to repeat the password"
+        }
+      },
+      "link": "Register here",
+      "link_prev": "Are not you in Teem yet?",
+      "nick": "Nick",
+      "password": "Password",
+      "passwordRepeat": "Confirm password",
+      "title": "Register"
+    },
+    "forgottenPassword": {
+      "button": "Send",
+      "error": {
+        "email": {
+          "email": "You did not enter your email address correctly",
+          "required": "You forgot to enter your email"
+        },
+        "unknown": "Ups! something went wrong while sending you the password recovery email"
+      },
+      "email": "E-mail",
+      "link": "Did you forget your password?",
+      "success": "If this is the address you introduced at sign up, you will receive an email to recover your password",
+      "tip": "You will receive an email with instructions to recover your password.",
+      "tip_title": "Do not panic!",
+      "title": "Recover password"
+    },
+    "recoverPassword": {
+      "button": "Save",
+      "error": {
+        "authorization": "We could not reestablish your password. Maybe the link has expired or you have already established your password with it.",
+        "password": {
+          "pattern": "Password must contain at least 8 characters",
+          "required": "You forgot to enter a password"
+        },
+        "passwordRepeat": {
+          "required": "You forgot to repeat the password"
+        },
+        "unknown":"Ups, something went wrong while establishing your new password, please try again."
+      },
+      "password": "New password",
+      "passwordRepeat": "Repeat new password",
+      "success": "Password changed successfully!",
+      "tip": "Enter a new password for your account.",
+      "tip_title": "We are almost there",
+      "title": "Recover password"
     }
   },
   "upgrading": {

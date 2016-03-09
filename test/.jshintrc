@@ -19,6 +19,7 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
+    "$": false,
     "after": false,
     "afterAll": false,
     "afterEach": false,
@@ -36,7 +37,9 @@
     "jasmine": false,
     "spyOn": false,
     "SwellRT": false,
-    "SwellRTModel": false
+    "SwellRTModel": false,
+    "xdescribe": false,
+    "xit": false,
+    "__session": false
   }
 }
-

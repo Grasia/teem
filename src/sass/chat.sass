@@ -4,18 +4,18 @@
     list-style-type: none
     li
       border-radius: 5px
-      box-shadow: 0 0 6px $chat-msg-shadow
-      padding: 10px
+      box-shadow: 0 0 2px $chat-msg-shadow
+      padding: .36em .71em .71em .71em
       margin: 15px 20px
       overflow: auto
       &.mine
         background-color: $chat-mine-color
-        margin-left: 40px
+        margin-left: .71em
         .avatar
           display: none
       &.their
         background-color: $chat-their-color
-        margin-right: 40px
+        margin-right: .71em
         .avatar
           float: left
           margin-right: 10px
@@ -42,16 +42,22 @@
         display: block
       .chat-message-sender
         color: $chat-sender-color
+        font-weight: bold
         margin-bottom: 2px
       .chat-message-time
         float: right
-        margin-top: -10px
-  .chat-input-button
-    font-size: 2em
-  .input-group
+        font-size: .86em
+        padding-top: 0.26em
+  .chat-send-bar
+    background: $chat-send-bar-background-color
     textarea
+      font-size: 1.21em
       resize: none
       border-right: 0px
-    span
-      padding-top: 2px
-      padding-bottom: 2px
+    textarea:focus + .input-group-addon
+      @extend .form-control:focus
+    button
+      border-radius: 50%
+      padding: 8px
+      height: 2.71em
+      width: 2.71em

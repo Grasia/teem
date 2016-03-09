@@ -17,9 +17,25 @@ angular.module('Teem')
         function(SessionSvc, url, $rootScope, $scope, $route, $location,
         $timeout) {
 
-          $scope.ed = {
+          $scope.pad = {
             editting: false
           };
+
+          function editOn () {
+            $scope.pad.editting = true;
+
+            SessionSvc.showSaving = true;
+
+            $timeout();
+          }
+
+          function editOff () {
+            $scope.pad.editting = false;
+
+            SessionSvc.showSaving = false;
+
+            $timeout();
+          }
 
           $scope.padReady = function() {
             // FIXME
@@ -34,31 +50,16 @@ angular.module('Teem')
             function(newClass) {
               if (newClass === 'wave-editor-on') {
                 editor.
-                  on('focus', function() {
-                    $scope.editOn();
-                  }).
-                  on('blur', function() {
-                    $scope.editOff();
-                  });
+                  on('focus', editOn).
+                  on('blur', editOff);
+              } else if (newClass === 'wave-editor-off') {
+                editor.
+                  off('focus', editOn).
+                  off('blur', editOff);
               }
             });
           };
 
-          $scope.editOn = function() {
-            $scope.ed.editting = true;
-
-            SessionSvc.showSaving = true;
-
-            $timeout();
-          };
-
-          $scope.editOff = function() {
-            $scope.ed.editting = false;
-
-            SessionSvc.showSaving = false;
-
-            $timeout();
-          };
       }],
       templateUrl: 'pad.html'
     };

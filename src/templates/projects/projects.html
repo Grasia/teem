@@ -1,0 +1,42 @@
+<div class="projects list-group" ng-if="!emptyProjects()">
+  <div class="project-item list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
+
+    <div class="media">
+      <div class="media-left">
+        <div class="project-photo">
+          <img class="media-object" src="images/default-project.png" />
+        </div>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <span class="project-item-title">{{project.title}}</span>
+        </h4>
+
+        <div class="project_description">
+        </div>
+
+        <div class="project-sections">
+          <div class="icon-count project-sections-participants col-xs-4">
+            <i class="fa i-community"></i>
+            <span class="icon-count-number">{{ project.contributors.length }}</span>
+
+          </div>
+
+          <div class="icon-count project-sections-needs col-xs-4">
+            <a ng-click="showProject(project, 'needs')">
+              <i class="fa i-need"></i>
+              <span class="icon-count-number">{{ project.needIncompletedCount() }}</span>
+            </a>
+          </div>
+
+          <div class="icon-count project-sections-chat col-xs-4">
+            <a ng-click="showProject(project, 'chat')">
+              <i class="fa i-message"></i>
+              <span class="icon-count-number">{{ project.newMessagesCount() }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,25 +1,37 @@
-.avatar
+.avatar, .project-photo
   text-align: center
   display: inline-block
-  width: 40px
+  width: 96px
   margin-right: 10px
   img
     background-color: #D3D3D3
     @extend .img-circle
     display: block
-    height: 40px
-    width: 40px
+    height: 96px
+    width: 96px
   div
     overflow: hidden
     font-size: 0.8em
     color: $grey
 
-.avatar-large
+.avatar-small, .project-photo-small
   @extend .avatar
-  width: 200px
+  width: 40px
   img
-    height: 200px
-    width: 200px
+    height: 40px
+    width: 40px
+
+.avatar-responsive, .project-photo-responsive
+  img
+    @extend .img-circle
+    width: 100%
+
+.community-photo, .community-gallery
+  img
+    width: 100%
+    object-fit: cover
+    max-height: 300px
+
 
 // ng-img-crop support
 img-crop

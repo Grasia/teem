@@ -8,7 +8,9 @@
 
 var config = {
   dest: 'www',
-  minify_images: true,
+  minifyImages: true,
+  uglify: true,
+  cssmin: true,
 
   vendor: {
     js: [
@@ -18,8 +20,10 @@ var config = {
       './bower_components/angular-translate/angular-translate.js',
       './bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
+      './bower_components/angular-messages/angular-messages.js',
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       './bower_components/angular-ui-select/dist/select.js',
+      './bower_components/angular-ui-notification/dist/angular-ui-notification.js',
       './bower_components/angular-elastic/elastic.js',
       './bower_components/angular-bindonce/bindonce.js',
       './bower_components/angular-utf8-base64/angular-utf8-base64.js',
@@ -38,8 +42,8 @@ var config = {
       './bower_components/moment/moment.js',
       './bower_components/moment/locale/es.js',
       './bower_components/angular-moment/angular-moment.js',
-      './bower_components/ng-img-crop/compile/unminified/ng-img-crop.js'
-
+      './bower_components/ng-img-crop/compile/unminified/ng-img-crop.js',
+      './bower_components/ng-file-upload/ng-file-upload.js'
     ],
 
     fonts: [
@@ -82,6 +86,10 @@ var config = {
   serverTest: {
     host: '127.0.0.1',
     port: '9001'
+  },
+
+  serverTestKarma: {
+    port: '8090'
   },
 
   weinre: false,
@@ -142,9 +150,11 @@ module.exports.config = config;
 ========================================*/
 
 var gulp           = require('gulp'),
+  gulpif         = require('gulp-if'),
   seq            = require('run-sequence'),
   connect        = require('gulp-connect'),
   sass           = require('gulp-sass'),
+  babel          = require('gulp-babel'),
   uglify         = require('gulp-uglify'),
   sourcemaps     = require('gulp-sourcemaps'),
   cssmin         = require('gulp-cssmin'),
@@ -232,7 +242,7 @@ gulp.task('livereload', function () {
 gulp.task('images', function () {
   var stream = gulp.src('src/images/**/*');
 
-  if (config.minify_images) {
+  if (config.minifyImages) {
     stream = stream.pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
@@ -271,7 +281,7 @@ gulp.task('html', function() {
   var inject = [];
 
   if (config.swellrt) {
-    inject.push('<script src="'+config.swellrt.server+'/swellrt/swellrt.nocache.js"></script>');
+    inject.push('<script src="'+config.swellrt.server+'/swellrt.js"></script>');
     inject.push('<script>var SwellRTConfig = '+JSON.stringify(config.swellrt)+';</script>');
   }
 
@@ -313,7 +323,7 @@ gulp.task('sass', function () {
       }
     }))
     */
-    .pipe(cssmin())
+    .pipe(gulpif(config.cssmin, cssmin()))
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.', {
       sourceMappingURLPrefix: '/css/'
@@ -341,21 +351,33 @@ gulp.task('jshint', function() {
 gulp.task('js:app', function() {
   return streamqueue({ objectMode: true },
     // Vendor: angular, mobile-angular-ui, etc.
-    gulp.src(config.vendor.js),
+    gulp.src(config.vendor.js)
+    .pipe(sourcemaps.init()),
     // app.js is configured
-    gulp.src('./src/js/app.js').
-    pipe(replace('value(\'config\', {}). // inject:app:config',
-                 'value(\'config\', ' + JSON.stringify(config.app) + ').')),
+    gulp.src('./src/js/app.js')
+    .pipe(sourcemaps.init())
+    .pipe(replace('value(\'config\', {}). // inject:app:config',
+                  'value(\'config\', ' + JSON.stringify(config.app) + ').'))
+    .pipe(babel({
+      presets: ['es2015']
+    })),
     // rest of app logic
-    gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js']).
-    pipe(ngFilesort()),
+    gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js'])
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(ngFilesort()),
     // app templates
     gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
   )
-  .pipe(sourcemaps.init())
   .pipe(concat('app.js'))
   .pipe(ngAnnotate())
-  .pipe(uglify())
+  .pipe(gulpif(config.uglify, uglify()))
   .pipe(rename({suffix: '.min'}))
   .pipe(sourcemaps.write('.', {
     sourceMappingURLPrefix: '/js/'
@@ -461,6 +483,14 @@ gulp.task('test:unit', function(done) {
   }, done).start();
 });
 
+gulp.task('test:unit:loop', function(done) {
+  new karma({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: false
+  }, done).start();
+});
+
+
 /*================================================
 =        End to end testing with protractor      =
 =================================================*/
@@ -507,7 +537,7 @@ gulp.task('deploy:swellrt', function(done) {
 
   connection.on('ready', function() {
     var cmd = 'SWELLRT_VERSION=' + config.deploy.swellrt.tag +
-          ' docker-compose -f ' + config.deploy.swellrt.config + 
+          ' docker-compose -f ' + config.deploy.swellrt.config +
           ' -p ' + config.deploy.swellrt.name +
           ' up -d';
 

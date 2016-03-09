@@ -15,7 +15,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngAnimate',
+    'ngMessages',
     'mobile-angular-ui',
+    'ui-notification',
     'ui.select',
     'ui.bootstrap',
     'monospaced.elastic',
@@ -26,7 +28,8 @@ angular
     'ab-base64',
     'angular-toArrayFilter',
     'angularMoment',
-    'ngImgCrop'
+    'ngImgCrop',
+    'ngFileUpload'
   ]).
   // Application config
   // See config.js.sample for examples
@@ -36,7 +39,7 @@ angular
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {
-        redirectTo: '/frontpage'
+        redirectTo: '/communities'
       });
   }])
   .config(function($translateProvider) {

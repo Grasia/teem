@@ -1,19 +1,7 @@
-<div ui-content-for="nav-left">
-  <div class="btn-group pull-left">
-    <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
-      <i class="fa fa-bars"></i>
-    </div>
-  </div>
-</div>
-
-<div ui-content-for="sidebar">
-  <div class="sidebar sidebar-left" ng-include="'menu.html'" ng-controller="MenuCtrl"></div>
-</div>
-
 <div ui-content-for="nav-title">
   <div class="overflow-ellipsis" translate>community.index.title</div>
 </div>
 
-<div class="communities-index">
-  <communities></communities>
-</div>
+<communities></communities>
+
+<plus plus-type="community"></plus>

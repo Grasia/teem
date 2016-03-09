@@ -11,15 +11,17 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/projects/:id', {
-        templateUrl: 'project.html',
+      .when('/projects/:id/:new?', {
+        templateUrl: 'projects/project.html',
         controller: 'ProjectCtrl',
         // Change between tabs without re-rendering the view
         reloadOnSearch: false
       })
+      // Getting a project from projects widget
       .when('/communities/:communityId/projects/fetch/:id', {
         controller: 'FetchProject'
       })
+      // Old stuff
       .when('/communities/:communityId/projects/:id', {
         redirectTo: function(params) {
           return '/projects/' + params.id;
@@ -58,24 +60,48 @@ angular.module('Teem')
     });
   }])
   .controller('ProjectCtrl', [
-  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route',
-  'SharedState', 'ProjectsSvc', 'Loading',
-  function (SessionSvc, url, $scope, $rootScope, $location, $route,
-  SharedState, ProjectsSvc, Loading) {
+  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc',
+  function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout,
+  SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc) {
 
-    $scope.urlId = url.urlId;
+    var edittingTitle = false;
+
+    SessionSvc.onLoad(function(){
+      Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
+        then(function(project) {
+          $scope.project = project;
+          $scope.project.setTimestampAccess(currentTab());
+
+          CommunitiesSvc.allByIds(project.communities).then(function (communities) {
+            $timeout(function() {
+              $scope.communities = communities;
+            });
+          });
+        });
+    });
 
     function currentTab() {
       return $location.search().tab || 'pad';
     }
 
-    SessionSvc.onLoad(function(){
-      Loading.create(ProjectsSvc.findByUrlId($route.current.params.id)).
-        then(function(proxy) {
-          $scope.project = proxy;
-          $scope.project.setTimestampAccess(currentTab());
-        });
+    SharedState.initialize($scope, 'projectTab', {
+      defaultValue: currentTab()
     });
+
+    NewForm.initialize($scope, 'project');
+
+    $scope.edittingTitle = function() {
+      return edittingTitle || $scope.isNew();
+    };
+
+    $scope.showEditTitle = function() {
+      edittingTitle = true;
+    };
+
+    $scope.hideEditTitle = function() {
+      edittingTitle = false;
+    };
 
     $scope.titleReminder = function titleReminder() {
       SharedState.turnOff('projectTitleReminder');
@@ -83,8 +109,6 @@ angular.module('Teem')
       document.querySelector('.project-title input').focus();
     };
 
-    SharedState.initialize($scope, 'projectTab',
-      { defaultValue: currentTab() });
 
     $scope.$on('mobile-angular-ui.state.changed.projectTab', function(e, newVal, oldVal) {
       $scope.project.setTimestampAccess(oldVal);
@@ -105,14 +129,16 @@ angular.module('Teem')
 
     $scope.cancelProject = function() {
       SharedState.turnOff('projectTitleReminder');
-      $scope.project.type = 'deleted';
-      $scope.project.communities = [];
+
+      $scope.project.delete();
+
       $location.path('frontpage');
     };
 
     $scope.hasChanged = function(section){
 
-      if(!$scope.project || ! $scope.project.lastChange(section)){
+      if(!$scope.project || ! $scope.project.lastChange(section) ||
+        !SessionSvc.users.current()){
         return false;
       }
 

@@ -1,15 +1,78 @@
-<div class="session-form">
-  <div class="tip" ng-hide="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>login.tip</div>
-  <div class="error-tip" ng-show="loginForm.login.$invalid && loginForm.login.$dirty && !loginForm.login.$error.required" translate>login.error</div>
-
-  <form class="login-form" role="form" name="loginForm">
-    <div class="input-group" ng-class="(loginForm.login.$invalid  && loginForm.login.$dirty && !loginForm.login.$error.required ) ? 'has-error' : ''">
-      <label class="control-label sr-only" for="login" translate>login.name</label>
-      <input type="text" class="form-control" id="login" name="login" ng-model="user.nick" placeholder="{{ 'login.name' | translate }}"
-             ng-pattern="loginRegexp" ng-model-options="{ debounce: 250 }" required/>
-      <span class="input-group-btn">
-        <input type="submit" class="btn btn-info" ng-click="login(name)" value="{{'login.button' | translate}}"  ng-disabled="loginForm.login.$invalid" >
-      </span>
+<div class="session-form row">
+  <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+    <div id="error_alert" class="alert alert-danger" ng-show="error.current !== null">
+      {{'session.' + form.current + '.error.' + error.current | translate}}
     </div>
-  </form>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
+        <img src="images/app-logo.png" class="img-responsive">
+        <div ng-if="form.current!='login' && form.current!='register'" class="text-center">
+          <h3 translate-values="{ nick: '{{user.nick}}'}" translate>{{ 'session.'+form.current+'.tip_title'}}</h3>
+          <span translate-values="{ nick: '{{user.nick}}'}" translate>{{"session."+form.current+".tip"}}</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="session-form" role="form" name="sessionForm" ng-submit="submit()" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+      <div>
+        <div ng-if="isFieldVisible('nick')"  class="form-group" ng-class="{ 'has-error': sessionForm.nick.$touched && sessionForm.nick.$invalid }">
+          <label class="control-label sr-only" for="nick">{{ 'session.'+form.current+'.nick' | translate }}</label>
+          <input type="text" class="form-control" id="nick" name="nick" ng-attr-placeholder="{{ 'session.'+form.current+'.nick' | translate }}"
+          ng-model="form.values.nick" ng-required="validation.required()" ng-pattern="validation.nickPattern()" />
+          <span class="field-error" ng-messages="sessionForm.nick.$error" ng-if="sessionForm.nick.$touched">
+            <span ng-message="required" translate>session.register.error.nick.required</span>
+            <span ng-message="pattern" translate>session.register.error.nick.pattern</span>
+          </span>
+        </div>
+        <div ng-if="isFieldVisible('password')" class="form-group" ng-class="{ 'has-error': sessionForm.password.$touched && sessionForm.password.$invalid }">
+          <label class="control-label sr-only" for="password">{{ 'session.'+form.current+'.password' | translate }}</label>
+          <input type="password" class="form-control" id="password" name="password" ng-attr-placeholder="{{ 'session.'+form.current+'.password' | translate }}"
+          ng-model="form.values.password" ng-pattern="validation.passwordPattern()" ng-required="validation.required()" />
+          <span class="field-error" ng-messages="sessionForm.password.$error" ng-if="sessionForm.password.$touched">
+            <span ng-message="required">{{'session.'+form.current+'.error.password.required' | translate }}</span>
+            <span ng-message="pattern" translate>session.register.error.password.pattern</span>
+          </span>
+          <span class="field-error" ng-if="form.current=='login'">
+            <a ng-click="goToForm(sessionForm, 'forgottenPassword')" class="btn session-forgotten-password-form-btn" translate>session.forgottenPassword.link</a>
+          </span>
+        </div>
+        <div ng-if="isFieldVisible('passwordRepeat')" class="form-group" ng-class="{ 'has-error': sessionForm.passwordRepeat.$touched && sessionForm.passwordRepeat.$invalid }">
+          <label class="control-label sr-only" for="passwordRepeat">{{ 'session.'+form.current+'.passwordRepeat' | translate }}</label>
+          <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" ng-attr-placeholder="{{ 'session.'+form.current+'.passwordRepeat' | translate }}"
+          ng-model="form.values.passwordRepeat" ng-pattern="validation.passwordPattern()" required match-validator="form.values.password" />
+          <span class="field-error" ng-messages="sessionForm.passwordRepeat.$error" ng-if="sessionForm.passwordRepeat.$touched">
+            <span ng-message="required">{{'session.'+form.current+'.error.passwordRepeat.required' | translate }}</span>
+            <span ng-message="pattern" translate>session.register.error.password.pattern</span>
+            <span ng-message="match" translate>session.register.error.passwordRepeat.match</span>
+          </span>
+        </div>
+        <div ng-if="isFieldVisible('email')" class="form-group" ng-class="{ 'has-error': sessionForm.email.$touched && sessionForm.email.$invalid }">
+          <label class="control-label sr-only" for="email">{{ 'session.'+form.current+'.email' | translate }}</label>
+          <input type="email" class="form-control" id="email" name="email" ng-attr-placeholder="{{ 'session.'+form.current+'.email' | translate }}"
+          ng-model="form.values.email" required />
+          <span class="field-error" ng-messages="sessionForm.email.$error" ng-if="sessionForm.email.$touched">
+            <span ng-message="required">{{'session.'+form.current+'.error.email.required' | translate }}</span>
+            <span ng-message="email">{{'session.'+form.current+'.error.email.email' | translate}}</span>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
+            <input type="submit" class="btn btn-primary btn-block session-submit-btn text-uppercase" ng-disabled="sessionForm.$invalid" value="{{'session.'+form.current+'.button' | translate}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-center">
+            <p ng-if="form.current=='register'">
+              <span translate>session.login.link_prev</span><br>
+              <a ng-click="goToForm(sessionForm, 'login')"  class="btn session-login-form-btn text-uppercase" translate>session.login.link</a>
+            </p>
+            <p ng-if="form.current=='login'">
+              <span translate>session.register.link_prev</span><br>
+              <a ng-click="goToForm(sessionForm, 'register')" class="btn session-register-form-btn text-uppercase" translate>session.register.link</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

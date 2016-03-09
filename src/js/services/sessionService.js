@@ -10,8 +10,10 @@
 
 angular.module('Teem')
   .factory('SessionSvc', [
-  '$q', '$timeout', 'SharedState', 'NotificationSvc',
-  function($q, $timeout, SharedState, NotificationSvc) {
+  '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
+  '$rootScope',
+  function($q, $timeout, SharedState, NotificationSvc, $locale, User,
+           $rootScope) {
 
     var swellRTDef = $q.defer();
     var swellRTpromise = swellRTDef.promise;
@@ -29,18 +31,9 @@ angular.module('Teem')
       sync: true,
     };
 
-    window.onSwellRTReadyCalled = false;
-
-    window.onSwellRTReady = function(){
+    SwellRT.ready(function() {
       swellRTDef.resolve();
-      window.onSwellRTReadyCalled = true;
-    };
-
-    if (window.SwellRT && !window.onSwellRTReadyCalled){
-      window.onSwellRTReady();
-    }
-
-
+    });
 
     // TODO use this to handle fatal exceptions
     var setFatalExceptionHandler = function(handler){
@@ -55,6 +48,7 @@ angular.module('Teem')
     };
 
     var sessionDef = $q.defer();
+    var sessionPromise = sessionDef.promise;
     var users = {
       password: '$password$',
       callbacks: {
@@ -62,53 +56,67 @@ angular.module('Teem')
         logout: []
       },
       current: function() {
-        return window.localStorage.getItem('userId');
+        // console.log('Deprecated. Use User.currentId() instead');
+
+        return User.currentId();
       },
-      setCurrent: function(name) {
-        var cleanedName = name ? name.trim() : name;
-        var current = window.localStorage.setItem('userId', cleanedName);
-        users.callbacks.login.forEach(function(cb) {
-          cb();
-        });
-        users.callbacks.login = [];
-        return current;
+
+      currentNick: function() {
+        var address = window.localStorage.getItem('userId');
+
+        if (address !== null){
+          // console.log('Deprecated. Use User.current().nick instead');
+
+          return User.current().nick;
+        }
+
+        return undefined;
       },
-      clearCurrent: function() {
-        users.callbacks.logout.forEach(function(cb) {
-          cb();
-        });
-        users.callbacks.logout = [];
-        window.localStorage.removeItem('userId');
-      },
+
       isCurrent: function(user) {
-        return user === users.current();
+        // console.log('Deprecated. Use User.isCurrent() instead');
+
+        return User.isCurrent(user);
       },
       loggedIn: function() {
-        return users.current() !== 'undefined' && users.current() !== null;
-      },
-      on: function(event, cb) {
-        if (event === 'login') {
-          users.callbacks.login[0] = cb;
-        } else if (event === 'logout') {
-          users.callbacks.logout[0] = cb;
-        }
-        // Write ".push(cb)" instead of "[0] = cb" for multiple callback support,
-        // but calling to users.on() twice with the same callback will execute
-        // that callback twice.
+        // console.log('Deprecated. Use User.loggedIn() instead');
+
+        return User.loggedIn();
       }
     };
 
-    var registerUser = function(userName, password, onSuccess, onError) {
+    var registerUser = function(userName, password, email, onSuccess, onError) {
       swellRTpromise.then(function(){
-        SwellRT.registerUser(SwellRTConfig.server, userName, password, onSuccess, onError);
+        var data = {
+          id: userName,
+          password: password,
+          email: email,
+          locale: $locale.id
+        };
+        SwellRT.createUser(data, function(res){
+          if (res.error) {
+            onError(res.error);
+
+          } else if (res.data) {
+            onSuccess();
+
+          }
+        });
       });
     };
 
     var stopSession = function(){
       swellRTpromise.then(function(){
-        users.clearCurrent();
-        // Start anonymous session to continue the communication with SwellRT
-        autoStartSession();
+
+        SwellRT.stopSession();
+        SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS, '',
+          function(){
+            sessionDef.resolve(SwellRT);
+
+          }, function(error) {
+            console.log(error);
+          });
+
         NotificationSvc.unregister(
           undefined,
           function(error){
@@ -126,6 +134,7 @@ angular.module('Teem')
 
       SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
         $timeout(function(){
+
           status.connection = 'disconnected';
         });
       });
@@ -151,7 +160,7 @@ angular.module('Teem')
       swellRTpromise.then(function(){
         if (status.connection === 'connected') {
           if (userName && __session.address &&
-              __session.address.split('@')[0] === userName.split('@')[0]) {
+              __session.address === userName) {
             return; // Session already started
           }
           // close other user's session
@@ -163,12 +172,12 @@ angular.module('Teem')
         SwellRT.startSession(
           SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
           function(){
-            SwellRTConfig.swellrtServerDomain = __session.domain;
             if (userName){
-              users.setCurrent(__session.address);
+              // We should use events form Notification broadcast
               NotificationSvc.register(userName);
+
+              $rootScope.$broadcast('teem.login');
             } else {
-              users.clearCurrent();
               NotificationSvc.unregister(
                 undefined,
                 function(error){
@@ -179,40 +188,91 @@ angular.module('Teem')
             sessionDef.resolve(SwellRT);
             onSuccess();
 
-            status.connection = 'connected';
-          }, function() {
-            onError();
-            status.connection = 'disconnected';
+          }, function(error) {
+            onError(error);
           });
       });
     };
 
-    var autoStartSession = function(){
-      var user, pass;
-
-      if (users.current() !== null) {
-        user = users.current();
-        pass = users.password;
-      }
-
-      startSession(
-        user, pass, function(){
-          $timeout();
-        },
-        function(error) {
-          console.log(error);
-        });
+    var forgottenPassword = function(email, recoverUrl, onSuccess, onError) {
+      SwellRT.recoverPassword(email, recoverUrl, onSuccess, onError);
     };
 
-    function loginRequired(cb) {
-      if (! users.loggedIn()) {
-        SharedState.turnOn('shouldLoginSharedState');
-        // Invoque $timout to refresh scope and actually show modal
-        $timeout();
-        users.on('login', cb);
+    var recoverPassword = function(id, tokenOrPassword, password, onSuccess, onError) {
+      SwellRT.setPassword(id, tokenOrPassword, password, onSuccess, onError);
+    };
+
+    function getUserProfile(data, cb) {
+      sessionPromise.then(function() {
+        SwellRT.getUserProfile(data, cb);
+      });
+    }
+
+    var updateUserProfile = function(data, cb) {
+      sessionPromise.then(function(){
+        SwellRT.updateUserProfile(data, cb);
+      });
+    };
+
+    var autoStartSession = function(){
+
+      status.connection = 'connecting';
+
+      var user, pass;
+
+      // remove this after passwordless user migration is done
+      if (localStorage.userId !== undefined) {
+        user = localStorage.userId;
+        pass = users.password;
+
+        // remove this start session call with default password when passwordless user migration is consideded successful
+        // keep SwellRT.resumeSession call
+        startSession(
+          user, pass, function(){
+            // migrating users with default password
+            if (user !== undefined) {
+              SharedState.set('shouldLoginSharedState', 'migration');
+              $timeout();
+            }
+          },
+          // with localStorage.userId but not default password
+          function(error) {
+            console.log(error);
+            delete localStorage.userId;
+            autoStartSession();
+          });
       } else {
-        cb();
+        swellRTpromise.then(function(){
+          SwellRT.resumeSession(
+            function(){
+              sessionDef.resolve(SwellRT);
+            },
+            function(error){
+              console.log(error);
+              // Anonymous session (user and pass are null)
+              startSession(
+                user, pass, function(){},
+                function(error) {
+                  console.log(error);
+                });
+            });
+          });
       }
+
+  };
+
+    function loginRequired(scope, cb) {
+      sessionPromise.then(function() {
+        if (! users.loggedIn()) {
+          SharedState.turnOn('shouldLoginSharedState');
+          // Invoque $timout to refresh scope and actually show modal
+          $timeout();
+
+          scope.$on('teem.login', cb);
+        } else {
+          cb();
+        }
+      });
     }
 
     return {
@@ -220,6 +280,10 @@ angular.module('Teem')
       registerUser: registerUser,
       startSession: startSession,
       stopSession: stopSession,
+      recoverPassword: recoverPassword,
+      forgottenPassword: forgottenPassword,
+      getUserProfile: getUserProfile,
+      updateUserProfile: updateUserProfile,
       loginRequired: loginRequired,
       setFatalExceptionHandler: setFatalExceptionHandler,
       status: status,
@@ -229,7 +293,8 @@ angular.module('Teem')
             status.connection === 'disconnected'){
           autoStartSession();
         }
-        sessionDef.promise.then(f);
+
+        sessionPromise.then(f);
       }
     };
   }]);

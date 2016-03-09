@@ -1,0 +1,17 @@
+<div class="modal modal-overlay" ui-if="shouldLoginSharedState" ui-state="shouldLoginSharedState">
+  <div class="scrollable">
+    <div class="scrollable-header session-header" ng-controller="SessionCtrl">
+      <div class="session-header-title">
+        {{'session.'+form.current+'.title' | translate}}
+      </div>
+      <div class="btn-group pull-left">
+        <div class="session-header-left">
+          <a ui-turn-off="shouldLoginSharedState">&times;</a>
+        </div>
+      </div>
+    </div>
+    <div class="scrollable-content">
+      <div ng-include="'session/form.html'" ng-controller="SessionCtrl"></div>
+    </div>
+  </div>
+</div>

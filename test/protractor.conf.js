@@ -19,5 +19,21 @@ exports.config = {
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 90000
+  },
+
+  onPrepare: function() {
+    browser.get('/#/session/register');
+    $('#nick').sendKeys('Snowden');
+    $('#password').sendKeys('MargaretThatcheris110%SEXY.');
+    $('#passwordRepeat').sendKeys('MargaretThatcheris110%SEXY.');
+    $('#email').sendKeys('snowden@nsa.gov');
+    var loginButton = $('.session-form input[type=submit]');
+
+    browser.wait(function() {
+      return loginButton.click().then(
+        function() { return true; },
+        function() { return false; }
+      );
+    }, 10000);
   }
 };

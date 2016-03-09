@@ -20,7 +20,7 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div bindonce class="app" id="app" ng-controller="NavbarTopCtrl">
+    <div bindonce class="app" id="app">
       <div class="app-body">
         <div class="notification-area">
           <div connection-status></div>
@@ -34,7 +34,7 @@
     <div ui-yield-to="modals"></div>
     <!-- Need support for several ui-content-for https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
     <div ui-yield-to="modals2"></div>
-    <div should-login-modal></div>
+    <div session-modal></div>
     <div loading></div>
     <div upgrading></div>
   </body>

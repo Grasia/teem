@@ -16,33 +16,19 @@ angular.module('Teem')
         controller: 'ProfileCtrl'
       });
   }])
-  .controller('ProfileCtrl', ['$scope', 'SessionSvc', function ($scope, SessionSvc) {
-    SessionSvc.loginRequired(function() {
+  .controller('ProfileCtrl', ['$scope', 'SessionSvc', 'Notification', function ($scope, SessionSvc, Notification) {
+    SessionSvc.loginRequired($scope, function() {
       $scope.user = SessionSvc.users.current();
-      $scope.rawAvatar = '';
-      $scope.croppedAvatar = '';
-      $scope.cropping = false;
 
-      function handleFileSelect(evt) {
-        $scope.cropping = true;
-        var file = evt.currentTarget.files[0];
-        var reader = new FileReader();
-        reader.onload = function (evt) {
-          $scope.$apply(function($scope) {
-            $scope.rawAvatar = evt.target.result;
-          });
-        };
-        reader.readAsDataURL(file);
-      }
-      angular.element(document.querySelector('#avatar')).on('change', handleFileSelect);
-
-      $scope.saveAvatar = function() {
-        $scope.cropping = false;
+      $scope.updateAvatar = function(croppedAvatar) {
+        SessionSvc.updateUserProfile({avatarData: croppedAvatar}, function (res) {
+          if (res.error) {
+            Notification.error(croppedAvatar ? 'profile.avatar.upload.error' : 'profile.avatar.remove.error');
+            return;
+          }
+          Notification.success(croppedAvatar ? 'profile.avatar.upload.success' : 'profile.avatar.remove.success');
+        });
       };
 
-      $scope.deleteAvatar = function() {
-        $scope.rawAvatar = '';
-        $scope.croppedAvatar = '';
-      };
     });
   }]);

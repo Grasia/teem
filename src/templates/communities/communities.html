@@ -1,0 +1,49 @@
+<div class="communities">
+  <div class="scrollable">
+    <div class="scrollable-content">
+      <div class="community-list">
+        <div class="community-item col-sm-6 col-md-4"
+             ng-hide="creating && newCommunityName.name === ''"
+             ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0' | filter:newCommunityName:strict"
+             ng-click="showCommunity(community.id)">
+          <div class="thumbnail">
+            <div class="community-photo">
+              <img src="images/default-community.png">
+            </div>
+            <div class="caption">
+              <h3 class="community-title" ng-bind-html="community.name | highlight:newCommunityName.name"></h3>
+              <div class="community-description">
+                {{ community.description }}
+              </div>
+              <div class="h3 community-project-count" translate translate-values="{ count: '{{ community.numProjects || 0}}'}">
+                community.project.count
+              </div>
+              <div class="community-item-footer row">
+                <div class="icon-count community-participant-count col-xs-3">
+                  <i class="fa i-participants"></i>
+                  <span class="icon-count-number">{{ community.participants.length }}</span>
+                </div>
+                <div class="icon-count community-like-count col-xs-3">
+                  <span class="icon-count-number"></span>
+                </div>
+                <div class="col-xs-6">
+                  <button class="btn btn-primary pull-right"
+                          ng-if="! community.isParticipant()"
+                          participate
+                          participate-copy-off="community.participate.button"
+                          participate-model="community">
+                  </button>
+
+                  <div class="community-participating-message"
+                        ng-if="community.isParticipant()"
+                        translate>
+                    community.participate.message
+                  </div>
+                </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

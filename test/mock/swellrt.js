@@ -5,10 +5,22 @@ var SwellRTConfig = {
 };
 
 var SwellRT = {
-  on: function() {},
-  events: {},
-  createModel: function() {},
-  query: function() {}
+  on:           function() {},
+  events:       {},
+  createModel:  function() {},
+  query:        function() {},
+  ready:        function(cb) { cb(); },
+  recoverPassword: function() {},
+  createUser: function() {},
+  setPassword:  function() {},
+  startSession: function() {},
+  user: {
+    ANONYMOUS: '_anonymous_'
+  }
+};
+
+var __session = {
+  domain: 'local.net'
 };
 
 function SwellRTModel() {

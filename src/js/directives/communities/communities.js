@@ -21,27 +21,27 @@ angular.module('Teem')
         $scope.urlId = url.urlId;
 
         SessionSvc.onLoad(function(){
-          Loading.create(CommunitiesSvc.all()).
+          Loading.show(CommunitiesSvc.all()).
             then(function(communities){
               $scope.communities = communities;
             });
 
           $scope.create = function(name) {
-            SessionSvc.loginRequired(function() {
+            SessionSvc.loginRequired($scope, function() {
               $scope.created = true;
 
               CommunitiesSvc.create(
                 { name: name || $scope.newCommunityName.name },
                 function(community) {
                   // TODO: bring following call to controller code
-                  $scope.showProjects(community.id);
+                  $scope.showCommunity(community.id);
                 });
             });
           };
         });
 
         $scope.new_ = function() {
-          SessionSvc.loginRequired(function() {
+          SessionSvc.loginRequired($scope, function() {
             $scope.creating = true;
             // Need the timeout for the focus to work
             $timeout(function() {
@@ -60,10 +60,10 @@ angular.module('Teem')
           }
         };
 
-        $scope.showProjects = function(id) {
-          $location.path('/communities/' + url.urlId(id) + '/projects');
+        $scope.showCommunity = function(id) {
+          $location.path('/communities/' + url.urlId(id));
         };
       }],
-      templateUrl: 'communities.html'
+      templateUrl: 'communities/communities.html'
     };
   });

@@ -1,11 +1,10 @@
 <div class="list-group-item need-item" ng-if="project.isContributor() || need.completed !== 'add'">
   <div class="need-sections" ng-click="toggleCommentsVisibility(need)">
     <div class="need-section need-section-comments" ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
-      <span class="need-comments-count">
-        {{ need.comments.length || 0 }}
-      </span>
       <span class="need-comments-icon">
-        <i class="fa fa-comment" ng-class="newComments(need)? 'notify-comments':''"></i>
+        <i class="fa fa-comment"
+           ng-class="newComments(need)? 'notify-comments':''"
+           ng-attr-data-count="{{ need.comments && need.comments.length || 0 }}"></i>
       </span>
     </div>
     <div class="need-section need-section-status">
@@ -42,7 +41,7 @@
   <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">
     <div class="media" ng-repeat="comment in need.comments">
       <div class="media-left">
-        <div avatars="comment.author"></div>
+        <div avatars="comment.author" avatars-conf="{size: 'small'}"></div>
       </div>
       <div class="media-body">
         <div class="comment-time pull-right">
@@ -59,10 +58,10 @@
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
         <div class="input-group">
-          <textarea class="form-control" rows="1" msd-elastic="\n" ng-model="newComment.text" placeholder="{{ 'need.comment.input' | translate}}" ng-keydown="keyDown($event)">
+          <textarea class="form-control" rows="1" ng-model="newComment.text" placeholder="{{ 'need.comment.input' | translate}}" ng-keydown="keyDown($event)">
           </textarea>
           <span class="input-group-addon">
-            <i class="fa fa-chevron-circle-right need-comment-input-button" ng-click="sendComment()"></i>
+            <i class="fa i-send need-comment-input-button" ng-click="sendComment()"></i>
           </span>
         </div>
       </form>

@@ -5,76 +5,106 @@ angular.module('Teem')
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc){
 
-    var Community = function(){};
+    class CommunityReadOnly {
 
-    Community.prototype.myAndPublicProjects = function(){
-      return ProjectsSvc.all({
-         publicAndContributor: SessionSvc.users.current(),
-         community: this.id
-       });
-    };
+      constructor (val) {
+        if (val) {
+          for (var k in val.root){
+            if (val.root.hasOwnProperty(k)){
+              this[k] = val.root[k];
+            }
+          }
 
-    Community.prototype.isParticipant = function(user){
-      // Migrating from participants === undefined
-      if (this.participants === undefined) {
-        this.participants = [];
+        }
       }
 
-      if (!user){
-        user = SessionSvc.users.current();
-      }
-      return this.participants.indexOf(user) > -1;
-    };
+      get urlId () {
+        if (! this._urlId) {
+          this._urlId = base64.urlencode(this.id);
+        }
 
-    Community.prototype.addParticipant = function(user) {
-      if (!user){
-        if (!SessionSvc.users.loggedIn()) {
+        return this._urlId;
+      }
+
+      myAndPublicProjects () {
+        return ProjectsSvc.all({
+           publicAndContributor: SessionSvc.users.current(),
+           community: this.id
+         });
+      }
+
+      isParticipant (user = SessionSvc.users.current()) {
+        if (! user) {
+          return false;
+        }
+
+        // Migrating from participants === undefined
+        if (this.participants === undefined) {
+          this.participants = [];
+        }
+
+        return this.participants.indexOf(user) > -1;
+      }
+    }
+
+    class Community extends CommunityReadOnly {
+
+      addParticipant (user) {
+        if (!user){
+          if (!SessionSvc.users.loggedIn()) {
+            return;
+          }
+
+          user = SessionSvc.users.current();
+        }
+
+        if (this.isParticipant(user)) {
           return;
         }
 
-        user = SessionSvc.users.current();
+        this.participants.push(user);
       }
 
-      if (this.isParticipant(user)) {
-        return;
-      }
+      removeParticipant (user) {
+        if (!user){
+          if (!SessionSvc.users.loggedIn()) {
+            return;
+          }
 
-      this.participants.push(user);
-    };
+          user = SessionSvc.users.current();
+        }
 
-    Community.prototype.removeParticipant = function(user) {
-      if (!user){
-        if (!SessionSvc.users.loggedIn()) {
+        if (! this.isParticipant(user)) {
           return;
         }
 
-        user = SessionSvc.users.current();
+        this.participants.splice(
+          this.participants.indexOf(user),
+          1);
       }
 
-      if (! this.isParticipant(user)) {
-        return;
-      }
+      toggleParticipant (user) {
+        if (!user){
+          if (!SessionSvc.users.loggedIn()) {
+            return;
+          }
 
-      this.participants.splice(
-        this.participants.indexOf(user),
-        1);
-    };
-
-    Community.prototype.toggleParticipant = function(user) {
-      if (!user){
-        if (!SessionSvc.users.loggedIn()) {
-          return;
+          user = SessionSvc.users.current();
         }
 
-        user = SessionSvc.users.current();
+        if (this.isParticipant(user)) {
+          this.removeParticipant(user);
+        } else {
+          this.addParticipant(user);
+        }
       }
 
-      if (this.isParticipant(user)) {
-        this.removeParticipant(user);
-      } else {
-        this.addParticipant(user);
+      delete () {
+        this.type = 'deleted';
+
+        //TODO remove pointers from project.communities
       }
-    };
+    }
 
     // Service functions
 
@@ -129,7 +159,6 @@ angular.module('Teem')
 
         $timeout(function(){
           p.type = 'community';
-          p.name = data.name;
           p.id = id;
           p.participants = [SessionSvc.users.current()];
           p.projects = [];
@@ -162,7 +191,7 @@ angular.module('Teem')
         },
         function(result){
           angular.forEach(result.result, function(val) {
-            comms[val.root.id] = val.root;
+            comms[val.root.id] = new CommunityReadOnly(val);
           });
 
           foundCommunities.resolve(comms);
@@ -195,7 +224,10 @@ angular.module('Teem')
 
       queries.then(function(){
         angular.forEach(nums, function(val){
-          comms[val._id].numProjects = val.number;
+          // There might be orphaned projects
+          if (comms[val._id]) {
+            comms[val._id].numProjects = val.number;
+          }
         });
 
         communities.resolve(comms);
@@ -203,6 +235,25 @@ angular.module('Teem')
 
       return communities.promise;
     };
+
+    function allByIds (ids) {
+      return $q(function(resolve, reject) {
+        SwellRT.query({
+          'root.type': 'community',
+          'root.id': { $in: ids }
+        }, function (response) {
+          var communities = [];
+
+          angular.forEach(response.result, function(c) {
+            communities.push(new CommunityReadOnly(c));
+          });
+
+          resolve(communities);
+        }, function (error) {
+          reject(error);
+        });
+      });
+    }
 
     // The communities the user is participating in
     var participating = function() {
@@ -243,10 +294,11 @@ angular.module('Teem')
     };
 
     return {
-      findByUrlId: findByUrlId,
-      find : find,
-      create: create,
-      all: all,
-      participating: participating
+      findByUrlId,
+      find,
+      create,
+      all,
+      allByIds,
+      participating
     };
   }]);

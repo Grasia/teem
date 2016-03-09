@@ -10,7 +10,7 @@ angular.module('Teem')
         $scope.participateCopyOff = $attrs.participateCopyOff;
 
         $element.on('click', function() {
-          SessionSvc.loginRequired(function() {
+          SessionSvc.loginRequired($scope, function() {
             $scope.community.toggleParticipant();
             $timeout();
           });

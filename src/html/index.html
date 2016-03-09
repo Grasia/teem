@@ -8,8 +8,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
     <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <meta name="theme-color" content="#0C5464">
     <link rel="stylesheet" href="css/app.min.css" />
     <link href="images/favicon.ico" rel="icon"/>
+    <link rel="icon" sizes="144x144" href="images/icon.png">
 
     <!-- inject:js -->
     <script src="js/app.min.js"></script>
@@ -20,12 +22,14 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div bindonce class="app" id="app" ng-controller="NavbarTopCtrl">
+    <div bindonce class="app" id="app">
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
         <div class="navbar-brand navbar-brand-center nav-title" ui-yield-to="nav-title"></div>
 
         <div class="btn-group pull-left">
-          <div class="btn btn-navbar nav-left" ui-yield-to="nav-left"></div>
+          <div class="btn btn-navbar nav-left" ui-yield-to="nav-left">
+            <i class="fa fa-bars" ui-toggle="uiSidebarLeft"></i>
+          </div>
         </div>
 
         <div class="btn-group pull-right">
@@ -45,12 +49,15 @@
       </div>
     </div>
 
-    <div ui-yield-to="sidebar"></div>
+    <div>
+      <div class="sidebar sidebar-left" ng-include="'menu.html'" ng-controller="MenuCtrl"></div>
+    </div>
 
     <div ui-yield-to="modals"></div>
     <!-- Need support for several ui-content-for https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
     <div ui-yield-to="modals2"></div>
-    <div should-login-modal></div>
+    <div session-modal></div>
+    <div upload-picture-modal></div>
     <div loading></div>
     <div upgrading></div>
   </body>

@@ -1,14 +1,26 @@
-<div class="alert alert-info" ng-if="needs.length === 0" translate>
-  {{ 'need.index.empty.' + (project.isContributor() ? 'contributor' : 'reader') }}
+<div class="section needs-header">
+  <h1>{{ project.title }}</h1>
+
+  <div class="needs-tip" translate>
+    need.tip
+  </div>
+
+  <need-progress-bar></need-progress-bar>
 </div>
 
-<div class="list-group project-needs-list project-needs">
-  <div ng-repeat="need in needs">
-    <div need-display need="need">
-    </div>
+<div class="section need-list">
+  <div class="alert alert-info" ng-if="needs.length === 0" translate>
+    {{ 'need.index.empty.' + (project.isContributor() ? 'contributor' : 'reader') }}
   </div>
-  <div>
-    <div need-display need="{completed: 'add'}">
+
+  <div class="list-group project-needs-list project-needs">
+    <div ng-repeat="need in needs | orderBy: 'completed'">
+      <div need-display need="need">
+      </div>
+    </div>
+    <div>
+      <div need-display need="{completed: 'add'}">
+      </div>
     </div>
   </div>
 </div>

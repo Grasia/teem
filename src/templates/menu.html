@@ -1,26 +1,56 @@
 
-<div class="scrollable menu">
-  <div class="scrollable-header overflow-ellipsis" ui-turn-off="uiSidebarLeft">
-    <a href="#/" translate>menu.title</a>
+<div class="menu">
+  <div class="menu-header" ui-turn-off="uiSidebarLeft">
+    <a>&times;</a>
   </div>
-
-  <div class="scrollable-content">
-    <a class="list-group-item list-group-item-header" href="#/projects" translate>menu.projects.title</a>
-    <div class="list-group">
-      <div class="list-group-item list-group-item-header">
-        <a href="#/communities/new" class="pull-right"><i class="fa fa-plus-circle"></i></a>
-        <a href="#/communities" class="pull-right"><i class="fa fa-search"></i></a>
-        <a href="#/communities" translate>menu.communities.title</a>
+  <div class="menu-session">
+    <div class="menu-session-guest" ng-click="register()" ng-if="!loggedIn()">
+      <div class="menu-session-img">
+        <div class="avatar">
+          <img src="images/anonymous-avatar.png" />
+        </div>
       </div>
-      <div ng-repeat="community in myCommunities">
-        <a class="list-group-item list-group-item-child" ng-href="#/communities/{{urlId(community.id)}}/projects">
-          {{community.name}}
-        </a>
-      </div>
-      <a class="list-group-item list-group-item-header" href="#/communities/{{support.communityId}}/projects/{{support.projectId}}" ng-if="support" translate>menu.support</a>
-      <div ng-controller="SessionCtrl">
-        <a class="list-group-item list-group-item-header" ng-click="logout()" ng-if="isLoggedIn()" translate>menu.logout</a>
+      <div class="menu-session-body">
+        <div class="menu-session-nick" translate>
+          menu.session.guest
+        </div>
+        <div class="menu-session-tip" translate>
+          menu.session.tip
+        </div>
+        <div class="menu-session-action" translate>
+          menu.session.action
+        </div>
       </div>
     </div>
+
+    <div class="menu-session-logged-in" ng-if="loggedIn()">
+      <div class="menu-session-img">
+        <div avatars="user.id" class="avatars"></div>
+      </div>
+      <div class="menu-session-body">
+        <div class="menu-session-nick">
+          {{user.nick}}
+        </div>
+        <div class="menu-session-tip">
+          <div translate translate-values="{count: '{{userCommunitiesCount}}'}">
+            menu.session.communities
+          </div>
+          <div translate translate-values="{count: '{{userProjectsCount}}'}">
+            menu.session.projects
+          </div>
+        </div>
+        <div class="menu-session-action">
+          <button class="btn btn-link" ng-click="logout()" translate>
+            menu.session.logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-content list-group">
+    <a class="list-group-item" href="#/home/projects" ng-if="loggedIn()" translate>menu.homeProjects.title</a>
+    <a class="list-group-item" href="#/communities" translate>menu.communities.title</a>
+    <a class="list-group-item" href="#/projects" translate>menu.projects.title</a>
   </div>
 </div>
