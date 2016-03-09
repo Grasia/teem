@@ -30,7 +30,6 @@ var config = {
       './bower_components/SHA-1/sha1.js',
       './bower_components/angulartics/src/angulartics.js',
       './bower_components/angulartics/src/angulartics-piwik.js',
-      './bower_components/angular-swellrt/angular-swellrt.js',
       './bower_components/hammerjs/hammer.js',
       './bower_components/ryanmullins-angular-hammer/angular.hammer.js',
       './bower_components/angular-sanitize/angular-sanitize.js',
@@ -122,7 +121,7 @@ if (! config.swellrt.server) {
 }
 
 // Setup angular-swellrt stuff, depending on path
-config.vendor.js.push(config.angularSwellrt.path + '/angular-swellrt.js');
+config.vendor.js.push(config.angularSwellrt.path + '/dist/angular-swellrt.js');
 config.angularSwellrt.swellrt = require(config.angularSwellrt.path + '/swellrt.json');
 
 // Track SwellRT version in SwellRT config
