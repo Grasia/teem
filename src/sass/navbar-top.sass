@@ -10,11 +10,18 @@
     color: $navbar-top-color
   background-color: $navbar-top-background-color
 
-/* Prevent mobile-angular-ui moving navbar-brand-center to left in desktop */
 @media (min-width: 992px)
-  .navbar-brand-center
-    width: 100%
-    position: absolute
+  /* Prevent mobile-angular-ui moving navbar-brand-center to left in desktop */
+  .navbar
+    .navbar-brand-center
+      width: 100%
+      position: absolute
+      /* Do not show menu related links if menu is already visible */
+    .btn-navbar
+      display: none
+  .sidebar
+    .menu-header
+      display: none
 
 .navbar-brand
   padding-left: 40px
