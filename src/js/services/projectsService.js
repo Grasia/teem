@@ -183,7 +183,7 @@ angular.module('Teem')
           return 0;
         }
 
-        return this.needCompletedCount() * 100 / size;
+        return Math.round(this.needCompletedCount() * 100 / size);
       }
 
       // Show at least 1%
