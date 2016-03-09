@@ -107,9 +107,16 @@ angular.module('Teem')
 
     var stopSession = function(){
       swellRTpromise.then(function(){
+
         SwellRT.stopSession();
-        // Start anonymous session to continue the communication with SwellRT
-        autoStartSession();
+        SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS, '',
+          function(){
+            sessionDef.resolve(SwellRT);
+
+          }, function(error) {
+            console.log(error);
+          });
+
         NotificationSvc.unregister(
           undefined,
           function(error){
@@ -127,6 +134,7 @@ angular.module('Teem')
 
       SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
         $timeout(function(){
+
           status.connection = 'disconnected';
         });
       });
@@ -164,7 +172,6 @@ angular.module('Teem')
         SwellRT.startSession(
           SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
           function(){
-            SwellRTConfig.swellrtServerDomain = __session.domain;
             if (userName){
               // We should use events form Notification broadcast
               NotificationSvc.register(userName);
