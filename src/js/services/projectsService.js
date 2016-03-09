@@ -142,14 +142,15 @@ angular.module('Teem')
           return false;
         }
 
-        return this.supporters.indexOf(user) > -1;
+        return this.supporters.indexOf(user.id) > -1;
       }
 
       isContributor (user = User.current()) {
+        console.dir(user);
         if (! user) {
           return false;
         }
-        return this.contributors.indexOf(user) > -1;
+        return this.contributors.indexOf(user.id) > -1;
       }
 
       needCompletedCount () {
