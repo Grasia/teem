@@ -194,11 +194,11 @@
         "title": "Teems"
       },
       "home": {
-        "tip": "Estás trabajando en estos {{count}} grupos de trabajo",
+        "tip": "Estás trabajando en estos {{count}} grupos",
         "title": "Mis teems"
       },
       "public": {
-        "tip": "Las comunidades están ocupadas en estos grupos de trabajo",
+        "tip": "Las comunidades están trabajando en estos grupos",
         "title": "Teems"
       },
       "title": "Teems"

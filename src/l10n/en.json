@@ -114,19 +114,19 @@
       "title": "Teems"
     },
     "session": {
-      "action": "Get involved!",
+      "action": "Join us!",
       "communities": "{{count}} communities",
       "guest": "guest",
       "logout": "Log out",
       "projects": "{{count}} teems",
-      "tip": "Sign up to create your communities and teems"
+      "tip": "Register and create your communities and Teems"
     },
     "title": "Teem"
   },
   "need": {
     "by": "Added {{time}} by {{author}}",
     "comment": {
-      "input": "What can you help with?",
+      "input": "How can you lend a hand?",
       "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at need \"{{need}}\""
     },
     "index": {
@@ -142,7 +142,7 @@
       "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the workspace",
       "placeholder": "Add a new need"
     },
-    "tip": "This is what we need to achieve the project"
+    "tip": "This is what we need to get the project going"
   },
   "newForm": {
     "btn": {
@@ -194,11 +194,11 @@
         "title": "Teems"
       },
       "home": {
-        "tip": "You are working with these {{count}} work groups",
+        "tip": "You are working with these {{count}} groups",
         "title": "My teems"
       },
       "public": {
-        "tip": "Communities are busy with these work groups",
+        "tip": "Communities are working in these groups",
         "title": "Teems"
       },
       "title": "Teems"
@@ -221,7 +221,7 @@
     },
     "participate": {
       "btn": {
-        "do": "Join this Teem",
+        "do": "Add me to this Teem",
         "undo": "Leave"
       }
     },
