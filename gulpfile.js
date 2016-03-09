@@ -281,7 +281,7 @@ gulp.task('html', function() {
   var inject = [];
 
   if (config.swellrt) {
-    inject.push('<script src="'+config.swellrt.server+'/swellrt/swellrt.nocache.js"></script>');
+    inject.push('<script src="'+config.swellrt.server+'/swellrt.js"></script>');
     inject.push('<script>var SwellRTConfig = '+JSON.stringify(config.swellrt)+';</script>');
   }
 

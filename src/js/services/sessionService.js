@@ -31,17 +31,9 @@ angular.module('Teem')
       sync: true,
     };
 
-    window.onSwellRTReadyCalled = false;
-
-    window.onSwellRTReady = function(){
+    SwellRT.ready(function() {
       swellRTDef.resolve();
-      window.onSwellRTReadyCalled = true;
-    };
-
-    // FIXME this is wrong, SwellRT might be present but not ready
-    if (window.SwellRT && !window.onSwellRTReadyCalled){
-      window.onSwellRTReady();
-    }
+    });
 
     // TODO use this to handle fatal exceptions
     var setFatalExceptionHandler = function(handler){
