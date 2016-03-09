@@ -312,7 +312,7 @@
       "passwordRepeat": "Confirm password",
       "success": "Congratulations! your account is now protected by your password.",
       "tip": "We are protecting user accounts in Teem. Please, set your password.",
-      "tip_title": "Hi <strong>{{nick}}</strong>!",
+      "tip_title": "Welcome back <strong>{{nick}}</strong>!",
       "title": "Enter a password"
     },
     "register": {
