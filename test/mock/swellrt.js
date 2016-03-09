@@ -9,6 +9,7 @@ var SwellRT = {
   events:       {},
   createModel:  function() {},
   query:        function() {},
+  ready:        function(cb) { cb(); },
   recoverPassword: function() {},
   createUser: function() {},
   setPassword:  function() {},
