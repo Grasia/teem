@@ -268,6 +268,9 @@
       "title": "Teems"
     },
     "title": {
+      "empty": {
+        "placeholder": "Crea nuevo Teem"
+      },
       "placeholder": "Título",
       "reminder": {
         "body_one": "¡El espacio de trabajo no tiene nombre!",
