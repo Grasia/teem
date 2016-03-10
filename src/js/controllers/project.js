@@ -138,7 +138,7 @@ angular.module('Teem')
     $scope.hasChanged = function(section){
 
       if(!$scope.project || ! $scope.project.lastChange(section) ||
-        !SessionSvc.users.current()){
+        !$scope.project.isSupporter()){
         return false;
       }
 
