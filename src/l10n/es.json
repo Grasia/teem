@@ -288,7 +288,8 @@
     "login": {
       "button": "Entrar",
       "error": {
-        "wrong_email_or_password": "Perdona, nick o contraseña incorrecta"
+        "wrong_email_or_password": "Perdona, nick o contraseña incorrecta",
+        "unknown": "Ups, algo ha salido mal al entrar."
       },
       "link": "Entra aquí",
       "link_prev": "¿Ya estás en Teem?",
@@ -335,7 +336,8 @@
         "passwordRepeat": {
           "match": "Las contraseñas tienen que coincidir",
           "required": "Te olvidaste de repetir la contraseña"
-        }
+        },
+        "unknown": "Ups! algo ha salido mal al registrar tu cuenta"
       },
       "link": "Registrate aquí",
       "link_prev": "¿No estás todavía en Teem?",
@@ -350,6 +352,14 @@
         "email": {
           "email": "Introduce una cuenta de correo correcta",
           "required": "Olvidaste poner tu e-mail"
+        },
+        "password": {
+          "pattern": "La contraseña tiene que tener al menos 8 carácteres",
+          "required": "Te olvidaste de poner una contraseña"
+        },
+        "passwordRepeat": {
+          "match": "Las contraseñas deben coincidir",
+          "required": "Te olvidaste de repetir la contraseña"
         },
         "unknown": "Ups! algo ha salido mal enviando el correo de recuperación de contraseña."
       },
@@ -369,6 +379,7 @@
           "required": "Te olvidaste de poner una contraseña"
         },
         "passwordRepeat": {
+          "match": "Las contraseñas deben coincidir",
           "required": "Te olvidaste de repetir la contraseña"
         },
         "unknown": "Ups! algo ha salido mal al intentar etablecer tu nueva contraseña, por favor, inténtalo de nuevo."
