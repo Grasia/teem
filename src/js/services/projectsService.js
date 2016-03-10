@@ -38,14 +38,6 @@ angular.module('Teem')
           }
         });
 
-        if (! access) {
-          access = {
-            user: SessionSvc.users.current()
-          };
-
-          this.lastAccesses.push(access);
-        }
-
         return access;
       }
 
@@ -233,6 +225,9 @@ angular.module('Teem')
           return;
         }
 
+        if (this.getTimestampAccess() === undefined){
+          this.lastAccesses.push({user: SessionSvc.users.current()});
+        }
         var timestamp = this.getTimestampAccess()[section];
 
         if (timestamp === undefined) {

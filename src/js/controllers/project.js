@@ -71,7 +71,6 @@ angular.module('Teem')
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(project) {
           $scope.project = project;
-          $scope.project.setTimestampAccess(currentTab());
 
           CommunitiesSvc.allByIds(project.communities).then(function (communities) {
             $timeout(function() {
@@ -144,7 +143,8 @@ angular.module('Teem')
 
       var lastChange = $scope.project.lastChange(section);
       var lastAccess;
-          if ($scope.project.getTimestampAccess()[section]) {
+          if ($scope.project.getTimestampAccess() &&
+            $scope.project.getTimestampAccess()[section]) {
             lastAccess = new Date(($scope.project.getTimestampAccess()[section]).last);
           } else {
             lastAccess = new Date(0);
