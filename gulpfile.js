@@ -416,6 +416,7 @@ gulp.task('manifest', function(){
   gulp.src([ config.dest + '/**/*' ], { base: config.dest })
     .pipe(manifest({
       cache: [
+        config.swellrt.server + '/swellrt.js',
         config.swellrt.server + '/swellrt/swellrt.nocache.js'
       ],
       exclude: 'app.manifest',
