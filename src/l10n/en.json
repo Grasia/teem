@@ -291,7 +291,8 @@
     "login": {
       "button": "Enter",
       "error": {
-        "wrong_email_or_password": "Wrong nick or password. Sorry!"
+        "wrong_email_or_password": "Wrong nick or password. Sorry!",
+        "unknown": "Ups, something went wrong while trying to login."
       },
       "link": "Login here",
       "link_prev": "Are you already in Teem?",
@@ -338,7 +339,8 @@
         "passwordRepeat": {
           "match": "Both passwords must match",
           "required": "You forgot to repeat the password"
-        }
+        },
+        "unknown": "Ups! something went wrong while registering your account"
       },
       "link": "Register here",
       "link_prev": "Are not you in Teem yet?",
@@ -353,6 +355,14 @@
         "email": {
           "email": "You did not enter your email address correctly",
           "required": "You forgot to enter your email"
+        },
+        "password": {
+          "pattern": "Password must contain at least 8 characters",
+          "required": "You forgot to enter a password"
+        },
+        "passwordRepeat": {
+          "match": "Both passwords must match",
+          "required": "You forgot to repeat the password"
         },
         "unknown": "Ups! something went wrong while sending you the password recovery email"
       },
@@ -372,6 +382,7 @@
           "required": "You forgot to enter a password"
         },
         "passwordRepeat": {
+          "match": "Both passwords must match",
           "required": "You forgot to repeat the password"
         },
         "unknown":"Ups, something went wrong while establishing your new password, please try again."
