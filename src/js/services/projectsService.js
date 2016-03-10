@@ -54,9 +54,9 @@ angular.module('Teem')
         if (section === undefined) {
           //cast to Date
           return new Date(Math.max(
-            this.lastChange('chat'),
-            this.lastChange('pad'),
-            this.lastChange('needs')
+            this.lastChange('chat').getTime(),
+            this.lastChange('pad').getTime(),
+            this.lastChange('needs').getTime()
           ));
         } else {
           switch (section) {
