@@ -156,16 +156,18 @@ angular.module('Teem')
     // check variable connecting before calling startSession
     var startSession = function(userName, password, onSuccess, onError) {
 
-      status.connection = 'connecting';
 
       swellRTpromise.then(function(){
-        if (status.connection === 'connected' &&
-              userName && __session.address &&
+        if (status.connection === 'connected') {
+          if (userName && __session.address &&
               __session.address === userName) {
-          return; // Session already started
+            return; // Session already started
+          } else {
+            SwellRT.stopSession();
+          }
         }
 
-        SwellRT.stopSession();
+        status.connection = 'connecting';
 
         SwellRT.startSession(
           SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
