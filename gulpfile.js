@@ -365,7 +365,8 @@ gulp.task('js:app', function() {
     gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js'])
     .pipe(sourcemaps.init())
     .pipe(babel({
-      presets: ['es2015']
+      presets: ['es2015'],
+      plugins: ['transform-object-assign']
     }))
     .pipe(ngFilesort()),
     // app templates

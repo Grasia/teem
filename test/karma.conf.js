@@ -29,7 +29,8 @@ module.exports = function(config) {
 
     babelPreprocessor: {
       options: {
-        presets: ['es2015']
+        presets: ['es2015'],
+        plugins: ['transform-object-assign']
       },
       filename: function (file) {
         return file.originalPath.replace(/\.js$/, '.es5.js');
