@@ -49,7 +49,10 @@
   resize: none
   >input
     cursor: auto
-
+.need-name:focus
+  border: solid 1px $need-input-border-color
+.need-section-ok-icon
+  display: none
 .need-item
   padding-left: 0px
   padding-right: 0px
@@ -77,8 +80,13 @@
       text-align: center
       width: 30px
       padding-top: 2px
-      .fa
-        &.notify-comments
+    &.need-section-ok-icon
+      float: right
+      text-align: center
+      width: 30px
+      padding-top: 2px
+      i
+        color: $icon-ok-color
     &.need-section-comments.active
       color: inherit
   .comment-author-name

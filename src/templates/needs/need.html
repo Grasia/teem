@@ -7,6 +7,9 @@
            ng-attr-data-count="{{ need.comments && need.comments.length || 0 }}"></i>
       </span>
     </div>
+    <div class="need-section need-section-ok-icon">
+      <i class="fa fa-check"></i>
+    </div>
     <div class="need-section need-section-status">
       <div class="ineed-check-container pull-left" ng-click="$event.stopPropagation(); toggleCompleted(need, $event)" ng-class="(need.completed === 'true') ? 'need-checkbox-true' :  ((need.completed === 'false') ? 'need-checkbox-false' : 'need-checkbox-add')">
       </div>
