@@ -12,9 +12,9 @@ angular.module('Teem')
     return {
       controller: [
       '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout',
-      'Loading', '$route', 'NewForm',
+      'Loading', '$route', 'NewForm', 'swellRT',
       function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout,
-                Loading, $route, NewForm) {
+                Loading, $route, NewForm, swellRT) {
 
         var edittingTitle = false;
 
@@ -32,6 +32,11 @@ angular.module('Teem')
         });
 
         NewForm.initialize($scope, 'community');
+
+        $scope.uploadCommunityPhoto = function(file) {
+          $scope.community.image = new swellRT.FileObject(file);
+        };
+        $scope.uploadCommunityPhoto.areaType = 'rectangle';
 
         $scope.edittingTitle = function() {
           return edittingTitle || $scope.isNew();
