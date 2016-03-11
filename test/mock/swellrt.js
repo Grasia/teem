@@ -14,6 +14,7 @@ var SwellRT = {
   createUser: function() {},
   setPassword:  function() {},
   startSession: function() {},
+  stopSession:  function() {},
   user: {
     ANONYMOUS: '_anonymous_'
   }
