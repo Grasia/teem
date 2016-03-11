@@ -30,8 +30,13 @@
           <div class="scrollable-content">
             <div class="section project-header" ng-if="!pad.editting">
               <div class="row">
-                <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5 project-photo-responsive" ui-set="{uploadPictureSharedState: uploadProjectPhoto}" ui-state="uploadPictureSharedState">
-                  <img ng-src="{{project.image.url || 'images/default-project.png'}}">
+                <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5 project-photo-responsive">
+                  <div ui-set="{uploadPictureSharedState: uploadProjectPhoto}" ui-state="uploadPictureSharedState" ng-if="project.isContributor()">
+                    <img ng-src="{{project.image.url || 'images/default-project.png'}}">
+                  </div>
+                  <div ng-if="!project.isContributor()">
+                    <img ng-src="{{project.image.url || 'images/default-project.png'}}">
+                  </div>
                 </div>
               </div>
               <h1 ng-if="! edittingTitle()">
