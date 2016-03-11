@@ -42,7 +42,7 @@
     },
     "participate": {
       "button": "Join this community",
-      "message": "You are part of this community"
+      "message": "You are in"
     },
     "project": {
       "count": "{{count}} teems",
