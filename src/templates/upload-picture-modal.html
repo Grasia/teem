@@ -17,7 +17,8 @@
          <div ng-show="pictureFile" class="col-sm-6 col-sm-offset-3">
            <p translate>picture.crop</p>
            <div class="crop-box">
-             <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"></img-crop>
+             <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"
+             area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
            </div>
          </div>
 

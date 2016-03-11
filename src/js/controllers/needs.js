@@ -107,7 +107,7 @@ angular.module('Teem')
           scope.hour = needsCtrl.hour;
 
           scope.newComments = function(need){
-            if (!need.comments || !scope.project || SessionSvc.users.loggedIn()){
+            if (!need.comments || !scope.project || !scope.project.isContributor()){
               return false;
             }
 
@@ -117,7 +117,7 @@ angular.module('Teem')
           };
 
           scope.isNewNeed = function(need){
-            if (!scope.project || !SessionSvc.users.loggedIn()){
+            if (!scope.project || !scope.project.isContributor()){
               return false;
             }
             var prevAccess = new Date(scope.project.getTimestampAccess().needs.prev);

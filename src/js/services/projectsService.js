@@ -38,14 +38,6 @@ angular.module('Teem')
           }
         });
 
-        if (! access) {
-          access = {
-            user: SessionSvc.users.current()
-          };
-
-          this.lastAccesses.push(access);
-        }
-
         return access;
       }
 
@@ -54,9 +46,9 @@ angular.module('Teem')
         if (section === undefined) {
           //cast to Date
           return new Date(Math.max(
-            this.lastChange('chat'),
-            this.lastChange('pad'),
-            this.lastChange('needs')
+            this.lastChange('chat').getTime(),
+            this.lastChange('pad').getTime(),
+            this.lastChange('needs').getTime()
           ));
         } else {
           switch (section) {
@@ -233,6 +225,9 @@ angular.module('Teem')
           return;
         }
 
+        if (this.getTimestampAccess() === undefined){
+          this.lastAccesses.push({user: SessionSvc.users.current()});
+        }
         var timestamp = this.getTimestampAccess()[section];
 
         if (timestamp === undefined) {

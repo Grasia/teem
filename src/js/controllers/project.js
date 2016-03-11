@@ -60,9 +60,9 @@ angular.module('Teem')
     });
   }])
   .controller('ProjectCtrl', [
-  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout',
+  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
   'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc',
-  function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout,
+  function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout, swellRT,
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc) {
 
     var edittingTitle = false;
@@ -71,7 +71,6 @@ angular.module('Teem')
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(project) {
           $scope.project = project;
-          $scope.project.setTimestampAccess(currentTab());
 
           CommunitiesSvc.allByIds(project.communities).then(function (communities) {
             $timeout(function() {
@@ -90,6 +89,10 @@ angular.module('Teem')
     });
 
     NewForm.initialize($scope, 'project');
+
+    $scope.uploadProjectPhoto = function(file) {
+      $scope.project.image = new swellRT.FileObject(file);
+    };
 
     $scope.edittingTitle = function() {
       return edittingTitle || $scope.isNew();
@@ -138,13 +141,14 @@ angular.module('Teem')
     $scope.hasChanged = function(section){
 
       if(!$scope.project || ! $scope.project.lastChange(section) ||
-        !SessionSvc.users.current()){
+        !$scope.project.isContributor()){
         return false;
       }
 
       var lastChange = $scope.project.lastChange(section);
       var lastAccess;
-          if ($scope.project.getTimestampAccess()[section]) {
+          if ($scope.project.getTimestampAccess() &&
+            $scope.project.getTimestampAccess()[section]) {
             lastAccess = new Date(($scope.project.getTimestampAccess()[section]).last);
           } else {
             lastAccess = new Date(0);

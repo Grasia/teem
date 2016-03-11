@@ -9,7 +9,7 @@
     "angular-elastic": "~2.4.2",
     "angular-route": "1.x",
     "angular-sanitize": "1.x",
-    "angular-swellrt": "0.11.21",
+    "angular-swellrt": "0.13.5",
     "angular-toArrayFilter": "~1.0.1",
     "angular-translate": "2.x",
     "angular-translate-loader-static-files": "2.x",
@@ -27,7 +27,7 @@
     "swiper": "~3.1.0",
     "angular-moment": "~0.10.3",
     "moment": "~2.10.6",
-    "ng-img-crop": "ngImgCrop#^0.3.2",
+    "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.5.4",
     "angular-messages": "^1.5.0",
     "angular-ui-notification": "^0.1.0",
     "ng-file-upload": "^12.0.1"
