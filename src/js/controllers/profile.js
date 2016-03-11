@@ -23,7 +23,6 @@ angular.module('Teem')
           Notification.success(croppedAvatar ? 'profile.avatar.upload.success' : 'profile.avatar.remove.success');
         });
       };
-      $scope.updateAvatar.dataURI = true;
 
     });
   }]);

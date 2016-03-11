@@ -60,9 +60,9 @@ angular.module('Teem')
     });
   }])
   .controller('ProjectCtrl', [
-  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
+  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout',
   'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc',
-  function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout, swellRT,
+  function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout,
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc) {
 
     var edittingTitle = false;
@@ -89,10 +89,6 @@ angular.module('Teem')
     });
 
     NewForm.initialize($scope, 'project');
-
-    $scope.uploadProjectPhoto = function(file) {
-      $scope.project.image = new swellRT.FileObject(file);
-    };
 
     $scope.edittingTitle = function() {
       return edittingTitle || $scope.isNew();
