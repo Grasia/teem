@@ -131,7 +131,7 @@ angular.module('Teem')
 
       $scope.project.delete();
 
-      $location.path('frontpage');
+      $location.path('/');
     };
 
     $scope.hasChanged = function(section){
