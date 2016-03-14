@@ -69,11 +69,11 @@ angular.module('Teem')
             angular.forEach(this.needs, function(n){
               lastChange = Math.max(
                 lastChange,
-                new Date(n.time),
+                new Date(n.time||0),
                 (function() {
                   var lastComment = new Date(0);
                   angular.forEach(n.comments, function(c){
-                    lastComment = Math.max(lastComment, new Date(c.time));
+                    lastComment = Math.max(lastComment, new Date(c.time || 0));
                   });
                   return lastComment;
                 }())
