@@ -19,7 +19,7 @@ angular.module('Teem')
               CommunitiesSvc.find($scope.community.id).then(function(community) {
                 $timeout(function() {
                   community.toggleParticipant();
-                  angular.extend($scope.community, community);
+                  $scope.community.participants = community.participants;
                 });
               });
             }
