@@ -14,6 +14,8 @@ angular.module('Teem')
             $scope.areaType = 'rectangle';
             $scope.aspectRatio = 1.56;
             $scope.imgSize = {w: 640, h: 410};
+          } else {
+            $scope.areaType = $scope.aspectRatio = $scope.imgSize = undefined;
           }
         });
 
