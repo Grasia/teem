@@ -27,8 +27,9 @@ angular.module('Teem')
   .controller('ProjectsCtrl', [
   'SessionSvc', 'url', '$scope', '$location', '$route', 'time',
   'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
+  '$rootScope',
   function (SessionSvc, url, $scope, $location, $route, time,
-  CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
+  CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading, $rootScope) {
     var communityId = $route.current.params.communityId;
 
     $scope.translationData = {};
@@ -84,6 +85,8 @@ angular.module('Teem')
                 $scope.projects = projects;
 
                 $scope.translationData.count = projects.length;
+
+                $rootScope.$broadcast('teem.project', projects.length);
               });
           });
 

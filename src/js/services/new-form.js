@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('NewForm', [
-  '$location', '$window',
-  function($location, $window) {
+  '$location', '$window', '$rootScope',
+  function($location, $window, $rootScope) {
     var scope,
         objectName,
         scopeFn = {
@@ -19,6 +19,7 @@ angular.module('Teem')
           },
           confirmNew () {
             $location.search('form', undefined);
+            $rootScope.$broadcast('teem.project.join');
           }
         };
 

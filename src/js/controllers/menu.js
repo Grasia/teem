@@ -57,5 +57,38 @@ angular.module('Teem')
       }
 
       $scope.$on('teem.login', userData);
+
+      $scope.$on('teem.project', function(event, data){
+        if (data){
+          $scope.userProjectsCount = data;
+        }
+      });
+
+      // note that because queries are not real time we can not just call userData
+      $scope.$on('teem.project.join', function(){
+        $scope.userProjectsCount += 1;
+      });
+
+      $scope.$on('teem.project.leave', function(){
+        $scope.userProjectsCount -= 1;
+      });
+
+      $scope.$on('teem.community', function(event, data){
+        if (data){
+          $scope.userCommunitiesCount = data;
+        }
+      });
+
+      $scope.$on('teem.community.join', function(){
+        $scope.userCommunitiesCount += 1;
+      });
+
+      $scope.$on('teem.community.leave', function(){
+        $scope.userCommunitiesCount -= 1;
+      });
+
+
+
+
     });
   }]);
