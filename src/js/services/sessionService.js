@@ -62,9 +62,8 @@ angular.module('Teem')
       },
 
       currentNick: function() {
-        var address = window.localStorage.getItem('userId');
 
-        if (address !== null){
+        if (User.loggedIn()){
           // console.log('Deprecated. Use User.current().nick instead');
 
           return User.current().nick;
