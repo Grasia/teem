@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('ProjectsSvc', [
-  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
-  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User){
+  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User', '$rootScope',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User, $rootScope){
 
     // class that expose only read methods of the project object
     class ProjectReadOnly {
@@ -210,6 +210,10 @@ angular.module('Teem')
         }
         if (user && this.contributors.indexOf(user) < 0){
           this.contributors.push(user);
+
+          if (user === User.currentId()){
+            $rootScope.$broadcast('teem.project.join');
+          }
         }
       }
 
@@ -266,12 +270,16 @@ angular.module('Teem')
 
       removeContributor (user) {
         if (!user){
-          user = SessionSvc.users.current();
+          user = User.currentId();
         }
 
         this.contributors.splice(
           this.contributors.indexOf(user),
           1);
+
+        if (user === User.currentId()){
+          $rootScope.$broadcast('teem.project.leave');
+        }
       }
 
       toggleContributor () {

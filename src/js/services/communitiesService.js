@@ -3,7 +3,8 @@
 angular.module('Teem')
   .factory('CommunitiesSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
-  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc){
+  'User', '$rootScope',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc, User, $rootScope){
 
     class CommunityReadOnly {
 
@@ -63,6 +64,10 @@ angular.module('Teem')
         }
 
         this.participants.push(user);
+
+        if (user === User.currentId()) {
+          $rootScope.$broadcast('teem.community.join');
+        }
       }
 
       removeParticipant (user) {
@@ -81,6 +86,10 @@ angular.module('Teem')
         this.participants.splice(
           this.participants.indexOf(user),
           1);
+
+          if (user === User.currentId()) {
+            $rootScope.$broadcast('teem.community.leave');
+          }
       }
 
       toggleParticipant (user) {
