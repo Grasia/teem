@@ -33,7 +33,7 @@ angular.module('Teem')
         }
 
         angular.forEach(this.lastAccesses, function(a) {
-          if (a.user === SessionSvc.users.current()) {
+          if (a.user === User.currentId()) {
             access = a;
           }
         });
@@ -94,7 +94,7 @@ angular.module('Teem')
         var access;
 
         angular.forEach(this.lastAccesses || [], function(a) {
-          if (a.user === SessionSvc.users.current()) {
+          if (a.user === User.currentId()) {
             access = a;
           }
         });
@@ -129,19 +129,19 @@ angular.module('Teem')
         }
       }
 
-      isSupporter (user = User.current()) {
-        if (!user) {
+      isSupporter (userId = User.currentId()) {
+        if (!userId) {
           return false;
         }
 
-        return this.supporters.indexOf(user.id) > -1;
+        return this.supporters.indexOf(userId) > -1;
       }
 
-      isContributor (user = User.current()) {
-        if (! user) {
+      isContributor (userId = User.currentId()) {
+        if (! userId) {
           return false;
         }
-        return this.contributors.indexOf(user.id) > -1;
+        return this.contributors.indexOf(userId) > -1;
       }
 
       needCompletedCount () {
@@ -204,16 +204,14 @@ angular.module('Teem')
 
     class Project extends ProjectReadOnly {
 
-      addContributor (user) {
-        if (!user){
-          user = SessionSvc.users.current();
-        }
-        if (user && this.contributors.indexOf(user) < 0){
-          this.contributors.push(user);
+      addContributor (userId = User.currentId()) {
 
-          if (user === User.currentId()){
-            $rootScope.$broadcast('teem.project.join');
-          }
+        if (userId && this.contributors.indexOf(userId) < 0){
+          this.contributors.push(userId);
+        }
+
+        if (userId === User.currentId()){
+          $rootScope.$broadcast('teem.project.join');
         }
       }
 
@@ -230,7 +228,7 @@ angular.module('Teem')
         }
 
         if (this.getTimestampAccess() === undefined){
-          this.lastAccesses.push({user: SessionSvc.users.current()});
+          this.lastAccesses.push({user: User.currentId()});
         }
         var timestamp = this.getTimestampAccess()[section];
 
@@ -256,28 +254,29 @@ angular.module('Teem')
       }
 
       toggleSupport () {
-        if (SessionSvc.users.current() === null) {
+
+        var userId = User.currentId();
+
+        if (userId === undefined) {
           return;
         }
-        var index = this.supporters.indexOf(SessionSvc.users.current());
+        var index = this.supporters.indexOf(userId);
 
         if (index > -1) {
           this.supporters.splice(index, 1);
         } else {
-          this.supporters.push(SessionSvc.users.current());
+          this.supporters.push(userId);
         }
       }
 
-      removeContributor (user) {
-        if (!user){
-          user = User.currentId();
-        }
+
+      removeContributor (userId = User.currentId()) {
 
         this.contributors.splice(
-          this.contributors.indexOf(user),
+          this.contributors.indexOf(userId),
           1);
 
-        if (user === User.currentId()){
+        if (userId === User.currentId()){
           $rootScope.$broadcast('teem.project.leave');
         }
       }
@@ -287,19 +286,19 @@ angular.module('Teem')
           return;
         }
 
-        var user = SessionSvc.users.current();
+        var userId = User.currentId();
 
-        if (this.isContributor(user)) {
-          this.removeContributor(user);
+        if (this.isContributor(userId)) {
+          this.removeContributor(userId);
         } else {
-          this.addContributor(user);
+          this.addContributor(userId);
         }
       }
 
       addChatMessage (message) {
         this.chat.push({
           text: message,
-          who: SessionSvc.users.current(),
+          who: User.currentId(),
           time: (new Date()).toJSON()
         });
         this.addContributor();
@@ -313,7 +312,7 @@ angular.module('Teem')
         need.comments.push({
           text: comment,
           time: (new Date()).toJSON(),
-          author: SessionSvc.users.current()
+          author: User.currentId()
         });
         this.setTimestampAccess('needs', true);
       }
@@ -403,7 +402,7 @@ angular.module('Teem')
         });
       }
 
-      return all({ contributor: SessionSvc.users.current()});
+      return all({ contributor: User.currentId()});
     }
 
     function findByUrlId(urlId) {
@@ -451,9 +450,9 @@ angular.module('Teem')
           proxyProj.pad = new swellRT.TextObject();
           proxyProj.needs = [];
           proxyProj.lastAccesses = [];
-          proxyProj.promoter = SessionSvc.users.current();
+          proxyProj.promoter = User.currentId();
           proxyProj.supporters = [];
-          proxyProj.contributors = [SessionSvc.users.current()];
+          proxyProj.contributors = [User.currentId()];
           proxyProj.shareMode = 'public';
           d.resolve(proxyProj);
         });
