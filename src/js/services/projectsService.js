@@ -129,19 +129,19 @@ angular.module('Teem')
         }
       }
 
-      isSupporter (user = User.current()) {
+      isSupporter (user = User.currentId()) {
         if (!user) {
           return false;
         }
 
-        return this.supporters.indexOf(user.id) > -1;
+        return this.supporters.indexOf(user) > -1;
       }
 
-      isContributor (user = User.current()) {
+      isContributor (user = User.currentId()) {
         if (! user) {
           return false;
         }
-        return this.contributors.indexOf(user.id) > -1;
+        return this.contributors.indexOf(user) > -1;
       }
 
       needCompletedCount () {
