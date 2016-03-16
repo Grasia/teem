@@ -208,6 +208,10 @@ angular.module('Teem')
 
         if (userId && this.contributors.indexOf(userId) < 0){
           this.contributors.push(userId);
+
+          if (userId === User.currentId()){
+            $rootScope.$broadcast('teem.project.join');
+          }
         }
 
         if (userId === User.currentId()){
