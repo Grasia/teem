@@ -43,19 +43,36 @@ angular.module('Teem')
     }
 
     function getCommunities(projects) {
-      angular.forEach(projects, function(p) {
-        angular.forEach(p.communities, function(id) {
-          CommunitiesSvc.find(id).then(function(c) {
-            $timeout(function() {
-              if (! p.loadedCommunities) {
-                p.loadedCommunities = [];
-              }
 
-              p.loadedCommunities.push(c);
+      /*
+      Map of projects by community:
+        keys: communityId,
+        values: list of projects that belong to the community in the key
+      */   
+      var communityProjects = {};
+
+      angular.forEach(projects, function(p) {
+        p.loadedCommunities = [];
+
+        angular.forEach(p.communities, function(id) {
+          if(!communityProjects[id]) {
+            communityProjects[id] = [];
+          }
+
+          communityProjects[id].push(p);
+        });
+      });
+
+      // get all the communities referred from projects in <projects>
+      CommunitiesSvc.allByIds(Object.getOwnPropertyNames(communityProjects))
+        .then(function(coms){
+          // add the community information to all the projects that belog to them
+          angular.forEach(coms, function(c){
+            angular.forEach(communityProjects[c.id], function(proj){
+              proj.loadedCommunities.push(c);
             });
           });
         });
-      });
     }
 
     SessionSvc.onLoad(function(){
