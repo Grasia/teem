@@ -86,7 +86,7 @@ angular.module('Teem')
 
                 $scope.translationData.count = projects.length;
 
-                $rootScope.$broadcast('teem.project', projects.length);
+                $rootScope.$broadcast('teem.project.count', projects.length);
               });
           });
 

@@ -58,7 +58,7 @@ angular.module('Teem')
 
       $scope.$on('teem.login', userData);
 
-      $scope.$on('teem.project', function(event, data){
+      $scope.$on('teem.project.count', function(event, data){
         if (data){
           $scope.userProjectsCount = data;
         }
@@ -71,12 +71,6 @@ angular.module('Teem')
 
       $scope.$on('teem.project.leave', function(){
         $scope.userProjectsCount -= 1;
-      });
-
-      $scope.$on('teem.community', function(event, data){
-        if (data){
-          $scope.userCommunitiesCount = data;
-        }
       });
 
       $scope.$on('teem.community.join', function(){
