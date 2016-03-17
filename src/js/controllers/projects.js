@@ -42,6 +42,22 @@ angular.module('Teem')
       $scope.context = 'public';
     }
 
+    function getCommunities(projects) {
+      angular.forEach(projects, function(p) {
+        angular.forEach(p.communities, function(id) {
+          CommunitiesSvc.find(id).then(function(c) {
+            $timeout(function() {
+              if (! p.loadedCommunities) {
+                p.loadedCommunities = [];
+              }
+
+              p.loadedCommunities.push(c);
+            });
+          });
+        });
+      });
+    }
+
     SessionSvc.onLoad(function(){
       switch ($scope.context) {
         case 'community':
@@ -64,6 +80,7 @@ angular.module('Teem')
           SessionSvc.loginRequired($scope, function() {
             Loading.show(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
               then(function(projects) {
+                getCommunities(projects);
 
                 $scope.projects = projects;
 
@@ -77,6 +94,7 @@ angular.module('Teem')
         default:
           Loading.show(ProjectsSvc.all({ shareMode: 'public' })).
             then(function(projects) {
+              getCommunities(projects);
 
               $scope.projects = projects;
             });
