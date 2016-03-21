@@ -48,7 +48,7 @@ angular.module('Teem')
       Map of projects by community:
         keys: communityId,
         values: list of projects that belong to the community in the key
-      */   
+      */
       var communityProjects = {};
 
       angular.forEach(projects, function(p) {
@@ -102,8 +102,6 @@ angular.module('Teem')
                 $scope.projects = projects;
 
                 $scope.translationData.count = projects.length;
-
-                $rootScope.$broadcast('teem.project.count', projects.length);
               });
           });
 
