@@ -10,6 +10,7 @@
 
 angular.module('Teem')
   .factory('SessionSvc', [
+    // NotificationSvc has to be added here as dependency to be loaded in the app
   '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
   '$rootScope',
   function($q, $timeout, SharedState, NotificationSvc, $locale, User,
@@ -108,19 +109,15 @@ angular.module('Teem')
       swellRTpromise.then(function(){
 
         SwellRT.stopSession();
+        $rootScope.$broadcast('teem.logout');
+
         SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS, '',
           function(){
             sessionDef.resolve(SwellRT);
-
           }, function(error) {
             console.log(error);
           });
 
-        NotificationSvc.unregister(
-          undefined,
-          function(error){
-            console.log(error);
-          });
       });
     };
 
@@ -163,6 +160,7 @@ angular.module('Teem')
             return; // Session already started
           } else {
             SwellRT.stopSession();
+            $rootScope.$broadcast('teem.logout');
           }
         }
 
@@ -172,16 +170,7 @@ angular.module('Teem')
           SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
           function(){
             if (userName){
-              // We should use events form Notification broadcast
-              NotificationSvc.register(userName);
-
               $rootScope.$broadcast('teem.login');
-            } else {
-              NotificationSvc.unregister(
-                undefined,
-                function(error){
-                  console.log(error);
-                });
             }
 
             sessionDef.resolve(SwellRT);
