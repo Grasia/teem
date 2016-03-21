@@ -30,6 +30,10 @@ angular.module('Teem')
         });
 
         push.on('notification', function(data) {
+
+          // Broadcast notification
+          $rootScope.$broadcast('teem.notification.data', data);
+
           // navigate to notification's workspace if received in background
           if (!data.additionalData.foreground) {
 
