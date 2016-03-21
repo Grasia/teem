@@ -8,7 +8,8 @@
  */
 
 angular.module('Teem')
-  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', function($location, url, $timeout){
+  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope', 'User',
+   function($location, url, $timeout, $rootScope, User){
 
     var push;
     var registrationId;
@@ -19,7 +20,6 @@ angular.module('Teem')
           { 'android': {'senderID': '843281102628'}});
 
         push.on('registration', function(data) {
-          console.log('Registration:', data);
           registrationId = data.registrationId;
 
           SwellRT.notifications.register(registrationId);
@@ -30,7 +30,6 @@ angular.module('Teem')
         });
 
         push.on('notification', function(data) {
-
           // navigate to notification's workspace if received in background
           if (!data.additionalData.foreground) {
 
@@ -49,7 +48,6 @@ angular.module('Teem')
           return;
         }
         push.on('notification', function(data) {
-          console.log('Notification:', data);
           callback(data);
         });
       }
@@ -62,11 +60,18 @@ angular.module('Teem')
           return;
         }
         push.unregister(onSuccess, onError);
-
-        SwellRT.unregister(registrationId);
       }
     };
 
+    $rootScope.$on('teem.login', function(){
+      register(
+        User.currentId(), function(){}, function(error){console.log(error);});
+    });
+
+    $rootScope.$on('teem.logout', function(){
+      unregister(
+        function(){}, function(error){console.log(error);});
+    });
     return {
       register: register,
       onNotification: onNotification,
