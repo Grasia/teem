@@ -233,7 +233,12 @@ angular.module('Teem')
         swellRTpromise.then(function(){
           SwellRT.resumeSession(
             function(){
-              $rootScope.$broadcast('teem.login');
+
+              // resumeSession also works for anonymous sessions
+              if (User.loggedIn()){
+                $rootScope.$broadcast('teem.login');
+              }
+
               sessionDef.resolve(SwellRT);
             },
             function(error){
