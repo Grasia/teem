@@ -244,6 +244,7 @@ angular.module('Teem')
         swellRTpromise.then(function(){
           SwellRT.resumeSession(
             function(){
+              $rootScope.$broadcast('teem.login');
               sessionDef.resolve(SwellRT);
             },
             function(error){
