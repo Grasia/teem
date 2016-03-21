@@ -58,12 +58,6 @@ angular.module('Teem')
 
       $scope.$on('teem.login', userData);
 
-      $scope.$on('teem.project.count', function(event, data){
-        if (data){
-          $scope.userProjectsCount = data;
-        }
-      });
-
       // note that because queries are not real time we can not just call userData
       $scope.$on('teem.project.join', function(){
         $scope.userProjectsCount += 1;
