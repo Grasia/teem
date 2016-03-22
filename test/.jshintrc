@@ -40,6 +40,7 @@
     "SwellRTModel": false,
     "xdescribe": false,
     "xit": false,
-    "__session": false
+    "__session": false,
+    "PushNotification": false
   }
 }
