@@ -52,6 +52,7 @@ describe('SessionCtrl', function() {
       var calledNick, calledPassword;
 
       beforeEach(function() {
+
         spyOn(SwellRT, 'startSession').
         and.callFake(function(domain, nick, password, success) {
           calledNick = nick;
@@ -74,6 +75,8 @@ describe('SessionCtrl', function() {
           password: password
         };
 
+        spyOn($rootScope, '$broadcast').and.callThrough();
+
         scope.submit.login();
 
         $timeout.flush();
@@ -92,6 +95,11 @@ describe('SessionCtrl', function() {
       it('should set current user', function() {
         expect(SessionSvc.users.current()).toBe(nick + '@' + __session.domain);
       });
+
+      it('should broadcast teem.login event', function(){
+        expect($rootScope.$broadcast).toHaveBeenCalledWith('teem.login');
+      });
+
     });
 
     describe('and SwellRT sends an error', function() {
