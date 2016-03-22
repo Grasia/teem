@@ -8,8 +8,8 @@
  */
 
 angular.module('Teem')
-  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope', 'User',
-   function($location, url, $timeout, $rootScope, User){
+  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope',
+   function($location, url, $timeout, $rootScope){
 
     var push;
     var registrationId;
