@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="eu.p2pvalue.pear2pear" version="0.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="eu.p2pvalue.pear2pear" version="0.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Teem</name>
     <description>
 Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)
@@ -13,6 +13,15 @@ http://p2pvalue.eu/
     <allow-navigation href="https://app.teem.works/*" />
     <access origin="*" />
     <platform name="android">
+      <config-file target="AndroidManifest.xml" parent="application/activity">
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"></action>
+	        <category android:name="android.intent.category.DEFAULT"></category>
+	        <category android:name="android.intent.category.BROWSABLE"></category>
+	        <data android:host="app.teem.works" android:scheme="http"></data>
+	        <data android:host="app.teem.works" android:scheme="https"></data>
+        </intent-filter>
+      </config-file>
       <preference name="android-minSdkVersion" value="14" />
       <icon src="res/icon.png" density="ldpi" />
       <icon src="res/icon.png" density="mdpi" />
