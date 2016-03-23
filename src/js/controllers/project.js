@@ -123,7 +123,10 @@ angular.module('Teem')
     });
 
     $scope.linkCurrentProject = function() {
-      return $location.absUrl();
+
+      // using location.host instead of $location.host because
+      // it gives port information when needed
+      return $location.protocol() + '://' +  location.host + '/#' + $location.path();
     };
 
     $scope.cancelProject = function() {
