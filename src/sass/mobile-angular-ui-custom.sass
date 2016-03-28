@@ -83,6 +83,25 @@ input:focus + .input-group-addon
 .modal-overlay
   background: white
 
+.modal-header
+  background-color: $navbar-top-background-color
+  color: $navbar-top-color
+  min-height: 50px
+  margin-bottom: 30px
+  padding: 0
+
+.modal-header-left
+  @extend .btn, .btn-navbar, .nav-left
+  a
+    font-size: 3em
+    line-height: .9em
+    color: $navbar-top-color
+  a:hover
+    text-decoration: none
+
+.modal-header-title
+  @extend .navbar-brand, .navbar-brand-center, .nav-title,
+
 h5
   color: $heading-secondary-color
   font-weight: bold
