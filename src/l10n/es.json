@@ -158,7 +158,7 @@
     "placeholder": "Quieres trabajar en..."
   },
   "picture": {
-    "crop": "Para recortar la imagen, arrastra la zona iluminada, i después, haz clic en guardar",
+    "crop": "Para recortar la imagen, arrastra la zona iluminada, y después, haz clic en guardar",
     "delete": "Elimina la foto actual",
     "upload": "Arrastra una imagen aquí, o haz clic para subir una",
     "save": "Guardar",
@@ -271,7 +271,7 @@
       "empty": {
         "placeholder": "Crea nuevo Teem"
       },
-      "placeholder": "Título",
+      "placeholder": "Título del Teem",
       "reminder": {
         "body_one": "¡El espacio de trabajo no tiene nombre!",
         "body_two": "¿Deseas descartar el espacio de trabajo?",
