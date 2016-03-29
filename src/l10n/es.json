@@ -271,7 +271,7 @@
       "empty": {
         "placeholder": "Crea nuevo Teem"
       },
-      "placeholder": "Título",
+      "placeholder": "Título del Teem",
       "reminder": {
         "body_one": "¡El espacio de trabajo no tiene nombre!",
         "body_two": "¿Deseas descartar el espacio de trabajo?",
