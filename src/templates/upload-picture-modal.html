@@ -1,32 +1,30 @@
- <div class="modal modal-overlay" ui-if="uploadPictureSharedState" ui-state="uploadPictureSharedState">
-   <div class="modal-dialog scrollable">
-     <div class="modal-content scrollable-content">
-       <div class="modal-header">
-         <button class="close"
-                 ui-turn-off="uploadPictureSharedState">&times;</button>
-         <h4 class="modal-title" translate>picture.title</h4>
-       </div>
-       <div class="modal-body row">
+<div class="modal modal-overlay" ui-if="uploadPictureSharedState" ui-state="uploadPictureSharedState">
+  <div class="scrollable">
+    <div class="scrollable-header modal-header">
+      <div class="modal-header-title" translate>picture.title</div>
+      <div class="btn-group pull-left">
+        <div class="modal-header-left">
+          <a ui-turn-off="uploadPictureSharedState">&times;</a>
+        </div>
+      </div>
+    </div>
+    <div class="scrollable-content row">
+      <div ng-hide="pictureFile" class="col-sm-6 col-sm-offset-3">
+        <div ngf-drop ngf-select ng-model="pictureFile" class="drop-box"
+        ngf-drag-over-class="'dragover'" accept="image/*"
+        ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
+      </div>
+      <div ng-show="pictureFile" class="col-sm-6 col-sm-offset-3">
+        <p translate>picture.crop</p>
+        <div class="crop-box">
+          <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"></img-crop>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer scrollable-footer">
+      <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
+      <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
+    </div>
 
-         <div ng-hide="pictureFile" class="col-sm-6 col-sm-offset-3">
-           <div ngf-drop ngf-select ng-model="pictureFile" class="drop-box"
-           ngf-drag-over-class="'dragover'" accept="image/*"
-           ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
-         </div>
-
-         <div ng-show="pictureFile" class="col-sm-6 col-sm-offset-3">
-           <p translate>picture.crop</p>
-           <div class="crop-box">
-             <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"
-             area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
-           </div>
-         </div>
-
-       </div>
-       <div class="modal-footer">
-         <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
-         <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
-       </div>
-     </div>
-   </div>
- </div>
+  </div>
+</div>

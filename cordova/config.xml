@@ -13,6 +13,15 @@ http://p2pvalue.eu/
     <allow-navigation href="https://app.teem.works/*" />
     <access origin="*" />
     <platform name="android">
+      <config-file target="AndroidManifest.xml" parent="application/activity">
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"></action>
+	        <category android:name="android.intent.category.DEFAULT"></category>
+	        <category android:name="android.intent.category.BROWSABLE"></category>
+	        <data android:host="app.teem.works" android:scheme="http"></data>
+	        <data android:host="app.teem.works" android:scheme="https"></data>
+        </intent-filter>
+      </config-file>
       <preference name="android-minSdkVersion" value="14" />
       <icon src="res/icon.png" density="ldpi" />
       <icon src="res/icon.png" density="mdpi" />

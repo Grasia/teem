@@ -9,6 +9,10 @@ angular.module('Teem')
       palette = hexColorArray;
     }
 
+    function onImgError(evt) {
+      evt.target.src = 'images/anonymous-avatar.png';
+    }
+
     function link(scope, element) {
       var createAppendAvatar = function(userId, url){
         $timeout(function() {
@@ -16,6 +20,8 @@ angular.module('Teem')
           var div = angular.element('<div class="avatar'+(conf.size ? '-'+conf.size : '')+'"></div>'),
               img = angular.element('<img></img>'),
               name = angular.element('<div class="avatar-name">' + userId.split('@')[0] + '</div>');
+
+          img[0].addEventListener('error', onImgError);
 
           div.append(img[0]);
 

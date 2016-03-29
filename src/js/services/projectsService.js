@@ -200,6 +200,10 @@ angular.module('Teem')
           return 'warning';
         }
       }
+
+      isShareMode (mode) {
+        return mode === this.shareMode;
+      }
     }
 
     class Project extends ProjectReadOnly {

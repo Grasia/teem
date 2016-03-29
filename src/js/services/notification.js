@@ -8,13 +8,13 @@
  */
 
 angular.module('Teem')
-  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope', 'User',
-   function($location, url, $timeout, $rootScope, User){
+  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope',
+   function($location, url, $timeout, $rootScope){
 
     var push;
     var registrationId;
 
-    var register = function() {
+    var register = function(onSuccess, onFailure) {
       if (window.cordova) {
         push = PushNotification.init(
           { 'android': {'senderID': '843281102628'}});
@@ -22,7 +22,7 @@ angular.module('Teem')
         push.on('registration', function(data) {
           registrationId = data.registrationId;
 
-          SwellRT.notifications.register(registrationId);
+          SwellRT.notifications.register(registrationId, onSuccess, onFailure);
         });
 
         push.on('error', function(e) {
@@ -68,8 +68,7 @@ angular.module('Teem')
     };
 
     $rootScope.$on('teem.login', function(){
-      register(
-        User.currentId(), function(){}, function(error){console.log(error);});
+      register(function(){}, function(error){console.log(error);});
     });
 
     $rootScope.$on('teem.logout', function(){
