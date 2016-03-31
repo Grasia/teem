@@ -8,8 +8,8 @@
  */
 
 angular.module('Teem')
-  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope',
-   function($location, url, $timeout, $rootScope){
+  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope', 'SharedState',
+   function($location, url, $timeout, $rootScope, SharedState){
 
     var push;
     var registrationId;
@@ -21,7 +21,6 @@ angular.module('Teem')
 
         push.on('registration', function(data) {
           registrationId = data.registrationId;
-
           SwellRT.notifications.register(registrationId, onSuccess, onFailure);
         });
 
@@ -37,8 +36,13 @@ angular.module('Teem')
           // navigate to notification's workspace if received in background
           if (!data.additionalData.foreground) {
 
-            // Note: data.additionalData.commId is the first community in which the project is
-            $location.path('/communities/' + url.urlId(data.additionalData.commId) + '/projects/' + url.urlId(data.additionalData.projId));
+            $location.path('/projects/' + url.urlId(data.additionalData.projId));
+
+            // this navigates to context tab if not already in a project view
+            $location.search('tab', data.additionalData.context);
+            // this navigates to context tab when already in the project view
+            SharedState.set('projectTab', data.additionalData.context);
+
             $timeout();
           }
         });
