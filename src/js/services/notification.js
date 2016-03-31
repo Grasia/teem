@@ -16,8 +16,13 @@ angular.module('Teem')
 
     var register = function(onSuccess, onFailure) {
       if (window.cordova) {
-        push = PushNotification.init(
-          { 'android': {'senderID': '843281102628'}});
+        push = PushNotification.init({
+           'android': {
+              'senderID': '843281102628',
+              'icon': 'notification_icon',
+              'iconColor': '#00bfa0'
+            }
+          });
 
         push.on('registration', function(data) {
           registrationId = data.registrationId;
