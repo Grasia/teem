@@ -84,7 +84,7 @@ angular.module('Teem')
           };
 
           $scope.showPad = function() {
-            $location.path('/projects/' + url.urlId($route.current.params.id) + '/pad');
+            $location.path('/teems/' + url.urlId($route.current.params.id) + '/pad');
           };
 
           $scope.addToPad = function(txt) {

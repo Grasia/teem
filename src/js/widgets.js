@@ -17,7 +17,7 @@
 
     projectId = e.getAttribute('data-id');
 
-    iframe.setAttribute('src', sourceUrl + 'widget.html#/projects/' + projectId);
+    iframe.setAttribute('src', sourceUrl + 'widget.html#/teems/' + projectId);
 
     e.appendChild(iframe);
   }

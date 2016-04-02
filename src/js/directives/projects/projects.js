@@ -11,7 +11,7 @@ angular.module('Teem')
         function (SessionSvc, url, $scope, $location) {
 
             $scope.showProject = function(project, tab = 'pad') {
-              $location.path('/projects/' + url.urlId(project.id)).search('tab', tab);
+              $location.path('/teems/' + url.urlId(project.id)).search('tab', tab);
             };
 
             var lastChatsCache = [];

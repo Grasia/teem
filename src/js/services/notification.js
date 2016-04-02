@@ -41,7 +41,7 @@ angular.module('Teem')
           // navigate to notification's workspace if received in background
           if (!data.additionalData.foreground) {
 
-            $location.path('/projects/' + url.urlId(data.additionalData.projId));
+            $location.path('/teems/' + url.urlId(data.additionalData.projId));
 
             // this navigates to context tab if not already in a project view
             $location.search('tab', data.additionalData.context);

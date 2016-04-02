@@ -11,25 +11,25 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/projects/:id/:new?', {
+      .when('/teems/:id/:new?', {
         templateUrl: 'projects/project.html',
         controller: 'ProjectCtrl',
         // Change between tabs without re-rendering the view
         reloadOnSearch: false
       })
       // Getting a project from projects widget
-      .when('/communities/:communityId/projects/fetch/:id', {
+      .when('/communities/:communityId/teems/fetch/:id', {
         controller: 'FetchProject'
       })
       // Old stuff
-      .when('/communities/:communityId/projects/:id', {
+      .when('/communities/:communityId/teems/:id', {
         redirectTo: function(params) {
-          return '/projects/' + params.id;
+          return '/teems/' + params.id;
         }
       })
-      .when('/communities/:communityId/projects/:id/:tab', {
+      .when('/communities/:communityId/teems/:id/:tab', {
         redirectTo: function(params) {
-          return '/projects/' + params.id + '?tab=' + params.tab;
+          return '/teems/' + params.id + '?tab=' + params.tab;
         }
       });
   }])
@@ -46,7 +46,7 @@ angular.module('Teem')
       var project = projects[0];
 
       if (project) {
-        $location.path('/projects/' + url.urlId(project.id));
+        $location.path('/teems/' + url.urlId(project.id));
         return;
       }
 
@@ -55,7 +55,7 @@ angular.module('Teem')
       }).then(function(project) {
         project.localId = localId;
 
-        $location.path('/projects/' + url.urlId(project.id));
+        $location.path('/teems/' + url.urlId(project.id));
       });
     });
   }])
