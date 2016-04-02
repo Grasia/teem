@@ -229,5 +229,6 @@ angular.module('Teem')
 
     $scope.logout = function() {
       SessionSvc.stopSession();
+      $location.path('/communities');
     };
   }]);
