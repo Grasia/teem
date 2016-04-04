@@ -11,6 +11,22 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+      // Transition from old project paths
+      .when('/communities/:communityId/projects', {
+        redirectTo: function(params) {
+          return '/communities/' + params.communityId + '/teems';
+        }
+      })
+      .when('/home/projects', {
+        redirectTo: function() {
+          return '/home/teems';
+        }
+      })
+      .when('/projects', {
+        redirectTo: function() {
+          return '/teems';
+        }
+      })
       .when('/communities/:communityId/teems', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'

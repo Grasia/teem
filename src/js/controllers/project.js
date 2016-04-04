@@ -11,6 +11,12 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+      // Transition from old paths
+      .when('/projects/:id/:new?', {
+        redirectTo: function(params) {
+          return '/teems/' + params.id;
+        }
+      })
       .when('/teems/:id/:new?', {
         templateUrl: 'projects/project.html',
         controller: 'ProjectCtrl',
