@@ -11,9 +11,9 @@
 angular.module('Teem')
   .controller('MenuCtrl', [
   '$scope', 'config', 'url', 'SessionSvc', 'CommunitiesSvc', 'ProjectsSvc',
-  'User', '$timeout', 'SharedState',
+  'User', '$timeout', 'SharedState', '$location',
   function($scope, config, url, SessionSvc, CommunitiesSvc, ProjectsSvc,
-           User, $timeout, SharedState){
+           User, $timeout, SharedState, $location){
     if (config.support) {
       $scope.support = {
         communityId: url.urlId(config.support.communityId),
@@ -31,6 +31,7 @@ angular.module('Teem')
 
     $scope.logout = function () {
       SessionSvc.stopSession();
+      $location.path('/communities');
     };
 
     // We probably need to refactor this
