@@ -11,15 +11,15 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/communities/:communityId/projects', {
+      .when('/communities/:communityId/teems', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
-      .when('/home/projects', {
+      .when('/home/teems', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
-      .when('/projects', {
+      .when('/teems', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       });
@@ -36,7 +36,7 @@ angular.module('Teem')
 
     if (communityId) {
       $scope.context = 'community';
-    } else if ($location.path() === '/home/projects') {
+    } else if ($location.path() === '/home/teems') {
       $scope.context = 'home';
     } else {
       $scope.context = 'public';

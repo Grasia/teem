@@ -12,7 +12,7 @@ angular.module('Teem')
 
     $scope.projectsUrl = function(communityId){
       if (communityId) {
-        return '#/communities/' + url.urlId(communityId) + '/projects';
+        return '#/communities/' + url.urlId(communityId) + '/teems';
       } else {
         return '#/communities';
       }

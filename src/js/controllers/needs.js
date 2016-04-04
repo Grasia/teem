@@ -11,7 +11,7 @@
 angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/communities/:comId/projects/:id/needs', {
+      .when('/communities/:comId/teems/:id/needs', {
         templateUrl: 'needs/index.html',
         controller: 'NeedsCtrl'
       });
