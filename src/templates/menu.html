@@ -50,7 +50,8 @@
 
   <div class="menu-content list-group">
     <a class="list-group-item" href="#/home/teems" ng-if="loggedIn()" translate>menu.homeProjects.title</a>
+    <a class="list-group-item" href="#/home/communities" ng-if="loggedIn()" translate>menu.homeCommunities.title</a>
     <a class="list-group-item" href="#/communities" translate>menu.communities.title</a>
-    <a class="list-group-item" href="#/teems" translate>menu.projects.title</a>
+    <a class="list-group-item" href="#/projects/{{support.projectId}}" ng-if="support" translate>menu.feedback.title</a>
   </div>
 </div>

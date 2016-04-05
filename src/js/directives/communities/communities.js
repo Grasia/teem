@@ -11,18 +11,13 @@ angular.module('Teem')
   .directive('communities', function() {
     return {
       controller: [
-      '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout', 'Loading',
-      function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout, Loading) {
+      '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout',
+      function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout) {
         $scope.newCommunityName = {
           name : ''
         };
 
         SessionSvc.onLoad(function(){
-          Loading.show(CommunitiesSvc.all({ projectCount: true })).
-            then(function(communities){
-              $scope.communities = communities;
-            });
-
           $scope.create = function(name) {
             SessionSvc.loginRequired($scope, function() {
               $scope.created = true;

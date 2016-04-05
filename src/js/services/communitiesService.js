@@ -231,7 +231,7 @@ angular.module('Teem')
       }
 
       if (options.participant) {
-        query._aggregate[0].$match['root.participants'] = options.particpant;
+        query._aggregate[0].$match['root.participants'] = options.participant;
       }
 
       return query;
@@ -272,7 +272,7 @@ angular.module('Teem')
         });
       }
 
-      options.participant =  SessionSvc.users.current();
+      options.participant = SessionSvc.users.current();
 
       return all(options);
     };

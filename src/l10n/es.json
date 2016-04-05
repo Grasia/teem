@@ -105,7 +105,13 @@
   },
   "menu": {
     "communities": {
-      "title": "Comunidades"
+      "title": "Explore"
+    },
+    "feedback": {
+      "title": "Comentarios"
+    },
+    "homeCommunities": {
+      "title": "Mis comunidades"
     },
     "homeProjects": {
       "title": "Mis Teems"
