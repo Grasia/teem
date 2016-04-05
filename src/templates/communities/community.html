@@ -31,7 +31,7 @@
         <div class="row" ng-if="!isNew() && !edittingTitle()">
           <div class="icon-count community-participant-count col-xs-3">
             <i class="fa i-participants"></i>
-            <span class="icon-count-number">{{ community.participants.length }}</span>
+            <span class="icon-count-number">{{ community.participantCount() }}</span>
           </div>
           <div class="community-count community-like-count col-xs-3">
           </div>
@@ -71,11 +71,11 @@
       </div>
 
       <div class="community-participants section" ng-if="!isNew()">
-        <h2 translate translate-values="{ count: '{{ community.participants.length }}'}">
+        <h2 translate translate-values="{ count: '{{ community.participantCount() }}'}">
           community.participants.title
         </h2>
 
-        <div avatars="community.participants" avatars-conf="{size: 'small'}" class="avatars"></div>
+        <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
       </div>
     </div>
     <div class="scrollable-footer" ng-if="isNew()">

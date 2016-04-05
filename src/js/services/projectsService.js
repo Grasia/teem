@@ -141,7 +141,7 @@ angular.module('Teem')
         if (! userId) {
           return false;
         }
-        return this.contributors.indexOf(userId) > -1;
+        return this._participants.indexOf(userId) > -1;
       }
 
       needCompletedCount () {
@@ -210,8 +210,8 @@ angular.module('Teem')
 
       addContributor (userId = User.currentId()) {
 
-        if (userId && this.contributors.indexOf(userId) < 0){
-          this.contributors.push(userId);
+        if (userId && this._participants.indexOf(userId) < 0){
+          this._participants.push(userId);
 
           if (userId === User.currentId()){
             $rootScope.$broadcast('teem.project.join');
@@ -280,8 +280,8 @@ angular.module('Teem')
 
       removeContributor (userId = User.currentId()) {
 
-        this.contributors.splice(
-          this.contributors.indexOf(userId),
+        this._participants.splice(
+          this._participants.indexOf(userId),
           1);
 
         if (userId === User.currentId()){
@@ -301,6 +301,13 @@ angular.module('Teem')
         } else {
           this.addContributor(userId);
         }
+      }
+
+      participantCount () {
+        return this._participants.reduce(function(a,b){
+          // do not count participants of the form @domain that represents that it is a public wave.
+          return a + (/.+@.+/.test(b)? 1 : 0);
+        }, 0);
       }
 
       addChatMessage (message) {
@@ -350,7 +357,7 @@ angular.module('Teem')
       };
 
       if (options.contributor) {
-        query._aggregate[0].$match['root.contributors'] = options.contributor;
+        query._aggregate[0].$match.participants = options.contributor;
       }
 
       if (options.community) {
@@ -367,7 +374,7 @@ angular.module('Teem')
 
       if (options.publicAndContributor) {
         query._aggregate[0].$match.$or = [
-          { 'root.contributors': options.publicAndContributor },
+          { 'participants': options.publicAndContributor },
           { 'root.shareMode': 'public' }
         ];
       }
@@ -460,7 +467,6 @@ angular.module('Teem')
           proxyProj.lastAccesses = [];
           proxyProj.promoter = User.currentId();
           proxyProj.supporters = [];
-          proxyProj.contributors = [User.currentId()];
           proxyProj.shareMode = 'public';
           d.resolve(proxyProj);
         });
