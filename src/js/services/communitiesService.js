@@ -184,7 +184,7 @@ angular.module('Teem')
      * Count the projects these communities have
      * FIXME: Use ProjectsSvc for this
      */
-    function countProjects (communities) {
+    function countProjects (communities, resolve) {
       SwellRT.query(
         {_aggregate:
            [{$match: {
@@ -206,9 +206,13 @@ angular.module('Teem')
 
               c.numProjects = (counter ? counter.number : 0);
             });
+
+            resolve(communities);
           },
           function(e){
             console.log(e);
+
+            resolve(communities);
           });
     }
 
@@ -252,10 +256,10 @@ angular.module('Teem')
             });
 
             if (options.projectCount) {
-              countProjects(communities);
+              countProjects(communities, resolve);
+            } else {
+              resolve(communities);
             }
-
-            resolve(communities);
           },
           function(e){
             reject(e);
