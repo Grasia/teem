@@ -47,7 +47,7 @@
     "project": {
       "count": "{{count}} teems",
       "title": "Teems",
-      "working_group_count": "{{count}} espacios de trabajo"
+      "working_group_count": "{{count}} Teems"
     },
     "search": {
       "placeholder": "Encuentra tu comunidad...",
@@ -77,7 +77,7 @@
           "tip": "Introduce una descripción de tu comunidad, para que otros puedan descubrirla más fácilmente y unirse"
         },
         "workspace": {
-          "button": "Crea un espacio de trabajo",
+          "button": "Crea un Teem",
           "tip": "Empieza compartiendo tu próximo projecto o iniciativa de tu comunidad"
         }
       },
@@ -132,14 +132,14 @@
     "index": {
       "empty": {
         "contributor": "Anota tus necesidades para que te echen una mano",
-        "reader": "Este espacio de trabajo no ha publicado ninguna necesidad aún"
+        "reader": "Este Teem no ha publicado ninguna necesidad aún"
       }
     },
     "nav": {
       "title": "Necesidades"
     },
     "new": {
-      "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el espacio de trabajo",
+      "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el Teem",
       "placeholder": "Añade una nueva necesidad"
     },
     "tip": "Esto es lo que necesitamos para llevar a cabo el proyecto"
@@ -181,8 +181,8 @@
   },
   "project": {
     "create": {
-      "button": "Crear espacio de trabajo",
-      "tip": "Empieza creando un nuevo espacio de trabajo"
+      "button": "Crear Teem",
+      "tip": "Empieza creando un nuevo Teem"
     },
     "edit": {
       "button": "Editar",
@@ -209,10 +209,10 @@
       }
     },
     "menu": {
-      "join": "Participar en espacio",
-      "leave": "Abandonar espacio",
+      "join": "Participar",
+      "leave": "Abandonar",
       "like": "Me gusta",
-      "share": "Compartir espacio",
+      "share": "Compartir",
       "unlike": "No me gusta"
     },
     "pad": {
@@ -250,19 +250,19 @@
     "share": {
       "button": "Compartir",
       "description": {
-        "link": "Link to project:",
+        "link": "Enlace para compartir:",
         "permission": "Cambiar permisos de acceso:"
       },
       "info": {
-        "link": "Sólo personas con el enlace pueden ver el espacio de trabajo",
-        "public": "Este espacio de trabajo es visible en la comunidad"
+        "link": "Sólo personas con el enlace pueden ver el Teem",
+        "public": "Este Teem es visible en la comunidad"
       },
       "mode": {
         "invite": "Invitación",
         "link": "Sólo con enlace",
         "public": "Visible"
       },
-      "title": "Compartir espacio de trabajo '{{title}}'"
+      "title": "Compartir Teem '{{title}}'"
     },
     "show": {
       "title": "Teems"
@@ -273,10 +273,10 @@
       },
       "placeholder": "Título del Teem",
       "reminder": {
-        "body_one": "¡El espacio de trabajo no tiene nombre!",
-        "body_two": "¿Deseas descartar el espacio de trabajo?",
-        "button_cancel": "Sí, descartar el espacio de trabajo",
-        "button_continue": "No, seguir con el espacio de trabajo"
+        "body_one": "¡El Teem no tiene nombre!",
+        "body_two": "¿Deseas descartar el Teem?",
+        "button_cancel": "Sí, descartar el Teem",
+        "button_continue": "No, seguir con el Teem"
       }
     },
     "welcome": {

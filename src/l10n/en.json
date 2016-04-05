@@ -77,7 +77,7 @@
           "tip": "Introduce a description about your community, so others can discover you easily and join"
         },
         "workspace": {
-          "button": "Create a workspace",
+          "button": "Create a Teem",
           "tip": "Start sharing your next project or iniciative of your community"
         }
       },
@@ -132,14 +132,14 @@
     "index": {
       "empty": {
         "contributor": "Write down your needs so others can help you",
-        "reader": "This workspace has not published any needs yet"
+        "reader": "This Teem has not published any needs yet"
       }
     },
     "nav": {
       "title": "Needs"
     },
     "new": {
-      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the workspace",
+      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the Teem",
       "placeholder": "Add a new need"
     },
     "tip": "This is what we need to get the project going"
@@ -181,12 +181,12 @@
   },
   "project": {
     "create": {
-      "button": "Create workspace",
-      "tip": "Please, start creating a new workspace."
+      "button": "Create Teem",
+      "tip": "Please, start creating a new Teem."
     },
     "edit": {
       "button": "Edit",
-      "title": "Edit project"
+      "title": "Edit Teem"
     },
     "index": {
       "community": {
@@ -209,10 +209,10 @@
       }
     },
     "menu": {
-      "join": "Join workspace",
-      "leave": "Leave workspace",
+      "join": "Join",
+      "leave": "Leave",
       "like": "I like this",
-      "share": "Share workspace",
+      "share": "Share",
       "unlike": "Unlike"
     },
     "pad": {
@@ -254,15 +254,15 @@
         "permission": "Change access permissions:"
       },
       "info": {
-        "link": "Only people with the link can see the workspace",
-        "public": "This workspace is visible in the community's workspace list"
+        "link": "Only people with the link can see the Teem",
+        "public": "This Teem is visible in the community's Teem list"
       },
       "mode": {
         "invite": "Invite",
         "link": "Only with Link ",
         "public": "Visible"
       },
-      "title": "Share workspace '{{title}}'"
+      "title": "Share Teem '{{title}}'"
     },
     "show": {
       "title": "Teems"
@@ -273,10 +273,10 @@
       },
       "placeholder": "Title of the Teem",
       "reminder": {
-        "body_one": "This workspace doesn't have a name yet!",
-        "body_two": "Do you really want to discard the workspace?",
-        "button_cancel": "Yes, discard workspace",
-        "button_continue": "No, keep workspace"
+        "body_one": "This Teem doesn't have a name yet!",
+        "body_two": "Do you really want to discard the Teem?",
+        "button_cancel": "Yes, discard Teem",
+        "button_continue": "No, keep Teem"
       }
     },
     "welcome": {
