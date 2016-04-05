@@ -14,8 +14,11 @@ var config = {
 
   vendor: {
     js: [
+      './bower_components/jquery/jquery.js',
+      './bower_components/selectize/dist/js/standalone/selectize.min.js',
       './bower_components/modernizr/modernizr.js',
       './bower_components/angular/angular.js',
+      './bower_components/angular-selectize2/dist/angular-selectize.js',
       './bower_components/angular-route/angular-route.js',
       './bower_components/angular-touch/angular-touch.js',
       './bower_components/angular-cookies/angular-cookies.js',
