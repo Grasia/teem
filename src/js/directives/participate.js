@@ -8,7 +8,7 @@ angular.module('Teem')
       function($scope, $element, $attrs, SessionSvc, $timeout, CommunitiesSvc) {
         $scope.participateCopyOn  = $attrs.participateCopyOn;
         $scope.participateCopyOff = $attrs.participateCopyOff;
-        
+
         $element.on('click', function($event) {
           SessionSvc.loginRequired($scope, function() {
             if ($scope.community.toggleParticipant) {
@@ -19,7 +19,6 @@ angular.module('Teem')
               CommunitiesSvc.find($scope.community.id).then(function(community) {
                 $timeout(function() {
                   community.toggleParticipant();
-                  $scope.community.participants = community.participants;
                 });
               });
             }

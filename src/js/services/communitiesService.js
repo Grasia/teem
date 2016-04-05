@@ -39,12 +39,14 @@ angular.module('Teem')
           return false;
         }
 
-        // Migrating from participants === undefined
-        if (this.participants === undefined) {
-          this.participants = [];
-        }
+        return this._participants.indexOf(user) > -1;
+      }
 
-        return this.participants.indexOf(user) > -1;
+      participantCount () {
+        return this._participants.reduce(function(a,b){
+          // do not count participants of the form @domain that represents that it is a public wave.
+          return a + (/.+@.+/.test(b)? 1 : 0);
+        }, 0);
       }
     }
 
@@ -63,7 +65,7 @@ angular.module('Teem')
           return;
         }
 
-        this.participants.push(user);
+        this._participants.push(user);
 
         if (user === User.currentId()) {
           $rootScope.$broadcast('teem.community.join');
@@ -83,8 +85,8 @@ angular.module('Teem')
           return;
         }
 
-        this.participants.splice(
-          this.participants.indexOf(user),
+        this._participants.splice(
+          this._participants.indexOf(user),
           1);
 
           if (user === User.currentId()) {
@@ -169,7 +171,6 @@ angular.module('Teem')
         $timeout(function(){
           p.type = 'community';
           p.id = id;
-          p.participants = [SessionSvc.users.current()];
           p.projects = [];
           d.resolve(p);
         });
@@ -241,7 +242,7 @@ angular.module('Teem')
       }
 
       if (options.participant) {
-        query._aggregate[0].$match['root.participants'] = options.participant;
+        query._aggregate[0].$match.participants = options.participant;
       }
 
       return query;

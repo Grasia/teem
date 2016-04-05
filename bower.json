@@ -9,7 +9,7 @@
     "angular-elastic": "~2.4.2",
     "angular-route": "1.x",
     "angular-sanitize": "1.x",
-    "angular-swellrt": "0.14.1",
+    "angular-swellrt": "0.15.2",
     "angular-toArrayFilter": "~1.0.1",
     "angular-translate": "2.x",
     "angular-translate-loader-static-files": "2.x",
