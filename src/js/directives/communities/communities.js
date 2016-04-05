@@ -18,7 +18,7 @@ angular.module('Teem')
         };
 
         SessionSvc.onLoad(function(){
-          Loading.show(CommunitiesSvc.all()).
+          Loading.show(CommunitiesSvc.all({ projectCount: true })).
             then(function(communities){
               $scope.communities = communities;
             });

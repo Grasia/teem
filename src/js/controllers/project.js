@@ -78,7 +78,7 @@ angular.module('Teem')
         then(function(project) {
           $scope.project = project;
 
-          CommunitiesSvc.allByIds(project.communities).then(function (communities) {
+          CommunitiesSvc.all({ ids: project.communities }).then(function (communities) {
             $timeout(function() {
               $scope.communities = communities;
             });

@@ -80,7 +80,7 @@ angular.module('Teem')
       });
 
       // get all the communities referred from projects in <projects>
-      CommunitiesSvc.allByIds(Object.getOwnPropertyNames(communityProjects))
+      CommunitiesSvc.all({ ids: Object.getOwnPropertyNames(communityProjects)})
         .then(function(coms){
           // add the community information to all the projects that belog to them
           angular.forEach(coms, function(c){
