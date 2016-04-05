@@ -18,7 +18,7 @@ angular
     'ngMessages',
     'mobile-angular-ui',
     'ui-notification',
-    'ui.select',
+    'selectize',
     'ui.bootstrap',
     'monospaced.elastic',
     'angulartics',
