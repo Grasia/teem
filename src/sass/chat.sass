@@ -51,14 +51,15 @@
   .chat-send-bar
     background: $chat-send-bar-background-color
     textarea
-      font-size: 1.21em
+      font-size: 1.14em
       resize: none
       border-right: 0px
-    textarea:focus + .input-group-addon
-      @extend .form-control:focus
+      @include placeholder
+        padding-top: 0.49em
+    textarea, .input-group-addon
+      border-bottom: 0px
     button
       border-radius: 50%
-      padding-top: 0.07em
-      padding-left: 0.21em
-      height: 1.71em
-      width: 1.71em
+      padding: 8px
+      height: 2.71em
+      width: 2.71em
