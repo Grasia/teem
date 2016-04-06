@@ -9,7 +9,8 @@
  */
 
 angular.module('Teem')
-  .directive('pearChatScroll', ['$timeout',
+  .directive('chatScroll', [
+  '$timeout',
   function($timeout) {
     return function(scope, element) {
       if (scope.$last) {
