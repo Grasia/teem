@@ -40,6 +40,17 @@ angular.module('Teem')
         '$animate', 'time',
         function(SessionSvc, url, $scope, $rootScope, $route, $location,
         $animate, time){
+          const pageSize = 10;
+
+          $scope.pageSize = pageSize;
+          $scope.pageOffset = - pageSize;
+
+          $scope.nextPage = function() {
+            if ($scope.project.chat.length > $scope.pageSize) {
+              $scope.pageSize += pageSize;
+              $scope.pageOffset -= pageSize;
+            }
+          };
 
           // Send button
           $scope.send = function(){
@@ -55,14 +66,6 @@ angular.module('Teem')
 
             document.querySelector('.chat-textarea').focus();
           };
-
-          // Scroll to bottom after adding a message
-          $animate.on('enter', angular.element(document.querySelector('.chat-messages')), function(msg) {
-            var scrollableContentController = msg.controller('scrollableContent');
-
-            scrollableContentController.scrollTo(msg);
-          });
-
 
           $scope.standpoint = function(msg){
             if (!SessionSvc.users.current()) {

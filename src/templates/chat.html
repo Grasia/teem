@@ -1,8 +1,8 @@
 <div id="chat" class="chat">
   <div class="scrollable" hm-swipeleft="showPad();" hm-manager-options='{ "cssProps": { "userSelect": true } }'>
-    <div class="scrollable-content section">
+    <div class="scrollable-content section" ui-scroll-top="nextPage()">
       <ul class="chat-messages">
-        <div ng-repeat="msg in project.chat" chat-scroll>
+        <div ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset" chat-scroll>
           <li id="newMessages" ng-if="firstNewMessage(msg, $index)" class="new-messages" translate>chat.new_messages</li>
           <li ng-if="dayChange(msg, $index)" class="day-change">{{dayChange(msg, $index)}}</li>
           <li class="chat-message {{standpoint(msg)}}">
