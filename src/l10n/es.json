@@ -407,9 +407,10 @@
     "title": "Actualizando..."
   },
   "walkthrough": {
-    "slide1": "Estate al corriente de lo que la gente de tu comunidad ha hecho",
-    "slide2": "Impulsa tu proyecto, encuentra ayuda y colaboradores",
-    "slide3": "Trabaja en tu proyecto y expón tus necesidades",
-    "button": "Ok, vamos allá"
+    "button": "Ok, vamos allá",
+    "skip": "Ok, saltar",
+    "slide1": "Explora lo que la gente está haciendo en tu comunidad",
+    "slide2": "Propón tu proyecto, encuentra apoyos y colaboradores",
+    "slide3": "Trabaja en tu proyecto y expón tus necesidades"
   }
 }
