@@ -31,8 +31,8 @@
     "angular-messages": "^1.5.0",
     "angular-ui-notification": "^0.1.0",
     "ng-file-upload": "^12.0.1",
-    "angular-cookies": "1.4.x",
-    "angular-touch": "1.4.x"
+    "angular-cookies": "1.x",
+    "angular-touch": "1.x"
   },
   "devDependencies": {
     "angular-mocks": "1.x",
@@ -40,6 +40,6 @@
   },
   "resolutions": {
     "hammerjs": "~2.0.4",
-    "angular": "1.4.9"
+    "angular": ">=1.2.26 <=1.5"
   }
 }
