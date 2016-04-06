@@ -413,10 +413,6 @@ angular.module('Teem')
       return all({ contributor: User.currentId()});
     }
 
-    function findByUrlId(urlId) {
-      return find(base64.urldecode(urlId));
-    }
-
     function find(id) {
       var def = $q.defer();
 
@@ -433,6 +429,10 @@ angular.module('Teem')
         });
       }
       return openedProjects[id];
+    }
+
+    function findByUrlId(urlId) {
+      return find(base64.urldecode(urlId));
     }
 
     function create(options, callback) {

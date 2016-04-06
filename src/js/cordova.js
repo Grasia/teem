@@ -3,9 +3,11 @@ angular.element(document).ready(function () {
   // Load only within android app: cordova=android
   if (window.location.search.search('cordova') > 0) {
     (function(d, script) {
-      // When cordova is loaded
-      function onLoad() {
-        d.addEventListener('deviceready', onDeviceReady, false);
+      // When device comes to foreground
+      function onResume() {
+        if (window.applicationCache) {
+          window.applicationCache.update();
+        }
       }
 
       // Device APIs are available
@@ -14,11 +16,9 @@ angular.element(document).ready(function () {
         d.addEventListener('resume', onResume, false);
       }
 
-      // When device comes to foreground
-      function onResume() {
-        if (window.applicationCache) {
-          window.applicationCache.update();
-        }
+      // When cordova is loaded
+      function onLoad() {
+        d.addEventListener('deviceready', onDeviceReady, false);
       }
 
       script = d.createElement('script');

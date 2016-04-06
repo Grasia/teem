@@ -9,6 +9,21 @@ angular.module('Teem')
       function($scope, SessionSvc, $window, $timeout){
         var saveTimeout;
 
+        function hideSave() {
+          $timeout.cancel(saveTimeout);
+          saveTimeout = undefined;
+
+          $scope.status.saved = false;
+        }
+
+        function showSave() {
+          $scope.status.saved = true;
+
+          saveTimeout = $timeout(function() {
+            hideSave();
+          }, 3000);
+        }
+
         $scope.status = {
           notConnected: true,
           connected: false,
@@ -39,21 +54,6 @@ angular.module('Teem')
             showSave();
           }
         });
-
-        function showSave() {
-          $scope.status.saved = true;
-
-          saveTimeout = $timeout(function() {
-            hideSave();
-          }, 3000);
-        }
-
-        function hideSave() {
-          $timeout.cancel(saveTimeout);
-          saveTimeout = undefined;
-
-          $scope.status.saved = false;
-        }
 
         $scope.refresh = function(){
           console.log('reload', $window.location);

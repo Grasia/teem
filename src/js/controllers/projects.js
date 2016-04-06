@@ -43,9 +43,8 @@ angular.module('Teem')
   .controller('ProjectsCtrl', [
   'SessionSvc', 'url', '$scope', '$location', '$route', 'time',
   'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
-  '$rootScope',
   function (SessionSvc, url, $scope, $location, $route, time,
-  CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading, $rootScope) {
+  CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
     var communityId = $route.current.params.communityId;
 
     $scope.translationData = {};

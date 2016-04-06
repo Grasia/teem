@@ -13,10 +13,6 @@ angular.module('Teem')
     // map of created profiles
     var createdProfiles = {};
 
-    var current = function(){
-      return getOrCreateProfile(SessionSvc.users.current());
-    };
-
     // check that the profile does not exists before calling this method
     var createProfile = function(userName) {
       if (!createdProfiles[userName]) {
@@ -94,6 +90,10 @@ angular.module('Teem')
           }
         });
       return profileDef.promise;
+    };
+
+    var current = function(){
+      return getOrCreateProfile(SessionSvc.users.current());
     };
 
     return {
