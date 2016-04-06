@@ -31,8 +31,8 @@
     "angular-messages": "^1.5.0",
     "angular-ui-notification": "^0.1.0",
     "ng-file-upload": "^12.0.1",
-    "angular-cookies": "^1.5.3",
-    "angular-touch": "^1.5.3"
+    "angular-cookies": "1.4.x",
+    "angular-touch": "1.4.x"
   },
   "devDependencies": {
     "angular-mocks": "1.x",
