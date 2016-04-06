@@ -23,6 +23,10 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
   font-weight: normal
   color: $dark-grey
 
+h4, h5, h6, .h4, .h5, .h6
+  font-weight: $font-weight-light
+  font-size: 17px
+
 .app, .section, .list-group-item
   background-color: $app-background-color
 
@@ -144,3 +148,6 @@ img
   @extend .fa-chevron-right
 .glyphicon-chevron-left
   @extend .fa-chevron-left
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+  border-bottom: 1px solid #ddd
