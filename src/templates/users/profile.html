@@ -1,4 +1,4 @@
-<div class="scrollable">
+<div class="scrollable profile">
   <div class="scrollable-content">
     <div class="section">
         <div class="row">
@@ -9,11 +9,14 @@
       <div class="row text-center">
         <h1>{{user.nick}}</h1>
       </div>
-      <!--<div class="row">
-        <h2>Comunidades</h2>
-      </div>-->
       <div class="row">
-        <h2>Teems</h2>
+        <h2 translate>community.communities</h2>
+        <ul ng-repeat="community in communities">
+          <li><a href="#/communities/{{community._urlId}}">{{community.name}}</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <h2 translate>project.projects</h2>
         <ul ng-repeat="project in projects">
           <li><a href="#/projects/{{project._urlId}}">{{project.title}}</a></li>
         </ul>

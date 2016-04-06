@@ -16,16 +16,16 @@ angular.module('Teem')
       controller: 'ProfileCtrl'
     });
   }])
-  .controller('ProfileCtrl', ['$scope', 'SessionSvc', 'Notification', 'User', 'ProjectsSvc', 'CommunitiesSvc', 'Loading',
-  function ($scope, SessionSvc, Notification, User, ProjectsSvc, CommunitiesSvc, Loading) {
+  .controller('ProfileCtrl', ['$scope', 'SessionSvc', 'Notification', 'User', 'ProjectsSvc', 'CommunitiesSvc',
+  function ($scope, SessionSvc, Notification, User, ProjectsSvc, CommunitiesSvc) {
     SessionSvc.loginRequired($scope, function() {
 
       $scope.user = User.current();
 
-      /*CommunitiesSvc.all({ contributor: $scope.user.id}).
+      CommunitiesSvc.participating({ participant: $scope.user.id }).
       then(function(communities) {
         $scope.communities = communities;
-      });*/
+      });
 
       ProjectsSvc.all({ contributor: $scope.user.id }).
       then(function(projects) {
