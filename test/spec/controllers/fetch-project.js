@@ -82,7 +82,7 @@ describe('FetchProject', function() {
         expect(ProjectsSvc.all).toHaveBeenCalled();
         expect(ProjectsSvc.create).toHaveBeenCalled();
 
-        expect($location.path()).toBe('/projects/' + urlProjectId);
+        expect($location.path()).toBe('/teems/' + urlProjectId);
       });
     });
 
@@ -104,7 +104,7 @@ describe('FetchProject', function() {
         expect(ProjectsSvc.all).toHaveBeenCalled();
         expect(ProjectsSvc.create).not.toHaveBeenCalled();
 
-        expect($location.path()).toBe('/projects/' + urlProjectId);
+        expect($location.path()).toBe('/teems/' + urlProjectId);
       });
     });
   });

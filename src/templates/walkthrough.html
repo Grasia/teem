@@ -1,0 +1,16 @@
+<div class="modal modal-overlay walkthrough-content" ng-if="walkthrough">
+      <uib-carousel active="active" interval="7000" no-wrap="true">
+        <uib-slide ng-repeat="i in [0,1,2]" index="i">
+          <img ng-src="images/walkthrough-{{i+1}}.png">
+          <div class="carousel-caption">
+            <div class="row">
+              <h2>{{'walkthrough.slide'+(i+1) | translate}}</h2>
+              <br>
+              <button ng-if="i == 2" class="btn btn-primary btn-lg text-uppercase" ng-click="close()" translate>walkthrough.button</button>
+            </div>
+          </div>
+        </uib-slide>
+      </uib-carousel>
+    </div>
+
+</div>

@@ -11,15 +11,31 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+      // Transition from old project paths
       .when('/communities/:communityId/projects', {
-        templateUrl: 'projects/index.html',
-        controller: 'ProjectsCtrl'
+        redirectTo: function(params) {
+          return '/communities/' + params.communityId + '/teems';
+        }
       })
       .when('/home/projects', {
+        redirectTo: function() {
+          return '/home/teems';
+        }
+      })
+      .when('/projects', {
+        redirectTo: function() {
+          return '/teems';
+        }
+      })
+      .when('/communities/:communityId/teems', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
-      .when('/projects', {
+      .when('/home/teems', {
+        templateUrl: 'projects/index.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/teems', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       });
@@ -36,7 +52,7 @@ angular.module('Teem')
 
     if (communityId) {
       $scope.context = 'community';
-    } else if ($location.path() === '/home/projects') {
+    } else if ($location.path() === '/home/teems') {
       $scope.context = 'home';
     } else {
       $scope.context = 'public';
@@ -64,7 +80,7 @@ angular.module('Teem')
       });
 
       // get all the communities referred from projects in <projects>
-      CommunitiesSvc.allByIds(Object.getOwnPropertyNames(communityProjects))
+      CommunitiesSvc.all({ ids: Object.getOwnPropertyNames(communityProjects)})
         .then(function(coms){
           // add the community information to all the projects that belog to them
           angular.forEach(coms, function(c){

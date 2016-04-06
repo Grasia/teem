@@ -16,8 +16,13 @@ angular.module('Teem')
 
     var register = function(onSuccess, onFailure) {
       if (window.cordova) {
-        push = PushNotification.init(
-          { 'android': {'senderID': '843281102628'}});
+        push = PushNotification.init({
+           'android': {
+              'senderID': '843281102628',
+              'icon': 'notification_icon',
+              'iconColor': '#00bfa0'
+            }
+          });
 
         push.on('registration', function(data) {
           registrationId = data.registrationId;
@@ -36,7 +41,7 @@ angular.module('Teem')
           // navigate to notification's workspace if received in background
           if (!data.additionalData.foreground) {
 
-            $location.path('/projects/' + url.urlId(data.additionalData.projId));
+            $location.path('/teems/' + url.urlId(data.additionalData.projId));
 
             // this navigates to context tab if not already in a project view
             $location.search('tab', data.additionalData.context);

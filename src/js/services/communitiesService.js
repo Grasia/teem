@@ -119,10 +119,6 @@ angular.module('Teem')
 
     var openedCommunities = {};
 
-    function findByUrlId(urlId) {
-      return find(base64.urldecode(urlId));
-    }
-
     var find = function(id) {
       var comDef = $q.defer();
       var community = comDef.promise;
@@ -154,6 +150,10 @@ angular.module('Teem')
       return community;
     };
 
+    function findByUrlId(urlId) {
+      return find(base64.urldecode(urlId));
+    }
+
     var create = function(data, callback) {
       var d = $q.defer();
       var id = window.SwellRT.createModel(function(model){
@@ -180,126 +180,105 @@ angular.module('Teem')
       return d.promise;
     };
 
-    var all = function() {
-
-      var communities = $q.defer();
-      var foundCommunities = $q.defer();
-      var foundProjectNumbers = $q.defer();
-
-      var queries = $q.all([
-        foundCommunities.promise,
-        foundProjectNumbers.promise
-      ]);
-
-      var comms = {};
-      var nums = {};
-
-      SwellRT.query(
-        {
-          'root.type': 'community'
-        },
-        function(result){
-          angular.forEach(result.result, function(val) {
-            comms[val.root.id] = new CommunityReadOnly(val);
-          });
-
-          foundCommunities.resolve(comms);
-        },
-        function(e){
-          foundCommunities.reject(e);
-        }
-      );
-
+    /*
+     * Count the projects these communities have
+     * FIXME: Use ProjectsSvc for this
+     */
+    function countProjects (communities, resolve) {
       SwellRT.query(
         {_aggregate:
-         [{$match: {
-           'root.type': 'project',
-           'root.shareMode': 'public'
-         }},
-          {$unwind: '$root.communities'},
-          {$group :
-           {_id:'$root.communities',
-            number: { $sum : 1 }
-           }
-          }]},
-        function(result){
-          nums = result.result;
-          foundProjectNumbers.resolve(nums);
-        },
-        function(e){
-          foundCommunities.reject(e);
-        }
-      );
+           [{$match: {
+             'root.type': 'project',
+             'root.shareMode': 'public',
+             'root.communities': { $in: communities.map(c => c.id) }
+           }},
+            {$unwind: '$root.communities'},
+            {$group :
+             {_id:'$root.communities',
+              number: { $sum : 1 }
+             }
+            }]},
+          function(result){
+            var counters = result.result;
 
-      queries.then(function(){
-        angular.forEach(nums, function(val){
-          // There might be orphaned projects
-          if (comms[val._id]) {
-            comms[val._id].numProjects = val.number;
-          }
-        });
+            angular.forEach(communities, function (c) {
+              let counter = counters.find(x => x._id === c.id);
 
-        communities.resolve(comms);
-      });
+              c.numProjects = (counter ? counter.number : 0);
+            });
 
-      return communities.promise;
-    };
+            resolve(communities);
+          },
+          function(e){
+            console.log(e);
 
-    function allByIds (ids) {
-      return $q(function(resolve, reject) {
-        SwellRT.query({
-          'root.type': 'community',
-          'root.id': { $in: ids }
-        }, function (response) {
-          var communities = [];
-
-          angular.forEach(response.result, function(c) {
-            communities.push(new CommunityReadOnly(c));
+            resolve(communities);
           });
+    }
 
-          resolve(communities);
-        }, function (error) {
-          reject(error);
-        });
+    /*
+     * Build options for all query
+     */
+    function buildAllQuery(options) {
+      var query = {
+        _aggregate: [
+          {
+            $match: {
+              'root.type': 'community'
+            }
+          }
+        ]
+      };
+
+      if (options.ids) {
+        query._aggregate[0].$match['root.id'] = { $in: options.ids };
+      }
+
+      if (options.participant) {
+        query._aggregate[0].$match['root.participants'] = options.participant;
+      }
+
+      return query;
+    }
+
+    /*
+     * Find all the communities that meet some condition
+     */
+    function all (options = {}) {
+      var communities = [],
+          query = buildAllQuery(options);
+
+      return $q(function(resolve, reject) {
+
+        SwellRT.query(query, function(result) {
+            angular.forEach(result.result, function(c) {
+              communities.push(new CommunityReadOnly(c));
+            });
+
+            if (options.projectCount) {
+              countProjects(communities, resolve);
+            } else {
+              resolve(communities);
+            }
+          },
+          function(e){
+            reject(e);
+          }
+        );
       });
     }
 
     // The communities the user is participating in
-    var participating = function() {
+    var participating = function(options = {}) {
       if (!SessionSvc.users.loggedIn()) {
         return $q(function(resolve) {
           resolve([]);
         });
       }
 
-      return $q(function(resolve, reject) {
-        var query = {
-          _aggregate: [
-            {
-              $match: {
-                'root.type': 'community',
-                'root.participants': SessionSvc.users.current()
-              }
-            }
-          ]};
+      options.participant = SessionSvc.users.current();
 
-        SwellRT.query(
-          query,
-          function(result) {
-
-            var res = [];
-
-            angular.forEach(result.result, function(val){
-              res.push(val.root);
-            });
-
-            resolve(res);
-          },
-          function(error){
-            reject(error);
-          }
-        );
-      });
+      return all(options);
     };
 
     return {
@@ -307,7 +286,6 @@ angular.module('Teem')
       find,
       create,
       all,
-      allByIds,
       participating
     };
   }]);

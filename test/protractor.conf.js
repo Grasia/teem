@@ -22,6 +22,8 @@ exports.config = {
   },
 
   onPrepare: function() {
+    browser.get('/');
+    browser.manage().addCookie('walkthrough', 'true');
     browser.get('/#/session/register');
     $('#nick').sendKeys('Snowden');
     $('#password').sendKeys('MargaretThatcheris110%SEXY.');

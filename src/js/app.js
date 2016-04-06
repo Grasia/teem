@@ -15,6 +15,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngAnimate',
+    'ngTouch',
+    'ngCookies',
     'ngMessages',
     'mobile-angular-ui',
     'ui-notification',

@@ -11,21 +11,13 @@ angular.module('Teem')
   .directive('communities', function() {
     return {
       controller: [
-      '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout', 'Loading',
-      function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout, Loading) {
+      '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout',
+      function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout) {
         $scope.newCommunityName = {
           name : ''
         };
 
-        // FIXME: model prototype
-        $scope.urlId = url.urlId;
-
         SessionSvc.onLoad(function(){
-          Loading.show(CommunitiesSvc.all()).
-            then(function(communities){
-              $scope.communities = communities;
-            });
-
           $scope.create = function(name) {
             SessionSvc.loginRequired($scope, function() {
               $scope.created = true;
@@ -60,8 +52,8 @@ angular.module('Teem')
           }
         };
 
-        $scope.showCommunity = function(id) {
-          $location.path('/communities/' + url.urlId(id));
+        $scope.showCommunity = function(community) {
+          $location.path('/communities/' + community.urlId);
         };
       }],
       templateUrl: 'communities/communities.html'

@@ -37,6 +37,6 @@ angular.module('Teem')
         $rootElement.addClass('has-navbar-top');
         $rootScope.hideNavigation = false;
 
-        $location.path('/projects');
+        $location.path('/teems');
       }
     }]);
