@@ -117,3 +117,30 @@ img
 // https://github.com/mcasimir/mobile-angular-ui/issues/324
 .scrollable-header
   z-index: 999
+
+.carousel-indicators
+  li
+    border-color: $button-primary-background-color
+    width: 13px
+    height: 13px
+    margin: 3px
+    &.active
+      background-color: $button-primary-background-color
+      width: 14px
+      height: 14px
+      margin: 3px
+
+.carousel-control
+  display: flex
+  justify-content: center
+  &.right, &.left
+    background-image: none
+  span
+    color: $grey
+
+.glyphicon
+  @extend .fa
+.glyphicon-chevron-right
+  @extend .fa-chevron-right
+.glyphicon-chevron-left
+  @extend .fa-chevron-left

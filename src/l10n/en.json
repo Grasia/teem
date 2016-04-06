@@ -404,5 +404,11 @@
   "upgrading": {
     "explanation": "We are working hard to improve Teem and make it useful for your communities. Upgrades bring new features and bug fixes",
     "title": "Upgrading..."
+  },
+  "walkthrough": {
+    "slide1": "See what people in your community have done",
+    "slide2": "Pitch your project, find support and collaborators",
+    "slide3": "Work on your project and post your needs",
+    "button": "Ok, let's go"
   }
 }
