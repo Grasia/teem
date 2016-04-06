@@ -109,7 +109,12 @@ describe('Teem', function() {
       element(by.css('.chat-send textarea')).sendKeys(chatText);
       element(by.css('.chat-input-button')).click();
 
-      expect(element.all(by.css('.chat-message-text')).last().getText())
+      var chatMsg = by.css('.chat-message-text');
+      browser.wait(function() {
+        return browser.isElementPresent(chatMsg);
+      }, timeout);
+
+      expect(element(chatMsg).getText())
         .toEqual(chatText);
     });
   });
