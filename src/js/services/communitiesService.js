@@ -202,9 +202,15 @@ angular.module('Teem')
             var counters = result.result;
 
             angular.forEach(communities, function (c) {
-              let counter = counters.find(x => x._id === c.id);
+              angular.forEach(counters, function (cnt) {
+                if (c.id === cnt._id) {
+                  c.numProjects = cnt.number;
+                }
+              });
 
-              c.numProjects = (counter ? counter.number : 0);
+              if (c.numProjects === undefined) {
+                c.numProjects = 0;
+              }
             });
 
             resolve(communities);
