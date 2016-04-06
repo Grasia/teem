@@ -1,0 +1,41 @@
+<div ui-content-for="nav-title">
+  <div class="overflow-ellipsis" translate>profile.title</div>
+</div>
+
+<div class="scrollable profile">
+  <div class="scrollable-content">
+    <div class="section">
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-lg-2 col-lg-offset-5" ui-set="{uploadPictureSharedState: updateAvatar}" ui-state="uploadPictureSharedState">
+        <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
+      </div>
+    </div>
+    <div class="section text-center">
+      <br>
+      <h3>{{user.nick}}</h3>
+    </div>
+    <div class="section">
+      <h4 class="text-uppercase" translate>community.communities</h4>
+      <table class="table table-hover">
+        <tr ng-repeat="community in communities">
+          <td>
+            <a href="#/communities/{{community._urlId}}">
+              <span>{{community.name}}</span>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="section">
+      <h4 class="text-uppercase" translate>project.projects</h4>
+      <table class="table table-hover">
+        <tr ng-repeat="project in projects">
+          <td>
+            <a href="#/projects/{{project._urlId}}">
+              <span>{{project.title}}</span>
+            </a>
+        </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

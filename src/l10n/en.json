@@ -171,7 +171,7 @@
     "title": "Upload a picture"
   },
   "profile": {
-    "title": "Your profile",
+    "title": "People",
     "avatar": {
       "avatar": "Avatar",
       "change": "Change picture...",
@@ -234,6 +234,7 @@
     "project_description": "Description",
     "project_name": "Project name",
     "project_status": "Status",
+    "projects": "Teems",
     "section": {
       "name": {
         "title": "Name"
