@@ -5,8 +5,13 @@
 <div class="scrollable profile">
   <div class="scrollable-content">
     <div class="section">
-      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-lg-2 col-lg-offset-5" ui-set="{uploadPictureSharedState: updateAvatar}" ui-state="uploadPictureSharedState">
-        <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-lg-2 col-lg-offset-5">
+        <div ng-if="canEdit()" ui-set="{uploadPictureSharedState: updateAvatar}" ui-state="uploadPictureSharedState">
+          <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
+        </div>
+        <div ng-if="!canEdit()">
+          <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
+        </div>
       </div>
     </div>
     <div class="section text-center">

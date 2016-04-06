@@ -11,16 +11,19 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
-    .when('/profile/:nick', {
-      templateUrl: 'users/profile.html',
+    .when('/users/:id', {
+      templateUrl: 'users/user.html',
       controller: 'ProfileCtrl'
     });
   }])
-  .controller('ProfileCtrl', ['$scope', 'SessionSvc', 'Notification', 'User', 'ProjectsSvc', 'CommunitiesSvc',
-  function ($scope, SessionSvc, Notification, User, ProjectsSvc, CommunitiesSvc) {
-    SessionSvc.loginRequired($scope, function() {
+  .controller('ProfileCtrl', ['$scope', '$route', 'SessionSvc', 'Notification', 'User', 'ProjectsSvc', 'CommunitiesSvc',
+  function ($scope, $route, SessionSvc, Notification, User, ProjectsSvc, CommunitiesSvc) {
 
-      $scope.user = User.current();
+    SessionSvc.onLoad(function() {
+      $scope.user = new User($route.current.params.id);
+      $scope.canEdit =  function() {
+        return User.isCurrent($scope.user.id);
+      };
 
       CommunitiesSvc.participating({ participant: $scope.user.id }).
       then(function(communities) {
@@ -45,6 +48,5 @@ angular.module('Teem')
         });
       };
       $scope.updateAvatar.dataURI = true;
-
     });
   }]);

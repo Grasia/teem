@@ -25,13 +25,11 @@
 
     <div class="menu-session-logged-in" ng-if="loggedIn()">
       <div class="menu-session-img">
-        <a href="/#/profile/{{user.nick}}">
-          <div avatars="user.id" class="avatars"></div>
-        </a>
+        <div avatars="user.id" class="avatars"></div>
       </div>
       <div class="menu-session-body">
         <div class="menu-session-nick">
-          <a href="/#/profile/{{user.nick}}">{{user.nick}}</a>
+          <a href="/#/users/{{user.id}}">{{user.nick}}</a>
         </div>
         <div class="menu-session-tip">
           <div translate translate-values="{count: '{{userCommunitiesCount}}'}">

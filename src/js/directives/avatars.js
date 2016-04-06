@@ -17,19 +17,18 @@ angular.module('Teem')
       var createAppendAvatar = function(userId, url){
         $timeout(function() {
           var conf = scope.avatarsConf() || {};
-          var div = angular.element('<div class="avatar'+(conf.size ? '-'+conf.size : '')+'"></div>'),
-              img = angular.element('<img></img>'),
-              name = angular.element('<div class="avatar-name">' + userId.split('@')[0] + '</div>');
+          var container = angular.element('<a href="#/users/'+userId+'" class="avatar'+(conf.size ? '-'+conf.size : '')+'"></a>'),
+              img = angular.element('<img></img>');
 
           img[0].addEventListener('error', onImgError);
 
-          div.append(img[0]);
+          container.append(img[0]);
 
-          if (conf.names) {
-            div.append(name[0]);
+          if (conf.names !== false) {
+            img[0].title = userId.split('@')[0];
           }
 
-          element.append(div[0]);
+          element.append(container[0]);
 
           if (url) {
             img[0].src = url;
