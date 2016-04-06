@@ -25,7 +25,7 @@ angular.module('Teem')
         return User.isCurrent($scope.user.id);
       };
 
-      CommunitiesSvc.participating({ participant: $scope.user.id }).
+      CommunitiesSvc.all({ participant: $scope.user.id }).
       then(function(communities) {
         $scope.communities = communities;
       });
