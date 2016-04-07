@@ -11,6 +11,7 @@
             bo-text="dayChange(msg, $index)">
         </li>
         <li class="chat-message"
+            bo-if="!isNotificationMessage(msg)"
             bo-class="standpoint(msg)">
           <div class="chat-message-time" bo-text="hour(msg)">
           </div>
