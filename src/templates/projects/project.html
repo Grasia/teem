@@ -89,7 +89,7 @@
               </div>
             </div>
 
-            <selectize multiple config="{valueField:'_id', labelField:'nick', create: true, searchField:'nick'}"
+            <selectize multiple config="selectizeConfig"
             options="inviteList" ng-model="invitees" placeholder='Pick some things...' ng-focus="console.log('event:', $event); $event.element.scrollIntoView()"></selectize>
 
             <div class="section project-participants" ng-if="!isNew() && !pad.editting">

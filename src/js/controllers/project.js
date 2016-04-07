@@ -78,10 +78,13 @@ angular.module('Teem')
     function buildInviteItems(items){
       var res = [];
       items.forEach(function(i){
-        res.push({
-          _id: i._id,
-          nick: i._id.split('@')[0]
-        });
+        var nick = i._id.split('@')[0];
+        if (nick !== ''){
+          res.push({
+            _id: i._id,
+            nick: i._id.split('@')[0]
+          });
+        }
       });
 
       return res;
@@ -194,6 +197,26 @@ angular.module('Teem')
       return lastChange > lastAccess;
     };
 
+    $scope.selectizeConfig = {
+      valueField:'_id',
+      labelField:'nick',
+      searchField:'nick',
+      create: false,
+      load: function(query, callback){
+        if (!query.length) {
+          return callback();
+        }
+        CommunitiesSvc.usersLike(query)
+          .then(function(r){
+            callback(buildInviteItems(r));
+            $timeout();
+          }, function(){
+            callback();
+            $timeout();
+          });
+
+      }
+    };
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
       if ($scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
