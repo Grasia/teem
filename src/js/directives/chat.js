@@ -78,6 +78,7 @@ angular.module('Teem')
             return $scope.standpoint(msg) === 'their';
           };
 
+          // TODO: delete notification messages
           $scope.isNotificationMessage = function(msg){
             return $scope.standpoint(msg) === 'notification';
           };
@@ -102,7 +103,7 @@ angular.module('Teem')
             var d = new Date(msg.time),
                 prevIndex = $scope.project.chat.length + $scope.pageOffset + index - 1;
 
-            if (index === 0 || (index > 0 && d.getDate() !== new Date($scope.project.chat[prevIndex].time).getDate())){
+            if (prevIndex === -1 || (d.getDate() !== new Date($scope.project.chat[prevIndex].time).getDate())){
               return time.date(d);
             }
             return undefined;

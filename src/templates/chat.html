@@ -1,21 +1,25 @@
 <div id="chat" class="chat">
   <div class="scrollable" hm-swipeleft="showPad();" hm-manager-options='{ "cssProps": { "userSelect": true } }'>
     <div class="scrollable-content section" ui-scroll-top="nextPage()">
-      <ul class="chat-messages">
-        <div ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset" chat-scroll>
-          <li id="newMessages" ng-if="firstNewMessage(msg, $index)" class="new-messages" translate>chat.new_messages</li>
-          <li ng-if="dayChange(msg, $index)" class="day-change">{{dayChange(msg, $index)}}</li>
-          <li class="chat-message {{standpoint(msg)}}">
-            <div class="chat-message-time">
-              {{hour(msg)}}
-            </div>
-            <div class="chat-message-sender" ng-if="theirStandpoint(msg)">
-              {{msg.who.split('@')[0]}}
-            </div>
-            <div class="chat-message-text" ng-if="!isNotificationMessage(msg)" ng-bind-html="msg.text | linky"></div>
-            <div class="chat-message-text" ng-if="isNotificationMessage(msg)" ng-bind-html="msg.text" translate={{msg.text}} translate-values="msg.translateValues"></div>
-          </li>
-        </div>
+      <ul class="chat-messages"
+          ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset"
+          chat-scroll
+          bindonce>
+        <li id="newMessages" bo-if="firstNewMessage(msg, $index)" class="new-messages" translate>chat.new_messages</li>
+        <li bo-if="dayChange(msg, $index)"
+            class="day-change"
+            bo-text="dayChange(msg, $index)">
+        </li>
+        <li class="chat-message"
+            bo-class="standpoint(msg)">
+          <div class="chat-message-time" bo-text="hour(msg)">
+          </div>
+          <div class="chat-message-sender"
+               bo-if="theirStandpoint(msg)"
+               bo-text="msg.who.split('@')[0]">
+          </div>
+          <div class="chat-message-text" bo-if="!isNotificationMessage(msg)" bo-html="msg.text | linky"></div>
+        </li>
       </ul>
     </div>
     <div class="scrollable-footer chat-send-bar">
