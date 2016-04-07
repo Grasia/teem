@@ -99,8 +99,10 @@ angular.module('Teem')
           };
 
           $scope.dayChange = function(msg, index){
-            var d = new Date(msg.time);
-            if (index === 0 || index > 0 && d.getDate() !== new Date($scope.project.chat[index -1].time).getDate()){
+            var d = new Date(msg.time),
+                prevIndex = $scope.project.chat.length + $scope.pageOffset + index - 1;
+
+            if (index === 0 || (index > 0 && d.getDate() !== new Date($scope.project.chat[prevIndex].time).getDate())){
               return time.date(d);
             }
             return undefined;
