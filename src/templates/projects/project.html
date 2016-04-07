@@ -89,6 +89,9 @@
               </div>
             </div>
 
+            <selectize multiple config="{valueField:'_id', labelField:'_id', create: true, searchField:'_id'}"
+            options="inviteList" ng-model="invitees" placeholder='Pick some things...' ng-focus="console.log('event:', $event); $event.element.scrollIntoView()"></selectize>
+
             <div class="section project-participants" ng-if="!isNew() && !pad.editting">
               <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
                   project.section.participants.title

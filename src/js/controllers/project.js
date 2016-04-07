@@ -73,11 +73,27 @@ angular.module('Teem')
 
     var edittingTitle = false;
 
+    $scope.inviteList = [];
+
+    /* Populates the user selector with:
+    /* - The users that participate in the community if the query is empty
+    /* - The users 'like' the query if query is an string
+    */
+    $scope.populateUserSelector = function(query) {
+      console.log($scope.project.communities);
+      CommunitiesSvc.communitiesContributors(
+        $scope.project.communities
+      ).then(function(result){
+        console.log(result);
+        $scope.inviteList.push(result);
+      });
+    };
+
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(project) {
           $scope.project = project;
-
+          $scope.populateUserSelector();
           CommunitiesSvc.all({ ids: project.communities }).then(function (communities) {
             $timeout(function() {
               $scope.communities = communities;

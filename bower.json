@@ -32,7 +32,8 @@
     "ng-file-upload": "^12.0.1",
     "angular-cookies": "1.x",
     "angular-touch": "1.x",
-    "angular-selectize2": "~3.0.1"
+    "angular-selectize2": "~3.0.1",
+    "bootstrap-material-design": "0.5.x"
   },
   "devDependencies": {
     "angular-mocks": "1.5.0",

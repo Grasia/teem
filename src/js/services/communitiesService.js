@@ -288,11 +288,72 @@ angular.module('Teem')
       return all(options);
     };
 
+    function getQueryPromise(query){
+      var def = $q.defer();
+
+      SwellRT.query(query, function(a){
+        def.resolve(a.result);
+      }, function(error){
+        def.reject(error);
+      });
+
+      return def.promise;
+    }
+    // List of community menbers and contributors of communities teems
+    // for the communities with id in the ids array
+    var communitiesContributors = function (ids) {
+
+      if (ids === undefined || ids === []){
+        return $q(function(resolve) {
+          resolve([]);
+        });
+      }
+      if (typeof ids === String){
+        ids = [ids];
+      }
+
+      var query = {
+        _aggregate: [
+          {$match: {
+            'root.type': {$in: ['project','community']},
+            'root.shareMode': 'public',
+            'root.communities': {$in: ids}
+          }},
+
+          {$unwind: '$participants'},
+          {$group :
+            {_id:'$participants'}
+          }
+        ]};
+
+        return getQueryPromise(query);
+      };
+
+      // Contributors the user has collaborated with
+      var coContributors = function (userId = User.currentId()) {
+      var query = {
+        _aggregate: [
+          {$match: {
+            'root.type': 'project',
+            'root.shareMode': 'public',
+            'participants': userId
+          }},
+          {$unwind: '$participants'},
+          {$group :
+           {_id:'$participants'}
+          }
+        ]};
+
+      return getQueryPromise(query);
+    };
+
     return {
       findByUrlId,
       find,
       create,
       all,
-      participating
+      participating,
+      communitiesContributors,
+      coContributors
     };
   }]);
