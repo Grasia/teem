@@ -75,6 +75,17 @@ angular.module('Teem')
 
     $scope.inviteList = [];
 
+    function buildInviteItems(items){
+      var res = [];
+      items.forEach(function(i){
+        res.push({
+          _id: i._id,
+          nick: i._id.split('@')[0]
+        });
+      });
+
+      return res;
+    }
     /* Populates the user selector with:
     /* - The users that participate in the community if the query is empty
     /* - The users 'like' the query if query is an string
@@ -85,7 +96,7 @@ angular.module('Teem')
         $scope.project.communities
       ).then(function(result){
         console.log(result);
-        $scope.inviteList.push(result);
+        $scope.inviteList.push(buildInviteItems(result));
       });
     };
 
