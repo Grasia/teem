@@ -114,8 +114,10 @@ angular.module('Teem')
 
     $scope.titleReminder = function titleReminder() {
       SharedState.turnOff('projectTitleReminder');
-
-      document.querySelector('.project-title input').focus();
+      $scope.showEditTitle();
+      $timeout(function(){
+        document.querySelector('.title-input').focus();
+      });
     };
 
 
