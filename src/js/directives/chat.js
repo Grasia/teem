@@ -78,6 +78,7 @@ angular.module('Teem')
             return $scope.standpoint(msg) === 'their';
           };
 
+          // TODO: delete notification messages
           $scope.isNotificationMessage = function(msg){
             return $scope.standpoint(msg) === 'notification';
           };
@@ -98,12 +99,27 @@ angular.module('Teem')
             $scope.showPad();
           };
 
-          $scope.dayChange = function(msg, index){
-            var d = new Date(msg.time);
-            if (index === 0 || index > 0 && d.getDate() !== new Date($scope.project.chat[index -1].time).getDate()){
-              return time.date(d);
+          // Returns the previous message to the one that has the index
+          // in the current pagination
+          function prevMessage(index) {
+            var prevIndex = index - 1;
+
+            if ($scope.project.chat.length > $scope.pageSize) {
+              prevIndex += $scope.project.chat.length + $scope.pageOffset;
             }
-            return undefined;
+
+            return $scope.project.chat[prevIndex];
+          }
+
+          $scope.dayChange = function(msg, index){
+            var d = new Date(msg.time),
+                prev = prevMessage(index);
+
+            if (!prev || d.getDate() === new Date(prev.time).getDate()){
+              return undefined;
+            }
+
+            return time.date(d);
           };
 
           $scope.firstNewMessage = function (msg, index){

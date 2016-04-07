@@ -34,6 +34,7 @@ angular.module('Teem')
             img[0].src = url;
 
           } else {
+            var tmp = angular.element('<img width="200" height="200">');
             var avatarConfig = {
               'useGravatar': false,
               'initials': userId[0].toUpperCase(),
@@ -41,7 +42,8 @@ angular.module('Teem')
               'initial_weight': 200,
               'size': 200
             };
-            new window.Avatar(img[0], avatarConfig);
+            new window.Avatar(tmp[0], avatarConfig);
+            img[0].src = tmp[0].src;
           }
         });
       };

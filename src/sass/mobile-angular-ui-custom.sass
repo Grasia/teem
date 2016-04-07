@@ -124,15 +124,15 @@ img
 
 .carousel-indicators
   li
-    border-color: $button-primary-background-color
-    width: 13px
-    height: 13px
-    margin: 3px
+    border-color: $darker-grey
+    background-color: $darker-grey
+    width: 12px
+    height: 12px
+    margin: 2px
     &.active
+      border-color: $button-primary-background-color
       background-color: $button-primary-background-color
-      width: 14px
-      height: 14px
-      margin: 3px
+      margin: 2px
 
 .carousel-control
   display: flex
@@ -140,7 +140,8 @@ img
   &.right, &.left
     background-image: none
   span
-    color: $grey
+    color: $button-primary-background-color
+    text-shadow: none
 
 .glyphicon
   @extend .fa

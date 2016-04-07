@@ -184,42 +184,44 @@ angular.module('Teem')
      * Count the projects these communities have
      * FIXME: Use ProjectsSvc for this
      */
-    function countProjects (communities, resolve) {
-      SwellRT.query(
-        {_aggregate:
-           [{$match: {
-             'root.type': 'project',
-             'root.shareMode': 'public',
-             'root.communities': { $in: communities.map(c => c.id) }
-           }},
-            {$unwind: '$root.communities'},
-            {$group :
-             {_id:'$root.communities',
-              number: { $sum : 1 }
-             }
-            }]},
-          function(result){
-            var counters = result.result;
+    function countProjects (communities) {
 
-            angular.forEach(communities, function (c) {
-              angular.forEach(counters, function (cnt) {
-                if (c.id === cnt._id) {
-                  c.numProjects = cnt.number;
+      return $q(function (resolve, reject) {
+
+        SwellRT.query(
+          {_aggregate:
+             [{$match: {
+               'root.type': 'project',
+               'root.shareMode': 'public',
+               'root.communities': { $in: communities.map(c => c.id) }
+             }},
+              {$unwind: '$root.communities'},
+              {$group :
+               {_id:'$root.communities',
+                number: { $sum : 1 }
+               }
+              }]},
+            function(result){
+              var counters = result.result;
+
+              angular.forEach(communities, function (c) {
+                angular.forEach(counters, function (cnt) {
+                  if (c.id === cnt._id) {
+                    c.numProjects = cnt.number;
+                  }
+                });
+
+                if (c.numProjects === undefined) {
+                  c.numProjects = 0;
                 }
               });
 
-              if (c.numProjects === undefined) {
-                c.numProjects = 0;
-              }
+              resolve();
+            },
+            function(e){
+              reject(e);
             });
-
-            resolve(communities);
-          },
-          function(e){
-            console.log(e);
-
-            resolve(communities);
-          });
+      });
     }
 
     /*
@@ -262,7 +264,12 @@ angular.module('Teem')
             });
 
             if (options.projectCount) {
-              countProjects(communities, resolve);
+              countProjects(communities)
+                .then(function () {
+                  resolve(communities);
+                }, function (error) {
+                  reject(error);
+                });
             } else {
               resolve(communities);
             }
