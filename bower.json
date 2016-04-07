@@ -2,8 +2,8 @@
   "name": "teem",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.x",
-    "angular-animate": "1.x",
+    "angular": "1.5.x",
+    "angular-animate": "1.5.x",
     "angular-bindonce": "~0.3.1",
     "angular-bootstrap": "latest",
     "angular-elastic": "~2.4.2",
@@ -11,8 +11,8 @@
     "angular-sanitize": "1.x",
     "angular-swellrt": "0.14.1",
     "angular-toArrayFilter": "~1.0.1",
-    "angular-translate": "2.x",
-    "angular-translate-loader-static-files": "2.x",
+    "angular-translate": "2.11.x",
+    "angular-translate-loader-static-files": "2.11.x",
     "angular-ui-select": "~0.9.6",
     "angular-utf8-base64": "~0.0.5",
     "angulartics": "0.x",
@@ -25,7 +25,7 @@
     "modernizr": "~2.8.3",
     "ryanmullins-angular-hammer": "~2.1.10",
     "swiper": "~3.1.0",
-    "angular-moment": "~0.10.3",
+    "angular-moment": "1.x",
     "moment": "~2.10.6",
     "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.5.4",
     "angular-messages": "^1.5.0",
@@ -39,7 +39,7 @@
     "angular-scenario": "1.x"
   },
   "resolutions": {
-    "hammerjs": "~2.0.4",
-    "angular": ">=1.2.26 <=1.5"
+    "angular": "1.5.x",
+    "angular-translate": "2.11.x"
   }
 }
