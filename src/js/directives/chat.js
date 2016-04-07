@@ -99,14 +99,27 @@ angular.module('Teem')
             $scope.showPad();
           };
 
+          // Returns the previous message to the one that has the index
+          // in the current pagination
+          function prevMessage(index) {
+            var prevIndex = index - 1;
+
+            if ($scope.project.chat.length > $scope.pageSize) {
+              prevIndex += $scope.project.chat.length + $scope.pageOffset;
+            }
+
+            return $scope.project.chat[prevIndex];
+          }
+
           $scope.dayChange = function(msg, index){
             var d = new Date(msg.time),
-                prevIndex = $scope.project.chat.length + $scope.pageOffset + index - 1;
+                prev = prevMessage(index);
 
-            if (prevIndex === -1 || (d.getDate() !== new Date($scope.project.chat[prevIndex].time).getDate())){
-              return time.date(d);
+            if (!prev || d.getDate() === new Date(prev.time).getDate()){
+              return undefined;
             }
-            return undefined;
+
+            return time.date(d);
           };
 
           $scope.firstNewMessage = function (msg, index){
