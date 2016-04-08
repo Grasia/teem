@@ -2,35 +2,18 @@
 
 /**
  * @ngdoc function
- * @name Teem.controller:FrontpageCtrl
+ * @name Teem.controller:WalkthroughCtrl
  * @description
- * # FrontpageCtrl
+ * # WalkthroughCtrl
  * Landing page
  */
 angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-      when('/frontpage', {
-        template: '',
-        controller: 'FrontpageCtrl'
-      }).
       when('/walkthrough', {
         templateUrl: 'walkthrough.html',
         controller: 'WalkthroughCtrl'
       });
-  }])
-
-  .controller('FrontpageCtrl', [
-    'SessionSvc', '$location', '$cookies', 'Loading',
-    function(SessionSvc, $location, $cookies, Loading) {
-
-      if ($cookies.get('walkthrough')) {
-        Loading.show(SessionSvc.onLoad(function() {
-          $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/communities');
-        }));
-      } else {
-        $location.path('/walkthrough');
-      }
   }])
   .controller('WalkthroughCtrl', [
     '$rootScope', '$scope', '$rootElement', '$location', '$timeout', '$cookies',

@@ -15,7 +15,6 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngAnimate',
-    'ngTouch',
     'ngCookies',
     'ngMessages',
     'mobile-angular-ui',
@@ -41,7 +40,20 @@ angular
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {
-        redirectTo: '/frontpage'
+        template: '',
+        controller: [
+          'SessionSvc', '$location', '$cookies', 'Loading',
+          function(SessionSvc, $location, $cookies, Loading) {
+
+            if ($cookies.get('walkthrough')) {
+              Loading.show(SessionSvc.onLoad(function() {
+                $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/communities');
+              }));
+            } else {
+              $location.path('/walkthrough');
+            }
+          }
+        ]
       });
   }])
   .config(function($translateProvider) {
