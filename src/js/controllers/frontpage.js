@@ -33,10 +33,16 @@ angular.module('Teem')
       }
   }])
   .controller('WalkthroughCtrl', [
-    '$rootScope', '$scope', '$location', '$timeout', '$cookies',
-    function($rootScope, $scope, $location, $timeout, $cookies) {
+    '$rootScope', '$scope', '$rootElement', '$location', '$timeout', '$cookies',
+    function($rootScope, $scope, $rootElement, $location, $timeout, $cookies) {
 
       $rootScope.hideNavigation = true;
+      $rootElement.removeClass('has-navbar-top');
+
+      $scope.$on('$destroy', function() {
+        $rootElement.addClass('has-navbar-top');
+        $rootScope.hideNavigation = false;
+      });
 
       $timeout(function() {
         new Swiper('.swiper-container', {
