@@ -11,32 +11,49 @@ angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/frontpage', {
-        templateUrl: 'frontpage.html',
-        controller:'FrontpageCtrl'
+        template: '',
+        controller: 'FrontpageCtrl'
+      }).
+      when('/walkthrough', {
+        templateUrl: 'walkthrough.html',
+        controller: 'WalkthroughCtrl'
       });
   }])
 
   .controller('FrontpageCtrl', [
-    '$rootScope', '$scope', '$rootElement', 'SessionSvc', '$location',
-    function($rootScope, $scope, $rootElement, SessionSvc, $location) {
-      $rootScope.hideNavigation = true;
-      $rootElement.removeClass('has-navbar-top');
+    'SessionSvc', '$location', '$cookies', 'Loading',
+    function(SessionSvc, $location, $cookies, Loading) {
 
-      $scope.$on('$destroy', function() {
-        $rootElement.addClass('has-navbar-top');
-        $rootScope.hideNavigation = false;
-      });
-
-      new Swiper('.swiper-container', {
-        autoplay: 5000,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev'
-      });
-
-      if (SessionSvc.users.loggedIn()) {
-        $rootElement.addClass('has-navbar-top');
-        $rootScope.hideNavigation = false;
-
-        $location.path('/teems');
+      if ($cookies.get('walkthrough')) {
+        Loading.show(SessionSvc.onLoad(function() {
+          $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/communities');
+        }));
+      } else {
+        $location.path('/walkthrough');
       }
+  }])
+  .controller('WalkthroughCtrl', [
+    '$rootScope', '$scope', '$location', '$timeout', '$cookies',
+    function($rootScope, $scope, $location, $timeout, $cookies) {
+
+      $rootScope.hideNavigation = true;
+
+      $timeout(function() {
+        new Swiper('.swiper-container', {
+          autoplay: 7000,
+          nextButton: '.swiper-button-next',
+          prevButton: '.swiper-button-prev',
+          pagination: '.swiper-pagination',
+          paginationHide: false,
+          paginationClickable: true,
+          autoplayStopOnLast: true,
+          mousewheelControl: true
+        });
+      });
+
+      $scope.close = function() {
+        var expires = 'Tue, 19 Jan 2038 03:14:07 UTC'; // https://en.wikipedia.org/wiki/Year_2038_problem
+        $cookies.put('walkthrough', 'true', {expires});
+        $location.path('/communities');
+      };
     }]);

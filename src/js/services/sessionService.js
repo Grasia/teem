@@ -289,6 +289,7 @@ angular.module('Teem')
         }
 
         sessionPromise.then(f);
+        return sessionPromise;
       }
     };
   }]);

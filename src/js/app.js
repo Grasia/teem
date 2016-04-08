@@ -41,7 +41,7 @@ angular
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {
-        redirectTo: '/communities'
+        redirectTo: '/frontpage'
       });
   }])
   .config(function($translateProvider) {
