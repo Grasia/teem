@@ -19,6 +19,11 @@ angular.module('Teem')
           },
           confirmNew () {
             $location.search('form', undefined);
+
+            scope.invite.selected.forEach(function(i){
+              scope.project.addContributor(i);
+            });
+
             $rootScope.$broadcast('teem.project.join');
           }
         };

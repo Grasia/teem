@@ -73,7 +73,10 @@ angular.module('Teem')
 
     var edittingTitle = false;
 
-    $scope.inviteList = [];
+    $scope.invite = {
+      list : [],
+      selected : []
+    };
 
     function buildInviteItems(items){
       var res = [];
