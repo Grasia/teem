@@ -186,6 +186,10 @@
     }
   },
   "project": {
+    "add_people": {
+      "placeholder": "Añade personas",
+      "long_placeholder": "Añade personas de Teem o emails"
+    },
     "create": {
       "button": "Crear Teem",
       "tip": "Empieza creando un nuevo Teem"
