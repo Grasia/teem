@@ -15,7 +15,7 @@ angular.module('Teem')
               this[k] = val.root[k];
             }
           }
-
+          this._participants = val.participants;
         }
       }
 
