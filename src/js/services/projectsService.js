@@ -14,6 +14,7 @@ angular.module('Teem')
               this[k] = val.root[k];
             }
           }
+          this._participants = val.participants;
         }
       }
 
@@ -204,6 +205,13 @@ angular.module('Teem')
       isShareMode (mode) {
         return mode === this.shareMode;
       }
+
+      participantCount () {
+        return this._participants.reduce(function(a,b){
+          // do not count participants of the form @domain that represents that it is a public wave.
+          return a + (/.+@.+/.test(b)? 1 : 0);
+        }, 0);
+      }
     }
 
     class Project extends ProjectReadOnly {
@@ -301,13 +309,6 @@ angular.module('Teem')
         } else {
           this.addContributor(userId);
         }
-      }
-
-      participantCount () {
-        return this._participants.reduce(function(a,b){
-          // do not count participants of the form @domain that represents that it is a public wave.
-          return a + (/.+@.+/.test(b)? 1 : 0);
-        }, 0);
       }
 
       addChatMessage (message) {
