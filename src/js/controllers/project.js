@@ -201,6 +201,7 @@ angular.module('Teem')
     };
 
     $scope.selectizeConfig = {
+      plugins: ['remove_button'],
       valueField:'_id',
       labelField:'nick',
       searchField:'nick',
