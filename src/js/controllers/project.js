@@ -102,7 +102,7 @@ angular.module('Teem')
         $scope.project.communities
       ).then(function(result){
         console.log(result);
-        $scope.inviteList.push(buildInviteItems(result));
+        $scope.invite.list.push(buildInviteItems(result));
       });
     };
 
