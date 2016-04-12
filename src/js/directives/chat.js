@@ -136,6 +136,9 @@ angular.module('Teem')
 
           $scope.keyDown = function(event){
             if (event.which === 13) {
+              // Input model is only updated on blur, so we have to sync manually
+              $scope.chatForm.chatInput.$commitViewValue();
+
               $scope.send();
 
               event.preventDefault();
