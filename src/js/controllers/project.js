@@ -92,11 +92,9 @@ angular.module('Teem')
 
       return res;
     }
-    /* Populates the user selector with:
-    /* - The users that participate in the community if the query is empty
-    /* - The users 'like' the query if query is an string
+    /* Populates the user selector witht the users that participate in the community
     */
-    $scope.populateUserSelector = function(query) {
+    $scope.populateUserSelector = function() {
       CommunitiesSvc.communitiesContributors(
         $scope.project.communities
       ).then(function(result){
