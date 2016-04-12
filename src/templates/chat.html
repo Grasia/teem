@@ -25,7 +25,8 @@
                     rows="1"
                     ng-model="newMsg"
                     placeholder="{{ 'chat.input' | translate}}"
-                    ng-keydown="keyDown($event)">
+                    ng-keydown="keyDown($event)"
+                    ng-click="scrollToBottom()">
           </textarea>
           <div class="input-group-addon">
             <button class="btn btn-primary chat-input-button" ng-click="send()">
