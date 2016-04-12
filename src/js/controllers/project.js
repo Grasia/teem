@@ -67,9 +67,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User',
   function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout, swellRT,
-  SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc) {
+  SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User) {
 
     var edittingTitle = false;
 
@@ -210,7 +210,7 @@ angular.module('Teem')
         if (!query.length) {
           return callback();
         }
-        CommunitiesSvc.usersLike(query)
+        User.usersLike(query)
           .then(function(r){
             callback(buildInviteItems(r));
             $timeout();

@@ -295,17 +295,6 @@ angular.module('Teem')
       return all(options);
     };
 
-    function getQueryPromise(query){
-      var def = $q.defer();
-
-      SwellRT.query(query, function(a){
-        def.resolve(a.result);
-      }, function(error){
-        def.reject(error);
-      });
-
-      return def.promise;
-    }
     // List of community menbers and contributors of communities teems
     // for the communities with id in the ids array
     var communitiesContributors = function (ids) {
@@ -333,7 +322,15 @@ angular.module('Teem')
           }
         ]};
 
-        return getQueryPromise(query);
+        var def = $q.defer();
+
+        SwellRT.query(query, function(a){
+          def.resolve(a.result);
+        }, function(error){
+          def.reject(error);
+        });
+
+        return def.promise;
       };
 
       // Contributors the user has collaborated with
@@ -354,27 +351,6 @@ angular.module('Teem')
       return getQueryPromise(query);
     };
 
-    var usersLike = function(search){
-      var query = {
-        _aggregate: [
-          {$match: {
-            'root.type': 'project',
-            'root.shareMode': 'public',
-            'participants': {$regex: search}
-          }},
-          {$unwind: '$participants'},
-          {$group :
-           {_id:'$participants',
-            count: {$sum: 1 }}
-         },
-          {$match:
-            {_id: {$regex: search}}
-          }
-        ]};
-
-        return getQueryPromise(query);
-    };
-
     return {
       findByUrlId,
       find,
@@ -382,7 +358,6 @@ angular.module('Teem')
       all,
       participating,
       communitiesContributors,
-      coContributors,
-      usersLike
+      coContributors
     };
   }]);

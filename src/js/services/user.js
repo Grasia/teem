@@ -9,8 +9,8 @@
  */
 
 angular.module('Teem')
-  .factory('User', [
-  function() {
+  .factory('User', [ '$q',
+  function($q) {
     class User {
 
       static currentId () {
@@ -56,7 +56,37 @@ angular.module('Teem')
       get nick () {
         return this.id.split('@')[0];
       }
-    }
+
+
+      static usersLike (search){
+        var query = {
+          _aggregate: [
+            {$match: {
+              'root.type': 'project',
+              'root.shareMode': 'public',
+              'participants': {$regex: search}
+            }},
+            {$unwind: '$participants'},
+            {$group :
+              {_id:'$participants',
+              count: {$sum: 1 }}
+            },
+            {$match:
+              {_id: {$regex: search}}
+            }
+          ]};
+
+          var def = $q.defer();
+
+          SwellRT.query(query, function(a){
+            def.resolve(a.result);
+          }, function(error){
+            def.reject(error);
+          });
+
+          return def.promise;
+        }
+      }
 
     return User;
   }]);
