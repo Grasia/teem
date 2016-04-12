@@ -51,20 +51,25 @@
           <span am-time-ago="comment.time"></time-ago>
         </div>
         <h5 class="media-heading">
-          <span class="comment-author-name">
-            {{comment.author.split('@')[0]}}
+          <span class="comment-author-name" bo-html="comment.author.split('@')[0]">
           </span>
         </h5>
-        <div ng-bind-html="comment.text | linky"></div>
+        <div bo-html="comment.text | linky"></div>
       </div>
     </div>
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
         <div class="input-group">
-          <textarea class="form-control" rows="1" ng-model="newComment.text" placeholder="{{ 'need.comment.input' | translate}}" ng-keydown="keyDown($event)">
+          <textarea class="form-control"
+                    rows="1"
+                    ng-model="newComment.text"
+                    placeholder="{{ 'need.comment.input' | translate}}"
+                    ng-keydown="keyDown($event)">
           </textarea>
           <span class="input-group-addon">
-            <i class="fa i-send need-comment-input-button" ng-click="sendComment()"></i>
+            <button type="submit" class="btn btn-link need-comment-input-button">
+              <i class="fa i-send"></i>
+            </button>
           </span>
         </div>
       </form>
