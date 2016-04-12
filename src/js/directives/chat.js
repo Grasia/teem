@@ -16,8 +16,10 @@ angular.module('Teem')
         $timeout(function() {
           var bottom = angular.element(element);
           var newMessages = angular.element(document.getElementById('newMessages'));
+
           if (bottom) {
             var scrollableContentController = bottom.controller('scrollableContent');
+            
             if (scrollableContentController) {
               if (newMessages && newMessages.length > 0){
                 scrollableContentController.scrollTo(newMessages);
@@ -34,7 +36,7 @@ angular.module('Teem')
     return {
       controller: [
         'SessionSvc', 'url', '$scope', '$rootScope', '$route', '$location',
-        '$animate', 'time', 
+        '$animate', 'time',
         function(SessionSvc, url, $scope, $rootScope, $route, $location,
         $animate, time){
 
@@ -56,6 +58,7 @@ angular.module('Teem')
           // Scroll to bottom after adding a message
           $animate.on('enter', angular.element(document.querySelector('.chat-messages')), function(msg) {
             var scrollableContentController = msg.controller('scrollableContent');
+
             scrollableContentController.scrollTo(msg);
           });
 
