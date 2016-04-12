@@ -3,8 +3,7 @@
     <div class="scrollable-content section" ui-scroll-top="nextPage()">
       <ul class="chat-messages"
           ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset"
-          chat-scroll
-          bindonce>
+          chat-scroll>
         <li id="newMessages" bo-if="firstNewMessage(msg, $index)" class="new-messages" translate>chat.new_messages</li>
         <li bo-if="dayChange(msg, $index)"
             class="day-change"
