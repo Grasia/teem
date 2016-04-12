@@ -97,11 +97,9 @@ angular.module('Teem')
     /* - The users 'like' the query if query is an string
     */
     $scope.populateUserSelector = function(query) {
-      console.log($scope.project.communities);
       CommunitiesSvc.communitiesContributors(
         $scope.project.communities
       ).then(function(result){
-        console.log(result);
         $scope.invite.list.push(buildInviteItems(result));
       });
     };
