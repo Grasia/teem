@@ -81,7 +81,8 @@
                   </div>
                   <selectize multiple config="selectizeConfig"
                   options="invite.list" ng-model="invite.selected"
-                  placeholder="{{'project.add_people.placeholder' | translate}}">
+                  ng-attr-placeholder="
+                  {{invite.selected.length ? '' : 'project.add_people.placeholder' | translate}}">
 
                   </selectize>
               </div>
