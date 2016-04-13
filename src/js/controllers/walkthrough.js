@@ -16,8 +16,8 @@ angular.module('Teem')
       });
   }])
   .controller('WalkthroughCtrl', [
-    '$rootScope', '$scope', '$rootElement', '$location', '$timeout', '$cookies',
-    function($rootScope, $scope, $rootElement, $location, $timeout, $cookies) {
+    '$rootScope', '$scope', '$rootElement', '$location', '$timeout',
+    function($rootScope, $scope, $rootElement, $location, $timeout) {
 
       $rootScope.hideNavigation = true;
       $rootElement.removeClass('has-navbar-top');
@@ -41,8 +41,7 @@ angular.module('Teem')
       });
 
       $scope.close = function() {
-        var expires = 'Tue, 19 Jan 2038 03:14:07 UTC'; // https://en.wikipedia.org/wiki/Year_2038_problem
-        $cookies.put('walkthrough', 'true', {expires});
+        localStorage.setItem('walkthrough', true);
         $location.path('/communities');
       };
     }]);
