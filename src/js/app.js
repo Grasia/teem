@@ -63,6 +63,11 @@ angular
       });
   }])
   .config(function($translateProvider) {
+    /* Moment.js is better at choosing languages because it looks up navigator.languages
+       (drafty but supported by Chrome and Firefox).
+       https://www.w3.org/TR/2016/WD-html51-20160310/webappapis.html#language-preferences */
+    var preferedLanguage = window.moment.locale();
+
     $translateProvider
       .useStaticFilesLoader({
         prefix: 'l10n/',
@@ -77,7 +82,7 @@ angular
       })
       // Do not change order of next two elements
       // https://github.com/angular-translate/angular-translate/issues/920#issuecomment-180550269
-      .determinePreferredLanguage()
+      .preferredLanguage(preferedLanguage)
       .fallbackLanguage('en');
   })
   .run(function(amMoment, $translate) {
