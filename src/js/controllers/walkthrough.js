@@ -2,39 +2,22 @@
 
 /**
  * @ngdoc function
- * @name Teem.controller:FrontpageCtrl
+ * @name Teem.controller:WalkthroughCtrl
  * @description
- * # FrontpageCtrl
+ * # WalkthroughCtrl
  * Landing page
  */
 angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-      when('/frontpage', {
-        template: '',
-        controller: 'FrontpageCtrl'
-      }).
       when('/walkthrough', {
         templateUrl: 'walkthrough.html',
         controller: 'WalkthroughCtrl'
       });
   }])
-
-  .controller('FrontpageCtrl', [
-    'SessionSvc', '$location', '$cookies', 'Loading',
-    function(SessionSvc, $location, $cookies, Loading) {
-
-      if ($cookies.get('walkthrough')) {
-        Loading.show(SessionSvc.onLoad(function() {
-          $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/communities');
-        }));
-      } else {
-        $location.path('/walkthrough');
-      }
-  }])
   .controller('WalkthroughCtrl', [
-    '$rootScope', '$scope', '$rootElement', '$location', '$timeout', '$cookies',
-    function($rootScope, $scope, $rootElement, $location, $timeout, $cookies) {
+    '$rootScope', '$scope', '$rootElement', '$location', '$timeout',
+    function($rootScope, $scope, $rootElement, $location, $timeout) {
 
       $rootScope.hideNavigation = true;
       $rootElement.removeClass('has-navbar-top');
@@ -58,8 +41,7 @@ angular.module('Teem')
       });
 
       $scope.close = function() {
-        var expires = 'Tue, 19 Jan 2038 03:14:07 UTC'; // https://en.wikipedia.org/wiki/Year_2038_problem
-        $cookies.put('walkthrough', 'true', {expires});
+        localStorage.setItem('walkthrough', true);
         $location.path('/communities');
       };
     }]);
