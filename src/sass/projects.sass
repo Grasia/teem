@@ -215,12 +215,18 @@
 
 .project-add-users .selectize-input
   @extend .form-control
-  & >input
-    width: 100% !important
 
-.selectize-control.multi .selectize-input>div
-    background: white
-    border-radius: 1em
+
+.project-add-users .selectize-input>input:first-child
+    width: auto !important
+
+.selectize-control.multi .selectize-input
+    overflow: auto
+    height: 100%
+    >div
+      background: white
+      border-radius: 1em
+
 
 .project-add-users .fa-plus-circle
   color: $light-green
