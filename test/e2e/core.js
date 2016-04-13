@@ -28,13 +28,19 @@ describe('Teem', function() {
             pad: 'Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam.'
           };
 
-      var newCommunityButton = by.css('.plus');
+      var newCommunityButton = element(by.css('.plus'));
 
       browser.wait(function() {
-        return element(newCommunityButton).isDisplayed();
-      }, timeout);
+        if (! newCommunityButton.isDisplayed()) {
+          return false;
+        }
 
-      element(newCommunityButton).click();
+        // Wait until loading modal ends
+        return newCommunityButton.click().then(
+          function() { return true; },
+          function() { return false; }
+        );
+      }, timeout);
 
       var loginInput = by.css('#nick');
       var passwordInput = by.css('#password');
