@@ -196,6 +196,30 @@ angular.module('Teem')
       return lastChange > lastAccess;
     };
 
+    $scope.communitySelector = {
+      options: [],
+      config: {
+        create: false,
+        maxItems: 1,
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        onChange: function(id) {
+          var selectedCommunity = $scope.communitySelector.options.find(community => community.id === id);
+          if (selectedCommunity) {
+            $scope.communities[0] = selectedCommunity;
+          } else {
+            delete $scope.communities[0];
+          }
+        }
+      }
+    };
+    SessionSvc.onLoad(function() {
+      CommunitiesSvc.participating({ projectCount: true }).then(function(communities){
+        $scope.communitySelector.options = communities;
+      });
+    });
+
     $scope.selectizeConfig = {
       plugins: ['remove_button'],
       valueField:'_id',
