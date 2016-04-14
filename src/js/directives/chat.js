@@ -135,7 +135,6 @@ angular.module('Teem')
               return false;
             }
 
-console.log(2);
             previousAccess = new Date(previousAccess);
 
             var prevMsg = prevMessage(index);
@@ -145,7 +144,6 @@ console.log(2);
               return false;
             }
 
-console.log(3);
             var date = new Date(msg.time);
 
             if (date > previousAccess && previousAccess > new Date(prevMsg.time)){
