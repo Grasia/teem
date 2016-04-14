@@ -16,6 +16,10 @@
   color: #696969
 }
 
+.comma-separated + .comma-separated::before {
+  content: ", ";
+}
+
 [ng-click],
 [data-ng-click],
 [x-ng-click] {

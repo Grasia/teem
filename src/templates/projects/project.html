@@ -47,7 +47,7 @@
                   </button>
                 </h1>
                 <div class="project-communities" ng-if="! isNew()">
-                  <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="#/communities/{{ c.urlId }}">{{ c.name }}</a></span>
+                  <span class="comma-separated" ng-repeat="c in communities"><a ng-href="#/communities/{{ c.urlId }}">{{ c.name }}</a></span>
                 </div>
               </div>
               <div ng-if="edittingTitle()">
@@ -66,8 +66,8 @@
                 <selectize
                   config="communitySelector.config"
                   options="communitySelector.options"
-                  ng-model="project.communities[0]"
-                  ng-attr-placeholder="{{project.communities[0] ? '' : 'project.community.placeholder' | translate}}"
+                  ng-model="project.communities"
+                  ng-attr-placeholder="{{project.communities.length ? '' : 'project.community.placeholder' | translate}}"
                 ></selectize>
               </div>
               <div class="project-join" ng-if="!project.isContributor()">
