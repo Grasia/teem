@@ -500,6 +500,17 @@ gulp.task('test:unit:loop', function(done) {
 
 
 gulp.task('test:e2e', function(done) {
+  var tasks = [ 'test:e2e:protractor', done ];
+
+  if (config.swellrt.docker) {
+    tasks.unshift('docker:swellrt');
+  }
+
+  seq.apply(this, tasks);
+});
+
+
+gulp.task('test:e2e:protractor', function(done) {
   connect.server({
     root: config.dest,
     host: config.serverTest.host,
@@ -523,11 +534,8 @@ gulp.task('test:e2e', function(done) {
 gulp.task('test', function(done){
   var tasks = [];
 
-  if (config.swellrt.docker) {
-    tasks.push('docker:swellrt');
-  }
-
   tasks.push('test:unit', 'test:e2e');
+
   seq(tasks, done);
 });
 
