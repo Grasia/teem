@@ -40,7 +40,7 @@ angular.module('Teem')
         '$animate', 'time',
         function(SessionSvc, url, $scope, $rootScope, $route, $location,
         $animate, time){
-          const pageSize = 10;
+          const pageSize = 20;
           // For scrolling in chatScroll directive
           $scope.defaultPageSize = pageSize;
           $scope.pageSize = pageSize;
