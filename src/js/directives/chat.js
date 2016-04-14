@@ -128,7 +128,6 @@ angular.module('Teem')
               return false;
             }
 
-console.log(1);
             var previousAccess = $scope.project.getTimestampAccess().chat.prev;
 
             // There is not previous access
