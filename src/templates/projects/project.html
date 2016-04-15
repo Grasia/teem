@@ -60,7 +60,7 @@
                 <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="#/communities/{{ c.urlId }}">{{ c.name }}</a></span>
               </div>
               <div class="project-join" ng-if="!project.isContributor()">
-                <button class="btn btn-primary"
+                <button class="btn btn-primary btn-raised"
                         join
                         join-icon="false",
                         join-model="project"
