@@ -83,6 +83,10 @@ angular
   .run(function(amMoment, $translate) {
     amMoment.changeLocale($translate.proposedLanguage() || $translate.use());
   })
+  .run(function() {
+    // Init Bootstrap Material Design
+    $.material.init();
+  })
   .filter('base64', function(){
     return window.btoa;
   })

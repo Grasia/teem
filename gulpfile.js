@@ -14,6 +14,7 @@ var config = {
 
   vendor: {
     js: [
+      './bower_components/jquery/dist/jquery.js',
       './bower_components/modernizr/modernizr.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
@@ -21,6 +22,8 @@ var config = {
       './bower_components/angular-translate/angular-translate.js',
       './bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
+      './bower_components/bootstrap-material-design/dist/js/material.js',
+      './bower_components/bootstrap-material-design/dist/js/ripples.js',
       './bower_components/angular-messages/angular-messages.js',
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       './bower_components/angular-ui-select/dist/select.js',
@@ -310,7 +313,7 @@ gulp.task('sass', function () {
   gulp.src('./src/sass/app.sass')
     .pipe(sourcemaps.init())
     .pipe(sass({
-      includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components') ]
+      includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components'), path.resolve(__dirname, 'bower_components/bootstrap-sass/assets/stylesheets') ]
     }).on('error', sass.logError))
     /* Currently not working with sourcemaps
     .pipe(mobilizer('app.css', {

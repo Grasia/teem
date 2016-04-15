@@ -1,4 +1,14 @@
 /*
+ * Colors, fonts, etc..
+ */
+@import 'colors'
+@import 'fonts'
+
+/*
+ * Set all the vendor variables (bootstrap, material design..)
+@import 'vendor-variables'
+
+/*
  * Vendor files
  */
 
@@ -6,6 +16,10 @@
 @import 'mobile-angular-ui/dist/css/mobile-angular-ui-hover'
 @import 'mobile-angular-ui/dist/css/mobile-angular-ui-base'
 @import 'mobile-angular-ui/dist/css/mobile-angular-ui-desktop'
+
+/* Bootstrap Material Design */
+@import 'bootstrap-material-design/sass/bootstrap-material-design'
+@import 'bootstrap-material-design/sass/ripples'
 
 /* Font Awesome */
 @import 'font-awesome/css/font-awesome'
@@ -25,21 +39,14 @@
 @import 'placeholder'
 
 /*
- * Colors, fonts, etc..
+ * All the fixes that cannot be achieved through variables
  */
-@import 'colors'
-@import 'fonts'
-
-/*
- * Customizing MobileAngularUI
- */
-@import 'mobile-angular-ui-custom'
+@import 'vendor-fixes'
 
 /*
  * Hacks and custom fonts
  */
 @import 'glyphicon-to-fontawesome'
-
 
 /*
  * Application CSS
