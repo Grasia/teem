@@ -30,7 +30,8 @@ angular
     'angular-toArrayFilter',
     'angularMoment',
     'ngImgCrop',
-    'ngFileUpload'
+    'ngFileUpload',
+    'flock.bootstrap.material'
   ]).
   // Application config
   // See config.js.sample for examples
@@ -82,10 +83,6 @@ angular
   })
   .run(function(amMoment, $translate) {
     amMoment.changeLocale($translate.proposedLanguage() || $translate.use());
-  })
-  .run(function() {
-    // Init Bootstrap Material Design
-    $.material.init();
   })
   .filter('base64', function(){
     return window.btoa;
