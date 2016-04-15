@@ -1,11 +1,21 @@
-<div class="section project-pad"
-     ng-class="pad.editting ? 'project-pad-editing' : ''">
-  <div id="pad"
-       class="swellrt-editor"
-       swellrt-editor-on-ready="padReady()"
-       editable="{{project.isContributor()}}"
-       ng-model="project.pad"
-       placeholder="{{ 'pad.placeholder' | translate }}"
-       block-edit="{{!project.isContributor()}}"></div>
+<div class="section"
+  ng-class="pad.editting ? 'project-pad-editing' : ''">
+  <div class="project-pad">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group btn-group-xs" role="group" aria-label="First group">
+        <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'btn-info': isActive}">
+          <i class="fa fa-{{btn}}"></i>
+        </button>
+      </div>
+    </div>
+    <div
+      class="swellrt-editor"
+      swellrt-editor-on-ready="padReady"
+      editable="{{project.isContributor()}}"
+      ng-model="project.pad"
+      placeholder="{{ 'pad.placeholder' | translate }}"
+      id="pad"
+      block-edit="{{!project.isContributor()}}">
+    </div>
   </div>
-</pad>
+</div>
