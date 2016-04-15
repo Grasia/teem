@@ -48,6 +48,10 @@
         float: right
         font-size: .86em
         padding-top: 0.26em
+  .chat-send
+    .form-group
+      padding: 0
+      margin: 0
   .chat-send-bar
     background: $chat-send-bar-background-color
     textarea
@@ -58,6 +62,8 @@
       resize: none
       border: 0
       @include placeholder
+    textarea:focus
+      background-image: none
     textarea, .input-group-addon
       border-bottom: 0px
     button
