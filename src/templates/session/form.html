@@ -32,8 +32,8 @@
             <span ng-message="required">{{'session.'+form.current+'.error.password.required' | translate }}</span>
             <span ng-message="pattern" translate>session.register.error.password.pattern</span>
           </span>
-          <span class="field-error" ng-if="form.current=='login'">
-            <a ng-click="goToForm(sessionForm, 'forgottenPassword')" class="btn session-forgotten-password-form-btn" translate>session.forgottenPassword.link</a>
+          <span class="forgotten-password-link" ng-if="form.current=='login'">
+            <a ng-click="goToForm(sessionForm, 'forgottenPassword')" class="btn btn-primary session-forgotten-password-form-btn" translate>session.forgottenPassword.link</a>
           </span>
         </div>
         <div ng-if="isFieldVisible('passwordRepeat')" class="form-group label-floating" ng-class="{ 'has-error': sessionForm.passwordRepeat.$touched && sessionForm.passwordRepeat.$invalid }">
@@ -57,14 +57,14 @@
         </div>
         <div class="row">
           <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
-            <input type="submit" class="btn btn-primary btn-block session-submit-btn text-uppercase" ng-disabled="sessionForm.$invalid" value="{{'session.'+form.current+'.button' | translate}}">
+            <input type="submit" class="btn btn-primary btn-raised btn-block session-submit-btn text-uppercase" ng-disabled="sessionForm.$invalid" value="{{'session.'+form.current+'.button' | translate}}">
           </div>
         </div>
         <div class="row">
           <div class="text-center">
             <p ng-if="form.current=='register'">
               <span translate>session.login.link_prev</span><br>
-              <a ng-click="goToForm(sessionForm, 'login')"  class="btn session-login-form-btn text-uppercase" translate>session.login.link</a>
+              <a ng-click="goToForm(sessionForm, 'login')"  class="btn btn-primary session-login-form-btn text-uppercase" translate>session.login.link</a>
             </p>
             <p ng-if="form.current=='login'">
               <span translate>session.register.link_prev</span><br>
