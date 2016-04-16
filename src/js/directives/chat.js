@@ -53,6 +53,24 @@ angular.module('Teem')
             }
           };
 
+          // Scroll to bottom on input focus
+          $scope.scrollToBottom = function() {
+            var bottom = angular.element(document.getElementsByClassName('chat-messages'));
+
+            if(bottom){
+              var msgs = angular.element(document.getElementsByClassName('chat-message-text ng-scope'));
+
+              if(msgs && msgs.length > 0){
+                var lastMessage = msgs[msgs.length-1];
+                var scrollableContentController = bottom.controller('scrollableContent');
+
+                if (scrollableContentController) {
+                  scrollableContentController.scrollTo(lastMessage);
+                }           
+              }
+            } 
+          };
+
           // Send button
           $scope.send = function(){
             var msg = $scope.newMsg.trim();
