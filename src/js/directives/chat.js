@@ -123,19 +123,44 @@ angular.module('Teem')
           };
 
           $scope.firstNewMessage = function (msg, index){
-            var d = new Date(msg.time);
-
-            if ($scope.project.getTimestampAccess().chat) {
-              var previousAccess = new Date($scope.project.getTimestampAccess().chat.prev);
-              if (index > 0 && d > previousAccess && previousAccess > new Date($scope.project.chat[index -1].time)){
-                return true;
-              }
+            // There is not access record
+            if (! $scope.project.getTimestampAccess().chat) {
+              return false;
             }
+
+console.log(1);
+            var previousAccess = $scope.project.getTimestampAccess().chat.prev;
+
+            // There is not previous access
+            if (! previousAccess) {
+              return false;
+            }
+
+console.log(2);
+            previousAccess = new Date(previousAccess);
+
+            var prevMsg = prevMessage(index);
+
+            // There are not more messages
+            if (! prevMsg) {
+              return false;
+            }
+
+console.log(3);
+            var date = new Date(msg.time);
+
+            if (date > previousAccess && previousAccess > new Date(prevMsg.time)){
+                return true;
+            }
+
             return false;
           };
 
           $scope.keyDown = function(event){
             if (event.which === 13) {
+              // Input model is only updated on blur, so we have to sync manually
+              $scope.chatForm.chatInput.$commitViewValue();
+
               $scope.send();
 
               event.preventDefault();

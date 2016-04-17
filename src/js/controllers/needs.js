@@ -78,6 +78,9 @@ angular.module('Teem')
           scope.keyDown = function(event){
             if (event.which === 13) {
               scope.sendComment();
+
+              // Do not add new line to comment input
+              event.preventDefault();
             }
           };
 

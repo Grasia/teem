@@ -311,13 +311,6 @@ angular.module('Teem')
         }
       }
 
-      participantCount () {
-        return this._participants.reduce(function(a,b){
-          // do not count participants of the form @domain that represents that it is a public wave.
-          return a + (/.+@.+/.test(b)? 1 : 0);
-        }, 0);
-      }
-
       addChatMessage (message) {
         this.chat.push({
           text: message,

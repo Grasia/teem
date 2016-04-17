@@ -21,6 +21,10 @@ angular.module('Teem')
       };
     }
 
+    $scope.close = function() {
+      SharedState.turnOff('uiSidebarLeft');
+    };
+
     $scope.register = function () {
       SharedState.set('shouldLoginSharedState', 'register');
     };

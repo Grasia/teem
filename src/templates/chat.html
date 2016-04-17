@@ -3,8 +3,7 @@
     <div class="scrollable-content section" ui-scroll-top="nextPage()">
       <ul class="chat-messages"
           ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset"
-          chat-scroll
-          bindonce>
+          chat-scroll>
         <li id="newMessages" bo-if="firstNewMessage(msg, $index)" class="new-messages" translate>chat.new_messages</li>
         <li bo-if="dayChange(msg, $index)"
             class="day-change"
@@ -24,17 +23,19 @@
       </ul>
     </div>
     <div class="scrollable-footer chat-send-bar">
-      <form class="chat-send" ng-submit="send()">
+      <form class="chat-send" name="chatForm" ng-submit="send()">
         <div class="input-group">
           <textarea class="form-control chat-textarea"
+                    name="chatInput"
                     rows="1"
                     msd-elastic
                     ng-model="newMsg"
+                    ng-model-options="{ updateOn: 'blur' }"
                     placeholder="{{ 'chat.input' | translate}}"
                     ng-keydown="keyDown($event)">
           </textarea>
           <div class="input-group-addon">
-            <button class="btn btn-primary chat-input-button" ng-click="send()">
+            <button type="submit" class="btn btn-primary chat-input-button">
               <i class="fa i-send"></i>
             </button>
           </div>
