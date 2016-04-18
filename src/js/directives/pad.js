@@ -23,29 +23,12 @@ angular.module('Teem')
 
           var buttons = ['bold', 'italic', 'underline', 'strikethrough'];
 
-          function editOn () {
-            $scope.pad.editing = true;
-
-            SessionSvc.showSaving = true;
-
-            $timeout();
-          }
-
-          function editOff () {
-            $scope.pad.editing = false;
-
-            SessionSvc.showSaving = false;
-
-            $timeout();
-          }
-
           $scope.padReady = function(editor) {
             // FIXME
             // SwellRT editor is created with .wave-editor-off
             // Should use .wave-editor-on when SwellRT editor callback is available
             // https://github.com/P2Pvalue/swellrt/issues/84
             var editorElement = angular.element(document.getElementById('pad').children[0]);
-            var padElement = angular.element(document.getElementById('pad').parentNode);
 
             var annotationMap = {
               bold: 'style/fontWeight=bold',
@@ -75,20 +58,21 @@ angular.module('Teem')
               editorElement.focus();
             };
 
-            $scope.$watch(function() {
-              return editorElement.attr('class');
-            },
-            function(newClass) {
-              if (newClass === 'wave-editor-on') {
-                padElement.
-                  on('focus', editOn).
-                  on('blur', editOff);
-              } else if (newClass === 'wave-editor-off') {
-                padElement.
-                  off('focus', editOn).
-                  off('blur', editOff);
+            $scope.editOn = function () {
+              if (editorElement.attr('class') === 'wave-editor-on') {
+                $scope.pad.editing = true;
+                SessionSvc.showSaving = true;
+                $timeout();
               }
-            });
+            };
+
+            $scope.editOff = function () {
+              if (editorElement.attr('class') === 'wave-editor-on') {
+                $scope.pad.editing = false;
+                SessionSvc.showSaving = false;
+                $timeout();
+              }
+            };
           };
 
       }],
