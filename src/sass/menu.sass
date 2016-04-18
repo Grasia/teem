@@ -15,19 +15,24 @@
 .menu-session-img
   display: inline-block
   vertical-align: middle
-  width: 33%
-  padding: 10px
+  width: 85px
+  padding: 10px 16px
+  .avatar
+    width: 53px
+    img
+      width: 53px
+      height: 53px
 .menu-session-body
   display: inline-block
   vertical-align: middle
-  width: 66%
-  padding: 10px
+  padding: 16px 0px
+  width: 210px
 .menu-session-nick
   color: $menu-session-nick-color
-  font-weight: bold
-  font-size: 1.43em
+  font-size: 1.28em
 .menu-session-tip
   color: $menu-session-tip-color
+  padding: 4px 0px
 .menu-session-counters
   a
     display: block
@@ -35,6 +40,9 @@
 .menu-session-action
   &, button
     color: $menu-session-action-color !important
+    font-size: 1.14em
+    padding: 0
+    margin: 0
     text-transform: uppercase
   button
     padding-left: 0px
@@ -42,5 +50,6 @@
   .list-group-item
     background: $menu-background-color
     color: $menu-item-color
-    font-size: 2.14em
-    font-weight: $font-weight-light
+    font-size: 1.43em
+    &:hover, &:focus
+      outline: 0
