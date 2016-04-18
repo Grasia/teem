@@ -15,3 +15,13 @@
 .app-body {
   color: #696969
 }
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
+.no-pointer {
+  cursor: auto;
+}
