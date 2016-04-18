@@ -45,6 +45,7 @@ angular.module('Teem')
             // Should use .wave-editor-on when SwellRT editor callback is available
             // https://github.com/P2Pvalue/swellrt/issues/84
             var editorElement = angular.element(document.getElementById('pad').children[0]);
+            var padElement = angular.element(document.getElementById('pad').parentNode);
 
             var annotationMap = {
               bold: 'style/fontWeight=bold',
@@ -79,11 +80,11 @@ angular.module('Teem')
             },
             function(newClass) {
               if (newClass === 'wave-editor-on') {
-                editorElement.
+                padElement.
                   on('focus', editOn).
                   on('blur', editOff);
               } else if (newClass === 'wave-editor-off') {
-                editorElement.
+                padElement.
                   off('focus', editOn).
                   off('blur', editOff);
               }
