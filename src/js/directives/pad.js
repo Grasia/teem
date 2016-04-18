@@ -18,13 +18,13 @@ angular.module('Teem')
         $timeout) {
 
           $scope.pad = {
-            editting: false
+            editing: false
           };
 
           var buttons = ['bold', 'italic', 'underline', 'strikethrough'];
 
           function editOn () {
-            //$scope.pad.editting = true;
+            $scope.pad.editing = true;
 
             SessionSvc.showSaving = true;
 
@@ -32,7 +32,7 @@ angular.module('Teem')
           }
 
           function editOff () {
-            $scope.pad.editting = false;
+            $scope.pad.editing = false;
 
             SessionSvc.showSaving = false;
 
