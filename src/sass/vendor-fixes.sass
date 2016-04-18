@@ -98,3 +98,9 @@ img
 // https://github.com/mcasimir/mobile-angular-ui/issues/324
 .scrollable-header
   z-index: 999
+
+// Remove hover effect in touch devices
+// http://stackoverflow.com/questions/17233804/how-to-prevent-sticky-hover-effects-for-buttons-on-touch-devices#answer-27134599
+html.touch
+  .btn.btn-primary:not(.btn-raised):not(.btn-link):hover
+    background-color: $brand-primary

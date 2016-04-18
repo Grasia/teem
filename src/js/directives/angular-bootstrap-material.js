@@ -67,7 +67,7 @@ SOFTWARE.
     return {
       restrict: 'C',
       link: function($scope, $element) {
-        if ($element.hasClass('withoutripple') || $element.hasClass('btn-link')) {
+        if ($element.hasClass('without-ripple') || $element.hasClass('btn-link')) {
           return;
         }
         $.material.ripples($element);
@@ -75,8 +75,7 @@ SOFTWARE.
     };
   }];
 
-  module.directive('withRipples', ripplesDirective);
-  module.directive('withripples', ripplesDirective);
+  module.directive('with-ripple', ripplesDirective);
   module.directive('cardImage', ripplesDirective);
   module.directive('btn', ripplesDirective);
 
