@@ -51,5 +51,9 @@
     background: $menu-background-color
     color: $menu-item-color
     font-size: 1.43em
-    &:hover, &:focus
+    border-bottom: 1px solid $line-color
+    &:hover, &:focus, &.active:hover, &.active:focus
+      background-color: $menu-item-selected-background-color
+      color: $menu-item-color
       outline: 0
+      border-bottom: 1px solid $line-color
