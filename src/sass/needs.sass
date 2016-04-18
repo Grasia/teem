@@ -112,18 +112,10 @@
         right: 0.5em
   .new-need-comment
     margin-top: 10px
-  .form-control::-webkit-input-placeholder
-    font-size: 14px
-    color: #00bfa0
-  .form-control:-ms-input-placeholder
-    font-size: 14px
-    color: #00bfa0
-  .form-control:-moz-placeholder
-    font-size: 14px
-    color: #00bfa0
-  .form-control::-moz-placeholder
-    font-size: 14px
-    color: #00bfa0
+  .form-control
+    +placeholder
+      color: $need-comment-placeholder-color
+      font-size: 14px
   .need-comment-input-button
     font-size: 1.21em
     border: 0
