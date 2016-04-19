@@ -28,7 +28,7 @@
       <div ui-if="projectTab == 'pad'">
         <div class="scrollable">
           <div class="scrollable-content">
-            <div class="section project-header" ng-if="!pad.editting">
+            <div class="section project-header" ng-if="!pad.editing">
               <div class="row">
                 <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5 project-photo-responsive">
                   <div ui-set="{uploadPictureSharedState: uploadProjectPhoto}" ui-state="uploadPictureSharedState" ng-if="project.isContributor()">
@@ -39,7 +39,7 @@
                   </div>
                 </div>
               </div>
-              <div ng-if="! edittingTitle()">
+              <div ng-if="! editingTitle()">
                 <h1>
                   {{project.title}}
                   <button class="btn btn-link edit-title-btn pull-right" ng-if="project.isContributor()" ng-click="showEditTitle()">
@@ -50,8 +50,8 @@
                   <span class="comma-separated" ng-repeat="c in communities"><a ng-href="#/communities/{{ c.urlId }}">{{ c.name }}</a></span>
                 </div>
               </div>
-              <div ng-if="edittingTitle()">
-                <div class="input-group title-form" ng-if="edittingTitle()">
+              <div ng-if="editingTitle()">
+                <div class="input-group title-form" ng-if="editingTitle()">
                   <input type="text"
                          class="form-control title-input"
                          ng-model="project.title"
@@ -72,7 +72,7 @@
                 ></selector>
               </div>
               <div class="project-join" ng-if="!project.isContributor()">
-                <button class="btn btn-primary"
+                <button class="btn btn-primary btn-raised"
                         join
                         join-icon="false",
                         join-model="project"
@@ -99,7 +99,7 @@
               </div>
             </div>
 
-            <div class="section project-actions" ng-if="!isNew() && !pad.editting">
+            <div class="section project-actions" ng-if="!isNew() && !pad.editing">
               <div class="icon-count col-xs-6 project-actions-like">
                 <button class="btn btn-link"
                         ng-class="project.isSupporter() ? 'active' : ''"
@@ -114,7 +114,7 @@
               </div>
             </div>
 
-            <div class="section project-participants" ng-if="!isNew() && !pad.editting">
+            <div class="section project-participants" ng-if="!isNew() && !pad.editing">
               <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
                   project.section.participants.title
               </h2>

@@ -30,7 +30,8 @@ angular
     'angular-toArrayFilter',
     'angularMoment',
     'ngImgCrop',
-    'ngFileUpload'
+    'ngFileUpload',
+    'flock.bootstrap.material'
   ]).
   // Application config
   // See config.js.sample for examples

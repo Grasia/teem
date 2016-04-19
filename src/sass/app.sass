@@ -1,27 +1,34 @@
 /*
+ * Colors, fonts, etc..
+ */
+@import 'colors'
+@import 'fonts'
+
+/*
+ * Set all the vendor variables (bootstrap, material design..)
+@import 'vendor-variables'
+
+/*
  * Vendor files
  */
 
-
 /* Angular Selectize */
 @import 'selectize/dist/css/selectize'
-
-/* Bootstrap Material Design */
-// @import 'bootstrap-material-design/dist/css/bootstrap-material-design'
-// @import 'bootstrap-material-design/dist/css/ripples.min'
 
 /* Mobile Angular UI */
 @import 'mobile-angular-ui/dist/css/mobile-angular-ui-hover'
 @import 'mobile-angular-ui/dist/css/mobile-angular-ui-base'
 @import 'mobile-angular-ui/dist/css/mobile-angular-ui-desktop'
 
+/* Bootstrap Material Design */
+@import 'bootstrap-material-design/sass/bootstrap-material-design'
+@import 'bootstrap-material-design/sass/ripples'
 
 /* Font Awesome */
 @import 'font-awesome/css/font-awesome'
 
-
-/* Angular Selectize */
-// @import 'selectize/dist/css/selectize.default'
+/* Angular UI Select */
+@import 'angular-ui-select/dist/select'
 
 /* Swiper */
 @import 'swiper/dist/css/swiper'
@@ -35,20 +42,14 @@
 @import 'placeholder'
 
 /*
- * Colors, fonts, etc..
+ * All the fixes that cannot be achieved through variables
  */
-@import 'colors'
-
-/*
- * Customizing MobileAngularUI
- */
-@import 'mobile-angular-ui-custom'
+@import 'vendor-fixes'
 
 /*
  * Hacks and custom fonts
  */
 @import 'glyphicon-to-fontawesome'
-
 
 /*
  * Application CSS

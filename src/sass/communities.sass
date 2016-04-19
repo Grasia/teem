@@ -3,17 +3,35 @@
     color: $community-title-color
     text-transform: uppercase
     font-size: 1.42em
-    height: 2.24em
+    height: 2.1em
+    overflow-y: hidden
 .community-list
   padding-top: 20px
 
 .community-item
   .caption
+    padding-top: 14px
     color: $community-description-color
   .community-description
     height: 3em
     overflow: hidden
+    margin-top: 14px
+    margin-bottom: 0
+  .community-project-count
+    margin-top: 28px
+    padding-bottom: 9px
+    margin-bottom: 0
+    border-bottom: 1px solid $line-color
+  .icon-count
+    padding-top: 10px
+  .community-item-footer
+    height: 40px
 
+.community-photo, .community-gallery
+  img
+    width: 100%
+    object-fit: cover
+    max-height: 152px
 
 .community-description
   margin-top: 20px
@@ -30,6 +48,8 @@
     font-size: 1.42em
   h2
     font-weight: $font-weight-light
+.community-participant-count
+  padding-top: 14px
 
 .community-participants
   background: $community-participants-background-color
@@ -75,7 +95,8 @@
 .community-project-count
   font-size: 1.42em
   font-weight: $font-weight-light
+
 .community-participating-message
-  @extend .btn
   @extend .pull-right
-  font-weight: bold
+  color: $community-participanting-message-color
+  padding-top: 16px

@@ -71,7 +71,7 @@ angular.module('Teem')
   function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout, swellRT,
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User) {
 
-    var edittingTitle = false;
+    var editingTitle = false;
 
     $scope.invite = {
       list : [],
@@ -129,16 +129,16 @@ angular.module('Teem')
       $scope.project.image = new swellRT.FileObject(file);
     };
 
-    $scope.edittingTitle = function() {
-      return edittingTitle || $scope.isNew();
+    $scope.editingTitle = function() {
+      return editingTitle || $scope.isNew();
     };
 
     $scope.showEditTitle = function() {
-      edittingTitle = true;
+      editingTitle = true;
     };
 
     $scope.hideEditTitle = function() {
-      edittingTitle = false;
+      editingTitle = false;
     };
 
     $scope.titleReminder = function titleReminder() {

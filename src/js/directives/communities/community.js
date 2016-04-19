@@ -16,7 +16,7 @@ angular.module('Teem')
       function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout,
                 Loading, $route, NewForm, swellRT) {
 
-        var edittingTitle = false;
+        var editingTitle = false;
 
         SessionSvc.onLoad(function(){
           Loading.show(CommunitiesSvc.findByUrlId($route.current.params.id)).
@@ -38,16 +38,16 @@ angular.module('Teem')
         };
         $scope.uploadCommunityPhoto.areaType = 'rectangle';
 
-        $scope.edittingTitle = function() {
-          return edittingTitle || $scope.isNew();
+        $scope.editingTitle = function() {
+          return editingTitle || $scope.isNew();
         };
 
         $scope.showEditTitle = function() {
-          edittingTitle = true;
+          editingTitle = true;
         };
 
         $scope.hideEditTitle = function() {
-          edittingTitle = false;
+          editingTitle = false;
         };
       }],
       templateUrl: 'communities/community.html'

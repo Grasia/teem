@@ -13,21 +13,21 @@ angular.module('Teem')
   '$timeout',
   function($timeout) {
     return function(scope, element) {
-      if (scope.$last) {
+      if (scope.$last || scope.$index === scope.defaultPageSize - 1) {
         $timeout(function() {
-          var bottom = angular.element(element);
-          var newMessages = angular.element(document.getElementById('newMessages'));
+          var angularElement = angular.element(element),
+              controller = angularElement.controller('scrollableContent');
 
-          if (bottom) {
-            var scrollableContentController = bottom.controller('scrollableContent');
+          if (scope.$last) {
+            var newMessages = angular.element(document.getElementById('newMessages'));
 
-            if (scrollableContentController) {
-              if (newMessages && newMessages.length > 0){
-                scrollableContentController.scrollTo(newMessages);
-              } else {
-                scrollableContentController.scrollTo(bottom);
-              }
+            if (newMessages && newMessages.length > 0){
+              controller.scrollTo(newMessages);
+            } else {
+              controller.scrollTo(angularElement);
             }
+          } else {
+            controller.scrollTo(angularElement);
           }
         }, 50);
       }
@@ -40,8 +40,9 @@ angular.module('Teem')
         '$animate', 'time',
         function(SessionSvc, url, $scope, $rootScope, $route, $location,
         $animate, time){
-          const pageSize = 10;
-
+          const pageSize = 20;
+          // For scrolling in chatScroll directive
+          $scope.defaultPageSize = pageSize;
           $scope.pageSize = pageSize;
           $scope.pageOffset = - pageSize;
 
@@ -128,7 +129,6 @@ angular.module('Teem')
               return false;
             }
 
-console.log(1);
             var previousAccess = $scope.project.getTimestampAccess().chat.prev;
 
             // There is not previous access
@@ -136,7 +136,6 @@ console.log(1);
               return false;
             }
 
-console.log(2);
             previousAccess = new Date(previousAccess);
 
             var prevMsg = prevMessage(index);
@@ -146,7 +145,6 @@ console.log(2);
               return false;
             }
 
-console.log(3);
             var date = new Date(msg.time);
 
             if (date > previousAccess && previousAccess > new Date(prevMsg.time)){
