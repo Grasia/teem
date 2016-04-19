@@ -41,8 +41,8 @@
       "title": "Participantes <span class=\"participant-count\">({{count}})</span>"
     },
     "participate": {
-      "button": "Unirme a esta comunidad",
-      "message": "Formas parte de esta comunidad"
+      "button": "Unirme",
+      "message": "Formas parte"
     },
     "project": {
       "count": "{{count}} teems",

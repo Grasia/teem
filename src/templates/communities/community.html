@@ -10,13 +10,13 @@
         </div>
       </div>
       <div class="community-info section">
-        <h1 ng-if="! edittingTitle()">
+        <h1 ng-if="! editingTitle()">
           {{community.name}}
           <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
             <i class="fa fa-pencil-square-o" ></i>
           </button>
         </h1>
-        <div class="input-group title-form" ng-if="edittingTitle()">
+        <div class="input-group title-form" ng-if="editingTitle()">
           <input type="text"
                  class="form-control title-input"
                  ng-model="community.name"
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div class="row" ng-if="!isNew() && !edittingTitle()">
+        <div class="row" ng-if="!isNew() && !editingTitle()">
           <div class="icon-count community-participant-count col-xs-3">
             <i class="fa i-participants"></i>
             <span class="icon-count-number">{{ community.participantCount() }}</span>
@@ -36,7 +36,7 @@
           <div class="community-count community-like-count col-xs-3">
           </div>
           <div class="col-xs-6">
-            <button class="btn btn-primary pull-right"
+            <button class="btn btn-primary btn-raised pull-right"
                     ng-if="! community.isParticipant()"
                     participate
                     participate-copy-off="community.participate.button"
@@ -45,11 +45,11 @@
           </div>
         </div>
 
-        <div class="community-description" ng-if="! edittingTitle()">
+        <div class="community-description" ng-if="! editingTitle()">
           {{community.description}}
         </div>
 
-        <div class="description-form" ng-if="edittingTitle()">
+        <div class="description-form" ng-if="editingTitle()">
           <textarea class="form-control description-input"
                     rows="5"
                     ng-model="community.description"

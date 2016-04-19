@@ -31,13 +31,13 @@
         <div class="menu-session-nick">
           <a href="/#/users/{{user.id}}">{{user.nick}}</a>
         </div>
-        <div class="menu-session-tip">
-          <div translate translate-values="{count: '{{userCommunitiesCount}}'}">
-            menu.session.communities
-          </div>
-          <div translate translate-values="{count: '{{userProjectsCount}}'}">
+        <div class="menu-session-tip menu-session-counters">
+          <a href="/#/home/teems/" translate translate-values="{count: '{{userProjectsCount}}'}">
             menu.session.projects
-          </div>
+          </a>
+          <a href="/#/home/communities" translate translate-values="{count: '{{userCommunitiesCount}}'}">
+            menu.session.communities
+          </a>
         </div>
         <div class="menu-session-action">
           <button class="btn btn-link" ng-click="logout()" translate>
