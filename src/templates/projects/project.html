@@ -63,12 +63,13 @@
                   </div>
                 </div>
 
-                <selectize
+                <selector
+                  multiple
                   config="communitySelector.config"
                   options="communitySelector.options"
-                  ng-model="project.communities"
-                  ng-attr-placeholder="{{project.communities.length ? '' : 'project.community.placeholder' | translate}}"
-                ></selectize>
+                  model="communitySelector"
+                  placeholder=" 'project.community.placeholder' | translate"
+                ></selector>
               </div>
               <div class="project-join" ng-if="!project.isContributor()">
                 <button class="btn btn-primary"
@@ -90,12 +91,11 @@
                   <div class="input-group-addon">
                     <i class="fa fa-plus-circle"></i>
                   </div>
-                  <selectize multiple config="selectizeConfig"
-                  options="invite.list" ng-model="invite.selected"
-                  ng-attr-placeholder="
-                  {{invite.selected.length ? '' : 'project.add_people.placeholder' | translate}}">
 
-                  </selectize>
+                  <selector multiple
+                  config="selectizeConfig"
+                  options="invite.list" model="invite"
+                  placeholder=" 'project.add_people.placeholder' | translate"></selector>
               </div>
             </div>
 

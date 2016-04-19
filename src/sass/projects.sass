@@ -226,6 +226,7 @@
   .selectize-input
     overflow: auto
     min-height: 100%
+    height: 100%
     >div
       background: white
       border-radius: 1em
@@ -246,3 +247,14 @@
 
 .selectize-dropdown-content .option
   padding: 0.7em
+
+.selector-has-modal
+  @extend .has-modal
+  position: fixed
+  height: 100%
+  width: 100%
+  top: 0
+  left: 0
+  z-index: 2000
+  .modal-content
+    height: 100%

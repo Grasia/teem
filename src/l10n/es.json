@@ -297,6 +297,9 @@
       "tip": "¿No participas en nada todavía? <a href=\"#/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"#/communities/new\">crea tu comunidad</a>"
     }
   },
+  "selector": {
+    "button_continue": "Ok"
+  },
   "session": {
     "set_email": {
       "error": "Ups, algo ha salido mal guardando tu email",

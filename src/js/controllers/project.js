@@ -149,7 +149,6 @@ angular.module('Teem')
       });
     };
 
-
     $scope.$on('mobile-angular-ui.state.changed.projectTab', function(e, newVal, oldVal) {
       $scope.project.setTimestampAccess(oldVal);
       $scope.project.setTimestampAccess(newVal);
@@ -207,7 +206,8 @@ angular.module('Teem')
           $scope.communities = $scope.communitySelector.options.filter(community => ids.includes(community.id));
         },
         plugins: ['remove_button']
-      }
+      },
+      selected: []
     };
     SessionSvc.onLoad(function() {
       CommunitiesSvc.participating({ projectCount: true }).then(function(communities){
@@ -233,7 +233,6 @@ angular.module('Teem')
             callback();
             $timeout();
           });
-
       }
     };
     // Do not leave pad without giving a title to the project

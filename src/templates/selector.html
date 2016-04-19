@@ -1,0 +1,34 @@
+<div>
+  <selectize
+  multiple="multiple"
+  config="config"
+  options="options"
+  ng-model="model.selected"
+  ng-attr-placeholder="{{model.selected.length ? '' : placeholder}}"></selectize>
+
+  <div class="selector-has-modal" ng-if="selectorModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          {{placeholder}}
+        </div>
+        <div class="btn-group pull-left">
+          <div class="modal-header-left">
+            <a ng-click="select()">&times;</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <selectize
+        multiple="multiple"
+        config="config"
+        options="options"
+        ng-model="model.selected"
+        ng-attr-placeholder="{{model.selected.length ? '' : placeholder}}"></selectize>
+      </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary project-title-reminder-btn" ng-click="select()" translate>selector.button_continue</button>
+    </div>
+  </div>
+  </div>
+</div>

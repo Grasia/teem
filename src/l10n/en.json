@@ -297,6 +297,9 @@
       "tip": "Not involved in anything yet? <a href=\"#/communities\">Find a community</a> to join or <a href=\"#/communities/new\">create your community</a>"
     }
   },
+  "selector": {
+    "button_continue": "Ok"
+  },
   "session": {
     "set_email": {
       "error": "Ups, something went wrong saving your email address",

@@ -24,6 +24,8 @@ angular.module('Teem')
               scope.project.addContributor(i);
             });
 
+            scope.project.communities = scope.communitySelector.selected;
+
             $rootScope.$broadcast('teem.project.join');
           }
         };
