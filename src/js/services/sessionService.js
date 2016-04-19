@@ -208,9 +208,13 @@ angular.module('Teem')
 
       var user, pass;
 
+      try {
+        user = localStorage.getItem('userId');
+      } catch(e) {
+      }
+
       // remove this after passwordless user migration is done
-      if (localStorage.userId !== undefined) {
-        user = localStorage.userId;
+      if (user) {
         pass = users.password;
 
         // remove this start session call with default password when passwordless user migration is consideded successful
