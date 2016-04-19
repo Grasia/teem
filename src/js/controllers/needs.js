@@ -36,14 +36,16 @@ angular.module('Teem')
 
               return;
             }
-            var completed = (need.completed === 'true') ? true : false;
+
+            var completed = need.completed === 'true';
+
             need.completed = (!completed).toString();
+
             if (completed) {
               need.completionDate = new Date().toString();
             } else {
               need.completionDate = '';
             }
-
           };
 
           scope.updateNeed = function(need) {
