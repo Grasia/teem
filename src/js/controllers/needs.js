@@ -43,7 +43,7 @@ angular.module('Teem')
             need.completed = newStatus.toString();
 
             if (newStatus) {
-              need.completionDate = new Date().toString();
+              need.completionDate = (new Date()).toJSON();
             } else {
               need.completionDate = undefined;
             }
