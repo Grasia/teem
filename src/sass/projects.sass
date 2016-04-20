@@ -185,40 +185,23 @@
     font-weight: $font-weight-light
     @extend .participant-title
 
-.selectize-input
-  @extend .form-control
-  >input:first-child
-    width: 100% !important
-  &.focus
-    box-shadow: none
-  &.full
-    background: none
-
 .selectize-control.multi
   .selectize-input
-    overflow: auto
-    min-height: 100%
-    height: 100%
     >div
-      background: white
-      border-radius: 1em
+      background: white !important
+      border-radius: 1em !important
+      padding-left: 10px !important
+      .remove
+        padding-left: 10px
+        padding-right: 10px
+  .selectize-dropdown
+    background-image: none
 
-
-.project-add-users .fa-plus-circle
-  color: $light-green
-  font-size: 1.5em
-  padding: 0 12
-
-.input-group .selectize-input:first-child
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 4px
-    padding-left: 0px
-
-.selectize-control.plugin-remove_button [data-value] .remove
-  border-left: 0px
-
-.selectize-dropdown-content .option
-  padding: 0.7em
+.selectize-control.single, .selectize-control.multi
+  .selectize-input:after, .selectize-input.input-active:after
+    content: "\f078" // chevron-down
+    font-family: "FontAwesome"
+    font-size: inherit
 
 .selector-has-modal
   @extend .has-modal

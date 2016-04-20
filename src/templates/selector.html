@@ -1,11 +1,16 @@
 <div>
-  <selectize
-  multiple="multiple"
-  config="config"
-  options="options"
-  ng-model="model.selected"
-  ng-attr-placeholder="{{model.selected.length ? '' : placeholder}}"></selectize>
-
+  <div class="form-group label-floating" ng-class="{'is-empty': !ng.model.length}">
+    <label class="control-label">{{placeholder}}</label>
+    <selectize
+    multiple="multiple"
+    config="config"
+    options="options"
+    ng-model="ng.model"
+    class="form-control"
+    ></selectize>
+  </div>
+</div>
+<div>
   <div class="selector-has-modal" ng-if="selectorModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -19,16 +24,20 @@
         </div>
       </div>
       <div class="modal-body">
-        <selectize
-        multiple="multiple"
-        config="config"
-        options="options"
-        ng-model="model.selected"
-        ng-attr-placeholder="{{model.selected.length ? '' : placeholder}}"></selectize>
+        <div class="form-group label-floating" ng-class="{'is-empty': !ng.model.length}">
+          <div class="input-group">
+            <label class="control-label">{{placeholder}}</label>
+            <selectize
+            multiple="multiple"
+            config="config"
+            options="options"
+            ng-model="ng.model"
+            class="form-control"
+            ></selectize>
+            <button class="btn btn-primary project-title-reminder-btn" ng-click="select()" translate>selector.button_continue</button>
+          </div>
+        </div>
       </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary project-title-reminder-btn" ng-click="select()" translate>selector.button_continue</button>
     </div>
-  </div>
   </div>
 </div>

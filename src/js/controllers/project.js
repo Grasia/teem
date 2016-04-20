@@ -206,8 +206,7 @@ angular.module('Teem')
           $scope.communities = $scope.communitySelector.options.filter(community => ids.includes(community.id));
         },
         plugins: ['remove_button']
-      },
-      selected: []
+      }
     };
     SessionSvc.onLoad(function() {
       CommunitiesSvc.participating({ projectCount: true }).then(function(communities){

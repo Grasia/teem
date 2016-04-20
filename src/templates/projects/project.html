@@ -62,12 +62,11 @@
                     </button>
                   </div>
                 </div>
-
                 <selector
                   multiple
                   config="communitySelector.config"
                   options="communitySelector.options"
-                  model="communitySelector"
+                  model="project.communities"
                   placeholder=" 'project.community.placeholder' | translate"
                 ></selector>
               </div>
@@ -87,16 +86,10 @@
             <pad></pad>
 
             <div class="section project-add-users"  ng-if="isNew()">
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-plus-circle"></i>
-                  </div>
-
-                  <selector multiple
-                  config="selectizeConfig"
-                  options="invite.list" model="invite"
-                  placeholder=" 'project.add_people.placeholder' | translate"></selector>
-              </div>
+              <selector multiple
+                config="selectizeConfig"
+                options="invite.list" model="invite.selected" class="form-control"
+                placeholder=" 'project.add_people.placeholder' | translate"></selector>
             </div>
 
             <div class="section project-actions" ng-if="!isNew() && !pad.editing">
