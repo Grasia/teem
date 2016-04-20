@@ -26,6 +26,7 @@ angular.module('Teem')
         },
         link: function (scope, element, attrs, needsCtrl) {
           scope.toggleCompleted = function (need, event) {
+            var newStatus;
 
             if (!scope.project.isContributor()){
               return;
@@ -36,14 +37,16 @@ angular.module('Teem')
 
               return;
             }
-            var completed = (need.completed === 'true') ? true : false;
-            need.completed = (!completed).toString();
-            if (completed) {
-              need.completionDate = new Date().toString();
-            } else {
-              need.completionDate = '';
-            }
 
+            newStatus = need.completed !== 'true';
+
+            need.completed = newStatus.toString();
+
+            if (newStatus) {
+              need.completionDate = (new Date()).toJSON();
+            } else {
+              delete need.completionDate;
+            }
           };
 
           scope.updateNeed = function(need) {
