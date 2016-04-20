@@ -45,7 +45,7 @@ angular.module('Teem')
             if (newStatus) {
               need.completionDate = (new Date()).toJSON();
             } else {
-              need.completionDate = undefined;
+              delete need.completionDate;
             }
           };
 
