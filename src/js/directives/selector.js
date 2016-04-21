@@ -21,6 +21,9 @@ angular.module('Teem')
           $timeout();
         };
         scope.ng = {model: scope.model};
+        scope.$watch('ng.model', function() {
+          scope.model = scope.ng.model;
+        });
 
 
         $timeout();
