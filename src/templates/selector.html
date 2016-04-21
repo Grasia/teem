@@ -1,13 +1,18 @@
 <div>
   <div class="form-group label-floating" ng-class="{'is-empty': !ng.model.length}">
-    <label class="control-label">{{placeholder}}</label>
-    <selectize
-    multiple="multiple"
-    config="config"
-    options="options"
-    ng-model="ng.model"
-    class="form-control"
-    ></selectize>
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-plus-circle"></i>
+      </span>
+      <label class="control-label">{{placeholder}}</label>
+      <selectize
+      multiple="multiple"
+      config="config"
+      options="options"
+      ng-model="ng.model"
+      class="form-control"
+      ></selectize>
+    </div>
   </div>
 </div>
 <div>
@@ -26,6 +31,9 @@
       <div class="modal-body">
         <div class="form-group label-floating" ng-class="{'is-empty': !ng.model.length}">
           <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-plus-circle"></i>
+            </span>
             <label class="control-label">{{placeholder}}</label>
             <selectize
             multiple="multiple"
