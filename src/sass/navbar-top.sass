@@ -29,13 +29,18 @@
 
 .nav-left, .nav-right
   padding-top: 3px !important
-  .btn
-    padding: 0px 15px
+  @media (max-width: $screen-xs-min)
+    .btn
+      padding: 0px 15px
 .nav-title
   font-size: 1.1em
   text-align: center
-  padding-right: 50px !important
-  padding-left: 50px !important
+  @media (max-width: $screen-xs-min)
+    padding-right: 50px !important
+    padding-left: 50px !important
+  @media (min-width: $screen-xs-min)
+    padding-right: 80px !important
+    padding-left: 80px !important
   padding-top: 15px !important
 
 .nav-subtitle
