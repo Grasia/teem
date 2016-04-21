@@ -44,14 +44,13 @@
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
         <div class="navbar-brand navbar-brand-center nav-title" ui-yield-to="nav-title"></div>
 
-        <div class="btn-group pull-left">
-          <div class="btn btn-navbar nav-left" ui-yield-to="nav-left">
+        <div class="btn-group pull-left nav-left" ui-yield-to="nav-left">
+          <div class="btn btn-navbar" >
             <i class="fa fa-bars" ui-toggle="uiSidebarLeft"></i>
           </div>
         </div>
 
-        <div class="btn-group pull-right">
-          <div class="btn btn-navbar nav-right" ui-yield-to="nav-right"></div>
+        <div class="btn-group pull-right nav-right" ui-yield-to="nav-right">
         </div>
       </div>
 
