@@ -186,6 +186,7 @@
     @extend .participant-title
 
 .selectize-control.multi
+  height: 100%
   .selectize-input
     >div
       background: white !important
@@ -198,10 +199,11 @@
     background-image: none
 
 .selectize-control.single, .selectize-control.multi
-  .selectize-input:after, .selectize-input.input-active:after
-    content: "\f078" // chevron-down
-    font-family: "FontAwesome"
-    font-size: inherit
+  .selectize-input, .selectize-input.input-active
+    &::after
+      content: ""
+    > div::after, > .item::after
+      content: ""
 
 .selector-has-modal
   @extend .has-modal
