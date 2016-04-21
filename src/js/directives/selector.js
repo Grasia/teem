@@ -25,9 +25,17 @@ angular.module('Teem')
 
         $timeout();
 
+        var oldOnInitialize = scope.config.onInitialize;
         var oldOnFocus = scope.config.onFocus;
 
-        scope.config.onFocus = function(){
+        scope.config.onInitialize = function(selectize) {
+          selectize.$control.find('input')[0].autocapitalize = scope.config.autocapitalize;
+          if (typeof oldOnInitialize === 'function') {
+            oldOnInitialize(selectize);
+          }
+        };
+
+        scope.config.onFocus = function(selectize){
           // source: http://stackoverflow.com/a/11381730/4928558
           var isMobile =
             (function(a){
@@ -41,7 +49,7 @@ angular.module('Teem')
             });
           }
           if (typeof oldOnFocus === 'function'){
-            oldOnFocus();
+            oldOnFocus(selectize);
           }
         };
       }],

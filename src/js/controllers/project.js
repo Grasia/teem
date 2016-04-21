@@ -220,6 +220,7 @@ angular.module('Teem')
       labelField:'nick',
       searchField:'nick',
       create: false,
+      autocapitalize: 'off',
       load: function(query, callback){
         if (!query.length) {
           return callback();
