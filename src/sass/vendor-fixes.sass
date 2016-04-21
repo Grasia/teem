@@ -71,14 +71,16 @@ h4, h5, h6, .h4, .h5, .h6
 
 .modal-header
   background-color: $navbar-top-background-color
-  color: $navbar-top-color
   min-height: 50px
   margin-bottom: 30px
   padding: 0
+  &, h4, button
+    color: $navbar-top-color
 
 .modal-header-left
-  @extend .btn, .btn-navbar, .nav-left
-  a
+  margin: 0
+  @extend .nav-left
+  a.btn
     font-size: 3em
     line-height: .9em
     color: $navbar-top-color
