@@ -204,6 +204,7 @@ angular.module('Teem')
         searchField: 'name',
         onChange: function(ids) {
           $scope.communities = $scope.communitySelector.options.filter(community => ids.includes(community.id));
+          $scope.populateUserSelector();
         },
         plugins: ['remove_button']
       }
