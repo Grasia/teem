@@ -17,6 +17,9 @@
 </div>
 <div>
   <div class="selector-has-modal scrollable" ng-if="selectorModal">
+    <div class="scrollable-header">
+      <button class="btn btn-primary pull-right project-title-reminder-btn" ng-click="select()" translate>selector.button_continue</button>
+    </div>
     <div class="modal-content scrollable-content">
       <div class="modal-body">
         <div class="form-group label-floating" ng-class="{'is-empty': !ng.model.length}">
@@ -32,7 +35,6 @@
             ng-model="ng.model"
             class="form-control"
             ></selectize>
-            <button class="btn btn-primary project-title-reminder-btn" ng-click="select()" translate>selector.button_continue</button>
           </div>
         </div>
       </div>
