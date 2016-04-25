@@ -1,15 +1,15 @@
 selector
   .fa-plus-circle
-    color: $darker-grey
+    color: $selector-plus-circle-color
     font-size: 1.5em
   .is-focused .fa-plus-circle
-    color: $light-green
+    color: $selector-plus-circle-focused-color
 
 .selectize-control.multi
   height: 100%
   .selectize-input
     >div
-      background: white !important
+      background: $selector-item-background-color !important
       border-radius: 1em !important
       padding-left: 10px !important
       .remove
@@ -34,7 +34,7 @@ selector
   left: 0
   z-index: 2000
   .scrollable-header
-    background: white
+    background: white /* modal-content background */
   .modal-content
     height: 100%
   .modal-body
