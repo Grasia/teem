@@ -86,7 +86,33 @@ angular.module('Teem')
 
           return def.promise;
         }
-      }
+
+        // Contributors the user has collaborated with
+        static coContributors(userId = this.currentId()) {
+          var query = {
+            _aggregate: [
+              {$match: {
+                'root.type': 'project',
+                'root.shareMode': 'public',
+                'participants': userId
+              }},
+              {$unwind: '$participants'},
+              {$group :
+                {_id:'$participants'}
+              }
+            ]};
+
+            var def = $q.defer();
+
+            SwellRT.query(query, function(a){
+              def.resolve(a.result);
+            }, function(error){
+              def.reject(error);
+            });
+
+            return def.promise;
+          }
+    }
 
     return User;
   }]);

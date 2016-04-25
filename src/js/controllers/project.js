@@ -93,13 +93,21 @@ angular.module('Teem')
       return res;
     }
     /* Populates the user selector witht the users that participate in the community
-    */
+     * or co-contributors if there are no communities
+     */
     $scope.populateUserSelector = function() {
-      CommunitiesSvc.communitiesContributors(
-        $scope.project.communities
-      ).then(function(result){
-        $scope.invite.list.push(buildInviteItems(result));
-      });
+
+      if ($scope.project.communities.length > 0){
+        CommunitiesSvc.communitiesContributors(
+          $scope.project.communities
+        ).then(function(result){
+          $scope.invite.list.push(buildInviteItems(result));
+        });
+      } else {
+        User.coContributors().then(function(r){
+          $scope.invite.list.push(buildInviteItems(r));
+        });
+      }
     };
 
     SessionSvc.onLoad(function(){

@@ -333,31 +333,12 @@ angular.module('Teem')
         return def.promise;
       };
 
-      // Contributors the user has collaborated with
-      var coContributors = function (userId = User.currentId()) {
-      var query = {
-        _aggregate: [
-          {$match: {
-            'root.type': 'project',
-            'root.shareMode': 'public',
-            'participants': userId
-          }},
-          {$unwind: '$participants'},
-          {$group :
-           {_id:'$participants'}
-          }
-        ]};
-
-      return getQueryPromise(query);
-    };
-
     return {
       findByUrlId,
       find,
       create,
       all,
       participating,
-      communitiesContributors,
-      coContributors
+      communitiesContributors
     };
   }]);
