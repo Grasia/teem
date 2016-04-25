@@ -64,7 +64,7 @@ angular.module('Teem')
             {$match: {
               'root.type': 'project',
               'root.shareMode': 'public',
-              'participants': {$regex: search}
+              'participants': {$regex: search, $options: 'i'}
             }},
             {$unwind: '$participants'},
             {$group :
@@ -72,7 +72,7 @@ angular.module('Teem')
               count: {$sum: 1 }}
             },
             {$match:
-              {_id: {$regex: search}}
+              {_id: {$regex: search, $options: 'i'}}
             }
           ]};
 
