@@ -12,6 +12,7 @@
         <li class="chat-message"
             bo-if="!isNotificationMessage(msg)"
             bo-class="standpoint(msg)">
+          <div avatars="msg.who" avatars-conf="{size: 'small'}"></div>
           <div class="chat-message-time" bo-text="hour(msg)">
           </div>
           <div class="chat-message-sender"
