@@ -9,17 +9,17 @@
             class="day-change"
             bo-text="dayChange(msg, $index)">
         </li>
-        <li class="chat-message"
-            bo-if="!isNotificationMessage(msg)"
-            bo-class="standpoint(msg)">
+        <li bo-if="!isNotificationMessage(msg)" class="chat-message" bo-class="standpoint(msg)">
           <div avatars="msg.who" avatars-conf="{size: 'small'}"></div>
-          <div class="chat-message-time" bo-text="hour(msg)">
+          <div class="chat-balloon">
+            <div class="chat-message-time" bo-text="hour(msg)">
+            </div>
+            <div class="chat-message-sender"
+                 bo-if="theirStandpoint(msg)"
+                 bo-text="msg.who.split('@')[0]">
+            </div>
+            <div class="chat-message-text" bo-if="!isNotificationMessage(msg)" bo-html="msg.text | linky"></div>
           </div>
-          <div class="chat-message-sender"
-               bo-if="theirStandpoint(msg)"
-               bo-text="msg.who.split('@')[0]">
-          </div>
-          <div class="chat-message-text" bo-if="!isNotificationMessage(msg)" bo-html="msg.text | linky"></div>
         </li>
       </ul>
     </div>

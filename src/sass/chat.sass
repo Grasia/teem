@@ -1,53 +1,81 @@
+$balloon-pointer-width: 12px
+$balloon-pointer-height: 10px
+
 .chat
-  ul.chat-messages
+  .chat-messages
     padding: 0
     list-style-type: none
-    li
-      border-radius: 5px
-      box-shadow: 0 0 2px $chat-msg-shadow
-      padding: .36em .71em .71em .71em
-      margin: 15px 20px
-      overflow: auto
-      &.mine
-        background-color: $chat-mine-color
-        margin-left: .71em
-        .avatar
-          display: none
-      &.their
-        background-color: $chat-their-color
-        margin-right: .71em
-        .avatar
-          float: left
-          margin-right: 10px
-      &.notification
-        @extend .alert
-        @extend .alert-info
-        margin-right: 50px
-        margin-left: 50px
-      &.day-change
-        @extend .alert
-        @extend .alert-info
-        @extend .text-center
-        @extend .overflow-ellipsis
-        display: block
-        max-width: 150px
-        padding: 5px !important
-        margin-left: auto
-        margin-right: auto
-      &.new-messages
-        @extend .alert
-        @extend .alert-info
-        @extend .text-center
-        @extend .overflow-ellipsis
-        display: block
+    .chat-message
+      display: flex
+      flex-direction: row
+      .chat-balloon
+        display: inline-block
+        min-width: 30%
+        border-radius: 5px
+        -webkit-filter: drop-shadow(3px 3px 1px $chat-msg-shadow)
+        filter: drop-shadow(2px 2px 1px $chat-msg-shadow)
+        padding: .36em .71em .71em .71em
+        margin: $balloon-pointer-width 20px
+        position: relative
+        &::before
+          content: " "
+          position: absolute
+          top: 0%
+          border-style: solid
+          width: 0
+          height: 0
+          border-style: solid
       .chat-message-sender
         color: $chat-sender-color
         font-weight: bold
         margin-bottom: 2px
       .chat-message-time
+        color: $chat-message-time-color
         float: right
         font-size: .86em
         padding-top: 0.26em
+      &.mine
+        justify-content: flex-end
+        .avatar
+          display: none
+        .chat-balloon
+          margin-left: 10%
+          background-color: $chat-mine-color
+          border-top-right-radius: 0
+          &::before
+            right: -$balloon-pointer-width
+            border-width: $balloon-pointer-height $balloon-pointer-width 0 0
+            border-color: $chat-mine-color transparent transparent transparent
+        .chat-message-time
+          float: left
+          padding-right: 15px
+        .chat-message-text
+          float: left
+      &.their
+        .avatar
+          float: left
+          margin-right: 10px
+        .chat-balloon
+          margin-right: 10%
+          background-color: $chat-their-color
+          border-top-left-radius: 0
+          &::before
+            right: 100%
+            border-width: 0 $balloon-pointer-width $balloon-pointer-height 0
+            border-color: transparent $chat-their-color transparent transparent
+    .new-messages
+      @extend .chat-message
+      @extend .alert
+      @extend .alert-info
+      @extend .text-center
+      @extend .overflow-ellipsis
+      display: block
+    .day-change
+      @extend .new-messages
+      max-width: 150px
+      padding: 5px !important
+      margin-left: auto
+      margin-right: auto
   .chat-send
     .form-group
       padding: 0
