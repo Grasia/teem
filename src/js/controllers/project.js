@@ -254,7 +254,6 @@ angular.module('Teem')
       valueField:'_id',
       labelField:'nick',
       searchField:'nick',
-      create: false,
       autocapitalize: 'off',
       load: function(query, callback){
         if (!query.length) {
@@ -268,7 +267,31 @@ angular.module('Teem')
             callback();
             $timeout();
           });
+      },
+      //code based on https://selectize.github.io/selectize.js/ email example
+      createFilter: function(input){
+        var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+          '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+          var match, regex;
+
+        regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+        match = input.match(regex);
+        if (match){
+          return !this.options.hasOwnProperty(match[0]);
+        }
+        return false;
+      },
+      //code based on https://selectize.github.io/selectize.js/ email example
+      create: function(input){
+        return {
+          nick: input,
+          _id: {
+            email: input,
+          }
+        };
       }
+
     };
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
