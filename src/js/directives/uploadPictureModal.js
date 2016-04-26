@@ -38,6 +38,12 @@ angular.module('Teem')
           }
           SharedState.turnOff('uploadPictureSharedState');
         };
+
+        $scope.keyUp = function(event){
+          if(event.which === 27){
+            SharedState.turnOff('uploadPictureSharedState');
+          }
+        };
       }],
       templateUrl: 'upload-picture-modal.html'
     };
