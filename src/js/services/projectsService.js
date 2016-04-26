@@ -325,11 +325,16 @@ angular.module('Teem')
         this.setTimestampAccess('chat', true);
       }
 
-      addNeed(need) {
-        if (! need.text) {
-          return;
-        }
+      findNeed (id) {
+        return this.needs.filter(function (need) {
+          return need._id === id;
+        })[0];
+      }
 
+      addNeed(need) {
+        
+        // Quick dirty hack until SwellRT provides ids for array elements
+        need._id = Math.random().toString().substring(2);
         need.author = SessionSvc.users.current();
         need.time = (new Date()).toJSON();
         need.completed = 'false';
@@ -338,6 +343,24 @@ angular.module('Teem')
         this.setTimestampAccess('needs', true);
 
         return need;
+      }
+
+      toggleNeedCompleted (need) {
+        var newStatus;
+
+        if (! this.isContributor()) {
+          return;
+        }
+
+        newStatus = need.completed !== 'true';
+
+        need.completed = newStatus.toString();
+
+        if (newStatus) {
+          need.completionDate = (new Date()).toJSON();
+        } else {
+          delete need.completionDate;
+        }
       }
 
       removeNeed (need) {

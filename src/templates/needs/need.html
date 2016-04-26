@@ -10,7 +10,7 @@
   <div class="need-body"
        ng-click="toggleCommentsVisibility(need)">
     <form>
-      <div class="form-group" ng-class="isNewNeed(need)? 'notify-need':''">
+      <div class="form-group need-form" ng-class="isNewNeed(need)? 'notify-need':''">
         <div class="checkbox" ng-if="need.completed !== 'add'">
           <label ng-click="toggleCompleted(need, $event)">
             <input type="checkbox" ng-checked="need.completed === 'true'">
@@ -18,7 +18,7 @@
         </div>
         <div class="need-check-container need-checkbox-add pull-left"
              ng-if="need.completed === 'add'"
-             ng-click="toggleCompleted(need, $event)">
+             ng-click="updateNeed(need, $event)">
         </div>
         <div class="need-name">
           <textarea ng-if="project.isContributor()"

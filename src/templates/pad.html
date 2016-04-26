@@ -7,12 +7,16 @@
           <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'btn-info': isActive}">
             <i class="fa fa-{{btn}}"></i>
           </button>
+          <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs">
+            <i class="fa i-need"></i>
+          </button>
         </div>
       </div>
     </div>
     <div
       class="swellrt-editor scrollable-content"
       swellrt-editor-on-ready="padReady"
+      swellrt-editor-on-create="padCreate"
       editable="{{project.isContributor()}}"
       ng-model="project.pad"
       placeholder="{{ 'pad.placeholder' | translate }}"

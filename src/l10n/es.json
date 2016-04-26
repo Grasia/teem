@@ -165,6 +165,9 @@
     "nav": {
       "title": "Info"
     },
+    "need": {
+      "missing": "Esta necesidad se ha borrado"
+    },
     "placeholder": "Quieres trabajar en..."
   },
   "picture": {
