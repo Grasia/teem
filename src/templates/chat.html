@@ -4,10 +4,12 @@
       <ul class="chat-messages"
           ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset"
           chat-scroll>
-        <li id="newMessages" bo-if="firstNewMessage(msg, $index)" class="new-messages" translate>chat.new_messages</li>
+        <li id="newMessages" bo-if="firstNewMessage(msg, $index)" class="new-messages">
+          <div translate>chat.new_messages</div>
+        </li>
         <li bo-if="dayChange(msg, $index)"
-            class="day-change"
-            bo-text="dayChange(msg, $index)">
+            class="day-change">
+            <div bo-text="dayChange(msg, $index)"></div>
         </li>
         <li bo-if="!isNotificationMessage(msg)" class="chat-message" bo-class="standpoint(msg)">
           <div avatars="msg.who" avatars-conf="{size: 'small'}"></div>

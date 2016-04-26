@@ -1,6 +1,10 @@
 $balloon-pointer-width: 12px
 $balloon-pointer-height: 10px
 
+@mixin chat-shadow
+  -webkit-filter: drop-shadow(3px 3px 1px $chat-msg-shadow)
+  filter: drop-shadow(2px 2px 1px $chat-msg-shadow)
+
 .chat
   .chat-messages
     padding: 0
@@ -12,8 +16,7 @@ $balloon-pointer-height: 10px
         display: inline-block
         min-width: 30%
         border-radius: 5px
-        -webkit-filter: drop-shadow(3px 3px 1px $chat-msg-shadow)
-        filter: drop-shadow(2px 2px 1px $chat-msg-shadow)
+        @include chat-shadow
         padding: .36em .71em .71em .71em
         margin: $balloon-pointer-width 20px
         position: relative
@@ -65,18 +68,21 @@ $balloon-pointer-height: 10px
             border-width: 0 $balloon-pointer-width $balloon-pointer-height 0
             border-color: transparent $chat-their-color transparent transparent
     .new-messages
-      @extend .chat-message
-      @extend .alert
-      @extend .alert-info
-      @extend .text-center
-      @extend .overflow-ellipsis
-      display: block
+      display: flex
+      flex-direction: row
+      justify-content: center
+      div
+        @extend .alert
+        @extend .text-center
+        @extend .text-uppercase
+        @extend .overflow-ellipsis
+        display: inline-block
+        background-color: $other-grey
+        border-radius: 5px
+        padding: 5px
+        box-shadow: 3px 3px 1px $chat-msg-shadow
     .day-change
       @extend .new-messages
-      max-width: 150px
-      padding: 5px !important
-      margin-left: auto
-      margin-right: auto
   .chat-send
     .form-group
       padding: 0
