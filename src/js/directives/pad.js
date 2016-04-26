@@ -13,15 +13,19 @@ angular.module('Teem')
     return {
       controller: [
         'SessionSvc', 'url', '$rootScope', '$scope', '$route', '$location',
-        '$timeout', 'SharedState',
+        '$timeout', 'SharedState', 'needWidget',
         function(SessionSvc, url, $rootScope, $scope, $route, $location,
-        $timeout, SharedState) {
+        $timeout, SharedState, needWidget) {
 
           $scope.pad = {
             editing: false
           };
 
           var buttons = ['header', 'bold', 'italic', 'strikethrough', 'align-left', 'align-center', 'align-right', 'list', 'list-ol'];
+
+          $scope.padCreate = function(editor) {
+            needWidget.init(editor, $scope);
+          };
 
           $scope.padReady = function(editor) {
             // FIXME
@@ -53,6 +57,7 @@ angular.module('Teem')
               $timeout();
             });
 
+
             $scope.annotate = function(btn) {
               let [key, val] = annotationMap[btn].split('=');
               $scope.buttons[btn] = !$scope.buttons[btn];
@@ -61,6 +66,12 @@ angular.module('Teem')
               }
               editor.setAnnotation(key, val);
               editorElement.focus();
+            };
+
+            $scope.widget = function(type) {
+              if (type === 'need') {
+                needWidget.add();
+              }
             };
 
             $scope.editOn = function () {

@@ -166,6 +166,9 @@
     "nav": {
       "title": "Info"
     },
+    "need": {
+      "missing": "This need was deleted"
+    },
     "placeholder": "You want to work on..."
   },
   "picture": {

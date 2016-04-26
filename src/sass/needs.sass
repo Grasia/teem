@@ -22,18 +22,6 @@
   color: $icon-color
   font-size: 1.6em
 
-.need-checkbox-true
-  @extend .fa
-  @extend .need-checkbox
-  @extend .fa-check-square-o
-  margin-right: 0 !important
-
-.need-checkbox-false
-  @extend .fa
-  @extend .need-checkbox
-  @extend .fa-square-o
-  margin-right: 0 !important
-
 .need-checkbox-add
   @extend .fa
   @extend .need-checkbox
@@ -49,6 +37,19 @@
     &:not(:focus)
       background-image: none !important
 
+.need-form
+  margin-top: 0
+  padding: 0
+  .checkbox
+    margin-top: 0
+    width: 20px
+    float: left
+  .need-name
+    margin-left: 40px
+    margin-right: 30px
+    textarea
+      padding-top: 2px
+      
 .need-item
   padding-left: 0px
   padding-right: 0px
@@ -59,18 +60,6 @@
     width: 30px
     padding-top: 2px
   .need-body
-    .form-group
-      margin-top: 0
-      padding: 0
-      .checkbox
-        margin-top: 0
-        width: 20px
-        float: left
-      .need-name
-        margin-left: 40px
-        margin-right: 30px
-        textarea
-          padding-top: 2px
   .notify-need
     font-weight: bold
   .need-author
