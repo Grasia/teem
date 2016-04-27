@@ -52,7 +52,9 @@ angular.module('Teem')
           scope.updateNeed = function(need) {
             if (need.completed === 'add'){
               need.completed = 'false';
-              needsCtrl.addNeed(need);
+
+              scope.project.addNeed(need);
+
               scope.need = {completed: 'add', text: ''};
             }
             else if (need.text === ''){
@@ -146,15 +148,6 @@ angular.module('Teem')
           needs: '='
         },
         controller: function($scope, $route, SessionSvc, ProjectsSvc, time) {
-          this.addNeed = function (need) {
-            if (need.text !== undefined && need.text !== ''){
-              need.author = SessionSvc.users.current();
-              need.time = (new Date()).toJSON();
-
-              $scope.needs.push(need);
-              $scope.project.setTimestampAccess('needs', true);
-            }
-          };
           this.removeNeed = function (need) {
             var i = $scope.needs.indexOf(need);
 

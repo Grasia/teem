@@ -321,6 +321,20 @@ angular.module('Teem')
         this.setTimestampAccess('chat', true);
       }
 
+      addNeed(need) {
+        if (! need.text) {
+          return;
+        }
+
+        need.author = SessionSvc.users.current();
+        need.time = (new Date()).toJSON();
+
+        this.needs.push(need);
+        this.setTimestampAccess('needs', true);
+
+        return need;
+      }
+
       addNeedComment (need, comment) {
         if (!need.comments){
           need.comments = [];
