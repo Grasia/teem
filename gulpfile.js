@@ -49,7 +49,13 @@ var config = {
       './bower_components/moment/locale/es.js',
       './bower_components/angular-moment/angular-moment.js',
       './bower_components/ng-img-crop-full-extended/compile/unminified/ng-img-crop.js',
-      './bower_components/ng-file-upload/ng-file-upload.js'
+      './bower_components/ng-file-upload/ng-file-upload.js',
+      './bower_components/emojione/lib/js/emojione.js'
+    ],
+
+    images: [
+      'bower_components/emojione/assets/sprites/emojione.sprites.svg',
+      'src/images/**/*'
     ],
 
     fonts: [
@@ -246,7 +252,7 @@ gulp.task('livereload', function () {
 =====================================*/
 
 gulp.task('images', function () {
-  var stream = gulp.src('src/images/**/*');
+  var stream = gulp.src(config.vendor.images);
 
   if (config.minifyImages) {
     stream = stream.pipe(imagemin({
