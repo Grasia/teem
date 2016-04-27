@@ -38,6 +38,32 @@ angular.module('Teem')
     });
 
     swellRTpromise.then(function(){
+      SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
+        $timeout(function(){
+          status.connection = 'connected';
+        });
+      });
+
+      SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
+        $timeout(function(){
+          status.connection = 'disconnected';
+        });
+      });
+
+      SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
+        if (data.inFlightSize === 0 &&
+            data.uncommittedSize === 0 &&
+            data.unacknowledgedSize  === 0) {
+
+          status.sync = true;
+          status.lastSync = new Date();
+          $timeout();
+        } else {
+          status.sync = false;
+          $timeout();
+        }
+      });
+
       SwellRT.on(SwellRT.events.FATAL_EXCEPTION, function(){
         $timeout(function(){
           status.connection = 'disconnected';
@@ -48,7 +74,7 @@ angular.module('Teem')
     function sessionPromiseInit () {
       sessionDef = $q.defer();
       sessionPromise = sessionDef.promise;
-      
+
       sessionPromise.catch(function (error) {
         console.log(error);
 
@@ -133,37 +159,8 @@ angular.module('Teem')
       });
     };
 
-    swellRTpromise.then(function(){
-      SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
-        $timeout(function(){
-          status.connection = 'connected';
-        });
-      });
-
-      SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
-        $timeout(function(){
-
-          status.connection = 'disconnected';
-        });
-      });
-
-      SwellRT.on(SwellRT.events.DATA_STATUS_CHANGED, function(data){
-        if (data.inFlightSize === 0 &&
-            data.uncommittedSize === 0 &&
-            data.unacknowledgedSize  === 0) {
-
-          status.sync = true;
-          status.lastSync = new Date();
-          $timeout();
-        } else {
-          status.sync = false;
-          $timeout();
-        }
-      });
-    });
     // check variable connecting before calling startSession
     var startSession = function(userName, password, onSuccess, onError) {
-
 
       swellRTpromise.then(function(){
         if (status.connection === 'connected') {
@@ -247,8 +244,7 @@ angular.module('Teem')
           });
       } else {
         swellRTpromise.then(function(){
-          SwellRT.resumeSession(
-            function(){
+          SwellRT.resumeSession(function(){
 
               // resumeSession also works for anonymous sessions
               if (User.loggedIn()){
@@ -268,8 +264,7 @@ angular.module('Teem')
             });
           });
       }
-
-  };
+    };
 
     function loginRequired(scope, cb) {
       sessionPromise.then(function() {
