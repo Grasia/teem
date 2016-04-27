@@ -16,40 +16,50 @@ angular.module('Teem')
   function($q, $timeout, SharedState, NotificationSvc, $locale, User,
            $rootScope) {
 
-    var swellRTDef = $q.defer();
-    var swellRTpromise = swellRTDef.promise;
-
-    // TODO no restart session without user saying so
-    // TODO stop session before start session after a timeout
-    // TODO if reconnected, get again all objects
-    var status = {
-      // Connection status:
-      // notConnected: connection has not been atempted
-      // connecting: establishing connection
-      // connected: everything alright!
-      // disconnected: something bad happened
-      connection: 'notConnected',
-      sync: true,
-    };
+    var swellRTDef = $q.defer(),
+        swellRTpromise = swellRTDef.promise,
+        sessionDef,
+        sessionPromise,
+        // TODO no restart session without user saying so
+        // TODO stop session before start session after a timeout
+        // TODO if reconnected, get again all objects
+        status = {
+          // Connection status:
+          // notConnected: connection has not been atempted
+          // connecting: establishing connection
+          // connected: everything alright!
+          // disconnected: something bad happened
+          connection: 'notConnected',
+          sync: true,
+        };
 
     SwellRT.ready(function() {
       swellRTDef.resolve();
     });
 
-    // TODO use this to handle fatal exceptions
-    var setFatalExceptionHandler = function(handler){
-      swellRTpromise.then(function(){
-        SwellRT.on(SwellRT.events.FATAL_EXCEPTION, function(){
-          $timeout(function(){
-            status.connection = 'disconnected';
-          });
-          handler();
+    swellRTpromise.then(function(){
+      SwellRT.on(SwellRT.events.FATAL_EXCEPTION, function(){
+        $timeout(function(){
+          status.connection = 'disconnected';
         });
       });
-    };
+    });
 
-    var sessionDef = $q.defer();
-    var sessionPromise = sessionDef.promise;
+    function sessionPromiseInit () {
+      sessionDef = $q.defer();
+      sessionPromise = sessionDef.promise;
+      
+      sessionPromise.catch(function (error) {
+        console.log(error);
+
+        $timeout(function(){
+          status.connection = 'disconnected';
+        });
+      });
+    }
+
+    sessionPromiseInit();
+
     var users = {
       password: '$password$',
       callbacks: {
@@ -110,6 +120,8 @@ angular.module('Teem')
 
         SwellRT.stopSession();
         $rootScope.$broadcast('teem.logout');
+
+        sessionPromiseInit();
 
         SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS, '',
           function(){
@@ -283,7 +295,6 @@ angular.module('Teem')
       getUserProfile: getUserProfile,
       updateUserProfile: updateUserProfile,
       loginRequired: loginRequired,
-      setFatalExceptionHandler: setFatalExceptionHandler,
       status: status,
       // TODO refactor with Prototype version of proxy objects to avoid the use of onLoad
       onLoad: function(f) {
