@@ -20,7 +20,7 @@
                  bo-if="theirStandpoint(msg)"
                  bo-text="msg.who.split('@')[0]">
             </div>
-            <div class="chat-message-text" bo-if="!isNotificationMessage(msg)" bo-html="msg.text | linky"></div>
+            <div class="chat-message-text" bo-if="!isNotificationMessage(msg)" ng-bind-html="msg.text | embed"></div>
           </div>
         </li>
       </ul>

@@ -31,7 +31,8 @@ angular
     'angularMoment',
     'ngImgCrop',
     'ngFileUpload',
-    'flock.bootstrap.material'
+    'flock.bootstrap.material',
+    'ngEmbed'
   ]).
   // Application config
   // See config.js.sample for examples
