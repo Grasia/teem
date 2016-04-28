@@ -51,8 +51,6 @@ angular.module('Teem')
 
           scope.updateNeed = function(need) {
             if (need.completed === 'add'){
-              need.completed = 'false';
-
               scope.project.addNeed(need);
 
               scope.need = {completed: 'add', text: ''};
