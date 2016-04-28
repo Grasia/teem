@@ -45,8 +45,7 @@ angular.module('Teem')
             if (newStatus) {
               need.completionDate = (new Date()).toJSON();
             } else {
-              // FIXME This should be delete need.completionDate
-              need.completionDate = '';
+              delete need.completionDate;
             }
           };
 
