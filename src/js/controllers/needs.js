@@ -56,7 +56,8 @@ angular.module('Teem')
               scope.need = {completed: 'add', text: ''};
             }
             else if (need.text === ''){
-              needsCtrl.removeNeed(need);
+
+              scope.project.removeNeed(need);
             }
           };
 
@@ -146,12 +147,6 @@ angular.module('Teem')
           needs: '='
         },
         controller: function($scope, $route, SessionSvc, ProjectsSvc, time) {
-          this.removeNeed = function (need) {
-            var i = $scope.needs.indexOf(need);
-
-            $scope.needs.splice(i,1);
-          };
-
           this.comments = {};
 
           var comments = this.comments;

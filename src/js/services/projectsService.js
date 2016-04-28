@@ -336,6 +336,12 @@ angular.module('Teem')
         return need;
       }
 
+      removeNeed (need) {
+        var i = this.needs.indexOf(need);
+
+        this.needs.splice(i,1);
+      }
+
       addNeedComment (need, comment) {
         if (!need.comments){
           need.comments = [];
