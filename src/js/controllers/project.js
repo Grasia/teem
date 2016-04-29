@@ -115,6 +115,11 @@ angular.module('Teem')
         then(function(project) {
           $scope.project = project;
           $scope.populateUserSelector();
+
+          if($location.search().tab === 'chat' && !$scope.project.isContributor()){
+            SharedState.setOne('projectTab', 'pad');
+          }
+          
           CommunitiesSvc.all({ ids: project.communities }).then(function (communities) {
             $timeout(function() {
               $scope.communities = communities;
