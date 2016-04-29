@@ -54,7 +54,7 @@ var config = {
     ],
 
     images: [
-      './bower_components/emoji-data/sheet_*',
+      './bower_components/emoji-data/sheet_apple_64.png',
       'src/images/**/*'
     ],
 
