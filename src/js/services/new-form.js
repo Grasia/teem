@@ -20,12 +20,26 @@ angular.module('Teem')
           confirmNew () {
             $location.search('form', undefined);
 
-            // TODO fix with community invite
-            if (objectName === 'project') {
-              scope.invite.selected.forEach(function(i){
-                scope.project.addContributor(i);
-              });
-            }
+            var emails = [];
+
+            scope.invite.selected.forEach(function(i){
+
+              // if it is an email address
+              if (typeof i === 'object' && i.email) {
+                emails.push(i.email);
+              }
+              // if it is an existing user
+              else {
+                if (objectName === 'project') {
+                  scope.project.addContributor(i);
+                } else if (objectName === 'community'){
+                  scope.community.addParticipant(i);
+                }
+              }
+
+            });
+
+            SwellRT.invite(emails, scope.linkCurrentProject());
 
             $rootScope.$broadcast('teem.' + objectName + '.join');
           }
