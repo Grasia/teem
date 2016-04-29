@@ -113,7 +113,7 @@ describe('Teem', function() {
 
       var needText = 'More tests';
 
-      element(by.css('textarea.need-name')).sendKeys(needText);
+      element(by.css('.need-name textarea')).sendKeys(needText);
       element(by.css('.need-checkbox-add')).click();
 
       var needElements = element.all(by.css('.need-item'));
@@ -128,11 +128,11 @@ describe('Teem', function() {
 
       var newNeedElement = needElements.first();
 
-      expect(newNeedElement.element(by.css('textarea.need-name')).getAttribute('value'))
+      expect(newNeedElement.element(by.css('.need-name textarea')).getAttribute('value'))
         .toEqual(needText);
 
-      expect(newNeedElement.element(by.css('.ineed-check-container')).getAttribute('class'))
-        .toMatch(/need-checkbox-false/);
+      expect(newNeedElement.element(by.css('.checkbox input')).getAttribute('checked'))
+        .toBeFalsy();
 
       // Chat
       element(by.css('a.nav-chat')).click();
