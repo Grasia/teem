@@ -16,6 +16,7 @@
 
 .need-check-container
   width: 30px
+  padding-top: 3px
 
 .need-checkbox
   color: $icon-color
@@ -39,53 +40,44 @@
   @extend .fa-plus
 
 .need-name
-  font-size: 1.21em
-  cursor: auto
-  border: none
-  width: 100%
-  resize: none
-  >input
+  textarea
+    font-size: 1.21em
     cursor: auto
-.need-name:focus
-  border: solid 1px $need-input-border-color
-.need-section-ok-icon
-  display: none
+    resize: none
+    >input
+      cursor: auto
+    &:not(:focus)
+      background-image: none !important
+
 .need-item
   padding-left: 0px
   padding-right: 0px
   min-height: 60px
-  .need-sections
-    width: 100%
-  .need-section
-    &.need-section-status
-      width: 40px
-      padding-top: 3px
-      padding-right: 10px
-      float: left
-    &.need-section-text
-      margin-left: 40px
-      margin-right: 30px
-      &.notify-need
-        font-weight: bold
-      .section-text-readonly
-        padding-top: 3px
-    &.need-section-author
-      padding-left: 40px
-      font-size: 0.8em
-    &.need-section-comments
-      float: right
-      text-align: center
-      width: 30px
-      padding-top: 2px
-    &.need-section-ok-icon
-      float: right
-      text-align: center
-      width: 30px
-      padding-top: 2px
-      i
-        color: $icon-ok-color
-    &.need-section-comments.active
-      color: inherit
+  .need-comments-btn
+    float: right
+    text-align: center
+    width: 30px
+    padding-top: 2px
+  .need-body
+    .form-group
+      margin-top: 0
+      padding: 0
+      .checkbox
+        margin-top: 0
+        width: 20px
+        float: left
+      .need-name
+        margin-left: 40px
+        margin-right: 30px
+        textarea
+          padding-top: 2px
+  .notify-need
+    font-weight: bold
+  .need-author
+    padding-left: 40px
+    font-size: 0.8em
+  .need-comments.active
+    color: inherit
   .comment-author-name
     color: $need-comment-author-name-color
     font-weight: bold
