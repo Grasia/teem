@@ -78,7 +78,7 @@
         },
         "workspace": {
           "button": "Create a Teem",
-          "tip": "Start sharing your next project or iniciative of your community"
+          "tip": "Start sharing your next project or initiative of your community"
         }
       },
       "title": "Congratulations!"
@@ -164,7 +164,7 @@
     "placeholder": "You want to work on..."
   },
   "picture": {
-    "crop": "To crop the picture, drag the lighter zone, and then clic on save",
+    "crop": "To crop the picture, drag the lighter zone, and then click on save",
     "delete": "Remove current picture",
     "upload": "Drop an image here or click to upload",
     "save": "Save",
@@ -295,6 +295,11 @@
     },
     "welcome": {
       "tip": "Not involved in anything yet? <a href=\"#/communities\">Find a community</a> to join or <a href=\"#/communities/new\">create your community</a>"
+    },
+    "tooltip": {
+      "pad": "Info",
+      "need": "Needs",
+      "chat": "Chat"
     }
   },
   "selector": {
@@ -344,7 +349,7 @@
           "email": "You did not enter your email address correctly",
           "required": "You forgot to enter your email"
         },
-        "existing_user": "The username is already registered, please chose another one.",
+        "existing_user": "The username is already registered, please choose another one.",
         "nick": {
           "pattern": "Please, choose a nickname composed by letters, numbers and dots",
           "required": "You forgot to enter your nick name"
