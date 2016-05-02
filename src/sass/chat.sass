@@ -16,8 +16,8 @@ $balloon-pointer-height: 10px
         float: left
         margin-right: 10px
       .chat-balloon
-        display: inline-block
-        min-width: 30%
+        display: flex
+        flex-flow: row wrap
         width: 100%
         border-radius: 5px
         border-top-left-radius: 0
@@ -36,16 +36,30 @@ $balloon-pointer-height: 10px
           right: 100%
           border-width: 0 $balloon-pointer-width $balloon-pointer-height 0
       .chat-message-sender
-        color: $chat-sender-color
         font-weight: bold
         margin-bottom: 2px
+        flex: 1 auto
+        &.color-1
+          color: $chat-sender-color-1
+        &.color-2
+          color: $chat-sender-color-2
+        &.color-3
+          color: $chat-sender-color-3
+        &.color-4
+          color: $chat-sender-color-4
+        &.color-5
+          color: $chat-sender-color-5
+        &.color-6
+          color: $chat-sender-color-6
       .chat-message-time
         color: $chat-message-time-color
-        float: right
+        flex: 1 auto
         font-size: .86em
+        text-align: right
         padding-top: 0.26em
       .chat-message-text
         @extend .break-lines
+        flex: 1 100%
 
       &.their .chat-balloon
         background-color: $chat-their-color
@@ -78,10 +92,10 @@ $balloon-pointer-height: 10px
           .chat-message-sender
             display: none
           .chat-message-time
-            float: left
+            text-align: left
             padding-right: 15px
           .chat-message-text
-            float: left
+            flex: 1 auto
     .new-messages
       display: flex
       flex-direction: row
