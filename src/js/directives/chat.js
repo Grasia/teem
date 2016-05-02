@@ -90,10 +90,6 @@ angular.module('Teem')
             return msg.standpoint || (SessionSvc.users.isCurrent(msg.who) ? 'mine' : 'their');
           };
 
-          $scope.theirStandpoint = function(msg) {
-            return $scope.standpoint(msg) === 'their';
-          };
-
           // TODO: delete notification messages
           $scope.isNotificationMessage = function(msg){
             return $scope.standpoint(msg) === 'notification';
