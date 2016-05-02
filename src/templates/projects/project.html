@@ -1,7 +1,7 @@
 <div ng-include="'navbar-top/project.html'"></div>
 
 <div class="project">
-  <div class="project-navigation" ng-if="! isNew()">
+  <div class="project-navigation">
     <div class="btn-group justified">
       <a ui-set="{'projectTab': 'pad'}"
          ui-class="{'active': projectTab == 'pad'}"
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="project-tabs-container">
+  <div class="project-tabs-container" ng-class="{'p-t-0': isNew() || hiddenTabs}">
     <div ui-state="projectTab" class="project-tabs">
       <div ui-if="projectTab == 'pad'" hm-swipeleft="setProjectTab('needs')">
         <div class="scrollable">

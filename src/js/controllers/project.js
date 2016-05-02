@@ -135,6 +135,10 @@ angular.module('Teem')
       SharedState.set('projectTab', tab);
     };
 
+    $scope.showTabs = function(show = true) {
+      $scope.hiddenTabs = !show;
+    };
+
     NewForm.initialize($scope, 'project');
 
     $scope.uploadProjectPhoto = function(file) {

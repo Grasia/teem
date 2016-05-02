@@ -37,9 +37,9 @@ angular.module('Teem')
     return {
       controller: [
         'SessionSvc', 'url', '$scope', '$rootScope', '$route', '$location',
-        '$animate', 'time',
+        '$animate', 'time', '$timeout',
         function(SessionSvc, url, $scope, $rootScope, $route, $location,
-        $animate, time){
+        $animate, time, $timeout){
           const pageSize = 20;
           // For scrolling in chatScroll directive
           $scope.defaultPageSize = pageSize;
@@ -55,15 +55,16 @@ angular.module('Teem')
 
           //For scrolling to bottom on input focus
           $scope.scrollToBottom = function(){
-            
+
             var chatMessages = angular.element(document.getElementsByClassName('chat-message-text'));
 
             if(chatMessages.length > 0){
 
               var lastMessage = chatMessages[chatMessages.length - 1];
-              var scrollableContentController = angular.element(lastMessage).controller('scrollableContent'); 
-              scrollableContentController.scrollTo(lastMessage);
- 
+              var scrollableContentController = angular.element(lastMessage).controller('scrollableContent');
+              $timeout(function(){
+                scrollableContentController.scrollTo(lastMessage);
+              }, 200);
             }
           };
 
