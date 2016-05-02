@@ -131,6 +131,10 @@ angular.module('Teem')
       defaultValue: currentTab()
     });
 
+    $scope.setProjectTab = function(tab) {
+      SharedState.set('projectTab', tab);
+    };
+
     NewForm.initialize($scope, 'project');
 
     $scope.uploadProjectPhoto = function(file) {
