@@ -60,6 +60,9 @@ $balloon-pointer-height: 10px
       .chat-message-text
         @extend .break-lines
         flex: 1 100%
+      .chat-message-file
+        img
+          max-height: 200px
 
       &.their .chat-balloon
         background-color: $chat-their-color
@@ -132,3 +135,5 @@ $balloon-pointer-height: 10px
       border-bottom: 0px
     button
       font-size: 1.21em
+      &.ng-animate
+        transition: 0s

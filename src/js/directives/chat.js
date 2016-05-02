@@ -33,7 +33,7 @@ angular.module('Teem')
       }
     };
   }])
-  .directive('chat', function() {
+  .directive('chat', ['Notification', function(Notification) {
     return {
       controller: [
         'SessionSvc', 'url', '$scope', '$rootScope', '$route', '$location',
@@ -45,6 +45,10 @@ angular.module('Teem')
           $scope.defaultPageSize = pageSize;
           $scope.pageSize = pageSize;
           $scope.pageOffset = - pageSize;
+
+          var chatTextarea = document.querySelector('.chat-textarea');
+          var sendBtn = document.getElementById('chatSendBtn');
+          var uploadBtn = document.getElementById('chatUploadBtn');
 
           $scope.nextPage = function() {
             if ($scope.project.chat.length > $scope.pageSize) {
@@ -80,7 +84,7 @@ angular.module('Teem')
 
             $scope.newMsg = '';
 
-            document.querySelector('.chat-textarea').focus();
+            chatTextarea.focus();
           };
 
           $scope.standpoint = function(msg){
@@ -165,6 +169,11 @@ angular.module('Teem')
             return false;
           };
 
+          $scope.keyUp = function() {
+            uploadBtn.classList.toggle('hidden', chatTextarea.value);
+            sendBtn.classList.toggle('hidden', !chatTextarea.value);
+          };
+
           $scope.keyDown = function(event){
             if (event.which === 13) {
               // Input model is only updated on blur, so we have to sync manually
@@ -175,8 +184,16 @@ angular.module('Teem')
               event.preventDefault();
             }
           };
+
+          $scope.uploadFile = function(file) {
+            if (file && file.type && file.type.startsWith('image/')) {
+              $scope.project.addChatMessage('', file);
+            } else {
+              Notification.error('chat.upload.noimg');
+            }
+          };
         }
       ],
       templateUrl: 'chat.html'
     };
-  });
+  }]);

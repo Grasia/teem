@@ -5,7 +5,10 @@
     "nav": {
       "title": "Chat"
     },
-    "new_messages": "New messages"
+    "new_messages": "New messages",
+    "upload": {
+      "noimg": "For now, only images can be uploaded."
+    }
   },
   "community": {
     "communities": "Communities",

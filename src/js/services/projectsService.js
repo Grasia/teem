@@ -311,9 +311,13 @@ angular.module('Teem')
         }
       }
 
-      addChatMessage (message) {
+      addChatMessage (text, file) {
+        if (file) {
+          file = new swellRT.FileObject(file);
+        }
         this.chat.push({
-          text: message,
+          text,
+          file,
           who: User.currentId(),
           time: (new Date()).toJSON()
         });
