@@ -21,7 +21,7 @@ angular.module('Teem')
             editing: false
           };
 
-          var buttons = ['bold', 'italic', 'underline', 'strikethrough'];
+          var buttons = ['header', 'bold', 'italic', 'strikethrough', 'align-left', 'align-center', 'align-right', 'list', 'list-ol'];
 
           $scope.padReady = function(editor) {
             // FIXME
@@ -31,10 +31,15 @@ angular.module('Teem')
             var editorElement = angular.element(document.getElementById('pad').children[0]);
 
             var annotationMap = {
+              header: 'paragraph/header=h3',
               bold: 'style/fontWeight=bold',
               italic: 'style/fontStyle=italic',
-              underline: 'style/textDecoration=underline',
-              strikethrough: 'style/textDecoration=line-through'
+              strikethrough: 'style/textDecoration=line-through',
+              'align-left': 'paragraph/textAlign=left',
+              'align-center': 'paragraph/textAlign=center',
+              'align-right': 'paragraph/textAlign=right',
+              list: 'paragraph/listStyleType=unordered',
+              'list-ol': 'paragraph/listStyleType=decimal'
             };
 
             $scope.buttons = {};
