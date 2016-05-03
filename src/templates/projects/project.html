@@ -25,7 +25,7 @@
 
   <div class="project-tabs-container" ng-class="{'p-t-0': isNew() || hiddenTabs}">
     <div ui-state="projectTab" class="project-tabs">
-      <div ui-if="projectTab == 'pad'" hm-swipeleft="setProjectTab('needs')">
+      <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{ "cssProps": { "userSelect": true } }'>
         <div class="scrollable">
           <div class="scrollable-content">
             <div class="section project-header" ng-if="!pad.editing">
@@ -121,7 +121,7 @@
         </div>
       </div>
 
-      <div ui-if="projectTab == 'needs'" hm-swipeleft="setProjectTab('chat')" hm-swiperight="setProjectTab('pad')">
+      <div ui-if="projectTab == 'needs'" hm-swipeleft="swipeToChat" hm-swiperight="swipeToPad" hm-manager-options='{ "cssProps": { "userSelect": true } }'>
         <div class="scrollable">
           <div class="scrollable-content">
             <div need-list project="project" needs="project.needs" ng-class="project.isContributor() ? '' : 'has-cta'">
@@ -132,7 +132,7 @@
 
       <!-- ng-if is not compatible with ui-if -->
       <div ng-if="project.isContributor()">
-        <div ui-if="projectTab == 'chat'" hm-swiperight="setProjectTab('needs')">
+        <div ui-if="projectTab == 'chat'" hm-swiperight="swipeToNeeds" hm-manager-options='{ "cssProps": { "userSelect": true } }'>
           <chat></chat>
         </div>
       </div>

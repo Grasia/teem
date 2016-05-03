@@ -136,9 +136,17 @@ angular.module('Teem')
       defaultValue: currentTab()
     });
 
-    $scope.setProjectTab = function(tab) {
-      SharedState.set('projectTab', tab);
-    };
+    function swipeToProjectTab(tab) {
+      return function(event) {
+        if (event.pointerType === 'touch') {
+          SharedState.set('projectTab', tab);
+        }
+      };
+    }
+
+    $scope.swipeToPad = swipeToProjectTab('pad');
+    $scope.swipeToNeeds = swipeToProjectTab('needs');
+    $scope.swipeToChat = swipeToProjectTab('chat');
 
     $scope.showTabs = function(show = true) {
       $scope.hiddenTabs = !show;
