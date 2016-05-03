@@ -46,6 +46,7 @@ angular.module('Teem')
           $scope.defaultPageSize = pageSize;
           $scope.pageSize = pageSize;
           $scope.pageOffset = - pageSize;
+          $scope.newMsg = '';
 
           var chatTextarea = document.querySelector('.chat-textarea');
           var sendBtn = document.getElementById('chatSendBtn');
@@ -87,7 +88,7 @@ angular.module('Teem')
             angular.element(chatTextarea).trigger('input');
             $rootScope.$broadcast('elastic:adjust');
 
-            chatTextarea.focus();
+            chatTextarea.click();
           };
 
           $scope.standpoint = function(msg){

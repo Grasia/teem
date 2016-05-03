@@ -137,7 +137,18 @@ $balloon-pointer-height: 10px
       background-image: none
     textarea, .input-group-addon
       border-bottom: 0px
-    button
+    .btn
       font-size: 1.21em
+      margin: 0
+      padding: 0
       &.ng-animate
         transition: 0s
+    .popover
+      color: inherit
+      background: $chat-send-bar-background-color
+      font-size: 1.3em
+      max-width: 100%
+#chatEmojisBtn > a
+  display: none
+  @media (min-width: $screen-lg-min)
+    display: block

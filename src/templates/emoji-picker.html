@@ -1,0 +1,15 @@
+<div ng-controller="EmojiPickerCtrl">
+  <div class="btn-group btn-group-justified">
+    <a class="btn btn-link btn-raised" ng-click="group = 'people'"><span bo-html="':smile:'|emojis"></span></a>
+    <a class="btn btn-link btn-raised" ng-click="group = 'nature'"><span bo-html="':dog:'|emojis"></span></a>
+    <a class="btn btn-link btn-raised" ng-click="group = 'foods'"><span bo-html="':apple:'|emojis"></span></a>
+    <a class="btn btn-link btn-raised" ng-click="group = 'activity'"><span bo-html="':soccer:'|emojis"></span></a>
+    <a class="btn btn-link btn-raised" ng-click="group = 'places'"><span bo-html="':red_car:'|emojis"></span></a>
+    <a class="btn btn-link btn-raised" ng-click="group = 'objects'"><span bo-html="':bulb:'|emojis"></span></a>
+    <a class="btn btn-link btn-raised" ng-click="group = 'symbols'"><span bo-html="':symbols:'|emojis"></span></a>
+    <a class="btn btn-link btn-raised" ng-click="group = 'flags'"><span bo-html="':waving_white_flag:'|emojis"></span></a>
+  </div>
+  <a ng-repeat="emoji in emojiCategories[group]" ng-click="insertEmoji(emoji)">
+    <span bo-html="fromCode(emoji)"></span>
+  </a>
+</div>

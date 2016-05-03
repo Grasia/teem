@@ -32,6 +32,11 @@
       <form class="chat-send" name="chatForm" ng-submit="send()">
         <div class="form-group">
           <div class="input-group">
+            <div class="input-group-addon" id="chatEmojisBtn">
+              <a class="btn btn-link btn-xs chat-input-button" uib-popover-template="'emoji-picker.html'" popover-placement="top-left" popover-trigger="outsideClick" ng-click="focusChatInput()">
+                <i class="fa fa-smile-o"></i>
+              </a>
+            </div>
             <textarea class="form-control chat-textarea"
                       name="chatInput"
                       rows="1"
