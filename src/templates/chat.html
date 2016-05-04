@@ -36,8 +36,8 @@
                       ng-model-options="{ updateOn: 'blur' }"
                       placeholder="{{ 'chat.input' | translate}}"
                       ng-keydown="keyDown($event)"
-                      ng-focus="showTabs(false);scrollToBottom()"
-                      ng-blur="showTabs()">
+                      ng-focus="scrollToBottom()"
+                      hide-tabs>
             </textarea>
             <div class="input-group-addon">
               <button type="submit" class="btn btn-primary btn-fab btn-fab-mini chat-input-button">

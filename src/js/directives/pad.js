@@ -13,9 +13,9 @@ angular.module('Teem')
     return {
       controller: [
         'SessionSvc', 'url', '$rootScope', '$scope', '$route', '$location',
-        '$timeout',
+        '$timeout', 'SharedState',
         function(SessionSvc, url, $rootScope, $scope, $route, $location,
-        $timeout) {
+        $timeout, SharedState) {
 
           $scope.pad = {
             editing: false
@@ -67,6 +67,7 @@ angular.module('Teem')
               if (editorElement.attr('class') === 'wave-editor-on') {
                 $scope.pad.editing = true;
                 SessionSvc.showSaving = true;
+                SharedState.turnOn('hiddenTabs');
                 $timeout();
               }
             };
@@ -75,6 +76,7 @@ angular.module('Teem')
               if (editorElement.attr('class') === 'wave-editor-on') {
                 $scope.pad.editing = false;
                 SessionSvc.showSaving = false;
+                SharedState.turnOff('hiddenTabs');
                 $timeout();
               }
             };
