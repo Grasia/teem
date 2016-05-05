@@ -75,7 +75,7 @@ angular.module('Teem')
 
           // Send button
           $scope.send = function(){
-            var msg = $scope.newMsg.trim();
+            var msg = chatTextarea.value.trim();
 
             if (msg === '') {
               return;
@@ -83,7 +83,8 @@ angular.module('Teem')
 
             $scope.project.addChatMessage(msg);
 
-            $scope.newMsg = '';
+            chatTextarea.value = '';
+            $scope.keyUp();
 
             chatTextarea.focus();
           };
@@ -177,11 +178,7 @@ angular.module('Teem')
 
           $scope.keyDown = function(event){
             if (event.which === 13) {
-              // Input model is only updated on blur, so we have to sync manually
-              $scope.chatForm.chatInput.$commitViewValue();
-
               $scope.send();
-
               event.preventDefault();
             }
           };
@@ -198,7 +195,13 @@ angular.module('Teem')
               Notification.error('chat.upload.tooLarge');
               return;
             }
-            $scope.project.addChatMessage(CAMERA_SYMBOL, file);
+            $scope.project.addChatMessage(CAMERA_SYMBOL, file).then((fileUrl) => {
+              $timeout(() => {
+                // Waiting for rebind issue: https://github.com/Pasvaz/bindonce/issues/42
+                var lastMsg = angular.element(document.querySelector('.chat-messages:last-child .chat-message:last-child .chat-message-text'));
+                lastMsg.parent()[0].insertBefore(angular.element('<div class="chat-message-file"><img src="'+fileUrl+'"/></div>')[0], lastMsg[0]);
+              });
+            });
           };
         }
       ],
