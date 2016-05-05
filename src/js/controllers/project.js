@@ -119,7 +119,7 @@ angular.module('Teem')
           if($location.search().tab === 'chat' && !$scope.project.isContributor()){
             SharedState.setOne('projectTab', 'pad');
           }
-          
+
           CommunitiesSvc.all({ ids: project.communities }).then(function (communities) {
             $timeout(function() {
               $scope.communities = communities;
@@ -147,6 +147,10 @@ angular.module('Teem')
     $scope.swipeToPad = swipeToProjectTab('pad');
     $scope.swipeToNeeds = swipeToProjectTab('needs');
     $scope.swipeToChat = swipeToProjectTab('chat');
+
+    $scope.hmManagerOpt = '{"cssProps": {"userSelect": true}}';
+    $scope.hmRecognizerOpt = '{"threshold": 200, "pointers": 2}';
+
 
     $scope.showTabs = function(show = true) {
       $scope.hiddenTabs = !show;
