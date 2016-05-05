@@ -135,6 +135,10 @@
   overflow: hidden
   height: 100%
   padding-top: 35px
+  transition: padding-top 0.3s
+  &.xs-hidden-tabs
+    @media (max-width: $screen-sm-max)
+      padding-top: 0px
 
 .project-tabs
   position: relative

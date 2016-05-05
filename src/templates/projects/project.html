@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="project-tabs-container" ng-class="{'p-t-0': isNew() || hiddenTabs}">
+  <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': isNew() || areTabsHidden()}">
     <div ui-state="projectTab" class="project-tabs">
       <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
         <div class="scrollable">
@@ -52,7 +52,7 @@
               </div>
               <div ng-if="editingTitle()">
                 <div class="input-group title-form" ng-if="editingTitle()">
-                  <input type="text"
+                  <input type="text" hide-tabs
                          class="form-control title-input"
                          ng-model="project.title"
                          placeholder="{{ 'project.title.placeholder' | translate }}">

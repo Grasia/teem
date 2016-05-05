@@ -152,8 +152,9 @@ angular.module('Teem')
     $scope.hmRecognizerOpt = '{"threshold": 200, "pointers": 2}';
 
 
-    $scope.showTabs = function(show = true) {
-      $scope.hiddenTabs = !show;
+    SharedState.initialize($scope, 'hiddenTabs');
+    $scope.areTabsHidden = function() {
+      return SharedState.isActive('hiddenTabs');
     };
 
     NewForm.initialize($scope, 'project');
@@ -277,4 +278,25 @@ angular.module('Teem')
         SharedState.turnOn('projectTitleReminder');
       }
     });
-  }]);
+  }])
+  .directive(
+    'hideTabs',
+    function (SharedState, $timeout) {
+      return {
+        restrict: 'A',
+        link: function(scope, element) {
+          element.on('focus', function() {
+            SharedState.turnOn('hiddenTabs');
+            $timeout();
+          });
+          element.on('blur', function() {
+            SharedState.turnOff('hiddenTabs');
+            $timeout();
+          });
+          scope.$on('$destroy', function() {
+            element.off('focus');
+            element.off('blur');
+          });
+        }
+      };
+    });

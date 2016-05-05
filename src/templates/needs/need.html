@@ -25,7 +25,7 @@
                     class="form-control"
                     rows="1"
                     saving-status
-                    msd-elastic
+                    msd-elastic hide-tabs
                     ng-class="need.completed === 'true' ? 'text-strike' : ''"
                     ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
                     ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
@@ -69,7 +69,7 @@
         <div class="form-group">
           <div class="input-group">
             <textarea class="form-control"
-                      rows="1"
+                      rows="1" hide-tabs
                       ng-model="newComment.text"
                       placeholder="{{ 'need.comment.input' | translate}}"
                       ng-keydown="keyDown($event)">
