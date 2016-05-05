@@ -61,7 +61,7 @@ angular.module('Teem')
           //For scrolling to bottom on input focus
           $scope.scrollToBottom = function(){
 
-            var chatMessages = angular.element(document.getElementsByClassName('chat-message-text'));
+            var chatMessages = document.getElementsByClassName('chat-message');
 
             if(chatMessages.length > 0){
 
@@ -187,21 +187,18 @@ angular.module('Teem')
           };
 
           $scope.uploadFile = function(file) {
+            if (!file) {
+              return;
+            }
+            if (!file.type || !file.type.startsWith('image/')) {
+              Notification.error('chat.upload.noImg');
+              return;
+            }
             if (file.size > 4 * 1024 * 1024) { // 4MB
               Notification.error('chat.upload.tooLarge');
               return;
             }
-            if (!file.type || !file.type.startsWith('image/')) {
-              Notification.error('chat.upload.noiImg');
-              return;
-            }
-            $scope.project.addChatMessage(CAMERA_SYMBOL, file).then((fileUrl) => {
-              $timeout(() => {
-                // Waiting for rebind issue: https://github.com/Pasvaz/bindonce/issues/42
-                var lastMsg = angular.element(document.querySelector('.chat-messages:last-child .chat-message:last-child .chat-message-text'));
-                lastMsg.parent()[0].insertBefore(angular.element('<div class="chat-message-file"><img src="'+fileUrl+'"/></div>')[0], lastMsg[0]);
-              });
-            });
+            $scope.project.addChatMessage(CAMERA_SYMBOL, file);
           };
         }
       ],

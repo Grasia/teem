@@ -323,7 +323,6 @@ angular.module('Teem')
         });
         this.addContributor();
         this.setTimestampAccess('chat', true);
-        return file ? file.getUrl() : undefined;
       }
 
       addNeed(need) {

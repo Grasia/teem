@@ -20,7 +20,7 @@
             </div>
             <div class="chat-message-time" bo-text="hour(msg)">
             </div>
-            <div class="chat-message-file" bo-if="msg.file">
+            <div class="chat-message-file" ng-if="::(msg.file)">
               <img bo-src="msg.file.url"/>
             </div>
             <div class="chat-message-text" bo-html="msg.text | links | emojis"></div>
@@ -49,7 +49,7 @@
                 <i class="fa fa-send"></i>
               </button>
               <button id="chatUploadBtn" type="button" class="btn btn-fab btn-fab-mini chat-input-button"
-                ngf-select="uploadFile($file)" accept="'image/*'" ngf-fix-orientation="true">
+                ngf-select="uploadFile($file)" accept="image/*" ngf-fix-orientation="true">
                 <i class="fa fa-paperclip"></i>
               </button>
             </div>
