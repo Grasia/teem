@@ -16,7 +16,9 @@ angular.module('Teem')
         }
 
         appCache.addEventListener('downloading', function() {
-          scope.upgrading = true;
+          // Chrome is not triggering the cached event properly
+          // Temporaly disabling the upgrading screen
+          scope.upgrading = false;
         });
 
         appCache.addEventListener('cached', function() {
