@@ -7,7 +7,8 @@
     },
     "new_messages": "Mensajes nuevos",
     "upload": {
-      "noimg": "Por ahora, sólo se pueden subir imágenes."
+      "noImg": "Por ahora, sólo se pueden subir imágenes.",
+      "tooLarge": "El fichero es demasiado grande y no puede subirse."
     }
   },
   "community": {

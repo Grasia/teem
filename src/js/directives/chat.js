@@ -41,6 +41,7 @@ angular.module('Teem')
         function(SessionSvc, url, $scope, $rootScope, $route, $location,
         $animate, time, $timeout){
           const pageSize = 20;
+          const CAMERA_SYMBOL = '\uD83D\uDCF7';
           // For scrolling in chatScroll directive
           $scope.defaultPageSize = pageSize;
           $scope.pageSize = pageSize;
@@ -186,11 +187,21 @@ angular.module('Teem')
           };
 
           $scope.uploadFile = function(file) {
-            if (file && file.type && file.type.startsWith('image/')) {
-              $scope.project.addChatMessage('', file);
-            } else {
-              Notification.error('chat.upload.noimg');
+            if (file.size > 4 * 1024 * 1024) { // 4MB
+              Notification.error('chat.upload.tooLarge');
+              return;
             }
+            if (!file.type || !file.type.startsWith('image/')) {
+              Notification.error('chat.upload.noiImg');
+              return;
+            }
+            $scope.project.addChatMessage(CAMERA_SYMBOL, file).then((fileUrl) => {
+              $timeout(() => {
+                // Waiting for rebind issue: https://github.com/Pasvaz/bindonce/issues/42
+                var lastMsg = angular.element(document.querySelector('.chat-messages:last-child .chat-message:last-child .chat-message-text'));
+                lastMsg.parent()[0].insertBefore(angular.element('<div class="chat-message-file"><img src="'+fileUrl+'"/></div>')[0], lastMsg[0]);
+              });
+            });
           };
         }
       ],

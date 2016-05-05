@@ -1,6 +1,6 @@
 <div id="chat" class="chat">
-  <div class="scrollable" ngf-drop="uploadFile($file)"
-    ngf-drag-over-class="'dragover'" accept="image/*" ngf-pattern="'image/*'">
+  <div class="scrollable" ngf-drop="uploadFile($file)" ngf-fix-orientation="true"
+    ngf-drag-over-class="'dragover'">
     <div class="scrollable-content section" ui-scroll-top="nextPage()">
       <ul class="chat-messages"
           ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset"
@@ -20,10 +20,10 @@
             </div>
             <div class="chat-message-time" bo-text="hour(msg)">
             </div>
-            <div class="chat-message-text" bo-html="msg.text | links | emojis"></div>
-            <div class="chat-message-file" ng-if="msg.file">
+            <div class="chat-message-file" bo-if="msg.file">
               <img bo-src="msg.file.url"/>
             </div>
+            <div class="chat-message-text" bo-html="msg.text | links | emojis"></div>
           </div>
         </li>
       </ul>
@@ -48,8 +48,8 @@
               <button id="chatSendBtn" type="submit" class="btn btn-primary btn-fab btn-fab-mini chat-input-button hidden">
                 <i class="fa fa-send"></i>
               </button>
-              <button id="chatUploadBtn" type="button" ngf-select="uploadFile($file)" class="btn btn-fab btn-fab-mini chat-input-button"
-                accept="image/*" ngf-pattern="'image/*'">
+              <button id="chatUploadBtn" type="button" class="btn btn-fab btn-fab-mini chat-input-button"
+                ngf-select="uploadFile($file)" accept="'image/*'" ngf-fix-orientation="true">
                 <i class="fa fa-paperclip"></i>
               </button>
             </div>
