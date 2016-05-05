@@ -426,7 +426,13 @@ gulp.task('cordova', function() {
 ===================================================================*/
 
 gulp.task('manifest', function(){
-  gulp.src([ config.dest + '/**/*' ], { base: config.dest })
+  var files = [
+    'index.html',
+    'css/app.min.css',
+    'js/app.min.js'
+  ];
+
+  gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
     .pipe(manifest({
       cache: [
         config.swellrt.server + '/swellrt.js',
