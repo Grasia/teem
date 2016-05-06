@@ -75,7 +75,7 @@ angular.module('Teem')
 
           // Send button
           $scope.send = function(){
-            var msg = $scope.newMsg.trim();
+            var msg = chatTextarea.value.trim();
 
             if (msg === '') {
               return;
@@ -83,7 +83,8 @@ angular.module('Teem')
 
             $scope.project.addChatMessage(msg);
 
-            $scope.newMsg = '';
+            chatTextarea.value = '';
+            $scope.keyUp();
 
             chatTextarea.focus();
           };
@@ -177,11 +178,7 @@ angular.module('Teem')
 
           $scope.keyDown = function(event){
             if (event.which === 13) {
-              // Input model is only updated on blur, so we have to sync manually
-              $scope.chatForm.chatInput.$commitViewValue();
-
               $scope.send();
-
               event.preventDefault();
             }
           };
