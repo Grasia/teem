@@ -1,4 +1,4 @@
-<div class="modal modal-overlay" ui-if="uploadPictureSharedState" ui-state="uploadPictureSharedState">
+<div class="modal modal-overlay" ui-if="uploadPictureSharedState" ui-state="uploadPictureSharedState" key-press="keyup">
   <div class="scrollable">
     <div class="scrollable-header modal-header">
       <div class="modal-header-title" translate>picture.title</div>
@@ -26,6 +26,5 @@
       <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
       <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
     </div>
-
   </div>
 </div>
