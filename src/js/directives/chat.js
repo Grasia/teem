@@ -84,7 +84,8 @@ angular.module('Teem')
             $scope.project.addChatMessage(msg);
 
             chatTextarea.value = '';
-            $scope.keyUp();
+            angular.element(chatTextarea).trigger('input');
+            $rootScope.$broadcast('elastic:adjust');
 
             chatTextarea.focus();
           };
@@ -171,10 +172,10 @@ angular.module('Teem')
             return false;
           };
 
-          $scope.keyUp = function() {
+          angular.element(chatTextarea).on('input', function() {
             uploadBtn.classList.toggle('hidden', chatTextarea.value);
             sendBtn.classList.toggle('hidden', !chatTextarea.value);
-          };
+          });
 
           $scope.keyDown = function(event){
             if (event.which === 13) {
