@@ -321,7 +321,7 @@ angular.module('Teem')
           who: User.currentId(),
           time: (new Date()).toJSON()
         });
-        this.addContributor();
+        
         this.setTimestampAccess('chat', true);
       }
 
