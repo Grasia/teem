@@ -225,10 +225,6 @@ angular.module('Teem')
             $rootScope.$broadcast('teem.project.join');
           }
         }
-
-        if (userId === User.currentId()){
-          $rootScope.$broadcast('teem.project.join');
-        }
       }
 
       setShareMode (shareMode) {
@@ -321,7 +317,7 @@ angular.module('Teem')
           who: User.currentId(),
           time: (new Date()).toJSON()
         });
-        
+
         this.setTimestampAccess('chat', true);
         return file ? file.getUrl() : undefined;
       }
