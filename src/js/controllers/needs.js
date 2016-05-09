@@ -30,34 +30,18 @@ angular.module('Teem')
             // Needed by the magic of material design
             event.preventDefault();
 
-            var newStatus;
-
-            if (!scope.project.isContributor()){
-              return;
-            }
-
-            if (need.completed === 'add'){
-              scope.focusElem(event);
-
-              return;
-            }
-
-            newStatus = need.completed !== 'true';
-
-            need.completed = newStatus.toString();
-
-            if (newStatus) {
-              need.completionDate = (new Date()).toJSON();
-            } else {
-              delete need.completionDate;
-            }
+            scope.project.toggleNeedCompleted(need);
           };
 
-          scope.updateNeed = function(need) {
+          scope.updateNeed = function(need, event) {
             if (need.completed === 'add'){
-              scope.project.addNeed(need);
+              if (need.text) {
+                scope.project.addNeed(need);
 
-              scope.need = {completed: 'add', text: ''};
+                scope.need = {completed: 'add', text: ''};
+              } else {
+                angular.element(event.target).parent().find('textarea').focus();
+              }
             }
             else if (need.text === ''){
 
