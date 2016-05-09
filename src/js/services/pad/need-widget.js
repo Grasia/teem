@@ -38,8 +38,15 @@ angular.module('Teem')
 
     function add () {
       var need = {
-        text: ''
-      };
+            text: ''
+          },
+          selection = editor.getSelection();
+
+      if (selection.toString()) {
+        need.text = selection.toString();
+
+        selection.remove();
+      }
 
       scope.project.addNeed(need);
 
