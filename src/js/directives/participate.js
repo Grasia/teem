@@ -23,7 +23,6 @@ angular.module('Teem')
               });
             }
           });
-          $event.stopPropagation();
         });
       }],
       templateUrl: 'participate.html'
