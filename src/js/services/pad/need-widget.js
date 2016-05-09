@@ -43,7 +43,9 @@ angular.module('Teem')
 
       scope.project.addNeed(need);
 
-      editor.addWidget('need', need._id);
+      $timeout(() => {
+        editor.addWidget('need', need._id);
+      });
 
       $timeout(() => {
         var textarea = document.querySelector('.need-form-' + need._id + ' textarea');
