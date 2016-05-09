@@ -299,7 +299,7 @@
       }
     },
     "welcome": {
-      "tip": "¿No participas en nada todavía? <a href=\"#/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"#/communities/new\">crea tu comunidad</a>"
+      "tip": "¿No participas en nada todavía? <a href=\"/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"/communities/new\">crea tu comunidad</a>"
     }
   },
   "selector": {

@@ -299,7 +299,7 @@
       }
     },
     "welcome": {
-      "tip": "Not involved in anything yet? <a href=\"#/communities\">Find a community</a> to join or <a href=\"#/communities/new\">create your community</a>"
+      "tip": "Not involved in anything yet? <a href=\"/communities\">Find a community</a> to join or <a href=\"/communities/new\">create your community</a>"
     },
     "tooltip": {
       "pad": "Info",

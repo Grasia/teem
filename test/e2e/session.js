@@ -18,7 +18,7 @@ describe('Teem', function() {
       $('#nick').sendKeys('mrsmith');
       $('#password').sendKeys('password');
       $('.session-form input[type=submit]').click();
-      expect(browser.getCurrentUrl()).toEqual('/#/projects');
+      expect(browser.getCurrentUrl()).toEqual('/projects');
     });
   });
 
@@ -51,7 +51,7 @@ describe('Teem', function() {
 
   describe('recover password form', function() {
     it('should be working on valid input', function() {
-      browser.get('/#/session/recover_password');
+      browser.get('/session/recover_password');
       $('#password').sendKeys('password');
       $('#passwordRepeat').sendKeys('password');
       $('.session-form input[type=submit]').click();

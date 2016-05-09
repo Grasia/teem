@@ -12,7 +12,7 @@ describe('Teem', function() {
 
   describe('1% core user', function() {
     beforeAll(function() {
-      browser.get('/#/communities');
+      browser.get('/communities');
     });
 
     it('should create a project and share it', function() {
