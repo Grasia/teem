@@ -27,11 +27,10 @@
                   <span class="icon-count-number"></span>
                 </div>
                 <div class="col-xs-6">
-                  <button class="btn btn-primary btn-raised pull-right"
+                  <button class="btn btn-primary pull-right community-view-more"
                           ng-if="! community.isParticipant()"
-                          participate
-                          participate-copy-off="community.participate.button"
-                          participate-model="community">
+                          translate>
+                    community.view_more
                   </button>
 
                   <div class="community-participating-message"
