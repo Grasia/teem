@@ -38,6 +38,13 @@ angular
   // WARNING: If you check this line, please check the replace
   // string in gulpfile.js
   value('config', {}). // inject:app:config
+  config(function($locationProvider) {
+    $locationProvider.html5Mode({
+      enabled: true,
+      // Karma is failing to properly recognize the mocked baseHref
+      requireBase: false
+    });
+  }).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {

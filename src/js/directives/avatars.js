@@ -17,7 +17,7 @@ angular.module('Teem')
       var createAppendAvatar = function(userId, url){
         $timeout(function() {
           var conf = scope.avatarsConf() || {};
-          var container = angular.element('<a href="#/users/'+userId+'" class="avatar'+(conf.size ? '-'+conf.size : '')+'"></a>'),
+          var container = angular.element('<a href="/users/'+userId+'" class="avatar'+(conf.size ? '-'+conf.size : '')+'"></a>'),
               img = angular.element('<img></img>');
 
           img[0].addEventListener('error', onImgError);

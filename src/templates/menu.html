@@ -29,13 +29,13 @@
       </div>
       <div class="menu-session-body">
         <div class="menu-session-nick">
-          <a href="/#/users/{{user.id}}">{{user.nick}}</a>
+          <a href="/users/{{user.id}}">{{user.nick}}</a>
         </div>
         <div class="menu-session-tip menu-session-counters">
-          <a href="/#/home/teems/" translate translate-values="{count: '{{userProjectsCount}}'}">
+          <a href="/home/teems/" translate translate-values="{count: '{{userProjectsCount}}'}">
             menu.session.projects
           </a>
-          <a href="/#/home/communities" translate translate-values="{count: '{{userCommunitiesCount}}'}">
+          <a href="/home/communities" translate translate-values="{count: '{{userCommunitiesCount}}'}">
             menu.session.communities
           </a>
         </div>
@@ -49,9 +49,9 @@
   </div>
 
   <div class="menu-content list-group">
-    <a class="list-group-item" href="#/home/teems" ng-if="loggedIn()" translate>menu.homeProjects.title</a>
-    <a class="list-group-item" href="#/home/communities" ng-if="loggedIn()" translate>menu.homeCommunities.title</a>
-    <a class="list-group-item" href="#/communities" translate>menu.communities.title</a>
-    <a class="list-group-item" href="#/projects/{{support.projectId}}" ng-if="support" translate>menu.feedback.title</a>
+    <a class="list-group-item" href="/home/teems" ng-if="loggedIn()" translate>menu.homeProjects.title</a>
+    <a class="list-group-item" href="/home/communities" ng-if="loggedIn()" translate>menu.homeCommunities.title</a>
+    <a class="list-group-item" href="/communities" translate>menu.communities.title</a>
+    <a class="list-group-item" href="/projects/{{support.projectId}}" ng-if="support" translate>menu.feedback.title</a>
   </div>
 </div>

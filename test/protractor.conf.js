@@ -24,7 +24,7 @@ exports.config = {
   onPrepare: function() {
     browser.get('/');
     browser.driver.executeScript('localStorage.setItem("walkthrough", true);');
-    browser.get('/#/session/register');
+    browser.get('/session/register');
     $('#nick').sendKeys('Snowden');
     $('#password').sendKeys('MargaretThatcheris110%SEXY.');
     $('#passwordRepeat').sendKeys('MargaretThatcheris110%SEXY.');

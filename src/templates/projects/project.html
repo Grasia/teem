@@ -47,7 +47,7 @@
                   </button>
                 </h1>
                 <div class="project-communities" ng-if="! isNew()">
-                  <span class="comma-separated" ng-repeat="c in communities"><a ng-href="#/communities/{{ c.urlId }}">{{ c.name }}</a></span>
+                  <span class="comma-separated" ng-repeat="c in communities"><a ng-href="/communities/{{ c.urlId }}">{{ c.name }}</a></span>
                 </div>
               </div>
               <div ng-if="editingTitle()">

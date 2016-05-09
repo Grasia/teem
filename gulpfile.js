@@ -90,6 +90,10 @@ var config = {
   app: {
   },
 
+  // The default URL of the links
+  // Needed for HTML5 mode
+  base: '/',
+
   server: {
     host: '0.0.0.0',
     port: '8000'
@@ -230,6 +234,7 @@ gulp.task('connect', function() {
       root: config.dest,
       host: config.server.host,
       port: config.server.port,
+      fallback: config.dest + '/index.html',
       livereload: true
     });
   } else {
@@ -291,6 +296,8 @@ gulp.task('l10n', function() {
 
 gulp.task('html', function() {
   var inject = [];
+
+  inject.push('<base href="' + config.base + '" />');
 
   if (config.swellrt) {
     inject.push('<script src="'+config.swellrt.server+'/swellrt.js"></script>');
@@ -531,7 +538,8 @@ gulp.task('test:e2e:protractor', function(done) {
   connect.server({
     root: config.dest,
     host: config.serverTest.host,
-    port: config.serverTest.port
+    port: config.serverTest.port,
+    fallback: config.dest + '/index.html'
   });
 
   gulp.src(['./test/e2e/**/*.js'])

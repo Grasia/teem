@@ -113,7 +113,7 @@ angular.module('Teem')
         });
       };
 
-      var recoverUrl =  $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/#/session/recover_password?token=$token&id=$user-id';
+      var recoverUrl =  $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/session/recover_password?token=$token&id=$user-id';
 
       SessionSvc.forgottenPassword(fields.email, recoverUrl, onSuccess, onError);
     };
