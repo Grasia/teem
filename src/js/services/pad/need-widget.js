@@ -47,7 +47,8 @@ angular.module('Teem')
       var need = {
             text: ''
           },
-          selection = editor.getSelection();
+          selection = editor.getSelection(),
+          widget;
 
       if (selection.toString()) {
         need.text = selection.toString();
@@ -58,11 +59,11 @@ angular.module('Teem')
       scope.project.addNeed(need);
 
       $timeout(() => {
-        editor.addWidget('need', need._id);
+        widget = editor.addWidget('need', need._id);
       });
 
       $timeout(() => {
-        var textarea = document.querySelector('.need-form-' + need._id + ' textarea');
+        var textarea = angular.element(widget).find('textarea');
 
         if (textarea) {
           textarea.focus();
