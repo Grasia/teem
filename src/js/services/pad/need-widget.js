@@ -18,6 +18,9 @@ angular.module('Teem')
               stopEvents = ['keypress', 'keyup', 'keydown'],
               isolateScope;
 
+          // Cancel widget contenteditable attributes
+          element.attr('contenteditable', 'false');
+
           function stopEvent (e) { e.stopPropagation(); }
 
           stopEvents.forEach(function (eventName) {
