@@ -24,14 +24,18 @@ angular.module('Teem')
             parent.addEventListener(eventName, stopEvent);
           });
 
-          $timeout(function() {
+          $timeout(() => {
             isolateScope = element.isolateScope();
 
             isolateScope.project = scope.project;
             isolateScope.need = need;
           });
 
-          angular.element(parent).append(compiled);
+          // Wait for the directive to be compiled before adding it
+          $timeout(() => {
+            angular.element(parent).append(compiled);
+          });
+
         }
       });
     }
