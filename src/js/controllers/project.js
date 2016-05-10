@@ -149,7 +149,7 @@ angular.module('Teem')
     $scope.swipeToChat = swipeToProjectTab('chat');
 
     $scope.hmManagerOpt = '{"cssProps": {"userSelect": true}}';
-    $scope.hmRecognizerOpt = '{"threshold": 200, "pointers": 2}';
+    $scope.hmRecognizerOpt = '{"threshold": 200}';
 
 
     SharedState.initialize($scope, 'hiddenTabs');
