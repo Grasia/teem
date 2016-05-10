@@ -8,7 +8,7 @@ angular.module('Teem')
       controller: [
       '$scope',
       function($scope) {
-        $scope.toggleCompleted = function (need) {
+        $scope.toggleCompleted = function (need, event) {
           event.stopPropagation();
           // Needed by the magic of material design
           event.preventDefault();
