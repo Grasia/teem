@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': isNew() || areTabsHidden()}">
+  <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden()}">
     <div ui-state="projectTab" class="project-tabs">
       <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
         <div class="scrollable">
