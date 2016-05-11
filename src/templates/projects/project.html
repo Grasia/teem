@@ -32,10 +32,10 @@
               <div class="row">
                 <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5 project-photo-responsive">
                   <div ui-set="{uploadPictureSharedState: uploadProjectPhoto}" ui-state="uploadPictureSharedState" ng-if="project.isContributor()">
-                    <img ng-src="{{project.image.url || 'images/default-project.png'}}">
+                    <img ng-src="{{project.image.url || project.defaultLogo()}}">
                   </div>
                   <div ng-if="!project.isContributor()">
-                    <img ng-src="{{project.image.url || 'images/default-project.png'}}">
+                    <img ng-src="{{project.image.url || project.defaultLogo()}}">
                   </div>
                 </div>
               </div>

@@ -33,6 +33,7 @@
     "SwellRTConfig": false,
     "Swiper": false,
     "$": false,
-    "PushNotification": false
+    "PushNotification": false,
+    "aggregation": false
   }
 }

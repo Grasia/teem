@@ -2,12 +2,17 @@
 
 angular.module('Teem')
   .factory('ProjectsSvc', [
-  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User', '$rootScope',
-  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User, $rootScope){
+  'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
+  '$rootScope', 'Logo',
+  function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User,
+  $rootScope, Logo){
 
     // class that expose only read methods of the project object
-    class ProjectReadOnly {
+    class ProjectReadOnly extends aggregation(Logo) {
       constructor (val) {
+        // calling "this" is not allowed before super()
+        super();
+
         if (val) {
           for (var k in val.root){
             if (val.root.hasOwnProperty(k)){
@@ -328,7 +333,7 @@ angular.module('Teem')
       }
 
       addNeed(need) {
-        
+
         // Quick dirty hack until SwellRT provides ids for array elements
         need._id = Math.random().toString().substring(2);
         need.author = SessionSvc.users.current();
