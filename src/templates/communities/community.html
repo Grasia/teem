@@ -3,10 +3,10 @@
     <div class="scrollable-content">
       <div class="community-gallery">
         <div ui-set="{uploadPictureSharedState: uploadCommunityPhoto}" ui-state="uploadPictureSharedState" ng-if="community.isParticipant()">
-          <img ng-src="{{community.image.url || 'images/default-community.png'}}">
+          <img ng-src="{{community.image.url || community.defaultLogo()}}">
         </div>
         <div ng-if="!community.isParticipant()">
-          <img ng-src="{{community.image.url || 'images/default-community.png'}}">
+          <img ng-src="{{community.image.url || community.defaultLogo()}}">
         </div>
       </div>
       <div class="community-info section">
