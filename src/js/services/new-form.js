@@ -24,9 +24,10 @@ angular.module('Teem')
 
             scope.invite.selected.forEach(function(i){
 
+              var value = JSON.parse(i);
               // if it is an email address
-              if (typeof i === 'object' && i.email) {
-                emails.push(i.email);
+              if (typeof value === 'object' && value.email) {
+                emails.push(value.email);
               }
               // if it is an existing user
               else {
@@ -39,7 +40,7 @@ angular.module('Teem')
 
             });
 
-            SwellRT.invite(emails, scope.linkCurrentProject());
+            SwellRT.invite(emails, scope.linkCurrentProject(), scope.project.title);
 
             $rootScope.$broadcast('teem.' + objectName + '.join');
           }
