@@ -35,6 +35,7 @@ angular.module('Teem')
       scope = s;
       objectName = o;
 
+      scope.newFormObjectName = o;
       Object.assign(scope, scopeFn);
     }
 

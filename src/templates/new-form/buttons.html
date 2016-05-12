@@ -1,8 +1,16 @@
-<div class="section new-form-buttons"">
+<div class="section new-form-buttons">
   <div class="col-xs-6">
-  <button class="btn btn-default new-form-cancel-btn" ng-click="cancelNew()" translate>newForm.btn.cancel</button>
+  <button class="btn btn-default new-form-cancel-btn"
+          ng-click="cancelNew()"
+          analytics-on="click"
+          analitics-event="Cancel {{newFormObjectName}}"
+          translate>newForm.btn.cancel</button>
   </div>
   <div class="col-xs-6 text-right">
-    <button class="btn btn-default new-form-confirm-btn" ng-click="confirmNew()" translate>newForm.btn.confirm</button>
+    <button class="btn btn-default new-form-confirm-btn"
+            ng-click="confirmNew()"
+            analytics-on="click"
+            analytics-event="Create {{newFormObjectName}}"
+            translate>newForm.btn.confirm</button>
   </div>
 </div>
