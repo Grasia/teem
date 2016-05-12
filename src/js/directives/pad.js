@@ -25,6 +25,19 @@ angular.module('Teem')
 
           $scope.padCreate = function(editor) {
             needWidget.init(editor, $scope);
+
+            editor.registerWidget('img', {
+              onInit: function(parentElement, state) {
+                $scope.project.attachments[state].file.getUrl().then(url => {
+                  parentElement.innerHTML='<img src="'+url+'">';
+                });
+              },
+              onChangeState: function(parentElement, before, state) {
+                $scope.project.attachments[state].file.getUrl().then(url => {
+                  parentElement.innerHTML='<img src="'+url+'">';
+                });
+              }
+            });
           };
 
           $scope.padReady = function(editor) {
@@ -71,6 +84,10 @@ angular.module('Teem')
             $scope.widget = function(type) {
               if (type === 'need') {
                 needWidget.add();
+              }
+              if (type === 'img') {
+                var id = $scope.project.addAttachment(arguments[1]);
+                editor.addWidget('img', id);
               }
             };
 

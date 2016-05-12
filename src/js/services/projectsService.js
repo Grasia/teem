@@ -312,6 +312,24 @@ angular.module('Teem')
         }
       }
 
+      addAttachment (file) {
+        if (!file) {
+          return;
+        }
+        if (typeof this.attachments === 'undefined') {
+          this.attachments = {};
+        }
+        var swellFile = new swellRT.FileObject(file);
+        var id = Math.floor((1+Math.random())*0x100000000000000).toString(16);
+        this.attachments[id] = {
+          id,
+          file: swellFile,
+          who: User.currentId(),
+          time: (new Date()).toJSON()
+        };
+        return id;
+      }
+
       addChatMessage (text, file) {
         if (file) {
           file = new swellRT.FileObject(file);
@@ -513,6 +531,7 @@ angular.module('Teem')
           proxyProj.title = '';
           proxyProj.chat = [];
           proxyProj.pad = new swellRT.TextObject();
+          proxyProj.attachments = {};
           proxyProj.needs = [];
           proxyProj.lastAccesses = [];
           proxyProj.promoter = User.currentId();
