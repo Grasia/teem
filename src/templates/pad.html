@@ -21,11 +21,11 @@
       class="swellrt-editor scrollable-content"
       swellrt-editor-on-ready="padReady"
       swellrt-editor-on-create="padCreate"
-      editable="{{project.isContributor()}}"
+      editable="{{project.isParticipant()}}"
       ng-model="project.pad"
       placeholder="{{ 'pad.placeholder' | translate }}"
       id="pad"
-      block-edit="{{!project.isContributor()}}">
+      block-edit="{{!project.isParticipant()}}">
     </div>
   </div>
   <div class="scrollable-footer section" ng-if="pad.editing && !areTabsHidden()">

@@ -12,12 +12,11 @@ angular.module('Teem')
 
         $element.on('click', function() {
           SessionSvc.loginRequired($scope, function() {
-
-            if (!$scope.project.isContributor()) {
+            if (!$scope.project.isParticipant()) {
               $analytics.eventTrack('Join project');
             }
 
-            $scope.project.toggleContributor();
+            $scope.project.toggleParticipant();
             $timeout();
           });
         });

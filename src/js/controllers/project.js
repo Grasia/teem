@@ -124,7 +124,7 @@ angular.module('Teem')
             image: project.logoUrl()
           };
 
-          if($location.search().tab === 'chat' && !$scope.project.isContributor()){
+          if($location.search().tab === 'chat' && !$scope.project.isParticipant()){
             SharedState.setOne('projectTab', 'pad');
           }
 
@@ -215,7 +215,7 @@ angular.module('Teem')
     $scope.hasChanged = function(section){
 
       if(!$scope.project || ! $scope.project.lastChange(section) ||
-        !$scope.project.isContributor()){
+        !$scope.project.isParticipant()){
         return false;
       }
 

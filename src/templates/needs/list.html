@@ -10,7 +10,7 @@
 
 <div class="section need-list">
   <div class="alert alert-info" ng-if="needs.length === 0" translate>
-    {{ 'need.index.empty.' + (project.isContributor() ? 'contributor' : 'reader') }}
+    {{ 'need.index.empty.' + (project.isParticipant() ? 'contributor' : 'reader') }}
   </div>
 
   <div class="list-group project-needs-list project-needs">

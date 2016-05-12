@@ -11,7 +11,7 @@
       </label>
     </div>
     <div class="need-name">
-      <textarea ng-if="project.isContributor()"
+      <textarea ng-if="project.isParticipant()"
                 class="form-control"
                 rows="1"
                 autosize
@@ -19,7 +19,7 @@
                 ng-model="need.text"
                 placeholder="{{ 'need.new.placeholder' | translate }}">
       </textarea>
-      <div ng-if="!project.isContributor()" class="section-text-readonly" ng-class="need.completed === 'true' ? 'text-strike' : ''">
+      <div ng-if="!project.isParticipant()" class="section-text-readonly" ng-class="need.completed === 'true' ? 'text-strike' : ''">
         {{ need.text }}
       </div>
     </div>

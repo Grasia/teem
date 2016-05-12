@@ -3,15 +3,15 @@
 angular.module('Teem')
   .factory('ProjectsSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
-  '$rootScope', 'Logo', 'Url',
+  '$rootScope', 'Logo', 'Url', 'Participation',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User,
-  $rootScope, Logo, Url){
+  $rootScope, Logo, Url, Participation){
 
     // class that expose only read methods of the project object
-    class ProjectReadOnly extends aggregation(Object, Logo, Url) {
+    class ProjectReadOnly extends aggregation(Object, Logo, Url, Participation) {
       constructor (val) {
         // calling "this" is not allowed before super()
-        super();
+        super(val);
 
         if (val) {
           for (var k in val.root){
@@ -19,7 +19,6 @@ angular.module('Teem')
               this[k] = val.root[k];
             }
           }
-          this._participants = val.participants;
         }
       }
 
@@ -137,13 +136,6 @@ angular.module('Teem')
         return this.supporters.indexOf(userId) > -1;
       }
 
-      isContributor (userId = User.currentId()) {
-        if (! userId) {
-          return false;
-        }
-        return this._participants.indexOf(userId) > -1;
-      }
-
       needCompletedCount () {
         var completed = 0;
 
@@ -204,27 +196,9 @@ angular.module('Teem')
       isShareMode (mode) {
         return mode === this.shareMode;
       }
-
-      participantCount () {
-        return this._participants.reduce(function(a,b){
-          // do not count participants of the form @domain that represents that it is a public wave.
-          return a + (/.+@.+/.test(b)? 1 : 0);
-        }, 0);
-      }
     }
 
-    class Project extends ProjectReadOnly {
-
-      addContributor (userId = User.currentId()) {
-
-        if (userId && this._participants.indexOf(userId) < 0){
-          this._participants.push(userId);
-
-          if (userId === User.currentId()){
-            $rootScope.$broadcast('teem.project.join');
-          }
-        }
-      }
+    class Project extends aggregation(ProjectReadOnly, Participation.ReadWrite) {
 
       setShareMode (shareMode) {
         this.shareMode = shareMode;
@@ -234,7 +208,7 @@ angular.module('Teem')
        * Record when the user had her last and previous access to one project section
        */
       setTimestampAccess (section, overridePrev) {
-        if (! this.isContributor()) {
+        if (! this.isParticipant()) {
           return;
         }
 
@@ -277,32 +251,6 @@ angular.module('Teem')
           this.supporters.splice(index, 1);
         } else {
           this.supporters.push(userId);
-        }
-      }
-
-
-      removeContributor (userId = User.currentId()) {
-
-        this._participants.splice(
-          this._participants.indexOf(userId),
-          1);
-
-        if (userId === User.currentId()){
-          $rootScope.$broadcast('teem.project.leave');
-        }
-      }
-
-      toggleContributor () {
-        if (! SessionSvc.users.loggedIn()) {
-          return;
-        }
-
-        var userId = User.currentId();
-
-        if (this.isContributor(userId)) {
-          this.removeContributor(userId);
-        } else {
-          this.addContributor(userId);
         }
       }
 
@@ -362,7 +310,7 @@ angular.module('Teem')
       toggleNeedCompleted (need) {
         var newStatus;
 
-        if (! this.isContributor()) {
+        if (! this.isParticipant()) {
           return;
         }
 

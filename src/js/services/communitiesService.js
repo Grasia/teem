@@ -3,24 +3,25 @@
 angular.module('Teem')
   .factory('CommunitiesSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
-  'User', '$rootScope', 'Logo', 'Url',
+  'User', '$rootScope', 'Logo', 'Url', 'Participation',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc,
-  User, $rootScope, Logo, Url){
+  User, $rootScope, Logo, Url, Participation){
 
-    class CommunityReadOnly extends aggregation(Object, Logo, Url) {
+    class CommunityReadOnly extends aggregation(Object, Logo, Url, Participation) {
 
-      constructor (val) {
+      constructor (model) {
         // calling "this" is not allowed before super()
         super();
 
-        if (val) {
-          for (var k in val.root){
-            if (val.root.hasOwnProperty(k)){
-              this[k] = val.root[k];
+        if (model) {
+          for (var k in model.root){
+            if (model.root.hasOwnProperty(k)){
+              this[k] = model.root[k];
             }
           }
-          this._participants = val.participants;
         }
+
+        this._participants = model.participants;
       }
 
       get pathPrefix () { return '/communities/'; }
@@ -31,82 +32,9 @@ angular.module('Teem')
            community: this.id
          });
       }
-
-      isParticipant (user = SessionSvc.users.current()) {
-        if (! user) {
-          return false;
-        }
-
-        return this._participants.indexOf(user) > -1;
-      }
-
-      participantCount () {
-        return this._participants.reduce(function(a,b){
-          // do not count participants of the form @domain that represents that it is a public wave.
-          return a + (/.+@.+/.test(b)? 1 : 0);
-        }, 0);
-      }
     }
 
-    class Community extends CommunityReadOnly {
-
-      addParticipant (user) {
-        if (!user){
-          if (!SessionSvc.users.loggedIn()) {
-            return;
-          }
-
-          user = SessionSvc.users.current();
-        }
-
-        if (this.isParticipant(user)) {
-          return;
-        }
-
-        this._participants.push(user);
-
-        if (user === User.currentId()) {
-          $rootScope.$broadcast('teem.community.join');
-        }
-      }
-
-      removeParticipant (user) {
-        if (!user){
-          if (!SessionSvc.users.loggedIn()) {
-            return;
-          }
-
-          user = SessionSvc.users.current();
-        }
-
-        if (! this.isParticipant(user)) {
-          return;
-        }
-
-        this._participants.splice(
-          this._participants.indexOf(user),
-          1);
-
-          if (user === User.currentId()) {
-            $rootScope.$broadcast('teem.community.leave');
-          }
-      }
-
-      toggleParticipant (user) {
-        if (!user){
-          if (!SessionSvc.users.loggedIn()) {
-            return;
-          }
-
-          user = SessionSvc.users.current();
-        }
-
-        if (this.isParticipant(user)) {
-          this.removeParticipant(user);
-        } else {
-          this.addParticipant(user);
-        }
-      }
+    class Community extends aggregation(CommunityReadOnly, Participation.ReadWrite) {
 
       delete () {
         this.type = 'deleted';

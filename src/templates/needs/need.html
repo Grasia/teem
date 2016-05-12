@@ -1,5 +1,5 @@
 <div class="list-group-item need-item"
-     ng-if="project.isContributor() || need.completed !== 'add'">
+     ng-if="project.isParticipant() || need.completed !== 'add'">
   <div class="need-comments-btn" ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
     <span class="need-comments-icon">
       <i class="fa fa-comment"
@@ -21,7 +21,7 @@
              ng-click="updateNeed(need, $event)">
         </div>
         <div class="need-name">
-          <textarea ng-if="project.isContributor()"
+          <textarea ng-if="project.isParticipant()"
                     class="form-control"
                     rows="1"
                     saving-status
@@ -32,7 +32,7 @@
                     ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
                     ng-click="$event.stopPropagation()">
           </textarea>
-          <div ng-if="!project.isContributor()" class="section-text-readonly" ng-class="need.completed === 'true' ? 'text-strike' : ''">
+          <div ng-if="!project.isParticipant()" class="section-text-readonly" ng-class="need.completed === 'true' ? 'text-strike' : ''">
             {{ need.text }}
           </div>
         </div>
