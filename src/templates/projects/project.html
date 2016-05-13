@@ -85,7 +85,7 @@
 
             <pad></pad>
 
-            <div class="section project-add-users"  ng-if="isNew()">
+            <div class="section project-add-users"  ng-if="isNew() && !pad.editing">
               <selector multiple
                 config="selectizeConfig"
                 options="invite.list" model="invite.selected"
@@ -115,7 +115,7 @@
               <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
             </div>
           </div>
-          <div class="scrollable-footer" ng-if="isNew()">
+          <div class="scrollable-footer" ng-if="isNew() && !pad.editing">
             <div ng-include="'new-form/buttons.html'"></div>
           </div>
         </div>

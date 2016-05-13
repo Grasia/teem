@@ -96,6 +96,7 @@ describe('Teem', function() {
       element(by.css('.swellrt-editor')).click();
       element(by.css('.wave-editor-on')).sendKeys(project.pad);
 
+      element(by.css('.pad-check')).click();
       element(by.css('.new-form-confirm-btn')).click();
 
       var projectTitleEl = by.css('.project-header h1');

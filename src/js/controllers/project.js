@@ -154,7 +154,7 @@ angular.module('Teem')
 
     SharedState.initialize($scope, 'hiddenTabs');
     $scope.areTabsHidden = function() {
-      return $scope.isNew() || SharedState.isActive('hiddenTabs') && $window.innerHeight < 400;
+      return SharedState.isActive('hiddenTabs') && $window.innerHeight < 400;
     };
 
     NewForm.initialize($scope, 'project');
