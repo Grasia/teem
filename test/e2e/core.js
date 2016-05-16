@@ -141,7 +141,7 @@ describe('Teem', function() {
       var chatText = 'This is a nice opportunity to discuss about testing';
 
       element(by.css('.chat-send textarea')).sendKeys(chatText);
-      element(by.css('.chat-input-button')).click();
+      element(by.css('#chatSendBtn')).click();
 
       var chatMsg = by.css('.chat-message-text');
       browser.wait(function() {
