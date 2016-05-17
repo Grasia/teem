@@ -197,7 +197,13 @@ angular.module('Teem')
               Notification.error('chat.upload.tooLarge');
               return;
             }
-            $scope.project.addChatMessage(CAMERA_SYMBOL, file);
+            $scope.project.addChatMessage(CAMERA_SYMBOL, file).then((fileUrl) => {
+              $timeout(() => {
+                // Waiting for rebind issue: https://github.com/Pasvaz/bindonce/issues/42
+                var lastMsg = angular.element(document.querySelector('.chat-messages:last-child .chat-message:last-child .chat-message-text'));
+                lastMsg.parent()[0].insertBefore(angular.element('<div class="chat-message-file"><img src="'+fileUrl+'"/></div>')[0], lastMsg[0]);
+              });
+            });
           };
         }
       ],

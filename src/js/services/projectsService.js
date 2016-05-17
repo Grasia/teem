@@ -342,6 +342,13 @@ angular.module('Teem')
         });
 
         this.setTimestampAccess('chat', true);
+        return file ? file.getUrl() : undefined;
+      }
+
+      findNeed (id) {
+        return this.needs.filter(function (need) {
+          return need._id === id;
+        })[0];
       }
 
       findNeed (id) {
