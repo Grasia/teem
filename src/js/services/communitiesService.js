@@ -3,11 +3,11 @@
 angular.module('Teem')
   .factory('CommunitiesSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
-  'User', '$rootScope', 'Logo', 'url',
+  'User', '$rootScope', 'Logo', 'Url',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc,
-  User, $rootScope, Logo, url){
+  User, $rootScope, Logo, Url){
 
-    class CommunityReadOnly extends aggregation(Object, Logo, url) {
+    class CommunityReadOnly extends aggregation(Object, Logo, Url) {
 
       constructor (val) {
         // calling "this" is not allowed before super()

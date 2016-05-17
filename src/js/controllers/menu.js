@@ -10,14 +10,14 @@
 
 angular.module('Teem')
   .controller('MenuCtrl', [
-  '$scope', 'config', 'url', 'SessionSvc', 'CommunitiesSvc', 'ProjectsSvc',
+  '$scope', 'config', 'Url', 'SessionSvc', 'CommunitiesSvc', 'ProjectsSvc',
   'User', '$timeout', 'SharedState', '$location',
-  function($scope, config, url, SessionSvc, CommunitiesSvc, ProjectsSvc,
+  function($scope, config, Url, SessionSvc, CommunitiesSvc, ProjectsSvc,
            User, $timeout, SharedState, $location){
     if (config.support) {
       $scope.support = {
-        communityId: url.urlId(config.support.communityId),
-        projectId:   url.urlId(config.support.projectId)
+        communityId: Url.encode(config.support.communityId),
+        projectId:   Url.encode(config.support.projectId)
       };
     }
 

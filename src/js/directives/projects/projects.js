@@ -8,11 +8,11 @@ angular.module('Teem')
         context: '=context'
       },
       controller: [
-        'SessionSvc', 'url', '$scope', '$location',
-        function (SessionSvc, url, $scope, $location) {
+        'SessionSvc', '$scope', '$location',
+        function (SessionSvc, $scope, $location) {
 
             $scope.showProject = function(project, tab = 'pad') {
-              $location.path('/teems/' + url.urlId(project.id)).search('tab', tab);
+              $location.path(project.path()).search('tab', tab);
             };
 
             var lastChatsCache = [];

@@ -41,9 +41,9 @@ angular.module('Teem')
       });
   }])
   .controller('FetchProject', [
-  'ProjectsSvc', 'url', '$route', '$location',
-  function(ProjectsSvc, url, $route, $location) {
-    var communityId = url.decodeUrlId($route.current.params.communityId),
+  'ProjectsSvc', 'Url', '$route', '$location',
+  function(ProjectsSvc, Url, $route, $location) {
+    var communityId = Url.decode($route.current.params.communityId),
         localId     = $route.current.params.id;
 
     ProjectsSvc.all({
@@ -53,7 +53,7 @@ angular.module('Teem')
       var project = projects[0];
 
       if (project) {
-        $location.path('/teems/' + url.urlId(project.id));
+        $location.path(project.path());
         return;
       }
 
@@ -62,14 +62,14 @@ angular.module('Teem')
       }).then(function(project) {
         project.localId = localId;
 
-        $location.path('/teems/' + url.urlId(project.id));
+        $location.path(project.path());
       });
     });
   }])
   .controller('ProjectCtrl', [
-  'SessionSvc', 'url', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
+  'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
   'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User',
-  function (SessionSvc, url, $scope, $rootScope, $location, $route, $timeout, swellRT,
+  function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT,
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User) {
 
     var editingTitle = false;
@@ -203,13 +203,6 @@ angular.module('Teem')
         $scope.project.setTimestampAccess(current.params.tab);
       }
     });
-
-    $scope.linkCurrentProject = function() {
-
-      // using location.host instead of $location.host because
-      // it gives port information when needed
-      return $location.protocol() + '://' +  location.host + $location.path();
-    };
 
     $scope.cancelProject = function() {
       SharedState.turnOff('projectTitleReminder');

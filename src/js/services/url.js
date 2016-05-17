@@ -9,7 +9,7 @@
  */
 
 angular.module('Teem')
-  .factory('url', [
+  .factory('Url', [
   'base64', '$location',
   function(base64, $location) {
 
@@ -33,13 +33,13 @@ angular.module('Teem')
         return $location.protocol() + '://' +  location.host  + this.path();
       }
 
-      static urlId (id) {
+      static encode (id) {
         if (id === undefined) { return ''; }
 
         return base64.urlencode(id);
       }
 
-      static decodeUrlId (urlId) {
+      static decode (urlId) {
         if (urlId === undefined) { return ''; }
 
         return base64.urldecode(urlId);

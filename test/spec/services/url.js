@@ -24,8 +24,8 @@ describe('Url', function() {
       pathPrefix = '/testing/';
 
 
-  beforeEach(inject(function (_url_, _base64_) {
-    Url =  _url_;
+  beforeEach(inject(function (_Url_, _base64_) {
+    Url =  _Url_;
     base64 = _base64_;
 
     class Test_ extends aggregation(Object, Url) {
@@ -62,15 +62,15 @@ describe('Url', function() {
 
   describe('static methods', function () {
     it('urlId should encode', function () {
-      expect(Url.urlId()).toBe('');
+      expect(Url.encode()).toBe('');
 
-      expect(Url.urlId(id)).toBe(base64.urlencode(id));
+      expect(Url.encode(id)).toBe(base64.urlencode(id));
     });
 
     it('decodeUrlId should deencode', function () {
-      expect(Url.decodeUrlId()).toBe('');
+      expect(Url.decode()).toBe('');
 
-      expect(Url.decodeUrlId(base64.urlencode(id))).toBe(id);
+      expect(Url.decode(base64.urlencode(id))).toBe(id);
     });
   });
 });

@@ -3,12 +3,12 @@
 angular.module('Teem')
   .factory('ProjectsSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
-  '$rootScope', 'Logo', 'url',
+  '$rootScope', 'Logo', 'Url',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User,
-  $rootScope, Logo, url){
+  $rootScope, Logo, Url){
 
     // class that expose only read methods of the project object
-    class ProjectReadOnly extends aggregation(Object, Logo, url) {
+    class ProjectReadOnly extends aggregation(Object, Logo, Url) {
       constructor (val) {
         // calling "this" is not allowed before super()
         super();

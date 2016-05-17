@@ -19,7 +19,7 @@ angular.module('Teem')
               if ($scope.type === 'community') {
 
                 CommunitiesSvc.create({}, function(c) {
-                  $location.path('/communities/' + c.urlId).search('form', 'new');
+                  $location.path(c.path()).search('form', 'new');
                 });
 
               } else if ($scope.type === 'project') {
@@ -29,7 +29,7 @@ angular.module('Teem')
                 }
 
                 ProjectsSvc.create(params, function(p) {
-                  $location.path('/teems/' + p.urlId).search('form', 'new');
+                  $location.path(p.path()).search('form', 'new');
                 });
               }
             });

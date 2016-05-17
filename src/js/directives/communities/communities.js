@@ -53,7 +53,7 @@ angular.module('Teem')
         };
 
         $scope.showCommunity = function(community) {
-          $location.path('/communities/' + community.urlId);
+          $location.path(community.path());
         };
       }],
       templateUrl: 'communities/communities.html'

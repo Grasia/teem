@@ -11,9 +11,9 @@ angular.module('Teem')
   .directive('community', function() {
     return {
       controller: [
-      '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout',
+      '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout',
       'Loading', '$route', 'NewForm', 'swellRT', '$rootScope',
-      function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout,
+      function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout,
                 Loading, $route, NewForm, swellRT, $rootScope) {
 
         var editingTitle = false;

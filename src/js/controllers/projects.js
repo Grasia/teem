@@ -41,9 +41,9 @@ angular.module('Teem')
       });
   }])
   .controller('ProjectsCtrl', [
-  'SessionSvc', 'url', '$scope', '$location', '$route', 'time',
+  'SessionSvc', '$scope', '$location', '$route', 'time',
   'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
-  function (SessionSvc, url, $scope, $location, $route, time,
+  function (SessionSvc, $scope, $location, $route, time,
   CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
     var communityId = $route.current.params.communityId;
 

@@ -14,7 +14,7 @@
 
         <div class="project-communities"
              ng-if="context == 'home' || context == 'public'">
-             <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="/communities/{{ c.urlId }}">{{ c.name }}</a></span>
+             <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
         </div>
 
         <div class="project-description">

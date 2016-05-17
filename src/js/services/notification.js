@@ -8,8 +8,8 @@
  */
 
 angular.module('Teem')
-  .factory( 'NotificationSvc', ['$location', 'url', '$timeout', '$rootScope', 'SharedState',
-   function($location, url, $timeout, $rootScope, SharedState){
+  .factory( 'NotificationSvc', ['$location', 'Url', '$timeout', '$rootScope', 'SharedState',
+   function($location, Url, $timeout, $rootScope, SharedState){
 
     var push;
     var registrationId;
@@ -41,7 +41,7 @@ angular.module('Teem')
           // navigate to notification's workspace if received in background
           if (!data.additionalData.foreground) {
 
-            $location.path('/teems/' + url.urlId(data.additionalData.projId));
+            $location.path('/teems/' + Url.encode(data.additionalData.projId));
 
             // this navigates to context tab if not already in a project view
             $location.search('tab', data.additionalData.context);

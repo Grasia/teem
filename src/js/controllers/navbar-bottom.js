@@ -8,11 +8,11 @@
  */
 
 angular.module('Teem')
-  .controller('NavbarBottomCtrl', ['url', '$scope', function(url, $scope){
+  .controller('NavbarBottomCtrl', ['Url', '$scope', function(Url, $scope){
 
     $scope.projectsUrl = function(communityId){
       if (communityId) {
-        return '/communities/' + url.urlId(communityId) + '/teems';
+        return '/communities/' + Url.encode(communityId) + '/teems';
       } else {
         return '/communities';
       }

@@ -36,9 +36,9 @@ angular.module('Teem')
   .directive('chat', ['Notification', function(Notification) {
     return {
       controller: [
-        'SessionSvc', 'url', '$scope', '$rootScope', '$route', '$location',
+        'SessionSvc', '$scope', '$rootScope', '$route', '$location',
         '$animate', 'time', '$timeout',
-        function(SessionSvc, url, $scope, $rootScope, $route, $location,
+        function(SessionSvc, $scope, $rootScope, $route, $location,
         $animate, time, $timeout){
           const pageSize = 20;
           const CAMERA_SYMBOL = '\uD83D\uDCF7';
@@ -109,7 +109,7 @@ angular.module('Teem')
           };
 
           $scope.showPad = function() {
-            $location.path('/teems/' + url.urlId($route.current.params.id) + '/pad');
+            $location.path($scope.project.path() + '/pad');
           };
 
           $scope.addToPad = function(txt) {

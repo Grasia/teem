@@ -12,9 +12,9 @@ angular.module('Teem')
   .directive('pad', function() {
     return {
       controller: [
-        'SessionSvc', 'url', '$rootScope', '$scope', '$route', '$location',
+        'SessionSvc', '$rootScope', '$scope', '$route', '$location',
         '$timeout', 'SharedState', 'needWidget',
-        function(SessionSvc, url, $rootScope, $scope, $route, $location,
+        function(SessionSvc, $rootScope, $scope, $route, $location,
         $timeout, SharedState, needWidget) {
 
           $scope.pad = {
