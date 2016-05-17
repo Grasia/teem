@@ -48,7 +48,7 @@ var aggregation = function (base) {
     /*  copy properties  */
     var copyProps = function (target, source) {
         Object.getOwnPropertyNames(source).forEach(function (prop) {
-            if (prop.match(/^(?:initializer|constructor|prototype|arguments|caller|name|bind|call|apply|toString|length)$/))
+            if (prop.match(/^(?:initializer|constructor|prototype|arguments|caller|callee|name|bind|call|apply|toString|length)$/))
                 return
             Object.defineProperty(target, prop, Object.getOwnPropertyDescriptor(source, prop))
         })

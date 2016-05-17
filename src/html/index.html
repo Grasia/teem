@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="/app.manifest">
+<html manifest="/app.manifest" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="utf-8" />
     <title>Teem</title>
@@ -33,6 +33,11 @@
 
     <!-- inject:js -->
     <script src="/js/app.min.js"></script>
+
+    <meta property="og:title" content="{{:: og.title }}" />
+    <meta property="og:url"  content="{{:: og.url }}" />
+    <meta property="og:image" content="{{:: og.image }}" />
+    <meta property="og:description" content="{{:: og.description }}" />
   </head>
 
   <body>

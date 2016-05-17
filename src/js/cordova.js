@@ -12,7 +12,7 @@ angular.element(document).ready(function () {
 
       // Device APIs are available
       function onDeviceReady() {
-        angular.bootstrap(document.body, ['Teem']);
+        angular.bootstrap(document.documentElement, ['Teem']);
         d.addEventListener('resume', onResume, false);
       }
 
@@ -28,6 +28,6 @@ angular.element(document).ready(function () {
       d.getElementsByTagName('head')[0].appendChild(script);
     }(document));
   } else {
-    angular.bootstrap(document.body, ['Teem']);
+    angular.bootstrap(document.documentElement, ['Teem']);
   }
 });

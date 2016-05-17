@@ -23,6 +23,7 @@
     "after": false,
     "afterAll": false,
     "afterEach": false,
+    "aggregation": false,
     "angular": false,
     "before": false,
     "beforeAll": false,

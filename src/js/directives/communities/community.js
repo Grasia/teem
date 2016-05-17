@@ -12,9 +12,9 @@ angular.module('Teem')
     return {
       controller: [
       '$scope', 'SessionSvc', 'url', '$location', 'CommunitiesSvc', '$timeout',
-      'Loading', '$route', 'NewForm', 'swellRT',
+      'Loading', '$route', 'NewForm', 'swellRT', '$rootScope',
       function ($scope, SessionSvc, url, $location, CommunitiesSvc, $timeout,
-                Loading, $route, NewForm, swellRT) {
+                Loading, $route, NewForm, swellRT, $rootScope) {
 
         var editingTitle = false;
 
@@ -22,6 +22,13 @@ angular.module('Teem')
           Loading.show(CommunitiesSvc.findByUrlId($route.current.params.id)).
             then(function(community){
               $scope.community = community;
+
+              $rootScope.og = {
+                title: community.name,
+                description: community.description,
+                url: community.url(),
+                image: community.logoUrl()
+              };
 
               Loading.show(community.myAndPublicProjects()).
               then(function (projects){

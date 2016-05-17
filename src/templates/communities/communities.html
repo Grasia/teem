@@ -8,7 +8,7 @@
              ng-click="showCommunity(community)">
           <div class="thumbnail">
             <div class="community-photo">
-              <img ng-src="{{community.image.url || community.defaultLogo()}}">
+              <img ng-src="{{community.logo()}}">
             </div>
             <div class="caption">
               <h3 class="community-title" ng-bind-html="community.name"></h3>

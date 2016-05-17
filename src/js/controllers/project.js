@@ -117,6 +117,13 @@ angular.module('Teem')
           $scope.project = project;
           $scope.populateUserSelector();
 
+          $rootScope.og = {
+            title: project.title,
+            description: project.pad.text().substring(0, 200),
+            url: project.url(),
+            image: project.logoUrl()
+          };
+
           if($location.search().tab === 'chat' && !$scope.project.isContributor()){
             SharedState.setOne('projectTab', 'pad');
           }

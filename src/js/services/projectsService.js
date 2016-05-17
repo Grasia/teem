@@ -3,12 +3,12 @@
 angular.module('Teem')
   .factory('ProjectsSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
-  '$rootScope', 'Logo',
+  '$rootScope', 'Logo', 'url',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User,
-  $rootScope, Logo){
+  $rootScope, Logo, url){
 
     // class that expose only read methods of the project object
-    class ProjectReadOnly extends aggregation(Logo) {
+    class ProjectReadOnly extends aggregation(Object, Logo, url) {
       constructor (val) {
         // calling "this" is not allowed before super()
         super();
@@ -23,13 +23,7 @@ angular.module('Teem')
         }
       }
 
-      get urlId () {
-        if (! this._urlId) {
-          this._urlId = base64.urlencode(this.id);
-        }
-
-        return this._urlId;
-      }
+      get pathPrefix () { return '/teems/'; }
 
       getTimestampAccess () {
         var access;

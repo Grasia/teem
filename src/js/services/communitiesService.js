@@ -3,11 +3,11 @@
 angular.module('Teem')
   .factory('CommunitiesSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'ProjectsSvc',
-  'User', '$rootScope', 'Logo',
+  'User', '$rootScope', 'Logo', 'url',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc,
-  User, $rootScope, Logo){
+  User, $rootScope, Logo, url){
 
-    class CommunityReadOnly extends aggregation(Logo) {
+    class CommunityReadOnly extends aggregation(Object, Logo, url) {
 
       constructor (val) {
         // calling "this" is not allowed before super()
@@ -23,13 +23,7 @@ angular.module('Teem')
         }
       }
 
-      get urlId () {
-        if (! this._urlId) {
-          this._urlId = base64.urlencode(this.id);
-        }
-
-        return this._urlId;
-      }
+      get pathPrefix () { return '/communities/'; }
 
       myAndPublicProjects () {
         return ProjectsSvc.all({
