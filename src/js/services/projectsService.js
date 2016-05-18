@@ -345,12 +345,6 @@ angular.module('Teem')
         })[0];
       }
 
-      findNeed (id) {
-        return this.needs.filter(function (need) {
-          return need._id === id;
-        })[0];
-      }
-
       addNeed(need) {
 
         // Quick dirty hack until SwellRT provides ids for array elements
