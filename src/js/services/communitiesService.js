@@ -7,8 +7,9 @@ angular.module('Teem')
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, ProjectsSvc,
   User, $rootScope, Logo, Url, Participation){
 
-    class CommunityReadOnly extends aggregation(Object, Logo, Url, Participation) {
+    class CommunityReadOnly extends aggregation(Object, Logo, Url, Participation.ReadOnly) {
 
+      // model is a readOnly object from a SwellRT query result
       constructor (model) {
         // calling "this" is not allowed before super()
         super();
@@ -19,9 +20,8 @@ angular.module('Teem')
               this[k] = model.root[k];
             }
           }
+          this._participants = model.participants;
         }
-
-        this._participants = model.participants;
       }
 
       get pathPrefix () { return '/communities/'; }

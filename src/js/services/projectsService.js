@@ -8,10 +8,12 @@ angular.module('Teem')
   $rootScope, Logo, Url, Participation){
 
     // class that expose only read methods of the project object
-    class ProjectReadOnly extends aggregation(Object, Logo, Url, Participation) {
+    class ProjectReadOnly extends aggregation(Object, Logo, Url, Participation.ReadOnly) {
+
+      // val is a readOnly object from a SwellRT query result
       constructor (val) {
         // calling "this" is not allowed before super()
-        super(val);
+        super();
 
         if (val) {
           for (var k in val.root){
@@ -19,6 +21,7 @@ angular.module('Teem')
               this[k] = val.root[k];
             }
           }
+          this._participants = val.participants;
         }
       }
 
