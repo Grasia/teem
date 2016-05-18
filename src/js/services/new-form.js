@@ -22,25 +22,30 @@ angular.module('Teem')
 
             var emails = [];
 
-            scope.invite.selected.forEach(function(i){
+            if (scope.invite) {
+              scope.invite.selected.forEach(function(i){
 
-              var value = JSON.parse(i);
-              // if it is an email address
-              if (typeof value === 'object' && value.email) {
-                emails.push(value.email);
-              }
-              // if it is an existing user
-              else {
-                if (objectName === 'project') {
-                  scope.project.addContributor(i);
-                } else if (objectName === 'community'){
-                  scope.community.addParticipant(i);
+                // if it is an email address
+                if (typeof i === 'object'){
+                  var value = JSON.parse(i);
+                  if (value.email) {
+                    emails.push(value.email);
+                  }
                 }
-              }
+                // if it is an existing user
+                else {
+                  if (objectName === 'project') {
+                    scope.project.addContributor(i);
+                  } else if (objectName === 'community'){
+                    scope.community.addParticipant(i);
+                  }
+                }
+              });
+            }
 
-            });
-
-            SwellRT.invite(emails, scope.linkCurrentProject(), scope.project.title);
+            if (emails.length > 0){
+              SwellRT.invite(emails, scope.linkCurrentProject(), scope.project.title);
+            }
 
             $rootScope.$broadcast('teem.' + objectName + '.join');
           }
