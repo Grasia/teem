@@ -44,7 +44,7 @@ angular.module('Teem')
             }
 
             if (emails.length > 0){
-              SwellRT.invite(emails, scope.linkCurrentProject(), scope.project.title);
+              SwellRT.invite(emails, scope.project.url(), scope.project.title);
             }
 
             $rootScope.$broadcast('teem.' + objectName + '.join');
