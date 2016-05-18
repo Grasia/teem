@@ -6,7 +6,6 @@
     "angular-animate": "1.5.x",
     "angular-bindonce": "~0.3.1",
     "angular-bootstrap": "latest",
-    "angular-elastic": "~2.4.2",
     "angular-route": "1.5.x",
     "angular-sanitize": "1.5.x",
     "angular-swellrt": "0.17.5",
@@ -39,7 +38,8 @@
   "devDependencies": {
     "angular-mocks": "1.5.0",
     "angular-scenario": "1.5.x",
-    "bootstrap-sass": "~3.3.6"
+    "bootstrap-sass": "~3.3.6",
+    "autosize": "~3.0.15"
   },
   "resolutions": {
     "angular": "1.5.x",

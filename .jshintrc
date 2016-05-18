@@ -21,6 +21,7 @@
   "globals": {
     "__session": false,
     "angular": false,
+    "autosize": false,
     "browser": false,
     "expect": false,
     "inject": false,

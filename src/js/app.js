@@ -21,7 +21,6 @@ angular
     'ui-notification',
     'selectize',
     'ui.bootstrap',
-    'monospaced.elastic',
     'angulartics',
     'angulartics.piwik',
     'SwellRTService',

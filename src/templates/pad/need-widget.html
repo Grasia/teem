@@ -14,7 +14,7 @@
       <textarea ng-if="project.isContributor()"
                 class="form-control"
                 rows="1"
-                msd-elastic
+                autosize
                 ng-class="need.completed === 'true' ? 'text-strike' : ''"
                 ng-model="need.text"
                 placeholder="{{ 'need.new.placeholder' | translate }}">

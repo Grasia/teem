@@ -30,7 +30,7 @@ var config = {
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       './bower_components/angular-ui-select/dist/select.js',
       './bower_components/angular-ui-notification/dist/angular-ui-notification.js',
-      './bower_components/angular-elastic/elastic.js',
+      './bower_components/autosize/dist/autosize.js',
       './bower_components/angular-bindonce/bindonce.js',
       './bower_components/angular-utf8-base64/angular-utf8-base64.js',
       './bower_components/SHA-1/sha1.js',

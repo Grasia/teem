@@ -25,7 +25,8 @@
                     class="form-control"
                     rows="1"
                     saving-status
-                    msd-elastic hide-tabs
+                    autosize
+                    hide-tabs
                     ng-class="need.completed === 'true' ? 'text-strike' : ''"
                     ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
                     ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
