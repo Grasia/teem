@@ -285,7 +285,6 @@ angular.module('Teem')
       },
       //code based on https://selectize.github.io/selectize.js/ email example
       create: function(input){
-        console.log(input);
         return {
           nick: input,
           _id: JSON.stringify({
