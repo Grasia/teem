@@ -25,19 +25,21 @@ angular.module('Teem')
             if (scope.invite) {
               scope.invite.selected.forEach(function(i){
 
-                // if it is an email address
-                if (typeof i === 'object'){
-                  var value = JSON.parse(i);
-                  if (value.email) {
-                    emails.push(value.email);
-                  }
+                var value;
+
+                try {
+                  value = JSON.parse(i);
                 }
                 // if it is an existing user
-                else {
-                  if (objectName === 'project') {
-                    scope.project.addContributor(i);
-                  } else if (objectName === 'community'){
-                    scope.community.addParticipant(i);
+                catch (e) {
+                  scope[objectName].addParticipant(i);
+                  return;
+                }
+
+                // if it is an email address
+                if (typeof value === 'object'){
+                  if (value.email) {
+                    emails.push(value.email);
                   }
                 }
               });
