@@ -13,13 +13,13 @@ angular.module('Teem')
     '$location',
     function($location) {
 
-    const LogoTypes = ['aubergine', 'blue', 'teal', 'yellow'];
+    const LogoColors = ['aubergine', 'blue', 'teal', 'yellow'];
 
     class Logo {
       defaultLogo () {
-        var type = this.id.slice(-1).charCodeAt(0) % LogoTypes.length;
+        var color = this.id.slice(-1).charCodeAt(0) % LogoColors.length;
 
-        return '/images/' + this.type + '_' + LogoTypes[type] + '.svg';
+        return '/images/' + this.type + '_' + LogoColors[color] + '.svg';
       }
 
       defaultLogoUrl () {
