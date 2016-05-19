@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('Loading', [
-  '$timeout', '$window',
-   function($timeout, $window) {
+  '$timeout',
+   function($timeout) {
      var status = {
        count: 0,
        show: false
@@ -14,9 +14,6 @@ angular.module('Teem')
        status.show = true;
        // Trigger angular digest
        $timeout();
-
-       // Tell prerender to wait for the SwellRT query
-       $window.prerenderReady = false;
      }
 
      function off() {
@@ -27,9 +24,6 @@ angular.module('Teem')
 
          // Trigger angular digest
          $timeout();
-
-         // Tell prerender everything is fine
-         $window.prerenderReady = true;
        }
      }
 
