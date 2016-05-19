@@ -205,11 +205,15 @@ angular.module('Teem')
         valueField: 'id',
         labelField: 'name',
         searchField: 'name',
+        maxOptions: 10,
         onChange: function(ids) {
           $scope.communities = $scope.communitySelector.options.filter(community => ids.includes(community.id));
           Selector.populateUserSelector($scope.invite.list, $scope.project.communities);
         },
-        plugins: ['remove_button']
+        plugins: ['remove_button'],
+        onDropdownOpen(dropdown){
+          dropdown[0].scrollIntoView();
+        }
       }
     };
     SessionSvc.onLoad(function() {

@@ -195,7 +195,7 @@
   },
   "project": {
     "add_people": {
-      "placeholder": "Añade personas",
+      "placeholder": "Añade personas de Teem o emails",
       "long_placeholder": "Añade personas de Teem o emails"
     },
     "community": {
