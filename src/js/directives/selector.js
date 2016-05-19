@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('Teem')
-  .directive('selector', function() {
+  .directive('selector', [function() {
+
     return {
       controller: [
       '$scope', '$element', '$attrs', 'SharedState', '$timeout',
@@ -63,4 +64,4 @@ angular.module('Teem')
       },
       templateUrl: 'selector.html'
     };
-  });
+  }]);

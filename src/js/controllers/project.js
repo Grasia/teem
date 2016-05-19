@@ -68,9 +68,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User', 'Selector',
   function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT,
-  SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User) {
+  SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User, Selector) {
 
     var editingTitle = false;
 
@@ -79,43 +79,11 @@ angular.module('Teem')
       selected : []
     };
 
-    function buildInviteItems(items){
-      var res = [];
-      items.forEach(function(i){
-        var nick = i._id.split('@')[0];
-        if (nick !== ''){
-          res.push({
-            _id: i._id,
-            nick: i._id.split('@')[0]
-          });
-        }
-      });
-
-      return res;
-    }
-    /* Populates the user selector witht the users that participate in the community
-     * or co-contributors if there are no communities
-     */
-    $scope.populateUserSelector = function() {
-
-      if ($scope.project.communities.length > 0){
-        CommunitiesSvc.communitiesContributors(
-          $scope.project.communities
-        ).then(function(result){
-          $scope.invite.list.push(buildInviteItems(result));
-        });
-      } else {
-        User.coContributors().then(function(r){
-          $scope.invite.list.push(buildInviteItems(r));
-        });
-      }
-    };
-
     SessionSvc.onLoad(function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(project) {
           $scope.project = project;
-          $scope.populateUserSelector();
+          Selector.populateUserSelector($scope.invite.list, $scope.project.communities);
 
           $rootScope.og = {
             title: project.title,
@@ -239,7 +207,7 @@ angular.module('Teem')
         searchField: 'name',
         onChange: function(ids) {
           $scope.communities = $scope.communitySelector.options.filter(community => ids.includes(community.id));
-          $scope.populateUserSelector();
+          Selector.populateUserSelector($scope.invite.list, $scope.project.communities);
         },
         plugins: ['remove_button']
       }
@@ -250,50 +218,8 @@ angular.module('Teem')
       });
     });
 
-    $scope.selectizeConfig = {
-      plugins: ['remove_button'],
-      valueField:'_id',
-      labelField:'nick',
-      searchField:'nick',
-      autocapitalize: 'off',
-      load: function(query, callback){
-        if (!query.length) {
-          return callback();
-        }
-        User.usersLike(query)
-          .then(function(r){
-            callback(buildInviteItems(r));
-            $timeout();
-          }, function(){
-            callback();
-            $timeout();
-          });
-      },
-      //code based on https://selectize.github.io/selectize.js/ email example
-      createFilter: function(input){
-        var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-          '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+    $scope.userSelectorConfig = Selector.config.users;
 
-          var match, regex;
-
-        regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-        match = input.match(regex);
-        if (match){
-          return !this.options.hasOwnProperty(match[0]);
-        }
-        return false;
-      },
-      //code based on https://selectize.github.io/selectize.js/ email example
-      create: function(input){
-        return {
-          nick: input,
-          _id: JSON.stringify({
-            email: input
-          })
-        };
-      }
-
-    };
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
       if ($scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {

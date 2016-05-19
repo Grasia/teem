@@ -12,11 +12,18 @@ angular.module('Teem')
     return {
       controller: [
       '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout',
-      'Loading', '$route', 'NewForm', 'swellRT', '$rootScope',
+      'Loading', '$route', 'NewForm', 'swellRT', '$rootScope', 'Selector',
       function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout,
-                Loading, $route, NewForm, swellRT, $rootScope) {
+                Loading, $route, NewForm, swellRT, $rootScope, Selector) {
 
         var editingTitle = false;
+
+        $scope.invite = {
+          list : [],
+          selected: []
+        };
+
+        $scope.userSelectorConfig = Selector.config.users;
 
         SessionSvc.onLoad(function(){
           Loading.show(CommunitiesSvc.findByUrlId($route.current.params.id)).
@@ -36,6 +43,8 @@ angular.module('Teem')
                 $scope.projects = projects;
               });
             });
+
+            Selector.populateUserSelector($scope.invite.list);
         });
 
         NewForm.initialize($scope, 'community');
@@ -56,6 +65,7 @@ angular.module('Teem')
         $scope.hideEditTitle = function() {
           editingTitle = false;
         };
+
       }],
       templateUrl: 'communities/community.html'
     };

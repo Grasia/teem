@@ -56,6 +56,11 @@
                     placeholder="{{ 'community.description.placeholder' | translate }}">
           </textarea>
         </div>
+
+        <selector multiple
+          config="userSelectorConfig"
+          options="invite.list" model="invite.selected"
+          placeholder=" 'project.add_people.placeholder' | translate" ng-if="isNew()"></selector>
       </div>
 
       <div class="community-projects section" ng-if="!isNew()">
