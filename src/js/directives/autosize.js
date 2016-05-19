@@ -3,10 +3,20 @@
 // Directive for using http://www.jacklmoore.com/autosize/
 angular.module('Teem')
   .directive('autosize',[
-  function() {
+  '$timeout',
+  function($timeout) {
     return {
-      link: function(scope, element) {
+      require: 'ngModel',
+      link: function(scope, element, attrs, ngModel) {
         autosize(element);
+
+        scope.$watch(function() {
+           return ngModel.$modelValue;
+         }, function() {
+           $timeout(() => {
+             autosize.update(element);
+           });
+         });
       }
     };
   }]);
