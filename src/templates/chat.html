@@ -20,7 +20,7 @@
             </div>
             <div class="chat-message-time" bo-text="hour(msg)">
             </div>
-            <div class="chat-message-file" bo-if="msg.file">
+            <div class="chat-message-file" ng-if="::(msg.file)">
               <img bo-src="msg.file.url"/>
             </div>
             <div class="chat-message-text" bo-html="msg.text | links | emojis"></div>

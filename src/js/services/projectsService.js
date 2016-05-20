@@ -287,7 +287,6 @@ angular.module('Teem')
         });
 
         this.setTimestampAccess('chat', true);
-        return file ? file.getUrl() : undefined;
       }
 
       findNeed (id) {
