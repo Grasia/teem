@@ -198,7 +198,6 @@ angular.module('Teem')
               return;
             }
             $scope.project.addChatMessage(CAMERA_SYMBOL, file);
-            });
           };
         }
       ],
