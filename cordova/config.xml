@@ -11,6 +11,19 @@ http://p2pvalue.eu/
     </author>
     <content src="https://app.teem.works/?cordova=android" />
     <allow-navigation href="https://app.teem.works/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
     <access origin="*" />
     <platform name="android">
       <config-file target="AndroidManifest.xml" parent="application/activity">
