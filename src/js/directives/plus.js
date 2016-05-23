@@ -32,6 +32,10 @@ angular.module('Teem')
                   $location.path(p.path()).search('form', 'new');
                 });
               }
+            },
+            {
+              form: 'register',
+              message: 'new_' + $scope.type
             });
           };
         });

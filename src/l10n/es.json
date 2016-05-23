@@ -337,6 +337,11 @@
       "password": "Contraseña",
       "title": "Entrar"
     },
+    "message" : {
+      "new_community": "Para crear una comunidad debes registrarte antes",
+      "new_project": "Para crear un teem debes registrarte antes",
+      "subtip": "¡solo te llevará un minuto!"
+    },
     "migration": {
       "button": "Hecho!",
       "email": "E-mail para recuperar tu contraseña, ¡siempre las olvidamos!",

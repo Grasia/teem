@@ -266,10 +266,24 @@ angular.module('Teem')
       }
     };
 
-    function loginRequired(scope, cb) {
+    function loginRequired(scope, cb, options = {}) {
+
       sessionPromise.then(function() {
+
         if (! users.loggedIn()) {
-          SharedState.turnOn('session');
+
+          let state = options.form;
+
+          if (options.message) {
+            state += '.' + options.message;
+          }
+
+          if (state) {
+            SharedState.set('session', state);
+          } else {
+            SharedState.turnOn('session');
+          }
+
           // Invoque $timout to refresh scope and actually show modal
           $timeout();
 

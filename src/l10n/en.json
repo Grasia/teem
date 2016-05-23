@@ -342,6 +342,11 @@
       "password": "Password",
       "title": "Log in"
     },
+    "message" : {
+      "new_community": "In order to create your community you have to register first",
+      "new_project": "In order to create your teem you have to register first",
+      "subtip": "it will take you a minute only!"
+    },
     "migration": {
       "button": "Done!",
       "email": "E-mail to recover password, we all forget them!",
