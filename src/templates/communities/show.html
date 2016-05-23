@@ -1,5 +1,5 @@
 <div ui-content-for="nav-title">
-  <div class="overflow-ellipsis" translate>{{community.name}}</div>
+  <div class="overflow-ellipsis">{{ community.name || 'community.new.title' | translate }}</div>
 </div>
 
 <div ui-content-for="nav-right">

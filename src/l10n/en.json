@@ -40,6 +40,7 @@
     "new": {
       "button": "...or create a new one",
       "tip": "Create your community and start adding people to work on your projects",
+      "title": "Create community",
       "welcome": "Hello, {{nick}}"
     },
     "participants": {
