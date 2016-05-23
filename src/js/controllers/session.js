@@ -60,7 +60,7 @@ angular.module('Teem')
             notificationScope.values = {nick: fields.nick};
             Notification.success({message: 'session.login.success', scope: notificationScope});
             $timeout(function(){
-              SharedState.turnOff('shouldLoginSharedState');
+              SharedState.turnOff('session');
             });
           },
           function(error){
@@ -103,7 +103,7 @@ angular.module('Teem')
       var onSuccess = function(){
         Notification.success('session.forgottenPassword.success');
         $timeout(function(){
-          SharedState.turnOff('shouldLoginSharedState');
+          SharedState.turnOff('session');
         });
       };
 
@@ -128,7 +128,7 @@ angular.module('Teem')
         delete localStorage.userId;
         Notification.success('session.' + $scope.form.current + '.success');
         $timeout(function(){
-          SharedState.turnOff('shouldLoginSharedState');
+          SharedState.turnOff('session');
         });
 
         fields.nick = params.id;
@@ -160,7 +160,7 @@ angular.module('Teem')
         Notification.success('session.' + $scope.form.current + '.success');
 
         $timeout(function(){
-          SharedState.turnOff('shouldLoginSharedState');
+          SharedState.turnOff('session');
         });
       };
 
@@ -183,14 +183,14 @@ angular.module('Teem')
           if (res.error) {
             Notification.error('session.set_email.error');
             $timeout(function(){
-              SharedState.turnOff('shouldLoginSharedState');
+              SharedState.turnOff('session');
             });
             return;
           }
 
           Notification.success('session.set_email.success');
           $timeout(function(){
-            SharedState.turnOff('shouldLoginSharedState');
+            SharedState.turnOff('session');
           });
         };
 
@@ -218,7 +218,7 @@ angular.module('Teem')
     };
 
     $scope.form = {
-      current: normalizeFormName($route.current.params.form || String(SharedState.get('shouldLoginSharedState'))),
+      current: normalizeFormName($route.current.params.form || String(SharedState.get('session'))),
       values: {},
       login: ['nick', 'password'],
       register: ['nick', 'password', 'passwordRepeat', 'email'],

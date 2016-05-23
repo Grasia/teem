@@ -232,7 +232,7 @@ angular.module('Teem')
           user, pass, function(){
             // migrating users with default password
             if (user !== undefined) {
-              SharedState.set('shouldLoginSharedState', 'migration');
+              SharedState.set('session', 'migration');
               $timeout();
             }
           },
@@ -269,7 +269,7 @@ angular.module('Teem')
     function loginRequired(scope, cb) {
       sessionPromise.then(function() {
         if (! users.loggedIn()) {
-          SharedState.turnOn('shouldLoginSharedState');
+          SharedState.turnOn('session');
           // Invoque $timout to refresh scope and actually show modal
           $timeout();
 
