@@ -1,8 +1,8 @@
 <div class="section"
   ng-class="pad.editing ? 'project-pad-editing' : ''">
   <div class="pad no-pointer" ng-click="editOn()">
-    <div class="section scrollable-header">
-      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-if="pad.editing">
+    <div class="section scrollable-header" ng-if="pad.editing">
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group btn-group-xs" role="group" aria-label="First group">
           <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'btn-info': isActive}">
             <i class="fa fa-{{btn}}"></i>
