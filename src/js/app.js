@@ -15,7 +15,6 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngAnimate',
-    'ngCookies',
     'ngMessages',
     'mobile-angular-ui',
     'ui-notification',
@@ -49,22 +48,11 @@ angular
       when('/', {
         template: '',
         controller: [
-          'SessionSvc', '$location', '$cookies', 'Loading',
-          function(SessionSvc, $location, $cookies, Loading) {
-
-            // Looking for cookies to maintain backwards compatibility
-            if ($cookies.get('walkthrough')) {
-              localStorage.setItem('walkthrough', true);
-              $cookies.remove('walkthrough');
-            }
-
-            if (localStorage.getItem('walkthrough')) {
-              Loading.show(SessionSvc.onLoad(function() {
-                $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/communities');
-              }));
-            } else {
-              $location.path('/walkthrough');
-            }
+          'SessionSvc', '$location', 'Loading',
+          function(SessionSvc, $location, Loading) {
+            Loading.show(SessionSvc.onLoad(function() {
+              $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/communities');
+            }));
           }
         ]
       });

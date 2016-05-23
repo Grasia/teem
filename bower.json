@@ -29,7 +29,6 @@
     "angular-messages": "^1.5.0",
     "angular-ui-notification": "^0.1.0",
     "ng-file-upload": "^12.0.1",
-    "angular-cookies": "1.5.x",
     "angular-selectize2": "git://github.com/nbrustein/angular-selectize.git#bindable-placeholder",
     "bootstrap-material-design": "~0.5.9",
     "js-emoji": "v3.0",
