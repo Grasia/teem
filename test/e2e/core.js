@@ -83,7 +83,7 @@ describe('Teem', function() {
 
       expect(element(by.css('.community-description')).getText()).toBe(community.description);
 
-      element(by.css('.plus')).click();
+      element(by.css('.community-project-btn button')).click();
 
       var projectTitleInput = by.css('input.title-input');
 

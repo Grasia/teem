@@ -49,7 +49,9 @@
       "message": "You are in"
     },
     "project": {
+      "button": "Create a teem",
       "count": "{{count}} teems",
+      "tip": "Organize your projects and expose your needs",
       "title": "Teems",
       "working_group_count": "{{count}} working groups"
     },

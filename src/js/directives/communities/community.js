@@ -13,8 +13,10 @@ angular.module('Teem')
       controller: [
       '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout',
       'Loading', '$route', 'NewForm', 'swellRT', '$rootScope', 'Selector',
+      'ProjectsSvc',
       function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout,
-                Loading, $route, NewForm, swellRT, $rootScope, Selector) {
+                Loading, $route, NewForm, swellRT, $rootScope, Selector,
+                ProjectsSvc) {
 
         var editingTitle = false;
 
@@ -66,6 +68,18 @@ angular.module('Teem')
           editingTitle = false;
         };
 
+        // FIXME use method from plus controller
+        $scope.createProject = function () {
+          SessionSvc.loginRequired($scope, function() {
+            let params = {};
+
+            params.communityId = $scope.community.id;
+
+            ProjectsSvc.create(params, function(p) {
+              $location.path(p.path()).search('form', 'new');
+            });
+          });
+        };
       }],
       templateUrl: 'communities/community.html'
     };

@@ -66,13 +66,34 @@
       <div class="community-projects section" ng-if="!isNew()">
 
         <h2 class="community-project-title" translate>community.project.title</h2>
-        <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
-          community.project.working_group_count
+        <div ng-if="projects.length">
+
+          <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
+            community.project.working_group_count
+          </div>
+
+          <projects project-list="projects"></projects>
+
+          <plus plus-type="project" plus-community="community"></plus>
         </div>
 
-        <projects project-list="projects"></projects>
+        <div ng-if="! projects.length">
+          <div class="community-project-tip" translate>
+              community.project.tip
+          </div>
+          <div class="community-project-image col-xs-12 col-md-4 col-md-offset-4">
+            <img src="/images/teem_pot.svg" / class="img-responsive">
+          </div>
+          <div class="community-project-btn">
+            <button class="btn btn-primary btn-raised"
+                    ng-click="createProject()"
+                    analytics-on="click"
+                    analytics-event="New project">
+              <span translate>community.project.button</span>
+            </button>
+          </div>
 
-        <plus plus-type="project" plus-community="community"></plus>
+        </diV>
       </div>
 
       <div class="community-participants section" ng-if="!isNew()">
