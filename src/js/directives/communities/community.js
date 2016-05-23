@@ -13,10 +13,10 @@ angular.module('Teem')
       controller: [
       '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout',
       'Loading', '$route', 'NewForm', 'swellRT', '$rootScope', 'Selector',
-      'ProjectsSvc',
+      'ProjectsSvc', 'User',
       function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout,
                 Loading, $route, NewForm, swellRT, $rootScope, Selector,
-                ProjectsSvc) {
+                ProjectsSvc, User) {
 
         var editingTitle = false;
 
@@ -66,6 +66,12 @@ angular.module('Teem')
 
         $scope.hideEditTitle = function() {
           editingTitle = false;
+        };
+
+        $scope.currentNick = function () {
+          if (User.loggedIn()) {
+            return User.current().nick;
+          }
         };
 
         // FIXME use method from plus controller

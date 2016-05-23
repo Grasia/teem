@@ -1,7 +1,8 @@
 <div class="community">
   <div class="scrollable">
     <div class="scrollable-content">
-      <div class="community-gallery">
+
+      <div class="community-gallery" ng-if="!isNew()">
         <div ui-set="{uploadPictureSharedState: uploadCommunityPhoto}" ui-state="uploadPictureSharedState" ng-if="community.isParticipant()">
           <img ng-src="{{community.logo()}}">
         </div>
@@ -9,6 +10,18 @@
           <img ng-src="{{community.logo()}}">
         </div>
       </div>
+
+      <div class="community-new-greeting section" ng-if="isNew()">
+        <img src="/images/community_form.svg" />
+
+        <div translate translate-values="{ nick: '{{ currentNick() }}' }">
+          community.new.welcome
+        </div>
+        <div class="community-new-tip" translate>
+          community.new.tip
+        </div>
+      </div>
+
       <div class="community-info section">
         <h1 ng-if="! editingTitle()">
           {{community.name}}

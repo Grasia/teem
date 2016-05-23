@@ -38,7 +38,9 @@
     },
     "name": "Nombre de la comunidad",
     "new": {
-      "button": "...o crea una nueva"
+      "button": "...o crea una nueva",
+      "tip": "Crea tu comunidad y empieza a añadir personas para llevar a cabo vuestros proyectos",
+      "welcome": "Hola, {{nick}}"
     },
     "participants": {
       "number": "{{count}} participantes",
