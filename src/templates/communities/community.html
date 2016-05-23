@@ -29,15 +29,21 @@
             <i class="fa fa-pencil-square-o" ></i>
           </button>
         </h1>
-        <div class="input-group title-form" ng-if="editingTitle()">
-          <input type="text"
-                 class="form-control title-input"
-                 ng-model="community.name"
-                 placeholder="{{ 'community.title.placeholder' | translate }}">
-          <div class="input-group-addon">
-            <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
-              <i class="fa fa-check"></i>
-            </button>
+        <div class="form-group label-floating">
+          <label class="control-label" for="communityName" translate>
+            community.title.placeholder
+          </label>
+
+          <div class="input-group title-form" ng-if="editingTitle()">
+            <input type="text"
+                   class="form-control title-input"
+                   ng-model="community.name"
+                   name="communityName">
+            <div class="input-group-addon">
+              <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
+                <i class="fa fa-check"></i>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -63,11 +69,19 @@
         </div>
 
         <div class="description-form" ng-if="editingTitle()">
-          <textarea class="form-control description-input"
-                    rows="5"
-                    ng-model="community.description"
-                    placeholder="{{ 'community.description.placeholder' | translate }}">
-          </textarea>
+          <div class="form-group label-floating">
+            <label class="control-label" for="communityDescription" translate>
+              community.description.placeholder
+            </label>
+            <textarea class="form-control"
+                      autosize
+                      rows="1"
+                      name="communityDescription"
+                      ng-model="community.description"></textarea>
+            <p class="help-block" translate>
+              community.description.help
+            </p>
+          </div>
         </div>
 
         <selector multiple

@@ -22,7 +22,8 @@
       "placeholder": "Nombre de la comunidad"
     },
     "description": {
-      "placeholder": "¿A qué os dedicáis? Una buena descripción ayuda a que otras personas reconozcan vuestro trabajo y se os unan. Por ejemplo: \"Wikipedia es la enciclopedia de contenido libre que todos pueden editar\""
+      "help": "Una buena descripción ayuda a que otras personas reconozcan vuestro trabajo y se os unan. Por ejemplo: \"Wikipedia es la enciclopedia de contenido libre que todos pueden editar\"",
+      "placeholder": "¿A qué os dedicáis?"
     },
     "edit": {
       "button": "Editar",

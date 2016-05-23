@@ -22,7 +22,8 @@
       "placeholder": "Community name"
     },
     "description": {
-      "placeholder": "What are you doing? A good description helps other people to recognize your work and join. For instance: \"Wikipedia is the free encyclopedia anyone can edit\""
+      "help": " A good description helps other people to recognize your work and join. For instance: \"Wikipedia is the free encyclopedia anyone can edit\"",
+      "placeholder": "What are you doing?"
     },
     "edit": {
       "button": "Edit",
