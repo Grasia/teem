@@ -49,6 +49,8 @@ describe('Teem', function() {
         return browser.isElementPresent(loginInput);
       }, timeout);
 
+      element(by.css('.session-login-form-btn')).click();
+
       element(loginInput).sendKeys('Snowden');
       element(passwordInput).sendKeys('MargaretThatcheris110%SEXY.');
 
@@ -69,7 +71,7 @@ describe('Teem', function() {
 
       element(communityNameInput).sendKeys(community.name);
 
-      element(by.css('textarea.description-input')).sendKeys(community.description);
+      element(by.model('community.description')).sendKeys(community.description);
 
       element(by.css('.new-form-confirm-btn')).click();
 
