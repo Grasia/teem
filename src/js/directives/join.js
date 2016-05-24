@@ -13,7 +13,7 @@ angular.module('Teem')
         $element.on('click', function() {
           SessionSvc.loginRequired($scope, function() {
             if (!$scope.project.isParticipant()) {
-              $analytics.eventTrack('Join project');
+              $analytics.eventTrack('Join project', {});
             }
 
             $scope.project.toggleParticipant();
