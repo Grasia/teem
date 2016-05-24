@@ -343,8 +343,8 @@
       "title": "Log in"
     },
     "message" : {
-      "new_community": "In order to create your community you have to register first",
-      "new_project": "In order to create your teem you have to register first",
+      "new_community": "To create your community you need to register first",
+      "new_project": "To create your teem you need to register first",
       "subtip": "it will take you a minute only!"
     },
     "migration": {
