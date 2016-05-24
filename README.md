@@ -1,3 +1,7 @@
+[![Join the chat at https://gitter.im/P2Pvalue/teem](https://img.shields.io/gitter/room/nwjs/nw.js.svg
+)](https://gitter.im/P2Pvalue/teem)
+
+
 # Teem
 
 Teem is the [P2Pvalue](http://p2pvalue.eu/) collaboration tool for [common-based peer production communities (CBPPs)](https://en.wikipedia.org/wiki/Commons-based_peer_production)
