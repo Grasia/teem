@@ -368,10 +368,10 @@
           "email": "You did not enter your email address correctly",
           "required": "You forgot to enter your email"
         },
-        "existing_user": "The username is already registered, please choose another one.",
+        "existing_user": "The nick is already registered, please choose another one.",
         "nick": {
-          "pattern": "Please, choose a nickname composed by letters, numbers and dots",
-          "required": "You forgot to enter your nick name"
+          "pattern": "Please, choose a nick composed by letters, numbers and dots",
+          "required": "You forgot to enter your nick"
         },
         "password": {
           "pattern": "Password must contain at least 8 characters",

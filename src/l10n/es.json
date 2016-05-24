@@ -322,12 +322,12 @@
     "login": {
       "button": "Entrar",
       "error": {
-        "wrong_email_or_password": "Perdona, nick o contraseña incorrecta",
+        "wrong_email_or_password": "Perdona, nombre o contraseña incorrecta",
         "unknown": "Ups, algo ha salido mal al entrar."
       },
       "link": "Entra aquí",
       "link_prev": "¿Ya estás en Teem?",
-      "nick": "Nick",
+      "nick": "Nombre",
       "should_be_logged": {
         "cancel": "Cancelar",
         "loggin_now": "Iniciar sesión",
@@ -363,10 +363,10 @@
           "email": "Introduce una cuenta de correo correcta",
           "required": "Olvidaste poner tu e-mail"
         },
-        "existing_user": "El nombre de usuario ya está en uso, por favor, elige otro.",
+        "existing_user": "El nombre ya está en uso, por favor, elige otro.",
         "nick": {
-          "pattern": "Por favor, escoge un nick formado sólo por letras, números y puntos",
-          "required": "Te olvidaste de meter el nick"
+          "pattern": "Por favor, escoge un nombre formado sólo por letras, números y puntos",
+          "required": "Te olvidaste de meter el nombre"
         },
         "password": {
           "pattern": "La contraseña tiene que tener al menos 8 carácteres",
@@ -380,7 +380,7 @@
       },
       "link": "Registrate aquí",
       "link_prev": "¿No estás todavía en Teem?",
-      "nick": "Nick",
+      "nick": "Nombre",
       "password": "Contraseña",
       "passwordRepeat": "Repite la contraseña",
       "title": "Regístrate"
