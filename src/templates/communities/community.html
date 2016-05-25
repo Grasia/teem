@@ -29,12 +29,12 @@
             <i class="fa fa-pencil-square-o" ></i>
           </button>
         </h1>
-        <div class="form-group label-floating">
+        <div class="form-group label-floating" ng-if="editingTitle()">
           <label class="control-label" for="communityName" translate>
             community.title.placeholder
           </label>
 
-          <div class="input-group title-form" ng-if="editingTitle()">
+          <div class="input-group title-form">
             <input type="text"
                    class="form-control title-input"
                    ng-model="community.name"
