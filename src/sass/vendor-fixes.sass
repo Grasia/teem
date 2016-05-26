@@ -36,6 +36,28 @@ h4, h5, h6, .h4, .h5, .h6
     padding: 10px 16px
     border-bottom: 1px solid rgba(0, 0, 0, 0.1)
 
+// Material design mixin for including underline in input-group-addon
+
+@mixin material-underline($padding: 0px)
+  border: 0
+  background-image: linear-gradient($brand-primary, $brand-primary), linear-gradient($mdb-input-underline-color, $mdb-input-underline-color)
+  background-size: 0 2px, 100% 1px
+  background-repeat: no-repeat
+  background-position: center calc(100% - #{$padding}), center calc(100% - #{$padding} - 1px)
+  background-color: rgba(0, 0, 0, 0)
+  transition: background 0s linear
+  transition-delay: 0.3s
+  box-shadow: none
+  border-radius: 0
+
+@mixin material-underline-focus
+  outline: none
+  background-image: linear-gradient($brand-primary, $brand-primary), linear-gradient($mdb-input-underline-color, $mdb-input-underline-color)
+  background-size: 100% 2px, 100% 1px
+  box-shadow: none
+  transition-duration: 0.3s
+
+
 // .form-control, .input-group-addon
 //   border: 0
 //   outline: 0
