@@ -22,13 +22,6 @@ angular.module('Teem')
           scope.selectorModal = false;
           $timeout();
         };
-        scope.ng = {model: scope.model};
-        scope.$watch('ng.model', function() {
-          scope.model = scope.ng.model;
-        });
-
-
-        $timeout();
 
         var oldOnInitialize = scope.config.onInitialize;
         var oldOnFocus = scope.config.onFocus;
@@ -59,7 +52,7 @@ angular.module('Teem')
         multiple : '=',
         config : '=',
         options :'=',
-        model : '=',
+        ngModel : '=',
         placeholder : '=',
         name : '='
       },

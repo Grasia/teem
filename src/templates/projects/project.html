@@ -66,7 +66,7 @@
                   multiple
                   config="communitySelector.config"
                   options="communitySelector.options"
-                  model="project.communities"
+                  ng-model="project.communities"
                   placeholder=" 'project.community.placeholder' | translate"
                 ></selector>
               </div>
@@ -88,7 +88,7 @@
             <div class="section project-add-users"  ng-if="isNew() && !pad.editing">
               <selector multiple
                 config="userSelectorConfig"
-                options="invite.list" model="invite.selected"
+                options="invite.list" ng-model="invite.selected"
                 placeholder=" 'project.add_people.placeholder' | translate"></selector>
             </div>
 
