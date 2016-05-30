@@ -8,6 +8,7 @@ angular.module('Teem')
       '$scope', '$element', '$attrs', 'SharedState', '$timeout',
       function(scope, $element, $attrs, SharedState, $timeout) {
 
+        scope.config = angular.merge({}, scope.config);
         // source: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
         function randomId(){
           return Math.floor((1 + Math.random()) * 0x1000000)
