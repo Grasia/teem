@@ -15,7 +15,7 @@ angular.module('Teem')
           var element = angular.element(document.createElement('need-widget')),
               compiled = $compile(element)(scope),
               need = scope.project.findNeed(needId),
-              stopEvents = ['keypress', 'keyup', 'keydown'],
+              stopEvents = ['keypress', 'keyup', 'keydown', 'paste'],
               isolateScope;
 
           // Cancel widget contenteditable attributes
