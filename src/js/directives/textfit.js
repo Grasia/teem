@@ -7,8 +7,6 @@ angular.module('Teem')
   function($timeout) {
     return {
       link: function(scope, element, attrs) {
-        textFit(element);
-
         scope.$watch(attrs.ngBind, function() {
          $timeout(() => {
            textFit(element);
