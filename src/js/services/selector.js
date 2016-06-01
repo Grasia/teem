@@ -10,8 +10,8 @@
 
 angular.module('Teem')
 .factory('Selector', [
-  'User', '$timeout', 'CommunitiesSvc',
-  function(User, $timeout, CommunitiesSvc) {
+  'User', '$timeout', 'CommunitiesSvc', '$rootScope',
+  function(User, $timeout, CommunitiesSvc, $rootScope) {
 
     // builds a list of users for user selector from SwellRT query result
     function buildUserItems(users){
@@ -96,6 +96,43 @@ angular.module('Teem')
           User.coContributors().then(function(r){
             optionList.push(buildUserItems(r));
           });
+        }
+      },
+
+      invite: function(invitees, hasParticipantsObject){
+
+        var emails = [];
+
+        if (invitees){
+          invitees.forEach(function(i){
+
+            var value;
+
+            try {
+              value = JSON.parse(i);
+            }
+            // if it is an existing user
+            catch (e) {
+              hasParticipantsObject.addParticipant(i);
+              return;
+            }
+
+            // if it is an email address
+            if (typeof value === 'object'){
+              if (value.email) {
+                emails.push(value.email);
+              }
+            }
+          });
+
+
+          if (emails.length > 0){
+            SwellRT.invite(emails, hasParticipantsObject.url(),
+            // project.title || community.name
+            hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
+          }
+
+          $rootScope.$broadcast('teem.' + hasParticipantsObject.type + '.join');
         }
       }
     };

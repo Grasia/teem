@@ -5,8 +5,8 @@ angular.module('Teem')
 
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SharedState', '$timeout',
-      function(scope, $element, $attrs, SharedState, $timeout) {
+      '$scope', '$timeout',
+      function(scope, $timeout) {
 
         scope.config = angular.merge({}, scope.config);
         // source: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
@@ -18,34 +18,38 @@ angular.module('Teem')
           id: 'selector' + randomId()
         };
 
-        scope.select = function(){
-          scope.selectorModal = false;
-          $timeout();
-        };
-
         var oldOnInitialize = scope.config.onInitialize;
         var oldOnFocus = scope.config.onFocus;
+        var oldOnBlur = scope.config.onBlur;
 
         scope.config.onInitialize = function(selectize) {
+
           selectize.$control.find('input')[0].autocapitalize = scope.config.autocapitalize;
+
           if (typeof oldOnInitialize === 'function') {
             oldOnInitialize(selectize);
           }
+          $timeout();
         };
 
+        scope.focused = false;
+
         scope.config.onFocus = function(selectize){
-          if (!Modernizr.mq('(min-width: 992px)')) {
-            scope.selectorModal = true;
-            $timeout(function() {
-              $timeout(function() {
-                document.querySelector('.selector-has-modal .selectize-input input').click();
-              }, 500);
-            });
-          }
+          scope.focused = true;
           if (typeof oldOnFocus === 'function'){
             oldOnFocus(selectize);
           }
+          $timeout();
         };
+
+        scope.config.onBlur = function(selectize){
+          scope.focused = false;
+          if (typeof oldOnFocus === 'function'){
+            oldOnBlur(selectize);
+          }
+          $timeout();
+        };
+
       }],
       transclude: true,
       scope: {

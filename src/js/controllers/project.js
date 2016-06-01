@@ -224,6 +224,17 @@ angular.module('Teem')
 
     $scope.userSelectorConfig = Selector.config.users;
 
+    $scope.inviteUsers = function(){
+      Selector.invite($scope.invite.selected, $scope.project);
+      $scope.invite.selected = [];
+      SharedState.turnOff('inviteState');
+    };
+
+    $scope.cancelInvite = function(){
+      $scope.invite.selected = [];
+      SharedState.turnOff('inviteState');
+    };
+
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
       if ($scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
