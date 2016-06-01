@@ -1,4 +1,16 @@
 module.exports = function(config) {
+  // For faster development, uncomment these:
+                  
+  // Do not use uglify
+  // config.uglify = false;
+
+  // Do not minify css
+  // config.cssmin = false;
+
+  // Do not minify images
+  // config.minifyImages = false;
+
+
   // Development web server
 
   config.server.host = '0.0.0.0';
@@ -6,12 +18,6 @@ module.exports = function(config) {
 
   // Set to false to disable it:
   // config.server = false;
-
-  // Do not use uglify: faster
-  // config.uglify = false;
-
-  // Do not minify css
-  // config.cssmin = false;
 
   // Weinre Remote debug server
   //
