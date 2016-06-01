@@ -31,7 +31,7 @@ angular.module('Teem')
           return '';
         }
 
-        var wordLength = 10,
+        var wordLength = 14,
             lines = [[], []],
             tagLength = wordLength * lines.length + lines.length,
             words = this.name.split(' '),
