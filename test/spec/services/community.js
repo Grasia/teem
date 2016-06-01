@@ -19,6 +19,7 @@ describe('CommunitiesSvc', function() {
   var CommunitiesSvc,
       $timeout,
       communities,
+      community,
       result = {
         community: [],
         project: []
@@ -93,6 +94,32 @@ describe('CommunitiesSvc', function() {
           expect(community.name).toBe(result.community[0].root.name);
 
         });
+      });
+    });
+  });
+
+  describe('nameForPotTag', function() {
+    beforeEach(function () {
+      community = new CommunitiesSvc.CommunityReadOnly();
+    });
+
+    it ('should return line for pot tag', function () {
+      var tests = [
+        [ '', '' ],
+        [ 'Test', 'Test' ],
+        [ 'Testing Community', 'Testing<br />Community'],
+        [ '123 456 123456', '123 456<br />123456'],
+        [ '1234567890 1234567890','1234567890<br />1234567890'],
+        [ '1234567890 1234567890 123','1234567890<br />1234567890'],
+        [ '1234567890 123456789 123','1234567890<br />123456789'],
+        [ '1234567890 12345678901 123','1234567890<br />1234567...'],
+        [ '123 456 890 234 678 012','123 456 890<br />234 678']
+      ];
+
+      angular.forEach(tests, function(t) {
+        community.name = t[0];
+
+        expect(community.nameForPotTag()).toBe(t[1]);
       });
     });
   });

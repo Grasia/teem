@@ -50,6 +50,7 @@ var config = {
       './bower_components/ng-img-crop-full-extended/compile/unminified/ng-img-crop.js',
       './bower_components/ng-file-upload/ng-file-upload.js',
       './bower_components/js-emoji/lib/emoji.js',
+      './bower_components/textfit/textFit.js',
       './src/vendor/aggregation.js'
     ],
 

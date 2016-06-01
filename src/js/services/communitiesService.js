@@ -26,6 +26,57 @@ angular.module('Teem')
 
       get pathPrefix () { return '/communities/'; }
 
+      nameForPotTag () {
+        if (! this.name ) {
+          return '';
+        }
+
+        var wordLength = 10,
+            lines = [[], []],
+            tagLength = wordLength * lines.length + lines.length,
+            words = this.name.split(' '),
+            shorterName;
+
+        // Short words that are longer than lineLength
+        angular.forEach(words, function(word, index) {
+          if (word.length > wordLength) {
+            words[index] = word.substring(0, wordLength - 3) + '...';
+          }
+        });
+
+        shorterName = words.join(' ');
+
+        // Change '...' at the end of last word if required
+        if (shorterName.length > tagLength &&
+            shorterName.charAt(tagLength - 1 !== ' ') &&
+            shorterName.charAt(tagLength - 2 !== ' ')) {
+
+          let lastWord = words.pop();
+
+          if (lastWord.length > 3) {
+            lastWord = lastWord.substring(0, lastWord.length - 3) + '...';
+
+            words.push(lastWord);
+          }
+        }
+
+        // Add <br> in the middle of the name to break it in two lines
+        lines[0].push(words.shift());
+
+        while (words.length) {
+          if (lines[0].join(' ').length <= lines[1].join(' ').length) {
+            lines[0].push(words.shift());
+          } else {
+            lines[1].unshift(words.pop());
+          }
+        }
+
+        return lines[0].join(' ') + (
+          lines[1].length ?
+            '<br />' + lines[1].join(' ') :
+            '');
+      }
+
       myAndPublicProjects () {
         return ProjectsSvc.all({
            publicAndContributor: SessionSvc.users.current(),
@@ -265,6 +316,7 @@ angular.module('Teem')
       create,
       all,
       participating,
-      communitiesContributors
+      communitiesContributors,
+      CommunityReadOnly
     };
   }]);

@@ -33,6 +33,7 @@
     "SwellRT": false,
     "SwellRTConfig": false,
     "Swiper": false,
+    "textFit": false,
     "$": false,
     "PushNotification": false,
     "aggregation": false

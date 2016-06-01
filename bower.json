@@ -38,7 +38,8 @@
     "angular-mocks": "1.5.0",
     "angular-scenario": "1.5.x",
     "bootstrap-sass": "~3.3.6",
-    "autosize": "~3.0.15"
+    "autosize": "~3.0.15",
+    "textfit": "textFit#~2.3.1"
   },
   "resolutions": {
     "angular": "1.5.x",
