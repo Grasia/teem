@@ -1,0 +1,65 @@
+<div class="container-fluid menu navbar-top-menu" ng-controller="MenuCtrl">
+
+  <ul class="nav navbar-nav">
+    <li>
+      <a href="/"><img src="/images/app-logo-white.png" /></a>
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav navbar-right">
+    <li class="text-uppercase menu-option">
+      <a href="/home/communities" ng-if="loggedIn()" translate>menu.homeCommunities.title</a>
+    </li>
+    <li class="text-uppercase menu-option">
+      <a href="/communities" translate>menu.communities.title</a>
+    </li>
+    <li class="text-uppercase menu-option">
+      <a href="/projects/{{support.projectId}}" ng-if="support" translate>menu.feedback.title</a>
+    </li>
+    <li class="dropdown menu-session">
+      <a ui-turn-on="menuSession">
+        <span ng-if="! loggedIn()">
+          <span class="avatar">
+            <img src="images/anonymous-avatar.png" />
+          </span>
+          <span class="menu-session-nick" translate>
+            menu.session.guest
+          </span>
+        </span>
+
+        <span ng-if="loggedIn()">
+          <span avatars="user.id" class="avatar"></span>
+          <span class="menu-session-nick" ng-bind="user.nick"></span>
+        </span>
+
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu"
+          ui-outer-click="Ui.turnOff('menuSession')"
+          ui-outer-click-if="Ui.active('menuSession')"
+          role="menu"
+          ng-if="! loggedIn()"
+          ui-show="menuSession"
+          ui-state="menuSession"
+          ui-turn-off="menuSession">
+        <li><a href="/session/login" translate>menu.session.login</a></li>
+        <li><a href="/session/register" translate>menu.session.register</a></li>
+      </ul>
+      <!-- Material design uses ul>li css so we have to repeat the menu here
+           or add a watcher per menu entry -->
+      <ul class="dropdown-menu"
+          ui-outer-click="Ui.turnOff('menuSession')"
+          ui-outer-click-if="Ui.active('menuSession')"
+          role="menu"
+          ng-if="loggedIn()"
+          ui-show="menuSession"
+          ui-state="menuSession"
+          ui-turn-off="menuSession">
+
+        <li><a href="/users/{{user.id}}" translate>menu.session.profile</a></li>
+        <li class="divider"></li>
+        <li><a ng-click="logout()" translate>menu.session.logout</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>

@@ -135,8 +135,11 @@
       "action": "Join us!",
       "communities": "{{count}} communities",
       "guest": "guest",
+      "login": "Log in",
       "logout": "Log out",
+      "profile": "Your profile",
       "projects": "{{count}} teems",
+      "register": "Sign up",
       "tip": "Register and create your communities and Teems"
     },
     "title": "Teem"
