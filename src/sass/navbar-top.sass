@@ -11,10 +11,10 @@
   background-color: $navbar-top-background-color
 
 @media (min-width: 992px)
-  /* Prevent mobile-angular-ui moving navbar-brand-center to left in desktop */
-  .navbar-brand-center
-    width: 100%
-    position: absolute
+  .navbar-absolute-top
+    height: 80px
+  .has-navbar-top .app-body
+    padding-top: 80px
     /* Do not show menu related links if menu is already visible */
   .btn-navbar
     .fa-bars
@@ -65,3 +65,32 @@
   @extend .pull-right
   a
     text-transform: none
+
+.navbar-top-menu
+  .navbar-nav
+    margin-top: 0
+    margin-bottom: 0
+    a
+      padding-top: 10px !important
+      padding-bottom: 10px !important
+  .menu-option
+    a
+      padding-top: 30px !important
+      padding-bottom: 30px !important
+    .active
+      color: $menu-active-color
+
+  .menu-session
+    & > a
+      padding-top: 21px !important
+    .avatar
+      width: 40px
+      a
+        padding-top: 0 !important
+        padding-bottom: 0 !important
+      img
+        width: 40px
+        height: 40px
+        display: inline-block
+    .caret
+      color: $menu-session-nick-color
