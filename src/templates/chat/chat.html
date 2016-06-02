@@ -1,4 +1,4 @@
-<div id="chat" class="chat">
+<div id="chat" class="chat" ui-state="chatPictureSharedState">
   <div class="scrollable" ngf-drop="uploadFile($file)" ngf-fix-orientation="true"
     ngf-drag-over-class="'dragover'">
     <div class="scrollable-content section" ui-scroll-top="nextPage()">
@@ -21,7 +21,7 @@
             <div class="chat-message-time" bo-text="hour(msg)">
             </div>
             <div class="chat-message-file" ng-if="::(msg.file)">
-              <img bo-src="msg.file.url"/>
+              <img bo-src="msg.file.url" ui-set="{chatPictureSharedState: msg.file.url}" />
             </div>
             <div class="chat-message-text" bo-html="msg.text | linky | emojis"></div>
           </div>
@@ -63,3 +63,4 @@
     </div>
   </div>
 </div>
+<chat-picture-modal />

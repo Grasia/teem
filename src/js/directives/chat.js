@@ -37,9 +37,9 @@ angular.module('Teem')
     return {
       controller: [
         'SessionSvc', '$scope', '$rootScope', '$route', '$location',
-        '$animate', 'time', '$timeout',
+        '$animate', 'time', '$timeout', 'SharedState',
         function(SessionSvc, $scope, $rootScope, $route, $location,
-        $animate, time, $timeout){
+        $animate, time, $timeout, SharedState){
           const pageSize = 20;
           const CAMERA_SYMBOL = '\uD83D\uDCF7';
           // For scrolling in chatScroll directive
@@ -201,6 +201,6 @@ angular.module('Teem')
           };
         }
       ],
-      templateUrl: 'chat.html'
+      templateUrl: 'chat/chat.html'
     };
   }]);

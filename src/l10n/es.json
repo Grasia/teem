@@ -6,6 +6,7 @@
       "title": "Chat"
     },
     "new_messages": "Mensajes nuevos",
+    "photo": "Fotografia",
     "upload": {
       "noImg": "Por ahora, sólo se pueden subir imágenes.",
       "tooLarge": "El fichero es demasiado grande y no puede subirse."

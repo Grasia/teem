@@ -6,6 +6,7 @@
       "title": "Chat"
     },
     "new_messages": "New messages",
+    "photo": "Photo",
     "upload": {
       "noImg": "For now, only images can be uploaded.",
       "tooLarge": "The file is too large and can't be uploaded."
