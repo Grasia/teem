@@ -69,7 +69,7 @@
 
         <selector multiple
           config="userSelectorConfig"
-          options="invite.list" model="invite.selected"
+          options="invite.list" ng-model="invite.selected"
           placeholder=" 'project.add_people.placeholder' | translate" ng-if="isNew()"></selector>
         <div class="row" ng-if="!isNew() && !editingTitle()">
           <div class="icon-count community-participant-count col-xs-3">
