@@ -205,8 +205,9 @@
       "button": "Invita personas",
       "button_cancel": "Cancelar",
       "button_continue": "Invitar",
+      "long_placeholder": "Añade personas de Teem o emails",
       "placeholder": "Añade personas de Teem o emails",
-      "long_placeholder": "Añade personas de Teem o emails"
+      "title": "Invita personas"
     },
     "community": {
       "placeholder": "Comunidades a las que pertenece"

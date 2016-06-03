@@ -115,6 +115,14 @@
                           <div class="modal-backdrop in" ng-click="cancelInvite()"></div>
                       <div class="modal-dialog">
                         <div class="modal-content">
+                          <div class="modal-header">
+                            <div class="modal-header-title" translate>
+                              project.add_people.title
+                            </div>
+                            <div class="modal-pull-right">
+                                <a ui-turn-off="inviteState">&times;</a>
+                            </div>
+                          </div>
                           <div class="modal-body">
                             <selector multiple
                             config="userSelectorConfig"
