@@ -29,19 +29,14 @@ selector
   .selectize-control.form-control
     position: initial
 
-.selector-has-modal
-  @extend .has-modal
-  position: fixed
-  height: 100%
-  width: 100%
-  top: 0
-  left: 0
-  z-index: 2000
-  .scrollable-header
-    background: white /* modal-content background */
+.invite-modal
+  background: none
+  .modal
+    display: flex
+    justify-content: center
+    align-items: center
+  .modal-dialog
+    @extend .col-md-6
+    @extend .col-md-offset-3
   .modal-content
-    height: 100%
-  .modal-body
-    padding-top: 0px
-  .form-group
-    margin-top: 5px
+    background: white

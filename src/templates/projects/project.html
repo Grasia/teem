@@ -110,18 +110,21 @@
                 <a class="btn btn-primary" ui-set="{inviteState: true}" translate>project.add_people.button</a>
 
                 <div ui-content-for="inviteModal">
-                  <div class="modal modal-overlay" ui-if="inviteState">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-body">
-                          <selector multiple
-                          config="userSelectorConfig"
-                          options="invite.list" ng-model="invite.selected"
-                          placeholder=" 'project.add_people.placeholder' | translate"></selector>
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
-                          <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+                  <div class="invite-modal">
+                    <div class="modal vertical-center-wraper" ui-if="inviteState">
+                          <div class="modal-backdrop in" ng-click="cancelInvite()"></div>
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <selector multiple
+                            config="userSelectorConfig"
+                            options="invite.list" ng-model="invite.selected"
+                            placeholder=" 'project.add_people.placeholder' | translate"></selector>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
+                            <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+                          </div>
                         </div>
                       </div>
                     </div>

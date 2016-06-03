@@ -125,7 +125,6 @@ angular.module('Teem')
             }
           });
 
-
           if (emails.length > 0){
             SwellRT.invite(emails, hasParticipantsObject.url(),
             // project.title || community.name
