@@ -106,7 +106,7 @@
               </h2>
 
               <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-              <div class="section project-add-users"  ng-if="!pad.editing" ui-state="inviteState" ui-default="false">
+              <div class="section project-add-users"  ng-if="!pad.editing && project.isParticipant()" ui-state="inviteState" ui-default="false">
                 <a class="btn btn-primary" ui-set="{inviteState: true}" translate>project.add_people.button</a>
 
                 <div ui-content-for="inviteModal">
