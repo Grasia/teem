@@ -369,6 +369,13 @@ angular.module('Teem')
         ]
       };
 
+      // all method only list public and user's projects
+      query._aggregate[0].$match.$or = [
+        // when anonymous user, Users.currentId is undefined
+        { 'participants': User.currentId() || 'anonymous' },
+        { 'root.shareMode': 'public' }
+      ];
+
       if (options.contributor) {
         query._aggregate[0].$match.participants = options.contributor;
       }
@@ -385,12 +392,6 @@ angular.module('Teem')
         query._aggregate[0].$match['root.shareMode'] = 'public';
       }
 
-      if (options.publicAndContributor) {
-        query._aggregate[0].$match.$or = [
-          { 'participants': options.publicAndContributor },
-          { 'root.shareMode': 'public' }
-        ];
-      }
 
       return query;
     }
