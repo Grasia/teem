@@ -221,7 +221,7 @@ angular.module('Teem')
       // Use SharedState.get('session') to store form ('login', 'register', etc..)
       // and also form message (new_community) (you have to register to create a community)
       // So SharedState can be 'session.new_community'
-      current: normalizeFormName($route.current.params.form || String(SharedState.get('session')).split('.')[0]),
+      current: normalizeFormName($route.current.params.form || String(SharedState.get('session')).split('.')[0] || 'register'),
       message: String(SharedState.get('session')).split('.')[1],
       values: {},
       login: ['nick', 'password'],

@@ -1,28 +1,21 @@
-<div class="modal modal-overlay" ui-if="uploadPictureSharedState" ui-state="uploadPictureSharedState" key-press="keyup">
-  <div class="scrollable">
-    <div class="scrollable-header modal-header">
-      <div class="modal-header-title" translate>picture.title</div>
-      <div class="btn-group pull-left modal-header-left">
-        <a class="btn" ui-turn-off="uploadPictureSharedState">&times;</a>
+<modal name="uploadPicture">
+  <header translate>picture.title</header>
+  <main>
+    <div ng-hide="pictureFile" class="col-sm-6 col-sm-offset-3">
+      <div ngf-drop ngf-select ng-model="pictureFile" class="drop-box"
+      ngf-drag-over-class="'dragover'" accept="image/*"
+      ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
+    </div>
+    <div ng-show="pictureFile" class="col-sm-6 col-sm-offset-3">
+      <p translate>picture.crop</p>
+      <div class="crop-box">
+        <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"
+        area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
       </div>
     </div>
-    <div class="scrollable-content row">
-      <div ng-hide="pictureFile" class="col-sm-6 col-sm-offset-3">
-        <div ngf-drop ngf-select ng-model="pictureFile" class="drop-box"
-        ngf-drag-over-class="'dragover'" accept="image/*"
-        ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
-      </div>
-      <div ng-show="pictureFile" class="col-sm-6 col-sm-offset-3">
-        <p translate>picture.crop</p>
-        <div class="crop-box">
-          <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"
-          area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer scrollable-footer">
-      <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
-      <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
-    </div>
-  </div>
-</div>
+  </main>
+  <footer>
+    <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
+    <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
+  </footer>
+</modal>
