@@ -79,7 +79,6 @@ angular.module('Teem')
 
       myAndPublicProjects () {
         return ProjectsSvc.all({
-           publicAndContributor: SessionSvc.users.current(),
            community: this.id
          });
       }
