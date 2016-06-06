@@ -10,6 +10,6 @@
     <a class="btn btn-link btn-raised" ng-click="group = 'flags'"><span bo-html="':waving_white_flag:'|emojis"></span></a>
   </div>
   <a ng-repeat="emoji in emojiCategories[group]" ng-click="insertEmoji(emoji)">
-    <span bo-html="fromCode(emoji)"></span>
+    <span class="emoji-picker-item" bo-html="fromCode(emoji)"></span>
   </a>
 </div>
