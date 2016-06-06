@@ -1,15 +1,7 @@
-<div class="modal modal-overlay" ui-if="session" ui-state="session" ng-controller="SessionCtrl">
-  <div class="scrollable">
-    <div class="scrollable-header modal-header">
-      <div class="modal-header-title">
-        {{'session.'+form.current+'.title' | translate}}
-      </div>
-      <div class="btn-group pull-left modal-header-left">
-        <a class="btn" ui-turn-off="session">&times;</a>
-      </div>
-    </div>
-    <div class="scrollable-content">
-      <div ng-include="'session/form.html'"></div>
-    </div>
-  </div>
-</div>
+<modal name="session">
+  <header>{{'session.'+form.current+'.title' | translate}}</header>
+  <main>
+    <div ng-include="'session/form.html'"></div>
+  </main>
+  <footer></footer>
+</modal>

@@ -1,0 +1,12 @@
+<div class="modal modal-overlay" ng-if="isModalSharedState()" ui-state="modalSharedState" key-press="keyup">
+  <div class="scrollable">
+    <div class="scrollable-header modal-header">
+      <div class="modal-header-title" ng-transclude="header"></div>
+      <div class="btn-group pull-left modal-header-left">
+        <a class="btn" ui-turn-off="modalSharedState">&times;</a>
+      </div>
+    </div>
+    <div class="scrollable-content row" ng-transclude="main"></div>
+    <div class="modal-footer scrollable-footer" ng-transclude="footer"></div>
+  </div>
+</div>

@@ -26,7 +26,10 @@ angular.module('Teem')
     };
 
     $scope.register = function () {
+      SharedState.initialize($scope, 'session');
       SharedState.set('session', 'register');
+      SharedState.set('modalSharedState', 'session');
+      $timeout();
     };
 
     $scope.loggedIn = function () {
