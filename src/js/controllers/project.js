@@ -74,6 +74,17 @@ angular.module('Teem')
 
     var editingTitle = false;
 
+    // FIXME Defined here instead of inside pad because when pad scope is destroyed,
+    // `editing` variable can't be accessed, and it is used outside pad. 
+    $scope.pad = {
+      editing: false,
+      saving: false
+    };
+
+    $scope.editOff = function() {
+      angular.element(document.querySelector('pad')).scope().editOff();
+    };
+
     $scope.invite = {
       list : [],
       selected : []
@@ -164,6 +175,8 @@ angular.module('Teem')
       $scope.project.setTimestampAccess(newVal);
 
       $location.search({ tab: newVal});
+
+      $scope.pad.editing = false;
     });
 
     $scope.$on('$routeChangeStart', function(event, next, current) {

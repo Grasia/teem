@@ -28,14 +28,4 @@
       block-edit="{{!project.isParticipant()}}">
     </div>
   </div>
-  <div class="scrollable-footer section" ng-if="pad.editing && !areTabsHidden()">
-    <button class="btn btn-raised btn-primary btn-lg btn-block pad-check" ng-click="editOff()"><i class="fa fa-check"></i></button>
-  </div>
-  <div ui-content-for="nav-right2">
-    <div class="nav-right-menu" ng-if="pad.editing && areTabsHidden()">
-      <a ng-click="editOff()" class="btn pad-check">
-        <i class="fa fa-check"></i>
-      </a>
-    </div>
-  </div>
 </div>

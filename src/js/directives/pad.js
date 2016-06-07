@@ -11,15 +11,13 @@
 angular.module('Teem')
   .directive('pad', function() {
     return {
+      scope: true,
       controller: [
         'SessionSvc', '$rootScope', '$scope', '$route', '$location',
         '$timeout', 'SharedState', 'needWidget',
         function(SessionSvc, $rootScope, $scope, $route, $location,
         $timeout, SharedState, needWidget) {
 
-          $scope.pad = {
-            editing: false
-          };
 
           var buttons = ['header', 'bold', 'italic', 'strikethrough', 'align-left', 'align-center', 'align-right', 'list', 'list-ol'];
 
@@ -109,6 +107,12 @@ angular.module('Teem')
               }
             };
           };
+
+          $scope.$watchCollection(function() {
+            return SessionSvc.status;
+          }, function(current) {
+            $scope.pad.saving = !current.sync;
+          });
 
       }],
       templateUrl: 'pad.html'

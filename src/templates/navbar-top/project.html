@@ -1,5 +1,5 @@
 <div ui-content-for="nav-right">
-  <div class="nav-right-menu">
+  <div class="nav-right-menu" ng-if="!pad.editing">
     <a ui-turn-on="dropdownProjectMenu" class="btn">
       <i class="fa fa-ellipsis-v"></i>
     </a>
@@ -13,6 +13,11 @@
       <li><a like like-copy-on="project.menu.unlike" like-copy-off="project.menu.like" like-model="project"></a></li>
       <li><a join join-copy-on="project.menu.leave" join-copy-off="project.menu.join" join-model="project" analytics-on="click" analytics-event="Join project"></a></li>
     </ul>
+  </div>
+  <div class="nav-right-menu" ng-if="pad.editing">
+    <a ng-click="editOff()" class="btn pad-check">
+      <i class="fa fa-check" ng-class="{'fa-check': !pad.saving, 'fa-spinner': pad.saving}"></i>
+    </a>
   </div>
 </div>
 
