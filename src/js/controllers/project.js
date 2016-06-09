@@ -75,7 +75,7 @@ angular.module('Teem')
     var editingTitle = false;
 
     // FIXME Defined here instead of inside pad because when pad scope is destroyed,
-    // `editing` variable can't be accessed, and it is used outside pad. 
+    // `editing` variable can't be accessed, and it is used outside pad.
     $scope.pad = {
       editing: false,
       saving: false
@@ -90,7 +90,7 @@ angular.module('Teem')
       selected : []
     };
 
-    SessionSvc.onLoad(function(){
+    var initialize = function(){
       Loading.show(ProjectsSvc.findByUrlId($route.current.params.id)).
         then(function(project) {
           $scope.project = project;
@@ -112,8 +112,13 @@ angular.module('Teem')
               $scope.communities = communities;
             });
           });
+          $timeout();
         });
-    });
+    };
+
+    SessionSvc.onLoad(initialize);
+
+    $rootScope.$on('swellrt.prepare-login', initialize);
 
     function currentTab() {
       return $location.search().tab || 'pad';
@@ -180,7 +185,7 @@ angular.module('Teem')
     });
 
     $scope.$on('$routeChangeStart', function(event, next, current) {
-      if (current.params.tab !== undefined) {
+      if (current.params.tab !== undefined && $scope.project!== undefined) {
         $scope.project.setTimestampAccess(current.params.tab);
       }
     });
@@ -250,7 +255,7 @@ angular.module('Teem')
 
     // Do not leave pad without giving a title to the project
     $rootScope.$on('$routeChangeStart', function(event) {
-      if ($scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
+      if ($scope.project!== undefined && $scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
         event.preventDefault();
 
         SharedState.turnOn('projectTitleReminder');

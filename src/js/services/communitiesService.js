@@ -97,6 +97,16 @@ angular.module('Teem')
 
     var openedCommunities = {};
 
+    $rootScope.$on('swellrt.prepare-logout', function(){
+      angular.forEach(openedCommunities, function(value, key){
+        SwellRT.closeModel(key);
+      });
+
+      openedCommunities = {};
+      $timeout();
+    });
+
+
     var find = function(id) {
       var comDef = $q.defer();
       var community = comDef.promise;

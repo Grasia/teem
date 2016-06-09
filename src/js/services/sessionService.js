@@ -12,9 +12,9 @@ angular.module('Teem')
   .factory('SessionSvc', [
     // NotificationSvc has to be added here as dependency to be loaded in the app
   '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
-  '$rootScope',
+  '$rootScope', '$route',
   function($q, $timeout, SharedState, NotificationSvc, $locale, User,
-           $rootScope) {
+           $rootScope, $route) {
 
     var swellRTDef = $q.defer(),
         swellRTpromise = swellRTDef.promise,
@@ -39,9 +39,12 @@ angular.module('Teem')
 
     swellRTpromise.then(function(){
       SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
-        $timeout(function(){
-          status.connection = 'connected';
-        });
+        $rootScope.$broadcast('swellrt.prepare-login');
+        status.connection = 'connected';
+        $timeout();
+        if (User.loggedIn()){
+          $rootScope.$broadcast('teem.login');
+        }
       });
 
       SwellRT.on(SwellRT.events.NETWORK_DISCONNECTED, function(){
@@ -144,12 +147,14 @@ angular.module('Teem')
     var stopSession = function(){
       swellRTpromise.then(function(){
 
+        $rootScope.$broadcast('swellrt.prepare-logout');
+        $timeout();
         SwellRT.stopSession();
         $rootScope.$broadcast('teem.logout');
 
         sessionPromiseInit();
 
-        SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS, '',
+        SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS,  '',
           function(){
             sessionDef.resolve(SwellRT);
           }, function(error) {
@@ -168,24 +173,23 @@ angular.module('Teem')
               __session.address === userName) {
             return; // Session already started
           } else {
+            $rootScope.$broadcast('swellrt.prepare-logout');
+            $timeout();
             SwellRT.stopSession();
             $rootScope.$broadcast('teem.logout');
           }
         }
 
+
         status.connection = 'connecting';
 
-        SwellRT.startSession(
-          SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS, password || '',
+        SwellRT.startSession(SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS,  password || '',
           function(){
-            if (userName){
-              $rootScope.$broadcast('teem.login');
-            }
-
             sessionDef.resolve(SwellRT);
             onSuccess();
 
           }, function(error) {
+            autoStartSession();
             onError(error);
           });
       });
@@ -246,11 +250,6 @@ angular.module('Teem')
         swellRTpromise.then(function(){
           SwellRT.resumeSession(function(){
 
-              // resumeSession also works for anonymous sessions
-              if (User.loggedIn()){
-                $rootScope.$broadcast('teem.login');
-              }
-
               sessionDef.resolve(SwellRT);
             },
             function(error){
@@ -292,6 +291,7 @@ angular.module('Teem')
           cb();
         }
       });
+
     }
 
     return {

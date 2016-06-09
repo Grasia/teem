@@ -355,6 +355,16 @@ angular.module('Teem')
 
     var openedProjects = {};
 
+    $rootScope.$on('swellrt.prepare-logout', function(){
+      angular.forEach(openedProjects, function(value, key){
+        SwellRT.closeModel(key);
+      });
+
+      openedProjects = {};
+      $timeout();
+    });
+
+
     /*
      * Build options for all query
      */

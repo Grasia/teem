@@ -35,7 +35,7 @@ angular.module('Teem')
       $scope.context = 'public';
     }
 
-    SessionSvc.onLoad(function () {
+    function initialize() {
       switch ($scope.context) {
 
         case 'home':
@@ -53,5 +53,9 @@ angular.module('Teem')
               $scope.communities = communities;
             });
       }
-    });
+    }
+
+    SessionSvc.onLoad(initialize);
+    $scope.$on('swellrt.prepare-login', initialize);
+
   }]);
