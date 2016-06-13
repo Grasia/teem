@@ -84,8 +84,14 @@ angular.module('Teem')
                 needWidget.add();
               }
               if (type === 'img') {
-                var id = $scope.project.addAttachment(arguments[1]);
-                editor.addWidget('img', id);
+                if (arguments[1] === undefined) { // First step
+                  $scope.pad.selectingFile = true;
+                  $timeout(() => $scope.pad.selectingFile = false);
+                } else { // Second step
+                  $scope.pad.selectingFile = false;
+                  var id = $scope.project.addAttachment(arguments[1]);
+                  editor.addWidget('img', id);
+                }
               }
             };
 

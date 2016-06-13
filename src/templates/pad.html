@@ -1,16 +1,19 @@
 <div class="section"
   ng-class="pad.editing ? 'project-pad-editing' : ''">
-  <div class="pad no-pointer" ng-click="editOn()">
+  <div class="pad no-pointer" ng-click="editOn()" ui-outer-click="editOff()" ui-outer-click-if="pad.editing && !pad.selectingFile"
+  ngf-drop="widget('img', $file)" ngf-fix-orientation="true">
     <div class="section scrollable-header" ng-if="pad.editing">
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group btn-group-xs" role="group" aria-label="First group">
           <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'btn-info': isActive}">
             <i class="fa fa-{{btn}}"></i>
           </button>
-          <button type="button" ngf-select="widget('img', $file)" class="btn btn-raised btn-link btn-xs"
-          accept="image/*" ngf-fix-orientation="true">
-            <i class="fa fa-image"></i>
-          </button>
+          <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
+            <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs">
+              <i class="fa fa-image"></i>
+              <div class="hidden" id="uploadFile" >
+            </button>
+          </span>
           <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs">
             <i class="fa i-need"></i>
           </button>
