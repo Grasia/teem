@@ -1,12 +1,17 @@
-<div class="modal modal-overlay" ng-if="isModalSharedState()" ui-state="modalSharedState" key-press="keyup">
-  <div class="scrollable">
-    <div class="scrollable-header modal-header">
-      <div class="modal-header-title" ng-transclude="header"></div>
-      <div class="btn-group pull-left modal-header-left">
-        <a class="btn" ui-turn-off="modalSharedState">&times;</a>
+<div class="modal scrollable-content" ng-class="{overlay: overlay !== undefined}"
+    ng-if="isModalSharedState()" ui-state="modalSharedState" key-press="keyup">
+  <div class="modal-backdrop in" ui-turn-off="modalSharedState"></div>
+  <div class="modal-dialog">
+    <div class="overlay-header-title" ng-transclude="header"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-header-title"><div ng-transclude="header"></div>
+        <div class="modal-pull-right modal-header-right">
+            <a ui-turn-off="modalSharedState" class="fa fa-times-circle"></a>
+        </div></div>
       </div>
+      <div class="modal-body" ng-transclude="main"></div>
+      <div class="modal-footer" ng-transclude="footer"></div>
     </div>
-    <div class="scrollable-content" ng-transclude="main"></div>
-    <div class="modal-footer scrollable-footer" ng-transclude="footer"></div>
   </div>
 </div>

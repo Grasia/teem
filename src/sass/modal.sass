@@ -1,0 +1,45 @@
+.modal
+  @media (min-width: 992px)
+    display: flex
+    justify-content: center
+    align-items: center
+.modal-content .modal-header .modal-header-title
+  display: flex
+  justify-content: space-between
+  border-bottom: solid 2px #cbd3da
+  &, h4, button
+    font-weight: bold
+    font-size: 18px
+  a
+    color: $grey
+  a:hover
+    text-decoration: none
+.modal-dialog
+  @extend .col-md-6
+  @extend .col-md-offset-3
+.modal-content
+  background: white
+.modal-header-title
+  padding: 0px !important
+.modal-pull-right
+  @extend .pull-right
+  position: relative
+.overlay-header-title
+  display: none
+
+
+.modal.overlay
+  .modal-backdrop
+    background: linear-gradient($blue, $dark-blue)
+    opacity: 1
+  .modal-dialog
+    @media (min-width: 992px)
+      margin-left: 0
+  .modal-header
+    display: none
+  .overlay-header-title
+    display: block
+    color: white
+    text-align: center
+    font-size: 2em
+    line-height: 3em

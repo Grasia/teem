@@ -106,39 +106,25 @@
               </h2>
 
               <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-              <div class="project-add-users"  ng-if="!pad.editing && project.isParticipant()" ui-state="inviteState" ui-default="false">
-                <button class="invite-button btn btn-primary btn-raised fa fa-user-plus" ui-set="{inviteState: true}" translate>
+              <div class="project-add-users"  ng-if="!pad.editing && project.isParticipant()">
+                <button class="invite-button btn btn-primary btn-raised fa fa-user-plus" ui-set="{modalSharedState: 'invite'}" translate>
                     project.add_people.button
                 </button>
 
                 <div ui-content-for="inviteModal">
-                  <div class="invite-modal">
-                    <div class="modal vertical-center-wraper" ui-if="inviteState">
-                          <div class="modal-backdrop in" ng-click="cancelInvite()"></div>
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <div class="modal-header-title" translate>
-                              project.add_people.title
-                            </div>
-                            <div class="modal-pull-right">
-                                <a ui-turn-off="inviteState">&times;</a>
-                            </div>
-                          </div>
-                          <div class="modal-body">
-                            <selector multiple
-                            config="userSelectorConfig"
-                            options="invite.list" ng-model="invite.selected"
-                            placeholder=" 'project.add_people.placeholder' | translate"></selector>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
-                            <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <modal name="invite">
+                    <header translate>project.add_people.title</header>
+                    <main>
+                      <selector multiple
+                      config="userSelectorConfig"
+                      options="invite.list" ng-model="invite.selected"
+                      placeholder=" 'project.add_people.placeholder' | translate"></selector>
+                    </main>
+                    <footer>
+                      <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
+                      <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+                    </footer>
+                  </modal>
                 </div>
               </div>
             </div>

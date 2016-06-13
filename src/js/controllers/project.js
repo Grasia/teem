@@ -245,12 +245,12 @@ angular.module('Teem')
     $scope.inviteUsers = function(){
       Selector.invite($scope.invite.selected, $scope.project);
       $scope.invite.selected = [];
-      SharedState.turnOff('inviteState');
+      SharedState.turnOff('modalSharedState');
     };
 
     $scope.cancelInvite = function(){
       $scope.invite.selected = [];
-      SharedState.turnOff('inviteState');
+      SharedState.turnOff('modalSharedState');
     };
 
     // Do not leave pad without giving a title to the project

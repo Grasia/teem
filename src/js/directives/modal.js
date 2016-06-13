@@ -4,13 +4,15 @@ angular.module('Teem')
   .directive('modal', ['SharedState', function(SharedState) {
     return {
       templateUrl: 'modal.html',
+      restrict: 'E',
       transclude: {
         header: 'header',
         main: 'main',
         footer: 'footer'
       },
       scope: {
-        name: '@'
+        name: '@',
+        overlay: '@'
       },
       link: function($scope, $element, $attrs) {
         if (!$attrs.name) {
