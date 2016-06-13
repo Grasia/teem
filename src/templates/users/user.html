@@ -6,7 +6,7 @@
   <div class="scrollable-content">
     <div class="section">
       <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-lg-2 col-lg-offset-5">
-        <div ng-if="canEdit()" ui-set="{modalSharedState: 'uploadPicture', uploadPictureSharedState: updateAvatar}" ui-state="uploadPictureSharedState">
+        <div ng-if="canEdit()" ui-set="{modalSharedState: {name: 'uploadPicture', callback: updateAvatar}}">
           <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
         </div>
         <div ng-if="!canEdit()">

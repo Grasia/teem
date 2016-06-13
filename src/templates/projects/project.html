@@ -31,7 +31,7 @@
             <div class="section project-header" ng-if="!pad.editing">
               <div class="row">
                 <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5 project-photo-responsive">
-                  <div ui-set="{uploadPictureSharedState: uploadProjectPhoto}" ui-state="uploadPictureSharedState" ng-if="project.isParticipant()">
+                  <div ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
                     <img ng-src="{{project.logo()}}">
                   </div>
                   <div ng-if="!project.isParticipant()">
@@ -96,7 +96,7 @@
                 </button>
               </div>
               <div class="icon-count col-xs-6 project-actions-share">
-                <a ui-turn-on="shareModalCreate"><i class="fa i-share"></i></a>
+                <a ui-set="{modalSharedState: 'shareModalCreate'}"><i class="fa i-share"></i></a>
               </div>
             </div>
 
@@ -170,18 +170,14 @@
 
 <!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
 <div ui-content-for="modals2">
-  <div class="modal modal-overlay" ui-if="projectTitleReminder" ui-state="projectTitleReminder">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p translate>project.title.reminder.body_one</p>
-          <strong><p translate>project.title.reminder.body_two</p></strong>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-default project-title-reminder-btn" ng-click="cancelProject()" translate>project.title.reminder.button_cancel</button>
-          <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button_continue</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <modal name="projectTitleReminder">
+    <header translate>project.title.reminder.body_one</header>
+    <main>
+      <strong><p translate>project.title.reminder.body_two</p></strong>
+    </main>
+    <footer>
+      <button class="btn btn-default project-title-reminder-btn" ng-click="cancelProject()" translate>project.title.reminder.button_cancel</button>
+      <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button_continue</button>
+    </footer>
+  </modal>
 </div>

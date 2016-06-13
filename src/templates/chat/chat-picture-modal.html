@@ -1,19 +1,7 @@
-<div ui-content-for="modals">
-  <div class="modal modal-overlay" ui-if="chatPictureSharedState" ui-state="chatPictureSharedState">
-    <div class="scrollable">
-      <div class="scrollable-header modal-header">
-        <div class="modal-header-title" translate>chat.photo</div>
-        <div class="btn-group pull-left modal-header-left">
-          <a class="btn" ui-turn-off="chatPictureSharedState">&times;</a>
-        </div>
-      </div>
-      <div class="scrollable-content">
-        <div class="modal-body">
-          <div>
-            <img class="img-responsive center-block" ng-src="{{getChatPictureUrl()}}" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<modal name="chatPicture">
+  <header translate>chat.photo</header>
+  <main>
+    <img class="img-responsive center-block" ng-src="{{getChatPictureUrl()}}" />
+  </main>
+  <footer></footer>
+</modal>

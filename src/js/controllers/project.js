@@ -168,7 +168,7 @@ angular.module('Teem')
     };
 
     $scope.titleReminder = function titleReminder() {
-      SharedState.turnOff('projectTitleReminder');
+      SharedState.turnOff('modalSharedState');
       $scope.showEditTitle();
       $timeout(function(){
         document.querySelector('.title-input').focus();
@@ -191,7 +191,7 @@ angular.module('Teem')
     });
 
     $scope.cancelProject = function() {
-      SharedState.turnOff('projectTitleReminder');
+      SharedState.turnOff('modalSharedState');
 
       $scope.project.delete();
 
@@ -258,7 +258,7 @@ angular.module('Teem')
       if ($scope.project!== undefined && $scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
         event.preventDefault();
 
-        SharedState.turnOn('projectTitleReminder');
+        SharedState.set('modalSharedState', 'projectTitleReminder');
       }
     });
   }])

@@ -3,13 +3,13 @@
 angular.module('Teem')
   .directive('uploadPictureModal', function() {
     return {
-      controller: ['$scope', 'SharedState', function($scope, SharedState) {
+      controller: ['$scope', 'SharedState', '$timeout', function($scope, SharedState, $timeout) {
         $scope.pictureFile = '';
         $scope.croppedPicture = '';
         var cb = {};
 
-        $scope.$on('mobile-angular-ui.state.changed.uploadPictureSharedState', function(e, newValue) {
-          cb = newValue;
+        $scope.$on('mobile-angular-ui.state.changed.modalSharedState', function(e, newValue) {
+          cb = newValue && newValue.callback || {};
           if (cb.areaType === 'rectangle') {
             $scope.areaType = 'rectangle';
             $scope.aspectRatio = 1.56;
@@ -33,16 +33,11 @@ angular.module('Teem')
           if (!croppedPicture) {
             return croppedPicture;
           }
-          if (typeof cb === 'function') {
+          if (typeof cb === 'function') {console.log('entered');
             cb(cb.dataURI ? croppedPicture : dataURItoBlob(croppedPicture));
           }
-          SharedState.turnOff('uploadPictureSharedState');
-        };
-
-        $scope.keyUp = function(event){
-          if(event.which === 27){
-            SharedState.turnOff('uploadPictureSharedState');
-          }
+          SharedState.turnOff('modalSharedState');
+          $timeout();
         };
       }],
       templateUrl: 'upload-picture-modal.html'

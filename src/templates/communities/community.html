@@ -3,7 +3,7 @@
     <div class="scrollable-content">
 
       <div class="community-gallery" ng-if="!isNew()">
-        <div ui-set="{uploadPictureSharedState: uploadCommunityPhoto}" ui-state="uploadPictureSharedState" ng-if="community.isParticipant()">
+        <div ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()">
           <img ng-src="{{community.logo()}}">
         </div>
         <div ng-if="!community.isParticipant()">

@@ -236,7 +236,7 @@ angular.module('Teem')
           user, pass, function(){
             // migrating users with default password
             if (user !== undefined) {
-              SharedState.set('session', 'migration');
+              SharedState.set('modalSharedState', {name: 'session', type: 'migration'});
               $timeout();
             }
           },
@@ -271,17 +271,13 @@ angular.module('Teem')
 
         if (! users.loggedIn()) {
 
-          let state = options.form;
+          let state = {
+            name: 'session',
+            type: options.form || 'login',
+            message: options.message
+          };
 
-          if (options.message) {
-            state += '.' + options.message;
-          }
-
-          if (state) {
-            SharedState.set('session', state);
-          } else {
-            SharedState.turnOn('session');
-          }
+          SharedState.set('modalSharedState', state);
 
           // Invoque $timout to refresh scope and actually show modal
           $timeout();

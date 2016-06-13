@@ -17,7 +17,15 @@ angular.module('Teem')
           throw Error('Provide a name to the modal please.');
         }
         $scope.isModalSharedState = function() {
-          return SharedState.eq('modalSharedState', $scope.name);
+          let modalSharedState = SharedState.get('modalSharedState');
+          return modalSharedState && (modalSharedState === $scope.name ||
+            modalSharedState.name === $scope.name);
+        };
+
+        $scope.keyUp = function(event){
+          if(event.which === 27){
+            SharedState.turnOff('modalSharedState');
+          }
         };
       }
     };

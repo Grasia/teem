@@ -9,7 +9,7 @@
         role="menu" ui-show="dropdownProjectMenu"
         ui-turn-off="dropdownProjectMenu">
 
-      <li><a ui-turn-on="shareModalCreate"><span translate>project.menu.share</span></a></li>
+      <li><a ui-set="{modalSharedState: 'shareModalCreate'}"><span translate>project.menu.share</span></a></li>
       <li><a like like-copy-on="project.menu.unlike" like-copy-off="project.menu.like" like-model="project"></a></li>
       <li><a join join-copy-on="project.menu.leave" join-copy-off="project.menu.join" join-model="project" analytics-on="click" analytics-event="Join project"></a></li>
     </ul>
@@ -28,47 +28,5 @@
 </div>
 
 <div ui-content-for="modals">
-  <div class="modal" ui-if="shareModalCreate" ui-state="shareModalCreate">
-    <div class="modal-backdrop in" ui-turn-off="shareModalCreate"></div>
-
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-header-left">
-            <button class="close"
-                    ui-turn-off="shareModalCreate">&times;</button>
-          </div>
-            <h4 class="modal-title" translate translate-values="{ title: '{{project.title}}' }">project.share.title</h4>
-        </div>
-        <div class="modal-body">
-
-          <div class="share-description" translate>project.share.description.link</div>
-
-            <input class="well share-link" type="url" ng-value="project.url()"/>
-
-            <div ng-hide="!project.isParticipant()">
-              <div class="share-description" translate>project.share.description.permission</div>
-
-              <div class="btn-group btn-group-justified" role="group">
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-default" ng-click="project.setShareMode('public')" ng-class="project.isShareMode('public') ? 'active' : ''">
-                    <span translate>project.share.mode.public</span>
-                  </button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-default" ng-click="project.setShareMode('link')" ng-class="project.isShareMode('link') ? 'active' : ''">
-                    <span translate>project.share.mode.link</span>
-                  </button>
-                </div>
-              </div>
-
-
-              <div class="share-info text-info" ng-show="project.isShareMode('link')" translate>project.share.info.link</div>
-              <div class="share-info text-info" ng-show="project.isShareMode('public')" translate>project.share.info.public</div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+  <div projects-share-modal></div>
 </div>

@@ -13,9 +13,8 @@
         area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
       </div>
     </div>
-  </main>
-  <footer>
     <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
     <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
-  </footer>
+  </main>
+  <footer></footer>
 </modal>
