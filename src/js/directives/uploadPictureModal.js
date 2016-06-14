@@ -4,8 +4,10 @@ angular.module('Teem')
   .directive('uploadPictureModal', function() {
     return {
       controller: ['$scope', 'SharedState', '$timeout', function($scope, SharedState, $timeout) {
-        $scope.pictureFile = '';
-        $scope.croppedPicture = '';
+        $scope.pic = {
+          pictureFile: '',
+          croppedPicture: ''
+        };
         var cb = {};
 
         $scope.$on('mobile-angular-ui.state.changed.modalSharedState', function(e, newValue) {
@@ -30,11 +32,12 @@ angular.module('Teem')
         }
 
         $scope.updatePicture = function(croppedPicture) {
-          if (!croppedPicture) {
-            return croppedPicture;
-          }
-          if (typeof cb === 'function') {console.log('entered');
-            cb(cb.dataURI ? croppedPicture : dataURItoBlob(croppedPicture));
+          if (typeof cb === 'function') {
+            if (!croppedPicture) {
+              cb();
+            } else {
+              cb(cb.dataURI ? croppedPicture : dataURItoBlob(croppedPicture));
+            }
           }
           SharedState.turnOff('modalSharedState');
           $timeout();

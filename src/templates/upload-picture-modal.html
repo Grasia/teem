@@ -1,20 +1,22 @@
 <modal name="uploadPicture">
   <header translate>picture.title</header>
   <main>
-    <div ng-hide="pictureFile" class="col-sm-6 col-sm-offset-3">
-      <div ngf-drop ngf-select ng-model="pictureFile" class="drop-box"
+    <div ng-hide="pic.pictureFile">
+      <div ngf-drop ngf-select ng-model="pic.pictureFile" class="drop-box"
       ngf-drag-over-class="'dragover'" accept="image/*"
       ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
     </div>
-    <div ng-show="pictureFile" class="col-sm-6 col-sm-offset-3">
+    <div ng-show="pic.pictureFile">
       <p translate>picture.crop</p>
       <div class="crop-box">
-        <img-crop image="pictureFile | ngfDataUrl" result-image="croppedPicture"
+        <img-crop image="pic.pictureFile | ngfDataUrl" result-image="pic.croppedPicture"
         area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
       </div>
     </div>
-    <button ng-click="updatePicture('')" class="btn btn-link" translate>picture.delete</button>
-    <button ng-click="updatePicture(croppedPicture)" ng-disable="!pictureFile" class="btn btn-primary" translate>picture.save</button>
   </main>
-  <footer></footer>
+  <footer>
+    <!-- TODO Uncomment when https://github.com/P2Pvalue/swellrt/issues/129 is solved:
+    <button ng-click="updatePicture()" class="btn btn-link" translate>picture.delete</button> -->
+    <button ng-click="updatePicture(pic.croppedPicture)" ng-disable="!pic.pictureFile" class="btn btn-primary" translate>picture.save</button>
+  </footer>
 </modal>
