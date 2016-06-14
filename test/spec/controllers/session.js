@@ -24,20 +24,30 @@ describe('SessionCtrl', function() {
       scope,
       $timeout,
       swellRT,
+      User,
       nick = 'testingnick',
       password = 'testingpassword',
-      email = 'testing@local.net';
+      email = 'testing@local.net',
+      callbackMap = {};
 
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$controller_, _$route_, _$rootScope_, _$timeout_, _swellRT_, _SessionSvc_) {
+  beforeEach(inject(function (_$controller_, _$route_, _$rootScope_, _$timeout_, _swellRT_, _SessionSvc_, _User_) {
     $controller = _$controller_;
     $route = _$route_;
     $rootScope = _$rootScope_;
     $timeout = _$timeout_;
     swellRT = _swellRT_;
     SessionSvc = _SessionSvc_;
+    User = _User_;
   }));
+
+  beforeEach(function(){
+    spyOn(SwellRT, 'on').
+    and.callFake(function(eventName, callback){
+      callbackMap[eventName] = callback;
+    });
+  });
 
   describe('when logging in', function() {
     beforeEach(function() {
@@ -75,8 +85,6 @@ describe('SessionCtrl', function() {
           password: password
         };
 
-        spyOn($rootScope, '$broadcast').and.callThrough();
-
         scope.submit.login();
 
         $timeout.flush();
@@ -96,10 +104,24 @@ describe('SessionCtrl', function() {
         expect(SessionSvc.users.current()).toBe(nick + '@' + __session.domain);
       });
 
-      it('should broadcast teem.login event', function(){
-        expect($rootScope.$broadcast).toHaveBeenCalledWith('teem.login');
-      });
+      describe('when receiving NETWORK_CONNECTED event', function(){
 
+        beforeEach(function(){
+          console.log('CallbackMap', callbackMap);
+          spyOn($rootScope, '$broadcast').and.callThrough();
+          callbackMap[SwellRT.events.NETWORK_CONNECTED]();
+        });
+
+        it('should change connection status to true', function(){
+          expect(SessionSvc.status.connection).toBe('connected');
+
+        });
+
+        it('should broadcast teem.login event', function(){
+          expect($rootScope.$broadcast).toHaveBeenCalledWith('teem.login');
+        });
+
+      });
     });
 
     describe('and SwellRT sends an error', function() {

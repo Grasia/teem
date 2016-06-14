@@ -6,7 +6,9 @@ var SwellRTConfig = {
 
 var SwellRT = {
   on:           function() {},
-  events:       {},
+  events:       {
+    NETWORK_CONNECTED: 'network-connected'
+  },
   createModel:  function() {},
   query:        function() {},
   ready:        function(cb) { cb(); },
