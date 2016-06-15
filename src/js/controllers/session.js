@@ -224,7 +224,7 @@ angular.module('Teem')
       // and modalSharedState.message to store form message (new_community) (you have to register to create a community)
       // So SharedState can be {name: 'session', type: 'register', message: 'new_community'}
       current: normalizeFormName($route.current.params.form || modalSharedState && modalSharedState.type || 'register'),
-      message: modalSharedState.message,
+      message: modalSharedState && modalSharedState.message,
       values: {},
       login: ['nick', 'password'],
       register: ['nick', 'password', 'passwordRepeat', 'email'],
