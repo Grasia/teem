@@ -73,6 +73,7 @@ angular.module('Teem')
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User, Selector) {
 
     var editingTitle = false;
+    $scope.$window = $window;
 
     // FIXME Defined here instead of inside pad because when pad scope is destroyed,
     // `editing` variable can't be accessed, and it is used outside pad.
@@ -147,6 +148,10 @@ angular.module('Teem')
     SharedState.initialize($scope, 'hiddenTabs');
     $scope.areTabsHidden = function() {
       return SharedState.isActive('hiddenTabs') && $window.innerHeight < 400;
+    };
+
+    $scope.isDesktop = function() {
+      return $window.innerWidth >= 992;
     };
 
     NewForm.initialize($scope, 'project');

@@ -75,6 +75,10 @@ angular
       .determinePreferredLanguage()
       .fallbackLanguage('en');
   })
-  .run(function(amMoment, $translate) {
+  .run(function(amMoment, $translate, $window, $rootScope) {
     amMoment.changeLocale($translate.proposedLanguage() || $translate.use());
+    
+    angular.element($window).bind('resize', function(){
+      $rootScope.$digest();
+    });
   });
