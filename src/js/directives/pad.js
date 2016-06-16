@@ -12,6 +12,9 @@ angular.module('Teem')
   .directive('pad', function() {
     return {
       scope: true,
+      link: function($scope, elem, attrs) {
+        $scope.editingDefault = attrs.editingDefault;
+      },
       controller: [
         'SessionSvc', '$rootScope', '$scope', '$route', '$location',
         '$timeout', 'SharedState', 'needWidget',
@@ -22,6 +25,9 @@ angular.module('Teem')
           var buttons = ['header', 'bold', 'italic', 'strikethrough', 'align-left', 'align-center', 'align-right', 'list', 'list-ol'];
 
           $scope.padCreate = function(editor) {
+
+
+
             needWidget.init(editor, $scope);
 
             editor.registerWidget('img', {
@@ -106,12 +112,16 @@ angular.module('Teem')
 
             $scope.editOff = function () {
               if (editorElement.attr('class') === 'wave-editor-on') {
-                $scope.pad.editing = false;
+                $scope.pad.editing = $scope.editingDefault;
                 SessionSvc.showSaving = false;
                 SharedState.turnOff('hiddenTabs');
                 $timeout();
               }
             };
+
+            if ($scope.editingDefault) {
+              $scope.pad.editing = true;
+            }
           };
 
           $scope.$watchCollection(function() {

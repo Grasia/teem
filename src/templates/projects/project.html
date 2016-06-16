@@ -1,6 +1,5 @@
 <div ng-include="'navbar-top/project.html'"></div>
-
-<div class="project">
+<div class="project" ng-if="!isDesktop()">
   <div class="project-navigation">
     <div class="btn-group justified">
       <a ui-set="{'projectTab': 'pad'}"
@@ -26,113 +25,7 @@
   <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden()}">
     <div ui-state="projectTab" class="project-tabs">
       <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
-        <div class="scrollable">
-          <div class="scrollable-content">
-            <div class="section project-header" ng-if="!pad.editing">
-              <div class="row">
-                <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5 project-photo-responsive">
-                  <div ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
-                    <img ng-src="{{project.logo()}}">
-                  </div>
-                  <div ng-if="!project.isParticipant()">
-                    <img ng-src="{{project.logo()}}">
-                  </div>
-                </div>
-              </div>
-              <div ng-if="! editingTitle()">
-                <h1>
-                  {{project.title}}
-                  <button class="btn btn-link edit-title-btn pull-right" ng-if="project.isParticipant()" ng-click="showEditTitle()">
-                    <i class="fa fa-pencil-square-o" ></i>
-                  </button>
-                </h1>
-                <div class="project-communities" ng-if="! isNew()">
-                  <span class="comma-separated" ng-repeat="c in communities"><a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
-                </div>
-              </div>
-              <div ng-if="editingTitle()">
-                <div class="input-group title-form" ng-if="editingTitle()">
-                  <input type="text" hide-tabs
-                         class="form-control title-input"
-                         ng-model="project.title"
-                         placeholder="{{ 'project.title.placeholder' | translate }}">
-                  <div class="input-group-addon">
-                    <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
-                      <i class="fa fa-check"></i>
-                    </button>
-                  </div>
-                </div>
-                <selector
-                  multiple
-                  config="communitySelector.config"
-                  options="communitySelector.options"
-                  ng-model="project.communities"
-                  placeholder=" 'project.community.placeholder' | translate"
-                ></selector>
-              </div>
-              <div class="project-join" ng-if="!project.isParticipant()">
-                <button class="btn btn-primary btn-raised"
-                        join
-                        join-icon="false",
-                        join-model="project"
-                        join-copy-on="project.participate.btn.undo"
-                        join-copy-off="project.participate.btn.do"
-                        analytics-on="click"
-                        analytics-event="Join project">
-                </button>
-              </div>
-            </div>
-
-            <pad></pad>
-
-            <div class="section project-actions" ng-if="!isNew() && !pad.editing">
-              <div class="icon-count col-xs-6 project-actions-like">
-                <button class="btn btn-link"
-                        ng-class="project.isSupporter() ? 'active' : ''"
-                        like
-                        like-icon="true",
-                        like-count="true"
-                        like-model="project">
-                </button>
-              </div>
-              <div class="icon-count col-xs-6 project-actions-share">
-                <a ui-set="{modalSharedState: 'shareModalCreate'}"><i class="fa i-share"></i></a>
-              </div>
-            </div>
-
-            <div class="section project-participants" ng-if="!isNew() && !pad.editing">
-              <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
-                  project.section.participants.title
-              </h2>
-
-              <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-              <div class="project-add-users"  ng-if="!pad.editing && project.isParticipant()">
-                <button class="invite-button btn btn-primary btn-raised fa fa-user-plus" ui-set="{modalSharedState: 'invite'}" translate>
-                    project.add_people.button
-                </button>
-
-                <div ui-content-for="inviteModal">
-                  <modal name="invite">
-                    <header translate>project.add_people.title</header>
-                    <main>
-                      <selector multiple
-                      config="userSelectorConfig"
-                      options="invite.list" ng-model="invite.selected"
-                      placeholder=" 'project.add_people.placeholder' | translate"></selector>
-                    </main>
-                    <footer>
-                      <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
-                      <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
-                    </footer>
-                  </modal>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="scrollable-footer" ng-if="isNew() && !pad.editing">
-            <div ng-include="'new-form/buttons.html'"></div>
-          </div>
-        </div>
+        <div ng-include="'projects/project-tab.html'"></div>
       </div>
 
       <div ui-if="projectTab == 'needs'" hm-swipeleft="swipeToChat" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
@@ -166,4 +59,19 @@
       <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button_continue</button>
     </footer>
   </modal>
+</div>
+<div ng-if="isDesktop()" class="section project project-desktop">
+  <div class="col-md-2">
+    Tu grupo de trabajo
+  </div>
+  <div class="col-md-7">
+    <h1>{{project.title}}</h1>
+    <pad editing-default="true" class="pad-flex"></pad>
+  </div>
+  <div class="col-md-3">
+    <h2>necesidades</h2>
+    <div need-list project="project" needs="project.needs" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
+    <h2>chat<h2>
+      <!--<chat></chat>-->
+  </div>
 </div>

@@ -1,19 +1,25 @@
+.pad-flex
+  display: flex
+  flex: 1
 .pad
   padding-top: 0
+  flex-direction: column
   .btn-toolbar
     .btn-group
       margin-top: 0
       margin-bottom: 0
 
   .swellrt-editor
+    overflow-y: auto
+    background: $pad-background-color
+    border: 1px solid $pad-border-color
+    padding: 2em
+    font-size: 1.2em
     > div
       padding: 5px
-    &[editable=true]
-      background: $pad-background-color
-      border: 1px solid $pad-border-color
-      padding: .21em
-      > div
-        outline: 0
+      height: 100%
+      width: 100%
+      outline: 0
   need-widget
     display: block
   .need-missing-message

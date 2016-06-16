@@ -1,8 +1,7 @@
-<div class="section"
-  ng-class="pad.editing ? 'project-pad-editing' : ''">
-  <div class="pad no-pointer" ng-click="editOn()" ui-outer-click="editOff()" ui-outer-click-if="pad.editing && !pad.selectingFile"
-  ngf-drop="widget('img', $file)" ngf-fix-orientation="true">
-    <div class="section scrollable-header" ng-if="pad.editing">
+<div class="pad-wrapper pad-flex" ng-class="pad.editing ? 'project-pad-editing' : ''">
+  <div class="pad no-pointer pad-flex" ng-click="editOn()" ui-outer-click="editOff()" ui-outer-click-if="pad.editing && !pad.selectingFile"
+  ngf-drop="widget('img', $file)" ngf-fix-orientation="true" ng-class="{scrollable: pad.editing && project.isParticipant() && !isDesktop()}">
+    <div ng-if="pad.editing && project.isParticipant()">
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group btn-group-xs" role="group" aria-label="First group">
           <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'btn-info': isActive}">
@@ -20,7 +19,8 @@
       </div>
     </div>
     <div
-      class="swellrt-editor scrollable-content"
+      class="swellrt-editor pad-flex"
+      ng-class="{'scrollable-content': pad.editing && project.isParticipant() && !isDesktop()}"
       swellrt-editor-on-ready="padReady"
       swellrt-editor-on-create="padCreate"
       editable="{{project.isParticipant()}}"
