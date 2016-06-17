@@ -119,7 +119,7 @@ angular.module('Teem')
               }
             };
 
-            if ($scope.editingDefault) {
+            if ($scope.editingDefault && $scope.project.isParticipant()) {
               $scope.pad.editing = true;
             }
           };
