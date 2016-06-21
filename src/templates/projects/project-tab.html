@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <pad class="pad-flex"></pad>
+    <pad class="flex-container"></pad>
 
     <div class="section project-actions" ng-if="!isNew() && !pad.editing">
       <div class="icon-count col-xs-6 project-actions-like">
@@ -72,34 +72,7 @@
       </div>
     </div>
 
-    <div class="section project-participants" ng-if="!isNew() && !pad.editing">
-      <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
-          project.section.participants.title
-      </h2>
-
-      <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-      <div class="project-add-users"  ng-if="!pad.editing && project.isParticipant()">
-        <button class="invite-button btn btn-primary btn-raised fa fa-user-plus" ui-set="{modalSharedState: 'invite'}" translate>
-            project.add_people.button
-        </button>
-
-        <div ui-content-for="inviteModal">
-          <modal name="invite">
-            <header translate>project.add_people.title</header>
-            <main>
-              <selector multiple
-              config="userSelectorConfig"
-              options="invite.list" ng-model="invite.selected"
-              placeholder=" 'project.add_people.placeholder' | translate"></selector>
-            </main>
-            <footer>
-              <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
-              <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
-            </footer>
-          </modal>
-        </div>
-      </div>
-    </div>
+    <div project-people  ng-if="!isNew() && !pad.editing"></div>
   </div>
   <div class="scrollable-footer" ng-if="isNew() && !pad.editing">
     <div ng-include="'new-form/buttons.html'"></div>

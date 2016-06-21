@@ -62,16 +62,40 @@
 </div>
 <div ng-if="isDesktop()" class="section project project-desktop">
   <div class="col-md-2">
-    Tu grupo de trabajo
+    <div class="row">
+      <div class="col-xs-4 project-photo-responsive">
+        <div ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
+          <img ng-src="{{project.logo()}}">
+        </div>
+        <div ng-if="!project.isParticipant()">
+          <img ng-src="{{project.logo()}}">
+        </div>
+      </div>
+      <div class="col-xs-8">
+        <strong>{{project.title}}</strong><br>
+        <span class="comma-separated" ng-repeat="c in communities"><a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
+      </div>
+    </div>
+    <div class="row">
+      <div project-people></div>
+    </div>
+    <!--<div class="row">
+      <h2>tus teems</h2>
+      <projects project-list="projects" context="context"></projects>
+    </div>-->
   </div>
   <div class="col-md-7">
     <h1>{{project.title}}</h1>
-    <pad editing-default="true" class="pad-flex"></pad>
+    <pad editing-default="true" class="flex-container"></pad>
   </div>
   <div class="col-md-3">
-    <h2>necesidades</h2>
-    <div need-list project="project" needs="project.needs" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
-    <h2>chat<h2>
-      <!--<chat></chat>-->
+    <div class="">
+      <h2>necesidades</h2>
+      <div need-list project="project" needs="project.needs" display="panel" ng-class="project.isParticipant() ? '' : 'has-cta'" class=""></div>
+    </div>
+    <div class="flex-container">
+      <h2>chat</h2>
+      <chat class="flex-container"></chat>
+    </div>
   </div>
 </div>

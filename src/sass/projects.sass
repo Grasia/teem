@@ -111,6 +111,13 @@
   h1
     font-size: 30px
     margin: 17px
+  .flex-scroll
+    overflow: auto
+  .flex-container
+    display: flex
+    flex: 1
+    flex-direction: column
+    min-height: 0px /* hack for firefox: http://stackoverflow.com/a/14964944 */
 
 .project-navigation
   position: absolute
