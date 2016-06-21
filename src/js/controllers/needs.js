@@ -128,7 +128,9 @@ angular.module('Teem')
     'needList',
     function () {
       return {
-        templateUrl: 'needs/list.html',
+        templateUrl: function(elem, attrs) {
+          return attrs.display !== 'panel' ? 'needs/list.html' : 'needs/panel.html';
+        },
         transclude: true,
         scope: {
           project: '=',

@@ -9,6 +9,7 @@
  */
 
 angular.module('Teem')
+  // TODO Remove directive if not used any more
   .directive('chatScroll', [
   '$timeout',
   function($timeout) {
@@ -29,7 +30,7 @@ angular.module('Teem')
           } else {
             controller.scrollTo(angularElement);
           }
-        }, 50);
+        }, 1000);
       }
     };
   }])
@@ -66,10 +67,9 @@ angular.module('Teem')
 
             if(chatMessages.length > 0){
 
-              var lastMessage = chatMessages[chatMessages.length - 1];
-              var scrollableContentController = angular.element(lastMessage).controller('scrollableContent');
+              var div = document.querySelector('#chat .flex-scroll');
               $timeout(function(){
-                scrollableContentController.scrollTo(lastMessage);
+                div.scrollTop = div.scrollHeight;
               }, 200);
             }
           };
@@ -176,6 +176,15 @@ angular.module('Teem')
           angular.element(chatTextarea).on('input', function() {
             uploadBtn.classList.toggle('hidden', chatTextarea.value);
             sendBtn.classList.toggle('hidden', !chatTextarea.value);
+          });
+
+          var unbindChatWatch = $scope.$watch('project.chat', () => {
+            if($scope.project && $scope.project.chat) {
+              $timeout(() => {
+                $scope.scrollToBottom();
+                unbindChatWatch();
+              });
+            }
           });
 
           $scope.keyDown = function(event){

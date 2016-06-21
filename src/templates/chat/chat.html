@@ -1,10 +1,9 @@
-<div id="chat" class="chat">
-  <div class="scrollable" ngf-drop="uploadFile($file)" ngf-fix-orientation="true"
-    ngf-drag-over-class="'dragover'">
-    <div class="scrollable-content section" ui-scroll-top="nextPage()">
+<div id="chat" class="chat flex-container">
+  <div class="flex-container" ngf-drop="uploadFile($file)" ngf-fix-orientation="true"
+    ngf-drag-over-class="'dragover'" ng-class="{scrollable: !isDesktop()}">
+    <div class="flex-container flex-scroll section" ng-class="{'scrollable-content': !isDesktop()}" ui-scroll-top="nextPage()">
       <ul class="chat-messages"
-          ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset"
-          chat-scroll>
+          ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset">
         <li id="newMessages" bo-if="firstNewMessage(msg, $index)" class="new-messages">
           <div translate>chat.new_messages</div>
         </li>
@@ -28,7 +27,7 @@
         </li>
       </ul>
     </div>
-    <div class="scrollable-footer chat-send-bar">
+    <div class="chat-send-bar">
       <form class="chat-send" name="chatForm" ng-submit="send()">
         <div class="form-group">
           <div class="input-group">
