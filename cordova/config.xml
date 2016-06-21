@@ -36,6 +36,7 @@ http://p2pvalue.eu/
         </intent-filter>
       </config-file>
       <preference name="android-minSdkVersion" value="14" />
+      <preference name="android-targetSdkVersion" value="23" />
       <icon src="res/icon.png" density="ldpi" />
       <icon src="res/icon.png" density="mdpi" />
       <icon src="res/icon.png" density="hdpi" />
