@@ -366,7 +366,7 @@
       "title": "Enter a password"
     },
     "register": {
-      "button": "Enter",
+      "button": "Register",
       "email": "E-mail",
       "error": {
         "email": {

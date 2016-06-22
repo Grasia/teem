@@ -361,7 +361,7 @@
       "title": "Escoje una contraseña"
     },
     "register": {
-      "button": "Entrar",
+      "button": "Registrarse",
       "email": "E-mail",
       "error": {
         "email": {
