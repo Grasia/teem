@@ -34,6 +34,8 @@ angular.module('Teem')
     } else {
       $scope.context = 'public';
     }
+    let home = $scope.context === 'home' ? 'home.' : '';
+    $scope.title = `community.index.${home}title`;
 
     function initialize() {
       switch ($scope.context) {
