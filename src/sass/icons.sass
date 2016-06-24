@@ -5,15 +5,21 @@ i
     color: $button-primary-color
 
 .icon-count
+  position: relative
+  min-height: 1px
+  padding-right: 10px
+  padding-left: 10px
+  float: left
   i
-    font-size: 1.42em
+    font-size: 20px
     line-height: 1.42em
     vertical-align: middle
   .icon-count-number
     color: $icon-count-number-color
-    font-size: .86em
-    margin-left: .25em
-    vertical-align: middle
+    font-size: 12px
+    font-weight: bold
+    margin-left: .8em
+    vertical-align: bottom
 
 .i-loading
   @extend .fa-spinner
@@ -34,7 +40,7 @@ i
 
 .i-community,
 .i-participants
-  @extend .fa-group
+  @extend .fa-user
 
 .i-project
   @extend .fa-cogs

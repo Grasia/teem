@@ -11,132 +11,134 @@
         </div>
       </div>
 
-      <div class="community-new-greeting section" ng-if="isNew()">
-        <img src="/images/community_form.svg" />
+      <div class="section community-layout">
+        <div class="community-new-greeting col-md-4 section" ng-if="isNew()">
+          <img src="/images/community_form.svg" />
 
-        <div translate translate-values="{ nick: '{{ currentNick() }}' }">
-          community.new.welcome
+          <div translate translate-values="{ nick: '{{ currentNick() }}' }">
+            community.new.welcome
+          </div>
+          <div class="community-new-tip" translate>
+            community.new.tip
+          </div>
         </div>
-        <div class="community-new-tip" translate>
-          community.new.tip
+
+        <div class="community-info col-md-4 section">
+          <h1 ng-if="! editingTitle()">
+            {{community.name}}
+            <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
+              <i class="fa fa-pencil-square-o" ></i>
+            </button>
+          </h1>
+          <div class="form-group label-floating" ng-if="editingTitle()">
+            <label class="control-label" for="communityName" translate>
+              community.title.placeholder
+            </label>
+
+            <div class="input-group title-form">
+              <input type="text"
+                     class="form-control title-input"
+                     ng-model="community.name"
+                     name="communityName">
+              <div class="input-group-addon">
+                <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
+                  <i class="fa fa-check"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="community-description" ng-if="! editingTitle()">
+            {{community.description}}
+          </div>
+
+          <div class="description-form" ng-if="editingTitle()">
+            <div class="form-group label-floating">
+              <label class="control-label" for="communityDescription" translate>
+                community.description.placeholder
+              </label>
+              <textarea class="form-control"
+                        autosize
+                        rows="1"
+                        name="communityDescription"
+                        ng-model="community.description"></textarea>
+              <p class="help-block" translate>
+                community.description.help
+              </p>
+            </div>
+          </div>
+
+          <selector multiple
+            config="userSelectorConfig"
+            options="invite.list" ng-model="invite.selected"
+            placeholder=" 'project.add_people.placeholder' | translate" ng-if="isNew()"></selector>
+          <footer class="row" ng-if="!isNew() && !editingTitle()">
+            <div class="container">
+              <div class="icon-count community-participant-count">
+                <i class="fa fa-leaf"><span class="icon-count-number">{{projects.length}}</span></i>
+              </div>
+              <div class="icon-count community-participant-count">
+                <i class="fa i-community"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
+              </div>
+              <div class="community-count community-like-count">
+              </div>
+              <div class="col-xs-8">
+                <button class="btn btn-primary btn-raised pull-right"
+                        ng-if="! community.isParticipant()"
+                        participate
+                        participate-copy-off="community.participate.button"
+                        participate-model="community">
+                </button>
+              </div>
+            </div>
+          </footer>
         </div>
-      </div>
 
-      <div class="community-info section">
-        <h1 ng-if="! editingTitle()">
-          {{community.name}}
-          <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
-            <i class="fa fa-pencil-square-o" ></i>
-          </button>
-        </h1>
-        <div class="form-group label-floating" ng-if="editingTitle()">
-          <label class="control-label" for="communityName" translate>
-            community.title.placeholder
-          </label>
+        <div class="community-projects col-md-6 section" ng-if="!isNew()">
 
-          <div class="input-group title-form">
-            <input type="text"
-                   class="form-control title-input"
-                   ng-model="community.name"
-                   name="communityName">
-            <div class="input-group-addon">
-              <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
-                <i class="fa fa-check"></i>
+          <h2 class="community-project-title" translate>community.project.title</h2>
+          <div ng-if="projects.length">
+
+            <projects project-list="projects"></projects>
+
+          </div>
+
+          <div ng-if="! projects.length">
+            <div class="community-project-tip" translate>
+                community.project.tip
+            </div>
+            <div class="community-project-image">
+              <div class="community-project-pot-tag"
+                   ng-bind-html="community.nameForPotTag()"
+                   textfit>
+              </div>
+              <img src="/images/teem_pot.svg" / class="img-responsive">
+            </div>
+            <div class="community-project-btn">
+              <button class="btn btn-primary btn-raised"
+                      ng-click="createProject()"
+                      analytics-on="click"
+                      analytics-event="New project">
+                <img src="/images/icons/teem_white_background.svg" />
+                <span translate>community.project.button</span>
               </button>
             </div>
-          </div>
+
+          </diV>
         </div>
 
-        <div class="community-description" ng-if="! editingTitle()">
-          {{community.description}}
+        <div class="community-participants col-md-2 section" ng-if="!isNew()">
+          <h2 translate translate-values="{ count: '{{ community.participantCount() }}'}">
+            community.participants.title
+          </h2>
+
+          <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
         </div>
-
-        <div class="description-form" ng-if="editingTitle()">
-          <div class="form-group label-floating">
-            <label class="control-label" for="communityDescription" translate>
-              community.description.placeholder
-            </label>
-            <textarea class="form-control"
-                      autosize
-                      rows="1"
-                      name="communityDescription"
-                      ng-model="community.description"></textarea>
-            <p class="help-block" translate>
-              community.description.help
-            </p>
-          </div>
-        </div>
-
-        <selector multiple
-          config="userSelectorConfig"
-          options="invite.list" ng-model="invite.selected"
-          placeholder=" 'project.add_people.placeholder' | translate" ng-if="isNew()"></selector>
-        <div class="row" ng-if="!isNew() && !editingTitle()">
-          <div class="icon-count community-participant-count col-xs-3">
-            <i class="fa i-participants"></i>
-            <span class="icon-count-number">{{ community.participantCount() }}</span>
-          </div>
-          <div class="community-count community-like-count col-xs-3">
-          </div>
-          <div class="col-xs-6">
-            <button class="btn btn-primary btn-raised pull-right"
-                    ng-if="! community.isParticipant()"
-                    participate
-                    participate-copy-off="community.participate.button"
-                    participate-model="community">
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="community-projects section" ng-if="!isNew()">
-
-        <h2 class="community-project-title" translate>community.project.title</h2>
-        <div ng-if="projects.length">
-
-          <div class="community-projects-count" translate translate-values="{ count: '{{ projects.length }}'}">
-            community.project.working_group_count
-          </div>
-
-          <projects project-list="projects"></projects>
-
-          <plus plus-type="project" plus-community="community"></plus>
-        </div>
-
-        <div ng-if="! projects.length">
-          <div class="community-project-tip" translate>
-              community.project.tip
-          </div>
-          <div class="community-project-image">
-            <div class="community-project-pot-tag"
-                 ng-bind-html="community.nameForPotTag()"
-                 textfit>
-            </div>
-            <img src="/images/teem_pot.svg" / class="img-responsive">
-          </div>
-          <div class="community-project-btn">
-            <button class="btn btn-primary btn-raised"
-                    ng-click="createProject()"
-                    analytics-on="click"
-                    analytics-event="New project">
-              <img src="/images/icons/teem_white_background.svg" />
-              <span translate>community.project.button</span>
-            </button>
-          </div>
-
-        </diV>
-      </div>
-
-      <div class="community-participants section" ng-if="!isNew()">
-        <h2 translate translate-values="{ count: '{{ community.participantCount() }}'}">
-          community.participants.title
-        </h2>
-
-        <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
       </div>
     </div>
     <div class="scrollable-footer" ng-if="isNew()">
       <div ng-include="'new-form/buttons.html'"></div>
     </div>
   </div>
+  <plus plus-type="project" plus-community="community"></plus>
 </div>

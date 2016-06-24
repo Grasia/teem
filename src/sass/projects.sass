@@ -8,7 +8,7 @@
 .project-index-tip
   margin-bottom: 10px
 .project-item-title
-  color: $project-item-title-color
+  color: $projects-title-color
   font-weight: bold
 
 .notification-indicator
@@ -20,6 +20,7 @@
   height: 1.42em
   @extend .overflow-ellipsis
   white-space: normal
+  word-break: break-all
   max-width: 70%
 .project-sections
   margin-top: 0.8em
@@ -34,9 +35,9 @@
     i
       text-align: right !important
 .project-communities
+  font-size: 14px
   a
-    color: inherit
-    font-size: 1.21em
+    color: $project-communities-color
 .project-join
   margin-top: 10px
 .project-section-needs

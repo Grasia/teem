@@ -141,3 +141,31 @@
   @extend .pull-right
   color: $community-participanting-message-color
   padding-top: 16px
+
+@media (min-width: $screen-md-min)
+  .community
+    h1, h2
+      font-size: 24px
+    h1
+      text-transform: uppercase
+      padding-top: 10px
+    h2
+      text-transform: none
+      font-weight: normal
+      padding-left: 16px
+  .community-photo img, .community-gallery img
+    max-height: 311px
+  .community-layout
+    padding-left: 35px
+    background: linear-gradient($light-grey 62px, transparent 2px)
+  .community-info
+    background: white
+    margin-top: -56px
+    .community-description
+      min-height: 30vh
+    footer
+      border-top: solid 1px $grey
+  .community-projects, .community-participants
+    background: transparent
+    > h2
+      height: 52px /* 62 (community-layout) - 10 (parent section padding) */
