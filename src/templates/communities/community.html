@@ -75,7 +75,7 @@
           <footer class="row" ng-if="!isNew() && !editingTitle()">
             <div class="container">
               <div class="icon-count community-participant-count">
-                <i class="fa fa-leaf"><span class="icon-count-number">{{projects.length}}</span></i>
+                <i class="fa i-project"><span class="icon-count-number">{{projects.length}}</span></i>
               </div>
               <div class="icon-count community-participant-count">
                 <i class="fa i-community"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
@@ -128,8 +128,9 @@
         </div>
 
         <div class="community-participants col-md-2 section" ng-if="!isNew()">
-          <h2 translate translate-values="{ count: '{{ community.participantCount() }}'}">
-            community.participants.title
+          <h2>
+            {{ 'community.participants.title' | translate }}
+            <small class="hidden-md hidden-lg">({{ community.participantCount() }})</small>
           </h2>
 
           <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>

@@ -1,6 +1,7 @@
 <div class="communities">
   <div class="scrollable">
     <div class="scrollable-content">
+      <h1 translate>{{title}}</h1>
       <div class="community-list">
         <div class="community-item col-sm-6 col-md-4"
              ng-hide="creating && newCommunityName.name === ''"
@@ -15,29 +16,19 @@
               <div class="community-description">
                 {{ community.description }}
               </div>
-              <div class="h3 community-project-count" translate translate-values="{ count: '{{ community.numProjects || 0}}'}">
-                community.project.count
-              </div>
               <div class="community-item-footer row">
-                <div class="icon-count community-participant-count col-xs-3">
-                  <i class="fa i-participants"></i>
-                  <span class="icon-count-number">{{ community.participantCount() }}</span>
-                </div>
-                <div class="icon-count community-like-count col-xs-3">
-                  <span class="icon-count-number"></span>
+                <div class="col-xs-6">
+                  <div class="icon-count community-participant-count">
+                    <i class="fa i-project"><span class="icon-count-number">{{ community.numProjects || 0 }}</span></i>
+                  </div>
+                  <div class="icon-count community-participant-count">
+                    <i class="fa i-participants"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
+                  </div>
                 </div>
                 <div class="col-xs-6">
-                  <button class="btn btn-primary pull-right community-view-more"
-                          ng-if="! community.isParticipant()"
-                          translate>
-                    community.view_more
-                  </button>
-
-                  <div class="community-participating-message"
-                        ng-if="community.isParticipant()"
-                        translate>
-                    community.participate.message
-                  </div>
+                  <a class="btn btn-link pull-right community-view-more">
+                    {{'community.view_more' | translate }} <i class="fa fa-arrow-right"></i>
+                  </a>
                 </button>
                 </div>
               </div>

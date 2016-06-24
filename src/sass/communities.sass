@@ -1,8 +1,12 @@
 .communities
+  h1
+    background: $light-grey
+    padding: 17px 29px
+    border-bottom: solid 1px $grey
   h3
     color: $community-title-color
     text-transform: uppercase
-    font-size: 1.42em
+    font-size: 20px
     height: 2.1em
     overflow-y: hidden
 .community-list
@@ -26,14 +30,20 @@
     padding-top: 10px
   .community-item-footer
     height: 40px
+    border-top: 1px solid $grey
   .community-view-more
+    font-weight: bold
     padding: 0
+    color: $button-primary-background-color
+    i
+      color: $button-primary-background-color
 
 .community-photo, .community-gallery
+  height: 180px
   img
     width: 100%
     object-fit: cover
-    max-height: 152px
+    max-height: 180px
 
 .community-description
   margin-top: 20px
@@ -153,8 +163,10 @@
       text-transform: none
       font-weight: normal
       padding-left: 16px
-  .community-photo img, .community-gallery img
-    max-height: 311px
+  .community-gallery
+    height: 311px
+    img
+      max-height: 311px
   .community-layout
     padding-left: 35px
     background: linear-gradient($light-grey 62px, transparent 2px)
