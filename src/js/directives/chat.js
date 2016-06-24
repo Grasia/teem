@@ -37,9 +37,9 @@ angular.module('Teem')
     return {
       controller: [
         'SessionSvc', '$scope', '$rootScope', '$route', '$location',
-        '$animate', 'time', '$timeout', 'SharedState',
+        '$animate', 'time', '$timeout',
         function(SessionSvc, $scope, $rootScope, $route, $location,
-        $animate, time, $timeout, SharedState){
+        $animate, time, $timeout){
           const pageSize = 20;
           const CAMERA_SYMBOL = '\uD83D\uDCF7';
           // For scrolling in chatScroll directive
@@ -88,7 +88,7 @@ angular.module('Teem')
             angular.element(chatTextarea).trigger('input');
             autosize.update(chatTextarea);
 
-            chatTextarea.click();
+            chatTextarea.focus();
           };
 
           $scope.standpoint = function(msg){
