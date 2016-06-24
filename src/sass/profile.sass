@@ -1,13 +1,21 @@
 .profile
-  td
+  h4
+    font-size: 14px
+  table
+    font-size: 18px
+    &.communities
+      text-transform: uppercase
+    > tbody > tr > td
+      padding: 20px 8px
     a
       color: $dark-grey
       width: 100%
       display: block
-      span
-        &::after
-          float: right
-          content: "\f054" /* chevron-right */
-          font-family: FontAwesome
       &:hover
         text-decoration: none
+  .affix
+    background: #fff
+    margin-left: -15px
+    height: 100%
+    .section
+      background: #fff
