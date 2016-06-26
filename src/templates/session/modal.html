@@ -1,7 +1,7 @@
 <modal name="session" overlay>
-  <header>{{'session.register.title' | translate}}</header>
+  <header>{{'session.'+form.current+'.title' | translate}}</header>
   <main>
-    <div ng-include="'session/form.html'" ng-controller="SessionCtrl"></div>
+    <div ng-include="'session/form.html'"></div>
   </main>
   <footer></footer>
 </modal>

@@ -42,8 +42,8 @@
           ui-show="menuSession"
           ui-state="menuSession"
           ui-turn-off="menuSession">
-        <li><a href="/session/login" translate>menu.session.login</a></li>
-        <li><a href="/session/register" translate>menu.session.register</a></li>
+        <li><a ng-click="login()" translate>menu.session.login</a></li>
+        <li><a ng-click="register()" translate>menu.session.register</a></li>
       </ul>
       <!-- Material design uses ul>li css so we have to repeat the menu here
            or add a watcher per menu entry -->

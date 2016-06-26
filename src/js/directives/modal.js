@@ -10,18 +10,18 @@ angular.module('Teem')
         main: 'main',
         footer: 'footer'
       },
-      scope: {
-        name: '@',
-        overlay: '@'
-      },
+      scope: true,
       link: function($scope, $element, $attrs) {
         if (!$attrs.name) {
           throw Error('Provide a name to the modal please.');
         }
+
+        $scope.overlay = $attrs.overlay;
+
         $scope.isModalSharedState = function() {
           let modalSharedState = SharedState.get('modalSharedState');
-          return modalSharedState && (modalSharedState === $scope.name ||
-            modalSharedState.name === $scope.name);
+          return modalSharedState && (modalSharedState === $attrs.name ||
+            modalSharedState.name === $attrs.name);
         };
 
         $scope.keyUp = function(event){

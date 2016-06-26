@@ -30,6 +30,11 @@ angular.module('Teem')
       $timeout();
     };
 
+    $scope.login = function () {
+      SharedState.set('modalSharedState', {name: 'session', type: 'login'});
+      $timeout();
+    };
+
     $scope.loggedIn = function () {
       return SessionSvc.users.loggedIn();
     };
