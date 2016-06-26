@@ -217,14 +217,8 @@ angular.module('Teem')
       }
     };
 
-    var modalSharedState = SharedState.get('modalSharedState');
-
     $scope.form = {
-      // Use modalSharedState.type to store form ('login', 'register', etc..)
-      // and modalSharedState.message to store form message (new_community) (you have to register to create a community)
-      // So SharedState can be {name: 'session', type: 'register', message: 'new_community'}
-      current: normalizeFormName($route.current.params.form || modalSharedState && modalSharedState.type || 'register'),
-      message: modalSharedState && modalSharedState.message,
+      current: normalizeFormName($route.current && $route.current.params.form || 'register'),
       values: {},
       login: ['nick', 'password'],
       register: ['nick', 'password', 'passwordRepeat', 'email'],
@@ -232,6 +226,14 @@ angular.module('Teem')
       recoverPassword: ['password', 'passwordRepeat'],
       migration: ['password', 'passwordRepeat', 'email']
     };
+
+    // Use modalSharedState.type to store form ('login', 'register', etc..)
+    // and modalSharedState.message to store form message (new_community) (you have to register to create a community)
+    // So SharedState can be {name: 'session', type: 'register', message: 'new_community'}
+    $scope.$on('mobile-angular-ui.state.changed.modalSharedState', function(e, newValue) {
+      $scope.form.current = newValue.type || 'register';
+      $scope.form.message = newValue.message;
+    });
 
     $scope.logout = function() {
       SessionSvc.stopSession();
