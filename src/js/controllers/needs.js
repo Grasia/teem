@@ -150,6 +150,10 @@ angular.module('Teem')
           this.hour = function(comment) {
             return time.hour(new Date(comment.time));
           };
+
+          $scope.orderByTime = (need) => {
+            return -Date.parse(need.time);
+          };
         }
       };
     });

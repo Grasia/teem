@@ -14,12 +14,12 @@
   </div>
 
   <div class="list-group project-needs-list project-needs">
-    <div ng-repeat="need in needs | orderBy: 'completed'">
-      <div need-display need="need">
-      </div>
-    </div>
     <div>
       <div need-display need="{completed: 'add'}">
+      </div>
+    </div>
+    <div ng-repeat="need in needs | orderBy:orderByTime | orderBy:'completed'">
+      <div need-display need="need">
       </div>
     </div>
   </div>
