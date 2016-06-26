@@ -12,9 +12,9 @@ angular.module('Teem')
   .factory('SessionSvc', [
     // NotificationSvc has to be added here as dependency to be loaded in the app
   '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
-  '$rootScope', '$route',
+  '$rootScope',
   function($q, $timeout, SharedState, NotificationSvc, $locale, User,
-           $rootScope, $route) {
+           $rootScope) {
 
     var swellRTDef = $q.defer(),
         swellRTpromise = swellRTDef.promise,
@@ -32,6 +32,8 @@ angular.module('Teem')
           connection: 'notConnected',
           sync: true,
         };
+
+    var autoStartSession;
 
     SwellRT.ready(function() {
       swellRTDef.resolve();
@@ -215,7 +217,7 @@ angular.module('Teem')
       });
     };
 
-    var autoStartSession = function(){
+    autoStartSession = function(){
 
       status.connection = 'connecting';
 
