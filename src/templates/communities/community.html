@@ -12,7 +12,7 @@
       </div>
 
       <div class="section community-layout">
-        <div class="community-new-greeting col-md-4 section" ng-if="isNew()">
+        <div class="community-new-greeting section" ng-if="isNew()">
           <img src="/images/community_form.svg" />
 
           <div translate translate-values="{ nick: '{{ currentNick() }}' }">
@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <div class="community-info col-md-4 section">
+        <div class="community-info section" ng-class="{'col-md-4': !isNew()}">
           <h1 ng-if="! editingTitle()">
             {{community.name}}
             <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
@@ -141,5 +141,5 @@
       <div ng-include="'new-form/buttons.html'"></div>
     </div>
   </div>
-  <plus plus-type="project" plus-community="community"></plus>
+  <plus plus-type="project" plus-community="community" ng-if="!isNew()"></plus>
 </div>
