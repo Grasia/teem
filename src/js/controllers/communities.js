@@ -19,6 +19,7 @@ angular.module('Teem')
         templateUrl: 'communities/index.html'
       })
       .when('/communities/new', {
+        controller: 'CommunitiesCtrl',
         templateUrl: 'communities/index.html'
       })
       .when('/communities/:id', {
@@ -26,8 +27,8 @@ angular.module('Teem')
       });
   }])
   .controller('CommunitiesCtrl', [
-  'SessionSvc', '$scope', '$location', 'Loading', 'CommunitiesSvc',
-  function (SessionSvc, $scope, $location, Loading, CommunitiesSvc) {
+  'SessionSvc', '$scope', '$location', 'Loading', 'CommunitiesSvc', '$route',
+  function (SessionSvc, $scope, $location, Loading, CommunitiesSvc, $route) {
 
     if ($location.path() === '/home/communities') {
       $scope.context = 'home';
@@ -35,23 +36,38 @@ angular.module('Teem')
       $scope.context = 'public';
     }
 
-    function initialize() {
-      switch ($scope.context) {
+    if ($location.path() === '/communities/new') {
+      SessionSvc.loginRequired($scope, function() {
+        CommunitiesSvc.create({}, function(c) {
+          $location.path(c.path()).search('form', 'new');
+        });
+      },
+      {
+        form: 'register',
+        message: 'new_community'
+      });
+    }
 
-        case 'home':
+    function initialize() {
+      if (!$route.current.params.id && $location.path() !== '/communities/new') {
+
+        switch ($scope.context) {
+
+          case 'home':
           SessionSvc.loginRequired($scope, function() {
             Loading.show(CommunitiesSvc.participating({ projectCount: true })).
-              then(function(communities){
-                $scope.communities = communities;
-              });
-            });
-
-          break;
-        default:
-          Loading.show(CommunitiesSvc.all({ projectCount: true })).
-            then(function(communities) {
+            then(function(communities){
               $scope.communities = communities;
             });
+          });
+
+          break;
+          default:
+          Loading.show(CommunitiesSvc.all({ projectCount: true })).
+          then(function(communities) {
+            $scope.communities = communities;
+          });
+        }
       }
     }
 
