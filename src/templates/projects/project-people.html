@@ -1,9 +1,4 @@
-<div class="section project-participants">
-  <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
-      project.section.participants.title
-  </h2>
-
-  <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
+  <div avatars="project._participants" avatars-conf="{size: 'xsmall'}" class="avatars"></div>
   <div class="project-add-users"  ng-if="project.isParticipant()">
     <button class="invite-button btn btn-primary btn-raised fa fa-user-plus" ui-set="{modalSharedState: 'invite'}" translate>
         project.add_people.button
@@ -25,4 +20,3 @@
       </modal>
     </div>
   </div>
-</div>

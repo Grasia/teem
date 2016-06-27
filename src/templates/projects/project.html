@@ -60,41 +60,62 @@
     </footer>
   </modal>
 </div>
-<div ng-if="isDesktop()" class="section project project-desktop">
-  <div class="col-md-2">
+<div ng-if="isDesktop()" class="project project-desktop">
+  <div class="col-md-3 project-sidebar">
     <div class="row">
-      <div class="col-xs-4 project-photo-responsive">
-        <div ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
-          <img ng-src="{{project.logo()}}">
+      <div class="media project-badge">
+        <div class="media-left">
+          <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
+            <img class="media-object" ng-src="{{project.logo()}}">
+          </div>
+          <div class="project-photo" ng-if="!project.isParticipant()">
+            <img class="media-object" ng-src="{{project.logo()}}">
+          </div>
         </div>
-        <div ng-if="!project.isParticipant()">
-          <img ng-src="{{project.logo()}}">
+        <div class="media-body media-middle">
+          <h4 class="media-heading">
+            <span class="project-item-title">{{project.title}}</span>
+          </h4>
+          <div class="project-communities">
+            <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
+          </div>
         </div>
-      </div>
-      <div class="col-xs-8">
-        <strong>{{project.title}}</strong><br>
-        <span class="comma-separated" ng-repeat="c in communities"><a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
       </div>
     </div>
-    <div class="row">
-      <div project-people></div>
+    <div class="row project-sidebar-inner">
+      <div class="section" project-people></div>
     </div>
     <!--<div class="row">
       <h2>tus teems</h2>
       <projects project-list="projects" context="context"></projects>
     </div>-->
   </div>
-  <div class="col-md-7">
-    <h1>{{project.title}}</h1>
+  <div class="col-md-6 project-main">
+    <div class="row">
+      <div class="col-xs-8">
+        <h1>{{project.title}}</h1>
+      </div>
+      <div class="project-join col-xs-4 text-right" ng-if="!project.isParticipant()">
+        <button class="btn btn-primary btn-raised"
+                join
+                join-icon="false",
+                join-model="project"
+                join-copy-on="project.participate.btn.undo"
+                join-copy-off="project.participate.btn.do"
+                analytics-on="click"
+                analytics-event="Join project">
+        </button>
+      </div>
+    </div>
     <pad editing-default="true" class="flex-container"></pad>
   </div>
-  <div class="col-md-3">
-    <div class="">
-      <h2>necesidades</h2>
+  <div class="col-md-3 project-utils">
+    <div class="row">
+      <h2 translate>need.nav.title</h2>
       <div need-list project="project" needs="project.needs" display="panel" ng-class="project.isParticipant() ? '' : 'has-cta'" class=""></div>
     </div>
-    <div class="flex-container">
-      <h2>chat</h2>
+    <div class="flex-container row">
+      <h2 translate>chat.nav.title</h2>
       <chat class="flex-container"></chat>
     </div>
   </div>

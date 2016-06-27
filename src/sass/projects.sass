@@ -102,6 +102,7 @@
   overflow: hidden
   height: 100%
   h1
+    font-weight: bold
     font-size: 1.42em
     margin-bottom: .14em
 .project-desktop
@@ -204,3 +205,36 @@
     font-size: 1.42em
     font-weight: $font-weight-light
     @extend .participant-title
+
+.project-desktop
+  background: white
+  > div
+    background: $lightest-grey
+    border-left: $grey solid 1px
+    border-right: $grey solid 1px
+  .project-sidebar
+    @extend .flex-container
+    border-left: none
+    padding-top: 10px
+    padding-left: 25px
+    background-color: #b2409e
+    .project-item-title, .project-communities a
+      color: white
+    .project-sidebar-inner
+      background-color: $lightest-grey
+      flex: 1
+    .project-badge
+      font-size: 12px
+      h4
+        font-size: 14px
+  .project-main
+    margin: 0 8px
+  .project-utils
+    h2
+      text-transform: uppercase
+      font-size: 18px
+      padding: 10px
+    .needs-header
+      background: none
+    chat
+      border-top: 1px solid $grey

@@ -71,8 +71,12 @@
         <a ui-set="{modalSharedState: 'shareModalCreate'}"><i class="fa i-share"></i></a>
       </div>
     </div>
-
-    <div project-people  ng-if="!isNew() && !pad.editing"></div>
+    <div class="section project-participants">
+      <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
+          project.section.participants.title
+      </h2>
+      <div project-people  ng-if="!isNew() && !pad.editing"></div>
+    </div>
   </div>
   <div class="scrollable-footer" ng-if="isNew() && !pad.editing">
     <div ng-include="'new-form/buttons.html'"></div>

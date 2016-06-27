@@ -1,5 +1,5 @@
 <div ui-content-for="nav-right">
-  <div class="nav-right-menu" ng-if="!pad.editing">
+  <div class="nav-right-menu" ng-if="!pad.editing || isDesktop()">
     <a ui-turn-on="dropdownProjectMenu" class="btn">
       <i class="fa fa-ellipsis-v"></i>
     </a>
@@ -14,7 +14,7 @@
       <li><a join join-copy-on="project.menu.leave" join-copy-off="project.menu.join" join-model="project" analytics-on="click" analytics-event="Join project"></a></li>
     </ul>
   </div>
-  <div class="nav-right-menu" ng-if="pad.editing">
+  <div class="nav-right-menu" ng-if="pad.editing && !isDesktop()">
     <a ng-click="editOff()" class="btn pad-check">
       <i class="fa fa-check" ng-class="{'fa-check': !pad.saving, 'fa-spinner': pad.saving}"></i>
     </a>

@@ -12,7 +12,7 @@
             <div bo-text="dayChange(msg, $index)"></div>
         </li>
         <li bo-if="!isNotificationMessage(msg)" class="chat-message" bo-class="standpoint(msg)">
-          <div avatars="::(msg.who)" avatars-conf="{size: 'small'}" class="avatar-small"></div>
+          <div avatars="::(msg.who)" avatars-conf="{size: 'xsmall'}" class="avatar-small"></div>
           <div class="chat-balloon">
             <div class="chat-message-sender color-{{project._participants.indexOf(msg.who)%6 + 1 || 1}}"
                  bo-text="msg.who.split('@')[0]">
