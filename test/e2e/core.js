@@ -81,7 +81,7 @@ describe('Teem', function() {
         return browser.isElementPresent(communityNameEl);
       }, timeout);
 
-      expect(element(communityNameEl).getText()).toBe(community.name);
+      expect(element(communityNameEl).getText()).toBe(community.name.toUpperCase());
 
       expect(element(by.css('.community-description')).getText()).toBe(community.description);
 
