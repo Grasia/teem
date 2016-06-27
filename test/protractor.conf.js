@@ -9,9 +9,19 @@ exports.config = {
     'e2e/*.js'
   ],
 
-  capabilities: {
-    'browserName': 'chrome'
-  },
+  multiCapabilities: [{
+   'browserName': 'chrome',
+   'chromeOptions' : {
+       args: ['--lang=en',
+              '--window-size=1024,800']
+     },
+   }, {
+   'browserName': 'chrome',
+   'chromeOptions' : {
+    args: ['--lang=en',
+           '--window-size=350,650']
+     },
+  }],
 
   baseUrl: 'http://' + gulpConfig.serverTest.host + ':' + gulpConfig.serverTest.port + '/',
 
