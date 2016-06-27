@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <pad class="flex-container"></pad>
+    <pad></pad>
 
     <div class="section project-actions" ng-if="!isNew() && !pad.editing">
       <div class="icon-count col-xs-6 project-actions-like">
@@ -71,7 +71,8 @@
         <a ui-set="{modalSharedState: 'shareModalCreate'}"><i class="fa i-share"></i></a>
       </div>
     </div>
-    <div class="section project-participants">
+
+    <div class="section project-participants" ng-if="!isNew() && !pad.editing">
       <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
           project.section.participants.title
       </h2>

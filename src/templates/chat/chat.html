@@ -27,7 +27,7 @@
         </li>
       </ul>
     </div>
-    <div class="chat-send-bar">
+    <div class="chat-send-bar" ng-class="{'scrollable-footer': !isDesktop()}">
       <form class="chat-send" name="chatForm" ng-submit="send()">
         <div class="form-group">
           <div class="input-group">
