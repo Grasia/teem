@@ -129,7 +129,7 @@ describe('Teem', function() {
       }, timeout);
 
 
-      var newNeedElement = needElements.first();
+      var newNeedElement = needElements.last();
 
       expect(newNeedElement.element(by.css('.need-name textarea')).getAttribute('value'))
         .toEqual(needText);
