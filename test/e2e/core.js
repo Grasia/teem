@@ -75,7 +75,7 @@ describe('Teem', function() {
 
       element(by.css('.new-form-confirm-btn')).click();
 
-      var communityNameEl = by.css('.community-info h3');
+      var communityNameEl = by.css('.community-info h1');
 
       browser.wait(function() {
         return browser.isElementPresent(communityNameEl);
