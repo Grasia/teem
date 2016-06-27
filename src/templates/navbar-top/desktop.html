@@ -7,14 +7,16 @@
   </ul>
 
   <ul class="nav navbar-nav navbar-right">
-    <li class="text-uppercase menu-option">
-      <a href="/home/communities" ng-if="loggedIn()" translate>menu.homeCommunities.title</a>
+    <li class="text-uppercase menu-option" ng-if="loggedIn()">
+      <a href="/home/communities" translate>menu.homeCommunities.title</a>
     </li>
     <li class="text-uppercase menu-option">
       <a href="/communities" translate>menu.communities.title</a>
     </li>
-    <li class="text-uppercase menu-option">
-      <a href="/projects/{{support.projectId}}" ng-if="support" translate>menu.feedback.title</a>
+    <li class="text-uppercase menu-option" ng-if="support">
+      <a href="/projects/{{support.projectId}}" translate>menu.feedback.title</a>
+    </li>
+    <li ui-yield-to="nav-right">
     </li>
     <li class="dropdown menu-session">
       <a ui-turn-on="menuSession">
