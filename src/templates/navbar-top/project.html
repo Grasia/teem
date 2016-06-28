@@ -24,7 +24,7 @@
 </div>
 
 <div ui-content-for="nav-title">
-  <div class="project-title overflow-ellipsis">
+  <div ng-if="!isDesktop()" class="project-title overflow-ellipsis">
     {{project.title || 'project.title.empty.placeholder' | translate}}
   </div>
 </div>

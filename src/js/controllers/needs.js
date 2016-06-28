@@ -112,7 +112,7 @@ angular.module('Teem')
           };
 
           scope.isNewNeed = function(need){
-            if (!scope.project || !scope.project.isParticipant()){
+            if (!scope.project || !scope.project.isParticipant() || !scope.project.getTimestampAccess()){
               return false;
             }
             var prevAccess = new Date(scope.project.getTimestampAccess().needs.prev);

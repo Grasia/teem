@@ -74,7 +74,7 @@
         </div>
         <div class="media-body media-middle">
           <h4 class="media-heading">
-            <span class="project-item-title">{{project.title}}</span>
+            <span class="project-title">{{project.title}}</span>
           </h4>
           <div class="project-communities">
             <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
@@ -92,8 +92,9 @@
   </div>
   <div class="col-md-6 project-main">
     <div class="row">
-      <div class="col-xs-8">
-        <h1>{{project.title}}</h1>
+      <div class="col-xs-8 project-title-editable">
+        <input class="h1 title-input form-control" ng-model="project.title"
+        placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
       </div>
       <div class="project-join col-xs-4 text-right" ng-if="!project.isParticipant()">
         <button class="btn btn-primary btn-raised"

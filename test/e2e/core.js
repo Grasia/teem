@@ -4,15 +4,20 @@
 
 describe('Teem', function() {
 
+  var isDesktop;
+
   beforeAll(function() {
     browser.get('/');
-
     browser.driver.executeScript('window.localStorage.clear();');
   });
 
   describe('1% core user', function() {
-    beforeAll(function() {
+    beforeAll(function(done) {
       browser.get('/communities');
+      browser.driver.executeScript('return window.innerWidth >= 992;').then((desktop) => {
+        isDesktop = desktop;
+        done();
+      });
     });
 
     it('should create a project and share it', function() {
@@ -98,10 +103,12 @@ describe('Teem', function() {
       element(by.css('.swellrt-editor')).click();
       element(by.css('.wave-editor-on')).sendKeys(project.pad);
 
-      element(by.css('.pad-check')).click();
-      element(by.css('.new-form-confirm-btn')).click();
+      if (!isDesktop) {
+        element(by.css('.pad-check')).click();
+        element(by.css('.new-form-confirm-btn')).click();
+      }
 
-      var projectTitleEl = by.css('.project-header h1');
+      var projectTitleEl = by.css('.project-title');
 
       browser.wait(function() {
         return browser.isElementPresent(projectTitleEl);
@@ -112,7 +119,9 @@ describe('Teem', function() {
       expect(element(by.css('#pad ul:first-child')).getText()).toBe(project.pad);
 
       // Needs
-      element(by.css('a.nav-needs')).click();
+      if(!isDesktop) {
+        element(by.css('a.nav-needs')).click();
+      }
 
       var needText = 'More tests';
 
@@ -138,7 +147,9 @@ describe('Teem', function() {
         .toBeFalsy();
 
       // Chat
-      element(by.css('a.nav-chat')).click();
+      if (!isDesktop) {
+        element(by.css('a.nav-chat')).click();
+      }
 
       var chatText = 'This is a nice opportunity to discuss about testing';
 

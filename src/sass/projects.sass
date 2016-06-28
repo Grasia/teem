@@ -110,9 +110,22 @@
   > div
     display: flex
     flex-direction: column
-  h1
-    font-size: 30px
-    margin: 17px
+  .project-title-editable
+    .form-group
+      margin: 0
+      padding: 0
+    .h1
+      margin: 17px
+      font-size: 30px
+      font-weight: bold
+      &:not(.ng-empty):not(:hover)
+        background: none
+      &::-webkit-input-placeholder
+        font-size: 30px
+        font-weight: bold
+      &::-moz-placeholder /* due to a chrome bug, we can't define them in the same line */
+        font-size: 30px
+        font-weight: bold
   .flex-scroll
     overflow: auto
   .flex-container
