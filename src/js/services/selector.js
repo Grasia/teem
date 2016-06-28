@@ -130,8 +130,6 @@ angular.module('Teem')
             // project.title || community.name
             hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
           }
-
-          $rootScope.$broadcast('teem.' + hasParticipantsObject.type + '.join');
         }
       }
     };
