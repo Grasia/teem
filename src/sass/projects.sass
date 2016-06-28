@@ -118,8 +118,13 @@
       margin: 17px
       font-size: 30px
       font-weight: bold
-      &:not(.ng-empty):not(:hover)
+      &:not(.ng-empty):not(:focus):not(:hover)
         background: none
+      &[disabled]
+        cursor: auto
+        border-bottom: none
+        background: none
+
       &::-webkit-input-placeholder
         font-size: 30px
         font-weight: bold
