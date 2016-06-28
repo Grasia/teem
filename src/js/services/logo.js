@@ -16,10 +16,13 @@ angular.module('Teem')
     const LogoColors = ['aubergine', 'blue', 'teal', 'yellow'];
 
     class Logo {
-      defaultLogo () {
-        var color = this.id.slice(-1).charCodeAt(0) % LogoColors.length;
 
-        return '/images/' + this.type + '_' + LogoColors[color] + '.svg';
+      logoColor () {
+        return LogoColors[this.id.slice(-1).charCodeAt(0) % LogoColors.length];
+      }
+
+      defaultLogo () {
+        return '/images/' + this.type + '_' + this.logoColor() + '.svg';
       }
 
       defaultLogoUrl () {
