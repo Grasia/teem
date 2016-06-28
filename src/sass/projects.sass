@@ -229,26 +229,30 @@
   .project-sidebar
     @extend .flex-container
     border-left: none
-    padding-top: 10px
     padding-left: 25px
     background-color: #b2409e
-    .project-item-title, .project-communities a
+    .project-title, .project-communities a
       color: white
     .project-sidebar-inner
       background-color: $lightest-grey
       flex: 1
     .project-badge
       font-size: 12px
+      display: flex
+      align-items: center
+      height: 85px
       h4
         font-size: 14px
+      .project-communities
+        font-size: 12px
   .project-main
     margin: 0 8px
+    padding-bottom: 5px
   .project-utils
     h2
       text-transform: uppercase
       font-size: 18px
       padding: 10px
+      border-bottom: 1px solid $grey
     .needs-header
       background: none
-    chat
-      border-top: 1px solid $grey

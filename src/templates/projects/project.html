@@ -61,9 +61,9 @@
   </modal>
 </div>
 <div ng-if="isDesktop()" class="project project-desktop">
-  <div class="col-md-3 project-sidebar">
-    <div class="row">
-      <div class="media project-badge">
+  <div class="col-md-3 col-lg-2 project-sidebar">
+    <div class="row project-badge">
+      <div class="media">
         <div class="media-left">
           <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
             <img class="media-object" ng-src="{{project.logo()}}">
@@ -90,14 +90,14 @@
       <projects project-list="projects" context="context"></projects>
     </div>-->
   </div>
-  <div class="col-md-6 project-main">
+  <div class="col-md-6 col-lg-7 project-main">
     <div class="row">
-      <div class="col-xs-8 project-title-editable">
+      <div class="col-xs-7 project-title-editable">
         <input class="h1 title-input form-control" ng-model="project.title"
         placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
       </div>
-      <div class="project-join col-xs-4 text-right" ng-if="!project.isParticipant()">
-        <button class="btn btn-primary btn-raised"
+      <div class="project-join col-xs-5 text-right" ng-if="!project.isParticipant()">
+        <button class="btn btn-lg btn-primary btn-raised"
                 join
                 join-icon="false",
                 join-model="project"
@@ -115,7 +115,7 @@
       <h2 translate>need.nav.title</h2>
       <div need-list project="project" needs="project.needs" display="panel" ng-class="project.isParticipant() ? '' : 'has-cta'" class=""></div>
     </div>
-    <div class="flex-container row">
+    <div class="flex-container row" ng-if="project.isParticipant()">
       <h2 translate>chat.nav.title</h2>
       <chat class="flex-container"></chat>
     </div>
