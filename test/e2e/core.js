@@ -1,5 +1,9 @@
 'use strict';
 
+var sessionPage = require(__dirname + '/pages/session'),
+    registerPage = new sessionPage.Register(),
+    loginPage = new sessionPage.Login();
+
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
 describe('Teem', function() {
@@ -47,26 +51,9 @@ describe('Teem', function() {
         );
       }, timeout);
 
-      var loginInput = by.css('#nick');
-      var passwordInput = by.css('#password');
+      registerPage.goToLogin();
 
-      browser.wait(function() {
-        return browser.isElementPresent(loginInput);
-      }, timeout);
-
-      element(by.css('.session-login-form-btn')).click();
-
-      element(loginInput).sendKeys('Snowden');
-      element(passwordInput).sendKeys('MargaretThatcheris110%SEXY.');
-
-      var loginButton = element(by.css('input:enabled[type=submit]'));
-
-      browser.wait(function() {
-        return loginButton.click().then(
-          function() { return true; },
-          function() { return false; }
-        );
-      }, timeout);
+      loginPage.login();
 
       var communityNameInput = by.css('input.title-input');
 
