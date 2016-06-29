@@ -53,8 +53,14 @@
       "title": "Participantes"
     },
     "participate": {
+      "add": {
+        "notification": "Se ha añadido a {{addedParticipants}} a esta comunidad"
+      },
       "button": "Unirme",
-      "message": "Formas parte"
+      "message": "Formas parte",
+      "invite": {
+        "notification": "Se ha invitado a {{invitedParticipants}} a esta comunidad"
+      }
     },
     "project": {
       "button": "Crear un teem",
@@ -258,9 +264,15 @@
       "title": "Notas"
     },
     "participate": {
+      "add": {
+        "notification": "Se ha añadido a {{addedParticipants}} a este teem"
+      },
       "btn": {
         "do": "Unirme a este Teem",
         "undo": "Abandonar"
+      },
+      "invite": {
+        "notification": "Se ha invitado a {{invitedParticipants}} a este teem"
       }
     },
     "project_description": "Descripción",

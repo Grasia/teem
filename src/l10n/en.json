@@ -53,7 +53,13 @@
       "title": "Participants"
     },
     "participate": {
+      "add": {
+        "notification": "{{addedParticipants}} has been added to this community"
+      },
       "button": "Join this community",
+      "invite": {
+        "notification": "{{invitedParticipants}} has been invited to this community"
+      },
       "message": "You are in"
     },
     "project": {
@@ -258,9 +264,15 @@
       "title": "Notes"
     },
     "participate": {
+      "add": {
+        "notification": "{{addedParticipants}} has been added to this teem"
+      },
       "btn": {
         "do": "Add me to this Teem",
         "undo": "Leave"
+      },
+      "invite": {
+        "notification": "{{invitedParticipants}} has been invited to this teem"
       }
     },
     "project_description": "Description",

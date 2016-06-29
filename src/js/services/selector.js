@@ -10,8 +10,8 @@
 
 angular.module('Teem')
 .factory('Selector', [
-  'User', '$timeout', 'CommunitiesSvc', '$rootScope',
-  function(User, $timeout, CommunitiesSvc, $rootScope) {
+  'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'Notification',
+  function(User, $timeout, CommunitiesSvc, $rootScope, Notification) {
 
     // builds a list of users for user selector from SwellRT query result
     function buildUserItems(users){
@@ -101,9 +101,14 @@ angular.module('Teem')
 
       invite: function(invitees, hasParticipantsObject){
 
-        var emails = [];
+        var users  = [],
+            emails = [];
 
         if (invitees){
+          // TODO: Should we move it to a service?
+          let notificationScope = $rootScope.$new(true);
+          notificationScope.values = {};
+
           invitees.forEach(function(i){
 
             var value;
@@ -114,6 +119,9 @@ angular.module('Teem')
             // if it is an existing user
             catch (e) {
               hasParticipantsObject.addParticipant(i);
+
+              users.push(i);
+
               return;
             }
 
@@ -125,13 +133,19 @@ angular.module('Teem')
             }
           });
 
-          if (emails.length > 0){
-            SwellRT.invite(emails, hasParticipantsObject.url(),
-            // project.title || community.name
-            hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
+          if (users.length) {
+            notificationScope.values.addedParticipants = users.map(u => u.split('@')[0]).join(', ');
+            Notification.success({message: hasParticipantsObject.type + '.participate.add.notification', scope: notificationScope });
           }
 
-          $rootScope.$broadcast('teem.' + hasParticipantsObject.type + '.join');
+          if (emails.length > 0){
+            SwellRT.invite(emails, hasParticipantsObject.url(),
+              // project.title || community.name
+              hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
+
+            notificationScope.values.invitedParticipants = emails.join(', ');
+            Notification.success({message: hasParticipantsObject.type + '.participate.invite.notification', scope: notificationScope });
+          }
         }
       }
     };
