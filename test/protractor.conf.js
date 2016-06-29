@@ -33,6 +33,10 @@ exports.config = {
     defaultTimeoutInterval: 2500000
   },
 
+  suites: {
+    session: 'e2e/session.js'
+  },
+
   onPrepare: function() {
     var registerPage = new sessionPage.Register();
 

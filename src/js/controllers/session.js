@@ -12,20 +12,26 @@ angular.module('Teem')
     $routeProvider.
       when('/session/:form', {
         template: '',
-        controller:'SessionCtrl'
+        controller:'SessionRouteCtrl'
       });
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
+  .controller('SessionRouteCtrl', [
+    '$scope', 'SharedState', '$route', '$location',
+    function($scope, SharedState, $route, $location) {
+      $scope.$on('$routeChangeSuccess', function() {
+        SharedState.set('modalSharedState', {
+          name: 'session',
+          type: $route.current.params.form
+        });
+
+        $location.path('/');
+      });
+    }
+  ])
   .controller('SessionCtrl', [
     '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
     function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {
-
-    if ($route.current && $route.current.params.form) {
-      SharedState.set('modalSharedState', {
-        name: 'session',
-        type: $route.current.params.form
-      });
-    }
 
     $scope.session = {};
 

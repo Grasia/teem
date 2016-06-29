@@ -10,12 +10,22 @@ class Session {
       email: 'snowden@nsa.gov'
     };
 
+    this.formElement = element(by.css('.session-form'));
+
     this.nickInput = element(by.model('form.values.nick'));
     this.passwordInput = element(by.model('form.values.password'));
     this.passwordRepeatInput = element(by.model('form.values.passwordRepeat'));
     this.emailInput = element(by.model('form.values.email'));
 
     this.formButton = element(by.css('.session-form input[type=submit]'));
+  }
+
+  get () {
+    browser.get('/session/' + this.path);
+
+    browser.wait(() => {
+      return browser.isElementPresent(this.formElement);
+    });
   }
 
   setNick (nick) {
@@ -67,11 +77,8 @@ class Register extends Session {
   constructor () {
     super();
 
+    this.path = 'register';
     this.loginButton = element(by.css('.session-login-form-btn'));
-  }
-
-  get () {
-    browser.get('/session/register');
   }
 
   goToLogin () {
@@ -97,6 +104,13 @@ class Register extends Session {
 }
 
 class Login extends Session {
+
+  constructor () {
+    super();
+
+    this.path = 'login';
+  }
+
   login (options) {
     if (options === undefined) {
       options = {};
@@ -109,7 +123,46 @@ class Login extends Session {
   }
 }
 
+class ForgottenPassword extends Session {
+  constructor () {
+    super();
+
+    this.path = 'forgottenPassword';
+  }
+
+  recover (options) {
+    if (options === undefined) {
+      options = {};
+    }
+
+    this.setEmail(options.email);
+
+    this.submit();
+  }
+}
+
+class RecoverPassword extends Session {
+  constructor () {
+    super();
+
+    this.path = 'recoverPassword';
+  }
+
+  recover (options) {
+    if (options === undefined) {
+      options = {};
+    }
+
+    this.setPassword(options.password);
+    this.setPasswordRepeat(options.password);
+
+    this.submit();
+  }
+}
+
 module.exports = {
   Register,
-  Login
+  Login,
+  ForgottenPassword,
+  RecoverPassword
 };

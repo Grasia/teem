@@ -536,6 +536,16 @@ gulp.task('test:e2e', function(done) {
 
 
 gulp.task('test:e2e:protractor', function(done) {
+  var options = {
+        'configFile': 'test/protractor.conf.js',
+        'autoStartStopServer': true,
+        'debug': true
+      };
+
+  if (process.argv.length > 3) {
+    options.args = process.argv.slice(-2);
+  }
+
   connect.server({
     root: config.dest,
     host: config.serverTest.host,
@@ -544,11 +554,7 @@ gulp.task('test:e2e:protractor', function(done) {
   });
 
   gulp.src(['./test/e2e/**/*.js'])
-    .pipe(angularProtractor({
-      'configFile': 'test/protractor.conf.js',
-      'autoStartStopServer': true,
-      'debug': true
-    }))
+    .pipe(angularProtractor(options))
     .on('error', function(e) { connect.serverClose(); throw e; })
     .on('end', function() { connect.serverClose(); done(); });
 });

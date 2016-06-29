@@ -1,7 +1,11 @@
 
 'use strict';
 
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
+var random = require('./random'),
+    sessionPage = require(__dirname + '/pages/session'),
+    loginPage = new sessionPage.Login(),
+    forgottenPasswordPage = new sessionPage.ForgottenPassword(),
+    recoverPasswordPage = new sessionPage.RecoverPassword();
 
 describe('Teem', function() {
 
@@ -38,24 +42,32 @@ describe('Teem', function() {
   });
 
   describe('forgotten password form', function() {
-    // FIXME
-    xit('should be working on valid input', function() {
-      $('.community-new-btn').click().then(function() {
-        $('.session-register-form-btn').click();
-        $('#email').sendKeys('mrsmith@local');
-        $('.session-form input[type=submit]').click();
-        expect($('.error-tip').getAttribute('class')).toMatch('ng-hide');
-      });
+    it('should be working on valid input', function() {
+      forgottenPasswordPage.get();
+
+      forgottenPasswordPage.recover({ email: random.email()});
+
+      //TODO check it sends the email
+
     });
   });
 
   describe('recover password form', function() {
-    it('should be working on valid input', function() {
-      browser.get('/session/recover_password');
-      $('#password').sendKeys('password');
-      $('#passwordRepeat').sendKeys('password');
-      $('.session-form input[type=submit]').click();
-      // TODO
+    // It needs a recover password token
+    it('should let users to recover their password', function() {
+      var password = random.string();
+
+      recoverPasswordPage.get();
+
+      recoverPasswordPage.recover({ password: password });
+
+      /*
+      TODO get email confirmation token
+      loginPage.get();
+
+      loginPage.login({ password: password });
+      */
+
     });
   });
 });
