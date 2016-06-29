@@ -20,7 +20,7 @@ angular.module('Teem')
     '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
     function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {
 
-    if ($route.current.params.form) {
+    if ($route.current && $route.current.params.form) {
       SharedState.set('modalSharedState', {
         name: 'session',
         type: $route.current.params.form
