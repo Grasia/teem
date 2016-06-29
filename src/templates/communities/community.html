@@ -35,6 +35,7 @@
               community.title.placeholder
             </label>
 
+<<<<<<< HEAD
             <div class="input-group title-form">
               <input type="text"
                      class="form-control title-input"
@@ -46,6 +47,14 @@
                 </button>
               </div>
             </div>
+=======
+        <div class="row" ng-if="!isNew() && !editingTitle()">
+          <div class="icon-count community-participant-count col-xs-3">
+            <i class="fa i-participants"></i>
+            <span class="icon-count-number">{{ community.participantCount() }}</span>
+          </div>
+          <div class="community-count community-like-count col-xs-3">
+>>>>>>> Share dialog updated, invite to communities updated
           </div>
 
           <div class="community-description" ng-if="! editingTitle()">
@@ -132,8 +141,25 @@
             {{ 'community.participants.title' | translate }}
             <small class="hidden-md hidden-lg">({{ community.participantCount() }})</small>
           </h2>
+        <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
+        <button class="invite-button btn btn-primary btn-raised fa fa-user-plus" ui-set="{modalSharedState: 'invite'}" translate>
+            project.add_people.button
+        </button>
 
-          <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
+        <div ui-content-for="inviteModal" ng-if="community.isParticipant()">
+          <modal name="invite">
+            <header translate>project.add_people.title</header>
+            <main>
+              <selector multiple
+              config="userSelectorConfig"
+              options="invite.list" ng-model="invite.selected"
+              placeholder=" 'project.add_people.placeholder' | translate"></selector>
+            </main>
+            <footer>
+              <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
+              <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+            </footer>
+          </modal>
         </div>
       </div>
     </div>

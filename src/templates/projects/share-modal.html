@@ -1,32 +1,25 @@
 <modal name="shareModalCreate">
   <header translate translate-values="{ title: '{{project.title}}' }">project.share.title</header>
   <main>
-
     <div class="share-description" translate>project.share.description.link</div>
-
-      <input class="well share-link" type="url" ng-value="project.url()"/>
-
-      <div ng-hide="!project.isParticipant()">
-        <div class="share-description" translate>project.share.description.permission</div>
-
-        <div class="btn-group btn-group-justified" role="group">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" ng-click="project.setShareMode('public')" ng-class="project.isShareMode('public') ? 'active' : ''">
-              <span translate>project.share.mode.public</span>
-            </button>
-          </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" ng-click="project.setShareMode('link')" ng-class="project.isShareMode('link') ? 'active' : ''">
-              <span translate>project.share.mode.link</span>
-            </button>
-          </div>
-        </div>
-
-
-        <div class="share-info text-info" ng-show="project.isShareMode('link')" translate>project.share.info.link</div>
-        <div class="share-info text-info" ng-show="project.isShareMode('public')" translate>project.share.info.public</div>
+    <input class="share-link well" type="url" ng-value="project.url()"/>
+    <div class="input-group share-mode-selector">
+      <selectize
+      config="share.config"
+      options="share.options"
+      ng-model="project.shareMode"
+      ng-disabled="!project.isParticipant()"
+      ></selectize>
     </div>
 
+    <selector multiple
+    config="userSelectorConfig"
+    options="invite.list" ng-model="invite.selected"
+    placeholder=" 'project.add_people.placeholder' | translate"></selector>
+
   </main>
-  <footer></footer>
+  <footer>
+    <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
+    <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+  </footer>
 </modal>
