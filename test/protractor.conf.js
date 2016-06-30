@@ -42,5 +42,9 @@ exports.config = {
 
     registerPage.get();
     registerPage.register();
+
+    return browser.driver.executeScript('return window.innerWidth >= 992;').then((desktop) => {
+      global.isDesktop = desktop;
+    });
   }
 };

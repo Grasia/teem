@@ -7,21 +7,14 @@ var sessionPage = require(__dirname + '/pages/session'),
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
 describe('Teem', function() {
-
-  var isDesktop;
-
   beforeAll(function() {
     browser.get('/');
     browser.driver.executeScript('window.localStorage.clear();');
   });
 
   describe('1% core user', function() {
-    beforeAll(function(done) {
+    beforeAll(function() {
       browser.get('/communities');
-      browser.driver.executeScript('return window.innerWidth >= 992;').then((desktop) => {
-        isDesktop = desktop;
-        done();
-      });
     });
 
     it('should create a project and share it', function() {
