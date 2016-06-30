@@ -8,7 +8,7 @@
 /**
 * Usage: Return Random Email Id.
 */
-function emailUser() {
+function nick() {
   var strValues = 'abcdefghijk123456789.';
   var strEmail = '';
   for (var i = 0; i < strValues.length; i++) {
@@ -19,7 +19,7 @@ function emailUser() {
 }
 
 function email () {
-  return emailUser() + '@mymail.test';
+  return nick() + '@mymail.test';
 }
 
 /**
@@ -28,11 +28,17 @@ function email () {
 * Returns : Random string.
 */
 function string (characterLength) {
-  var randomText = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var randomText = '',
+      possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  if (! characterLength) {
+    characterLength = 10;
+  }
+
   for (var i = 0; i < characterLength; i++) {
     randomText += possible.charAt(Math.floor(Math.random() * possible.length));
   }
+
   return randomText;
 }
 
@@ -51,7 +57,7 @@ function number (numberLength) {
 }
 
 module.exports = {
-  emailUser,
+  nick,
   email,
   string,
   number

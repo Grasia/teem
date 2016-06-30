@@ -3,41 +3,38 @@
 
 var random = require('./random'),
     sessionPage = require(__dirname + '/pages/session'),
+    MenuPage = require(__dirname + '/pages/menu'),
     loginPage = new sessionPage.Login(),
+    registerPage = new sessionPage.Register(),
     forgottenPasswordPage = new sessionPage.ForgottenPassword(),
-    recoverPasswordPage = new sessionPage.RecoverPassword();
+    recoverPasswordPage = new sessionPage.RecoverPassword(),
+    menu = new MenuPage();
 
 describe('Teem', function() {
 
-  beforeAll(function() {
-    // FIXME: This script doesn't logout completely any more.
-    browser.driver.executeScript('window.localStorage.clear();');
-    browser.get('index.html');
-  });
-
   describe('login form', function() {
-    // FIXME
-    xit('should be working on valid input', function() {
-      $('.community-new-btn').click();
-      $('#nick').sendKeys('mrsmith');
-      $('#password').sendKeys('password');
-      $('.session-form input[type=submit]').click();
-      expect(browser.getCurrentUrl()).toEqual('/projects');
+    it('should login existing user', function() {
+      loginPage.get();
+
+      loginPage.login();
+
+      expect(registerPage.invalidInputsCount()).toBe(0);
+
+      expect(menu.currentNick()).toBe(loginPage.default.nick);
     });
   });
 
   describe('register form', function() {
-    // FIXME
-    xit('should be working on valid input', function() {
-      $('.community-new-btn').click().then(function() {
-        $('.session-register-form-btn').click();
-        $('#nick').sendKeys('mrsmith');
-        $('#password').sendKeys('password');
-        $('#passwordRepeat').sendKeys('password');
-        $('#email').sendKeys('mrsmith@local');
-        $('.session-form input[type=submit]').click();
-        expect($('.error-tip').getAttribute('class')).toMatch('ng-hide');
-      });
+    it('should register new user', function() {
+      var nick = random.nick();
+
+      registerPage.get();
+
+      registerPage.register({ nick: nick });
+
+      expect(registerPage.invalidInputsCount()).toBe(0);
+
+      expect(menu.currentNick()).toBe(nick);
     });
   });
 

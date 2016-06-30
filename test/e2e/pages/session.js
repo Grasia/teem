@@ -4,7 +4,7 @@ class Session {
 
   constructor () {
     this.default = {
-      nick: 'Snowden',
+      nick: 'snowden',
       password: 'MargaretThatcheris110%SEXY.',
       passwordRepeat: 'MargaretThatcheris110%SEXY.',
       email: 'snowden@nsa.gov'
@@ -16,6 +16,8 @@ class Session {
     this.passwordInput = element(by.model('form.values.password'));
     this.passwordRepeatInput = element(by.model('form.values.passwordRepeat'));
     this.emailInput = element(by.model('form.values.email'));
+
+    this.invalidInputs = element.all(by.css('.ng-invalid'));
 
     this.formButton = element(by.css('.session-form input[type=submit]'));
   }
@@ -60,6 +62,10 @@ class Session {
     }
 
     this.emailInput.sendKeys(email);
+  }
+
+  invalidInputsCount () {
+    return this.invalidInputs.count();
   }
 
   submit () {
