@@ -73,7 +73,7 @@
     </div>
 
     <div class="section project-participants" ng-if="!isNew() && !pad.editing">
-      <h2 translate translate-values="{ count: '{{ project.participantCount() }}'}">
+      <h2 translate translate-values="{ count: project.participantCount()}">
           project.section.participants.title
       </h2>
       <div project-people  ng-if="!isNew() && !pad.editing"></div>

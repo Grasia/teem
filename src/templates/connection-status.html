@@ -6,7 +6,7 @@
     <div ng-show="status.disconnected" translate>
       connection.lost
     </div>
-    <div ng-show="status.desync" translate-values="{time: '{{status.lastSync | amTimeAgo }}'}" translate>
+    <div ng-show="status.desync" translate-value-time="{{ status.lastSync | amTimeAgo }}" translate>
       connection.sync
     </div>
 

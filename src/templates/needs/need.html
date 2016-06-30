@@ -41,9 +41,9 @@
     <div class="need-author">
       <span translate
             translate-values="{
-              author: need.author.split('@')[0],
-              time: '{{need.time | amTimeAgo }}'
+              author: need.author.split('@')[0]
             }"
+            translate-value-time="{{ need.time | amTimeAgo }}"
             ng-if="need.text !== '' && need.author">
         need.by
       </span>

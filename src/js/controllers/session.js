@@ -30,14 +30,14 @@ angular.module('Teem')
     }
   ])
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
-    function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification', 'User',
+    function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification, User) {
 
     $scope.session = {};
 
-    $scope.user = {
-      nick : SessionSvc.users.currentNick()
-    };
+    SessionSvc.onLoad(function(){
+      $scope.user = User.current();
+    });
 
     $scope.error = {
       current : null
