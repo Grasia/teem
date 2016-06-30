@@ -87,6 +87,7 @@ angular.module('Teem')
             chatTextarea.value = '';
             angular.element(chatTextarea).trigger('input');
             autosize.update(chatTextarea);
+            $scope.scrollToBottom();
 
             chatTextarea.focus();
           };

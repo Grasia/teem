@@ -49,3 +49,13 @@
 .no-pointer {
   cursor: auto;
 }
+
+.flex-scroll{
+  overflow: auto;
+}
+.flex-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0px; /* hack for firefox: http://stackoverflow.com/a/14964944 */
+}

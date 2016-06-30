@@ -131,13 +131,6 @@
       &::-moz-placeholder /* due to a chrome bug, we can't define them in the same line */
         font-size: 30px
         font-weight: bold
-  .flex-scroll
-    overflow: auto
-  .flex-container
-    display: flex
-    flex: 1
-    flex-direction: column
-    min-height: 0px /* hack for firefox: http://stackoverflow.com/a/14964944 */
 
 .project-navigation
   position: absolute
@@ -159,6 +152,7 @@
     padding-top: 5px
     padding-bottom: 5px
     text-transform: uppercase
+    text-decoration: none
     &.active,
     &.selected
       color: $navbar-top-color
@@ -169,7 +163,7 @@
   display: block
   overflow: hidden
   height: 100%
-  padding-top: 35px
+  padding-top: 39px
   transition: padding-top 0.3s
   &.xs-hidden-tabs
     @media (max-width: $screen-sm-max)
@@ -181,6 +175,7 @@
   overflow: hidden
   height: 100%
   width: 100%
+  display: flex
 
 .project-support-number
   text-align: center
