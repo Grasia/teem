@@ -17,7 +17,7 @@ class Session {
     this.passwordRepeatInput = element(by.model('form.values.passwordRepeat'));
     this.emailInput = element(by.model('form.values.email'));
 
-    this.invalidInputs = element.all(by.css('.ng-invalid'));
+    this.invalidInputs = element.all(by.css('.ng-invalid, #error_alert'));
 
     this.formButton = element(by.css('.session-form input[type=submit]'));
   }
