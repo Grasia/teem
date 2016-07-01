@@ -19,10 +19,18 @@ angular.module('Teem')
   .controller('SessionRouteCtrl', [
     '$scope', 'SharedState', '$route', '$location',
     function($scope, SharedState, $route, $location) {
+
+      function normalizeFormName(form) {
+        var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
+        var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
+
+        return isValid ? form.toLowerCase().replace('_p', 'P') : 'login';
+      }
+
       $scope.$on('$routeChangeSuccess', function() {
         SharedState.set('modalSharedState', {
           name: 'session',
-          type: $route.current.params.form
+          type: normalizeFormName($route.current.params.form)
         });
 
         $location.path('/');
@@ -46,12 +54,6 @@ angular.module('Teem')
     $scope.$watch('form.current', function() {
       $scope.error.current = null;
     });
-
-    function normalizeFormName(form) {
-      var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
-      var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
-      return isValid? form.toLowerCase().replace('_p', 'P') : 'login';
-    }
 
     $scope.goToForm = function(sessionForm, form) {
       sessionForm.$setUntouched();
@@ -232,7 +234,7 @@ angular.module('Teem')
     };
 
     $scope.form = {
-      current: normalizeFormName($route.current && $route.current.params.form || 'register'),
+      current: 'register',
       values: {},
       login: ['nick', 'password'],
       register: ['nick', 'password', 'passwordRepeat', 'email'],
