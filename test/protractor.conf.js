@@ -7,11 +7,6 @@ var sessionPage = require(__dirname + '/e2e/pages/session');
 exports.config = {
   allScriptsTimeout: 90000,
 
-  // Connect directly to chrome and firefox
-  // Solves issues with stalled Sellenium server
-  // https://github.com/angular/protractor/blob/master/docs/server-setup.md#connecting-directly-to-browser-drivers
-  directConnect: true,
-
   specs: [
     'e2e/**/*.js'
   ],
