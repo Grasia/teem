@@ -10,7 +10,7 @@ var random = require('./random'),
     recoverPasswordPage = new sessionPage.RecoverPassword(),
     menu = new MenuPage();
 
-describe('Teem', function() {
+xdescribe('Teem', function() {
 
   describe('login form', function() {
     it('should login existing user', function() {
