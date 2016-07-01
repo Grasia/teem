@@ -9,8 +9,9 @@
 * Usage: Return Random Email Id.
 */
 function nick() {
-  var strValues = 'abcdefghijk123456789.';
-  var strEmail = '';
+  var strValues = 'abcdefghijk123456789',
+      strEmail = '';
+
   for (var i = 0; i < strValues.length; i++) {
     strEmail = strEmail + strValues.charAt(Math.round(strValues.length * Math.random()));
   }
@@ -19,7 +20,7 @@ function nick() {
 }
 
 function email () {
-  return nick() + '@mymail.test';
+  return nick() + '@local.net';
 }
 
 /**
