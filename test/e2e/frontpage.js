@@ -1,27 +1,61 @@
 
 'use strict';
 
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
+var sessionPage = require('./pages/session'),
+    MenuPage = require('./pages/menu'),
+    loginPage = new sessionPage.Login(),
+    menu = new MenuPage();
 
 describe('Teem', function() {
 
-  beforeAll(function() {
-    browser.driver.executeScript("window.localStorage.clear();");
-
-    browser.get('index.html');
-
-  });
-
   describe('frontpage', function() {
 
-    describe('redirect', function() {
+    describe('when not logged in', function() {
 
-      beforeAll(function() {
-        browser.get('index.html');
+      it('should automatically redirect to /communities', function() {
+        browser.get('/');
+
+        // There is a instantion fo a controller in the '/' route,
+        // so the browser promise returns before the redirect is performed
+        browser.wait(() => {
+          return browser.getLocationAbsUrl().then((url) => {
+            return url !== '/';
+          });
+        });
+
+        menu.ifLoggedIn(() => {
+          menu.logout();
+
+          browser.get('/');
+
+          browser.wait(() => {
+            return browser.getLocationAbsUrl().then((url) => {
+              return url !== '/';
+            });
+          });
+        });
+
+        expect(browser.getLocationAbsUrl()).toMatch('/communities');
       });
+    });
 
-      xit('should automatically redirect to /frontpage when location hash/fragment is empty', function() {
-        expect(browser.getLocationAbsUrl()).toMatch('/frontpage');
+    describe('when logged in', function() {
+      it('should automatically redirect to /home/teems', function() {
+        loginPage.get();
+
+        loginPage.login();
+
+        browser.get('/');
+
+        // There is a instantion fo a controller in the '/' route,
+        // so the browser promise returns before the redirect is performed
+        browser.wait(() => {
+          return browser.getLocationAbsUrl().then((url) => {
+            return url !== '/';
+          });
+        });
+
+        expect(browser.getLocationAbsUrl()).toMatch('/home/teems');
       });
     });
   });

@@ -2,15 +2,60 @@
 
 class MenuPage {
   constructor () {
-    this.userNick = element(by.binding('user.nick'));
+    this.userNickBy = by.binding('user.nick');
+
+    this.guestBy = by.css('.menu-session-nick');
+
+    // Mobile menu element
+    this.menuBtnEl = element(by.css('.nav-left .btn'));
+
+    // Desktop session menu element
+    this.sessionBy = by.css('.menu-session');
+
+    this.logoutBy = by.css('[ng-click="logout()"]');
+  }
+
+  root () {
+    var device = isDesktop ? 'desktop' : 'mobile';
+
+    return element(by.css('.menu-' + device));
   }
 
   currentNick () {
     // Menu is hidden in mobile
     // element.getText does not work with hidden elements
-    return this.userNick.getInnerHtml();
+    return this.root().element(this.userNickBy).getInnerHtml();
   }
 
+  ifLoggedIn (ifYes, ifNot) {
+    return this.root().element(this.guestBy).getInnerHtml().then((nick) => {
+      if (nick !== 'guest') {
+        if (ifYes) {
+          ifYes();
+        }
+      } else {
+        if (ifNot) {
+          ifNot();
+        }
+      }
+    });
+  }
+
+  logout () {
+    if (isDesktop) {
+      this.root().element(this.sessionBy).click();
+    } else {
+      this.menuBtnEl.click();
+
+      browser.wait(() => {
+        return this.root().element(this.logoutBy).isDisplayed().then((result) => {
+          return result;
+        });
+      });
+    }
+
+    return this.root().element(this.logoutBy).click();
+  }
 }
 
 module.exports = MenuPage;

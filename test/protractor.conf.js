@@ -8,7 +8,7 @@ exports.config = {
   allScriptsTimeout: 90000,
 
   // Sometimes Selenium Webdriver gets stuck, and directly connecting to browsers work
-  // directConnect: true,
+  //directConnect: true,
 
   specs: [
     'e2e/**/*.js'
@@ -33,11 +33,12 @@ exports.config = {
   framework: 'jasmine2',
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 2500000
+    defaultTimeoutInterval: 90000
   },
 
   suites: {
-    session: 'e2e/session.js'
+    session: 'e2e/session.js',
+    frontpage: 'e2e/frontpage.js'
   },
 
   onPrepare: function() {
