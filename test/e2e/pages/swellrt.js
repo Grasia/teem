@@ -1,12 +1,13 @@
 'use strict';
 
-var exec = require('child_process').exec;
+var exec = require('child_process').exec,
+    gulpConfig = require('../../../gulpfile').config;
 
 class SwellRTPage {
   constructor () {
     this.cmd = {
       // Show at least the last 2 emails
-      log: 'docker logs --tail=100 teem-swellrt'
+      log: 'docker logs --tail=100 ' + gulpConfig.swellrt.docker.name
     };
 
     this.recoveryPath = '/session/recover_password';
