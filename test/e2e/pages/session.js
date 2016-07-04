@@ -1,5 +1,9 @@
 'use strict';
 
+
+var SwellRTPage = require(__dirname + '/swellrt'),
+    swellrt = new SwellRTPage ();
+
 class Session {
 
   constructor () {
@@ -34,7 +38,7 @@ class Session {
       nick = this.default.nick;
     }
 
-    this.nickInput.sendKeys(nick);
+    return this.nickInput.sendKeys(nick);
   }
 
   setPassword (password) {
@@ -42,7 +46,7 @@ class Session {
       password = this.default.password;
     }
 
-    this.passwordInput.sendKeys(password);
+    return this.passwordInput.sendKeys(password);
   }
 
   setPasswordRepeat (password) {
@@ -50,7 +54,7 @@ class Session {
       password = this.default.passwordRepeat;
     }
 
-    this.passwordRepeatInput.sendKeys(password);
+    return this.passwordRepeatInput.sendKeys(password);
   }
 
   setEmail (email) {
@@ -58,27 +62,17 @@ class Session {
       email = this.default.email;
     }
 
-    this.emailInput.sendKeys(email);
+    return this.emailInput.sendKeys(email);
   }
 
   submit () {
-    return browser.wait(() => {
-      return this.formButton.click().then(
-        function() { return true; },
-        function() { return false; }
-      );
-    });
+    return this.formButton.click();
   }
 
   expectNoErrors () {
     expect(this.invalidInputs.count()).toBe(0);
     expect(this.errorAlert.isPresent()).toBeFalsy();
   }
-
-  invalidInputsCount () {
-    return this.invalidInputs.count();
-  }
-
 }
 
 class Register extends Session {
@@ -91,11 +85,13 @@ class Register extends Session {
   }
 
   goToLogin () {
+    /*
     browser.wait(() => {
       return browser.isElementPresent(this.loginButton);
     });
+    */
 
-    this.loginButton.click();
+    return this.loginButton.click();
   }
 
   register (options) {
@@ -108,7 +104,7 @@ class Register extends Session {
     this.setPasswordRepeat(options.passwordRepeat);
     this.setEmail(options.email);
 
-    this.submit();
+    return this.submit();
   }
 }
 
@@ -128,7 +124,7 @@ class Login extends Session {
     this.setNick(options.nick);
     this.setPassword(options.password);
 
-    this.submit();
+    return this.submit();
   }
 }
 
@@ -146,7 +142,7 @@ class ForgottenPassword extends Session {
 
     this.setEmail(options.email);
 
-    this.submit();
+    return this.submit();
   }
 }
 
@@ -157,6 +153,16 @@ class RecoverPassword extends Session {
     this.path = 'recover_password';
   }
 
+  get (nick) {
+    return new Promise((resolve) => {
+      swellrt.recoveryLink(nick).then((url) => {
+        browser.get(url).then(() => {
+          resolve();
+        });
+      });
+    });
+  }
+
   recover (options) {
     if (options === undefined) {
       options = {};
@@ -165,7 +171,7 @@ class RecoverPassword extends Session {
     this.setPassword(options.password);
     this.setPasswordRepeat(options.password);
 
-    this.submit();
+    return this.submit();
   }
 }
 

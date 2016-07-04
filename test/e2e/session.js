@@ -2,13 +2,15 @@
 'use strict';
 
 var random = require('./random'),
-    sessionPage = require(__dirname + '/pages/session'),
-    MenuPage = require(__dirname + '/pages/menu'),
+    sessionPage = require('./pages/session'),
+    MenuPage = require('./pages/menu'),
+    SwellRTPage = require('./pages/swellrt'),
     loginPage = new sessionPage.Login(),
     registerPage = new sessionPage.Register(),
     forgottenPasswordPage = new sessionPage.ForgottenPassword(),
     recoverPasswordPage = new sessionPage.RecoverPassword(),
-    menu = new MenuPage();
+    menu = new MenuPage(),
+    swellrt = new SwellRTPage();
 
 describe('Teem', function() {
 
@@ -38,33 +40,47 @@ describe('Teem', function() {
     });
   });
 
-  describe('forgotten password form', function() {
-    it('should be working on valid input', function() {
+  describe('forgotten and recover password form', function() {
+    it('should allow a new user to recover her password', function() {
+      var nick = random.nick(),
+          email = random.email(),
+          newPassword = random.string();
+
+      registerPage.get();
+
+      registerPage.register({
+        nick: nick,
+        email: email
+      });
+
+      registerPage.expectNoErrors();
+
       forgottenPasswordPage.get();
 
-      forgottenPasswordPage.recover({ email: random.email()});
+      forgottenPasswordPage.recover({ email: email});
 
-      //TODO check it sends the email
+      // In dev mode, there is not SMTP server
+      // SwellRT waits for the timeout to respond and then shows and
+      // error, so we cannot check this
+      // forgottenPasswordPage.expectNoErrors();
 
-    });
-  });
+      expect(swellrt.recoveryLink(nick)).toMatch('http.*' + swellrt.recoveryPath);
 
-  describe('recover password form', function() {
-    // It needs a recover password token
-    it('should let users to recover their password', function() {
-      var password = random.string();
+      recoverPasswordPage.get(nick);
 
-      recoverPasswordPage.get();
+      recoverPasswordPage.recover({ password: newPassword });
 
-      recoverPasswordPage.recover({ password: password });
+      recoverPasswordPage.expectNoErrors();
 
-      /*
-      TODO get email confirmation token
       loginPage.get();
 
-      loginPage.login({ password: password });
-      */
+      loginPage.login({
+        nick: nick,
+        password: newPassword
+      });
 
+      // https://github.com/P2Pvalue/swellrt/issues/163
+      //expect(menu.currentNick()).toBe(loginPage.default.nick);
     });
   });
 });

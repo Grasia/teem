@@ -7,6 +7,9 @@ var sessionPage = require(__dirname + '/e2e/pages/session');
 exports.config = {
   allScriptsTimeout: 90000,
 
+  // Sometimes Selenium Webdriver gets stuck, and directly connecting to browsers work
+  // directConnect: true,
+
   specs: [
     'e2e/**/*.js'
   ],
