@@ -1,10 +1,11 @@
 
 'use strict';
 
-var random = require('./random'),
+var Chance = require('chance'),
     sessionPage = require('./pages/session'),
     MenuPage = require('./pages/menu'),
     SwellRTPage = require('./pages/swellrt'),
+    chance = new Chance(),
     loginPage = new sessionPage.Login(),
     registerPage = new sessionPage.Register(),
     forgottenPasswordPage = new sessionPage.ForgottenPassword(),
@@ -28,7 +29,7 @@ describe('Teem', function() {
 
   describe('register form', function() {
     it('should register new user', function() {
-      var nick = random.nick();
+      var nick = chance.word();
 
       registerPage.get();
 
@@ -42,9 +43,9 @@ describe('Teem', function() {
 
   describe('forgotten and recover password form', function() {
     it('should allow a new user to recover her password', function() {
-      var nick = random.nick(),
-          email = random.email(),
-          newPassword = random.string();
+      var nick = chance.word(),
+          email = chance.email(),
+          newPassword = chance.word({ length: 10 });
 
       registerPage.get();
 
