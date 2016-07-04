@@ -2,7 +2,7 @@
 
   <ul class="nav navbar-nav">
     <li>
-      <a href="/"><img src="/images/app-logo-white.png" /></a>
+      <a class="logo" href="/"><img src="/images/app-logo-white.png" /></a>
     </li>
   </ul>
 
@@ -47,6 +47,8 @@
           ui-show="menuSession"
           ui-state="menuSession"
           ui-turn-off="menuSession">
+        <li><a ng-click="register()" class="user">{{'menu.session.guest' | translate}}<br>{{'menu.session.short_tip' | translate}}</a></li>
+        <li class="divider"></li>
         <li><a ng-click="login()" translate>menu.session.login</a></li>
         <li><a ng-click="register()" translate>menu.session.register</a></li>
       </ul>
@@ -61,8 +63,9 @@
           ui-state="menuSession"
           ui-turn-off="menuSession">
 
-        <li><a href="/users/{{user.id}}" translate>menu.session.profile</a></li>
+        <li><a href="/users/{{user.id}}" class="user">{{user.nick}}<br>{{user.id}}</a></li>
         <li class="divider"></li>
+        <li><a href="/users/{{user.id}}" translate>menu.session.profile</a></li>
         <li><a ng-click="logout()" translate>menu.session.logout</a></li>
       </ul>
     </li>

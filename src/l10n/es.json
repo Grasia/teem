@@ -143,12 +143,13 @@
     "session": {
       "action": "¡Participa!",
       "communities": "{{count}} comunidades",
-      "guest": "visitante",
+      "guest": "Visitante",
       "login": "Entrar",
       "logout": "Salir",
       "profile": "Tu perfil",
       "projects": "{{count}} teems",
       "register": "Registrarse",
+      "short_tip": "Registrate para participar",
       "tip": "Regístrate para crear tus comunidades y teems"
     },
     "title": "Teem"

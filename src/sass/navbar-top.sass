@@ -75,13 +75,23 @@
     a
       padding-top: 10px !important
       padding-bottom: 10px !important
+      &.logo
+        padding-top: 16px !important
+        padding-bottom: 13px !important
+        img
+          height: 50px
+    li > a
+      padding-right: 25px !important
   .menu-option
     a
       padding-top: 30px !important
       padding-bottom: 30px !important
-    .active
-      color: $menu-active-color
-
+    .active, &:focus
+      color: $menu-active-color !important
+      font-weight: bold
+    &:hover
+      color: $navbar-top-hover-color !important
+      font-weight: bold
   .menu-session
     & > a
       padding-top: 21px !important
@@ -96,6 +106,28 @@
         display: inline-block
     .caret
       color: $menu-session-nick-color
+
+.dropdown-menu
+  position: absolute
+  margin-right: 12px
+  border-radius: 3px !important
+  &::before
+    content: ""
+    position: absolute
+    border-style: solid
+    border-color: white transparent
+    top: -12px
+    right: 10px
+    border-width: 0 12px 12px
+  .user
+    font-size: 14px
+    &::first-line
+      font-size: 16px
+      font-weight: bold
+  .menu-email
+
+  li > a:hover
+    background-color: transparent !important
 
 .nav-title-desktop
   background: $grey
