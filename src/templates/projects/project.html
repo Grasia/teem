@@ -38,9 +38,9 @@
       </div>
 
       <!-- ng-if is not compatible with ui-if -->
-      <div ng-if="project.isParticipant()">
-        <div ui-if="projectTab == 'chat'" hm-swiperight="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}'  hm-recognizer-options='{{hmRecognizerOpt}}'>
-          <chat></chat>
+      <div class="flex-container" ng-if="project.isParticipant()">
+        <div class="flex-container" ui-if="projectTab == 'chat'" hm-swiperight="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}'  hm-recognizer-options='{{hmRecognizerOpt}}'>
+          <chat class="flex-container"></chat>
         </div>
       </div>
     </div>
