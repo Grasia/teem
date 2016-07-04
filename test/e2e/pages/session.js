@@ -17,17 +17,14 @@ class Session {
     this.passwordRepeatInput = element(by.model('form.values.passwordRepeat'));
     this.emailInput = element(by.model('form.values.email'));
 
-    this.invalidInputs = element.all(by.css('.ng-invalid, #error_alert'));
+    this.invalidInputs = element.all(by.css('.ng-invalid'));
+    this.errorAlert = element(by.css('#error_alert'));
 
     this.formButton = element(by.css('.session-form input[type=submit]'));
   }
 
   get () {
-    browser.get('/session/' + this.path);
-
-    browser.wait(() => {
-      return browser.isElementPresent(this.formElement);
-    });
+    return browser.get('/session/' + this.path);
   }
 
   setNick (nick) {
@@ -64,18 +61,24 @@ class Session {
     this.emailInput.sendKeys(email);
   }
 
-  invalidInputsCount () {
-    return this.invalidInputs.count();
-  }
-
   submit () {
-    browser.wait(() => {
+    return browser.wait(() => {
       return this.formButton.click().then(
         function() { return true; },
         function() { return false; }
       );
     });
   }
+
+  expectNoErrors () {
+    expect(this.invalidInputs.count()).toBe(0);
+    expect(this.errorAlert.isPresent()).toBeFalsy();
+  }
+
+  invalidInputsCount () {
+    return this.invalidInputs.count();
+  }
+
 }
 
 class Register extends Session {
@@ -133,7 +136,7 @@ class ForgottenPassword extends Session {
   constructor () {
     super();
 
-    this.path = 'forgottenPassword';
+    this.path = 'forgotten_password';
   }
 
   recover (options) {
@@ -151,7 +154,7 @@ class RecoverPassword extends Session {
   constructor () {
     super();
 
-    this.path = 'recoverPassword';
+    this.path = 'recover_password';
   }
 
   recover (options) {

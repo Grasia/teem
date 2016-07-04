@@ -10,7 +10,7 @@ var random = require('./random'),
     recoverPasswordPage = new sessionPage.RecoverPassword(),
     menu = new MenuPage();
 
-xdescribe('Teem', function() {
+describe('Teem', function() {
 
   describe('login form', function() {
     it('should login existing user', function() {
@@ -18,7 +18,7 @@ xdescribe('Teem', function() {
 
       loginPage.login();
 
-      expect(registerPage.invalidInputsCount()).toBe(0);
+      registerPage.expectNoErrors();
 
       expect(menu.currentNick()).toBe(loginPage.default.nick);
     });
@@ -32,7 +32,7 @@ xdescribe('Teem', function() {
 
       registerPage.register({ nick: nick });
 
-      expect(registerPage.invalidInputsCount()).toBe(0);
+      registerPage.expectNoErrors();
 
       expect(menu.currentNick()).toBe(nick);
     });
