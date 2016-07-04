@@ -232,26 +232,61 @@
     background: $lightest-grey
     border-left: $grey solid 1px
     border-right: $grey solid 1px
+  h2
+    text-transform: uppercase
+    font-size: 18px
+    padding: 10px
+    border-bottom: 1px solid $grey
+    height: 0
+    padding-bottom: calc(18px + 10px) /* font-size + padding */
+    margin-bottom: 0
   .project-sidebar
     @extend .flex-container
     border-left: none
-    padding-left: 25px
     .project-title, .project-communities a
       color: white
     .project-sidebar-inner
       background-color: $lightest-grey
       flex: 1
+      margin-left: -5px
     .project-badge
       font-size: 12px
       display: flex
       align-items: center
       height: 85px
+      margin-left: -5px
       .project-photo
         vertical-align: middle
       h4
         font-size: 14px
       .project-communities
         font-size: 12px
+  .other-projects
+    @extend .flex-scroll
+    background: $bluey3-grey
+    height: 50vh
+    border-top: 1px solid $grey
+    .project-photo
+      @extend .project-photo-small
+    .project-item-title
+      font-size: 14px
+    .project-communities
+      font-size: 12px
+      a
+        color: #8c9aa5
+    .project-description
+      display: none
+    .project-sections
+      display: flex
+      justify-content: space-between
+      .icon-count
+        padding-right: 6px
+        padding-left: 0
+        i
+          font-size: 18px
+          span
+            margin-left: 0.2em
+
   .bg-aubergine
     background-color: $aubergine
   .bg-blue
@@ -264,14 +299,6 @@
     margin: 0 8px
     padding-bottom: 5px
   .project-utils
-    h2
-      text-transform: uppercase
-      font-size: 18px
-      padding: 10px
-      border-bottom: 1px solid $grey
-      height: 0
-      padding-bottom: calc(18px + 10px) /* font-size + padding */
-      margin-bottom: 0
     .needs-header
       background: none
       padding-top: 2em

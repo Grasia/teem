@@ -51,7 +51,7 @@ angular.module('Teem')
 
     if (communityId) {
       $scope.context = 'community';
-    } else if ($location.path() === '/home/teems') {
+    } else if ($location.path() === '/home/teems' || $location.path().startsWith('/teems/')) {
       $scope.context = 'home';
     } else {
       $scope.context = 'public';

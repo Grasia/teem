@@ -17,6 +17,8 @@
 .modal-dialog
   @extend .col-md-6
   @extend .col-md-offset-3
+  @media (min-width: 992px)
+    margin-left: 0
 .modal-content
   background: white
 .modal-header-title
@@ -32,9 +34,6 @@
   .modal-backdrop
     background: $modal-backdrop-gradient
     opacity: 1
-  .modal-dialog
-    @media (min-width: 992px)
-      margin-left: 0
   .modal-header
     display: none
   .overlay-header-title
