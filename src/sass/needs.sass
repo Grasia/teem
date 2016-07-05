@@ -23,9 +23,10 @@
   font-size: 1.6em
 
 .need-checkbox-add
-  @extend .fa
   @extend .need-checkbox
-  @extend .fa-plus
+  &::before
+    @extend .material-icons
+    content: 'add'
 
 .need-name
   textarea
@@ -77,17 +78,6 @@
   .need-comments
     padding-left: 40px
     margin-top: 20px
-  .need-comments-icon
-    i
-      font-size: 1.5em
-      position: relative
-      &:after
-        content: attr(data-count)
-        color: $need-comment-count-color
-        font-size: 0.57em
-        position: absolute
-        top: 0.5em
-        right: 0.5em
   .new-need-comment
     margin-top: 10px
     textarea

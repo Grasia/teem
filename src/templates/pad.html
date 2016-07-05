@@ -5,15 +5,15 @@
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group btn-group-xs" role="group" aria-label="First group">
           <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'btn-info': isActive}">
-            <i class="fa fa-{{btn}}"></i>
+            <i class="material-icons">{{btn}}</i>
           </button>
           <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
             <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs">
-              <i class="fa fa-image"></i>
+              <i class="material-icons">image</i>
             </button>
           </span>
           <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs">
-            <i class="fa i-need"></i>
+            <i class="material-icons">check_box</i>
           </button>
         </div>
       </div>

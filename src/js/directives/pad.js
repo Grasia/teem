@@ -22,7 +22,9 @@ angular.module('Teem')
         $timeout, SharedState, needWidget) {
 
 
-          var buttons = ['header', 'bold', 'italic', 'strikethrough', 'align-left', 'align-center', 'align-right', 'list', 'list-ol'];
+          var buttons = ['text_fields', 'format_bold', 'format_italic', 'format_strikethrough',
+          'format_align_left', 'format_align_center', 'format_align_right',
+          'format_list_bulleted', 'format_list_numbered'];
 
           $scope.padCreate = function(editor) {
 
@@ -52,15 +54,15 @@ angular.module('Teem')
             var editorElement = angular.element(document.getElementById('pad').children[0]);
 
             var annotationMap = {
-              header: 'paragraph/header=h3',
-              bold: 'style/fontWeight=bold',
-              italic: 'style/fontStyle=italic',
-              strikethrough: 'style/textDecoration=line-through',
-              'align-left': 'paragraph/textAlign=left',
-              'align-center': 'paragraph/textAlign=center',
-              'align-right': 'paragraph/textAlign=right',
-              list: 'paragraph/listStyleType=unordered',
-              'list-ol': 'paragraph/listStyleType=decimal'
+              'text_fields': 'paragraph/header=h3',
+              'format_bold': 'style/fontWeight=bold',
+              'format_italic': 'style/fontStyle=italic',
+              'format_strikethrough': 'style/textDecoration=line-through',
+              'format_align_left': 'paragraph/textAlign=left',
+              'format_align_center': 'paragraph/textAlign=center',
+              'format_align_right': 'paragraph/textAlign=right',
+              'format_list_bulleted': 'paragraph/listStyleType=unordered',
+              'format_list_numbered': 'paragraph/listStyleType=decimal'
             };
 
             $scope.buttons = {};

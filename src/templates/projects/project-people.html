@@ -1,7 +1,7 @@
   <div avatars="project._participants" avatars-conf="{size: 'xsmall'}" class="avatars"></div>
   <div class="project-add-users"  ng-if="project.isParticipant()">
-    <button class="invite-button btn btn-primary btn-raised" ui-set="{modalSharedState: 'invite'}">
-        <i class="fa fa-user-plus"></i> {{'project.add_people.button'|translate}}
+    <button class="invite-button btn btn-primary btn-raised i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
+        project.add_people.button
     </button>
 
     <div ui-content-for="inviteModal">

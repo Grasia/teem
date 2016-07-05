@@ -27,7 +27,7 @@
           <h1 ng-if="! editingTitle()">
             {{community.name}}
             <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
-              <i class="fa fa-pencil-square-o" ></i>
+              <i class="i-edit"></i>
             </button>
           </h1>
           <div class="form-group label-floating" ng-if="editingTitle()">
@@ -42,7 +42,7 @@
                      name="communityName">
               <div class="input-group-addon">
                 <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
-                  <i class="fa fa-check"></i>
+                  <i class="i-check"></i>
                 </button>
               </div>
             </div>
@@ -75,10 +75,10 @@
           <footer class="row" ng-if="!isNew() && !editingTitle()">
             <div class="col-xs-4">
               <div class="icon-count community-participant-count">
-                <i class="fa i-project"><span class="icon-count-number">{{projects.length}}</span></i>
+                <i class="i-project"><span class="icon-count-number">{{projects.length}}</span></i>
               </div>
               <div class="icon-count community-participant-count">
-                <i class="fa i-community"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
+                <i class="i-community"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
               </div>
               <div class="community-count community-like-count">
               </div>
@@ -133,7 +133,7 @@
             <small class="hidden-md hidden-lg">({{ community.participantCount() }})</small>
           </h2>
         <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-        <button class="invite-button btn btn-primary btn-raised fa fa-user-plus" ui-set="{modalSharedState: 'invite'}" translate>
+        <button class="invite-button btn btn-primary btn-raised i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
             project.add_people.button
         </button>
 

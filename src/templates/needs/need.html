@@ -1,12 +1,6 @@
 <div class="list-group-item need-item"
      ng-if="project.isParticipant() || need.completed !== 'add'">
-  <div class="need-comments-btn" ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
-    <span class="need-comments-icon">
-      <i class="fa fa-comment"
-         ng-class="newComments(need)? 'notify-comments':''"
-         ng-attr-data-count="{{ need.comments && need.comments.length || 0 }}"></i>
-    </span>
-  </div>
+
   <div class="need-body"
        ng-click="toggleCommentsVisibility(need)">
     <form>
@@ -48,6 +42,13 @@
         need.by
       </span>
     </div>
+    <div ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
+      <span class="icon-count">
+        <i class="i-comment" ng-class="newComments(need)? 'notify-comments':''">
+          <span class="icon-count-number">{{ need.comments && need.comments.length || 0 }}</span>
+        </i>
+      </span>
+    </div>
   </div>
   <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">
     <div class="media" ng-repeat="comment in need.comments">
@@ -77,7 +78,7 @@
             </textarea>
             <span class="input-group-addon">
               <button type="submit" class="btn btn-link need-comment-input-button">
-                <i class="fa i-send"></i>
+                <i class="i-send"></i>
               </button>
             </span>
           </div>

@@ -1,8 +1,8 @@
 selector
-  .fa-plus-circle
+  .plus-circle
     color: $selector-plus-circle-color
     font-size: 1.5em
-  .is-focused .fa-plus-circle
+  .is-focused .plus-circle
     color: $selector-plus-circle-focused-color
 
 .selectize-control.multi
@@ -34,5 +34,6 @@ selector
   overflow-x: hidden
   max-height: 200px
 
-.invite-button:before
+.invite-button::before
   padding-right: 5px
+  vertical-align: middle

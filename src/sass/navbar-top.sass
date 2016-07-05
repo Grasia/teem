@@ -6,7 +6,7 @@
   padding-top: 50px
 .navbar-absolute-top
   border-bottom-width: 0px
-  &, .fa, a
+  &, .fa, a, .material-icons
     color: $navbar-top-color
   background-color: $navbar-top-background-color
 
@@ -17,13 +17,6 @@
     height: 80px
   .has-navbar-top .app-body
     padding-top: 80px
-    /* Do not show menu related links if menu is already visible */
-  .btn-navbar
-    .fa-bars
-      visibility: hidden
-  .sidebar
-    .menu-header
-      display: none
 
 .navbar-brand
   padding-left: 40px
@@ -49,10 +42,10 @@
   font-weight: bold
   text-align: center
 
-.navbar .fa
+.navbar .material-icons
   font-size: 1.8em
 
-.navbar .project-title .fa
+.navbar .project-title .material-icons
   font-size: 1em
 
 .navbar-top-subtitle
@@ -89,6 +82,8 @@
     .active, &:focus
       color: $menu-active-color !important
       font-weight: bold
+  .btn
+    margin-top: 3px
   .menu-option:hover, .btn-link:hover i
     color: $navbar-top-hover-color !important
     font-weight: bold

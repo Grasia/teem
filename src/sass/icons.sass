@@ -10,7 +10,7 @@ i
   padding-right: 10px
   padding-left: 10px
   float: left
-  i
+  i::before
     font-size: 20px
     line-height: 1.42em
     vertical-align: middle
@@ -21,7 +21,8 @@ i
     font-size: 12px
     font-weight: bold
     margin-left: .8em
-    vertical-align: bottom
+    vertical-align: middle
+    font-style: normal
 
 .i-loading
   @extend .fa-spinner
@@ -37,32 +38,61 @@ i
 .i-need-missing
   @extend .fa-square
 
-.i-message
-  @extend .fa-comment
+.i-message::before,
+.i-comment::before
+  @extend .material-icons
+  content: 'chat_bubble_outline'
 
 .i-community,
+.i-participant,
 .i-participants
-  @extend .fa-user
+  &::before
+    @extend .material-icons
+    content: 'person_outline'
 
-.i-project
-  @extend .fa-leaf
+.i-project::before
+  @extend .material-icons
+  content: 'pages'
 
-.i-participant
-  @extend .fa-user
-.i-participant-new
-  @extend .fa-user-plus
-.i-participant-remove
-  @extend .fa-user-times
+.i-participant-new::before
+  @extend .material-icons
+  content: 'person_add'
 
-.i-support
-  @extend .fa-heart
-.i-support-new
-  @extend .fa-heart-o
-.i-support-remove
-  @extend .fa-heart
+.i-participant-remove::before
+  @extend .material-icons
+  content: 'exit_to_app'
 
-.i-share
-  @extend .fa-share-square-o
+.i-support::before, .i-support-remove::before
+  @extend .material-icons
+  content: 'favorite'
+.i-support-new::before
+  @extend .material-icons
+  content: 'favorite_border'
+
+.i-share::before
+  @extend .material-icons
+  content: 'share'
 
 .i-send
+  @extend .fa
   @extend .fa-send
+
+.i-close::before
+  @extend .material-icons
+  content: 'close'
+
+.i-edit::before
+  @extend .material-icons
+  content: 'edit'
+
+.i-check::before
+  @extend .material-icons
+  content: 'check'
+
+.i-plus::before
+  @extend .material-icons
+  content: 'add'
+
+.i-arrow-forward::before
+  @extend .material-icons
+  content: 'arrow_forward'

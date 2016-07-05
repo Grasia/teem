@@ -33,7 +33,7 @@
           <div class="input-group">
             <div class="input-group-addon" id="chatEmojisBtn">
               <a class="btn btn-link btn-xs chat-input-button" uib-popover-template="'chat/emoji-picker.html'" popover-placement="top-left" popover-trigger="outsideClick" ng-click="focusChatInput()">
-                <i class="fa fa-smile-o"></i>
+                <i class="material-icons">insert_emoticon</i>
               </a>
             </div>
             <textarea class="form-control chat-textarea"
@@ -49,11 +49,11 @@
             </textarea>
             <div class="input-group-addon">
               <button id="chatSendBtn" type="submit" class="btn btn-primary btn-fab btn-fab-mini chat-input-button hidden">
-                <i class="fa fa-send"></i>
+                <i class="i-send"></i>
               </button>
               <button id="chatUploadBtn" type="button" class="btn btn-fab btn-fab-mini chat-input-button"
                 ngf-select="uploadFile($file)" accept="image/*" ngf-fix-orientation="true">
-                <i class="fa fa-paperclip"></i>
+                <i class="material-icons">attach_file</i>
               </button>
             </div>
           </div>

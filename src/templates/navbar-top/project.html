@@ -2,7 +2,7 @@
   <div ui-content-for="{{content}}">
     <div class="nav-right-menu" ng-if="!pad.editing || isDesktop()">
       <a ui-turn-on="dropdownProjectMenu" class="btn btn-link">
-        <i class="fa fa-ellipsis-v"></i>
+        <i class="material-icons">more_vert</i>
       </a>
       <ul ui-state="dropdownProjectMenu" class="dropdown-menu ng-hide"
           ui-outer-click="Ui.turnOff('dropdownProjectMenu')"
@@ -17,7 +17,7 @@
     </div>
     <div class="nav-right-menu" ng-if="pad.editing && !isDesktop()">
       <a ng-click="editOff()" class="btn pad-check">
-        <i class="fa fa-check" ng-class="{'fa-check': !pad.saving, 'fa-spinner': pad.saving}"></i>
+        <i class="material-icons">{{!pad.saving ? 'done': 'autorenew'}}</i>
       </a>
     </div>
   </div>

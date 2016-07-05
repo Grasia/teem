@@ -15,7 +15,7 @@
         <h1>
           {{project.title}}
           <button class="btn btn-link edit-title-btn pull-right" ng-if="project.isParticipant()" ng-click="showEditTitle()">
-            <i class="fa fa-pencil-square-o" ></i>
+            <i class="i-edit" ></i>
           </button>
         </h1>
         <div class="project-communities" ng-if="! isNew()">
@@ -30,7 +30,7 @@
                  placeholder="{{ 'project.title.placeholder' | translate }}">
           <div class="input-group-addon">
             <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
-              <i class="fa fa-check"></i>
+              <i class="i-check"></i>
             </button>
           </div>
         </div>
