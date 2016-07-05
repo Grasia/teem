@@ -33,14 +33,12 @@ angular.module('Teem')
             scope.project.toggleNeedCompleted(need);
           };
 
-          scope.updateNeed = function(need, event) {
+          scope.updateNeed = function(need) {
             if (need.completed === 'add'){
               if (need.text) {
                 scope.project.addNeed(need);
 
                 scope.need = {completed: 'add', text: ''};
-              } else {
-                angular.element(event.target).parent().find('textarea').focus();
               }
             }
             else if (need.text === ''){
@@ -58,17 +56,17 @@ angular.module('Teem')
           });
 
           scope.keyEventsHandler = function(event){
-            if (event.which === 13) {
+            if (event.which === 13) { // enter
               event.target.blur();
             }
-            if ((event.which === 8) && (scope.need.text === '')) {
+            if ((event.which === 8) && (scope.need.text === '')) { // backspace
               event.preventDefault();
               scope.updateNeed(scope.need);
             }
           };
 
           scope.keyDown = function(event){
-            if (event.which === 13) {
+            if (event.which === 13) { // enter
               scope.sendComment();
 
               // Do not add new line to comment input
@@ -112,7 +110,8 @@ angular.module('Teem')
           };
 
           scope.isNewNeed = function(need){
-            if (!scope.project || !scope.project.isParticipant() || !scope.project.getTimestampAccess()){
+            if (!scope.project || !scope.project.isParticipant() ||
+            !scope.project.getTimestampAccess() || !scope.project.getTimestampAccess().needs){
               return false;
             }
             var prevAccess = new Date(scope.project.getTimestampAccess().needs.prev);
