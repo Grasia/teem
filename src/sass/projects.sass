@@ -10,7 +10,8 @@
 .project-item-title
   color: $projects-title-color
   font-weight: bold
-
+.project-item:hover .project-item-title
+  color: $project-title-hover-color
 .notification-indicator
   color: $notification-point-color
   position: absolute
@@ -115,7 +116,7 @@
       margin: 0
       padding: 0
     .h1
-      margin: 17px
+      margin: 23px 17px
       font-size: 30px
       font-weight: bold
       &:not(.ng-empty):not(:focus):not(:hover)
@@ -277,15 +278,7 @@
     .project-description
       display: none
     .project-sections
-      display: flex
-      justify-content: space-between
-      .icon-count
-        padding-right: 6px
-        padding-left: 0
-        i
-          font-size: 18px
-          span
-            margin-left: 0.2em
+      display: none
 
   .bg-aubergine
     background-color: $aubergine

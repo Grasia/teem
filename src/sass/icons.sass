@@ -73,9 +73,10 @@ i
   @extend .material-icons
   content: 'share'
 
-.i-send
-  @extend .fa
-  @extend .fa-send
+.i-send::before
+  @extend .material-icons
+  content: 'send'
+  transform: translate(-10px, -12px) !important
 
 .i-close::before
   @extend .material-icons
