@@ -85,7 +85,7 @@
     <div class="row project-sidebar-inner">
       <div class="section" project-people></div>
     </div>
-    <div class="row other-projects" ng-controller="ProjectsCtrl">
+    <div ng-if="loggedIn()" class="row other-projects" ng-controller="ProjectsCtrl">
       <h2 translate>project.index.home.title</h2>
       <projects project-list="projects" context="context"></projects>
     </div>

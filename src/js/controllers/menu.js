@@ -35,10 +35,6 @@ angular.module('Teem')
       $timeout();
     };
 
-    $scope.loggedIn = function () {
-      return SessionSvc.users.loggedIn();
-    };
-
     $scope.logout = function () {
       SessionSvc.stopSession();
       $location.path('/');

@@ -77,8 +77,13 @@ angular
   })
   .run(function(amMoment, $translate, $window, $rootScope) {
     amMoment.changeLocale($translate.proposedLanguage() || $translate.use());
-    
+
     angular.element($window).bind('resize', function(){
       $rootScope.$digest();
     });
+  })
+  .run(function($rootScope, SessionSvc) {
+    $rootScope.loggedIn = function () {
+      return SessionSvc.users.loggedIn();
+    };
   });
