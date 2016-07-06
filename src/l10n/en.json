@@ -34,7 +34,9 @@
       "home": {
         "title": "My communities"
       },
-      "title": "Communities"
+      "public": {
+        "title": "Communities"
+      }
     },
     "menu": {
       "join": "Join this community",

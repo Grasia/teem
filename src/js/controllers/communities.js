@@ -35,8 +35,6 @@ angular.module('Teem')
     } else {
       $scope.context = 'public';
     }
-    let home = $scope.context === 'home' ? 'home.' : '';
-    $scope.title = `community.index.${home}title`;
 
     if ($location.path() === '/communities/new') {
       SessionSvc.loginRequired($scope, function() {
