@@ -77,7 +77,8 @@ angular.module('Teem')
           },
           onDropdownOpen(dropdown){
             dropdown[0].scrollIntoView();
-          }
+          },
+          closeAfterSelect: true
         }
       },
       /* Populates the user selector options (optionList)

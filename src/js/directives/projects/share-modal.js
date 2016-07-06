@@ -26,6 +26,7 @@ angular.module('Teem')
                   '</div>';
               }
             },
+            closeAfterSelect: true
           },
         };
       }],

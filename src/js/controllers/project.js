@@ -236,7 +236,8 @@ angular.module('Teem')
         plugins: ['remove_button'],
         onDropdownOpen(dropdown){
           dropdown[0].scrollIntoView();
-        }
+        },
+        closeAfterSelect: true
       }
     };
     SessionSvc.onLoad(function() {
