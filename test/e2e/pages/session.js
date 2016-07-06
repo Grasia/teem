@@ -85,13 +85,9 @@ class Register extends Session {
   }
 
   goToLogin () {
-    /*
-    browser.wait(() => {
-      return browser.isElementPresent(this.loginButton);
-    });
-    */
+    browser.wait(protractor.ExpectedConditions.visibilityOf(this.loginButton));
 
-    return this.loginButton.click();
+    this.loginButton.click();
   }
 
   register (options) {

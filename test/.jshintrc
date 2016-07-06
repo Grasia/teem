@@ -36,12 +36,16 @@
     "inject": false,
     "it": false,
     "jasmine": false,
+    "protractor": false,
     "spyOn": false,
     "SwellRT": false,
     "SwellRTModel": false,
     "xdescribe": false,
     "xit": false,
     "__session": false,
-    "PushNotification": false
+    "PushNotification": false,
+    "isDesktop": false,
+    "communityUrl": false,
+    "projectUrl": false
   }
 }

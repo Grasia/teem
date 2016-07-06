@@ -1,6 +1,6 @@
 <div class="list-group-item need-item"
-     ng-if="project.isParticipant() || need.completed !== 'add'">
-
+     ng-if="project.isParticipant() || need.completed !== 'add'"
+     ng-class="'need-item-completed-' + need.completed">
   <div class="need-body"
        ng-click="toggleCommentsVisibility(need)">
     <form>

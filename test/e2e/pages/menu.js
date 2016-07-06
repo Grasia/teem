@@ -47,11 +47,7 @@ class MenuPage {
     } else {
       this.menuBtnEl.click();
 
-      browser.wait(() => {
-        return this.root().element(this.logoutBy).isDisplayed().then((result) => {
-          return result;
-        });
-      });
+      browser.wait(protractor.ExpectedConditions.visibilityOf(this.root().element(this.logoutBy)));
     }
 
     return this.root().element(this.logoutBy).click();
