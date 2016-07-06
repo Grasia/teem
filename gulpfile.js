@@ -60,6 +60,9 @@ var config = {
     ],
 
     fonts: [
+      './bower_components/material-design-icons/iconfont/MaterialIcons-Regular.ttf',
+      './bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff',
+      './bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff2',
       './bower_components/font-awesome/fonts/fontawesome-webfont.*',
       './src/fonts/*'
     ]

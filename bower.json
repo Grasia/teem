@@ -32,7 +32,8 @@
     "angular-selectize2": "git://github.com/nbrustein/angular-selectize.git#bindable-placeholder",
     "bootstrap-material-design": "~0.5.9",
     "js-emoji": "~3.0.0",
-    "emoji-data": "iamcal/emoji-data#^2.4.1"
+    "emoji-data": "iamcal/emoji-data#^2.4.1",
+    "material-design-icons": "^2.2.3"
   },
   "devDependencies": {
     "angular-mocks": "1.5.0",
