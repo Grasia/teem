@@ -13,10 +13,10 @@ angular.module('Teem')
       controller: [
       '$scope', 'SessionSvc', '$location', 'CommunitiesSvc', '$timeout',
       'Loading', '$route', 'NewForm', 'swellRT', '$rootScope', 'Selector',
-      'ProjectsSvc', 'User',
+      'ProjectsSvc', 'User', 'SharedState',
       function ($scope, SessionSvc, $location, CommunitiesSvc, $timeout,
                 Loading, $route, NewForm, swellRT, $rootScope, Selector,
-                ProjectsSvc, User) {
+                ProjectsSvc, User, SharedState) {
 
         var editingTitle = false;
 
@@ -85,6 +85,17 @@ angular.module('Teem')
               $location.path(p.path()).search('form', 'new');
             });
           });
+        };
+
+        $scope.inviteUsers = function(){
+          Selector.invite($scope.invite.selected, $scope.community);
+          $scope.invite.selected = [];
+          SharedState.turnOff('modalSharedState');
+        };
+
+        $scope.cancelInvite = function(){
+          $scope.invite.selected = [];
+          SharedState.turnOff('modalSharedState');
         };
       }],
       templateUrl: 'communities/community.html'
