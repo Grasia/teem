@@ -21,7 +21,7 @@ describe('Teem', function() {
 
       loginPage.login();
 
-      registerPage.expectNoErrors();
+      loginPage.expectNoErrors();
 
       expect(menu.currentNick()).toBe(loginPage.default.nick);
     });

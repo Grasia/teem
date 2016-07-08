@@ -21,10 +21,13 @@ class Session {
     this.passwordRepeatInput = element(by.model('form.values.passwordRepeat'));
     this.emailInput = element(by.model('form.values.email'));
 
-    this.invalidInputs = element.all(by.css('.ng-invalid'));
+    this.invalidInputBy = by.css('.ng-invalid');
+    this.invalidInput = element(this.invalidInputBy);
+    this.invalidInputs = element.all(this.invalidInputBy);
     this.errorAlert = element(by.css('#error_alert'));
 
     this.formButton = element(by.css('.session-form input[type=submit]'));
+
   }
 
   get () {
@@ -65,11 +68,26 @@ class Session {
     return this.emailInput.sendKeys(email);
   }
 
+  // SwellRT calls are not tracked by protractor's waitForAngular
+  // We wait until:
+  // * There are invalid fields: the response was not sent
+  // * The error alert is displayed: the server returned an error
+  // * The error alert is not present: the form was successful and has disappeared
+  waitForServerResponse () {
+    browser.wait(protractor.ExpectedConditions.or(
+      protractor.ExpectedConditions.presenceOf(this.invalidInput),
+      protractor.ExpectedConditions.visibilityOf(this.errorAlert),
+      protractor.ExpectedConditions.not(protractor.ExpectedConditions.presenceOf(this.errorAlert))
+    ));
+  }
+
   submit () {
-    return this.formButton.click();
+    this.formButton.click();
   }
 
   expectNoErrors () {
+    this.waitForServerResponse();
+
     expect(this.invalidInputs.count()).toBe(0);
     expect(this.errorAlert.isPresent()).toBeFalsy();
   }
