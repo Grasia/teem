@@ -13,6 +13,10 @@ angular.module('Teem')
       when('/session/:form', {
         template: '',
         controller:'SessionRouteCtrl'
+      }).
+      when('/session/logout', {
+        template: '',
+        controller: 'SessionLogoutCtrl'
       });
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
@@ -37,6 +41,13 @@ angular.module('Teem')
       });
     }
   ])
+  .controller('SessionLogoutCtrl',
+    function(SessionSvc, $location) {
+      SessionSvc.stopSession();
+
+      $location.path('/');
+    }
+  )
   .controller('SessionCtrl', [
     '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
     function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {

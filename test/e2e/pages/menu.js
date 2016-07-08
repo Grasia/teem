@@ -27,6 +27,12 @@ class MenuPage {
     return this.root().element(this.userNickBy).getInnerHtml();
   }
 
+  isLoggedIn () {
+    return this.root().element(this.guestBy).getInnerHtml().then((nick) => {
+      return nick.toLowerCase() !== 'guest';
+    });
+  }
+
   ifLoggedIn (ifYes, ifNot) {
     return this.root().element(this.guestBy).getInnerHtml().then((nick) => {
       if (nick !== 'guest') {
