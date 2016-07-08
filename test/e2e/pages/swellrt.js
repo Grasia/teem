@@ -27,16 +27,35 @@ class SwellRTPage {
     return promise;
   }
 
-  recoveryLink (nick) {
-    var linkRegexp = new RegExp('http.*' + this.recoveryPath + '.*id=' + nick);
+  logRegexp (regexp, options) {
+    if (! options) {
+      options = {};
+    }
 
     return browser.wait(() => {
       return this.log().then((text) => {
-        var match = text.match(linkRegexp);
+        if (options.multiline) {
+          text = text.replace(/\n/g, ' ');
+        }
 
-        return match && match[0] || null;
+        var match = text.match(regexp);
+
+        return match && match[1] || null;
       });
     });
+  }
+
+  recoveryLink (nick) {
+    var linkRegexp = new RegExp('(http.*' + this.recoveryPath + '.*id=' + nick + ')');
+
+    return this.logRegexp(linkRegexp);
+
+  }
+
+  inviteCommunityLink (email) {
+    var communityRegexp = new RegExp(email + '.*"(http.*/communities/.*)"' );
+
+    return this.logRegexp(communityRegexp, { multiline: true });
   }
 }
 
