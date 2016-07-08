@@ -46,12 +46,15 @@ angular.module('Teem')
   function (SessionSvc, $scope, $location, $route, time,
   CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
     var communityId = $route.current.params.communityId;
+    var projectId = $location.path().startsWith('/teems/') && $route.current.params.id;
 
     $scope.translationData = {};
 
     if (communityId) {
       $scope.context = 'community';
-    } else if ($location.path() === '/home/teems' || $location.path().startsWith('/teems/')) {
+    } else if (projectId) {
+      $scope.context = 'project';
+    } else if ($location.path() === '/home/teems') {
       $scope.context = 'home';
     } else {
       $scope.context = 'public';
@@ -109,9 +112,16 @@ angular.module('Teem')
 
           break;
         case 'home':
+        case 'project':
           SessionSvc.loginRequired($scope, function() {
             Loading.show(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
               then(function(projects) {
+
+                // Exclude current project
+                if (projectId) {
+                  projects = projects.filter(project => project._urlId !== projectId);
+                }
+
                 getCommunities(projects);
 
                 $scope.projects = projects;
