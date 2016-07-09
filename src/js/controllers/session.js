@@ -10,13 +10,14 @@
 angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-      when('/session/:form', {
-        template: '',
-        controller:'SessionRouteCtrl'
-      }).
+      // Prioritize before /session/:form
       when('/session/logout', {
         template: '',
         controller: 'SessionLogoutCtrl'
+      }).
+      when('/session/:form', {
+        template: '',
+        controller:'SessionRouteCtrl'
       });
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
@@ -43,9 +44,12 @@ angular.module('Teem')
   ])
   .controller('SessionLogoutCtrl',
     function(SessionSvc, $location) {
-      SessionSvc.stopSession();
 
-      $location.path('/');
+      SessionSvc.onLoad(function() {
+        SessionSvc.stopSession();
+
+        $location.path('/');
+      });
     }
   )
   .controller('SessionCtrl', [
