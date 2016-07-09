@@ -7,6 +7,7 @@ var Chance = require('chance'),
     SwellRTPage = require('./pages/swellrt'),
     chance = new Chance(),
     loginPage = new sessionPage.Login(),
+    logoutPage = new sessionPage.Logout(),
     registerPage = new sessionPage.Register(),
     forgottenPasswordPage = new sessionPage.ForgottenPassword(),
     recoverPasswordPage = new sessionPage.RecoverPassword(),
@@ -82,6 +83,20 @@ describe('Teem', function() {
 
       // https://github.com/P2Pvalue/swellrt/issues/163
       //expect(menu.currentNick()).toBe(loginPage.default.nick);
+    });
+  });
+
+  describe('logout url', function() {
+    it('should logout', function() {
+      loginPage.get();
+
+      loginPage.login();
+
+      loginPage.expectNoErrors();
+
+      logoutPage.get();
+
+      expect(menu.isLoggedIn()).toBeFalsy();
     });
   });
 });

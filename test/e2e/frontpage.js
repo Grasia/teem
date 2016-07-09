@@ -2,15 +2,17 @@
 'use strict';
 
 var sessionPage = require('./pages/session'),
-    MenuPage = require('./pages/menu'),
     loginPage = new sessionPage.Login(),
-    menu = new MenuPage();
+    logoutPage = new sessionPage.Logout();
 
 describe('Teem', function() {
 
   describe('frontpage', function() {
 
     describe('when not logged in', function() {
+      beforeAll(() => {
+        logoutPage.get();
+      });
 
       it('should automatically redirect to /communities', function() {
         browser.get('/');
@@ -23,27 +25,18 @@ describe('Teem', function() {
           });
         });
 
-        menu.ifLoggedIn(() => {
-          menu.logout();
-
-          browser.get('/');
-
-          browser.wait(() => {
-            return browser.getLocationAbsUrl().then((url) => {
-              return url !== '/';
-            });
-          });
-        });
-
         expect(browser.getLocationAbsUrl()).toMatch('/communities');
       });
     });
 
     describe('when logged in', function() {
-      it('should automatically redirect to /home/teems', function() {
+      beforeAll(() => {
         loginPage.get();
-
         loginPage.login();
+      });
+
+      it('should automatically redirect to /home/teems', function() {
+
 
         browser.get('/');
 
