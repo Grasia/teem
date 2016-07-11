@@ -22,20 +22,27 @@
         </div>
 
         <div class="project-sections">
-          <div class="icon-count project-sections-participants">
-            <i class="fa i-community" uib-tooltip="{{'project.tooltip.pad' | translate}}"><span class="icon-count-number">{{ project.participantCount() }}</span></i>
+          <div class="project-sections-participants">
+            <a uib-tooltip="{{'project.tooltip.pad' | translate}}">
+              <i class="i-community icon-count">
+                <span class="icon-count-number">{{ project.participantCount() }}</span>
+              </i>
+            </a>
           </div>
 
           <div class="icon-count project-sections-needs">
             <a ng-click="showProject(project, 'needs')" uib-tooltip="{{'project.tooltip.need' | translate}}">
-              <i class="fa i-need"><span class="icon-count-number">{{ project.needIncompletedCount() }}</span></i>
+              <i class="i-need icon-count">
+                <span class="icon-count-number">{{ project.needIncompletedCount() }}</span>
+              </i>
             </a>
           </div>
 
           <div class="icon-count project-sections-chat">
             <a ng-click="showProject(project, 'chat')" uib-tooltip="{{'project.tooltip.chat' | translate}}">
-              <i class="fa i-message"><span class="icon-count-number">{{ project.newMessagesCount() }}</span></i>
-
+              <i class="i-message icon-count">
+                <span class="icon-count-number">{{ project.newMessagesCount() }}</span>
+              </i>
             </a>
           </div>
         </div>
