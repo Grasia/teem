@@ -48,7 +48,7 @@ angular.module('Teem')
             // SwellRT editor is created with .wave-editor-off
             // Should use .wave-editor-on when SwellRT editor callback is available
             // https://github.com/P2Pvalue/swellrt/issues/84
-            var editorElement = angular.element($element.find('.swellrt_editor').children[0]);
+            var editorElement = angular.element($element.find('.swellrt-editor').children()[0]);
 
             var annotationMap = {
               'text_fields': 'paragraph/header=h3',
