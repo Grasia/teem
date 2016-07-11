@@ -191,7 +191,20 @@
     "need": {
       "missing": "Esta necesidad se ha borrado"
     },
-    "placeholder": "Quieres trabajar en..."
+    "placeholder": "Quieres trabajar en...",
+    "tooltip": {
+      "img": "Insertar image",
+      "need": "Insertar necesidad",
+      "text_fields": "Encabezado",
+      "format_bold": "Negrita",
+      "format_italic": "Cursiva",
+      "format_strikethrough": "Tachado",
+      "format_align_left": "Alinear a la izquierda",
+      "format_align_center": "Alinear al centro",
+      "format_align_right": "Alinear a la derecha",
+      "format_list_bulleted": "Lista no ordenada",
+      "format_list_numbered": "Lista ordenada"
+    }
   },
   "picture": {
     "crop": "Para recortar la imagen, arrastra la zona iluminada, y después, haz clic en guardar",

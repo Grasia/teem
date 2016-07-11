@@ -191,7 +191,20 @@
     "need": {
       "missing": "This need was deleted"
     },
-    "placeholder": "You want to work on..."
+    "placeholder": "You want to work on...",
+    "tooltip": {
+      "img": "Insert image",
+      "need": "Insert need",
+      "text_fields": "Heading",
+      "format_bold": "Bold",
+      "format_italic": "Italic",
+      "format_strikethrough": "Strikethrough",
+      "format_align_left": "Align left",
+      "format_align_center": "Align center",
+      "format_align_right": "Align right",
+      "format_list_bulleted": "Unordered list",
+      "format_list_numbered": "Ordered list"
+    }
   },
   "picture": {
     "crop": "To crop the picture, drag the lighter zone, and then click on save",
