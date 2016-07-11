@@ -142,6 +142,21 @@ class Login extends Session {
   }
 }
 
+class Logout {
+
+  get () {
+    var path = '/session/logout';
+
+    browser.get(path);
+
+    browser.wait(() => {
+      return browser.getLocationAbsUrl().then((url) => {
+        return url !== path;
+      });
+    });
+  }
+}
+
 class ForgottenPassword extends Session {
   constructor () {
     super();
@@ -192,6 +207,7 @@ class RecoverPassword extends Session {
 module.exports = {
   Register,
   Login,
+  Logout,
   ForgottenPassword,
   RecoverPassword
 };

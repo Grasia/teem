@@ -10,6 +10,11 @@
 angular.module('Teem')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
+      // Prioritize before /session/:form
+      when('/session/logout', {
+        template: '',
+        controller: 'SessionLogoutCtrl'
+      }).
       when('/session/:form', {
         template: '',
         controller:'SessionRouteCtrl'
@@ -37,6 +42,16 @@ angular.module('Teem')
       });
     }
   ])
+  .controller('SessionLogoutCtrl',
+    function(SessionSvc, $location) {
+
+      SessionSvc.onLoad(function() {
+        SessionSvc.stopSession();
+
+        $location.path('/');
+      });
+    }
+  )
   .controller('SessionCtrl', [
     '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
     function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {

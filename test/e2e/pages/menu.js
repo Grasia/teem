@@ -27,30 +27,10 @@ class MenuPage {
     return this.root().element(this.userNickBy).getInnerHtml();
   }
 
-  ifLoggedIn (ifYes, ifNot) {
+  isLoggedIn () {
     return this.root().element(this.guestBy).getInnerHtml().then((nick) => {
-      if (nick !== 'guest') {
-        if (ifYes) {
-          ifYes();
-        }
-      } else {
-        if (ifNot) {
-          ifNot();
-        }
-      }
+      return nick.toLowerCase() !== 'guest';
     });
-  }
-
-  logout () {
-    if (isDesktop) {
-      this.root().element(this.sessionBy).click();
-    } else {
-      this.menuBtnEl.click();
-
-      browser.wait(protractor.ExpectedConditions.visibilityOf(this.root().element(this.logoutBy)));
-    }
-
-    return this.root().element(this.logoutBy).click();
   }
 }
 
