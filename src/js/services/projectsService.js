@@ -355,7 +355,7 @@ angular.module('Teem')
 
     var openedProjects = {};
 
-    $rootScope.$on('swellrt.prepare-logout', function(){
+    $rootScope.$on('swellrt.network-disconnected', function(){
       angular.forEach(openedProjects, function(value, key){
         SwellRT.closeModel(key);
       });

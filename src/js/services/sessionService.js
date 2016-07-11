@@ -41,7 +41,7 @@ angular.module('Teem')
 
     swellRTpromise.then(function(){
       SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
-        $rootScope.$broadcast('swellrt.prepare-login');
+        $rootScope.$broadcast('swellrt.network-connected');
         status.connection = 'connected';
         $timeout();
         if (User.loggedIn()){
@@ -149,7 +149,7 @@ angular.module('Teem')
     var stopSession = function(){
       swellRTpromise.then(function(){
 
-        $rootScope.$broadcast('swellrt.prepare-logout');
+        $rootScope.$broadcast('swellrt.network-disconnected');
         $timeout();
         SwellRT.stopSession();
         $rootScope.$broadcast('teem.logout');
@@ -175,7 +175,6 @@ angular.module('Teem')
               __session.address === userName) {
             return; // Session already started
           } else {
-            $rootScope.$broadcast('swellrt.prepare-logout');
             $timeout();
             SwellRT.stopSession();
             $rootScope.$broadcast('teem.logout');
