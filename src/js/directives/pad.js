@@ -21,14 +21,11 @@ angular.module('Teem')
         function(SessionSvc, $rootScope, $scope, $route, $location,
         $timeout, SharedState, needWidget) {
 
-
           var buttons = ['text_fields', 'format_bold', 'format_italic', 'format_strikethrough',
           'format_align_left', 'format_align_center', 'format_align_right',
           'format_list_bulleted', 'format_list_numbered'];
 
           $scope.padCreate = function(editor) {
-
-
 
             needWidget.init(editor, $scope);
 
