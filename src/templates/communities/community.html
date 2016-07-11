@@ -74,11 +74,9 @@
             placeholder=" 'project.add_people.placeholder' | translate" ng-if="isNew()"></selector>
           <footer class="row" ng-if="!isNew() && !editingTitle()">
             <div class="col-xs-4">
-              <div class="icon-count community-participant-count">
-                <i class="i-project"><span class="icon-count-number">{{projects.length}}</span></i>
-              </div>
-              <div class="icon-count community-participant-count">
-                <i class="i-community"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
+              <div class="community-participant-count">
+                <i class="icon-count i-project"><span class="icon-count-number">{{projects.length}}</span></i>
+                <i class="icon-count i-community"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
               </div>
               <div class="community-count community-like-count">
               </div>
