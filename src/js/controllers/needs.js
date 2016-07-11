@@ -47,6 +47,10 @@ angular.module('Teem')
             }
           };
 
+          scope.focusNeed = function(event) {
+            angular.element(event.target).parent().find('textarea').focus();
+          };
+
           SessionSvc.onLoad(function(){
             ProjectsSvc.findByUrlId($route.current.params.id).then(
               function(project){

@@ -73,7 +73,6 @@ angular.module('Teem')
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User, Selector) {
 
     var editingTitle = false;
-    $scope.$window = $window;
 
     // FIXME Defined here instead of inside pad because when pad scope is destroyed,
     // `editing` variable can't be accessed, and it is used outside pad.
