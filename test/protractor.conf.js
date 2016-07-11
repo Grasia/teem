@@ -22,13 +22,15 @@ exports.config = {
        args: ['--lang=en',
               '--window-size=1024,800']
      },
-   }, {
-   'browserName': 'chrome',
-   'chromeOptions' : {
-    args: ['--lang=en',
-           '--window-size=350,650']
-     },
-  }],
+   }
+  //  , {
+  //  'browserName': 'chrome',
+  //  'chromeOptions' : {
+  //   args: ['--lang=en',
+  //          '--window-size=350,650']
+  //    },
+  // }
+  ],
 
   baseUrl: 'http://' + gulpConfig.serverTest.host + ':' + gulpConfig.serverTest.port + '/',
 
@@ -41,7 +43,8 @@ exports.config = {
   suites: {
     session: 'e2e/session.js',
     frontpage: 'e2e/frontpage.js',
-    core: 'e2e/core/*.js'
+    core: 'e2e/core/*.js',
+    invite: 'e2e/core/invite.js'
   },
 
   onPrepare: function() {
