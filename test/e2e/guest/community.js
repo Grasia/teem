@@ -2,21 +2,20 @@
 
 var communityPages = require('./../pages/community'),
     sessionPages = require('./../pages/session'),
-    MenuPage = require('./../pages/menu'),
     communityPage = new communityPages.CommunityPage(),
     loginPage = new sessionPages.Login(),
-    menu = new MenuPage();
+    logoutPage = new sessionPages.Logout();
 
 describe('guest user', () => {
 
   beforeAll(() => {
-    browser.get('/session/logout');
+    logoutPage.get();
   });
 
   it('should be able to see a community from direct link with core user as participant', () => {
     browser.get(global.defaultCommunity.url);
 
-    //expect(menu.isLoggedIn()).toBeFalsy();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(communityPage.nameEl));
 
     expect(communityPage.getName()).toBe(global.defaultCommunity.name.toUpperCase());
 
