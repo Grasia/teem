@@ -17,9 +17,9 @@ angular.module('Teem')
       },
       controller: [
         'SessionSvc', '$rootScope', '$scope', '$route', '$location',
-        '$timeout', 'SharedState', 'needWidget',
+        '$timeout', 'SharedState', 'needWidget', '$element',
         function(SessionSvc, $rootScope, $scope, $route, $location,
-        $timeout, SharedState, needWidget) {
+        $timeout, SharedState, needWidget, $element) {
 
           var buttons = ['text_fields', 'format_bold', 'format_italic', 'format_strikethrough',
           'format_align_left', 'format_align_center', 'format_align_right',
@@ -48,7 +48,7 @@ angular.module('Teem')
             // SwellRT editor is created with .wave-editor-off
             // Should use .wave-editor-on when SwellRT editor callback is available
             // https://github.com/P2Pvalue/swellrt/issues/84
-            var editorElement = angular.element(document.getElementById('pad').children[0]);
+            var editorElement = angular.element($element.find('.swellrt_editor').children[0]);
 
             var annotationMap = {
               'text_fields': 'paragraph/header=h3',
