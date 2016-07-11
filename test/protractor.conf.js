@@ -41,7 +41,8 @@ exports.config = {
   suites: {
     session: 'e2e/session.js',
     frontpage: 'e2e/frontpage.js',
-    core: 'e2e/core/*.js'
+    core: 'e2e/core/*.js',
+    guest: 'e2e/guest/*.js'
   },
 
   onPrepare: function() {
@@ -68,7 +69,8 @@ exports.config = {
       newCommunityPage.create();
 
       browser.getCurrentUrl().then((url) => {
-        global.communityUrl = url;
+        global.defaultCommunity = newCommunityPage;
+        global.defaultCommunity.url = url;
       });
 
       // Create default teem
@@ -76,7 +78,8 @@ exports.config = {
       newProjectPage.create();
 
       return browser.getCurrentUrl().then((url) => {
-        global.projectUrl = url;
+        global.defaultProject = newProjectPage;
+        global.defaultProject.url = url;
       });
     });
   }

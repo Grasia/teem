@@ -10,7 +10,7 @@ class ProjectsPage {
   }
 
   get () {
-    browser.get(communityUrl);
+    browser.get(global.defaultCommunity.url);
   }
 
   goToNew () {
