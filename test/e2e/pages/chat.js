@@ -14,7 +14,7 @@ class ChatPage {
   }
 
   get () {
-    var url = projectUrl;
+    var url = global.defaultProject.url;
 
     if (! isDesktop) {
       url += '?tab=chat';
