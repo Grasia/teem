@@ -3,17 +3,19 @@
   ngf-drop="widget('img', $file)" ngf-fix-orientation="true" ng-class="{scrollable: pad.editing && !isDesktop()}">
     <div ng-if="pad.editing" class="pad-toolbar">
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group btn-group-xs" role="group" aria-label="First group">
-          <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'btn-info': isActive}">
-            <i class="material-icons">{{btn}}</i>
-          </button>
+        <div class="btn-group btn-group-xs" role="group" aria-label="widgets">
           <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
-            <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs">
+            <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.img' | translate}}">
               <i class="material-icons">image</i>
             </button>
           </span>
-          <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs">
+          <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.need' | translate}}">
             <i class="material-icons">check_box</i>
+          </button>
+        </div>
+        <div class="btn-group btn-group-xs" role="group" aria-label="formats">
+          <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
+            <i class="material-icons">{{btn}}</i>
           </button>
         </div>
       </div>
