@@ -15,19 +15,32 @@ describe('1% core user', () => {
       loginPage.login();
     });
 
-    it('should be able to create a new need', () => {
-      needPage.get();
+    describe('in needs page', () => {
 
-      needPage.notCompletedNeedEls.count().then((count) => {
+      beforeAll(() => {
+        needPage.get();
+      });
 
-        needPage.create();
+      it('should be able to create a new need', () => {
 
-        expect(needPage.notCompletedNeedEls.count()).toBe(count + 1);
+        needPage.notCompletedNeedEls.count().then((count) => {
 
-        expect(needPage.notCompletedNeedValues()).toContain(needPage.text);
+          needPage.create();
 
-        // TODO check specific element
-        expect(needPage.firstNotCompletedNeedInputEl.getAttribute('checked')).toBeFalsy();
+          expect(needPage.notCompletedNeedEls.count()).toBe(count + 1);
+
+          expect(needPage.notCompletedNeedValues()).toContain(needPage.text);
+
+          // TODO check specific element
+          expect(needPage.firstNotCompletedNeedInputEl.getAttribute('checked')).toBeFalsy();
+        });
+      });
+
+      it('should focus the add need field when clicking add check', () => {
+
+        needPage.addCheckEl.click();
+
+        expect(needPage.addTextEl.getId()).toEqual(browser.driver.switchTo().activeElement().getId());
       });
     });
   });
