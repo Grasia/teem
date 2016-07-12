@@ -201,7 +201,7 @@ angular.module('Teem')
       }
     }
 
-    class Project extends aggregation(ProjectReadOnly, Participation.ReadWrite) {
+    class Project extends aggregation(ProjectReadOnly, Participation.ReadWrite, SessionSvc.SynchedModel) {
 
       setShareMode (shareMode) {
         this.shareMode = shareMode;
@@ -355,14 +355,6 @@ angular.module('Teem')
 
     var openedProjects = {};
 
-    $rootScope.$on('swellrt.network-disconnected', function(){
-      angular.forEach(openedProjects, function(value, key){
-        SwellRT.closeModel(key);
-      });
-
-      openedProjects = {};
-      $timeout();
-    });
 
 
     /*
@@ -419,7 +411,6 @@ angular.module('Teem')
           angular.forEach(result.result, function(val){
 
             var v = new ProjectReadOnly(val);
-
             res.push(v);
           });
 
