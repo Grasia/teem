@@ -47,19 +47,6 @@
   </div>
 </div>
 
-<!-- Uses a second modal ui-yield-to. See https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
-<div ui-content-for="modals2">
-  <modal name="projectTitleReminder">
-    <header translate>project.title.reminder.body_one</header>
-    <main>
-      <strong><p translate>project.title.reminder.body_two</p></strong>
-    </main>
-    <footer>
-      <button class="btn btn-default project-title-reminder-btn" ng-click="cancelProject()" translate>project.title.reminder.button_cancel</button>
-      <button class="btn btn-primary project-title-reminder-btn" ng-click="titleReminder()" translate>project.title.reminder.button_continue</button>
-    </footer>
-  </modal>
-</div>
 <div ng-if="isDesktop()" class="project project-desktop">
   <div class="col-md-3 col-lg-2 project-sidebar bg-{{project.logoColor()}}">
     <div class="row project-badge">
