@@ -316,7 +316,7 @@ angular.module('Teem')
 
       reSynch(){
         var synchedModel = this;
-        SwellRT.openModel(synchedModel.id, function(model){
+        SwellRT.openModel(synchedModel._id, function(model){
           $timeout(function(){
             // rebuild the proxy with the new model information
             swellRT.proxy(model,
@@ -342,7 +342,7 @@ angular.module('Teem')
         });
 
         $rootScope.$on('swellrt.network-disconnected', function(){
-          SwellRT.closeModel(synchedModel.id);
+          SwellRT.closeModel(synchedModel._id);
           $timeout();
         });
       }
