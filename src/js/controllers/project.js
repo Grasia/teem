@@ -257,15 +257,6 @@ angular.module('Teem')
       $scope.invite.selected = [];
       SharedState.turnOff('modalSharedState');
     };
-
-    // Do not leave pad without giving a title to the project
-    $rootScope.$on('$routeChangeStart', function(event) {
-      if ($scope.project!== undefined && $scope.project.type !== 'deleted' && ($scope.project.title === undefined || $scope.project.title === '')) {
-        event.preventDefault();
-
-        SharedState.set('modalSharedState', 'projectTitleReminder');
-      }
-    });
   }])
   .directive(
     'hideTabs',
