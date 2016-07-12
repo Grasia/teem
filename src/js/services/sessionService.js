@@ -12,14 +12,15 @@ angular.module('Teem')
   .factory('SessionSvc', [
     // NotificationSvc has to be added here as dependency to be loaded in the app
   '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
-  '$rootScope',
+  '$rootScope', 'swellRT',
   function($q, $timeout, SharedState, NotificationSvc, $locale, User,
-           $rootScope) {
+           $rootScope, swellRT) {
 
     var swellRTDef = $q.defer(),
         swellRTpromise = swellRTDef.promise,
         sessionDef,
         sessionPromise,
+        info,
         // TODO no restart session without user saying so
         // TODO stop session before start session after a timeout
         // TODO if reconnected, get again all objects
@@ -157,7 +158,8 @@ angular.module('Teem')
         sessionPromiseInit();
 
         SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS,  '',
-          function(){
+          function(sessionInfo){
+            info =  sessionInfo;
             sessionDef.resolve(SwellRT);
           }, function(error) {
             console.log(error);
@@ -185,7 +187,8 @@ angular.module('Teem')
         status.connection = 'connecting';
 
         SwellRT.startSession(SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS,  password || '',
-          function(){
+          function(sessionInfo){
+            info =  sessionInfo;
             sessionDef.resolve(SwellRT);
             onSuccess();
 
@@ -291,6 +294,60 @@ angular.module('Teem')
 
     }
 
+    // Handle SwellRT Connection/Disconection and model synch
+    class SynchedModel {
+
+      setSessionInfo(){
+        // Session Id for which the model was built
+        this._modelSessionId = info.sessionid;
+      }
+
+      get modelSessionId(){
+        return this._modelSessionId;
+      }
+
+      set modelSessionId(id = info.sessionid){
+        this._modelSessionId = id;
+      }
+
+      needsResynch(){
+        return status.connection === 'disconnected' || this.modelSessionId !== info.sessionid;
+      }
+
+      reSynch(){
+        var synchedModel = this;
+        SwellRT.openModel(synchedModel.id, function(model){
+          $timeout(function(){
+            // rebuild the proxy with the new model information
+            swellRT.proxy(model,
+              // giving this function as a substitute constructor to keep the reference.
+              function(){
+                synchedModel.setSessionInfo();
+                return synchedModel;
+              });
+            });
+          });
+      }
+
+      initializer() {
+
+        this.setSessionInfo();
+
+        var synchedModel = this;
+
+        $rootScope.$on('swellrt.network-connected', function(){
+          if (synchedModel.needsResynch()){
+            synchedModel.reSynch();
+          }
+        });
+
+        $rootScope.$on('swellrt.network-disconnected', function(){
+          SwellRT.closeModel(synchedModel.id);
+          $timeout();
+        });
+      }
+    }
+
     return {
       users: users,
       registerUser: registerUser,
@@ -302,6 +359,7 @@ angular.module('Teem')
       updateUserProfile: updateUserProfile,
       loginRequired: loginRequired,
       status: status,
+      SynchedModel,
       // TODO refactor with Prototype version of proxy objects to avoid the use of onLoad
       onLoad: function(f) {
         if (status.connection === 'notConnected' ||

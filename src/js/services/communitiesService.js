@@ -84,7 +84,7 @@ angular.module('Teem')
       }
     }
 
-    class Community extends aggregation(CommunityReadOnly, Participation.ReadWrite) {
+    class Community extends aggregation(CommunityReadOnly, Participation.ReadWrite, SessionSvc.SynchedModel) {
 
       delete () {
         this.type = 'deleted';
@@ -96,16 +96,6 @@ angular.module('Teem')
     // Service functions
 
     var openedCommunities = {};
-
-    $rootScope.$on('swellrt.network-disconnected', function(){
-      angular.forEach(openedCommunities, function(value, key){
-        SwellRT.closeModel(key);
-      });
-
-      openedCommunities = {};
-      $timeout();
-    });
-
 
     var find = function(id) {
       var comDef = $q.defer();

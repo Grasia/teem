@@ -72,6 +72,5 @@ angular.module('Teem')
     }
 
     SessionSvc.onLoad(initialize);
-    $scope.$on('swellrt.prepare-login', initialize);
 
   }]);

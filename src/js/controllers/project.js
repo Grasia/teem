@@ -118,7 +118,6 @@ angular.module('Teem')
 
     SessionSvc.onLoad(initialize);
 
-    $rootScope.$on('swellrt.network-connected', initialize);
 
     function currentTab() {
       return $location.search().tab || 'pad';
