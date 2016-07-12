@@ -59,7 +59,7 @@
         "notification": "Se ha añadido a {{addedParticipants}} a esta comunidad"
       },
       "button": "Unirme",
-      "message": "Formas parte",
+      "message": "You belong to this community",
       "invite": {
         "notification": "Se ha invitado a {{invitedParticipants}} a esta comunidad"
       }

@@ -68,6 +68,30 @@
     font-size: 1.42em
   h2
     font-weight: $font-weight-light
+
+.community-share-button
+  position: absolute
+  top: 16px
+  right: 23px
+.community-join-button
+  margin-top: -56px
+  margin-right: 22px
+  .ng-leave
+    display: none
+  button
+    margin-top: 0
+  .message
+    font-weight: bold
+    text-transform: uppercase
+    color: white
+    text-align: right
+    &::before
+      @extend .material-icons
+      content: 'done'
+      font-size: 20px
+      vertical-align: text-bottom
+      margin-right: 3px
+
 .community-participant-count
   padding-top: 14px
   .icon-count-number
@@ -76,6 +100,10 @@
   padding-top: 4px
 .community-projects
   background-color: $community-projects-background-color
+  .list-group .list-group-item
+    padding: 15px 16px
+    border-bottom: none
+
 
 .community-participants
   background: $community-participants-background-color
@@ -182,6 +210,7 @@
       max-height: 311px
   .community-layout
     padding-left: 35px
+    padding-right: 0
     background: linear-gradient($light-grey 62px, transparent 0), linear-gradient($grey 63px, transparent 0)
   .community-info
     background: white

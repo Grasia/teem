@@ -62,7 +62,7 @@
       "invite": {
         "notification": "{{invitedParticipants}} has been invited to this community"
       },
-      "message": "You are in"
+      "message": "You belong to this community"
     },
     "project": {
       "button": "Create a teem",
