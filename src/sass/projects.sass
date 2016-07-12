@@ -18,11 +18,12 @@
   font-size: 0.7em
 
 .project-description
-  height: 1.42em
   @extend .overflow-ellipsis
-  white-space: normal
-  word-break: break-all
-  max-width: 70%
+@media (max-width: $screen-sm-max)
+  .project-description
+    height: 2.6em
+    white-space: normal
+    word-break: break-all
 .project-sections
   margin-top: 0.8em
   width: 100%
