@@ -6,7 +6,8 @@ var Chance = require('chance'),
 class CommunitiesPage {
 
   constructor () {
-    this.newEl = element(by.css('[ng-click="create()"]'));
+    var platform = global.isDesktop ? 'desktop' : 'mobile';
+    this.newEl = element(by.css('.plus-' + platform + ' button'));
   }
 
   get () {
