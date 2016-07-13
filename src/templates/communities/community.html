@@ -99,7 +99,7 @@
         <div class="community-projects col-md-6 section" ng-if="!isNew()">
 
           <h2 class="community-project-title" translate>community.project.title</h2>
-          <plus class="hidden-xs hidden-sm attached" plus-type="project" plus-community="community" ng-if="!isNew()"></plus>
+          <plus class="plus-desktop" plus-type="project" plus-community="community" ng-if="!isNew()"></plus>
 
           <div ng-if="projects.length">
 
@@ -162,5 +162,5 @@
       <div ng-include="'new-form/buttons.html'"></div>
     </div>
   </div>
-  <plus class="hidden-md hidden-lg" plus-type="project" plus-community="community" ng-if="!isNew()"></plus>
+  <plus class="plus-mobile" plus-type="project" plus-community="community" ng-if="!isNew()"></plus>
 </div>
