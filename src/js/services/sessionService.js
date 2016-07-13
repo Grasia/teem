@@ -252,8 +252,8 @@ angular.module('Teem')
           });
       } else {
         swellRTpromise.then(function(){
-          SwellRT.resumeSession(function(){
-
+          SwellRT.resumeSession(function(sessionInfo){
+              info = sessionInfo;
               sessionDef.resolve(SwellRT);
             },
             function(error){
