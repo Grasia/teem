@@ -30,6 +30,10 @@ class ProjectPage {
     this.participantListEl = element(by.css('[avatars="project._participants"]'));
   }
 
+  fetch (id) {
+    browser.get(global.defaultCommunity.url + '/teems/fetch/' + id);
+  }
+
   getTitle () {
     return this.titleEl.getText();
   }

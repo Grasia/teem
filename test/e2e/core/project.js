@@ -1,6 +1,8 @@
 'use strict';
 
-var projectPages = require('./../pages/project'),
+var Chance = require('chance'),
+    chance = new Chance(),
+    projectPages = require('./../pages/project'),
     sessionPages = require('./../pages/session'),
     newProjectPage = new projectPages.NewProjectPage(),
     projectPage = new projectPages.ProjectPage(),
@@ -28,6 +30,16 @@ describe('1% core user', () => {
       expect(projectPage.getPadText()).toBe(newProjectPage.padText);
 
       expect(projectPage.getParticipants()).toContain(loginPage.default.nick);
+    });
+
+    it('should create a new project using fetch', () => {
+      var localId = chance.word({length: 10});
+
+      projectPage.fetch(localId);
+
+      browser.wait(protractor.ExpectedConditions.visibilityOf(projectPage.titleEl));
+
+      expect(projectPage.titleEl.isDisplayed()).toBe(true);
     });
   });
 });

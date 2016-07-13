@@ -26,7 +26,8 @@ angular.module('Teem')
       })
       // Getting a project from projects widget
       .when('/communities/:communityId/teems/fetch/:id', {
-        controller: 'FetchProject'
+        controller: 'FetchProject',
+        template: ''
       })
       // Old stuff
       .when('/communities/:communityId/teems/:id', {
@@ -41,28 +42,33 @@ angular.module('Teem')
       });
   }])
   .controller('FetchProject', [
-  'ProjectsSvc', 'Url', '$route', '$location',
-  function(ProjectsSvc, Url, $route, $location) {
+  'ProjectsSvc', 'Url', '$route', '$location', 'SessionSvc',
+  function(ProjectsSvc, Url, $route, $location, SessionSvc) {
     var communityId = Url.decode($route.current.params.communityId),
         localId     = $route.current.params.id;
 
-    ProjectsSvc.all({
-      community: communityId,
-      localId: localId
-    }).then(function(projects) {
-      var project = projects[0];
+    SessionSvc.onLoad(() => {
 
-      if (project) {
-        $location.path(project.path());
-        return;
-      }
+      ProjectsSvc.all({
+        community: communityId,
+        localId: localId
+      }).then(function(projects) {
+        console.log('projects');
+        console.dir(projects);
+        var project = projects[0];
 
-      ProjectsSvc.create({
-        communityId:  communityId
-      }).then(function(project) {
-        project.localId = localId;
+        if (project) {
+          $location.path(project.path());
+          return;
+        }
 
-        $location.path(project.path());
+        ProjectsSvc.create({
+          communityId:  communityId
+        }).then(function(project) {
+          project.localId = localId;
+
+          $location.path(project.path());
+        });
       });
     });
   }])
