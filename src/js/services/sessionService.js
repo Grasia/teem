@@ -42,8 +42,8 @@ angular.module('Teem')
 
     swellRTpromise.then(function(){
       SwellRT.on(SwellRT.events.NETWORK_CONNECTED, function(){
-        $rootScope.$broadcast('swellrt.network-connected');
         status.connection = 'connected';
+        $rootScope.$broadcast('swellrt.network-connected');
         $timeout();
         if (User.loggedIn()){
           $rootScope.$broadcast('teem.login');
