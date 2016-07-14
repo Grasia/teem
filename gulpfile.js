@@ -27,7 +27,6 @@ var config = {
       './bower_components/bootstrap-material-design/dist/js/ripples.js',
       './bower_components/angular-messages/angular-messages.js',
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      './bower_components/angular-ui-select/dist/select.js',
       './bower_components/angular-ui-notification/dist/angular-ui-notification.js',
       './bower_components/autosize/dist/autosize.js',
       './bower_components/angular-bindonce/bindonce.js',
