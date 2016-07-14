@@ -70,11 +70,18 @@
       </div>
     </div>
     <div class="row project-sidebar-inner">
-      <div class="section" project-people></div>
+      <div project-people></div>
     </div>
     <div ng-if="loggedIn()" class="row other-projects" ng-controller="ProjectsCtrl">
       <h2 translate>project.index.home.title</h2>
-      <projects project-list="projects" context="context"></projects>
+      <div class="section">
+        <button class="btn btn-primary btn-block btn-raised i-project" translate>project.create.button</button>
+      </div>
+      <projects project-list="projects" context="context" ng-if="projects.length"></projects>
+      <div ng-if="!projects.length" class="project-void-banner">
+        <p translate>project.my_projects.no_projects</p>
+        <img src="images/teem_pot.svg">
+      </div>
     </div>
   </div>
   <div class="col-md-6 col-lg-7 project-main">
@@ -100,7 +107,7 @@
   <div class="col-md-3 project-utils">
     <div class="row">
       <h2 translate>need.nav.title</h2>
-      <div need-list project="project" needs="project.needs" display="panel" ng-class="project.isParticipant() ? '' : 'has-cta'" class=""></div>
+      <div need-list project="project" needs="project.needs" display="panel" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
     </div>
     <div class="flex-container row" ng-if="project.isParticipant()">
       <h2 translate>chat.nav.title</h2>

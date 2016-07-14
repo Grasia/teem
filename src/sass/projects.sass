@@ -248,9 +248,11 @@
     .project-title, .project-communities a
       color: white
     .project-sidebar-inner
-      background-color: $lightest-grey
+      background-color: white
       flex: 1
       margin-left: -5px
+      .section
+        background-color: white
     .project-badge
       font-size: 12px
       display: flex
@@ -263,11 +265,19 @@
         font-size: 14px
       .project-communities
         font-size: 12px
+  .project-void-banner
+    @extend .section
+    color: #67798a
+    text-align: center
+  .project-void-banner-people
+    background-color: white
   .other-projects
     @extend .flex-scroll
     background: $bluey3-grey
     height: 50vh
     border-top: 1px solid $grey
+    .section
+      background-color: inherit
     .project-photo
       @extend .project-photo-small
     .project-item-title
