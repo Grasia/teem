@@ -175,6 +175,7 @@
       "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el Teem",
       "placeholder": "Añade una nueva necesidad"
     },
+    "no_needs": "Este grupo aún no ha creado ninguna necesidad",
     "tip": "Esto es lo que necesitamos para llevar a cabo el proyecto"
   },
   "newForm": {
@@ -235,6 +236,7 @@
       "button_continue": "Invitar",
       "long_placeholder": "Añade personas de Teem o emails",
       "placeholder": "Añade personas de Teem o emails",
+      "text": "Invita a personas para que te ayuden con este proyecto",
       "title": "Invita personas"
     },
     "community": {
@@ -274,6 +276,9 @@
       "like": "Me gusta",
       "share": "Compartir",
       "unlike": "No me gusta"
+    },
+    "my_projects": {
+      "no_projects": "No participas en más teems"
     },
     "pad": {
       "tip": "(Tap para editar)",

@@ -175,6 +175,7 @@
       "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the Teem",
       "placeholder": "Add a new need"
     },
+    "no_needs": "This group has not created any need yet",
     "tip": "This is what we need to get the project going"
   },
   "newForm": {
@@ -235,6 +236,7 @@
       "button_continue": "Invite",
       "long_placeholder": "Add people from Teem or email addresses",
       "placeholder": "Add people from Teem or email addresses",
+      "text": "Invite people to help you with this project",
       "title": "Invite people"
     },
     "community": {
@@ -274,6 +276,9 @@
       "like": "I like this",
       "share": "Share",
       "unlike": "Unlike"
+    },
+    "my_projects": {
+      "no_projects": "You don't participate in any other teem"
     },
     "pad": {
       "tip": "(Tap to edit)",

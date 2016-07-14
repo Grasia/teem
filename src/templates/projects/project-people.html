@@ -1,22 +1,31 @@
+<div class="section" ng-if="project._participants.length >= 3">
   <div avatars="project._participants" avatars-conf="{size: 'xsmall'}" class="avatars"></div>
   <div class="project-add-users"  ng-if="project.isParticipant()">
-    <button class="invite-button btn btn-primary btn-raised i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
+    <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
         project.add_people.button
     </button>
-
-    <div ui-content-for="inviteModal">
-      <modal name="invite">
-        <header translate>project.add_people.title</header>
-        <main>
-          <selector multiple
-          config="userSelectorConfig"
-          options="invite.list" ng-model="invite.selected"
-          placeholder=" 'project.add_people.placeholder' | translate"></selector>
-        </main>
-        <footer>
-          <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
-          <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
-        </footer>
-      </modal>
-    </div>
   </div>
+</div>
+<div ng-if="project._participants.length < 3" class="project-void-banner project-void-banner-people">
+  <p translate>project.add_people.text</p>
+  <img src="images/project-people.svg">
+  <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
+      project.add_people.button
+  </button>
+</div>
+
+<div ui-content-for="inviteModal">
+  <modal name="invite">
+    <header translate>project.add_people.title</header>
+    <main>
+      <selector multiple
+      config="userSelectorConfig"
+      options="invite.list" ng-model="invite.selected"
+      placeholder=" 'project.add_people.placeholder' | translate"></selector>
+    </main>
+    <footer>
+      <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
+      <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+    </footer>
+  </modal>
+</div>
