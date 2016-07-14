@@ -10,8 +10,23 @@
     padding-bottom: 6px
     i
       color: $grey
+  .needs-icons-danger i:first-child
+    color: $purple
+  .needs-icons-warning
+    i:nth-child(1), i:nth-child(2)
+      color: $blue
+  .needs-icons-success i
+    color: $teal
   .progress
     background-color: $light-grey
+    .progress-bar
+      &.progress-bar-danger
+        background-color: $purple
+      &.progress-bar-warning
+        background-color: $blue
+      &.progress-bar-success
+        background-color: $teal
+
 .needs-tip
   padding: 0.3em 0 1.42em 0
   font-size: 1.14em
@@ -117,3 +132,6 @@
     @extend .flex-container
     @extend .flex-scroll
     height: 30vh
+  .project-needs
+    border-top: 1px solid $grey
+    padding-top: 10px

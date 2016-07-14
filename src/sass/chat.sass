@@ -1,13 +1,10 @@
 $balloon-pointer-width: 12px
 $balloon-pointer-height: 10px
 
-@mixin chat-shadow
-  -webkit-filter: drop-shadow(3px 3px 1px $chat-msg-shadow)
-  filter: drop-shadow(2px 2px 1px $chat-msg-shadow)
-
 .chat
   .section
     width: 100%
+    background-color: white
   .chat-messages
     padding: 0
     list-style-type: none
@@ -23,7 +20,6 @@ $balloon-pointer-height: 10px
         width: 100%
         border-radius: 5px
         border-top-left-radius: 0
-        @include chat-shadow
         padding: .36em .71em .71em .71em
         margin: 2px $balloon-pointer-width
         position: relative
@@ -72,39 +68,24 @@ $balloon-pointer-height: 10px
 
       &.their .chat-balloon
         background-color: $chat-their-color
+        margin-right: 10%
         &::before
           border-color: transparent $chat-their-color transparent transparent
       &.mine
+        justify-content: flex-end
+        .avatar
+          display: none
         .chat-balloon
+          &, .chat-message-time, .chat-message-sender
+            color: white
           background-color: $chat-mine-color
+          border-top-left-radius: 5px
+          border-top-right-radius: 0
+          margin-left: 10%
           &::before
-            border-color: transparent $chat-mine-color transparent transparent
-
-      @media (max-width: $screen-sm-max)
-        .chat-balloon
-          width: inherit
-        &.their .chat-balloon
-          margin-right: 10%
-        &.mine
-          justify-content: flex-end
-          .avatar
-            display: none
-          .chat-balloon
-            background-color: $chat-mine-color
-            border-top-left-radius: 5px
-            border-top-right-radius: 0
-            margin-left: 10%
-            &::before
-              right: -$balloon-pointer-width
-              border-width: $balloon-pointer-height $balloon-pointer-width 0 0
-              border-color: $chat-mine-color transparent transparent transparent
-          .chat-message-sender
-            display: none
-          .chat-message-time
-            text-align: left
-            padding-right: 15px
-          .chat-message-text
-            flex: 1 auto
+            right: -$balloon-pointer-width
+            border-width: $balloon-pointer-height $balloon-pointer-width 0 0
+            border-color: $chat-mine-color transparent transparent transparent
     .new-messages
       display: flex
       flex-direction: row
@@ -118,7 +99,6 @@ $balloon-pointer-height: 10px
         background-color: $other-grey
         border-radius: 5px
         padding: 5px
-        box-shadow: 3px 3px 1px $chat-msg-shadow
     .day-change
       @extend .new-messages
   .chat-send
@@ -127,6 +107,7 @@ $balloon-pointer-height: 10px
       margin: 0
   .chat-send-bar
     background: $chat-send-bar-background-color
+    border-top: 1px solid $grey
     textarea
       padding-top: 0.71em
       padding-left: 0.71em
