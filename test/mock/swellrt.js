@@ -2,10 +2,29 @@
 
 var SwellRTConfig = {
   swellrtServerDomain: 'local.net'
-};
+},
+  callbackMap = {};
+
+function mockedStart(domain, nick, password, success) {
+  console.log('mockedStart1');
+
+  var sid = Math.random().toString(16).substring(2);
+  console.log('SID', sid);
+
+    if (callbackMap[SwellRT.events.NETWORK_CONNECTED] !== undefined){
+      callbackMap[SwellRT.events.NETWORK_CONNECTED]();
+    }
+    success({
+      // return a random session id
+      sessionid: sid
+    });
+
+}
 
 var SwellRT = {
-  on:           function() {},
+  on: function(eventName, callback){
+    callbackMap[eventName] = callback;
+  },
   events:       {
     NETWORK_CONNECTED: 'network-connected'
   },
@@ -15,7 +34,10 @@ var SwellRT = {
   recoverPassword: function() {},
   createUser: function() {},
   setPassword:  function() {},
-  startSession: function() {},
+  startSession: mockedStart,
+  resumeSession: function(cb){
+    mockedStart(undefined, undefined, undefined, cb);
+  },
   stopSession:  function() {},
   user: {
     ANONYMOUS: '_anonymous_'
