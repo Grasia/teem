@@ -6,18 +6,21 @@ var Chance = require('chance'),
 class ProjectsPage {
 
   constructor () {
-    var platform = global.isDesktop ? 'desktop' : 'mobile';
-    this.newEl = element(by.css('.plus-' + platform + ' button'));
   }
 
   get () {
     browser.get(global.defaultCommunity.url);
   }
 
-  goToNew () {
-    browser.wait(protractor.ExpectedConditions.visibilityOf(this.newEl));
+  getPlusEl () {
+    var platform = global.isDesktop ? 'desktop' : 'mobile';
+    return element(by.css('.plus-' + platform + ' button'));
+  }
 
-    this.newEl.click();
+  goToNew () {
+    var newEl = this.getPlusEl();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(newEl));
+    newEl.click();
   }
 }
 
