@@ -1,5 +1,9 @@
-
-<div class="progress">
+<div class="needs-icons" ng-mouseover="openTooltip=true">
+  <i class="material-icons">sentiment_dissatisfied</i>
+  <i class="material-icons">sentiment_neutral</i>
+  <i class="material-icons">sentiment_satisfied</i>
+</div>
+<div class="progress" uib-tooltip="{{project.progressPercentage() + '%'}}" tooltip-placement="bottom" tooltip-is-open="openTooltip">
   <div class="progress-bar"
        ng-class="'progress-bar-' + project.progressType()"
        role="progressbar"
