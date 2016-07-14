@@ -184,6 +184,13 @@ angular.module('Teem')
       });
     };
 
+    $scope.createProject = function() {
+      let params = {};
+      ProjectsSvc.create(params, function(p) {
+        $location.path(p.path()).search('form', 'new');
+      });
+    };
+
     $scope.$on('mobile-angular-ui.state.changed.projectTab', function(e, newVal, oldVal) {
       $scope.project.setTimestampAccess(oldVal);
       $scope.project.setTimestampAccess(newVal);

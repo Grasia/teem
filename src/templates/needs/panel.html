@@ -2,8 +2,14 @@
   <need-progress-bar></need-progress-bar>
 </div>
 
-<div class="section need-list" ng-if="project.needs.length">
+<div class="section need-list">
+  <div ng-if="!project.needs.length" class="project-void-banner">
+    <img src="images/needs.svg">
+    <p translate>need.no_needs</p>
+  </div>
+
   <div class="list-group project-needs-list project-needs">
+
     <div>
       <div need-display need="{completed: 'add'}">
       </div>
@@ -13,9 +19,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div ng-if="!project.needs.length" class="project-void-banner">
-  <img src="images/needs.svg">
-  <p translate>need.no_needs</p>
 </div>
