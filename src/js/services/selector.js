@@ -10,8 +10,9 @@
 
 angular.module('Teem')
 .factory('Selector', [
-  'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'Notification',
-  function(User, $timeout, CommunitiesSvc, $rootScope, Notification) {
+  'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'Notification', '$compile',
+  function(User, $timeout, CommunitiesSvc, $rootScope, Notification, $compile) {
+
 
     // builds a list of users for user selector from SwellRT query result
     function buildUserItems(users){
@@ -78,7 +79,53 @@ angular.module('Teem')
           onDropdownOpen(dropdown){
             dropdown[0].scrollIntoView();
           },
-          closeAfterSelect: true
+          closeAfterSelect: true,
+          onOptionAdd(value, data){
+            console.log(value, data);
+          },
+          onChange(value, data){
+            console.log('change', value, data);
+          },
+          render: {
+            // item: function(item, escape) {
+            //   var avatar = '<div>' +
+            //     '<span avatars="\'' + escape(item._id) +'\'" class="avatars"></span>' +
+            //     escape(item.nick) +
+            //     '</div>';
+            //
+            //   var compiledAvatar =  $compile(avatar)($rootScope, function(compiled){
+            //     console.log(angular.element.avatar);
+            //     angular.element(avatar).html(compiled);
+            //   });
+            //
+            //   $timeout();
+            //
+            //   console.log(compiledAvatar.html(), compiledAvatar[0].outerHTML);
+            //   return avatar;
+            // },
+            item: function(item, escape) {
+
+              var randomId = Math.floor((1 + Math.random()) * 0x10000000000000000)
+                .toString(16);
+              var avatar = '<div id="' + randomId + '">' +
+                '<span avatars="\'' + escape(item._id) +'\'" class="avatars"></span>' +
+                escape(item.nick) +
+              '</div>';
+
+              $timeout(function(){
+                var elem = $compile(avatar)($rootScope, function(comp){
+                  var result = document.getElementById(randomId);
+                  console.log(angular.element(comp[0]));
+                  angular.element(result).html(comp[0]);
+                  $timeout();
+                });
+
+
+              });
+
+              return avatar;
+            }
+          },
         }
       },
       /* Populates the user selector options (optionList)
