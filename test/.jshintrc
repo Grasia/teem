@@ -42,6 +42,8 @@
     "SwellRTModel": false,
     "xdescribe": false,
     "xit": false,
+    "fdescribe": false,
+    "fit": false,
     "__session": false,
     "PushNotification": false,
     "isDesktop": false,

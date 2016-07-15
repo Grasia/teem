@@ -49,6 +49,7 @@ exports.config = {
     session: 'e2e/session.js',
     frontpage: 'e2e/frontpage.js',
     core: 'e2e/core/*.js',
+    participant: 'e2e/participant/*.js',
     guest: 'e2e/guest/*.js'
   },
 
@@ -110,8 +111,11 @@ exports.config = {
       registerPage.get();
       registerPage.register();
 
+      registerPage.get();
+      registerPage.register(registerPage.participant);
+
       loginPage.get();
-      loginPage.login();
+      loginPage.login(loginPage.default);
 
       // Create default community
       newCommunityPage.get();
