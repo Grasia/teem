@@ -4,8 +4,8 @@ angular.module('Teem')
   .directive('join', function() {
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SessionSvc', '$timeout', '$analytics', 'ProjectsSvc', '$route',
-      function($scope, $element, $attrs, SessionSvc, $timeout, $analytics, ProjectsSvc, $route) {
+      '$scope', '$element', '$attrs', 'SessionSvc', '$timeout', '$analytics',
+      function($scope, $element, $attrs, SessionSvc, $timeout, $analytics) {
         $scope.joinIcon = $attrs.joinIcon;
         $scope.joinCopyOn  = $attrs.joinCopyOn;
         $scope.joinCopyOff = $attrs.joinCopyOff;
