@@ -269,7 +269,7 @@ angular.module('Teem')
       }
     };
 
-    function loginRequired(scope, cb, options = {}, objPromise = $q.resolve()) {
+    function loginRequired(scope, cb, options = {}, objPromise = {then: (f)=>{f();}}) {
 
       sessionPromise.then(function() {
 
