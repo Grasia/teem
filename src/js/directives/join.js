@@ -12,19 +12,19 @@ angular.module('Teem')
         var previousJoinState;
 
         $element.on('click', function() {
+
           previousJoinState = $scope.project.isParticipant();
+
           SessionSvc.loginRequired($scope, function() {
-            ProjectsSvc.findByUrlId($route.current.params.id).then(function(project){
-              if (!previousJoinState){
-                if (!project.isParticipant()){
-                  project.addParticipant();
-                  $analytics.eventTrack('Join project', {});
-                }
-              } else {
-                project.removeParticipant();
+            if (!previousJoinState){
+              if (!$scope.project.isParticipant()){
+                $scope.project.addParticipant();
+                $analytics.eventTrack('Join project', {});
               }
-            });
-          });
+            } else {
+              $scope.project.removeParticipant();
+            }
+          }, undefined, $scope.project.synchPromise());
         });
       }],
       templateUrl: 'join.html'

@@ -269,7 +269,7 @@ angular.module('Teem')
       }
     };
 
-    function loginRequired(scope, cb, options = {}) {
+    function loginRequired(scope, cb, options = {}, objPromise = $q.resolve()) {
 
       sessionPromise.then(function() {
 
@@ -286,7 +286,8 @@ angular.module('Teem')
           // Invoque $timout to refresh scope and actually show modal
           $timeout();
 
-          scope.$on('teem.login', cb);
+          scope.$on('teem.login', function(){
+            objPromise.then(cb);});
         } else {
           cb();
         }
@@ -310,12 +311,21 @@ angular.module('Teem')
         this._modelSessionId = id;
       }
 
+      //Returns a promise with the synched object
+      synchPromise(){
+        var defModel = $q.defer();
+        this.synchPromises.push(defModel);
+
+        return defModel.promise;
+      }
+
       needsResynch(){
         return status.connection === 'disconnected' || this.modelSessionId !== info.sessionid;
       }
 
       reSynch(){
         var synchedModel = this;
+
         SwellRT.openModel(synchedModel._id, function(model){
           $timeout(function(){
             // rebuild the proxy with the new model information
@@ -325,6 +335,11 @@ angular.module('Teem')
                 synchedModel.setSessionInfo();
                 return synchedModel;
               });
+
+              synchedModel.synchPromises.forEach((p)=>{
+                p.resolve(synchedModel);
+              });
+              synchedModel.synchPromises = [];
             });
           });
       }
@@ -332,6 +347,7 @@ angular.module('Teem')
       initializer() {
 
         this.setSessionInfo();
+        this.synchPromises = [];
 
         var synchedModel = this;
 

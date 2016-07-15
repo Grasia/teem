@@ -14,15 +14,11 @@ angular.module('Teem')
         $element.on('click', function() {
           var previousLike = $scope.project.isSupporter();
           SessionSvc.loginRequired($scope, function() {
-              ProjectsSvc.findByUrlId($route.current.params.id).then(function(project){
-
-                if (previousLike === project.isSupporter()){
-                  project.toggleSupport();
-                  $timeout();
-                }
-              });
-          });
-
+            if (previousLike === $scope.project.isSupporter()){
+              $scope.project.toggleSupport();
+              $timeout();
+            }
+          }, undefined, $scope.project.synchPromise());
         });
       }],
       templateUrl: 'like.html'
