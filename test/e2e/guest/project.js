@@ -22,5 +22,6 @@ describe('Guest user', () => {
     expect(projectPage.getPadText()).toBe(global.defaultProject.padText);
 
     expect(projectPage.getParticipants()).toContain(loginPage.default.nick);
+    expect(projectPage.getParticipantsFromModel()).toContain(loginPage.default.nick);
   });
 });
