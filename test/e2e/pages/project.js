@@ -49,6 +49,12 @@ class ProjectPage {
   getParticipants () {
     return this.participantListEl.all(by.css('img')).getAttribute('title');
   }
+
+  getParticipantsFromModel () {
+    return browser.executeScript(function() {
+      return angular.element('[project-people]').scope().project._participants.map(participant => participant.split('@')[0]);
+    });    
+  }
 }
 
 class NewProjectPage {
