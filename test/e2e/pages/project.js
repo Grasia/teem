@@ -31,11 +31,18 @@ class ProjectPage {
 
     this.padEl = element(by.model('project.pad'));
 
+    this.joinEl = element(by.css('button[join]'));
+
     this.participantListEl = element(by.css('[avatars="project._participants"]'));
   }
 
   fetch (id) {
     browser.get(global.defaultCommunity.url + '/teems/fetch/' + id);
+  }
+
+  join () {
+    browser.wait(protractor.ExpectedConditions.visibilityOf(this.joinEl));
+    this.joinEl.click();
   }
 
   getTitle () {
@@ -53,7 +60,7 @@ class ProjectPage {
   getParticipantsFromModel () {
     return browser.executeScript(function() {
       return angular.element('[project-people]').scope().project._participants.map(participant => participant.split('@')[0]);
-    });    
+    });
   }
 }
 

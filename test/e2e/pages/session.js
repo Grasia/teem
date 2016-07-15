@@ -14,6 +14,13 @@ class Session {
       email: 'snowden@nsa.gov'
     };
 
+    this.participant = {
+      nick: 'laura',
+      password: 'Citizenfour',
+      passwordRepeat: 'Citizenfour',
+      email: 'poitras@guardian.wtf'
+    };
+
     this.formElement = element(by.css('.session-form'));
 
     this.nickInput = element(by.model('form.values.nick'));
