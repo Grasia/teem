@@ -32,7 +32,7 @@ angular.module('Teem')
 
     function renderAvatar(item, escape, type){
 
-      var randomId = Math.floor((1 + Math.random()) * 0x10000000000000000)
+      var randomId = Math.floor(Math.random() * 0x10000000)
       .toString(16);
 
       var avatar =  '<div id="' + randomId + '">' +
@@ -40,26 +40,26 @@ angular.module('Teem')
       escape(item.nick) +
       '</div>';
 
-      $timeout(function(){
-        var compiled = $compile(avatar)($rootScope);
-        var destroyWatch = $rootScope.$watch(
-          function (){
-            return compiled[0].outerHTML;
-          },
-          function (newValue, oldValue){
-            if(newValue !== oldValue){
+      var compiled = $compile(avatar)($rootScope);
 
-              var elem = angular.element(document.getElementById(randomId));
+      // watcher to see when the element has been compiled
+      var destroyWatch = $rootScope.$watch(
+        function (){
+          return compiled[0].outerHTML;
+        },
+        function (newValue, oldValue){
+          if(newValue !== oldValue){
 
-              var rendered = elem.scope().selectorCacheUpdate(item._id, compiled.html(), type);
+            var elem = angular.element(document.getElementById(randomId));
 
-              elem.html(rendered);
+            var rendered = elem.scope().selectorCacheUpdate(item._id, compiled.html(), type);
 
-              destroyWatch();
-            }
+            elem.html(rendered);
+
+            destroyWatch();
           }
-        );
-      });
+        }
+      );
 
       return avatar;
     }
