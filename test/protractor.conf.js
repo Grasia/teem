@@ -59,6 +59,48 @@ exports.config = {
         projectsPage = new projectPages.ProjectsPage(),
         newProjectPage = new projectPages.NewProjectPage();
 
+    // Disable animations to improve tests performance
+    // Source http://stackoverflow.com/a/32611061/4928558
+
+    var disableNgAnimate = function() {
+        angular
+            .module('disableNgAnimate', [])
+            .run(['$animate', function($animate) {
+                $animate.enabled(false);
+            }]);
+    };
+
+    var disableCssAnimate = function() {
+        angular
+            .module('disableCssAnimate', [])
+            .run(function() {
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = '* {' +
+                    '-webkit-transition: none !important;' +
+                    '-moz-transition: none !important' +
+                    '-o-transition: none !important' +
+                    '-ms-transition: none !important' +
+                    'transition: none !important' +
+                    '}';
+                document.getElementsByTagName('head')[0].appendChild(style);
+            });
+    };
+
+    // Decrease Notifications delay
+    var shortNotifications = function(){
+      angular.module('shortNotifications', ['ui-notification'])
+        .config(function(NotificationProvider) {
+          NotificationProvider.setOptions({
+            delay: 1000
+        });
+    });
+    };
+
+    browser.addMockModule('disableNgAnimate', disableNgAnimate);
+    browser.addMockModule('disableCssAnimate', disableCssAnimate);
+    browser.addMockModule('shortNotifications', shortNotifications);
+
     return browser.driver.executeScript('return window.innerWidth >= 992;').then((desktop) => {
       global.isDesktop = desktop;
     }).then(() => {
