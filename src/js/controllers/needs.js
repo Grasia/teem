@@ -94,11 +94,9 @@ angular.module('Teem')
 
           scope.sendComment = function(){
             SessionSvc.loginRequired(scope, function() {
-              ProjectsSvc.findByUrlId($route.current.params.id).then(function(project){
-                project.addNeedComment(scope.need, scope.newComment.text);
-                scope.newComment.text = '';
-              });
-            });
+              scope.project.addNeedComment(scope.need, scope.newComment.text);
+              scope.newComment.text = '';
+            }, undefined, scope.project.synchPromise());
           };
 
           scope.hour = needsCtrl.hour;

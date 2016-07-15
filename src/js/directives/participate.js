@@ -4,25 +4,25 @@ angular.module('Teem')
   .directive('participate', function() {
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SessionSvc', '$timeout', 'CommunitiesSvc',
-      function($scope, $element, $attrs, SessionSvc, $timeout, CommunitiesSvc) {
+      '$scope', '$element', '$attrs', 'SessionSvc',
+      function($scope, $element, $attrs, SessionSvc) {
         $scope.participateCopyOn  = $attrs.participateCopyOn;
         $scope.participateCopyOff = $attrs.participateCopyOff;
+        var previousJoinState;
 
         $element.on('click', function() {
-          SessionSvc.loginRequired($scope, function() {
-            if ($scope.community.toggleParticipant) {
-              $timeout(function() {
-                $scope.community.toggleParticipant();
-              });
-            } else {
-              CommunitiesSvc.find($scope.community.id).then(function(community) {
-                $timeout(function() {
-                  community.toggleParticipant();
-                });
-              });
-            }
-          });
+
+            previousJoinState = $scope.community.isParticipant();
+
+            SessionSvc.loginRequired($scope, function() {
+              if (!previousJoinState){
+                if (!$scope.community.isParticipant()){
+                  $scope.community.addParticipant();
+                }
+              } else {
+                $scope.community.removeParticipant();
+              }
+            }, undefined, $scope.community.synchPromise());
         });
       }],
       templateUrl: 'participate.html'
