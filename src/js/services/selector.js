@@ -10,8 +10,9 @@
 
 angular.module('Teem')
 .factory('Selector', [
-  'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'Notification',
-  function(User, $timeout, CommunitiesSvc, $rootScope, Notification) {
+  'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'Notification', '$compile',
+  function(User, $timeout, CommunitiesSvc, $rootScope, Notification, $compile) {
+
 
     // builds a list of users for user selector from SwellRT query result
     function buildUserItems(users){
@@ -27,6 +28,40 @@ angular.module('Teem')
       });
 
       return res;
+    }
+
+    function renderAvatar(item, escape, type){
+
+      var randomId = Math.floor((1 + Math.random()) * 0x10000000000000000)
+      .toString(16);
+
+      var avatar =  '<div id="' + randomId + '">' +
+      '<span avatars="\'' + escape(item._id) +'\'" class="avatars" avatars-conf="{size: \'xsmall\'}"></span>' +
+      escape(item.nick) +
+      '</div>';
+
+      $timeout(function(){
+        var compiled = $compile(avatar)($rootScope);
+        var destroyWatch = $rootScope.$watch(
+          function (){
+            return compiled[0].outerHTML;
+          },
+          function (newValue, oldValue){
+            if(newValue !== oldValue){
+
+              var elem = angular.element(document.getElementById(randomId));
+
+              var rendered = elem.scope().selectorCacheUpdate(item._id, compiled.html(), type);
+
+              elem.html(rendered);
+
+              destroyWatch();
+            }
+          }
+        );
+      });
+
+      return avatar;
     }
 
     return {
@@ -78,9 +113,18 @@ angular.module('Teem')
           onDropdownOpen(dropdown){
             dropdown[0].scrollIntoView();
           },
-          closeAfterSelect: true
+          closeAfterSelect: true,
+          render: {
+            item: function(i,e){
+              return renderAvatar(i, e, 'item');
+            },
+            option: function(i,e){
+              return renderAvatar(i, e, 'option');
+            }
+          },
         }
       },
+
       /* Populates the user selector options (optionList)
        * witht the users that participate in the community
        * or co-contributors if there are no communities
