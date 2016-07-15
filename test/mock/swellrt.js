@@ -6,10 +6,8 @@ var SwellRTConfig = {
   callbackMap = {};
 
 function mockedStart(domain, nick, password, success) {
-  console.log('mockedStart1');
 
   var sid = Math.random().toString(16).substring(2);
-  console.log('SID', sid);
 
     if (callbackMap[SwellRT.events.NETWORK_CONNECTED] !== undefined){
       callbackMap[SwellRT.events.NETWORK_CONNECTED]();

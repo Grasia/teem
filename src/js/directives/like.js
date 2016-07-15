@@ -4,8 +4,8 @@ angular.module('Teem')
   .directive('like', function() {
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SessionSvc', '$timeout', 'ProjectsSvc', '$route',
-      function($scope, $element, $attrs, SessionSvc, $timeout, ProjectsSvc, $route) {
+      '$scope', '$element', '$attrs', 'SessionSvc', '$timeout',
+      function($scope, $element, $attrs, SessionSvc, $timeout) {
         $scope.likeIcon = $attrs.likeIcon;
         $scope.likeCount = $attrs.likeCount;
         $scope.likeCopyOn  = $attrs.likeCopyOn;
