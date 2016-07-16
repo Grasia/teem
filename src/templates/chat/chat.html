@@ -1,7 +1,7 @@
 <div id="chat" class="chat flex-container">
   <div class="flex-container" ngf-drop="uploadFile($file)" ngf-fix-orientation="true"
-    ngf-drag-over-class="'dragover'">
-    <div class="flex-container flex-scroll section" ui-scroll-top="nextPage()">
+    ngf-drag-over-class="'chat-dragover'">
+    <div class="flex-container flex-scroll section" ui-scroll-top="nextPage()" dragover-text="{{'picture.dropover' | translate}}">
       <ul class="chat-messages"
           ng-repeat="msg in project.chat | limitTo:pageSize:pageOffset">
         <li id="newMessages" bo-if="firstNewMessage(msg, $index)" class="new-messages">

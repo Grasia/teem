@@ -210,6 +210,7 @@
   "picture": {
     "crop": "To crop the picture, drag the lighter zone, and then click on save",
     "delete": "Remove current picture",
+    "dropover": "Drop to attach the file",
     "upload": "Drop an image here or click to upload",
     "save": "Save",
     "title": "Upload a picture"
