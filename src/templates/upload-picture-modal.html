@@ -4,7 +4,7 @@
     <div ng-hide="pic.pictureFile">
       <div ngf-drop ngf-select ng-model="pic.pictureFile" class="drop-box"
       ngf-drag-over-class="'dragover'" accept="image/*"
-      ngf-pattern="'image/*'">{{'picture.upload' | translate}}</div>
+      ngf-pattern="'image/*'" dragover-text="{{'picture.dropover' | translate}}"><span translate>picture.upload</span></div>
     </div>
     <div ng-show="pic.pictureFile">
       <p translate>picture.crop</p>
