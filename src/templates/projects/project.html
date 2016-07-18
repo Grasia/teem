@@ -23,9 +23,9 @@
   </div>
 
   <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden()}">
-    <div ui-state="projectTab" class="project-tabs">
-      <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
-        <div ng-include="'projects/project-tab.html'"></div>
+    <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !(pad.editing && !isDesktop())}">
+      <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'
+      class="flex-container" ng-include="'projects/project-tab.html'">
       </div>
 
       <div ui-if="projectTab == 'needs'" hm-swipeleft="swipeToChat" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
@@ -38,8 +38,8 @@
       </div>
 
       <!-- ng-if is not compatible with ui-if -->
-      <div class="flex-container" ng-if="project.isParticipant()">
-        <div class="flex-container" ui-if="projectTab == 'chat'" hm-swiperight="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}'  hm-recognizer-options='{{hmRecognizerOpt}}'>
+      <div class="flex-container" ui-if="projectTab == 'chat'">
+        <div class="flex-container" ng-if="project.isParticipant()" hm-swiperight="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}'  hm-recognizer-options='{{hmRecognizerOpt}}'>
           <chat class="flex-container"></chat>
         </div>
       </div>
