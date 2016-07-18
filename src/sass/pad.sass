@@ -24,6 +24,13 @@
           i
             color: $teal
 
+  @media (max-width: $screen-sm-max)
+    flex-direction: column-reverse
+    .pad-toolbar
+      overflow-y: hidden
+    .btn-toolbar
+      width: calc(0% + 12 * 44px)
+
   .swellrt-editor
     background: $pad-background-color
     border: 1px solid $pad-border-color
