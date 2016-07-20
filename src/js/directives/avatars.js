@@ -39,6 +39,7 @@ angular.module('Teem')
               'useGravatar': false,
               'initials': userId[0].toUpperCase(),
               'initial_bg': palette[parseInt(window.md5(userId).substring(0,5),16) % palette.length], 'initial_fg': 'white',
+              'initial_font_family': '"Lato", "Lato-Regular", "Helvetica Neue"',
               'initial_weight': 200,
               'size': 200
             };

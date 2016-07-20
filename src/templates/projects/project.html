@@ -51,7 +51,7 @@
   <div class="col-md-3 col-lg-2 project-sidebar bg-{{project.logoColor()}}">
     <div class="row project-badge">
       <div class="media">
-        <div class="media-left">
+        <div>
           <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
             <img class="media-object" ng-src="{{project.logo()}}">
           </div>
@@ -59,7 +59,7 @@
             <img class="media-object" ng-src="{{project.logo()}}">
           </div>
         </div>
-        <div class="media-body media-middle">
+        <div class="media-body media-left">
           <h4 class="media-heading">
             <span class="project-title">{{project.title}}</span>
           </h4>
@@ -86,7 +86,7 @@
   </div>
   <div class="col-md-6 col-lg-7 project-main">
     <div class="row">
-      <div class="col-xs-7 project-title-editable">
+      <div class="project-title-editable" ng-class="project.isParticipant() ? 'col-xs-12' : 'col-xs-7'">
         <input class="h1 title-input form-control" ng-model="project.title"
         placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
       </div>

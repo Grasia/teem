@@ -114,10 +114,10 @@
     flex-direction: column
   .project-title-editable
     .form-group
+      padding: 0 17px
       margin: 0
-      padding: 0
     .h1
-      margin: 23px 17px
+      margin: 23px 0
       font-size: 30px
       font-weight: bold
       &:not(.ng-empty):not(:focus):not(:hover)
@@ -260,6 +260,10 @@
       align-items: center
       height: 85px
       margin-left: -5px
+      .media-body
+        display: flex
+        flex-direction: column
+        justify-content: center
       .project-photo
         vertical-align: middle
       h4
@@ -301,7 +305,8 @@
   .bg-yellow
     background-color: $yellow
   .project-main
-    margin: 0 8px
+    background-color: $bluey3-grey
     padding-bottom: 5px
+    border: none
   .project-utils .row:last-child h2
     background-color: white
