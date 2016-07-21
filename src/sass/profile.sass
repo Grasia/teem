@@ -1,12 +1,26 @@
 .profile
+  .section
+    padding-top: 40px
+    padding-left: 30px
   h4
     font-size: 14px
   table
     font-size: 18px
     &.communities
       text-transform: uppercase
+    > tbody > tr:last-child
+      border-bottom: 1px solid $grey
     > tbody > tr > td
-      padding: 20px 8px
+      padding: 10px 8px
+      &:first-child
+        padding-left: 0
+      &:last-child
+        padding-right: 0
+      > *
+        padding-top: 10px
+        padding-bottom: 10px
+        margin-top: 10px
+        margin-bottom: 10px
     a
       color: $dark-grey
       width: 100%
