@@ -32,6 +32,9 @@
                 <span>{{community.name}}</span>
               </a>
             </td>
+            <td ng-if="canEdit()" class="text-right">
+              <button class="btn btn-lg" ng-click="leave(community)" translate>community.menu.leave</button>
+            </td>
           </tr>
         </table>
       </div>
@@ -43,7 +46,10 @@
               <a href="{{ project.path() }}">
                 <span>{{project.title}}</span>
               </a>
-          </td>
+            </td>
+            <td ng-if="canEdit()" class="text-right">
+              <button class="btn btn-lg" ng-click="leave(project)" translate>project.menu.leave</button>
+            </td>
           </tr>
         </table>
       </div>

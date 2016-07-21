@@ -35,6 +35,18 @@ angular.module('Teem')
         $scope.projects = projects;
       });
 
+      $scope.leave = function(model) {
+        if (model.type !== 'project' && model.type !== 'community') {
+          return;
+        }
+        let modelSvc = model.type === 'project' ? ProjectsSvc : CommunitiesSvc;
+        let collection = model.type === 'project' ? 'projects' : 'communities';
+        modelSvc.findByUrlId(model._urlId).then(function(writable) {
+          writable.removeParticipant();
+          $scope[collection] = $scope[collection].filter(item => item._urlId !== model._urlId);
+        });
+      };
+
       $scope.updateAvatar = function(croppedAvatar) {
         SessionSvc.updateUserProfile({avatarData: croppedAvatar}, function (res) {
           if (res.error) {
