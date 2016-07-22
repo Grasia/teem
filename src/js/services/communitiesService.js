@@ -211,7 +211,8 @@ angular.module('Teem')
             $match: {
               'root.type': 'community'
             }
-          }
+          },
+          { $limit: 50 } // Show only 50 communities until we paginate.
         ]
       };
 
