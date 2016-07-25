@@ -9,7 +9,7 @@
   margin-bottom: 10px
 .project-item-title
   color: $projects-title-color
-  font-weight: bold
+  font-weight: normal
 .project-item:hover .project-item-title
   color: $project-title-hover-color
 .notification-indicator
@@ -222,12 +222,49 @@
     .project-support-number
       text-align: right
 
-.project-participants
-  background: $project-participants-background-color
-  h2
-    font-size: 1.42em
-    font-weight: $font-weight-light
-    @extend .participant-title
+.bg-aubergine
+  background-color: $aubergine !important
+.bg-blue
+  background-color: $blue !important
+.bg-teal
+  background-color: $teal !important
+.bg-yellow
+  background-color: $yellow !important
+
+.project-badge
+  font-size: 12px
+  display: flex
+  align-items: center
+  height: 85px
+  margin-left: -5px
+  .project-title, .project-communities a
+    color: white
+  .media-body
+    display: flex
+    flex-direction: column
+    justify-content: center
+  .project-photo
+    vertical-align: middle
+  h4
+    font-size: 16px
+  .project-communities
+    font-size: 14px
+.project-desktop
+  h4
+    font-size: 14px
+  .project-communities
+    font-size: 12px
+
+.project-void-banner
+  @extend .section
+  color: #67798a
+  text-align: center
+
+.info-tip
+  @extend .i-info
+  @extend .section
+  background: $bluey-grey
+  color: white
 
 .project-desktop
   background: white
@@ -246,34 +283,12 @@
   .project-sidebar
     @extend .flex-container
     border-left: none
-    .project-title, .project-communities a
-      color: white
     .project-sidebar-inner
       background-color: white
       flex: 1
       margin-left: -5px
       .section
         background-color: white
-    .project-badge
-      font-size: 12px
-      display: flex
-      align-items: center
-      height: 85px
-      margin-left: -5px
-      .media-body
-        display: flex
-        flex-direction: column
-        justify-content: center
-      .project-photo
-        vertical-align: middle
-      h4
-        font-size: 14px
-      .project-communities
-        font-size: 12px
-  .project-void-banner
-    @extend .section
-    color: #67798a
-    text-align: center
   .project-void-banner-people
     background-color: white
   .other-projects
@@ -296,14 +311,6 @@
     .project-sections
       display: none
 
-  .bg-aubergine
-    background-color: $aubergine
-  .bg-blue
-    background-color: $blue
-  .bg-teal
-    background-color: $teal
-  .bg-yellow
-    background-color: $yellow
   .project-main
     background-color: $bluey3-grey
     padding-bottom: 5px

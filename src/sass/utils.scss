@@ -64,3 +64,13 @@
 .pos-r {
   position: relative;
 }
+
+.hidden-mobile {
+  @extend .hidden-xs;
+  @extend .hidden-sm;
+}
+
+.hidden-desktop {
+  @extend .hidden-md;
+  @extend .hidden-lg;
+}

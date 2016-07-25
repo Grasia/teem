@@ -3,6 +3,8 @@
   flex-direction: column
   box-shadow: 0px 0px 5px 3px $grey
   position: relative
+  min-height: 40vh
+  max-height: 50vh
   .pad-toolbar
     background: $lightest-grey
     border: solid 1px $grey
@@ -26,10 +28,13 @@
 
   @media (max-width: $screen-sm-max)
     flex-direction: column-reverse
+    box-shadow: none
     .pad-toolbar
       overflow-y: hidden
     .btn-toolbar
       width: calc(0% + 12 * 44px)
+    .swellrt-editor
+      border: none !important
 
   .swellrt-editor
     background: $pad-background-color
@@ -52,6 +57,9 @@
       font-size: 1em
   .need-text-readonly
     padding-top: 2px
+
+.project-pad-editing .pad
+  max-height: 100vh
 
 .swellrt-placeholder:empty
   color: $placeholder-color

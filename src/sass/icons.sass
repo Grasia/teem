@@ -25,6 +25,11 @@ i
     vertical-align: middle
     font-style: normal
 
+.custom-icons
+  @extend .material-icons
+  vertical-align: middle
+  display: inline
+
 .i-need
   @extend .fa
   @extend .fa-check-square-o
@@ -35,60 +40,64 @@ i
 
 .i-message::before,
 .i-comment::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'chat_bubble_outline'
 
 .i-community,
 .i-participant,
 .i-participants
   &::before
-    @extend .material-icons
+    @extend .custom-icons
     content: 'person_outline'
 
 .i-project::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'pages'
 
 .i-participant-new::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'person_add'
 
 .i-participant-remove::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'exit_to_app'
 
 .i-support::before, .i-support-remove::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'favorite'
 .i-support-new::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'favorite_border'
 
 .i-share::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'share'
 
 .i-send::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'send'
   transform: translate(-10px, -12px) !important
 
 .i-close::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'close'
 
 .i-edit::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'edit'
 
 .i-check::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'check'
 
 .i-plus::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'add'
 
 .i-arrow-forward::before
-  @extend .material-icons
+  @extend .custom-icons
   content: 'arrow_forward'
+
+.i-info::before
+  @extend .custom-icons
+  content: 'info'

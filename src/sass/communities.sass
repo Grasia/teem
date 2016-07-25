@@ -57,13 +57,19 @@
 .community-projects-count
   margin-bottom: 5px
 
+@media (max-width: $screen-sm-max)
+  .communities
+    .scrollable-content
+      background-color: white
+    .thumbnail
+      border: none
+    .community-item .community-item-footer
+      margin-left: 0
+      margin-right: 0
+
 
 .community
   display: block
-  h1, h2
-    font-size: 1.42em
-  h2
-    font-weight: $font-weight-light
 
 .community-share-button
   position: absolute
@@ -76,17 +82,19 @@
     display: none
   button
     margin-top: 0
-  .message
-    font-weight: bold
-    text-transform: uppercase
+.community-joinded-message
+  font-weight: bold
+  text-transform: uppercase
+  text-align: right
+  margin-bottom: 20px
+  &::before
+    @extend .material-icons
+    content: 'done'
+    font-size: 20px
+    vertical-align: text-bottom
+    margin-right: 3px
+  @media (min-width: $screen-md-min)
     color: white
-    text-align: right
-    &::before
-      @extend .material-icons
-      content: 'done'
-      font-size: 20px
-      vertical-align: text-bottom
-      margin-right: 3px
 
 .community-participant-count
   padding-top: 14px
@@ -94,6 +102,13 @@
     vertical-align: super /* for some reason middle moves the number to bottom */
 .community-item-footer .community-participant-count
   padding-top: 4px
+
+.community-info
+  background-color: white
+  padding-top: 18px
+  footer
+    border-top: solid 1px $grey
+    height: 56px
 .community-projects
   background-color: $community-projects-background-color
   .list-group .list-group-item
@@ -103,8 +118,6 @@
 
 .community-participants
   background: $community-participants-background-color
-  h2
-    @extend .participant-title
 
 .community-search
   background-color: white
@@ -176,8 +189,6 @@
 .modal-community-settings
   .connection-status
     margin-top: -16px
-.community-project-title
-  text-transform: uppercase
 .community-project-count
   font-size: 1.42em
   font-weight: $font-weight-light
@@ -208,14 +219,13 @@
     padding-left: 35px
     padding-right: 0
     background: linear-gradient($light-grey 62px, transparent 0), linear-gradient($grey 63px, transparent 0)
+    min-height: 65px
   .community-info
-    background: white
     margin-top: -56px
     .community-description
       min-height: 30vh
-    footer
-      border-top: solid 1px $grey
-  .community-projects, .community-participants
-    background: transparent
-    > h2
-      height: 52px /* 62 (community-layout) - 10 (parent section padding) */
+.community-projects, .community-participants
+  background: transparent
+  padding-top: 24px
+  > h2
+    height: 52px /* 62 (community-layout) - 10 (parent section padding) */

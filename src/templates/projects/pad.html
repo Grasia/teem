@@ -1,0 +1,53 @@
+<div class="flex-container">
+  <div ng-class="{'flex-container': pad.editing}">
+    <div class="section project-header bg-{{project.logoColor()}}" ng-if="!pad.editing">
+      <div ng-include="'projects/badge.html'"></div>
+    </div>
+    <div class="section" ng-if="editingTitle()">
+      <div class="input-group title-form">
+        <input type="text" hide-tabs
+               class="form-control title-input"
+               ng-model="project.title"
+               placeholder="{{ 'project.title.placeholder' | translate }}">
+        <div class="input-group-addon">
+          <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
+            <i class="i-check"></i>
+          </button>
+        </div>
+      </div>
+      <selector
+        multiple
+        config="communitySelector.config"
+        options="communitySelector.options"
+        ng-model="project.communities"
+        placeholder=" 'project.community.placeholder' | translate"
+      ></selector>
+    </div>
+    <div class="project-join section" ng-if="!project.isParticipant()">
+      <button class="btn btn-primary btn-raised btn-block btn-lg"
+              join
+              join-icon="false",
+              join-model="project"
+              join-copy-on="project.participate.btn.undo"
+              join-copy-off="project.participate.btn.do"
+              analytics-on="click"
+              analytics-event="Join project">
+      </button>
+    </div>
+    <div class="section info-tip" ng-if="project.isParticipant() && infoTip()">
+      <span translate>pad.tap_to_edit</span> <span ng-click="infoTip(true)" class="i-close pull-right"></span>
+    </div>
+
+    <pad class="flex-container"></pad>
+
+    <div class="section project-participants" ng-if="!isNew() && !pad.editing">
+      <h2 translate>
+          project.section.participants.title
+      </h2>
+      <div project-people  ng-if="!isNew() && !pad.editing"></div>
+    </div>
+  </div>
+  <div class="scrollable-footer" ng-if="isNew() && !pad.editing">
+    <div ng-include="'new-form/buttons.html'"></div>
+  </div>
+</div>

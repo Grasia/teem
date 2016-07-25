@@ -164,6 +164,13 @@ angular.module('Teem')
       return editingTitle || $scope.isNew();
     };
 
+    $scope.infoTip = function(close) {
+      if (close) {
+        localStorage.setItem('clickToTap', true);
+      }
+      return !localStorage.getItem('clickToTap');
+    };
+
     $scope.showEditTitle = function() {
       editingTitle = true;
     };

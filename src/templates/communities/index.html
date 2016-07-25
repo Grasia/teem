@@ -1,7 +1,16 @@
 <div ui-content-for="nav-title">
-  <div class="overflow-ellipsis" translate>community.index.public.title</div>
+  <div class="overflow-ellipsis">{{'community.index.'+context+'.title' | translate}}</div>
 </div>
-
-<communities></communities>
+<div class="communities">
+  <div class="scrollable">
+    <div class="scrollable-header hidden-mobile">
+      <h1>{{'community.index.'+context+'.title' | translate}}</h1>
+      <plus class="plus-desktop" plus-type="community"></plus>
+    </div>
+    <div class="scrollable-content pos-r">
+      <communities></communities>
+    </div>
+  </div>
+</div>
 
 <plus class="plus-mobile" plus-type="community"></plus>

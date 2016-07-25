@@ -193,6 +193,7 @@
       "missing": "This need was deleted"
     },
     "placeholder": "You want to work on...",
+    "tap_to_edit": "Tap over the text to edit it",
     "tooltip": {
       "img": "Insert image",
       "need": "Insert need",
@@ -309,7 +310,7 @@
         "title": "Needs"
       },
       "participants": {
-        "title": "Participants <span class=\"participant-count\">({{count}})</span>"
+        "title": "Participants"
       },
       "support": {
         "btn": {

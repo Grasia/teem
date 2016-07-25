@@ -25,7 +25,7 @@
   <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden()}">
     <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !(pad.editing && !isDesktop())}">
       <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'
-      class="flex-container" ng-include="'projects/project-tab.html'">
+      class="flex-container" ng-include="'projects/pad.html'">
       </div>
 
       <div ui-if="projectTab == 'needs'" hm-swipeleft="swipeToChat" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
@@ -47,71 +47,4 @@
   </div>
 </div>
 
-<div ng-if="isDesktop()" class="project project-desktop">
-  <div class="col-md-3 col-lg-2 project-sidebar bg-{{project.logoColor()}}">
-    <div class="row project-badge">
-      <div class="media">
-        <div>
-          <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
-            <img class="media-object" ng-src="{{project.logo()}}">
-          </div>
-          <div class="project-photo" ng-if="!project.isParticipant()">
-            <img class="media-object" ng-src="{{project.logo()}}">
-          </div>
-        </div>
-        <div class="media-body media-left">
-          <h4 class="media-heading">
-            <span class="project-title">{{project.title}}</span>
-          </h4>
-          <div class="project-communities">
-            <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row project-sidebar-inner">
-      <div project-people></div>
-    </div>
-    <div ng-if="loggedIn()" class="row other-projects" ng-controller="ProjectsCtrl">
-      <h2 translate>project.index.home.title</h2>
-      <div class="section">
-        <button class="btn btn-primary btn-block btn-raised i-project" ng-click="createProject()" translate>project.create.button</button>
-      </div>
-      <projects project-list="projects" context="context" ng-if="projects.length"></projects>
-      <div ng-if="!projects.length" class="project-void-banner">
-        <p translate>project.my_projects.no_projects</p>
-        <img src="images/teem_pot.svg">
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 col-lg-7 project-main">
-    <div class="row">
-      <div class="project-title-editable" ng-class="project.isParticipant() ? 'col-xs-12' : 'col-xs-7'">
-        <input class="h1 title-input form-control" ng-model="project.title"
-        placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
-      </div>
-      <div class="project-join col-xs-5 text-right" ng-if="!project.isParticipant()">
-        <button class="btn btn-lg btn-primary btn-raised"
-                join
-                join-icon="false",
-                join-model="project"
-                join-copy-on="project.participate.btn.undo"
-                join-copy-off="project.participate.btn.do"
-                analytics-on="click"
-                analytics-event="Join project">
-        </button>
-      </div>
-    </div>
-    <pad editing-default="true" class="flex-container"></pad>
-  </div>
-  <div class="col-md-3 project-utils">
-    <div class="row">
-      <h2 translate>need.nav.title</h2>
-      <div need-list project="project" needs="project.needs" display="panel" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
-    </div>
-    <div class="flex-container row" ng-if="project.isParticipant()">
-      <h2 translate>chat.nav.title</h2>
-      <chat class="flex-container"></chat>
-    </div>
-  </div>
-</div>
+<div ng-if="isDesktop()" class="project project-desktop" ng-include="'projects/desktop.html'"></div>

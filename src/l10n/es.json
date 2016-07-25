@@ -193,6 +193,7 @@
       "missing": "Esta necesidad se ha borrado"
     },
     "placeholder": "Quieres trabajar en...",
+    "tap_to_edit": "Pulsa sobre el texto para editarlo",
     "tooltip": {
       "img": "Insertar image",
       "need": "Insertar necesidad",
@@ -309,7 +310,7 @@
         "title": "Necesidades"
       },
       "participants": {
-        "title":  "Participantes ({{count}})"
+        "title":  "Participantes"
       },
       "support": {
         "btn": {

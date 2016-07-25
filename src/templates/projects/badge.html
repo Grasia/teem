@@ -1,0 +1,20 @@
+<div class="project-badge">
+  <div class="media">
+    <div>
+      <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
+        <img class="media-object" ng-src="{{project.logo()}}">
+      </div>
+      <div class="project-photo" ng-if="!project.isParticipant()">
+        <img class="media-object" ng-src="{{project.logo()}}">
+      </div>
+    </div>
+    <div class="media-body media-left">
+      <h4 class="media-heading">
+        <span class="project-title">{{project.title}}</span>
+      </h4>
+      <div class="project-communities">
+        <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
+      </div>
+    </div>
+  </div>
+</div>

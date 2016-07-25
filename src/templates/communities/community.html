@@ -12,18 +12,18 @@
         <div ng-if="!community.isParticipant()">
           <img ng-src="{{community.logo()}}">
         </div>
-        <div class="community-join-button">
+        <div class="community-join-button hidden-mobile">
           <button class="btn btn-lg btn-primary btn-raised pull-right"
                   ng-if="! community.isParticipant()"
                   participate
                   participate-copy-off="community.participate.button"
                   participate-model="community">
           </button>
-          <div ng-if="community.isParticipant()" class="message" translate>community.participate.message</div>
+          <div ng-if="community.isParticipant()" class="community-joinded-message" translate>community.participate.message</div>
         </div>
       </div>
 
-      <div class="section community-layout">
+      <div class="community-layout">
         <div class="community-new-greeting section" ng-if="isNew()">
           <img src="/images/community_form.svg" />
 
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div class="community-info section" ng-class="{'col-md-4': !isNew()}">
+        <div class="community-info" ng-class="{'col-md-4': !isNew()}">
           <h1 ng-if="! editingTitle()">
             {{community.name}}
             <button class="btn btn-link edit-title-btn pull-right" ng-if="community.isParticipant()" ng-click="showEditTitle()">
@@ -84,6 +84,16 @@
             config="userSelectorConfig"
             options="invite.list" ng-model="invite.selected"
             placeholder=" 'project.add_people.placeholder' | translate" ng-if="isNew()"></selector>
+
+          <div class="hidden-desktop">
+            <button class="btn btn-lg btn-primary btn-raised btn-block"
+                    ng-if="! community.isParticipant()"
+                    participate
+                    participate-copy-off="community.participate.button"
+                    participate-model="community">
+            </button>
+            <div ng-if="community.isParticipant()" class="community-joinded-message" translate>community.participate.message</div>
+          </div>
           <footer class="row" ng-if="!isNew() && !editingTitle()">
             <div>
               <div class="community-participant-count">
@@ -134,10 +144,9 @@
         <div class="community-participants col-md-2 section" ng-if="!isNew()">
           <h2>
             {{ 'community.participants.title' | translate }}
-            <small class="hidden-md hidden-lg">({{ community.participantCount() }})</small>
           </h2>
         <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-        <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
+        <button ng-if="community.isParticipant()" class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
             project.add_people.button
         </button>
 
