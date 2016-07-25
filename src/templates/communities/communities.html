@@ -1,8 +1,10 @@
 <div class="communities">
   <div class="scrollable">
-    <div class="scrollable-content pos-r">
+    <div class="scrollable-header">
       <h1>{{'community.index.'+context+'.title' | translate}}</h1>
       <plus class="plus-desktop" plus-type="community"></plus>
+    </div>
+    <div class="scrollable-content pos-r">
       <div class="community-list">
         <div class="community-item col-sm-6 col-md-4"
              ng-hide="creating && newCommunityName.name === ''"

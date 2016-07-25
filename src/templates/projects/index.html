@@ -3,9 +3,12 @@
 </div>
 
 <div class="scrollable">
+  <div class="scrollable-header">
+    <h1>{{'project.index.' + context + '.title' | translate}}</h1>
+    <plus class="plus-desktop" plus-type="project" plus-community="community"></plus>
+  </div>
   <div class="scrollable-content">
     <div class="section projects">
-      <h1>{{'project.index.' + context + '.title' | translate}}</h1>
       <div class="project-index-tip">
         {{'project.index.' + context + '.tip' | translate: translationData}}
       </div>
@@ -14,7 +17,7 @@
   </div>
 </div>
 
-<plus plus-type="project" plus-community="community"></plus>
+<plus class="plus-mobile" plus-type="project" plus-community="community"></plus>
 
 <div class="projects-welcome" ng-if="! community && emptyProjects()">
   <div class="alert alert-info">
