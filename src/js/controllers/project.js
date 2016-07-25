@@ -154,10 +154,6 @@ angular.module('Teem')
       return SharedState.isActive('hiddenTabs') && $window.innerHeight < 400;
     };
 
-    $scope.isDesktop = function() {
-      return $window.innerWidth >= 992;
-    };
-
     NewForm.initialize($scope, 'project');
 
     $scope.uploadProjectPhoto = function(file) {

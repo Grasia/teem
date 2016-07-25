@@ -13,7 +13,9 @@
     > tbody > tr > td
       padding: 10px 8px
       &:first-child
-        padding-left: 0
+        padding: 0
+        width: 56px
+        min-width: 56px
       &:last-child
         padding-right: 0
       > *
@@ -27,9 +29,22 @@
       display: block
       &:hover
         text-decoration: none
+    @media (max-width: $screen-sm-max)
+      .btn.btn-lg
+        font-size: 0px
+  .info
+    @extend .col-md-4
+    padding: 0
+    > div
+      background: #fff
+      padding: 0
+      .avatar-responsive img
+        border-radius: 0
+        object-fit: cover
+        max-height: 192px
+      h3
+        padding-top: 20px
+        padding-bottom: 20px
   .affix
-    background: #fff
     margin-left: -15px
     height: 100%
-    .section
-      background: #fff

@@ -82,8 +82,11 @@ angular
       $rootScope.$digest();
     });
   })
-  .run(function($rootScope, SessionSvc) {
+  .run(function($rootScope, $window, SessionSvc) {
     $rootScope.loggedIn = function () {
       return SessionSvc.users.loggedIn();
+    };
+    $rootScope.isDesktop = function() {
+      return $window.innerWidth >= 992;
     };
   });

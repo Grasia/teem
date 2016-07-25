@@ -4,20 +4,15 @@
 
 <div class="scrollable profile">
   <div class="scrollable-content">
-    <div class="col-md-4">
-      <div class="affix col-md-4">
-        <div class="section">
-          <div class="col-xs-8 col-xs-offset-2 col-sm-4">
-            <div ng-if="canEdit()" ui-set="{modalSharedState: {name: 'uploadPicture', callback: updateAvatar}}">
-              <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
-            </div>
-            <div ng-if="!canEdit()">
-              <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
-            </div>
-          </div>
+    <div class="info">
+      <div ng-class="{'affix col-md-4': isDesktop()}">
+        <div ng-if="canEdit()" ui-set="{modalSharedState: {name: 'uploadPicture', callback: updateAvatar}}">
+          <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
         </div>
-        <div class="section text-center">
-          <br>
+        <div ng-if="!canEdit()">
+          <div avatars="user.id" avatars-conf="{size:'responsive'}"></div>
+        </div>
+        <div class="text-center">
           <h3>{{user.nick}}</h3>
         </div>
       </div>
@@ -28,12 +23,17 @@
         <table class="communities table table-hover">
           <tr ng-repeat="community in communities">
             <td>
+              <a href="{{ community.path() }}" class="project-photo-small">
+                <img ng-src="{{community.logo()}}">
+              </a>
+            </td>
+            <td>
               <a href="{{ community.path() }}">
                 <span>{{community.name}}</span>
               </a>
             </td>
             <td ng-if="canEdit()" class="text-right">
-              <button class="btn btn-lg" ng-click="leave(community)" translate>community.menu.leave</button>
+              <button class="btn btn-lg i-participant-remove" ng-click="leave(community)" translate>community.menu.leave</button>
             </td>
           </tr>
         </table>
@@ -43,12 +43,17 @@
         <table class="projects table table-hover">
           <tr ng-repeat="project in projects">
             <td>
+              <a href="{{ project.path() }}" class="project-photo-small">
+                <img ng-src="{{project.logo()}}">
+              </a>
+            </td>
+            <td>
               <a href="{{ project.path() }}">
                 <span>{{project.title}}</span>
               </a>
             </td>
             <td ng-if="canEdit()" class="text-right">
-              <button class="btn btn-lg" ng-click="leave(project)" translate>project.menu.leave</button>
+              <button class="btn btn-lg i-participant-remove" ng-click="leave(project)" translate>project.menu.leave</button>
             </td>
           </tr>
         </table>
