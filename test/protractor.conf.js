@@ -42,7 +42,8 @@ exports.config = {
   framework: 'jasmine2',
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 90000
+    // Our continous delivery server is reaaaalyyy slooooow
+    defaultTimeoutInterval: 300000
   },
 
   suites: {
