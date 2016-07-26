@@ -1,9 +1,9 @@
 <div class="flex-container">
   <div ng-class="{'flex-container': pad.editing}">
     <div class="section project-header bg-{{project.logoColor()}}" ng-if="!pad.editing">
-      <div ng-include="'projects/badge.html'"></div>
+      <div ng-include="'projects/badge.html'" ng-if="! isNew()"></div>
     </div>
-    <div class="section" ng-if="editingTitle()">
+    <div class="section" ng-if="editingTitle() && !pad.editing">
       <div class="input-group title-form">
         <input type="text" hide-tabs
                class="form-control title-input"
@@ -34,7 +34,7 @@
               analytics-event="Join project">
       </button>
     </div>
-    <div class="section info-tip" ng-if="project.isParticipant() && infoTip()">
+    <div class="section info-tip" ng-if="project.isParticipant() && !pad.editing && infoTip()">
       <span translate>pad.tap_to_edit</span> <span ng-click="infoTip(true)" class="i-close pull-right"></span>
     </div>
 

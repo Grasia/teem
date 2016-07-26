@@ -3,8 +3,6 @@
   flex-direction: column
   box-shadow: 0px 0px 5px 3px $grey
   position: relative
-  min-height: 40vh
-  max-height: 50vh
   .pad-toolbar
     background: $lightest-grey
     border: solid 1px $grey
@@ -27,6 +25,8 @@
             color: $teal
 
   @media (max-width: $screen-sm-max)
+    min-height: 40vh
+    max-height: 50vh
     flex-direction: column-reverse
     box-shadow: none
     .pad-toolbar

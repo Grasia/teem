@@ -31,14 +31,18 @@ class CommunityPage {
 
     this.descriptionEl = element(by.binding('community.description'));
 
-    this.joinEl = element(by.css('button[participate]'));
-
     this.participantListEl = element(by.css('[avatars="community._participants"]'));
   }
 
+  getJoinEl () {
+    var platform = global.isDesktop ? '.hidden-mobile' : '.hidden-desktop';
+    return element(by.css(platform + ' button[participate]'));
+  }
+
   join () {
-    browser.wait(protractor.ExpectedConditions.visibilityOf(this.joinEl));
-    this.joinEl.click();
+    var joinEl = this.getJoinEl();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(joinEl));
+    joinEl.click();
   }
 
   getName () {

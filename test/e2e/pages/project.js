@@ -27,7 +27,7 @@ class ProjectsPage {
 class ProjectPage {
 
   constructor () {
-    this.titleEl = element(by.css('.project-title'));
+    this.titleEl = element.all(by.css('.project-title')).first();
 
     this.padEl = element(by.model('project.pad'));
 
