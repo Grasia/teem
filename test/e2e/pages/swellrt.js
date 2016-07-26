@@ -46,7 +46,9 @@ class SwellRTPage {
   }
 
   recoveryLink (nick) {
-    var linkRegexp = new RegExp('(http.*' + this.recoveryPath + '.*id=' + nick + ')');
+    // This sucks. It is dependent of SwellRT domain configuration.
+    var nickWithDomain = nick + '@local.net',
+        linkRegexp = new RegExp('(http.*' + this.recoveryPath + '.*id=' + nickWithDomain + ')');
 
     return this.logRegexp(linkRegexp);
 
