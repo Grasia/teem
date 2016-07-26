@@ -30,7 +30,7 @@ describe('Teem', function() {
 
   describe('register form', function() {
     it('should register new user', function() {
-      var nick = chance.word();
+      var nick = chance.word({ length: 10 });
 
       registerPage.get();
 
@@ -44,7 +44,7 @@ describe('Teem', function() {
 
   describe('forgotten and recover password form', function() {
     it('should allow a new user to recover her password', function() {
-      var nick = chance.word(),
+      var nick = chance.word({ length: 10 }),
           email = chance.email(),
           newPassword = chance.word({ length: 10 });
 
