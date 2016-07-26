@@ -81,8 +81,9 @@ describe('Teem', function() {
         password: newPassword
       });
 
-      // https://github.com/P2Pvalue/swellrt/issues/163
-      //expect(menu.currentNick()).toBe(loginPage.default.nick);
+      loginPage.expectNoErrors();
+
+      expect(menu.currentNick()).toBe(nick);
     });
   });
 
