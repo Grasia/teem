@@ -616,6 +616,7 @@ gulp.task('deploy', function(done) {
   seq(tasks, done);
 });
 
+
 /*============================================
 =         Continous Delivery Task            =
 ============================================*/
@@ -623,6 +624,16 @@ gulp.task('deploy', function(done) {
 gulp.task('cd', function(done) {
   seq('build', 'manifest', 'test', 'deploy', done);
 });
+
+/*============================================
+=               Staging task                 =
+= Always deploy and pass specs afterwards    =
+============================================*/
+
+gulp.task('cd:pushAndRun', function(done) {
+  seq('build', 'manifest', 'deploy', 'test', done);
+});
+
 
 
 
