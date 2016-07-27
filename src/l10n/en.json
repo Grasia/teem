@@ -107,6 +107,10 @@
       "title": "Congratulations!"
     }
   },
+  "confirm": {
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
   "connection": {
     "init": "Connecting...",
     "lost": "Connection lost. Trying to reconnect...",
@@ -240,6 +244,12 @@
       "placeholder": "Add people from Teem or email addresses",
       "text": "Invite people to help you with this project",
       "title": "Invite people"
+    },
+    "cancel": {
+      "confirm": {
+        "title": "Deleting teem...",
+        "text": "Are you sure you want to delete this teem?"
+      }
     },
     "community": {
       "placeholder": "Communities to which it belongs"

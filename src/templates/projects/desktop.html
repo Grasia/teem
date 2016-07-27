@@ -17,12 +17,22 @@
 </div>
 <div class="col-md-5 col-lg-7 project-main">
   <div class="row">
-    <div class="project-title-editable" ng-class="project.isParticipant() ? 'col-xs-12' : 'col-xs-7'">
+    <div class="project-title-editable">
       <input class="h1 title-input form-control" ng-model="project.title"
       placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
-    </div>
-    <div class="project-join col-xs-5 text-right" ng-if="!project.isParticipant()">
+      <div class="icons" ng-if="project.isParticipant()">
+        <i ng-click="focusTitleInput()" class="material-icons">edit</i>
+        <i ng-click="archiveProject()" class="material-icons hidden">archive</i>
+        <i
+        ui-set="{modalSharedState: {
+          name: 'confirm',
+          title: 'project.cancel.confirm.title',
+          text: 'project.cancel.confirm.text',
+          callback: cancelProject}}"
+        class="material-icons">delete</i>
+      </div>
       <button class="btn btn-lg btn-primary btn-raised"
+              ng-if="!project.isParticipant()"
               join
               join-icon="false",
               join-model="project"

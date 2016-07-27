@@ -214,7 +214,7 @@ angular.module('Teem')
 
       $scope.project.delete();
 
-      $location.path('/');
+      $location.path('/home/teems');
     };
 
     $scope.hasChanged = function(section){
@@ -272,6 +272,15 @@ angular.module('Teem')
       $scope.invite.selected = [];
       SharedState.turnOff('modalSharedState');
     };
+
+    $scope.focusTitleInput = function() {
+      $('.title-input').focus();
+    };
+
+    $scope.archiveProject = function() {
+      // TODO
+    };
+
   }])
   .directive(
     'hideTabs',
