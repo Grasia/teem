@@ -25,8 +25,7 @@ before_script:
   - npm install -g gulp
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start 
+  - sleep 3 # give xvfb some time to start
+  - .travis/before_script.sh
 
-script:
-  - gulp build
-  - gulp test
+script: .travis/script.sh
