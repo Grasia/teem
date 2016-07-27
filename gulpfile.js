@@ -442,7 +442,7 @@ gulp.task('manifest', function(){
     'js/app.min.js'
   ];
 
-  gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
+  return gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
     .pipe(manifest({
       cache: [
         config.swellrt.server + '/swellrt.js',
