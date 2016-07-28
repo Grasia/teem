@@ -1,8 +1,15 @@
 .avatar, .project-photo
+  color: $dark-grey
   text-align: center
   display: inline-block
   width: 65px
-  margin-right: 10px
+  margin: 0 3px 10px 3px
+  font-size: 14px
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  &:hover
+    text-decoration: none
   img
     background-color: #D3D3D3
     @extend .img-circle
@@ -39,3 +46,22 @@
   img
     @extend .img-circle
     width: 100%
+
+.avatars
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+.avatars-without-names
+  .avatar, .avatar-large, .avatar-small, .avatar-xsmall, .avatar-responsive
+    margin: 0
+    .avatar-name
+      display: none
+  .empty-avatar
+    display: none
+
+.empty-avatar
+  height: 0
+  padding-top: 0
+  padding-bottom: 0
+  margin-top: 0
+  margin-bottom: 0

@@ -363,13 +363,16 @@
         "button_continue": "No, keep Teem"
       }
     },
+    "tooltip": {
+      "archive": "Archive",
+      "chat": "Chat",
+      "delete": "Delete",
+      "edit": "Edit title",
+      "pad": "Info",
+      "need": "Needs"
+    },
     "welcome": {
       "tip": "Not involved in anything yet? <a href=\"/communities\">Find a community</a> to join or <a href=\"/communities/new\">create your community</a>"
-    },
-    "tooltip": {
-      "pad": "Info",
-      "need": "Needs",
-      "chat": "Chat"
     }
   },
   "selector": {

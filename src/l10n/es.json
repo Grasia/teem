@@ -363,6 +363,14 @@
         "button_continue": "No, seguir con el Teem"
       }
     },
+    "tooltip": {
+      "archive": "Archivar",
+      "chat": "Chat",
+      "delete": "Eliminar",
+      "edit": "Editar título",
+      "pad": "Info",
+      "need": "Necesidades"
+    },
     "welcome": {
       "tip": "¿No participas en nada todavía? <a href=\"/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"/communities/new\">crea tu comunidad</a>"
     }

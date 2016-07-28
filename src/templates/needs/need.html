@@ -53,7 +53,7 @@
   <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">
     <div class="media" ng-repeat="comment in need.comments">
       <div class="media-left">
-        <div avatars="comment.author" avatars-conf="{size: 'small'}"></div>
+        <div avatars="comment.author" avatars-conf="{size: 'small'}" class="avatars-without-names"></div>
       </div>
       <div class="media-body">
         <div class="comment-time pull-right">

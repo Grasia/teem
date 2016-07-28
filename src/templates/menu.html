@@ -25,7 +25,7 @@
 
     <div class="menu-session-logged-in" ng-if="loggedIn()">
       <div class="menu-session-img">
-        <div avatars="user.id" class="avatars"></div>
+        <div avatars="user.id" class="avatars avatars-without-names"></div>
       </div>
       <div class="menu-session-body">
         <div class="menu-session-nick">
@@ -39,10 +39,8 @@
             menu.session.communities
           </a>
         </div>
-        <div class="menu-session-action">
-          <button class="btn btn-link" ng-click="logout()" translate>
-            menu.session.logout
-          </button>
+        <div class="menu-session-action" ng-click="logout()" translate>
+          menu.session.logout
         </div>
       </div>
     </div>

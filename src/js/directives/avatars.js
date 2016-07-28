@@ -15,39 +15,44 @@ angular.module('Teem')
 
     function link(scope, element) {
       var createAppendAvatar = function(userId, url){
-        $timeout(function() {
-          var conf = scope.avatarsConf() || {};
-          var container = angular.element('<a href="/users/'+userId+'" class="avatar'+(conf.size ? '-'+conf.size : '')+'"></a>'),
-              img = angular.element('<img></img>');
+        var conf = scope.avatarsConf() || {};
+        var container = angular.element('<a href="/users/'+userId+'" class="avatar'+(conf.size ? '-'+conf.size : '')+'"></a>'),
+            img = angular.element('<img></img>');
 
-          img[0].addEventListener('error', onImgError);
+        img[0].addEventListener('error', onImgError);
 
-          container.append(img[0]);
+        container.append(img[0]);
+        let name = userId.split('@')[0];
+        img[0].title = name;
+        container.append(angular.element('<span class="avatar-name">' + name + '</span>'));
 
-          if (conf.names !== false) {
-            img[0].title = userId.split('@')[0];
-          }
+        element.append(container[0]);
 
-          element.append(container[0]);
+        if (url) {
+          img[0].src = url;
 
-          if (url) {
-            img[0].src = url;
-
-          } else {
-            var tmp = angular.element('<img width="200" height="200">');
-            var avatarConfig = {
-              'useGravatar': false,
-              'initials': userId[0].toUpperCase(),
-              'initial_bg': palette[parseInt(window.md5(userId).substring(0,5),16) % palette.length], 'initial_fg': 'white',
-              'initial_font_family': '"Lato", "Lato-Regular", "Helvetica Neue"',
-              'initial_weight': 200,
-              'size': 200
-            };
-            new window.Avatar(tmp[0], avatarConfig);
-            img[0].src = tmp[0].src;
-          }
-        });
+        } else {
+          var tmp = angular.element('<img width="200" height="200">');
+          var avatarConfig = {
+            'useGravatar': false,
+            'initials': userId[0].toUpperCase(),
+            'initial_bg': palette[parseInt(window.md5(userId).substring(0,5),16) % palette.length], 'initial_fg': 'white',
+            'initial_font_family': '"Lato", "Lato-Regular", "Helvetica Neue"',
+            'initial_weight': 200,
+            'size': 200
+          };
+          new window.Avatar(tmp[0], avatarConfig);
+          img[0].src = tmp[0].src;
+        }
       };
+      function appendEmptyAvatars() {
+        // Fill with empty avatars to align last row of flexbox
+        // https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid
+        var conf = scope.avatarsConf() || {};
+        for (let i = 0; i < 4; i++) {
+          element.append(angular.element('<a class="avatar'+(conf.size ? '-'+conf.size : '')+' empty-avatar"></a>'));
+        }
+      }
       scope.$watchCollection('avatars', function(users){
         if (!users || users.length === 0){
           return;
@@ -67,6 +72,7 @@ angular.module('Teem')
           angular.forEach(res.data, function(user) {
             createAppendAvatar(user.id, user.avatarUrl);
           });
+          appendEmptyAvatars();
         });
 
       });

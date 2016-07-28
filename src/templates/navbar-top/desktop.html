@@ -23,21 +23,21 @@
     </li>
     <li class="dropdown menu-session">
       <a ui-turn-on="menuSession">
-        <span ng-if="! loggedIn()">
+        <div ng-if="! loggedIn()">
           <span class="avatar">
             <img src="images/anonymous-avatar.png" />
           </span>
           <span class="menu-session-nick" translate>
             menu.session.guest
           </span>
-        </span>
+          <span class="caret"></span>
+        </div>
 
-        <span ng-if="loggedIn()">
-          <span avatars="user.id" class="avatar"></span>
+        <div ng-if="loggedIn()">
+          <span avatars="user.id" class="avatars avatars-without-names"></span>
           <span class="menu-session-nick" ng-bind="user.nick"></span>
-        </span>
-
-        <span class="caret"></span>
+          <span class="caret"></span>
+        </div>
       </a>
       <ul class="dropdown-menu"
           ui-outer-click="Ui.turnOff('menuSession')"
