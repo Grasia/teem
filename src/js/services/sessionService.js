@@ -36,6 +36,21 @@ angular.module('Teem')
 
     var autoStartSession;
 
+    // Determine swellrt server uri
+    function findSwellrtServer () {
+      var uri;
+
+      angular.forEach(document.getElementsByTagName('script'), (s) => {
+        if (s.src.match(/swellrt\.js$/)) {
+          uri = s.baseURI;
+        }
+      });
+
+      return uri;
+    }
+
+    const swellrtServer = findSwellrtServer();
+
     SwellRT.ready(function() {
       swellRTDef.resolve();
     });
@@ -157,7 +172,7 @@ angular.module('Teem')
 
         sessionPromiseInit();
 
-        SwellRT.startSession(SwellRTConfig.server, SwellRT.user.ANONYMOUS,  '',
+        SwellRT.startSession(swellrtServer, SwellRT.user.ANONYMOUS,  '',
           function(sessionInfo){
             info =  sessionInfo;
             sessionDef.resolve(SwellRT);
@@ -186,7 +201,7 @@ angular.module('Teem')
 
         status.connection = 'connecting';
 
-        SwellRT.startSession(SwellRTConfig.server, userName || SwellRT.user.ANONYMOUS,  password || '',
+        SwellRT.startSession(swellrtServer, userName || SwellRT.user.ANONYMOUS,  password || '',
           function(sessionInfo){
             info =  sessionInfo;
             sessionDef.resolve(SwellRT);

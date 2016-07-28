@@ -303,8 +303,8 @@ gulp.task('html', function() {
   inject.push('<base href="' + config.base + '" />');
 
   if (config.swellrt) {
+    inject.push('<meta property="swellrt:version" content="' + config.swellrt.version + '">');
     inject.push('<script src="'+config.swellrt.server+'/swellrt.js"></script>');
-    inject.push('<script>var SwellRTConfig = '+JSON.stringify(config.swellrt)+';</script>');
   }
 
   if (config.piwik) {

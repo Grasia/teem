@@ -1,9 +1,6 @@
 'use strict';
 
-var SwellRTConfig = {
-  swellrtServerDomain: 'local.net'
-},
-  callbackMap = {};
+var callbackMap = {};
 
 function mockedStart(domain, nick, password, success) {
 
