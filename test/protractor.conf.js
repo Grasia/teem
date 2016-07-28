@@ -51,7 +51,8 @@ exports.config = {
     frontpage: 'e2e/frontpage.js',
     core: 'e2e/core/*.js',
     participant: 'e2e/participant/*.js',
-    guest: 'e2e/guest/*.js'
+    guest: 'e2e/guest/*.js',
+    invite: 'e2e/core/invite.js'
   },
 
   onPrepare: function() {

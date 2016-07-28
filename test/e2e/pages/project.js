@@ -69,6 +69,7 @@ class ProjectPage {
   }
 
   getParticipants () {
+    browser.wait(protractor.ExpectedConditions.presenceOf(this.participantListEl));
     return this.participantListEl.all(by.css('img')).getAttribute('title');
   }
 
