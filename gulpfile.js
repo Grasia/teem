@@ -296,18 +296,25 @@ gulp.task('l10n', function() {
 /*=================================================
 =            Copy html files to dest              =
 =================================================*/
-
-gulp.task('html', function() {
+function buildHtml (env) {
   var inject = [];
 
   inject.push('<base href="' + config.base + '" />');
 
   if (config.swellrt) {
+    let url;
+
+    if (env === 'production') {
+      url = config.deploy.swellrt.url;
+    } else {
+      url = config.swellrt.server;
+    }
+
     inject.push('<meta property="swellrt:version" content="' + config.swellrt.version + '">');
-    inject.push('<script src="'+config.swellrt.server+'/swellrt.js"></script>');
+    inject.push('<script src="'+ url +'/swellrt.js"></script>');
   }
 
-  if (config.piwik) {
+  if (config.piwik && env === 'production') {
     // Note that Angulartics needs that the trackPageView event from the original is removed
     inject.push('<script type="text/javascript"> var _paq = _paq || []; _paq.push([\'enableLinkTracking\', true]); (function() { var u="' + config.piwik.server + '"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', ' + config.piwik.siteId + ']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })(); </script>');
     inject.push('<noscript><p><img src="' + config.piwik.server + 'piwik.php?idsite=' + config.piwik.siteId + '" style="border:0;" alt="" /></p></noscript>');
@@ -317,11 +324,19 @@ gulp.task('html', function() {
     inject.push('<script src="http://'+config.weinre.boundHost+':'+config.weinre.httpPort+'/target/target-script-min.js"></script>');
   }
 
-  gulp.src(['src/html/**/*.html'])
-  .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
-  .pipe(gulp.dest(config.dest));
+  return gulp.src(['src/html/**/*.html'])
+    .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
+    .pipe(gulp.dest(config.dest));
+}
+
+gulp.task('html', function() {
+  return buildHtml();
 });
 
+// Rebuild html for production
+gulp.task('html:production', function() {
+  return buildHtml('production');
+});
 
 /*======================================================================
 =            Compile, minify, mobilize Sass                            =
@@ -435,25 +450,35 @@ gulp.task('cordova', function() {
 =                Generate HTML5 Cache Manifest files                =
 ===================================================================*/
 
-gulp.task('manifest', function(){
+function buildManifest (env) {
   var files = [
     'index.html',
     'css/app.min.css',
     'js/app.min.js'
-  ];
+  ],
+
+  swellrtUrl = env === 'production' ? config.deploy.swellrt.url : config.swellrt.server;
+
 
   return gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
     .pipe(manifest({
       cache: [
-        config.swellrt.server + '/swellrt.js',
-        config.swellrt.server + '/swellrt/swellrt.nocache.js'
+        swellrtUrl + '/swellrt.js',
+        swellrtUrl + '/swellrt/swellrt.nocache.js'
       ],
       exclude: 'app.manifest',
       hash: true
     }))
   .pipe(gulp.dest(config.dest));
+}
+
+gulp.task('manifest', function(){
+  return buildManifest();
 });
 
+gulp.task('manifest:production', function(){
+  return buildManifest('production');
+});
 /*===================================================================
 =            Watch for source changes and rebuild/reload            =
 ===================================================================*/
@@ -613,7 +638,7 @@ gulp.task('deploy:files', function() {
 gulp.task('deploy', function(done) {
   var tasks = ['deploy:swellrt', 'deploy:files'];
 
-  seq(tasks, done);
+  seq('html:production', 'manifest:production', tasks, done);
 });
 
 
@@ -622,7 +647,7 @@ gulp.task('deploy', function(done) {
 ============================================*/
 
 gulp.task('cd', function(done) {
-  seq('build', 'manifest', 'test', 'deploy', done);
+  seq('build', 'test', 'deploy', done);
 });
 
 /*============================================
@@ -631,7 +656,7 @@ gulp.task('cd', function(done) {
 ============================================*/
 
 gulp.task('cd:pushAndRun', function(done) {
-  seq('build', 'manifest', 'deploy', 'test', done);
+  seq('build', 'deploy', 'test', done);
 });
 
 
