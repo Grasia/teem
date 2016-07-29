@@ -45,6 +45,21 @@ class ProjectPage {
     this.joinEl.click();
   }
 
+  getMenuEl () {
+    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
+    return element(by.css(platform + ' [ui-turn-on="dropdownProjectMenu"]'));
+  }
+
+  getLeaveEl() {
+    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
+    return element(by.css(platform + ' [join-copy-off="project.menu.join"]'));
+  }
+
+  leave () {
+    this.getMenuEl().click();
+    this.getLeaveEl().click();
+  }
+
   getTitle () {
     return this.titleEl.getText();
   }

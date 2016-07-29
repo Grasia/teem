@@ -39,10 +39,25 @@ class CommunityPage {
     return element(by.css(platform + ' button[participate]'));
   }
 
+  getMenuEl () {
+    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
+    return element(by.css(platform + ' [ui-turn-on="dropdownProjectMenu"]'));
+  }
+
+  getLeaveEl() {
+    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
+    return element(by.css(platform + ' [participate-copy-off="community.menu.join"]'));
+  }
+
   join () {
     var joinEl = this.getJoinEl();
     browser.wait(protractor.ExpectedConditions.visibilityOf(joinEl));
     joinEl.click();
+  }
+
+  leave () {
+    this.getMenuEl().click();
+    this.getLeaveEl().click();
   }
 
   getName () {
