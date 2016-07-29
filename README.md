@@ -1,4 +1,4 @@
-[![Build Status](https://ci.p2pvalue.eu/job/Teem/badge/icon)](https://ci.p2pvalue.eu/job/Teem/)
+[![Build Status](https://travis-ci.org/P2Pvalue/teem.svg?branch=master)](https://travis-ci.org/P2Pvalue/teem)
 [![Join the chat at https://gitter.im/P2Pvalue/teem](https://img.shields.io/gitter/room/nwjs/nw.js.svg
 )](https://gitter.im/P2Pvalue/teem)
 
