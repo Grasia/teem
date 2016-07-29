@@ -190,7 +190,7 @@ angular.module('Teem')
               // project.title || community.name
               hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
 
-            // remove from emails existing user addressed, that has already been invited and notified
+            // remove from emails existing user addresses, that has already been invited and notified
             emails.forEach(function(e, i){
               if (users.indexOf(e) >= 0){
                 emails.splice(i, 1);
