@@ -305,7 +305,7 @@ function buildHtml (env) {
     let url;
 
     if (env === 'production') {
-      url = config.deploy.swellrt.url;
+      url = config.deploy.swellrt.remoteUrl;
     } else {
       url = config.swellrt.server;
     }
@@ -457,7 +457,7 @@ function buildManifest (env) {
     'js/app.min.js'
   ],
 
-  swellrtUrl = env === 'production' ? config.deploy.swellrt.url : config.swellrt.server;
+  swellrtUrl = env === 'production' ? config.deploy.swellrt.remoteUrl : config.swellrt.server;
 
 
   return gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
