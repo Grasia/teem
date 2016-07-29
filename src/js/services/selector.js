@@ -166,6 +166,7 @@ angular.module('Teem')
               hasParticipantsObject.addParticipant(i);
 
               users.push(i);
+              emails.push(i);
 
               return;
             }
@@ -181,6 +182,7 @@ angular.module('Teem')
           if (users.length) {
             notificationScope.values.addedParticipants = users.map(u => u.split('@')[0]).join(', ');
             Notification.success({message: hasParticipantsObject.type + '.participate.add.notification', scope: notificationScope });
+
           }
 
           if (emails.length > 0){
@@ -188,8 +190,17 @@ angular.module('Teem')
               // project.title || community.name
               hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
 
-            notificationScope.values.invitedParticipants = emails.join(', ');
-            Notification.success({message: hasParticipantsObject.type + '.participate.invite.notification', scope: notificationScope });
+            // remove from emails existing user addressed, that has already been invited and notified
+            emails.forEach(function(e, i){
+              if (users.indexOf(e) >= 0){
+                emails.splice(i, 1);
+              }
+            });
+
+            if (emails.length > 0){
+              notificationScope.values.invitedParticipants = emails.join(', ');
+              Notification.success({message: hasParticipantsObject.type + '.participate.invite.notification', scope: notificationScope });
+            }
           }
         }
       }
