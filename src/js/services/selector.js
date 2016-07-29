@@ -36,7 +36,7 @@ angular.module('Teem')
       .toString(16);
 
       var avatar =  '<div id="' + randomId + '">' +
-      '<span avatars="\'' + escape(item._id) +'\'" class="avatars" avatars-conf="{size: \'xsmall\'}"></span>' +
+      '<span avatars="\'' + escape(item._id) +'\'" class="avatars-without-names" avatars-conf="{size: \'xsmall\'}"></span>' +
       escape(item.nick) +
       '</div>';
 
