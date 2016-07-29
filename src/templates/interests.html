@@ -1,0 +1,39 @@
+<div class="interests">
+  <div class="row interest-heading">
+    <div class="col-sm-8 col-md-8">
+      <h1 translate>interests.title</h1>
+      <h2 translate>interests.subtitle</h2>
+    </div>
+    <div class="col-sm-4 col-md-4 hidden-xs">
+      <button class="btn btn-primary btn-raised pull-right" ng-disabled="selected < 3" ng-click="displaySelected()" ng-class="{'lets-go': selected > 3}">
+        {{'interests.button' | translate}}
+      </button>
+    </div>
+  </div>
+  <div class="scrollable">
+    <div class="scrollable-content">
+      <div class="interest-list">
+        <div class="interest-item col-xs-6 col-sm-4 col-md-3" ng-repeat="interest in interests | toArray:true" ng-click="select(interest)" ng-class="{'interest-item-selected': interest.selected}">
+          <div class="thumbnail">
+            <div class="interest-photo">
+              <div class="overlay">
+                <img ng-src="{{interest.logo}}" class="img-responsive">
+              </div>
+              <div class="interest-title">
+                <h3 ng-bind-html="interest.name"></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="interest-mobile-button">
+        <div class="row visible-xs">
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary btn-raised btn-block session-submit-btn text-uppercase" value="{{'interests.button' | translate}}" ng-disabled="selected <3" ng-click="displaySelected()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

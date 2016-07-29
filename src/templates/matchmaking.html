@@ -1,0 +1,61 @@
+<div ng-include="'navbar-top/matchmaking.html'"></div>
+<div class="project">
+  <div class="project-navigation">
+    <div class="btn-group justified">
+      <a ui-set="{'projectTab': 'communities'}" ui-class="{'active': projectTab == 'communities'}" class="nav-pad">
+        <span translate>matchmaking.nav.communities</span>
+        <span class="material-icons notification-indicator" ng-if="hasChanged('communities')">fiber_manual_record</span> </a>
+      <a ui-set="{'projectTab': 'lend'}" ui-class="{'active': projectTab == 'lend'}" class="nav-needs">
+        <span translate>matchmaking.nav.lend</span>
+        <span class="material-icons notification-indicator" ng-if="hasChanged('lend')">fiber_manual_record</span> </a>
+    </div>
+  </div>
+  <div class="project-tabs-container">
+    <div ui-state="projectTab" class="project-tabs">
+      <div ui-if="projectTab == 'communities'" hm-swiperight="swipeToLend" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}' class="flex-container">
+        <div class="communities">
+          <div class="scrollable">
+            <div class="scrollable-content pos-r">
+              <div class="community-list">
+                <div class="community-item col-sm-6 col-md-4"  
+                     ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0'" 
+                     ng-click="showCommunity(community)">
+                  <div class="thumbnail">
+                    <div class="community-photo">
+                      <img ng-src="{{community.logo}}">
+                    </div>
+                    <div class="caption">
+                      <h3 class="community-title" ng-bind-html="community.name"></h3>
+                      <div class="community-description">
+                        {{ community.description }}
+                      </div>
+                      <div class="community-item-footer row">
+                        <div class="col-xs-6">
+                          <div class="community-participant-count">
+                            <i class="icon-count i-project"><span class="icon-count-number">{{ community.numProjects || 0 }}</span></i>
+                            <i class="icon-count i-participant"><span class="icon-count-number">{{ community.participantCount() }}</span></i>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <a class="btn btn-link pull-right community-view-more"> {{'community.view_more' | translate }} <i class="i-arrow-forward"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ui-if="projectTab == 'lend'" hm-swipeleft="swipeToCommunities" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
+        <div class="scrollable">
+          <div class="scrollable-content">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

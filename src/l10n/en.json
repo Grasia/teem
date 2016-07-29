@@ -406,7 +406,7 @@
       "password": "Password",
       "title": "Log in"
     },
-    "message" : {
+    "message": {
       "new_community": "To create your community you need to register first",
       "new_project": "To create your teem you need to register first",
       "new_user": "Choose a nick and a password",
@@ -492,7 +492,7 @@
           "match": "Both passwords must match",
           "required": "You forgot to repeat the password"
         },
-        "unknown":"Ups, something went wrong while establishing your new password, please try again."
+        "unknown": "Ups, something went wrong while establishing your new password, please try again."
       },
       "password": "New password",
       "passwordRepeat": "Repeat new password",
@@ -512,5 +512,17 @@
     "slide1": "See what people in your community have done",
     "slide2": "Pitch your project, find support and collaborators",
     "slide3": "Work on your project and post your needs"
+  },
+  "interests": {
+    "title": "What are you interested in?",
+    "subtitle": "Pick atleast 3",
+    "button": "Okay, let's go!"
+  },
+  "matchmaking": {
+    "title": "Matchmaking",
+    "nav": {
+      "communities": "Communities for you",
+      "lend": "Lend a Hand"
+    }
   }
 }

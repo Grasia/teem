@@ -1,0 +1,108 @@
+.interests
+  h3
+    color: $community-title-color
+    font-size: 16px
+    font-weight: bold
+    height: 22px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    margin-bottom: 0
+    display: flex
+    align-items: center
+    justify-content: center
+
+
+.interest-heading
+  background: $light-grey
+  padding: 17px 29px
+  border-bottom: solid 1px $grey
+  z-index: 1
+  position: relative
+  h1
+    font-weight: $font-weight-light
+    font-size: 30px
+  h2
+    font-size: 24px
+  .btn
+    font-weight: bold
+
+.lets-go
+  color: white !important
+
+.interest-list
+  padding-top: 140px
+
+.interest-item
+  .caption
+    padding-top: 14px
+    color: $community-description-color
+  .thumbnail
+    border-radius: 0
+
+.interest-item:hover h3
+  color: $community-title-hover-color
+
+.interest-item-selected 
+  .thumbnail
+    border: solid 4px $button-primary-background-color    
+  .interest-photo
+    h3
+      color: $button-primary-background-color
+    img
+      opacity: 0.7
+
+
+.interest-photo, .interest-gallery
+  img
+    width: 100%
+    object-fit: cover
+    max-height: 180px
+    background-color: #000
+  h3
+    text-align: center
+    width: 100%
+    
+.interest
+  display: block
+  h1, h2
+    font-size: 1.42em
+  h2
+    font-weight: $font-weight-light
+
+.interest-mobile-button
+  .text-center
+    position: fixed 
+    bottom: 0 
+    width: 100%
+  input
+    margin: 0 !important;
+
+.interest
+  h1
+    text-transform: uppercase
+@media (min-width: $screen-md-min)
+  .interest
+    h1, h2
+      font-size: 24px
+    h1
+      padding-top: 10px
+    h2
+      text-transform: none
+      font-weight: normal
+      padding-left: 16px
+  .interest-gallery
+    height: 311px
+    img
+      max-height: 311px
+  .interest-layout
+    padding-left: 35px
+    background: linear-gradient($light-grey 62px, transparent 0), linear-gradient($grey 63px, transparent 0)
+  .interest-info
+    background: white
+    margin-top: -56px
+    .interest-description
+      min-height: 30vh
+    footer
+      border-top: solid 1px $grey
+      
