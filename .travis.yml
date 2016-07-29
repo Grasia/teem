@@ -1,20 +1,29 @@
 language: node_js
+node_js:
+  - "4"
 
-sudo: required
+sudo: false
 
 services:
-  - docker
+- docker
 
-#cache:
-#  directories:
-#    - $HOME/.npm
+addons:
+  apt:
+    sources:
+      - sourceline: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
+        key_url: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
+    packages:
+      - google-chrome-stable
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y chromedriver
+cache:
+  directories:
+    - $HOME/.npm
+    - node_modules
+    - bower_components
 
 before_script:
   - npm install -g gulp
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+  - sleep 3 # give xvfb some time to start 
+
