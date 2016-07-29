@@ -322,7 +322,7 @@ function buildHtml (env) {
     let url;
 
     if (env === 'production') {
-      url = config.deploy.swellrt.remoteUrl;
+      url = config.deploy.swellrt.url;
     } else {
       url = config.swellrt.server;
     }
@@ -474,7 +474,7 @@ function buildManifest (env) {
     'js/app.min.js'
   ],
 
-  swellrtUrl = env === 'production' ? config.deploy.swellrt.remoteUrl : config.swellrt.server;
+  swellrtUrl = env === 'production' ? config.deploy.swellrt.url : config.swellrt.server;
 
 
   return gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
@@ -674,7 +674,7 @@ gulp.task('cd', function(done) {
 ============================================*/
 
 gulp.task('cd:pushAndRun', function(done) {
-  seq('build', 'deploy', [ 'clean:manifest', 'html' ], 'test', done);
+  seq('build', 'deploy', 'test', done);
 });
 
 /*============================================
