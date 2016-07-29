@@ -674,7 +674,7 @@ gulp.task('cd', function(done) {
 ============================================*/
 
 gulp.task('cd:pushAndRun', function(done) {
-  seq('build', 'deploy', [ 'clean:manifest', 'html' ], 'test', done);
+  seq('build', 'deploy', 'test', done);
 });
 
 /*============================================
