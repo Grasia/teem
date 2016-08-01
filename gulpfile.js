@@ -659,7 +659,14 @@ gulp.task('cd:pushAndRun', function(done) {
   seq('build', 'deploy', 'test', done);
 });
 
+/*============================================
+=              Build and test                =
+= Other branches just build and test         =
+============================================*/
 
+gulp.task('buildAndTest', function(done) {
+  seq('build', 'test', done);
+});
 
 
 /*====================================

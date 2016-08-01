@@ -3,7 +3,7 @@
 if [ $TRAVIS_PULL_REQUEST != "false" ]; then
   echo "Testing pull request"
 
-  gulp test
+  gulp buildAndTest
 elif [ $TRAVIS_BRANCH = "master" ]; then
   echo "Testing and deploying to production"
 
@@ -15,5 +15,5 @@ elif [ $TRAVIS_BRANCH = "staging" ]; then
 else
   echo "Testing branch $TRAVIS_BRANCH"
 
-  gulp test
+  gulp buildAndTest
 fi
