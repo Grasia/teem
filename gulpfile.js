@@ -196,7 +196,7 @@ var gulp           = require('gulp'),
   jshint         = require('gulp-jshint'),
   karma          = require('karma').Server,
   angularProtractor = require('gulp-angular-protractor'),
-  ghPages        = require('gulp-gh-pages'),
+  ghPages        = require('gh-pages'),
   dockerSwellrt  = require('gulp-docker-swellrt'),
   manifest       = require('gulp-manifest');
 
@@ -630,9 +630,10 @@ gulp.task('deploy:swellrt', function(done) {
   }).connect(config.deploy.swellrt.ssh);
 });
 
-gulp.task('deploy:files', function() {
-  return gulp.src('./www/**/*')
-    .pipe(ghPages(config.deploy.files));
+gulp.task('deploy:files', function(done) {
+  ghPages.publish(path.join(__dirname, config.dest),
+                  config.deploy.files,
+                  done);
 });
 
 gulp.task('deploy', function(done) {
