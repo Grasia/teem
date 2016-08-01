@@ -50,13 +50,17 @@ angular.module('Teem')
         function (newValue, oldValue){
           if(newValue !== oldValue){
 
-            var elem = angular.element(document.getElementById(randomId));
+            $timeout(function(){
 
-            var rendered = elem.scope().selectorCacheUpdate(item._id, compiled.html(), type);
+              var elem = angular.element(document.getElementById(randomId));
 
-            elem.html(rendered);
+              var rendered = elem.scope().selectorCacheUpdate(item._id, compiled.html(), type);
 
-            destroyWatch();
+              elem.html(rendered);
+
+              destroyWatch();
+
+            });
           }
         }
       );

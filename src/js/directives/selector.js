@@ -45,7 +45,11 @@ angular.module('Teem')
             // update cached element
             newValue = angular.element(cached).html(value);
 
+            newValue[0].className += ' cachedOption';
+
             selectize.renderCache[type][key] = newValue[0].outerHTML;
+
+            $timeout();
 
             return newValue.html();
           };
