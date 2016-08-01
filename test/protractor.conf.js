@@ -20,7 +20,11 @@ var mobile = {
   },
 };
 
-var capabilities = [desktop, mobile];
+var firefox = {
+  'browserName': 'firefox'
+};
+
+var capabilities = [desktop, mobile, firefox];
 // only desktop
 // capabilities = [desktop];
 // only mobile
