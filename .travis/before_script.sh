@@ -13,10 +13,7 @@ if [ $TRAVIS_BRANCH = "master" ] || [ $TRAVIS_BRANCH = "staging" ]; then
 
   tar xvf .travis/secrets.tar --directory .travis
 
-  # Add deploy ssh key
-  eval "$(ssh-agent -s)" #start the ssh agent
   chmod 600 .travis/id_rsa
-  ssh-add .travis/id_rsa
 
   mv .travis/config.$TRAVIS_BRANCH.js config.js
 fi
