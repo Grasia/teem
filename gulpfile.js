@@ -214,14 +214,22 @@ gulp.on('error', function(e) {
 =            Clean dest folder            =
 =========================================*/
 
-gulp.task('clean', function (cb) {
+gulp.task('clean', function () {
   return gulp.src([
     path.join(config.dest, '*.html'),
     path.join(config.dest, 'images'),
     path.join(config.dest, 'css'),
     path.join(config.dest, 'js'),
     path.join(config.dest, 'fonts'),
-    path.join(config.dest, 'l10n')
+    path.join(config.dest, 'l10n'),
+    path.join(config.dest, 'app.manifest')
+  ], { read: false })
+ .pipe(rimraf());
+});
+
+gulp.task('clean:manifest', function () {
+  return gulp.src([
+    path.join(config.dest, 'app.manifest')
   ], { read: false })
  .pipe(rimraf());
 });
@@ -657,7 +665,7 @@ gulp.task('cd', function(done) {
 ============================================*/
 
 gulp.task('cd:pushAndRun', function(done) {
-  seq('build', 'deploy', 'test', done);
+  seq('build', 'deploy', [ 'clean:manifest', 'html' ], 'test', done);
 });
 
 /*============================================
