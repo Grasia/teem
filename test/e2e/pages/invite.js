@@ -27,7 +27,7 @@ class InvitePage {
 
     this.inputInvite = element(by.css('.selectize-input input'));
 
-    this.inviteOption = element(by.css('[data-selectable]'));
+    this.inviteOption = element(by.css('.create[data-selectable], .cachedOption[data-selectable]'));
 
     browser.wait(protractor.ExpectedConditions.visibilityOf(this.inputInvite));
 
@@ -38,7 +38,6 @@ class InvitePage {
     browser.wait(protractor.ExpectedConditions.presenceOf(this.inviteOption));
 
     browser.wait(protractor.ExpectedConditions.visibilityOf(this.inviteOption));
-
 
     this.inviteOption.click();
 

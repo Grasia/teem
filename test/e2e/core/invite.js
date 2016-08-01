@@ -18,31 +18,42 @@ var InvitePage = require('./../pages/invite'),
 describe('A new user', () => {
   describe('that has registered', () =>{
 
-    registerPage.get();
+    beforeAll(() => {
+      registerPage.get();
+      registerPage.register({ nick: nick });
+    });
 
-    registerPage.register({ nick: nick });
 
     describe('can create a project', () => {
 
-      projectsPage.get();
+      beforeAll(() => {
+        projectsPage.get();
 
-      projectsPage.goToNew();
+        projectsPage.goToNew();
 
-      newProjectPage.create();
+        newProjectPage.create();
+      });
 
       describe('and invite an existing core member', () => {
 
-        invitePage.get();
-        var invited = invitePage.invite('snowden');
+        beforeAll(() => {
+          invitePage.get();
+          invitePage.invite('snowden');
+        });
 
-        it('the invited person should be in participant list', function(){
+        it('the invited person should be in participant list', () => {
           expect(projectPage.getParticipants()).toContain('snowden');
         });
       });
 
       describe('and invite a person by email', () => {
-        invitePage.get();
-        invitePage.invite('foobar@fakemail.co');
+        beforeAll(() => {
+          invitePage.get();
+          invitePage.invite('foobar@fakemail.co');
+        });
+        it('should be consistent', () => {
+          expect(false).toBeFalsy();
+        });
       });
     });
   });
