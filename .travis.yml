@@ -14,6 +14,7 @@ addons:
         key_url: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
     packages:
       - google-chrome-stable
+  ssh_known_hosts: deploy.teem.works
 
 cache:
   directories:
