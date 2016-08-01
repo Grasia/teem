@@ -8,15 +8,33 @@ selector
 .selectize-control.multi
   height: 100%
   .selectize-input
-    >div
+    display: flex !important
+    > div
       background: $selector-item-background-color !important
       border-radius: 1em !important
-      padding-left: 10px !important
+      padding-left: 0 !important
+      display: flex !important
+      height: 30px !important
+      a
+        color: $dark-grey
+      .avatars-without-names
+        margin-right: 5px
       .remove
         padding-left: 10px
         padding-right: 10px
   .selectize-dropdown
     background-image: none
+  .selectize-dropdown-content
+
+    > div
+      display: flex
+      margin-top: 10px !important
+      margin-bottom: 10px !important
+      padding-top: 0 !important
+      padding-bottom: 0!important
+      height: 30px
+      .avatars-without-names
+        margin-right: 5px
 
 .selectize-control.multi
   .selectize-input, .selectize-input.input-active

@@ -239,7 +239,7 @@
     "add_people": {
       "button": "Invita personas",
       "button_cancel": "Cancelar",
-      "button_continue": "Invitar",
+      "button_continue": "Compartir",
       "long_placeholder": "Añade personas de Teem o emails",
       "placeholder": "Añade personas de Teem o emails",
       "text": "Invita a personas para que te ayuden con este proyecto",
@@ -333,6 +333,11 @@
     },
     "share": {
       "button": "Compartir",
+      "clipboard": {
+        "copied": "Copiado al portapapeles!",
+        "copy": "Copiar!",
+        "error": "Error"
+      },
       "description": {
         "link": "Enlace para compartir:",
         "permission": "Cambiar permisos de acceso:"

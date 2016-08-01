@@ -27,6 +27,7 @@ angular
     'ab-base64',
     'angular-toArrayFilter',
     'angularMoment',
+    'ngclipboard',
     'ngImgCrop',
     'ngFileUpload',
     'flock.bootstrap.material'

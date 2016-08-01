@@ -46,6 +46,8 @@ var config = {
       './bower_components/moment/moment.js',
       './bower_components/moment/locale/es.js',
       './bower_components/angular-moment/angular-moment.js',
+      './bower_components/clipboard/dist/clipboard.js',
+      './bower_components/ngclipboard/dist/ngclipboard.js',
       './bower_components/ng-img-crop-full-extended/compile/unminified/ng-img-crop.js',
       './bower_components/ng-file-upload/ng-file-upload.js',
       './bower_components/js-emoji/lib/emoji.js',
