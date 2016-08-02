@@ -40,30 +40,30 @@ angular.module('Teem')
       escape(item.nick) +
       '</div>';
 
-      var compiled = $compile(avatar)($rootScope);
+      $timeout(function(){
 
-      // watcher to see when the element has been compiled
-      var destroyWatch = $rootScope.$watch(
-        function (){
-          return compiled[0].outerHTML;
-        },
-        function (newValue, oldValue){
-          if(newValue !== oldValue){
+        var elem = angular.element(document.getElementById(randomId));
 
-            $timeout(function(){
+        $compile(avatar)(elem.scope(), function(clone, scope){
 
-              var elem = angular.element(document.getElementById(randomId));
+        // watcher to see when the element has been compiled
+        var destroyWatch = scope.$watch(
+          function (){
+            return clone[0].outerHTML;
+          },
+          function (newValue, oldValue){
+            if(newValue !== oldValue){
 
-              var rendered = elem.scope().selectorCacheUpdate(item._id, compiled.html(), type);
+              var rendered = scope.selectorCacheUpdate(item._id, clone.html(), type);
 
-              elem.html(rendered);
+              var actualElem = angular.element(document.getElementById(randomId));
+              actualElem.html(rendered);
 
               destroyWatch();
-
-            });
-          }
-        }
-      );
+            }
+          });
+        });
+      });
 
       return avatar;
     }

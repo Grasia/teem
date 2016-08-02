@@ -73,6 +73,7 @@ angular.module('Teem')
             createAppendAvatar(user.id, user.avatarUrl);
           });
           appendEmptyAvatars();
+          $timeout();
         });
 
       });
