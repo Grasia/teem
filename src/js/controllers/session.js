@@ -252,7 +252,7 @@ angular.module('Teem')
       current: 'register',
       values: {},
       login: ['nick', 'password'],
-      register: ['nick', 'password', 'passwordRepeat', 'email'],
+      register: ['nick', 'password', 'passwordRepeat', 'email', 'terms'],
       forgottenPassword: ['email'],
       recoverPassword: ['password', 'passwordRepeat'],
       migration: ['password', 'passwordRepeat', 'email']

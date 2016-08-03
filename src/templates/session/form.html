@@ -9,9 +9,9 @@
         </div>
       </div>
 
-      <div class="col-xs-12 col-md-6 col-md-offset-3 session-form-message" ng-if="form.message">
+      <div class="col-xs-12 session-form-message">
         <div class="session-form-message-tip">
-          {{ 'session.message.' + form.message | translate }}
+          {{ 'session.message.' + (form.message ? form.message : 'new_user') | translate }}
         </div>
         <div class="session-form-message-subtip" translate>
           session.message.subtip
@@ -25,7 +25,7 @@
         {{'session.' + form.current + '.error.' + error.current | translate}}
       </div>
       <div>
-        <div ng-if="isFieldVisible('nick')"  class="form-group label-floating" ng-class="{ 'has-error': sessionForm.nick.$touched && sessionForm.nick.$invalid }">
+        <div ng-if="isFieldVisible('nick')"  class="form-group label-placeholder" ng-class="{ 'has-error': sessionForm.nick.$touched && sessionForm.nick.$invalid }">
           <label class="control-label" for="nick">{{ 'session.'+form.current+'.nick' | translate }}</label>
           <input type="text" class="form-control" id="nick" name="nick"
           ng-model="form.values.nick" ng-required="validation.required()" ng-pattern="validation.nickPattern()" />
@@ -34,7 +34,7 @@
             <span ng-message="pattern" translate>session.register.error.nick.pattern</span>
           </span>
         </div>
-        <div ng-if="isFieldVisible('password')" class="form-group label-floating" ng-class="{ 'has-error': sessionForm.password.$touched && sessionForm.password.$invalid }">
+        <div ng-if="isFieldVisible('password')" class="form-group label-placeholder" ng-class="{ 'has-error': sessionForm.password.$touched && sessionForm.password.$invalid }">
           <label class="control-label" for="password">{{ 'session.'+form.current+'.password' | translate }}</label>
           <input type="password" class="form-control" id="password" name="password"
           ng-model="form.values.password" ng-pattern="validation.passwordPattern()" ng-required="validation.required()" />
@@ -46,7 +46,7 @@
             <a ng-click="goToForm(sessionForm, 'forgottenPassword')" class="btn btn-primary session-forgotten-password-form-btn" translate>session.forgottenPassword.link</a>
           </span>
         </div>
-        <div ng-if="isFieldVisible('passwordRepeat')" class="form-group label-floating" ng-class="{ 'has-error': sessionForm.passwordRepeat.$touched && sessionForm.passwordRepeat.$invalid }">
+        <div ng-if="isFieldVisible('passwordRepeat')" class="form-group label-placeholder" ng-class="{ 'has-error': sessionForm.passwordRepeat.$touched && sessionForm.passwordRepeat.$invalid }">
           <label class="control-label" for="passwordRepeat">{{ 'session.'+form.current+'.passwordRepeat' | translate }}</label>
           <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat"
           ng-model="form.values.passwordRepeat" ng-pattern="validation.passwordPattern()" required match-validator="form.values.password" />
@@ -56,7 +56,7 @@
             <span ng-message="match" translate>session.register.error.passwordRepeat.match</span>
           </span>
         </div>
-        <div ng-if="isFieldVisible('email')" class="form-group label-floating" ng-class="{ 'has-error': sessionForm.email.$touched && sessionForm.email.$invalid }">
+        <div ng-if="isFieldVisible('email')" class="form-group label-placeholder" ng-class="{ 'has-error': sessionForm.email.$touched && sessionForm.email.$invalid }">
           <label class="control-label" for="email">{{ 'session.'+form.current+'.email' | translate }}</label>
           <input type="email" class="form-control" id="email" name="email"
           ng-model="form.values.email" required />
@@ -64,6 +64,12 @@
             <span ng-message="required">{{'session.'+form.current+'.error.email.required' | translate }}</span>
             <span ng-message="email">{{'session.'+form.current+'.error.email.email' | translate}}</span>
           </span>
+        </div>
+        <div ng-if="isFieldVisible('terms')" class="checkbox" ng-class="{ 'has-error': sessionForm.terms.$touched && sessionForm.terms.$invalid }">
+          <label>
+            <input type="checkbox" required ng-model="form.values.terms">
+            <span class="text" translate>session.register.terms</span>
+          </label>
         </div>
         <div class="row">
           <div class="text-center">
@@ -73,12 +79,12 @@
         <div class="row">
           <div class="text-center">
             <p ng-if="form.current=='register'">
-              <span translate>session.login.link_prev</span><br>
-              <a ng-click="goToForm(sessionForm, 'login')"  class="btn btn-primary session-login-form-btn text-uppercase" translate>session.login.link</a>
+              <span translate>session.login.link_prev</span>
+              <a ng-click="goToForm(sessionForm, 'login')"  class="text-uppercase" translate>session.login.link</a>
             </p>
             <p ng-if="form.current=='login'">
-              <span translate>session.register.link_prev</span><br>
-              <a ng-click="goToForm(sessionForm, 'register')" class="btn session-register-form-btn text-uppercase" translate>session.register.link</a>
+              <span translate>session.register.link_prev</span>
+              <a ng-click="goToForm(sessionForm, 'register')" class="text-uppercase" translate>session.register.link</a>
             </p>
           </div>
         </div>

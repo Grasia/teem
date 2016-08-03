@@ -452,6 +452,7 @@
       "nick": "Nombre",
       "password": "Contraseña",
       "passwordRepeat": "Repite la contraseña",
+      "terms": "Acepto los <a target=\"_blank\" href=\"https://teem.works/index.php/fair-terms-of-use/\">términos de uso</a> de la aplicación",
       "title": "Regístrate"
     },
     "forgottenPassword": {
