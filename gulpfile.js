@@ -25,6 +25,7 @@ var config = {
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
       './bower_components/bootstrap-material-design/dist/js/material.js',
       './bower_components/bootstrap-material-design/dist/js/ripples.js',
+      './bower_components/dropdown.js/jquery.dropdown.js',
       './bower_components/angular-messages/angular-messages.js',
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       './bower_components/angular-ui-notification/dist/angular-ui-notification.js',

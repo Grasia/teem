@@ -79,4 +79,14 @@ SOFTWARE.
   module.directive('cardImage', ripplesDirective);
   module.directive('btn', ripplesDirective);
 
+  var dropdownDirective = function($timeout) {
+    return {
+      restrict: 'C',
+      link: function($scope, $element) {
+        $timeout(() => {$element.dropdown();});
+      }
+    };
+  };
+  module.directive('dropdown', dropdownDirective);
+
 })();
