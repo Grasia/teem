@@ -27,6 +27,7 @@ class Session {
     this.passwordInput = element(by.model('form.values.password'));
     this.passwordRepeatInput = element(by.model('form.values.passwordRepeat'));
     this.emailInput = element(by.model('form.values.email'));
+    this.termsInput = element(by.css('[ng-model="form.values.terms"] + .checkbox-material')); // by.model('form.values.terms') is hidden due to material design
 
     this.invalidInputBy = by.css('.ng-invalid');
     this.invalidInput = element(this.invalidInputBy);
@@ -73,6 +74,10 @@ class Session {
     }
 
     return this.emailInput.sendKeys(email);
+  }
+
+  checkTerms () {
+    return this.termsInput.click();
   }
 
   // SwellRT calls are not tracked by protractor's waitForAngular
@@ -124,6 +129,7 @@ class Register extends Session {
     this.setPassword(options.password);
     this.setPasswordRepeat(options.passwordRepeat);
     this.setEmail(options.email);
+    this.checkTerms();
 
     return this.submit();
   }
