@@ -2,7 +2,7 @@
   <need-progress-bar></need-progress-bar>
 </div>
 
-<div class="section need-list">
+<div class="section need-list" ng-class="{'need-list-collapsed': project.isParticipant()}">
   <div ng-if="!project.needs.length" class="project-void-banner">
     <img src="images/needs.svg">
     <p translate>need.no_needs</p>

@@ -30,6 +30,10 @@
   .community-item-footer
     height: 40px
     border-top: 1px solid $grey
+    .col-xs-6
+      padding: 0
+      .icon-count:first-child
+        padding-left: 0
   .community-view-more
     font-weight: bold
     padding: 4px 0 0 0
@@ -87,7 +91,8 @@
   text-transform: uppercase
   text-align: right
   margin-bottom: 20px
-  text-shadow: 0 0 10px black
+  @media (min-width: $screen-md-min)
+    text-shadow: 0 0 10px black
   &::before
     @extend .material-icons
     content: 'done'
@@ -99,8 +104,6 @@
 
 .community-participant-count
   padding-top: 14px
-  .icon-count-number
-    vertical-align: super /* for some reason middle moves the number to bottom */
 .community-item-footer .community-participant-count
   padding-top: 4px
 

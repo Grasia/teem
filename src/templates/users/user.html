@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="col-md-8">
-      <div class="section">
+      <div class="profile-list">
         <h4 class="text-uppercase" translate>community.communities</h4>
         <table class="communities table table-hover">
           <tr ng-repeat="community in communities">
@@ -33,12 +33,12 @@
               </a>
             </td>
             <td ng-if="canEdit()" class="text-right">
-              <button class="btn btn-lg i-participant-remove" ng-click="leave(community)" translate>community.menu.leave</button>
+              <a class="i-participant-remove text-uppercase" ng-click="leave(community)" translate>community.menu.leave</a>
             </td>
           </tr>
         </table>
       </div>
-      <div class="section">
+      <div class="profile-list">
         <h4 class="text-uppercase" translate>project.projects</h4>
         <table class="projects table table-hover">
           <tr ng-repeat="project in projects">
@@ -53,7 +53,7 @@
               </a>
             </td>
             <td ng-if="canEdit()" class="text-right">
-              <button class="btn btn-lg i-participant-remove" ng-click="leave(project)" translate>project.menu.leave</button>
+              <a class="i-participant-remove text-uppercase" ng-click="leave(project)" translate>project.menu.leave</a>
             </td>
           </tr>
         </table>

@@ -1,7 +1,9 @@
 .profile
-  .section
-    padding-top: 40px
-    padding-left: 30px
+  @media (min-width: $screen-sm-min)
+    .profile-list
+      padding-top: 40px
+      padding-left: 30px
+      padding-right: 15px
   h4
     font-size: 14px
   table
@@ -30,7 +32,7 @@
       &:hover
         text-decoration: none
     @media (max-width: $screen-sm-max)
-      .btn.btn-lg
+      .text-right a
         font-size: 0px
   .info
     @extend .col-md-4

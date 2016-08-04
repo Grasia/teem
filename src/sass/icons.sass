@@ -21,7 +21,7 @@ i
     font-family: Lato, sans-serif
     font-size: 12px
     font-weight: bold
-    margin-left: .8em
+    margin-left: 5px
     vertical-align: middle
     font-style: normal
 
@@ -29,6 +29,10 @@ i
   @extend .material-icons
   vertical-align: middle
   display: inline
+
+a, btn
+  &.custom-icons::before
+    padding-right: 5px
 
 .i-need
   @extend .fa
