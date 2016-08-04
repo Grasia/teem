@@ -15,7 +15,7 @@ describe('Participant user', () => {
   });
 
   describe('should be able to join a project', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       browser.get(global.defaultProject.url);
       projectPage.join();
     });
@@ -30,11 +30,11 @@ describe('Participant user', () => {
       expect(projectPage.getParticipants()).not.toContain(loginPage.participant.nick);
     });
 
-    xit(', see the project in her profile, and then leave it', () => {
-      profilePage.get();
-      expect(profilePage.getProjects().toContain(global.defaultProject.title));
-      profilePage.leave(global.defaultProject);
-      expect(profilePage.getProjects().toContain(global.defaultProject));
+    it(', see the project in her profile, and then leave it', () => {
+      profilePage.get(loginPage.participant);
+      expect(profilePage.getProjects()).toContain(global.defaultProject.title);
+      profilePage.leaveProject(global.defaultProject);
+      expect(profilePage.getProjects()).not.toContain(global.defaultProject.title);
     });
   });
 });

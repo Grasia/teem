@@ -1,5 +1,31 @@
 'use strict';
 
+var desktop = {
+  'browserName': 'chrome',
+  'chromeOptions' : {
+    args: [
+      '--lang=en',
+      '--window-size=1024,800'
+    ]
+  },
+};
+
+var mobile = {
+  'browserName': 'chrome',
+  'chromeOptions' : {
+    args: [
+      '--lang=en',
+      '--window-size=350,650'
+    ]
+  },
+};
+
+var capabilities = [desktop, mobile];
+// only desktop
+// capabilities = [desktop];
+// only mobile
+// capabilities = [mobile];
+
 var gulpConfig = require(__dirname + '/../gulpfile').config;
 
 var sessionPages = require(__dirname + '/e2e/pages/session'),
@@ -16,26 +42,7 @@ exports.config = {
     'e2e/**/*.js'
   ],
 
-  multiCapabilities: [
-    {
-      'browserName': 'chrome',
-      'chromeOptions' : {
-        args: [
-          '--lang=en',
-          '--window-size=1024,800'
-        ]
-      },
-    },
-    {
-      'browserName': 'chrome',
-      'chromeOptions' : {
-        args: [
-          '--lang=en',
-          '--window-size=350,650'
-        ]
-      },
-    }
-  ],
+  multiCapabilities: capabilities,
 
   baseUrl: 'http://' + gulpConfig.serverTest.host + ':' + gulpConfig.serverTest.port + '/',
 
