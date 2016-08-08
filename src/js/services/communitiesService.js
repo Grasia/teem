@@ -209,12 +209,69 @@ angular.module('Teem')
         _aggregate: [
           {
             $match: {
-              'root.type': 'community'
+              $or: [
+                {'root.type': 'community'},
+                {$and: [
+                  {'root.type': 'project'},
+                  {'root.shareMode': 'public'}
+                ]
+              }
+            ]}
+          },
+          {
+            $project: {
+              coms: {
+                $ifNull: [
+                  '$root.communities',
+                  ['$root.id']
+                ]
+              },
+              root: {
+                $cond: [
+                  {
+                    $eq: [
+                      '$root.type', 'community'
+                    ]
+                  },
+                  '$root',
+                  null
+                ]
+              },
+              participants: {
+                $cond: [
+                  {
+                    $eq: [
+                      '$root.type', 'community'
+                    ]
+                  },
+                  '$participants',
+                  null
+                ]
+              }
             }
           },
-          { $limit: 50 } // Show only 50 communities until we paginate.
-        ]
-      };
+          {
+            $unwind: '$coms'
+          },
+          {
+            $sort: {root: -1}
+          },
+          {
+            $group: {
+              _id: '$coms',
+              number: {$sum: 1},
+              'root': {$first: '$root'},
+              'participants': {$first: '$participants'}
+            }
+          },
+          {
+            $sort:
+              { number : -1}
+          },
+          {
+            $limit: 50
+          }
+          ]};
 
       if (options.ids) {
         query._aggregate[0].$match['root.id'] = { $in: options.ids };
