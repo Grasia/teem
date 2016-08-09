@@ -74,7 +74,13 @@ var config = {
     host: 'localhost:9898',
     protocol: 'http://',
     docker: {
-      name: 'teem-swellrt'
+      name: 'teem-swellrt',
+      links: {
+        teemtag: {
+          taggedImage: 'p2pvalue/teem-tag:latest',
+          cmd: './teem_tag.py'
+        }
+      }
     }
   },
 
