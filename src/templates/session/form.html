@@ -43,7 +43,7 @@
             <span ng-message="pattern" translate>session.register.error.password.pattern</span>
           </span>
           <span class="forgotten-password-link" ng-if="form.current=='login'">
-            <a ng-click="goToForm(sessionForm, 'forgottenPassword')" class="btn btn-primary session-forgotten-password-form-btn" translate>session.forgottenPassword.link</a>
+            <a ng-click="goToForm(sessionForm, 'forgottenPassword')" class="session-forgotten-password-form-btn" translate>session.forgottenPassword.link</a>
           </span>
         </div>
         <div ng-if="isFieldVisible('passwordRepeat')" class="form-group label-placeholder" ng-class="{ 'has-error': sessionForm.passwordRepeat.$touched && sessionForm.passwordRepeat.$invalid }">
