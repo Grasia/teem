@@ -21,6 +21,7 @@ angular.module('Teem')
             }
           }
           this._participants = model.participants;
+          this.numProjects = model.numProjects;
         }
       }
 
@@ -158,50 +159,6 @@ angular.module('Teem')
     };
 
     /*
-     * Count the projects these communities have
-     * FIXME: Use ProjectsSvc for this
-     */
-    function countProjects (communities) {
-
-      return $q(function (resolve, reject) {
-
-        SwellRT.query(
-          {_aggregate:
-             [{$match: {
-               'root.type': 'project',
-               'root.shareMode': 'public',
-               'root.communities': { $in: communities.map(c => c.id) }
-             }},
-              {$unwind: '$root.communities'},
-              {$group :
-               {_id:'$root.communities',
-                number: { $sum : 1 }
-               }
-              }]},
-            function(result){
-              var counters = result.result;
-
-              angular.forEach(communities, function (c) {
-                angular.forEach(counters, function (cnt) {
-                  if (c.id === cnt._id) {
-                    c.numProjects = cnt.number;
-                  }
-                });
-
-                if (c.numProjects === undefined) {
-                  c.numProjects = 0;
-                }
-              });
-
-              resolve();
-            },
-            function(e){
-              reject(e);
-            });
-      });
-    }
-
-    /*
      * Build options for all query
      */
     function buildAllQuery(options) {
@@ -259,17 +216,20 @@ angular.module('Teem')
           {
             $group: {
               _id: '$coms',
-              number: {$sum: 1},
+              numProjects: {$sum: 1},
               'root': {$first: '$root'},
               'participants': {$first: '$participants'}
             }
           },
           {
             $sort:
-              { number : -1}
+              { numProjects : -1}
           },
           {
-            $limit: 50
+            $skip: options.pagination.pageIndex * options.pagination.pageSize
+          },
+          {
+            $limit: options.pagination.pageSize
           }
           ]};
 
@@ -288,8 +248,25 @@ angular.module('Teem')
      * Find all the communities that meet some condition
      */
     function all (options = {}) {
+
+      if (!options.pagination) {
+        options.pagination = {
+          pageSize: 50,
+          pageIndex: 0
+        };
+      }
+
       var communities = [],
           query = buildAllQuery(options);
+
+        var nextPage = function () {
+
+          // build a new options parameter for next page
+          var nextPageOptions = options;
+          nextPageOptions.pagination.pageIndex += 1;
+
+          return all(nextPageOptions);
+        };
 
       return $q(function(resolve, reject) {
 
@@ -297,17 +274,7 @@ angular.module('Teem')
             angular.forEach(result.result, function(c) {
               communities.push(new CommunityReadOnly(c));
             });
-
-            if (options.projectCount) {
-              countProjects(communities)
-                .then(function () {
-                  resolve(communities);
-                }, function (error) {
-                  reject(error);
-                });
-            } else {
-              resolve(communities);
-            }
+            resolve({ communities: communities, next: nextPage});
           },
           function(e){
             reject(e);

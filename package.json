@@ -4,7 +4,9 @@
   "description": "Teem is the P2Pvalue colaboration tool for Common-based Peer Production Communities (CBPPs)",
   "repository": "https://github.com/P2Pvalue/teem",
   "license": "AGPL-3.0",
-  "dependencies": {},
+  "dependencies": {
+    "ng-infinite-scroll": "^1.3.0"
+  },
   "devDependencies": {
     "babel-plugin-transform-object-assign": "^6.5.0",
     "babel-preset-es2015": "^6.5.0",

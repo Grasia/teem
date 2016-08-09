@@ -30,7 +30,8 @@ angular
     'ngclipboard',
     'ngImgCrop',
     'ngFileUpload',
-    'flock.bootstrap.material'
+    'flock.bootstrap.material',
+    'infinite-scroll'
   ]).
   // Application config
   // See config.js.sample for examples

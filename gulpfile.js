@@ -53,7 +53,8 @@ var config = {
       './bower_components/ng-file-upload/ng-file-upload.js',
       './bower_components/js-emoji/lib/emoji.js',
       './bower_components/textfit/textFit.js',
-      './src/vendor/aggregation.js'
+      './src/vendor/aggregation.js',
+      './node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'
     ],
 
     images: [

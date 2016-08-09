@@ -48,6 +48,8 @@ angular.module('Teem')
       });
     }
 
+    $scope.bussyPagination = true;
+
     function initialize() {
       if (!$route.current.params.id && $location.path() !== '/communities/new') {
 
@@ -57,19 +59,40 @@ angular.module('Teem')
           SessionSvc.loginRequired($scope, function() {
             Loading.show(CommunitiesSvc.participating({ projectCount: true })).
             then(function(communities){
-              $scope.communities = communities;
+              $scope.communities = communities.communities;
             });
           });
 
           break;
           default:
           Loading.show(CommunitiesSvc.all({ projectCount: true })).
-          then(function(communities) {
-            $scope.communities = communities;
+          then(function(r) {
+            $scope.communities = r.communities;
+            $scope.nextCommunityPage = r.next;
+            $scope.bussyPagination = false;
           });
         }
       }
     }
+
+
+    $scope.getCommunitiesPage = function() {
+      if ($scope.bussyPagination){
+        return;
+      }
+      if ($scope.communities && typeof $scope.nextCommunityPage === 'function'){
+        $scope.bussyPagination = true;
+        $scope.nextCommunityPage().then((r)=>{
+
+          Array.prototype.push.apply(
+            $scope.communities,
+            r.communities);
+
+          $scope.nextCommunityPage = r.next;
+          $scope.bussyPagination = false;
+        });
+      }
+    };
 
     SessionSvc.onLoad(initialize);
 
