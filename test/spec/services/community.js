@@ -55,9 +55,8 @@ describe('CommunitiesSvc', function() {
     describe('and there are not projects', function() {
       beforeEach(function () {
         spyOn(SwellRT, 'query').and.callFake(function(query, cb) {
-          var type = query._aggregate[0].$match['root.type'];
 
-          cb({ result: result[type] });
+          cb({ result: result.community });
         });
       });
 
@@ -65,7 +64,7 @@ describe('CommunitiesSvc', function() {
         it('should return communities',function(){
           var community;
 
-          CommunitiesSvc.all().then(function(cs) { communities = cs; });
+          CommunitiesSvc.all().then(function(cs) { communities = cs.communities; });
 
           // We need to trigger ProjectsSvc promise resolution
           $timeout.flush();
@@ -81,7 +80,7 @@ describe('CommunitiesSvc', function() {
         it('should return communities and project count',function(){
           var community;
 
-          CommunitiesSvc.all({ projectCount: true}).then(function(cs) { communities = cs; });
+          CommunitiesSvc.all({ projectCount: true}).then(function(cs) { communities = cs.communities  ; });
 
           // We need to trigger ProjectsSvc promise resolution
           $timeout.flush();
