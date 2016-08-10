@@ -274,13 +274,23 @@ angular.module('Teem')
           return all(nextPageOptions);
         };
 
+        var comsProxy = new Proxy(communities, {
+          get: (target, name)=>{
+            if (name === 'next') {
+              return nextPage;
+            } else{
+              return target[name];
+              }
+            }
+          });
+
       return $q(function(resolve, reject) {
 
         SwellRT.query(query, function(result) {
             angular.forEach(result.result, function(c) {
               communities.push(new CommunityReadOnly(c));
             });
-            resolve({ communities: communities, next: nextPage});
+            resolve(comsProxy);
           },
           function(e){
             reject(e);

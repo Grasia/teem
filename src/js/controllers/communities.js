@@ -59,16 +59,15 @@ angular.module('Teem')
           SessionSvc.loginRequired($scope, function() {
             Loading.show(CommunitiesSvc.participating({ projectCount: true })).
             then(function(communities){
-              $scope.communities = communities.communities;
+              $scope.communities = communities;
             });
           });
 
           break;
           default:
           Loading.show(CommunitiesSvc.all({ projectCount: true })).
-          then(function(r) {
-            $scope.communities = r.communities;
-            $scope.nextCommunityPage = r.next;
+          then(function(communities) {
+            $scope.communities = communities;
             $scope.bussyPagination = false;
           });
         }
@@ -80,15 +79,14 @@ angular.module('Teem')
       if ($scope.bussyPagination){
         return;
       }
-      if ($scope.communities && typeof $scope.nextCommunityPage === 'function'){
+      if ($scope.communities && typeof $scope.communities.next === 'function'){
         $scope.bussyPagination = true;
-        $scope.nextCommunityPage().then((r)=>{
+        $scope.communities.next().then((communities)=>{
 
           Array.prototype.push.apply(
             $scope.communities,
-            r.communities);
+            communities);
 
-          $scope.nextCommunityPage = r.next;
           $scope.bussyPagination = false;
         });
       }
