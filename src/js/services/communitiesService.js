@@ -216,7 +216,13 @@ angular.module('Teem')
           {
             $group: {
               _id: '$coms',
-              numProjects: {$sum: 1},
+              numProjects: {
+                $sum: {
+                  $cond: [
+                    { $eq: [ '$root.type', 'community' ] },
+                      0, 1
+                    ]
+              }},
               'root': {$first: '$root'},
               'participants': {$first: '$participants'}
             }
