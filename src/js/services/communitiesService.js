@@ -246,10 +246,12 @@ angular.module('Teem')
           }
           ]};
 
+      // being query._aggregate[0].$match.$or[0].$and[0] = {'root.type': 'community'}
+      var matchComSubQuery = query._aggregate[0].$match.$or[0].$and;
+
       if (options.ids) {
 
-        // being query._aggregate[0].$match.$or[0].$and[0] = {'root.type': 'community'}
-        query._aggregate[0].$match.$or[0].$and.push({
+        matchComSubQuery.push({
           'root.id': { $in: options.ids }
         });
 
@@ -257,11 +259,20 @@ angular.module('Teem')
 
       if (options.participant) {
 
-        // being query._aggregate[0].$match.$or[0].$and[0] = {'root.type': 'community'}
-        query._aggregate[0].$match.$or[0].$and.push({
+        matchComSubQuery.push({
           participants: options.participant
         });
 
+      }
+
+      if (options.nameLike) {
+
+        matchComSubQuery.push({
+          'root.name': {
+            $regex: options.nameLike,
+            $options: 'i'
+          }
+        });
       }
 
       return query;

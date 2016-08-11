@@ -394,6 +394,12 @@ angular.module('Teem')
         query._aggregate[0].$match['root.shareMode'] = 'public';
       }
 
+      if (options.titleLike) {
+        query._aggregate[0].$match['root.title'] = {
+          $regex: options.titleLike,
+          $options: 'i'
+        };
+      }
 
       return query;
     }
