@@ -167,7 +167,9 @@ angular.module('Teem')
           {
             $match: {
               $or: [
-                {'root.type': 'community'},
+                {$and: [
+                  {'root.type': 'community'}
+                ]},
                 {$and: [
                   {'root.type': 'project'},
                   {'root.shareMode': 'public'}
@@ -228,6 +230,11 @@ angular.module('Teem')
             }
           },
           {
+            $match: {
+              'root': {$ne: null}
+            }
+          },
+          {
             $sort:
               { numProjects : -1}
           },
@@ -240,11 +247,21 @@ angular.module('Teem')
           ]};
 
       if (options.ids) {
-        query._aggregate[0].$match['root.id'] = { $in: options.ids };
+
+        // being query._aggregate[0].$match.$or[0].$and[0] = {'root.type': 'community'}
+        query._aggregate[0].$match.$or[0].$and.push({
+          'root.id': { $in: options.ids }
+        });
+
       }
 
       if (options.participant) {
-        query._aggregate[0].$match.participants = options.participant;
+
+        // being query._aggregate[0].$match.$or[0].$and[0] = {'root.type': 'community'}
+        query._aggregate[0].$match.$or[0].$and.push({
+          participants: options.participant
+        });
+
       }
 
       return query;
