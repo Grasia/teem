@@ -265,38 +265,32 @@ angular.module('Teem')
       var communities = [],
           query = buildAllQuery(options);
 
-        var nextPage = function () {
+      var nextPage = function () {
 
-          // build a new options parameter for next page
-          var nextPageOptions = options;
-          nextPageOptions.pagination.pageIndex += 1;
+        // build a new options parameter for next page
+        var nextPageOptions = options;
+        nextPageOptions.pagination.pageIndex += 1;
 
-          return all(nextPageOptions);
-        };
+        return all(nextPageOptions);
+      };
 
-        var comsProxy = new Proxy(communities, {
-          get: (target, name)=>{
-            if (name === 'next') {
-              return nextPage;
-            } else{
-              return target[name];
-              }
-            }
-          });
-
-      return $q(function(resolve, reject) {
+      var commsPromise = $q(function(resolve, reject) {
 
         SwellRT.query(query, function(result) {
             angular.forEach(result.result, function(c) {
               communities.push(new CommunityReadOnly(c));
             });
-            resolve(comsProxy);
+            resolve(communities);
           },
           function(e){
             reject(e);
           }
         );
       });
+
+      commsPromise.next = nextPage;
+
+      return commsPromise;
     }
 
     // The communities the user is participating in

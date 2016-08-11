@@ -57,18 +57,23 @@ angular.module('Teem')
 
           case 'home':
           SessionSvc.loginRequired($scope, function() {
-            Loading.show(CommunitiesSvc.participating({ projectCount: true })).
+            var commsPromise = CommunitiesSvc.participating({ projectCount: true });
+            Loading.show(commsPromise).
             then(function(communities){
               $scope.communities = communities;
+              $scope.bussyPagination = false;
+              $scope.commsNextPage = commsPromise.next;
             });
           });
 
           break;
           default:
-          Loading.show(CommunitiesSvc.all({ projectCount: true })).
+          var commsPromise = CommunitiesSvc.all({ projectCount: true });
+          Loading.show(commsPromise).
           then(function(communities) {
             $scope.communities = communities;
             $scope.bussyPagination = false;
+            $scope.commsNextPage = commsPromise.next;
           });
         }
       }
@@ -79,15 +84,18 @@ angular.module('Teem')
       if ($scope.bussyPagination){
         return;
       }
-      if ($scope.communities && typeof $scope.communities.next === 'function'){
+      if ($scope.communities && typeof $scope.commsNextPage === 'function'){
         $scope.bussyPagination = true;
-        $scope.communities.next().then((communities)=>{
+        var commsPromise = $scope.commsNextPage();
+        commsPromise.then((communities)=>{
 
           Array.prototype.push.apply(
             $scope.communities,
             communities);
 
+          $scope.commsNextPage = commsPromise.next;
           $scope.bussyPagination = false;
+
         });
       }
     };
