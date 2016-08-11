@@ -69,7 +69,7 @@ angular.module('Teem')
           if (value.selected) {
             alert(value.name);
           }
-        })
+        });
 
         $location.path('/matchmaking');
       };

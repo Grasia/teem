@@ -17,9 +17,7 @@
           <div class="scrollable">
             <div class="scrollable-content pos-r">
               <div class="community-list">
-                <div class="community-item col-sm-6 col-md-4"  
-                     ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0'" 
-                     ng-click="showCommunity(community)">
+                <div class="community-item col-sm-6 col-md-4" ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0'" ng-click="showCommunity(community)">
                   <div class="thumbnail">
                     <div class="community-photo">
                       <img ng-src="{{community.logo}}">
@@ -28,6 +26,9 @@
                       <h3 class="community-title" ng-bind-html="community.name"></h3>
                       <div class="community-description">
                         {{ community.description }}
+                      </div>
+                      <div class="community-tags">
+                        <a ng-repeat="tag in community.tags" ng-click="currenTag(tag)"> {{tag}}</a>
                       </div>
                       <div class="community-item-footer row">
                         <div class="col-xs-6">

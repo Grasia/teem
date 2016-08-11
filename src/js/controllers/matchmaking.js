@@ -10,33 +10,9 @@
 
 var communities = [{
   name: 'Music',
-  logo: '/images/interests/technology.svg',
+  logo: '/images/interests/technology.png',
   description: 'The Collaborative Technology Alliance (CTA) is currently a loose informal alliance of people and projects working on collaborative technology projects. We envision the future of the social web as an ecosystem of collaborative tools designed to enable communities, guilds, and loosely affiliated groups everywhere to collaborate, share resources, sensemake and create at a scale.',
-  tags: ''
-}, {
-  name: 'Technology',
-  logo: '/images/interests/technology.svg'
-}, {
-  name: 'Travel',
-  logo: 'http://localhost:9898/attachment/7zL6d0kMXpC?wid=11'
-}, {
-  name: 'Culture'
-}, {
-  name: 'Technology',
-  logo: '/images/interests/technology.svg'
-}, {
-  name: 'Travel',
-  logo: 'http://localhost:9898/attachment/7zL6d0kMXpC?wid=11'
-}, {
-  name: 'Culture'
-}, {
-  name: 'Technology',
-  logo: '/images/interests/technology.svg'
-}, {
-  name: 'Travel',
-  logo: 'http://localhost:9898/attachment/7zL6d0kMXpC?wid=11'
-}, {
-  name: 'Culture'
+  tags: ['resources', 'technology alliance cta', 'ecosystem', 'server', 'loose informal alliance', 'rejuvenate']
 }];
 
 angular.module('Teem')
@@ -80,6 +56,10 @@ angular.module('Teem')
           }
         };
       }
+
+      $scope.currenTag = function(tag){
+        console.log(tag);
+      };
 
       $scope.swipeToLend = swipeToProjectTab('lend');
       $scope.swipeToCommunities = swipeToProjectTab('communities');
