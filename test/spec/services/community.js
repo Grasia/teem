@@ -64,7 +64,7 @@ describe('CommunitiesSvc', function() {
         it('should return communities',function(){
           var community;
 
-          CommunitiesSvc.all().then(function(cs) { communities = cs.communities; });
+          CommunitiesSvc.all().then(function(cs) { communities = cs; });
 
           // We need to trigger ProjectsSvc promise resolution
           $timeout.flush();
@@ -80,7 +80,7 @@ describe('CommunitiesSvc', function() {
         it('should return communities and project count',function(){
           var community;
 
-          CommunitiesSvc.all({ projectCount: true}).then(function(cs) { communities = cs.communities  ; });
+          CommunitiesSvc.all({ projectCount: true}).then(function(cs) { communities = cs; });
 
           // We need to trigger ProjectsSvc promise resolution
           $timeout.flush();
