@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  swellrt:
+    image: p2pvalue/swellrt:0.51.3-alpha
+    container_name: teem-swellrt
+    external_links:
+      - teem-swellrt-mongo
+    networks:
+      - my-net
+    ports:
+      - "0.0.0.0:9898:9898"
+  tagger:
+    image: p2pvalue/teem-tag:latest
+    container_name: teem-swellrt-teemtag-c
+    networks:
+      - my-net
+    ports:
+      - "5000"
+networks:
+  my-net:
+    driver: bridge
