@@ -54,17 +54,12 @@ class SwellRTPage {
 
   }
 
-  inviteProjectLink (email) {
-    var communityRegexp = new RegExp(email + '.*"(http.*/teems/.*)"' );
+  inviteLink (invitee , inviter, type) {
+    var communityRegexp = new RegExp(inviter + '.*' + invitee + '.*"(http.*/' + type + '/.*)"' );
 
     return this.logRegexp(communityRegexp, { multiline: true });
   }
 
-  inviteCommunityLink (email) {
-    var communityRegexp = new RegExp(email + '.*"(http.*/communities/.*)"' );
-
-    return this.logRegexp(communityRegexp, { multiline: true });
-  }
 }
 
 module.exports = SwellRTPage;

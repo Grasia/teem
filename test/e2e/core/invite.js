@@ -47,7 +47,7 @@ describe('A new user', () => {
         });
 
         it('should invite the person by email', () => {
-          var inviteProjectLink = swellrt.inviteProjectLink('snowden');
+          var inviteProjectLink = swellrt.inviteLink('snowden', nick, 'teems');
           browser.getCurrentUrl().then(function(url) {
             expect(inviteProjectLink).toMatch(url.split('?')[0]);
           });
@@ -64,7 +64,7 @@ describe('A new user', () => {
         });
 
         it('should invite the person by email', () => {
-          var inviteProjectLink = swellrt.inviteProjectLink(email);
+          var inviteProjectLink = swellrt.inviteLink(email, nick, 'teems');
           browser.getCurrentUrl().then(function(url) {
             expect(inviteProjectLink).toMatch(url.split('?')[0]);
           });
