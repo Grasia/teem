@@ -52,6 +52,7 @@ class CommunityPage {
   join () {
     var joinEl = this.getJoinEl();
     browser.wait(protractor.ExpectedConditions.visibilityOf(joinEl));
+
     joinEl.click();
   }
 

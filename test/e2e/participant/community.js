@@ -18,6 +18,7 @@ describe('Participant user', () => {
 
     beforeEach(() => {
       browser.get(global.defaultCommunity.url);
+
       communityPage.join();
     });
 
@@ -34,8 +35,11 @@ describe('Participant user', () => {
 
     it(', see the project in her profile, and then leave it', () => {
       profilePage.get(loginPage.participant);
+
       expect(profilePage.getCommunities()).toContain(global.defaultCommunity.name.toUpperCase());
+
       profilePage.leaveCommunity(global.defaultCommunity);
+
       expect(profilePage.getCommunities()).not.toContain(global.defaultCommunity.name.toUpperCase());
     });
   });
