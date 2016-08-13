@@ -1,22 +1,32 @@
 version: "2"
 
 services:
+  db:
+    image: mongo:latest
+    networks:
+    - my-net
+    ports:
+    - "27017"
   swellrt:
     image: p2pvalue/swellrt:0.51.3-alpha
-    container_name: teem-swellrt
-    external_links:
-      - teem-swellrt-mongo
+    depends_on:
+      - db
+      - tagger
     networks:
       - my-net
+    environment:
+      MONGODB_HOST: "db"
     ports:
-      - "0.0.0.0:9898:9898"
+      - "9898:9898"
   tagger:
-    image: p2pvalue/teem-tag:latest
-    container_name: teem-swellrt-teemtag-c
+    image: p2pvalue/teem-tag:v1
     networks:
       - my-net
     ports:
-      - "5000"
+      - "5000:5000"
+    environment:
+      TEEMTAG_USERNAME: "teemtag@local.net"
+      TEEMTAG_PASSWORD: "teemtag"
 networks:
   my-net:
     driver: bridge
