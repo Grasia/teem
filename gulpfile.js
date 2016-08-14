@@ -84,6 +84,10 @@ var config = {
     }
   },
 
+  tagger: {
+    version: 'v1'
+  },
+
   angularSwellrt: {
     path: './bower_components/angular-swellrt'
   },
@@ -624,6 +628,7 @@ gulp.task('deploy:swellrt', function(done) {
 
   connection.on('ready', function() {
     var cmd = 'SWELLRT_VERSION=' + config.deploy.swellrt.tag +
+          ' TAGGER_VERSION=' + config.tagger.version +
           ' docker-compose -f ' + config.deploy.swellrt.config +
           ' -p ' + config.deploy.swellrt.name +
           ' up -d';
