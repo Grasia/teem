@@ -31,11 +31,13 @@ cache:
     - bower_components
 
 before_script:
+  - cat /etc/hosts
+  - "sed -e 's/^127\\.0\\.1\\.1 localhost \\(.*\\)$/127.0.1.1 \\1/' /etc/hosts > /tmp/hosts"
+  - "sudo mv /tmp/hosts /etc/hosts"
   - npm install -g gulp
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-  - git config --global user.email "waiting.for.fix@travis-ci.org"
   - .travis/before_script.sh
 
 script: .travis/script.sh
