@@ -27,6 +27,7 @@ services:
     environment:
       TEEMTAG_USERNAME: "teemtag@local.net"
       TEEMTAG_PASSWORD: "teemtag"
+      SWELLRT_HOST: "swellrt"
 networks:
   my-net:
     driver: bridge
