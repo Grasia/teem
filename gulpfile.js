@@ -84,6 +84,10 @@ var config = {
     }
   },
 
+  tagger: {
+    version: 'v1'
+  },
+
   angularSwellrt: {
     path: './bower_components/angular-swellrt'
   },
@@ -322,7 +326,7 @@ function buildHtml (env) {
     let url;
 
     if (env === 'production') {
-      url = config.deploy.swellrt.url;
+      url = config.deploy.swellrt.remoteUrl;
     } else {
       url = config.swellrt.server;
     }
@@ -474,7 +478,7 @@ function buildManifest (env) {
     'js/app.min.js'
   ],
 
-  swellrtUrl = env === 'production' ? config.deploy.swellrt.url : config.swellrt.server;
+  swellrtUrl = env === 'production' ? config.deploy.swellrt.remoteUrl : config.swellrt.server;
 
 
   return gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
@@ -624,6 +628,7 @@ gulp.task('deploy:swellrt', function(done) {
 
   connection.on('ready', function() {
     var cmd = 'SWELLRT_VERSION=' + config.deploy.swellrt.tag +
+          ' TAGGER_VERSION=' + config.tagger.version +
           ' docker-compose -f ' + config.deploy.swellrt.config +
           ' -p ' + config.deploy.swellrt.name +
           ' up -d';
