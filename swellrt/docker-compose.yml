@@ -5,13 +5,12 @@ services:
     image: mongo:latest
     networks:
     - my-net
-    ports:
+    expose:
     - "27017"
   swellrt:
     image: p2pvalue/swellrt:0.51.3-alpha
     depends_on:
       - db
-      - tagger
     networks:
       - my-net
     environment:
@@ -19,11 +18,13 @@ services:
     ports:
       - "9898:9898"
   tagger:
-    image: p2pvalue/teem-tag:v1
+    image: p2pvalue/teem-tag:v1.1
     networks:
       - my-net
     ports:
       - "5000:5000"
+    depends_on:
+     - swellrt
     environment:
       TEEMTAG_USERNAME: "teemtag@local.net"
       TEEMTAG_PASSWORD: "teemtag"
