@@ -4,13 +4,10 @@ angular.module('Teem')
   .factory('needWidget', [
   '$compile', '$timeout',
   function($compile, $timeout) {
-    var editor, scope;
 
-    function init (e, s) {
-      editor = e;
-      scope = s;
+    function getWidget (scope) {
 
-      editor.registerWidget('need', {
+      return {
         onInit: function(parent, needId) {
           var element = angular.element(document.createElement('need-widget')),
               compiled = $compile(element)(scope),
@@ -40,18 +37,19 @@ angular.module('Teem')
           });
 
         }
-      });
+      };
     }
 
-    function add () {
+    function add (editor, scope) {
       var need = {
             text: ''
           },
           selection = editor.getSelection(),
           widget;
+          console.log(selection);
 
-      if (selection.toString()) {
-        need.text = selection.toString();
+      if (selection.getText()) {
+        need.text = selection.getText();
 
         selection.remove();
       }
@@ -72,7 +70,7 @@ angular.module('Teem')
     }
 
     return {
-      init,
+      getWidget,
       add
     };
   }]);

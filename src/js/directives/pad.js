@@ -25,11 +25,22 @@ angular.module('Teem')
           'format_align_left', 'format_align_center', 'format_align_right',
           'format_list_bulleted', 'format_list_numbered'];
 
-          $scope.padCreate = function(editor) {
+          var annotationMap = {
+            'text_fields': 'paragraph/header=h3',
+            'format_bold': 'style/fontWeight=bold',
+            'format_italic': 'style/fontStyle=italic',
+            'format_strikethrough': 'style/textDecoration=line-through',
+            'format_align_left': 'paragraph/textAlign=left',
+            'format_align_center': 'paragraph/textAlign=center',
+            'format_align_right': 'paragraph/textAlign=right',
+            'format_list_bulleted': 'paragraph/listStyleType=unordered',
+            'format_list_numbered': 'paragraph/listStyleType=decimal'
+          };
 
-            needWidget.init(editor, $scope);
-
-            editor.registerWidget('img', {
+          $scope.padWidgets = {
+            /*needWidget.init(editor, $scope);*/
+            'need': needWidget.getWidget($scope),
+            'img': {
               onInit: function(parentElement, state) {
                 $scope.project.attachments[state].file.getUrl().then(url => {
                   parentElement.innerHTML='<img src="'+url+'">';
@@ -40,7 +51,22 @@ angular.module('Teem')
                   parentElement.innerHTML='<img src="'+url+'">';
                 });
               }
+            }
+          };
+
+          $scope.padCreate = function(editor) {
+
+            $scope.buttons = {};
+            buttons.forEach(btn => $scope.buttons[btn] = false);
+
+            editor.onSelectionChanged(function(range) {
+              for (let btn of buttons) {
+                let [key, val] = annotationMap[btn].split('=');
+                $scope.buttons[btn] = (range.annotations[key] === val);
+              }
+              $timeout();
             });
+
           };
 
           $scope.padReady = function(editor) {
@@ -49,30 +75,6 @@ angular.module('Teem')
             // Should use .wave-editor-on when SwellRT editor callback is available
             // https://github.com/P2Pvalue/swellrt/issues/84
             var editorElement = angular.element($element.find('.swellrt-editor').children()[0]);
-
-            var annotationMap = {
-              'text_fields': 'paragraph/header=h3',
-              'format_bold': 'style/fontWeight=bold',
-              'format_italic': 'style/fontStyle=italic',
-              'format_strikethrough': 'style/textDecoration=line-through',
-              'format_align_left': 'paragraph/textAlign=left',
-              'format_align_center': 'paragraph/textAlign=center',
-              'format_align_right': 'paragraph/textAlign=right',
-              'format_list_bulleted': 'paragraph/listStyleType=unordered',
-              'format_list_numbered': 'paragraph/listStyleType=decimal'
-            };
-
-            $scope.buttons = {};
-            buttons.forEach(btn => $scope.buttons[btn] = false);
-
-            editor.onSelectionChanged(function(annotations) {
-              for (let btn of buttons) {
-                let [key, val] = annotationMap[btn].split('=');
-                $scope.buttons[btn] = (annotations[key] === val);
-              }
-              $timeout();
-            });
-
 
             $scope.annotate = function(btn) {
               let [key, val] = annotationMap[btn].split('=');
@@ -86,7 +88,7 @@ angular.module('Teem')
 
             $scope.widget = function(type) {
               if (type === 'need') {
-                needWidget.add();
+                needWidget.add(editor, $scope);
               }
               if (type === 'img') {
                 if (arguments[1] === undefined) { // First step
@@ -120,6 +122,14 @@ angular.module('Teem')
 
             if ($scope.editingDefault && $scope.project.isParticipant()) {
               $scope.pad.editing = true;
+
+              // Workarround for https://github.com/P2Pvalue/swellrt/issues/175
+              $timeout(() => {
+                let buggyBtn = 'format_list_bulleted';
+                $scope.buttons[buggyBtn] = null;
+                editorElement.focus();
+                $timeout();
+              }, 100);
             }
           };
 
