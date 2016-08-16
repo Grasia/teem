@@ -408,6 +408,7 @@
     },
     "message" : {
       "new_community": "Para crear una comunidad debes registrarte antes",
+      "new_user": "Elige tu nombre y contraseña",
       "new_project": "Para crear un teem debes registrarte antes",
       "subtip": "¡solo te llevará un minuto!"
     },

@@ -1,0 +1,39 @@
+.search
+  &.dropdown-menu
+    width: 90vh
+    height: 100%
+  @media (min-width: $screen-sm-min)
+    .search-list
+      padding-top: 40px
+      padding-left: 30px
+      padding-right: 15px
+  h4
+    font-size: 14px
+  table
+    font-size: 18px
+    &.communities
+      text-transform: uppercase
+    > tbody > tr:last-child
+      border-bottom: 1px solid $grey
+    > tbody > tr > td
+      padding: 10px 8px
+      &:first-child
+        padding: 0
+        width: 56px
+        min-width: 56px
+      &:last-child
+        padding-right: 0
+      > *
+        padding-top: 10px
+        padding-bottom: 10px
+        margin-top: 10px
+        margin-bottom: 10px
+    a
+      color: $dark-grey
+      width: 100%
+      display: block
+      &:hover
+        text-decoration: none
+    @media (max-width: $screen-sm-max)
+      .text-right a
+        font-size: 0px

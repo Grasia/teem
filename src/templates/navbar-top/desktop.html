@@ -16,6 +16,64 @@
     <li class="text-uppercase menu-option">
       <a href="/communities" translate>menu.communities.title</a>
     </li>
+    <li class="dropdown menu-option">
+      <a class="input-group"
+          ui-turn-on="searchDropdown"
+          ui-state="searchDropdown">
+
+
+        <input id="search-input" type="text" ng-model="search.input"
+        ng-model-options="{ debounce: 500 }">
+        <!-- <span class="input-group-addon"> -->
+          <i class="fa fa-search input-group-addon" ng-click="angular.element('#search-input')[0].focus()"></i>
+        <!-- </span> -->
+      </a>
+      <ul class="dropdown-menu search"
+        ui-outer-click="Ui.turnOff('searchDropdown')"
+        ui-outer-click-if="Ui.active('searchDropdown')"
+        ui-state="searchDropdown"
+        ui-show="searchDropdown">
+
+        <div class="scrollable">
+          <div class="scrollable-content">
+            <div class="search-list">
+              <h4 class="text-uppercase" translate>community.communities</h4>
+            <table class="communities table table-hover">
+              <tr ng-repeat="community in communities | filter:search.input">
+                <td>
+                  <a href="{{ community.path() }}" class="project-photo-small">
+                    <img ng-src="{{community.logo()}}">
+                  </a>
+                </td>
+                <td>
+                  <a href="{{ community.path() }}">
+                    <span ng-bind-html="community.name | uibTypeaheadHighlight:search.input"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="search-list">
+            <h4 class="text-uppercase" translate>project.projects</h4>
+            <table class="projects table table-hover">
+              <tr ng-repeat="project in projects|filter:search.input">
+                <td>
+                  <a href="{{ project.path() }}" class="project-photo-small">
+                    <img ng-src="{{project.logo()}}">
+                  </a>
+                </td>
+                <td>
+                  <a href="{{ project.path() }}">
+                    <span ng-bind-html="project.title | uibTypeaheadHighlight:search.input"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+          </div>
+        </div>
+      </ul>
+    </li>
     <li class="text-uppercase menu-option" ng-if="support">
       <a href="/projects/{{support.projectId}}" translate>menu.feedback.title</a>
     </li>
