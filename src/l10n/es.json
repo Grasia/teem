@@ -73,6 +73,7 @@
     },
     "search": {
       "placeholder": "Encuentra tu comunidad...",
+      "see_all": "Ver todas",
       "suggestions": "Algunas sugerencias"
     },
     "settings": {
@@ -312,6 +313,9 @@
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
     "projects": "Teems",
+    "search": {
+      "see_all": "ver todos"
+    },
     "section": {
       "name": {
         "title": "Nombre"

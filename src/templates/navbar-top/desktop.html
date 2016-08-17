@@ -6,7 +6,7 @@
     </li>
   </ul>
 
-  <ul class="nav navbar-nav navbar-right menu-desktop">
+  <ul class="nav navbar-nav navbar-right menu-desktop navbar-form">
     <li class="text-uppercase menu-option" ng-if="loggedIn()">
       <a href="/home/teems" translate>menu.homeProjects.title</a>
     </li>
@@ -16,29 +16,44 @@
     <li class="text-uppercase menu-option">
       <a href="/communities" translate>menu.communities.title</a>
     </li>
-    <li class="dropdown menu-option">
-      <a class="input-group"
-          ui-turn-on="searchDropdown"
-          ui-state="searchDropdown">
+    <li class="dropdown menu-option search">
+      <a class="input-group">
 
+        <span class="input-group-addon"
+          ui-turn-on="searchDropdown">
+          <i class="fa fa-search input-group-addon" ng-click="focusSearchInput()"></i>
+        </span>
 
-        <input id="search-input" type="text" ng-model="search.input"
-        ng-model-options="{ debounce: 500 }">
-        <!-- <span class="input-group-addon"> -->
-          <i class="fa fa-search input-group-addon" ng-click="angular.element('#search-input')[0].focus()"></i>
-        <!-- </span> -->
-      </a>
-      <ul class="dropdown-menu search"
+        <input id="search-input" class="form-control" type="text" ng-model="search.input"
+        ng-model-options="{ debounce: 500 }"
+        ui-show="searchDropdown"
+        ui-turn-on="searchDropdown"
         ui-outer-click="Ui.turnOff('searchDropdown')"
-        ui-outer-click-if="Ui.active('searchDropdown')"
+        ui-outer-click-if="Ui.active('searchDropdown')">
+
+        <span class="input-group-addon" ui-show="searchDropdown">
+          <i class="fa fa-close input-group-addon" ng-click="Ui.turnOff('searchDropdown')"></i>
+        </span>
+      </a>
+      <ul class="dropdown-menu"
+        ui-outer-click="Ui.turnOff('searchDropdown')"
+        ui-outer-click-if="Ui.active('searchDropdown') && shouldHideDropdown()"
         ui-state="searchDropdown"
         ui-show="searchDropdown">
 
-        <div class="scrollable">
-          <div class="scrollable-content">
-            <div class="search-list">
-              <h4 class="text-uppercase" translate>community.communities</h4>
-            <table class="communities table table-hover">
+        <li class="search-list">
+          <table class="communities table table-hover">
+            <thead class="flex-fixed">
+              <tr>
+                <th>
+                  <h4 class="text-uppercase" translate>community.communities</h4>
+                </th>
+                <th class="see-all">
+                  <a href="/communities" translate>community.search.see_all</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="flex-fill">
               <tr ng-repeat="community in communities | filter:search.input">
                 <td>
                   <a href="{{ community.path() }}" class="project-photo-small">
@@ -51,11 +66,22 @@
                   </a>
                 </td>
               </tr>
-            </table>
-          </div>
-          <div class="search-list">
-            <h4 class="text-uppercase" translate>project.projects</h4>
-            <table class="projects table table-hover">
+            </tbody>
+          </table>
+        </li>
+        <li class="search-list">
+          <table class="projects table table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <h4 class="text-uppercase" translate>project.projects</h4>
+                </th>
+                <th class="see-all">
+                  <a href="/teems" translate>project.search.see_all</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
               <tr ng-repeat="project in projects|filter:search.input">
                 <td>
                   <a href="{{ project.path() }}" class="project-photo-small">
@@ -68,10 +94,9 @@
                   </a>
                 </td>
               </tr>
-            </table>
-          </div>
-          </div>
-        </div>
+            </tbody>
+          </table>
+        </li>
       </ul>
     </li>
     <li class="text-uppercase menu-option" ng-if="support">

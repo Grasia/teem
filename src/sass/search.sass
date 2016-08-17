@@ -1,18 +1,84 @@
+.flex-fill
+  -webkit-flex: 0 1 auto
+  -moz-flex: 0 1 auto
+  -ms-flex: 0 1 auto
+  flex: 0 1 auto
+
+.flex-fixed
+  -webkit-flex: 0 0 auto
+  -moz-flex: 0 0 auto
+  -ms-flex: 0 0 auto
+  flex: 0 0 auto
+
+.flex-container-v
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flexbox
+  display: -ms-flex
+  display: flex
+  -webkit-flex-direction: column
+  -moz-flex-direction: column
+  -ms-flex-direction: column
+  flex-direction: column
+
 .search
-  &.dropdown-menu
-    width: 90vh
-    height: 100%
+  &.dropdown
+    position: static
+  .dropdown-menu
+    left: 5vw
+    right: 5vw
+    max-height: 80vh
+    padding: 0px
+    &::before
+      // to remove tringle arrow of dropdown menus
+      border: 0px
+  &.menu-option
+    a.input-group
+      padding: 21px !important
   @media (min-width: $screen-sm-min)
     .search-list
-      padding-top: 40px
+      padding-top: 20px
       padding-left: 30px
       padding-right: 15px
+      position: relative
+      max-height: 40vh
+      overflow: hidden
   h4
-    font-size: 14px
+    font-size: 16px
+    font-family: "Lato"
+    margin-bottom: 0px
   table
+    max-height: 35vh
+    overflow-y: auto
+    @extend .flex-container-v
     font-size: 18px
-    &.communities
-      text-transform: uppercase
+    thead, tbody
+      //display: block
+
+    thead
+      > tr
+        display: flex
+        > .see-all
+          font-weight: normal
+          text-transform: uppercase
+          width: 100%
+          text-align: right
+          color: $dark-grey !important
+          font-size: 12px
+          a.active
+            color: inherit !important
+          a.active:hover
+            color: $light-blue !important
+          &:last-child
+            &:last-child ::after
+              content: ">"
+
+    > tbody
+      overflow-y: auto
+      overflow-x: hidden
+      top: 62px
+      bottom: 0px
+
     > tbody > tr:last-child
       border-bottom: 1px solid $grey
     > tbody > tr > td
@@ -23,6 +89,7 @@
         min-width: 56px
       &:last-child
         padding-right: 0
+        width: 100%
       > *
         padding-top: 10px
         padding-bottom: 10px
@@ -37,3 +104,6 @@
     @media (max-width: $screen-sm-max)
       .text-right a
         font-size: 0px
+
+  .navbar-top-menu .search table a
+    padding: 0 !important
