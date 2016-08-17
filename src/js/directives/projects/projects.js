@@ -3,10 +3,6 @@
 angular.module('Teem')
   .directive('projects', function() {
     return {
-      scope: {
-        projects: '=projectList',
-        context: '=context'
-      },
       controller: [
         'SessionSvc', '$scope', '$location',
         function (SessionSvc, $scope, $location) {
