@@ -61,9 +61,12 @@
                   </a>
                 </td>
                 <td>
-                  <a href="{{ community.path() }}">
+                  <a class="item-name" href="{{ community.path() }}">
                     <span ng-bind-html="community.name | uibTypeaheadHighlight:search.input"></span>
                   </a>
+                  <div class="item-description">
+                    {{community.description}}
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -89,9 +92,12 @@
                   </a>
                 </td>
                 <td>
-                  <a href="{{ project.path() }}">
+                  <a class="item-name" href="{{ project.path() }}">
                     <span ng-bind-html="project.title | uibTypeaheadHighlight:search.input"></span>
                   </a>
+                  <div class="item-description">
+                    {{project.pad.excerpt}}
+                  </div>
                 </td>
               </tr>
             </tbody>

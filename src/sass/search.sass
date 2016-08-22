@@ -58,29 +58,31 @@
     thead
       > tr
         display: flex
-        > .see-all
-          font-weight: normal
-          text-transform: uppercase
-          width: 100%
-          text-align: right
-          color: $dark-grey !important
-          font-size: 12px
-          a.active
-            color: inherit !important
-          a.active:hover
-            color: $light-blue !important
-          &:last-child
-            &:last-child ::after
-              content: ">"
+    .see-all
+      font-weight: normal
+      text-transform: uppercase
+      width: 100%
+      text-align: right
+      color: $dark-grey !important
+      font-size: 12px
+      a.active
+        color: inherit !important
+      a.active:hover
+        color: $light-blue !important
+      &:last-child
+        &:last-child ::after
+          content: ">"
 
     > tbody
       overflow-y: auto
-      overflow-x: hidden
       top: 62px
       bottom: 0px
-
-    > tbody > tr:last-child
-      border-bottom: 1px solid $grey
+      > tr
+        width: 100%
+        display: flex
+        padding: 0px 15px
+      &:last-child
+        border-bottom: 1px solid $grey
     > tbody > tr > td
       padding: 10px 8px
       &:first-child
@@ -90,11 +92,9 @@
       &:last-child
         padding-right: 0
         width: 100%
-      > *
-        padding-top: 10px
-        padding-bottom: 10px
-        margin-top: 10px
-        margin-bottom: 10px
+        @extend .flex-container-v
+        min-width: 0
+        display: inline-flex
     a
       color: $dark-grey
       width: 100%
@@ -104,6 +104,14 @@
     @media (max-width: $screen-sm-max)
       .text-right a
         font-size: 0px
-
-  .navbar-top-menu .search table a
-    padding: 0 !important
+  a.item-name
+    padding-top: 0px !important
+    padding-bottom: 0px !important
+    font-size: 18px
+    color: $dark-grey
+  .item-description
+    @extend .overflow-ellipsis
+    font-size: 16px
+    color: $other-grey !important
+    &:hover
+      color: $other-grey !important
