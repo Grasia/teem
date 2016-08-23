@@ -51,5 +51,10 @@
     <a class="list-group-item" href="/home/communities" ng-if="loggedIn()" translate>menu.homeCommunities.title</a>
     <a class="list-group-item" href="/communities" translate>menu.communities.title</a>
     <a class="list-group-item" href="/projects/{{support.projectId}}" ng-if="support" translate>menu.feedback.title</a>
+    <a class="list-group-item"
+      ui-set="{modalSharedState: {name: 'searchMod'}}"
+     translate>
+     menu.search.title
+   </a>
   </div>
 </div>

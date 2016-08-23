@@ -40,58 +40,9 @@ angular.module('Teem')
       $location.path('/');
     };
 
-    $scope.communities = [];
-
-    $scope.projects = [];
-
-    // to distinguis new projects and communities after queries
-    $scope.fetchedIds = new Set();
-
     $scope.search = {
       input: ''
     };
-
-    function initialize (){
-
-      $scope.$watch('search.input', function(value){
-
-        if (!value || value.length < 2) {
-          return;
-        }
-
-        var commsPromise = CommunitiesSvc.all({
-          nameLike: value
-        });
-
-        commsPromise.then(function(communities) {
-
-          communities.forEach(function(c){
-            if (!$scope.fetchedIds.has(c.id)){
-              $scope.communities.push(c);
-              $scope.fetchedIds.add(c.id);
-            }
-          });
-
-        });
-
-        var projsPromise = ProjectsSvc.all({
-          titleLike: value
-        });
-
-        projsPromise.then(function(projects) {
-
-          projects.forEach(function(p){
-            if (!$scope.fetchedIds.has(p.id)){
-              $scope.projects.push(p);
-              $scope.fetchedIds.add(p.id);
-            }
-          });
-
-        });
-      });
-    }
-
-    SessionSvc.onLoad(initialize);
 
     $scope.focusSearchInput = function(focus = true){
       $timeout(function(){

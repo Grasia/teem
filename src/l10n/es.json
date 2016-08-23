@@ -147,6 +147,9 @@
     "projects": {
       "title": "Teems"
     },
+    "search": {
+      "title": "Buscar"
+    },
     "session": {
       "action": "¡Participa!",
       "communities": "{{count}} comunidades",
