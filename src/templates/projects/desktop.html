@@ -1,6 +1,7 @@
 <div class="col-md-3 col-lg-2 project-sidebar bg-{{project.logoColor()}}">
   <div ng-include="'projects/badge.html'"></div>
   <div class="row project-sidebar-inner">
+    <div class="project-outline" ng-include="'projects/outline.html'"></div>
     <div project-people></div>
   </div>
   <div id="projectProjsContainer" ng-if="loggedIn()" class="row other-projects" ng-controller="ProjectsCtrl">

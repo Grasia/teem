@@ -55,6 +55,10 @@ angular.module('Teem')
             }
           };
 
+          $scope.padAnnotations = {
+            'paragraph/header': {}
+          };
+
           function updateAllButtons() {
             for (let btn of buttons) {
               let [key, val] = annotationMap[btn].split('=');
@@ -87,6 +91,14 @@ angular.module('Teem')
 
             editorElement.on('focus', updateAllButtons);
             editorElement.on('blur', disableAllButtons);
+
+            function updateOutline() {
+              $scope.pad.outline = editor.getAnnotationSet('paragraph/header');
+              $timeout();
+            }
+
+            $scope.padAnnotations['paragraph/header'].onChange = updateOutline;
+            updateOutline();
 
             $scope.annotate = function(btn) {
               let [key, val] = annotationMap[btn].split('=');
