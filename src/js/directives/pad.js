@@ -38,7 +38,6 @@ angular.module('Teem')
           };
 
           $scope.padWidgets = {
-            /*needWidget.init(editor, $scope);*/
             'need': needWidget.getWidget($scope),
             'img': {
               onInit: function(parentElement, state) {
