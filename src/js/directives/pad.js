@@ -37,6 +37,8 @@ angular.module('Teem')
             'format_list_numbered': 'paragraph/listStyleType=decimal'
           };
 
+          var annotations = {};
+
           $scope.padWidgets = {
             'need': needWidget.getWidget($scope),
             'img': {
@@ -53,19 +55,27 @@ angular.module('Teem')
             }
           };
 
-          $scope.padCreate = function(editor) {
+          function updateAllButtons() {
+            for (let btn of buttons) {
+              let [key, val] = annotationMap[btn].split('=');
+              $scope.buttons[btn] = (annotations && annotations[key] === val);
+            }
+            $timeout();
+          }
 
+          function disableAllButtons() {
             $scope.buttons = {};
             buttons.forEach(btn => $scope.buttons[btn] = false);
+            $timeout();
+          }
+
+          $scope.padCreate = function(editor) {
+            disableAllButtons();
 
             editor.onSelectionChanged(function(range) {
-              for (let btn of buttons) {
-                let [key, val] = annotationMap[btn].split('=');
-                $scope.buttons[btn] = (range.annotations[key] === val);
-              }
-              $timeout();
+              annotations = range.annotations;
+              updateAllButtons();
             });
-
           };
 
           $scope.padReady = function(editor) {
@@ -75,12 +85,17 @@ angular.module('Teem')
             // https://github.com/P2Pvalue/swellrt/issues/84
             var editorElement = angular.element($element.find('.swellrt-editor').children()[0]);
 
+            editorElement.on('focus', updateAllButtons);
+            editorElement.on('blur', disableAllButtons);
+
             $scope.annotate = function(btn) {
               let [key, val] = annotationMap[btn].split('=');
-              $scope.buttons[btn] = !$scope.buttons[btn];
-              if (!$scope.buttons[btn]) {
+              let currentVal = annotations[key];
+              if (currentVal === val) {
                 val = null;
               }
+
+              annotations[key] = val;
               editor.setAnnotation(key, val);
               editorElement.focus();
             };
