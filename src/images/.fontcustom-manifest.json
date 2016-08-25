@@ -1,0 +1,50 @@
+{
+  "checksum": {
+    "previous": "fd16545c98c406371c20000c4c0462f7338b8591d6c3d119668020b7f31a6c7e",
+    "current": "fd16545c98c406371c20000c4c0462f7338b8591d6c3d119668020b7f31a6c7e"
+  },
+  "fonts": [
+    "../fonts/fontcustom_fd16545c98c406371c20000c4c0462f7.ttf",
+    "../fonts/fontcustom_fd16545c98c406371c20000c4c0462f7.svg",
+    "../fonts/fontcustom_fd16545c98c406371c20000c4c0462f7.woff",
+    "../fonts/fontcustom_fd16545c98c406371c20000c4c0462f7.eot"
+  ],
+  "glyphs": {
+    "teem": {
+      "codepoint": 61697,
+      "source": "fontcustom/teem.svg"
+    }
+  },
+  "options": {
+    "autowidth": false,
+    "config": "fontcustom.yml",
+    "css_selector": ".icon-{{glyph}}",
+    "debug": false,
+    "font_ascent": 448,
+    "font_descent": 64,
+    "font_design_size": 16,
+    "font_em": 512,
+    "font_name": "fontcustom",
+    "force": false,
+    "input": {
+      "templates": "fontcustom/",
+      "vectors": "fontcustom/"
+    },
+    "no_hash": false,
+    "output": {
+      "css": "../sass",
+      "fonts": "../fonts",
+      "preview": "../fonts"
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "templates": [
+      "css",
+      "preview"
+    ]
+  },
+  "templates": [
+    "../sass/fontcustom.css",
+    "../fonts/fontcustom-preview.html"
+  ]
+}
