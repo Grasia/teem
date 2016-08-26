@@ -1,21 +1,23 @@
-<div class="needs-header section">
-  <need-progress-bar></need-progress-bar>
-</div>
-
-<div class="section need-list" ng-class="{'need-list-collapsed': project.isParticipant()}">
-  <div ng-if="!project.needs.length" class="project-void-banner">
-    <img src="images/needs.svg">
-    <p translate>need.no_needs</p>
+<div ng-class="{'need-list-collapsed': project.isParticipant()}">
+  <div class="needs-header section">
+    <need-progress-bar></need-progress-bar>
   </div>
 
-  <div class="list-group project-needs-list project-needs">
-
-    <div>
-      <div need-display need="{completed: 'add'}">
-      </div>
+  <div class="section need-list">
+    <div ng-if="!project.needs.length" class="project-void-banner">
+      <img src="images/needs.svg">
+      <p translate>need.no_needs</p>
     </div>
-    <div ng-repeat="need in needs | orderBy:orderByTime | orderBy: 'completed'">
-      <div need-display need="need">
+
+    <div class="list-group project-needs-list project-needs">
+
+      <div>
+        <div need-display need="{completed: 'add'}">
+        </div>
+      </div>
+      <div ng-repeat="need in needs | orderBy:orderByTime | orderBy: 'completed'">
+        <div need-display need="need">
+        </div>
       </div>
     </div>
   </div>
