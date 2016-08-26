@@ -1,0 +1,64 @@
+<ul>
+  <li class="search-list">
+    <table class="communities table table-hover">
+      <thead class="flex-fixed">
+        <tr>
+          <th>
+            <h4 class="text-uppercase" translate>community.communities</h4>
+          </th>
+          <th class="see-all">
+            <a href="/communities" translate>community.search.see_all</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="flex-fill">
+        <tr ng-repeat="community in communities | filter:search.input">
+          <td>
+            <a href="{{ community.path() }}" class="project-photo-small">
+              <img ng-src="{{community.logo()}}">
+            </a>
+          </td>
+          <td>
+            <a class="item-name" href="{{ community.path() }}">
+              <span ng-bind-html="community.name | uibTypeaheadHighlight:search.input"></span>
+            </a>
+            <div class="item-description">
+              {{community.description}}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li class="search-list">
+    <table class="projects table table-hover">
+      <thead>
+        <tr>
+          <th>
+            <h4 class="text-uppercase" translate>project.projects</h4>
+          </th>
+          <th class="see-all">
+            <a href="/teems" translate>project.search.see_all</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="project in projects|filter:search.input">
+          <td>
+            <a href="{{ project.path() }}" class="project-photo-small">
+              <img ng-src="{{project.logo()}}">
+            </a>
+          </td>
+          <td>
+            <a class="item-name" href="{{ project.path() }}">
+              <span ng-bind-html="project.title | uibTypeaheadHighlight:search.input"></span>
+            </a>
+            <div class="item-description">
+              {{project.pad.excerpt}}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>

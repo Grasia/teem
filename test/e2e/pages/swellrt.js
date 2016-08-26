@@ -54,9 +54,8 @@ class SwellRTPage {
 
   }
 
-  inviteLink (invitee , inviter, type) {
-    var communityRegexp = new RegExp(inviter + '.*' + invitee + '.*"(http.*/' + type + '/.*)"' );
-
+  inviteLink (invitee , inviter, url) {
+    var communityRegexp = new RegExp(inviter + '.*' + invitee + '.*(' + url + ')' );
     return this.logRegexp(communityRegexp, { multiline: true });
   }
 

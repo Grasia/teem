@@ -1,0 +1,127 @@
+.flex-fill
+  -webkit-flex: 0 1 auto
+  -moz-flex: 0 1 auto
+  -ms-flex: 0 1 auto
+  flex: 0 1 auto
+
+.flex-fixed
+  -webkit-flex: 0 0 auto
+  -moz-flex: 0 0 auto
+  -ms-flex: 0 0 auto
+  flex: 0 0 auto
+
+.flex-container-v
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flexbox
+  display: -ms-flex
+  display: flex
+  -webkit-flex-direction: column
+  -moz-flex-direction: column
+  -ms-flex-direction: column
+  flex-direction: column
+
+.search
+  &.dropdown
+    position: static
+  .dropdown-menu
+    left: 5vw
+    right: 5vw
+    max-height: 80vh
+    padding: 0px
+    &::before
+      // to remove tringle arrow of dropdown menus
+      border: 0px
+  &.menu-option
+    a.input-group
+      padding: 21px !important
+  @media (min-width: $screen-sm-min)
+    .search-list
+      padding-top: 20px
+      padding-left: 30px
+      padding-right: 15px
+      position: relative
+      max-height: 40vh
+      overflow: hidden
+  h4
+    font-size: 16px
+    font-family: "Lato"
+    margin-bottom: 0px
+  table
+    max-height: 35vh
+    overflow-y: auto
+    @extend .flex-container-v
+    font-size: 18px
+    thead, tbody
+      //display: block
+
+    thead
+      > tr
+        display: flex
+    .see-all
+      font-weight: normal
+      text-transform: uppercase
+      width: 100%
+      text-align: right
+      color: $dark-grey !important
+      font-size: 12px
+      a.active
+        color: inherit !important
+      a.active:hover
+        color: $light-blue !important
+      &:last-child
+        &:last-child ::after
+          content: ">"
+
+    > tbody
+      overflow-y: auto
+      top: 62px
+      bottom: 0px
+      > tr
+        width: 100%
+        display: flex
+        padding: 0px 15px
+      &:last-child
+        border-bottom: 1px solid $grey
+    > tbody > tr > td
+      padding: 10px 8px
+      &:first-child
+        padding: 0
+        width: 56px
+        min-width: 56px
+      &:last-child
+        padding-right: 0
+        width: 100%
+        @extend .flex-container-v
+        min-width: 0
+        display: inline-flex
+    a
+      color: $dark-grey
+      width: 100%
+      display: block
+      &:hover
+        text-decoration: none
+    @media (max-width: $screen-sm-max)
+      .text-right a
+        font-size: 0px
+  a.item-name
+    padding-top: 0px !important
+    padding-bottom: 0px !important
+    font-size: 18px
+    color: $dark-grey
+  .item-description
+    @extend .overflow-ellipsis
+    font-size: 16px
+    color: $other-grey !important
+    &:hover
+      color: $other-grey !important
+  li
+    list-style: none
+  ul
+    padding-left: 0px
+
+.search-modal
+  .form-group
+    margin-top: 0px
+  .modal-body
+    padding-top: 0px

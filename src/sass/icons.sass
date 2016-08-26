@@ -54,9 +54,13 @@ a, btn
     @extend .custom-icons
     content: 'person_outline'
 
-.i-project::before
-  @extend .custom-icons
-  content: 'pages'
+.i-project
+  @extend .icon-teem
+  &::before
+    vertical-align: middle
+    display: inline
+    font-size: 18px
+    padding: 3px
 
 .i-participant-new::before
   @extend .custom-icons

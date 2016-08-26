@@ -2,8 +2,8 @@
 
 class ProfilePage {
   constructor () {
-    this.communitiesTableEl = element(by.css('table.communities'));
-    this.projectsTableEl = element(by.css('table.projects'));
+    this.communitiesTableEl = element(by.css('.profile-list table.communities'));
+    this.projectsTableEl = element(by.css('.profile-list table.projects'));
   }
 
   get (user) {
@@ -23,7 +23,7 @@ class ProfilePage {
   leaveCommunity (community) {
     return this.getCommunities().then((communities) => {
       let i = communities.indexOf(community.name.toUpperCase()) + 1;
-      let el = element(by.css('table.communities tr:nth-child('+i+') td.text-right a'));
+      let el = element(by.css('.profile-list table.communities tr:nth-child('+i+') td.text-right a'));
       el.click();
       return browser.wait(protractor.ExpectedConditions.stalenessOf(el));
     });
@@ -32,7 +32,7 @@ class ProfilePage {
   leaveProject (project) {
     return this.getProjects().then((projects) => {
       let i = projects.indexOf(project.title) + 1;
-      let el = element(by.css('table.projects tr:nth-child('+i+') td.text-right a'));
+      let el = element(by.css('.profile-list table.projects tr:nth-child('+i+') td.text-right a'));
       el.click();
       return browser.wait(protractor.ExpectedConditions.stalenessOf(el));
     });

@@ -47,9 +47,10 @@ describe('A new user', () => {
         });
 
         it('should invite the person by email', () => {
-          var inviteProjectLink = swellrt.inviteLink('snowden', nick, 'teems');
           browser.getCurrentUrl().then(function(url) {
-            expect(inviteProjectLink).toMatch(url.split('?')[0]);
+            var u = url.split('?')[0];
+            var inviteProjectLink = swellrt.inviteLink('snowden', nick, u);
+            expect(inviteProjectLink).toMatch(u);
           });
         });
 
@@ -64,9 +65,10 @@ describe('A new user', () => {
         });
 
         it('should invite the person by email', () => {
-          var inviteProjectLink = swellrt.inviteLink(email, nick, 'teems');
           browser.getCurrentUrl().then(function(url) {
-            expect(inviteProjectLink).toMatch(url.split('?')[0]);
+            var u = url.split('?')[0];
+            var inviteProjectLink = swellrt.inviteLink(email, nick, u);
+            expect(inviteProjectLink).toMatch(u);
           });
         });
       });

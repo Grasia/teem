@@ -73,6 +73,7 @@
     },
     "search": {
       "placeholder": "Find your community...",
+      "see_all": "See all communities",
       "suggestions": "Some suggestions"
     },
     "settings": {
@@ -145,6 +146,9 @@
     },
     "projects": {
       "title": "Teems"
+    },
+    "search": {
+      "title": "Search"
     },
     "session": {
       "action": "Join us!",
@@ -312,6 +316,9 @@
     "project_name": "Project name",
     "project_status": "Status",
     "projects": "Teems",
+    "search": {
+      "see_all": "see all projects"
+    },
     "section": {
       "name": {
         "title": "Name"

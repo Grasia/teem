@@ -7,12 +7,12 @@
     <h1>{{'project.index.' + context + '.title' | translate}}</h1>
     <plus class="plus-desktop" plus-type="project" plus-community="community"></plus>
   </div>
-  <div class="scrollable-content">
+  <div id="indexProjContainer" class="scrollable-content">
     <div class="section projects">
       <div class="project-index-tip">
         {{'project.index.' + context + '.tip' | translate: translationData}}
       </div>
-      <projects project-list="projects" context="context"></projects>
+      <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
     </div>
   </div>
 </div>

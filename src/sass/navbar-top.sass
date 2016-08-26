@@ -76,7 +76,7 @@
     li > a
       padding-right: 25px !important
   .menu-option
-    a
+    > a
       padding-top: 30px !important
       padding-bottom: 30px !important
     .active, &:focus
@@ -88,7 +88,7 @@
     color: $navbar-top-hover-color !important
   .menu-session
     & > a
-      padding-top: 21px !important
+      padding-top: 20px !important
       & > div
         display: flex
         align-items: center
@@ -102,6 +102,9 @@
         display: inline-block
     .caret
       color: $menu-session-nick-color
+  .navbar-form
+    padding: 0px
+    border: 0px
 
 .dropdown-menu
   position: absolute

@@ -367,6 +367,12 @@ angular.module('Teem')
             $match: {
               'root.type': 'project'
             }
+          },
+          {
+            $skip: options.pagination.pageIndex * options.pagination.pageSize
+          },
+          {
+            $limit: options.pagination.pageSize
           }
         ]
       };
@@ -408,19 +414,40 @@ angular.module('Teem')
      * Find all the projects that meet some condition
      */
     function all(options) {
-      var query = buildAllQuery(options);
 
-      return $q(function(resolve, reject) {
-        var res = [];
+      if (!options.pagination) {
+        options.pagination = {};
+      }
+
+      if (!options.pagination.pageSize) {
+        options.pagination.pageSize = 50;
+      }
+
+      if (!options.pagination.pageIndex) {
+        options.pagination.pageIndex = 0;
+      }
+
+      var projects = [],
+        query = buildAllQuery(options);
+
+      var nextPage = function () {
+        // build a new options parameter for next page
+        var nextPageOptions = options;
+
+        nextPageOptions.pagination.pageIndex += 1;
+
+        return all(nextPageOptions);
+      };
+
+      var projsPromise = $q(function(resolve, reject) {
 
         SwellRT.query(query, function(result) {
           angular.forEach(result.result, function(val){
-
             var v = new ProjectReadOnly(val);
-            res.push(v);
+            projects.push(v);
           });
 
-          resolve(res);
+          resolve(projects);
         },
         function(error){
           console.log(error);
@@ -428,6 +455,10 @@ angular.module('Teem')
           reject([]);
         });
       });
+
+      projsPromise.next = nextPage;
+
+      return projsPromise;
     }
 
     function contributing () {

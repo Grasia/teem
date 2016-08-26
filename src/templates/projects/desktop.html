@@ -3,12 +3,12 @@
   <div class="row project-sidebar-inner">
     <div project-people></div>
   </div>
-  <div ng-if="loggedIn()" class="row other-projects" ng-controller="ProjectsCtrl">
+  <div id="projectProjsContainer" ng-if="loggedIn()" class="row other-projects" ng-controller="ProjectsCtrl">
     <h2 translate>project.index.home.title</h2>
     <div class="section">
       <button class="btn btn-primary btn-block btn-raised i-project" ng-click="createProject()" translate>project.create.button</button>
     </div>
-    <projects project-list="projects" context="context" ng-if="projects.length"></projects>
+    <projects project-list="projects" context="context" ng-if="projects.length" container="#projectProjsContainer"></projects>
     <div ng-if="!projects.length" class="project-void-banner">
       <p translate>project.my_projects.no_projects</p>
       <img src="images/teem_pot.svg">

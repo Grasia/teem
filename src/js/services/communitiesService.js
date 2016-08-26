@@ -284,10 +284,15 @@ angular.module('Teem')
     function all (options = {}) {
 
       if (!options.pagination) {
-        options.pagination = {
-          pageSize: 50,
-          pageIndex: 0
-        };
+        options.pagination = {};
+      }
+
+      if (!options.pagination.pageSize) {
+        options.pagination.pageSize = 50;
+      }
+
+      if (!options.pagination.pageIndex) {
+        options.pagination.pageIndex = 0;
       }
 
       var communities = [],

@@ -1,4 +1,9 @@
-<div class="community-list" infinite-scroll="getCommunitiesPage()" infinite-scroll-container="'.scrollable-content'" infinite-scroll-disabled="bussyPagination" infinite-scroll-distance="2">
+<div class="community-list"
+  infinite-scroll="getCommunitiesPage()"
+  infinite-scroll-immediate-check="false"
+  infinite-scroll-disabled="bussyPagination || farFromLast()"
+  infinite-scroll-container="container"
+  infinite-scroll-distance="0">
   <div class="community-item col-sm-6 col-md-4"
        ng-hide="creating && newCommunityName.name === ''"
        ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0'"

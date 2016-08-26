@@ -40,6 +40,24 @@ angular.module('Teem')
       $location.path('/');
     };
 
+    $scope.search = {
+      input: ''
+    };
+
+    $scope.focusSearchInput = function(focus = true){
+      $timeout(function(){
+        if (focus){
+          angular.element('#search-input')[0].focus();
+        } else {
+          angular.element('#search-input')[0].blur();
+        }
+      });
+    };
+
+    $scope.shouldHideDropdown = function(){
+      return angular.element('#search-input:focus')[0] === undefined;
+    };
+
     // We probably need to refactor this
 
     function userData () {

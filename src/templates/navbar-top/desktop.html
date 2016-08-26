@@ -6,7 +6,7 @@
     </li>
   </ul>
 
-  <ul class="nav navbar-nav navbar-right menu-desktop">
+  <ul class="nav navbar-nav navbar-right menu-desktop navbar-form">
     <li class="text-uppercase menu-option" ng-if="loggedIn()">
       <a href="/home/teems" translate>menu.homeProjects.title</a>
     </li>
@@ -15,6 +15,33 @@
     </li>
     <li class="text-uppercase menu-option">
       <a href="/communities" translate>menu.communities.title</a>
+    </li>
+    <li class="dropdown menu-option search">
+      <a class="input-group">
+
+        <span class="input-group-addon"
+          ui-turn-on="searchDropdown">
+          <i class="fa fa-search input-group-addon" ng-click="focusSearchInput()"></i>
+        </span>
+
+        <input id="search-input" class="form-control" type="text" ng-model="search.input"
+        ng-model-options="{ debounce: 500 }"
+        ui-show="searchDropdown"
+        ui-turn-on="searchDropdown"
+        ui-outer-click="Ui.turnOff('searchDropdown')"
+        ui-outer-click-if="Ui.active('searchDropdown')">
+
+        <span class="input-group-addon" ui-show="searchDropdown">
+          <i class="fa fa-close input-group-addon" ng-click="Ui.turnOff('searchDropdown')"></i>
+        </span>
+      </a>
+      <ul class="dropdown-menu"
+        ui-outer-click="Ui.turnOff('searchDropdown')"
+        ui-outer-click-if="Ui.active('searchDropdown') && shouldHideDropdown()"
+        ui-state="searchDropdown"
+        ui-show="searchDropdown">
+        <search-results query="search.input"></search-results>
+      </ul>
     </li>
     <li class="text-uppercase menu-option" ng-if="support">
       <a href="/projects/{{support.projectId}}" translate>menu.feedback.title</a>

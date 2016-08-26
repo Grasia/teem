@@ -1,0 +1,17 @@
+<modal name="searchMod" class="search-modal">
+  <header translate>
+    menu.search.title
+  </header>
+  <main class="search">
+    <a class="input-group">
+      <span class="input-group-addon"
+        ui-turn-on="searchDropdown">
+        <i class="fa fa-search input-group-addon"></i>
+      </span>
+      <input class="form-control" type="text" ng-model="search.input"
+        ng-model-options="{ debounce: 500 }" placeholder="{{'menu.search.title' | translate}}">
+    </a>
+    <div search-results query="search.input"></div>
+  </main>
+  <footer></footer>
+</modal>

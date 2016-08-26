@@ -73,6 +73,7 @@
     },
     "search": {
       "placeholder": "Encuentra tu comunidad...",
+      "see_all": "Ver todas",
       "suggestions": "Algunas sugerencias"
     },
     "settings": {
@@ -145,6 +146,9 @@
     },
     "projects": {
       "title": "Teems"
+    },
+    "search": {
+      "title": "Buscar"
     },
     "session": {
       "action": "¡Participa!",
@@ -312,6 +316,9 @@
     "project_name": "Nombre del proyecto",
     "project_status": "Estado",
     "projects": "Teems",
+    "search": {
+      "see_all": "ver todos"
+    },
     "section": {
       "name": {
         "title": "Nombre"
@@ -408,6 +415,7 @@
     },
     "message" : {
       "new_community": "Para crear una comunidad debes registrarte antes",
+      "new_user": "Elige tu nombre y contraseña",
       "new_project": "Para crear un teem debes registrarte antes",
       "subtip": "¡solo te llevará un minuto!"
     },

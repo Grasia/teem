@@ -93,10 +93,34 @@ angular.module('Teem')
         });
     }
 
+    $scope.bussyPagination = true;
+
+    $scope.getProjectsPage = function() {
+      if ($scope.bussyPagination){
+        return;
+      }
+      if ($scope.projects && typeof $scope.projsNextPage === 'function'){
+        $scope.bussyPagination = true;
+        var projsPromise = $scope.projsNextPage();
+        projsPromise.then((projects)=>{
+          if (projects.length > 0) {
+            Array.prototype.push.apply(
+              $scope.projects,
+              projects);
+
+              $scope.projsNextPage = projsPromise.next;
+              $scope.bussyPagination = false;
+          }
+
+        });
+      }
+    };
+
     SessionSvc.onLoad(function(){
       switch ($scope.context) {
         case 'community':
-          Loading.show(CommunitiesSvc.findByUrlId($route.current.params.communityId)).
+          var projsPromise = CommunitiesSvc.findByUrlId($route.current.params.communityId);
+          Loading.show(projsPromise).
             then(function(community){
               $scope.community = community;
 
@@ -106,7 +130,8 @@ angular.module('Teem')
                 then(function (projects){
 
                   $scope.projects = projects;
-
+                  $scope.bussyPagination = false;
+                  $scope.projsNextPage = projsPromise.next;
                 });
             });
 
@@ -114,7 +139,8 @@ angular.module('Teem')
         case 'home':
         case 'project':
           SessionSvc.loginRequired($scope, function() {
-            Loading.show(ProjectsSvc.all({ contributor: SessionSvc.users.current() })).
+            var projsPromise = ProjectsSvc.all({ contributor: SessionSvc.users.current() });
+            Loading.show(projsPromise).
               then(function(projects) {
 
                 // Exclude current project
@@ -125,18 +151,22 @@ angular.module('Teem')
                 getCommunities(projects);
 
                 $scope.projects = projects;
-
+                $scope.bussyPagination = false;
+                $scope.projsNextPage = projsPromise.next;
                 $scope.translationData.count = projects.length;
               });
           });
 
           break;
         default:
-          Loading.show(ProjectsSvc.all({ shareMode: 'public' })).
+          var defProjsPromise = ProjectsSvc.all({ shareMode: 'public' });
+          Loading.show(defProjsPromise).
             then(function(projects) {
               getCommunities(projects);
 
               $scope.projects = projects;
+              $scope.bussyPagination = false;
+              $scope.projsNextPage = defProjsPromise.next;
             });
       }
     });

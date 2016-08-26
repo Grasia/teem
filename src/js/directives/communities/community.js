@@ -20,12 +20,15 @@ angular.module('Teem')
 
         var editingTitle = false;
 
+        $scope.bussyPagination = true;
+
         $scope.invite = {
           list : [],
           selected: []
         };
 
         $scope.userSelectorConfig = Selector.config.users;
+
 
         SessionSvc.onLoad(function(){
           Loading.show(CommunitiesSvc.findByUrlId($route.current.params.id)).
@@ -39,15 +42,46 @@ angular.module('Teem')
                 image: community.logoUrl()
               };
 
-              Loading.show(community.myAndPublicProjects()).
+              var projsPromise = community.myAndPublicProjects();
+
+              Loading.show(projsPromise).
               then(function (projects){
 
-                $scope.projects = projects;
+                if (projects.length > 0){
+
+                  $scope.projects = projects;
+
+                  $scope.projsNextPage = projsPromise.next;
+                  $scope.bussyPagination = false;
+                }
+
               });
             });
 
             Selector.populateUserSelector($scope.invite.list);
         });
+
+        $scope.getProjectsPage = function() {
+          if ($scope.bussyPagination){
+            return;
+          }
+          if ($scope.projects && typeof $scope.projsNextPage === 'function'){
+            $scope.bussyPagination = true;
+            var projsPromise = $scope.projsNextPage();
+            projsPromise.then((projects)=>{
+
+              if (projects.length > 0) {
+                Array.prototype.push.apply(
+                  $scope.projects,
+                  projects);
+
+                  $scope.projsNextPage = projsPromise.next;
+                  $scope.bussyPagination = false;
+              }
+
+            });
+          }
+        };
 
         NewForm.initialize($scope, 'community');
 
