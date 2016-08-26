@@ -25,7 +25,7 @@
   <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden()}">
     <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !(pad.editing && !isDesktop())}">
       <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'
-      class="flex-container" ng-include="'projects/mobile.html'">
+      class="flex-container touchable" ng-include="'projects/mobile.html'">
       </div>
 
       <div ui-if="projectTab == 'needs'" hm-swipeleft="swipeToChat" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>

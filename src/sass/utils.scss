@@ -67,3 +67,7 @@
   @extend .hidden-md;
   @extend .hidden-lg;
 }
+
+.touchable {
+  touch-action: inherit !important;
+}
