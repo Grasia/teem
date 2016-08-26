@@ -103,13 +103,14 @@ angular.module('Teem')
         $scope.bussyPagination = true;
         var projsPromise = $scope.projsNextPage();
         projsPromise.then((projects)=>{
+          if (projects.length > 0) {
+            Array.prototype.push.apply(
+              $scope.projects,
+              projects);
 
-          Array.prototype.push.apply(
-            $scope.projects,
-            projects);
-
-          $scope.projsNextPage = projsPromise.next;
-          $scope.bussyPagination = false;
+              $scope.projsNextPage = projsPromise.next;
+              $scope.bussyPagination = false;
+          }
 
         });
       }

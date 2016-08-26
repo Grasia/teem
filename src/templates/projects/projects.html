@@ -1,6 +1,6 @@
 <div class="projects list-group"
   infinite-scroll="getProjectsPage()"
-  infinite-scroll-container="'.scrollable-content'" infinite-scroll-disabled="bussyPagination" infinite-scroll-distance="2">
+  infinite-scroll-container="container" infinite-scroll-disabled="bussyPagination" infinite-scroll-distance="2">
   <div class="project-item list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
 
     <div class="media">

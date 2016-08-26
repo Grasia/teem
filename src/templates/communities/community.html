@@ -1,5 +1,5 @@
 <div class="community">
-  <div class="scrollable">
+  <div id="communityProjsContainer" class="scrollable">
     <div class="scrollable-content">
 
       <div class="community-gallery" ng-if="!isNew()">
@@ -106,15 +106,13 @@
           </footer>
         </div>
 
-        <div class="community-projects col-md-6 section" ng-if="!isNew()">
+        <div id="communityProjsContainer" class="community-projects col-md-6 section" ng-if="!isNew()">
 
           <h2 class="community-project-title" translate>community.project.title</h2>
           <plus class="plus-desktop" plus-type="project" plus-community="community" ng-if="!isNew()"></plus>
 
           <div ng-if="projects.length">
-
             <projects project-list="projects"></projects>
-
           </div>
 
           <div ng-if="projects && ! projects.length">

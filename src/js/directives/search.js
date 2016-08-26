@@ -15,8 +15,6 @@ angular.module('Teem')
     return {
       link: function(scope, element, attrs){
 
-        console.log(attrs);
-
         scope.communities = [];
 
         scope.projects = [];

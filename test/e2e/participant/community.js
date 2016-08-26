@@ -33,7 +33,7 @@ describe('Participant user', () => {
       expect(communityPage.getParticipants()).not.toContain(loginPage.participant.nick);
     });
 
-    it(', see the project in her profile, and then leave it', () => {
+    xit(', see the project in her profile, and then leave it', () => {
       profilePage.get(loginPage.participant);
 
       expect(profilePage.getCommunities()).toContain(global.defaultCommunity.name.toUpperCase());

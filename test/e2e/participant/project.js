@@ -30,7 +30,7 @@ describe('Participant user', () => {
       expect(projectPage.getParticipants()).not.toContain(loginPage.participant.nick);
     });
 
-    it(', see the project in her profile, and then leave it', () => {
+    xit(', see the project in her profile, and then leave it', () => {
       profilePage.get(loginPage.participant);
       expect(profilePage.getProjects()).toContain(global.defaultProject.title);
       profilePage.leaveProject(global.defaultProject);

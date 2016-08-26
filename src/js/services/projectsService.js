@@ -433,6 +433,7 @@ angular.module('Teem')
       var nextPage = function () {
         // build a new options parameter for next page
         var nextPageOptions = options;
+
         nextPageOptions.pagination.pageIndex += 1;
 
         return all(nextPageOptions);

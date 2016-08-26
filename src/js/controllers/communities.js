@@ -89,12 +89,15 @@ angular.module('Teem')
         var commsPromise = $scope.commsNextPage();
         commsPromise.then((communities)=>{
 
-          Array.prototype.push.apply(
-            $scope.communities,
-            communities);
+          console.log(communities);
+          if (communities.length > 0) {
+            Array.prototype.push.apply(
+              $scope.communities,
+              communities);
 
-          $scope.commsNextPage = commsPromise.next;
-          $scope.bussyPagination = false;
+              $scope.commsNextPage = commsPromise.next;
+              $scope.bussyPagination = false;
+          }
 
         });
       }
