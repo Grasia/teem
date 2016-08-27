@@ -1,8 +1,14 @@
 # Teem
 
+[![Join the chat at https://gitter.im/P2Pvalue/teem-bots](https://badges.gitter.im/P2Pvalue/teem-bots.svg)](https://gitter.im/P2Pvalue/teem-bots?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Teem is the [P2Pvalue](http://p2pvalue.eu/) collaboration tool for [common-based peer production communities (CBPPs)](https://en.wikipedia.org/wiki/Commons-based_peer_production)
 
 http://teem.works/
+
+[![Build Status](https://travis-ci.org/P2Pvalue/teem.svg?branch=master)](https://travis-ci.org/P2Pvalue/teem)
+[![Join the chat at https://gitter.im/P2Pvalue/teem](https://img.shields.io/gitter/room/nwjs/nw.js.svg
+)](https://gitter.im/P2Pvalue/teem)
 
 ## Getting Started
 
