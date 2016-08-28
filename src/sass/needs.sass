@@ -127,23 +127,12 @@
     textarea:focus + .input-group-addon
       @extend .form-control:focus
 
-
-.need-list-collapsed
-  resize: vertical
-  overflow-y: auto
-  height: 35vh
-  &:active
-    height: 0px
-  .need-list
-    height: auto
-    overflow: auto
-  &:active>*
-    height: auto
-
 .project-desktop
   .need-list
     @extend .flex-container
     @extend .flex-scroll
+  .need-list-collapsed
+    height: 30vh
   .project-needs
     border-top: 1px solid $grey
     padding-top: 10px
