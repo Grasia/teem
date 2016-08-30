@@ -1,4 +1,4 @@
-<div class="section" ng-if="project._participants.length >= 3 || !project.isParticipant()">
+<div class="section flex-scroll" ng-if="project._participants.length >= 3 || !project.isParticipant()">
   <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
   <div class="project-add-users"  ng-if="project.isParticipant()">
     <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>

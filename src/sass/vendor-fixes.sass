@@ -141,3 +141,28 @@ span.emoji-sizer
 
 .btn, .input-group-btn .btn
   padding: 15px
+
+.ui-splitbar
+  overflow: hidden
+
+.glyphicon
+  font-family: 'Lato'
+
+.glyphicon-chevron-left::before
+  @extend .material-icons
+  color: $grey
+  content: 'keyboard_arrow_left'
+  margin-left: -7px
+.glyphicon-chevron-right::before
+  @extend .material-icons
+  color: $grey
+  content: 'keyboard_arrow_right'
+  margin-left: -7px
+.glyphicon-chevron-up::before
+  @extend .material-icons
+  color: $grey
+  content: 'keyboard_arrow_up'
+.glyphicon-chevron-down::before
+  @extend .material-icons
+  color: $grey
+  content: 'keyboard_arrow_down'

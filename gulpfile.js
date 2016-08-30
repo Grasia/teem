@@ -29,6 +29,8 @@ var config = {
       './bower_components/angular-messages/angular-messages.js',
       './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       './bower_components/angular-ui-notification/dist/angular-ui-notification.js',
+      './bower_components/raf/index.js',
+      './bower_components/angular-ui-layout/ui-layout.js',
       './bower_components/autosize/dist/autosize.js',
       './bower_components/angular-bindonce/bindonce.js',
       './bower_components/angular-utf8-base64/angular-utf8-base64.js',

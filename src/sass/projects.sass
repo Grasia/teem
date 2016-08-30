@@ -108,10 +108,8 @@
     font-size: 1.42em
     margin-bottom: .14em
 .project-desktop
-  display: flex
-  > div
-    display: flex
-    flex-direction: column
+  [ui-layout], [ui-layout-container]
+    overflow: hidden
   .project-title-editable
     display: flex
     justify-content: space-between
@@ -252,7 +250,6 @@
   display: flex
   align-items: center
   height: 85px
-  margin-left: -5px
   .project-title, .project-communities a
     color: white
   .media-body
@@ -285,6 +282,8 @@
 .secundary-icon
   color: $bluey-grey
 
+$project-desktop-border: 1px solid $grey
+
 .project-desktop
   background: white
   > div
@@ -299,24 +298,22 @@
     height: 0
     padding-bottom: calc(18px + 10px) /* font-size + padding */
     margin-bottom: 0
-  .project-sidebar
+  .project-info
     @extend .flex-container
     border-left: none
-    .project-sidebar-inner
+    padding-left: 6px
+    .project-info-inner
       background-color: white
       flex: 1
-      margin-left: -5px
       .section
         background-color: white
   .project-void-banner-people
     background-color: white
   .other-projects
-    @extend .flex-scroll
     background: $bluey3-grey
-    height: 50vh
-    border-top: 1px solid $grey
     .section
       background-color: inherit
+      margin: 0
     .project-photo
       @extend .project-photo-small
     .project-item-title
@@ -334,5 +331,21 @@
     background-color: $bluey3-grey
     padding-bottom: 5px
     border: none
-  .project-utils .row:last-child h2
+  .project-utils [ui-layout-container]:last-child h2
     background-color: white
+
+  .project-sidebar [ui-layout-container]:first-child
+    border-right: $project-desktop-border
+    border-bottom: $project-desktop-border
+  .project-sidebar [ui-layout-container]:last-child
+    border-right: $project-desktop-border
+    border-top: $project-desktop-border
+  .project-main
+    border-right: $project-desktop-border
+    border-left: $project-desktop-border
+  .project-utils [ui-layout-container]:first-child
+    border-left: $project-desktop-border
+    border-bottom: $project-desktop-border
+  .project-utils [ui-layout-container]:last-child
+    border-left: $project-desktop-border
+    border-top: $project-desktop-border
