@@ -63,7 +63,7 @@
           <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
         </div>
       </div>
-      <div ui-layout-container>
+      <div ui-layout-container ng-if="project.isParticipant()">
         <div class="flex-container">
           <h2 translate>chat.nav.title</h2>
           <chat class="flex-container"></chat>
