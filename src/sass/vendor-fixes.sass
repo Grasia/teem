@@ -74,7 +74,18 @@ h4, h5, h6, .h4, .h5, .h6
   box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.4)
 .btn-link:hover
   text-decoration: none
-
+.btn.btn-raised.btn-default
+  color: $teal
+  box-shadow: none
+  border: 1px solid $teal
+.btn.btn-raised.btn-primary
+  color: white
+.btn.btn-raised:disabled
+  color: #9b9b9b
+  background-color: rgba($bluey-grey, 0.2)
+  border: solid 1px $bluey-grey
+.btn.btn-raised:disabled:hover
+  background-color: rgba($bluey-grey, 0.2) !important
 
 @mixin material-underline-focus
   outline: none
@@ -131,7 +142,7 @@ img
 // http://stackoverflow.com/questions/17233804/how-to-prevent-sticky-hover-effects-for-buttons-on-touch-devices#answer-27134599
 html.touch
   .btn.btn-primary:not(.btn-raised):not(.btn-link):hover
-    background-color: $brand-primary
+    background-color: none
 
 // js-emoji
 span.emoji-outer

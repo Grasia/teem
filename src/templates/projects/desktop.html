@@ -1,6 +1,6 @@
-<div ui-layout="{flow: 'column'}">
+<div ui-layout="{flow: 'column', disableToggle: true, dividerSize: 4}">
   <div ui-layout-container size="16.66666667%" class="project-sidebar">
-    <div ui-layout>
+    <div ui-layout="{dividerSize: 4}">
       <div ui-layout-container class="project-info bg-{{project.logoColor()}}">
         <div ng-include="'projects/badge.html'"></div>
         <div class="project-info-inner flex-container flex-scroll">
@@ -12,7 +12,7 @@
         <div id="projectProjsContainer" class="flex-container other-projects" ng-controller="ProjectsCtrl">
           <h2 translate>project.index.home.title</h2>
           <div class="section">
-            <button class="btn btn-primary btn-block btn-raised i-project" ng-click="createProject()" translate>project.create.button</button>
+            <button class="btn btn-default btn-block btn-raised i-project" ng-click="createProject()" translate>project.create.button</button>
           </div>
           <projects class="flex-scroll" project-list="projects" context="context" ng-if="projects.length" container="#projectProjsContainer"></projects>
           <div ng-if="!projects.length" class="project-void-banner">
@@ -57,14 +57,14 @@
   </div>
 
   <div ui-layout-container size="25%" class="project-utils">
-    <div ui-layout>
+    <div ui-layout="{dividerSize: 4}">
       <div ui-layout-container>
         <div class="flex-container">
           <h2 translate>need.nav.title</h2>
           <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
         </div>
       </div>
-      <div ui-layout-container>
+      <div ui-layout-container ng-if="project.isParticipant()">
         <div class="flex-container">
           <h2 translate>chat.nav.title</h2>
           <chat class="flex-container"></chat>
