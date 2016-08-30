@@ -1,6 +1,6 @@
-<div ui-layout="{flow: 'column'}">
+<div ui-layout="{flow: 'column', disableToggle: true, dividerSize: 4}">
   <div ui-layout-container size="16.66666667%" class="project-sidebar">
-    <div ui-layout>
+    <div ui-layout="{dividerSize: 4}">
       <div ui-layout-container class="project-info bg-{{project.logoColor()}}">
         <div ng-include="'projects/badge.html'"></div>
         <div class="project-info-inner flex-container">
@@ -56,7 +56,7 @@
   </div>
 
   <div ui-layout-container size="25%" class="project-utils">
-    <div ui-layout>
+    <div ui-layout="{dividerSize: 4}">
       <div ui-layout-container>
         <div class="flex-container">
           <h2 translate>need.nav.title</h2>
