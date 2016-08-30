@@ -13,16 +13,22 @@ angular.module('Teem')
     '$location',
     function($location) {
 
-    const LogoColors = ['aubergine', 'blue', 'teal', 'yellow'];
+    const CommunityColors = ['aubergine', 'blue', 'teal', 'yellow', 'red', 'green'];
+    const ProjectColors = ['aubergine', 'blue', 'teal', 'yellow'];
 
     class Logo {
 
       logoColor () {
-        return LogoColors[this.id.slice(-1).charCodeAt(0) % LogoColors.length];
+        let logoColors = this.type === 'community' ? CommunityColors : ProjectColors;
+        return logoColors[this.id.slice(-1).charCodeAt(0) % logoColors.length];
+      }
+
+      logoExtension() {
+        return this.type === 'community' ? '.png' : '.svg';
       }
 
       defaultLogo () {
-        return '/images/' + this.type + '_' + this.logoColor() + '.svg';
+        return '/images/' + this.type + '_' + this.logoColor() + this.logoExtension();
       }
 
       defaultLogoUrl () {
