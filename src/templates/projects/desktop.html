@@ -11,7 +11,7 @@
         <div id="projectProjsContainer" class="flex-container other-projects" ng-controller="ProjectsCtrl">
           <h2 translate>project.index.home.title</h2>
           <div class="section">
-            <button class="btn btn-primary btn-block btn-raised i-project" ng-click="createProject()" translate>project.create.button</button>
+            <button class="btn btn-default btn-block btn-raised i-project" ng-click="createProject()" translate>project.create.button</button>
           </div>
           <projects class="flex-scroll" project-list="projects" context="context" ng-if="projects.length" container="#projectProjsContainer"></projects>
           <div ng-if="!projects.length" class="project-void-banner">
