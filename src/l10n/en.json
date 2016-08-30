@@ -200,7 +200,7 @@
     "need": {
       "missing": "This need was deleted"
     },
-    "placeholder": "You want to work on...",
+    "placeholder": "Share here how to participate in your activity or project: how to start contributing, what do you need, what has to be done, the links to the tools you use...",
     "tap_to_edit": "Tap over the text to edit it",
     "tooltip": {
       "img": "Insert image",
