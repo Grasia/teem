@@ -8,11 +8,19 @@
     <plus class="plus-desktop" plus-type="project" plus-community="community"></plus>
   </div>
   <div id="indexProjContainer" class="scrollable-content">
-    <div class="section projects">
+    <div class="section projects project-index">
       <div class="project-index-tip">
         {{'project.index.' + context + '.tip' | translate: translationData}}
       </div>
-      <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
+      <div>
+        <div class="col-md-4 col-lg-3 col-md-offset-1 col-md-push-7 col-lg-push-8 project-index-new">
+          <div>
+            <div>Comparte tu actividad o proyecto y consigue colaboradores</div>
+            <button class="btn btn-primary btn-block i-project">Crear un Teem</button>
+          </div>
+        </div>
+        <projects project-list="projects" context="context" container="#indexProjContainer" class="col-md-6 col-md-offset-1 col-md-pull-5 col-lg-pull-4"></projects>
+      </div>
     </div>
   </div>
 </div>
