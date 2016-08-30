@@ -411,13 +411,9 @@
       },
       "success": "¡Bienvenida/o {{nick}}!",
       "password": "Contraseña",
+      "tip": "",
+      "tip_title": "",
       "title": "Entrar"
-    },
-    "message" : {
-      "new_community": "Para crear una comunidad debes registrarte antes",
-      "new_user": "Elige tu nombre y contraseña",
-      "new_project": "Para crear un teem debes registrarte antes",
-      "subtip": "¡solo te llevará un minuto!"
     },
     "migration": {
       "button": "Hecho!",
@@ -457,10 +453,14 @@
       },
       "link": "Registrate aquí",
       "link_prev": "¿No estás todavía en Teem?",
+      "new_community": "Para crear una comunidad debes registrarte antes",
+      "new_user": "Elige tu nombre y contraseña",
       "nick": "Nombre",
       "password": "Contraseña",
       "passwordRepeat": "Repite la contraseña",
       "terms": "Acepto los <a target=\"_blank\" href=\"https://teem.works/index.php/fair-terms-of-use/\">términos de uso</a> de la aplicación",
+      "tip": "¡solo te llevará un minuto!",
+      "tip_title": "Para crear un teem debes registrarte antes",
       "title": "Regístrate"
     },
     "forgottenPassword": {

@@ -411,13 +411,9 @@
       },
       "success": "Welcome {{nick}}!",
       "password": "Password",
+      "tip": "",
+      "tip_title": "",
       "title": "Log in"
-    },
-    "message" : {
-      "new_community": "To create your community you need to register first",
-      "new_project": "To create your teem you need to register first",
-      "new_user": "Choose a nick and a password",
-      "subtip": "it will take you a minute only!"
     },
     "migration": {
       "button": "Done!",
@@ -457,10 +453,14 @@
       },
       "link": "Register here",
       "link_prev": "Are not you in Teem yet?",
+      "new_community": "To create your community you need to register first",
+      "new_project": "To create your teem you need to register first",
       "nick": "Nick",
       "password": "Password",
       "passwordRepeat": "Confirm password",
       "terms": "I accept the <a target=\"_blank\" href=\"https://teem.works/index.php/fair-terms-of-use/\">terms of use</a> of the application",
+      "tip": "it will take you a minute only!",
+      "tip_title": "Choose a nick and a password",
       "title": "Register"
     },
     "forgottenPassword": {

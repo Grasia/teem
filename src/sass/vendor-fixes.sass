@@ -80,7 +80,12 @@ h4, h5, h6, .h4, .h5, .h6
   border: 1px solid $teal
 .btn.btn-raised.btn-primary
   color: white
-
+.btn.btn-raised:disabled
+  color: #9b9b9b
+  background-color: rgba($bluey-grey, 0.2)
+  border: solid 1px $bluey-grey
+.btn.btn-raised:disabled:hover
+  background-color: rgba($bluey-grey, 0.2) !important
 
 @mixin material-underline-focus
   outline: none
