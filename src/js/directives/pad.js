@@ -57,6 +57,10 @@ angular.module('Teem')
 
           $scope.padAnnotations = {
             'paragraph/header': {
+              onAdd: function() {
+                $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
+                $timeout();
+              },
               onChange: function() {
                 $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
                 $timeout();
