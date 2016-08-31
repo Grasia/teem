@@ -116,6 +116,21 @@ angular.module('Teem')
       }
     };
 
+    $scope.createProject = function(){
+      SessionSvc.loginRequired($scope, function() {
+
+        var params = {};
+
+        if ($scope.communityId) {
+          params.communityId = $route.current.params.communityId;
+        }
+
+        ProjectsSvc.create(params, function(p) {
+          $location.path(p.path()).search('form', 'new');
+        });
+      });
+    };
+
     SessionSvc.onLoad(function(){
       switch ($scope.context) {
         case 'community':
