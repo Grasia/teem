@@ -64,6 +64,10 @@ angular.module('Teem')
               onChange: function() {
                 $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
                 $timeout();
+              },
+              onRemove: function() {
+                $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
+                $timeout();
               }
             },
             'link': {
