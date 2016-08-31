@@ -1,17 +1,19 @@
-<div class="needs-icons" ng-class="'needs-icons-'+project.progressType()" ng-mouseover="openTooltip=true">
-  <i class="material-icons">sentiment_dissatisfied</i>
-  <i class="material-icons">sentiment_neutral</i>
-  <i class="material-icons">sentiment_satisfied</i>
-</div>
-<div class="progress" uib-tooltip="{{project.progressPercentage() + '%'}}" tooltip-placement="bottom" tooltip-is-open="openTooltip">
-  <div class="progress-bar"
-       ng-class="'progress-bar-' + project.progressType()"
-       role="progressbar"
-       ng-attr-aria-valuenow="{{project.progressPercentage()}}"
-       aria-valuemin="0"
-       aria-valuemax="100"
-       style="min-width: 2em;"
-       ng-style="{ 'width': project.progressPercentageNotZero() + '%' }">
-       {{ project.progressPercentage() + '%'}}
+<div uib-tooltip="{{project.progressPercentage() + '%'}}" tooltip-placement="bottom">
+  <div class="needs-icons" ng-class="'needs-icons-'+project.progressType()">
+    <i class="material-icons">sentiment_dissatisfied</i>
+    <i class="material-icons">sentiment_neutral</i>
+    <i class="material-icons">sentiment_satisfied</i>
+  </div>
+  <div class="progress">
+    <div class="progress-bar"
+         ng-class="'progress-bar-' + project.progressType()"
+         role="progressbar"
+         ng-attr-aria-valuenow="{{project.progressPercentage()}}"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         style="min-width: 2em;"
+         ng-style="{ 'width': project.progressPercentageNotZero() + '%' }">
+         {{ project.progressPercentage() + '%'}}
+    </div>
   </div>
 </div>
