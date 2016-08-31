@@ -197,12 +197,20 @@
     "nav": {
       "title": "Info"
     },
+    "link": {
+      "button": "Ok",
+      "change": "change",
+      "delete": "delete",
+      "link": "Link",
+      "text": "Text"
+    },
     "need": {
       "missing": "Esta necesidad se ha borrado"
     },
     "placeholder": "Comparte aquí cómo participar en tu actividad o proyecto: cómo empezar a colaborar, las cosas que necesitais, lo que hay que hacer, la colección de enlaces a las herramientas que utilizais...",
     "tap_to_edit": "Pulsa sobre el texto para editarlo",
     "tooltip": {
+      "link": "Insertar enlace",
       "img": "Insertar image",
       "need": "Insertar necesidad",
       "text_fields": "Encabezado",
@@ -213,7 +221,8 @@
       "format_align_center": "Alinear al centro",
       "format_align_right": "Alinear a la derecha",
       "format_list_bulleted": "Lista no ordenada",
-      "format_list_numbered": "Lista ordenada"
+      "format_list_numbered": "Lista ordenada",
+      "clearFormat": "Limpiar formato"
     }
   },
   "picture": {

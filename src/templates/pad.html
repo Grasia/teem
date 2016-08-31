@@ -4,6 +4,9 @@
     <div ng-if="pad.editing" class="pad-toolbar">
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group btn-group-xs" role="group" aria-label="widgets">
+          <button type="button" ng-click="linkModal.add($event)" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.link' | translate}}">
+            <i class="material-icons">link</i>
+          </button>
           <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
             <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.img' | translate}}">
               <i class="material-icons">image</i>
@@ -16,6 +19,9 @@
         <div class="btn-group btn-group-xs" role="group" aria-label="formats">
           <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
             <i class="material-icons">{{btn}}</i>
+          </button>
+          <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}">
+            <i class="material-icons">format_clear</i>
           </button>
         </div>
       </div>
@@ -31,6 +37,30 @@
       ng-model="project.pad"
       placeholder="{{ 'pad.placeholder' | translate }}"
       block-edit="{{!project.isParticipant()}}">
+    </div>
+    <div id="link-modal" class="well bs-component" ng-class="{hidden: !linkModal.show}" ui-outer-click="linkModal.show = false; linkModal.edit = false">
+      <div ng-if="linkModal.annotation.value && !linkModal.edit">
+        <a href="{{linkModal.link}}" target="_blank">{{linkModal.link}}</a>
+         - <a ng-click="linkModal.edit = true; $event.stopPropagation()" translate>pad.link.change</a>
+         | <a ng-click="linkModal.clear()" translate>pad.link.delete</a>
+      </div>
+      <form class="form-horizontal" ng-submit="linkModal.change()" ng-if="!linkModal.annotation.value || linkModal.edit">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-md-2 control-label" translate>pad.link.text</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" ng-model="linkModal.text">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" translate>pad.link.link</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" ng-model="linkModal.link">
+            </div>
+          </div>
+          <button class="btn btn-primary pull-right" translate>pad.link.button</button>
+        </fieldset>
+      </form>
     </div>
   </div>
 </div>

@@ -51,7 +51,7 @@ angular.module('Teem')
       if (selection.text) {
         need.text = selection.text;
 
-        selection.remove();
+        editor.deleteText(selection);
       }
 
       scope.project.addNeed(need);

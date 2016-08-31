@@ -56,7 +56,20 @@ angular.module('Teem')
           };
 
           $scope.padAnnotations = {
-            'paragraph/header': {}
+            'paragraph/header': {
+              onChange: function() {
+                $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
+                $timeout();
+              }
+            },
+            'link': {
+              onEvent: function(range, event) {
+                if (event.type === 'click') {
+                  event.stopPropagation();
+                  $scope.linkModal.open(range);
+                }
+              }
+            }
           };
 
           function updateAllButtons() {
@@ -74,6 +87,49 @@ angular.module('Teem')
           }
 
           $scope.padCreate = function(editor) {
+
+            $scope.linkModal = {
+              add: function() {
+                event.stopPropagation();
+                let range = editor.getSelection();
+                if (range.text) {
+                  editor.setAnnotation('link', '');
+                }
+                $scope.linkModal.open(range);
+              },
+              open: function(range) {
+                let annotation = editor.getAnnotationInRange(range, 'link');
+
+                $scope.linkModal.range = range;
+                $scope.linkModal.annotation = annotation;
+                console.log(range);
+                let clientRect = range.node.nextSibling ?
+                  range.node.nextSibling.getBoundingClientRect() :
+                  range.node.parentElement.getBoundingClientRect();
+                document.getElementById('link-modal').style.top = clientRect.top + 25 + 'px';
+                document.getElementById('link-modal').style.left = clientRect.left + 'px';
+
+                $scope.linkModal.text = range.text;
+                $scope.linkModal.link = annotation ? annotation.value : '';
+                $scope.linkModal.show = true;
+
+                let emptyInput = !range.text ? 'text': 'link';
+                let autofocus = document.querySelector('#link-modal [ng-model="linkModal.' + emptyInput + '"]');
+                $timeout(() => autofocus && autofocus.focus());
+              },
+              change: function() {
+                let range = editor.setText($scope.linkModal.range, $scope.linkModal.text);
+                editor.setAnnotationInRange(range, 'link', $scope.linkModal.link);
+                $scope.linkModal.show = false;
+                $scope.linkModal.edit = false;
+              },
+              clear: function() {
+                editor.clearAnnotationInRange($scope.linkModal.range, 'link');
+                $scope.linkModal.show = false;
+                $scope.linkModal.edit = false;
+              }
+            };
+
             disableAllButtons();
 
             editor.onSelectionChanged(function(range) {
@@ -92,13 +148,7 @@ angular.module('Teem')
             editorElement.on('focus', updateAllButtons);
             editorElement.on('blur', disableAllButtons);
 
-            function updateOutline() {
-              $scope.pad.outline = editor.getAnnotationSet('paragraph/header');
-              $timeout();
-            }
-
-            $scope.padAnnotations['paragraph/header'].onChange = updateOutline;
-            updateOutline();
+            $scope.pad.outline = editor.getAnnotationSet('paragraph/header');
 
             $scope.annotate = function(btn) {
               let [key, val] = annotationMap[btn].split('=');
@@ -109,6 +159,11 @@ angular.module('Teem')
 
               annotations[key] = val;
               editor.setAnnotation(key, val);
+              editorElement.focus();
+            };
+
+            $scope.clearFormat = function() {
+              editor.clearAnnotation('style');
               editorElement.focus();
             };
 
@@ -148,14 +203,6 @@ angular.module('Teem')
 
             if ($scope.editingDefault && $scope.project.isParticipant()) {
               $scope.pad.editing = true;
-
-              // Workarround for https://github.com/P2Pvalue/swellrt/issues/175
-              $timeout(() => {
-                let buggyBtn = 'format_list_bulleted';
-                $scope.buttons[buggyBtn] = null;
-                editorElement.focus();
-                $timeout();
-              }, 100);
             }
           };
 
