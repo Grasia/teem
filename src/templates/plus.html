@@ -1,6 +1,6 @@
-<button class="btn btn-default btn-fab plus"
+<button class="{{text ? 'btn btn-primary btn-raised btn-block' : 'btn btn-default btn-fab plus i-plus'}}"
         ng-click="create()"
         analytics-on="click"
         analytics-event="New {{type}}">
-  <i class="i-plus"></i>
+  {{text | translate}}
 </button>

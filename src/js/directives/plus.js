@@ -5,7 +5,8 @@ angular.module('Teem')
     return {
       scope: {
         community: '=plusCommunity',
-        type: '@plusType'
+        type: '@plusType',
+        text: '@text'
       },
       controller: [
       '$scope', 'SessionSvc', 'CommunitiesSvc', 'ProjectsSvc', '$location',
