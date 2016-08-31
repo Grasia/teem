@@ -267,6 +267,10 @@
       "title": "Edit Teem"
     },
     "index": {
+      "banner": {
+        "button": "Create a Teem",
+        "text": "Share your activity or project, and involve collaborators"
+      },
       "community": {
         "tip": "These are the {{community}} work groups",
         "title": "Teems"

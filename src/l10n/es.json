@@ -267,6 +267,10 @@
       "title": "Editar proyecto"
     },
     "index": {
+      "banner": {
+        "button": "Crear un Teem",
+        "text": "Comparte tu actividad o proyecto y consigue colaboradores"
+      },
       "community": {
         "tip": "Estos son los grupos de trabajo de {{community}}",
         "title": "Teems"
