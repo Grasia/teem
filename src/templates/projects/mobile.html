@@ -1,6 +1,6 @@
 <div class="flex-container">
   <div ng-class="{'flex-container': pad.editing}">
-    <div class="section project-header bg-{{project.logoColor()}}" ng-if="!pad.editing">
+    <div class="section project-header bg-{{project.logoColor()}}" ng-if="!pad.editing && !isNew()">
       <div ng-include="'projects/badge.html'" ng-if="! isNew()"></div>
     </div>
     <div class="section" ng-if="editingTitle() && !pad.editing">

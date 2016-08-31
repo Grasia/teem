@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden()}">
+  <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden() || isNew()}">
     <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !(pad.editing && !isDesktop())}">
       <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'
       class="flex-container touchable" ng-include="'projects/mobile.html'">

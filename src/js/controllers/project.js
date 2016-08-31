@@ -125,7 +125,6 @@ angular.module('Teem')
 
     SessionSvc.onLoad(initialize);
 
-
     function currentTab() {
       return $location.search().tab || 'pad';
     }
@@ -154,6 +153,10 @@ angular.module('Teem')
     $scope.areTabsHidden = function() {
       return SharedState.isActive('hiddenTabs') && $window.innerHeight < 400;
     };
+
+    if($route.current.params.form === 'new'){
+      SharedState.turnOn('hiddenTabs');
+    }
 
     NewForm.initialize($scope, 'project');
 
@@ -207,6 +210,11 @@ angular.module('Teem')
     $scope.$on('$routeChangeStart', function(event, next, current) {
       if (current.params.tab !== undefined && $scope.project!== undefined) {
         $scope.project.setTimestampAccess(current.params.tab);
+      }
+
+      if (current.params.form === 'new') {
+        delete current.params.form;
+        SharedState.turnOff('hiddenTabs');
       }
     });
 
