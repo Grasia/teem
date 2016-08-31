@@ -416,6 +416,8 @@
       },
       "link": "Login here",
       "link_prev": "Are you already in Teem?",
+      "new_community": "You should be logged in to create your community ",
+      "new_project": "You should be logged in to create your project",
       "nick": "Nickname",
       "should_be_logged": {
         "cancel": "Cancel",
@@ -468,6 +470,7 @@
       "link_prev": "Are not you in Teem yet?",
       "new_community": "To create your community you need to register first",
       "new_project": "To create your teem you need to register first",
+      "new_user": "Choose your nick and password",
       "nick": "Nick",
       "password": "Password",
       "passwordRepeat": "Confirm password",
