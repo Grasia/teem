@@ -207,14 +207,9 @@ angular.module('Teem')
       $scope.pad.editing = false;
     });
 
-    $scope.$on('$routeChangeStart', function(event, next, current) {
+      $scope.$on('$routeChangeStart', function(event, next, current) {
       if (current.params.tab !== undefined && $scope.project!== undefined) {
         $scope.project.setTimestampAccess(current.params.tab);
-      }
-
-      if (current.params.form === 'new') {
-        delete current.params.form;
-        SharedState.turnOff('hiddenTabs');
       }
     });
 

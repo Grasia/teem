@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('NewForm', [
-  '$location', '$window', '$rootScope',
-  function($location, $window, $rootScope) {
+  '$location', '$window', '$rootScope', 'SharedState',
+  function($location, $window, $rootScope, SharedState) {
     var scope,
         objectName,
         scopeFn = {
@@ -54,6 +54,13 @@ angular.module('Teem')
             $rootScope.$broadcast('teem.' + objectName + '.join');
           }
         };
+
+        $rootScope.$on('$routeChangeStart', function(event, next, current) {
+          if (current.params.form === 'new') {
+            delete current.params.form;
+          }
+        });
+
 
     function initialize(s, o) {
       scope = s;
