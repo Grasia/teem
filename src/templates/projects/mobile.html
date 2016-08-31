@@ -1,7 +1,13 @@
-<div class="flex-container">
+<div class="flex-container project-mobile">
   <div ng-class="{'flex-container': pad.editing}">
     <div class="section project-header bg-{{project.logoColor()}}" ng-if="!pad.editing && !isNew()">
-      <div ng-include="'projects/badge.html'" ng-if="! isNew()"></div>
+      <div ng-include="'projects/badge.html'"></div>
+      <button class="btn btn-default like-icon"
+              like
+              like-icon="true"
+              like-count="true"
+              like-model="project">
+      </button>
     </div>
     <div class="section" ng-if="editingTitle() && !pad.editing">
       <div class="input-group title-form">
