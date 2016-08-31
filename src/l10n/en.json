@@ -207,7 +207,7 @@
     "need": {
       "missing": "This need was deleted"
     },
-    "placeholder": "Share here how to participate in your activity or project: how to start contributing, what do you need, what has to be done, the links to the tools you use...",
+    "placeholder": "Share here how to participate in your activity or project: \n • how to start contributing, \n •  what do you need and what has to be done, \n •  the links to the tools you use...",
     "tap_to_edit": "Tap over the text to edit it",
     "tooltip": {
       "link": "Insert link",

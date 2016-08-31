@@ -207,7 +207,7 @@
     "need": {
       "missing": "Esta necesidad se ha borrado"
     },
-    "placeholder": "Comparte aquí cómo participar en tu actividad o proyecto: cómo empezar a colaborar, las cosas que necesitais, lo que hay que hacer, la colección de enlaces a las herramientas que utilizais...",
+    "placeholder": "Comparte aquí cómo participar en tu actividad o proyecto: \n • cómo empezar a colaborar, \n •  las cosas que necesitais y lo que hay que hacer, \n •  la colección de enlaces a las herramientas que utilizais...",
     "tap_to_edit": "Pulsa sobre el texto para editarlo",
     "tooltip": {
       "link": "Insertar enlace",
