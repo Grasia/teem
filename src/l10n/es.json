@@ -15,9 +15,11 @@
   "community": {
     "communities": "Comunidades",
     "create": {
+      "banner": "Atrae colaboradores a vuestra comunidad y coordinate más agilmente con el resto de los participantes.",
       "button": {
         "empty": "Crear",
-        "name": "Crear la comunidad \"{{name}}\""
+        "name": "Crear la comunidad \"{{name}}\"",
+        "your": "Crea tu comunidad"
       },
       "description": "¿No encuentras lo que buscabas? ¡Registra tu comunidad!",
       "placeholder": "Nombre de la comunidad"

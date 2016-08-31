@@ -4,6 +4,19 @@
   infinite-scroll-disabled="bussyPagination || farFromLast()"
   infinite-scroll-container="container"
   infinite-scroll-distance="0">
+  <div class="community-item community-banner col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="community-photo">
+        <img src="/images/new-community.png">
+      </div>
+      <div class="caption">
+        <div>
+          <span translate>community.create.banner</span>
+        </div>
+        <button class="btn btn-primary btn-raised btn-block" translate>community.create.button.your</button>
+      </div>
+    </div>
+  </div>
   <div class="community-item col-sm-6 col-md-4"
        ng-hide="creating && newCommunityName.name === ''"
        ng-repeat="community in communities | toArray:true | orderBy:'-numProjects || 0'"

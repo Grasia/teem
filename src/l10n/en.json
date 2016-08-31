@@ -15,9 +15,11 @@
   "community": {
     "communities": "Communities",
     "create": {
+      "banner": "Get people involved in your community and coordinate better with the other participants.",
       "button": {
         "empty": "Create",
-        "name": "Create \"{{name}}\" community"
+        "name": "Create \"{{name}}\" community",
+        "your": "Create your community"
       },
       "description": "Can't you find what you were looking for? Register your community!",
       "placeholder": "Community name"
