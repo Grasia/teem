@@ -20,7 +20,7 @@ angular.module('Teem')
 
       logoColor () {
         let logoColors = this.type === 'community' ? CommunityColors : ProjectColors;
-        return logoColors[this.id.slice(-1).charCodeAt(0) % logoColors.length];
+        return logoColors[parseInt(window.md5(this.id).substring(0,5),16) % logoColors.length];
       }
 
       logoExtension() {
