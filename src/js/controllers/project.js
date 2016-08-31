@@ -84,7 +84,8 @@ angular.module('Teem')
     // `editing` variable can't be accessed, and it is used outside pad.
     $scope.pad = {
       editing: false,
-      saving: false
+      saving: false,
+      outline: []
     };
 
     $scope.editOff = function() {

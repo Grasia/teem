@@ -197,12 +197,20 @@
     "nav": {
       "title": "Info"
     },
+    "link": {
+      "button": "Ok",
+      "change": "change",
+      "delete": "delete",
+      "link": "Link",
+      "text": "Text"
+    },
     "need": {
       "missing": "This need was deleted"
     },
     "placeholder": "Share here how to participate in your activity or project: how to start contributing, what do you need, what has to be done, the links to the tools you use...",
     "tap_to_edit": "Tap over the text to edit it",
     "tooltip": {
+      "link": "Insert link",
       "img": "Insert image",
       "need": "Insert need",
       "text_fields": "Heading",
@@ -213,7 +221,8 @@
       "format_align_center": "Align center",
       "format_align_right": "Align right",
       "format_list_bulleted": "Unordered list",
-      "format_list_numbered": "Ordered list"
+      "format_list_numbered": "Ordered list",
+      "clearFormat": "Clear format"
     }
   },
   "picture": {

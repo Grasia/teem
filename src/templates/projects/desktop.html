@@ -3,7 +3,8 @@
     <div ui-layout="{dividerSize: 4}">
       <div ui-layout-container class="project-info bg-{{project.logoColor()}}">
         <div ng-include="'projects/badge.html'"></div>
-        <div class="project-info-inner flex-container">
+        <div class="project-info-inner flex-container flex-scroll">
+          <div class="project-outline" ng-include="'projects/outline.html'"></div>
           <div project-people class="flex-container"></div>
         </div>
       </div>

@@ -48,10 +48,10 @@ angular.module('Teem')
           widget;
           console.log(selection);
 
-      if (selection.getText()) {
-        need.text = selection.getText();
+      if (selection.text) {
+        need.text = selection.text;
 
-        selection.remove();
+        editor.deleteText(selection);
       }
 
       scope.project.addNeed(need);

@@ -58,6 +58,16 @@
   .need-text-readonly
     padding-top: 2px
 
+.pad-link-icon
+  padding-left: 25px
+  background-repeat: no-repeat
+  background-size: 19px
+.swellrt-editor
+  a[href^="https://app.teem.works"]
+    @extend .pad-link-icon
+    background-image: url('/images/icons/favicon-32x32.png')
+
+
 .project-pad-editing .pad
   max-height: 100vh
 
@@ -70,3 +80,15 @@
 
 .sw-widget-img img
   max-width: 100%
+
+#link-modal
+  position: fixed
+  top: 0px
+  padding: 0 15px
+  form
+    padding-top: 20px
+  .form-group
+    margin: 0
+    padding: 0
+  > div
+    padding: 10px 5px
