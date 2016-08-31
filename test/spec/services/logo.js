@@ -20,7 +20,7 @@ describe('Logo', function() {
       Test,
       instance,
       id = '0', // Returns 0 in charCodeAt(0) % LogoColors
-      color = 'aubergine', // first color
+      color = 'teal', // first color
       type = 'test',
       imageUrl = 'https://test.com/image';
 
