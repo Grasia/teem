@@ -28,6 +28,14 @@
       <div class="project-title-editable">
         <input class="h1 title-input form-control" ng-model="project.title"
         placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
+
+        <button class="btn btn-default like-icon"
+                like
+                like-icon="true"
+                like-count="true"
+                like-model="project">
+        </button>
+
         <div class="icons" ng-if="project.isParticipant()">
           <i ng-click="focusTitleInput()" class="material-icons" uib-tooltip="{{'project.tooltip.edit' | translate}}">edit</i>
           <!--<i ng-click="archiveProject()" class="material-icons secundary-icon" uib-tooltip="{{'project.tooltip.archive' | translate}}">archive</i>-->
@@ -40,6 +48,7 @@
             callback: cancelProject
           }}">delete</i>
         </div>
+
         <button class="btn btn-lg btn-primary btn-raised"
                 ng-if="!project.isParticipant()"
                 join
