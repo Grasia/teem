@@ -33,6 +33,9 @@ describe('Participant user', () => {
       expect(communityPage.getParticipants()).not.toContain(loginPage.participant.nick);
     });
 
+    /* Because of pagination, not all communisties are visible at first, breaking this test.
+     * See https://github.com/P2Pvalue/teem/issues/305
+     */
     xit(', see the project in her profile, and then leave it', () => {
       profilePage.get(loginPage.participant);
 
