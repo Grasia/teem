@@ -35,9 +35,9 @@ class InvitePage {
 
     this.inputInvite.sendKeys(who);
 
-    browser.wait(protractor.ExpectedConditions.presenceOf(this.inviteOption));
+    browser.wait(protractor.ExpectedConditions.presenceOf(this.inviteOption()));
 
-    browser.wait(protractor.ExpectedConditions.visibilityOf(this.inviteOption));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(this.inviteOption()));
 
     this.inviteOption().click();
 
