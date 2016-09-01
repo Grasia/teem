@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('NewForm', [
-  '$location', '$window', '$rootScope', 'SharedState',
-  function($location, $window, $rootScope, SharedState) {
+  '$location', '$window', '$rootScope', 'SharedState', 'swellRT',
+  function($location, $window, $rootScope, SharedState, swellRT) {
     var scope,
         objectName,
         scopeFn = {
@@ -46,7 +46,7 @@ angular.module('Teem')
             }
 
             if (emails.length > 0){
-              SwellRT.invite(emails, scope[objectName].url(),
+              swellRT.invite(emails, scope[objectName].url(),
               // project.title || community.name
                scope[objectName].title || scope[objectName].name, function(s){console.log(s);}, function(e){console.log('error:', e);});
             }

@@ -18,7 +18,7 @@ angular.module('Teem')
       if (!createdProfiles[userName]) {
         var def = $q.defer();
         createdProfiles[userName] = def.promise;
-        window.SwellRT.createModel(
+        swellRT.createModel(
           function(model) {
             var proxy;
             $timeout(function(){
@@ -39,7 +39,7 @@ angular.module('Teem')
       if (!openedProfiles[userName]){
         var def = $q.defer();
         openedProfiles[userName] = def.promise;
-        window.SwellRT.query(
+        swellRT.query(
           {
             'root.type' : 'userProfile',
             'root.userName' : userName
@@ -52,7 +52,7 @@ angular.module('Teem')
               def.reject('ERROR: More than one profile found for user ', userName);
               return;
             }
-            window.SwellRT.openModel(result.result[0].wave_id,
+            swellRT.openModel(result.result[0].wave_id,
               function(model) {
 
 

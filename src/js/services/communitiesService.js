@@ -105,7 +105,7 @@ angular.module('Teem')
       if (!openedCommunities[id]) {
         openedCommunities[id] = community;
 
-        SwellRT.openModel(id, function(model){
+        swellRT.openModel(id, function(model){
 
           $timeout(function(){
             var pr = swellRT.proxy(model, Community);
@@ -135,20 +135,22 @@ angular.module('Teem')
 
     var create = function(data, callback) {
       var d = $q.defer();
-      var id = window.SwellRT.createModel(function(model){
-        openedCommunities[id] = d.promise;
+
+      swellRT.createModel(function(model){
+
+        openedCommunities[model.id()] = d.promise;
+
         SwellRTCommon.makeModelPublic(model);
 
         var p;
 
         $timeout(function(){
           p = swellRT.proxy(model, Community);
-        });
 
-        $timeout(function(){
           p.type = 'community';
-          p.id = id;
+          p.id = model.id();
           p.projects = [];
+
           d.resolve(p);
         });
       });
@@ -309,7 +311,7 @@ angular.module('Teem')
 
       var commsPromise = $q(function(resolve, reject) {
 
-        SwellRT.query(query, function(result) {
+        swellRT.query(query, function(result) {
             angular.forEach(result.result, function(c) {
               communities.push(new CommunityReadOnly(c));
             });
@@ -368,7 +370,7 @@ angular.module('Teem')
 
         var def = $q.defer();
 
-        SwellRT.query(query, function(a){
+        swellRT.query(query, function(a){
           def.resolve(a.result);
         }, function(error){
           def.reject(error);

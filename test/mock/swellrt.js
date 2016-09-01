@@ -43,7 +43,7 @@ var __session = {
   domain: 'local.net'
 };
 
-function SwellRTModel() {
+function SwellRTModel(options = {}) {
   return {
     root: {
       type: function() { return 'MapType'; },
@@ -54,6 +54,13 @@ function SwellRTModel() {
     createList:     function() {},
     createMap:      function() {},
     createString:   function() {},
-    createText:     function() {}
+    createText:     function() {},
+    id:             function() {
+      if (options.id) {
+        return options.id;
+      }
+
+      return Math.random().toString();
+    }
   };
 }

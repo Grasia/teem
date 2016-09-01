@@ -441,7 +441,7 @@ angular.module('Teem')
 
       var projsPromise = $q(function(resolve, reject) {
 
-        SwellRT.query(query, function(result) {
+        swellRT.query(query, function(result) {
           angular.forEach(result.result, function(val){
             var v = new ProjectReadOnly(val);
             projects.push(v);
@@ -477,7 +477,7 @@ angular.module('Teem')
 
       if (!openedProjects[id]) {
         openedProjects[id] = def.promise;
-        SwellRT.openModel(id, function(model){
+        swellRT.openModel(id, function(model){
           $timeout(function(){
             var pr = swellRT.proxy(model, Project);
             def.resolve(pr);
@@ -496,8 +496,9 @@ angular.module('Teem')
 
     function create(options, callback) {
       var d = $q.defer();
-      var id = SwellRT.createModel(function(model){
-        openedProjects[id] = d.promise;
+
+      swellRT.createModel(function(model){
+        openedProjects[model.id()] = d.promise;
 
         SwellRTCommon.makeModelPublic(model);
 
@@ -511,7 +512,7 @@ angular.module('Teem')
           proxyProj.type = 'project';
           proxyProj.communities =
            (options.communityId) ? [ options.communityId ] : [];
-          proxyProj.id = id;
+          proxyProj.id = model.id();
           proxyProj.title = '';
           proxyProj.chat = [];
           proxyProj.pad = new swellRT.TextObject();

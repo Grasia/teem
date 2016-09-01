@@ -150,7 +150,8 @@ angular.module('Teem')
           email: email,
           locale: $locale.id
         };
-        SwellRT.createUser(data, function(res){
+
+        swellRT.createUser(data, function(res){
           if (res.error) {
             onError(res.error);
 
@@ -162,7 +163,7 @@ angular.module('Teem')
       });
     };
 
-    var stopSession = function(){
+    var stopSession = function () {
       swellRTpromise.then(function(){
 
         $rootScope.$broadcast('swellrt.network-disconnected');
@@ -172,7 +173,7 @@ angular.module('Teem')
 
         sessionPromiseInit();
 
-        SwellRT.startSession(swellrtServer, SwellRT.user.ANONYMOUS,  '',
+        swellRT.startSession(swellrtServer, SwellRT.user.ANONYMOUS,  '',
           function(sessionInfo){
             info =  sessionInfo;
             sessionDef.resolve(SwellRT);
@@ -201,7 +202,7 @@ angular.module('Teem')
 
         status.connection = 'connecting';
 
-        SwellRT.startSession(swellrtServer, userName || SwellRT.user.ANONYMOUS,  password || '',
+        swellRT.startSession(swellrtServer, userName || SwellRT.user.ANONYMOUS,  password || '',
           function(sessionInfo){
             info =  sessionInfo;
             sessionDef.resolve(SwellRT);
@@ -215,22 +216,22 @@ angular.module('Teem')
     };
 
     var forgottenPassword = function(email, recoverUrl, onSuccess, onError) {
-      SwellRT.recoverPassword(email, recoverUrl, onSuccess, onError);
+      swellRT.recoverPassword(email, recoverUrl, onSuccess, onError);
     };
 
     var recoverPassword = function(id, tokenOrPassword, password, onSuccess, onError) {
-      SwellRT.setPassword(id, tokenOrPassword, password, onSuccess, onError);
+      swellRT.setPassword(id, tokenOrPassword, password, onSuccess, onError);
     };
 
     function getUserProfile(data, cb) {
       sessionPromise.then(function() {
-        SwellRT.getUserProfile(data, cb);
+        swellRT.getUserProfile(data, cb);
       });
     }
 
     var updateUserProfile = function(data, cb) {
       sessionPromise.then(function(){
-        SwellRT.updateUserProfile(data, cb);
+        swellRT.updateUserProfile(data, cb);
       });
     };
 
@@ -267,7 +268,7 @@ angular.module('Teem')
           });
       } else {
         swellRTpromise.then(function(){
-          SwellRT.resumeSession(function(sessionInfo){
+          swellRT.resumeSession(function(sessionInfo){
               info = sessionInfo;
               sessionDef.resolve(SwellRT);
             },
@@ -341,7 +342,7 @@ angular.module('Teem')
       reSynch(){
         var synchedModel = this;
 
-        SwellRT.openModel(synchedModel._id, function(model){
+        swellRT.openModel(synchedModel._id, function(model){
           $timeout(function(){
             // rebuild the proxy with the new model information
             swellRT.proxy(model,
@@ -374,6 +375,7 @@ angular.module('Teem')
 
         $rootScope.$on('swellrt.network-disconnected', function(){
           SwellRT.closeModel(synchedModel._id);
+
           $timeout();
         });
       }

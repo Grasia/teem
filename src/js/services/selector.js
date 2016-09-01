@@ -11,7 +11,9 @@
 angular.module('Teem')
 .factory('Selector', [
   'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'Notification', '$compile',
-  function(User, $timeout, CommunitiesSvc, $rootScope, Notification, $compile) {
+  'swellRT',
+  function(User, $timeout, CommunitiesSvc, $rootScope, Notification, $compile,
+  swellRT) {
 
 
     // builds a list of users for user selector from SwellRT query result
@@ -190,7 +192,7 @@ angular.module('Teem')
           }
 
           if (emails.length > 0){
-            SwellRT.invite(emails, hasParticipantsObject.url(),
+            swellRT.invite(emails, hasParticipantsObject.url(),
               // project.title || community.name
               hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
 

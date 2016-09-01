@@ -44,6 +44,7 @@ angular.module('Teem')
   .controller('FetchProject', [
   'ProjectsSvc', 'Url', '$route', '$location', 'SessionSvc',
   function(ProjectsSvc, Url, $route, $location, SessionSvc) {
+
     var communityId = Url.decode($route.current.params.communityId),
         localId     = $route.current.params.id;
 
@@ -53,8 +54,7 @@ angular.module('Teem')
         community: communityId,
         localId: localId
       }).then(function(projects) {
-        console.log('projects');
-        console.dir(projects);
+        
         var project = projects[0];
 
         if (project) {

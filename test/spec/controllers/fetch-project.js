@@ -54,24 +54,31 @@ describe('FetchProject', function() {
         }
       };
 
+      // Auto Start Session
+      spyOn(swellRT, 'resumeSession').and.callFake(function(success) {
+        success({});
+      });
+
       spyOn(ProjectsSvc, 'all').and.callThrough();
       spyOn(ProjectsSvc, 'create').and.callThrough();
     });
 
     describe('when there was not a project', function() {
       beforeEach(function() {
-        spyOn(SwellRT, 'query').and.callFake(function(query, cb) {
+
+        spyOn(swellRT, 'query').and.callFake(function(query, cb) {
           cb({ result: [] });
         });
 
-        spyOn(SwellRT, 'createModel').and.callFake(function(cb) {
-          cb(new SwellRTModel());
+        spyOn(swellRT, 'createModel').and.callFake(function(cb) {
+          cb(new SwellRTModel({ id: projectId }));
 
           return projectId;
         });
       });
 
       it('should create a new one and redirect to it', function() {
+
         FetchProject = $controller('FetchProject', {
           $route: $route
         });
@@ -88,7 +95,7 @@ describe('FetchProject', function() {
 
     describe('when there was a project', function() {
       beforeEach(function() {
-        spyOn(SwellRT, 'query').and.callFake(function(query, cb) {
+        spyOn(swellRT, 'query').and.callFake(function(query, cb) {
           cb({ result: [ { root: { id: '123' }}]});
         });
       });

@@ -32,7 +32,8 @@ describe('SessionCtrl', function() {
 
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$controller_, _$route_, _$rootScope_, _$timeout_, _swellRT_, _SessionSvc_, _User_) {
+  beforeEach(inject(function (_$controller_, _$route_, _$rootScope_, _$timeout_,
+    _swellRT_, _SessionSvc_, _User_) {
     $controller = _$controller_;
     $route = _$route_;
     $rootScope = _$rootScope_;
@@ -63,7 +64,7 @@ describe('SessionCtrl', function() {
 
       beforeEach(function() {
 
-        spyOn(SwellRT, 'startSession').
+        spyOn(swellRT, 'startSession').
         and.callFake(function(domain, nick, password, success) {
           calledNick = nick;
           calledPassword = password;
@@ -90,8 +91,8 @@ describe('SessionCtrl', function() {
         $timeout.flush();
       });
 
-      it('should call SwellRT', function() {
-        expect(SwellRT.startSession).
+      it('should call swellRT', function() {
+        expect(swellRT.startSession).
         toHaveBeenCalled();
       });
 
@@ -107,7 +108,6 @@ describe('SessionCtrl', function() {
       describe('when receiving NETWORK_CONNECTED event', function(){
 
         beforeEach(function(){
-          console.log('CallbackMap', callbackMap);
           spyOn($rootScope, '$broadcast').and.callThrough();
           callbackMap[SwellRT.events.NETWORK_CONNECTED]();
         });
@@ -126,7 +126,7 @@ describe('SessionCtrl', function() {
 
     describe('and SwellRT sends an error', function() {
       beforeEach(function() {
-        spyOn(SwellRT, 'startSession').
+        spyOn(swellRT, 'startSession').
         and.callFake(function(domain, nick, password, success, error) {
           error();
         });
@@ -152,7 +152,7 @@ describe('SessionCtrl', function() {
           registerNick, registerPassword, registerEmail;
 
       beforeEach(function() {
-        spyOn(SwellRT, 'startSession').
+        spyOn(swellRT, 'startSession').
         and.callFake(function(domain, nick, password, success) {
           sessionNick = nick;
           sessionPassword = password;
@@ -162,7 +162,7 @@ describe('SessionCtrl', function() {
           success();
         });
 
-        spyOn(SwellRT, 'createUser').
+        spyOn(swellRT, 'createUser').
         and.callFake(function(data, callback) {
           registerNick = data.id;
           registerPassword = data.password;
@@ -194,16 +194,19 @@ describe('SessionCtrl', function() {
       });
 
       it('should call SwellRT.createUser', function() {
-        expect(SwellRT.createUser).
-        toHaveBeenCalled();
+
+        expect(swellRT.createUser).
+          toHaveBeenCalled();
       });
 
-      it('should call SwellRT.startSession', function() {
-        expect(SwellRT.startSession).
-        toHaveBeenCalled();
+      it('should call swellRT.startSession', function() {
+
+        expect(swellRT.startSession).
+          toHaveBeenCalled();
       });
 
       it('should pass the right credentials', function() {
+
         expect(registerNick).toBe(nick);
         expect(registerPassword).toBe(password);
 
@@ -218,7 +221,7 @@ describe('SessionCtrl', function() {
 
     describe('and SwellRT sends an error', function() {
       beforeEach(function() {
-        spyOn(SwellRT, 'createUser').
+        spyOn(swellRT, 'createUser').
         and.callFake(function(data, callback) {
           callback({error: 'some error'});
         });
@@ -243,7 +246,7 @@ describe('SessionCtrl', function() {
       var calledEmail, calledUrl;
 
       beforeEach(function() {
-        spyOn(SwellRT, 'recoverPassword').
+        spyOn(swellRT, 'recoverPassword').
         and.callFake(function(email, url, success) {
           calledEmail = email;
           calledUrl = url;
@@ -268,7 +271,7 @@ describe('SessionCtrl', function() {
       });
 
       it('should call SwellRT', function() {
-        expect(SwellRT.recoverPassword).
+        expect(swellRT.recoverPassword).
         toHaveBeenCalled();
       });
 
@@ -280,7 +283,7 @@ describe('SessionCtrl', function() {
 
     describe('and SwellRT sends an error', function() {
       beforeEach(function() {
-        spyOn(SwellRT, 'recoverPassword').
+        spyOn(swellRT, 'recoverPassword').
         and.callFake(function(email, url, success, error) {
           error();
         });
@@ -305,7 +308,7 @@ describe('SessionCtrl', function() {
       var calledToken, calledPassword;
 
       beforeEach(function() {
-        spyOn(SwellRT, 'setPassword').
+        spyOn(swellRT, 'setPassword').
         and.callFake(function(id, token, password, success) {
           calledToken = token;
           calledPassword = password;
@@ -331,7 +334,7 @@ describe('SessionCtrl', function() {
       });
 
       it('should call SwellRT', function() {
-        expect(SwellRT.setPassword).
+        expect(swellRT.setPassword).
         toHaveBeenCalled();
       });
 
