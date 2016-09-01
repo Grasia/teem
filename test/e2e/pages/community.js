@@ -87,7 +87,7 @@ class NewCommunityPage {
     this.nameInputEl = element(by.model('community.name'));
     this.descriptionInputEl = element(by.model('community.description'));
 
-    this.submitEl =  element(by.css('.new-form-confirm-btn'));
+    this.submitEl =  () => element(by.css('.new-form-confirm-btn'));
   }
 
   get () {
@@ -103,7 +103,7 @@ class NewCommunityPage {
 
     this.descriptionInputEl.sendKeys(this.description);
 
-    this.submitEl.click();
+    this.submitEl().click();
   }
 }
 
