@@ -323,7 +323,7 @@
         "notification": "{{addedParticipants}} has been added to this teem"
       },
       "btn": {
-        "do": "Add me to this Teem",
+        "do": "Join",
         "undo": "Leave"
       },
       "invite": {

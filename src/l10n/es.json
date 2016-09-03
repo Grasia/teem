@@ -323,7 +323,7 @@
         "notification": "Se ha añadido a {{addedParticipants}} a este teem"
       },
       "btn": {
-        "do": "Unirme a este Teem",
+        "do": "Unirme",
         "undo": "Abandonar"
       },
       "invite": {
