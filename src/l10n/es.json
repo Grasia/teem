@@ -211,7 +211,7 @@
     },
     "placeholder": "Comparte aquí cómo participar en tu actividad o proyecto: \n • cómo empezar a colaborar, \n •  las cosas que necesitais y lo que hay que hacer, \n •  la colección de enlaces a las herramientas que utilizais...",
     "outline": {
-      "title": "Índice"
+      "index": "Índice"
     },
     "tap_to_edit": "Pulsa sobre el texto para editarlo",
     "tooltip": {
