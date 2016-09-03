@@ -210,6 +210,9 @@
       "missing": "This need was deleted"
     },
     "placeholder": "Share here how to participate in your activity or project: \n • how to start contributing, \n •  what do you need and what has to be done, \n •  the links to the tools you use...",
+    "outline": {
+      "title": "Index"
+    },
     "tap_to_edit": "Tap over the text to edit it",
     "tooltip": {
       "link": "Insert link",

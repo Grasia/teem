@@ -1,5 +1,6 @@
-<h2 translate>Index</h2>
-<ul>
-  <li ng-repeat="heading in pad.outline"><a href="#{{heading.id}}">{{heading.text}}</a></li>
-</ul>
-<p ng-if="!pad.outline.length" class="section" translate>No headings yet.</p>
+<div ng-if="pad.outline.length">
+  <h2 translate>pad.outline.index</h2>
+  <ul>
+    <li ng-repeat="heading in pad.outline"><a href="#{{heading.id}}">{{heading.text}}</a></li>
+  </ul>
+</div>

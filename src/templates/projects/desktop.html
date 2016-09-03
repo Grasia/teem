@@ -8,7 +8,7 @@
           <div project-people class="flex-container"></div>
         </div>
       </div>
-      <div ui-layout-container ng-if="loggedIn()">
+      <div ui-layout-container ng-if="project.isParticipant()">
         <div id="projectProjsContainer" class="flex-container other-projects" ng-controller="ProjectsCtrl">
           <h2 translate>project.index.home.title</h2>
           <div class="section">
