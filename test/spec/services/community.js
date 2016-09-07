@@ -18,6 +18,7 @@ describe('CommunitiesSvc', function() {
 
   var CommunitiesSvc,
       $timeout,
+      swellRT,
       communities,
       community,
       result = {
@@ -26,9 +27,10 @@ describe('CommunitiesSvc', function() {
       };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_CommunitiesSvc_, _$timeout_) {
+  beforeEach(inject(function (_CommunitiesSvc_, _$timeout_, _swellRT_) {
     CommunitiesSvc =  _CommunitiesSvc_;
     $timeout = _$timeout_;
+    swellRT = _swellRT_;
   }));
 
   describe('when there are communities', function() {
@@ -54,7 +56,7 @@ describe('CommunitiesSvc', function() {
 
     describe('and there are not projects', function() {
       beforeEach(function () {
-        spyOn(SwellRT, 'query').and.callFake(function(query, cb) {
+        spyOn(swellRT, 'query').and.callFake(function(query, cb) {
 
           cb({ result: result.community });
         });
