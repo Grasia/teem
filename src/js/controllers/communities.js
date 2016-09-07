@@ -67,8 +67,11 @@ angular.module('Teem')
           });
 
           break;
+
           default:
+
           var commsPromise = CommunitiesSvc.all({ projectCount: true });
+
           Loading.show(commsPromise).
           then(function(communities) {
             $scope.communities = communities;
