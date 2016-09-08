@@ -30,6 +30,8 @@ sudo usermod -aG docker <your_user>
 
 And then restart your computer.
 
+Finally, you also need [Docker Compose](https://docs.docker.com/compose/) to set up the development environment. Follow the instructions at [Install Docker Compose](https://docs.docker.com/compose/install/)
+
 ### Clone teem
 
 Clone the teem repository using `git`:

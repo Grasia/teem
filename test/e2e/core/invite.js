@@ -48,8 +48,9 @@ describe('A new user', () => {
 
         it('should invite the person by email', () => {
           browser.getCurrentUrl().then(function(url) {
-            var u = url.split('?')[0];
-            var inviteProjectLink = swellrt.inviteLink('snowden', nick, u);
+            var u = url.split('?')[0],
+                inviteProjectLink = swellrt.inviteLink('snowden', nick, u);
+
             expect(inviteProjectLink).toMatch(u);
           });
         });

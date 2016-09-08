@@ -76,7 +76,7 @@ var config = {
     host: 'localhost:9898',
     protocol: 'http://',
     docker: {
-      name: 'teem-swellrt'
+      projectName: 'teem'
     }
   },
 
@@ -202,8 +202,9 @@ var gulp           = require('gulp'),
   karma          = require('karma').Server,
   angularProtractor = require('gulp-angular-protractor'),
   ghPages        = require('gh-pages'),
-  dockerSwellrt  = require('gulp-docker-swellrt'),
-  manifest       = require('gulp-manifest');
+  manifest       = require('gulp-manifest'),
+  spawn          = require('child_process').spawn,
+  gutil          = require('gulp-util');
 
 
 /*================================================
@@ -506,6 +507,7 @@ gulp.task('watch', function () {
   watch(config.vendor.js.concat(['./src/js/widgets.js']), function() { gulp.start(['jshint', 'js:widgets']); });
   watch(['./src/images/**/*'], function() { gulp.start('images'); });
   watch(['./src/l10n/**/*'], function() { gulp.start('l10n'); });
+  watch(['./swellrt/config/**/*'], function() { gulp.start('docker:swellrt:restart'); });
 });
 
 
@@ -536,9 +538,53 @@ gulp.task('build', function(done) {
 =      Run SwellRT with Docker       =
 ====================================*/
 
+function dockerSwellrt (options, callback) {
+  
+  var args = [ '-p ' + config.swellrt.docker.projectName ];
+
+  if (options.args) {
+    Array.prototype.push.apply(args, options.args);
+  }
+
+  // Set SwellRT version
+  process.env.SWELLRT_VERSION = config.swellrt.docker.tag;
+
+  var child = spawn('docker-compose', args, {
+                      cwd: process.cwd() + '/swellrt'
+                    }),
+      stdout = '',
+      stderr = '';
+
+  child.stdout.on('data', (data) => {
+
+    stdout += data;
+    gutil.log(gutil.colors.yellow(data));
+  });
+
+  child.stderr.on('data', (data) => {
+
+    stderr += data;
+    gutil.log(gutil.colors.yellow(data));
+  });
+
+  child.on('close', () => {
+
+    callback();
+  });
+}
+
 gulp.task('docker:swellrt', function(done) {
-  dockerSwellrt(config.swellrt.docker, done);
+  dockerSwellrt({ args: [ 'up', '-d' ]}, done);
 });
+
+gulp.task('docker:swellrt:down', function(done) {
+  dockerSwellrt({ args: [ 'down' ]}, done);
+});
+
+gulp.task('docker:swellrt:restart', function(done) {
+  dockerSwellrt({ args: [ 'restart', 'swellrt' ]}, done);
+});
+
 
 /*======================================
 =        Unit testing with Karma       =

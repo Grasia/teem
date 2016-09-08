@@ -7,7 +7,7 @@ class SwellRTPage {
   constructor () {
     this.cmd = {
       // Show at least the last 2 emails
-      log: 'docker logs --tail=100 ' + gulpConfig.swellrt.docker.name
+      log: 'docker logs --tail=200 ' + gulpConfig.swellrt.docker.projectName + '_swellrt_1'
     };
 
     this.recoveryPath = '/session/recover_password';
@@ -56,6 +56,7 @@ class SwellRTPage {
 
   inviteLink (invitee , inviter, url) {
     var communityRegexp = new RegExp(inviter + '.*' + invitee + '.*(' + url + ')' );
+
     return this.logRegexp(communityRegexp, { multiline: true });
   }
 
