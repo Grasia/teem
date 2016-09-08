@@ -46,7 +46,7 @@ class InvitePage {
     // to blur input in email invite case.
     this.inputInvite.sendKeys(protractor.Key.TAB);
 
-    browser.wait(protractor.ExpectedConditions.visibilityOf(this.inviteBtn));
+    browser.wait(protractor.ExpectedConditions.elementToBeClickable(this.inviteBtn));
 
     return this.inviteBtn.click();
   }
