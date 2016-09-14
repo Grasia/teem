@@ -32,7 +32,8 @@ angular
     'ngImgCrop',
     'ngFileUpload',
     'flock.bootstrap.material',
-    'infinite-scroll'
+    'infinite-scroll',
+    '720kb.socialshare'
   ]).
   // Application config
   // See config.js.sample for examples
