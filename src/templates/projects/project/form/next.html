@@ -1,7 +1,7 @@
 <div class="text-right">
-  <button class="btn btn-primary btn-raised"
-          ng-click="goToNextForm()"
-          translate>
-          {{ nextForm() ? 'project.form.next' : 'project.form.finish' }}
+  <button class="btn btn-primary btn-link"
+          ng-click="goToNextForm()">
+          <span ng-bind="nextForm() ? 'project.form.next' : 'project.form.finish' | translate"></span>
+          <i class="i-next"></i>
   </button>
 </div>
