@@ -1,3 +1,17 @@
-Title
+<div class="section">
+  <div class="form-group label-floating title-form">
+    <label class="control-label" for="projectTitle" translate>project.title.placeholder</label>
+    <input type="text"
+           id="projectTitle"
+           class="form-control title-input"
+           ng-model="project.title">
+  </div>
 
-Community
+  <selector
+    multiple
+    config="communitySelector.config"
+    options="communitySelector.options"
+    ng-model="project.communities"
+    placeholder=" 'project.community.placeholder' | translate"
+  ></selector>
+</div>
