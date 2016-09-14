@@ -30,7 +30,7 @@ angular.module('Teem')
                 }
 
                 ProjectsSvc.create(params, function(p) {
-                  $location.path(p.path()).search('form', 'new');
+                  $location.path(p.path()).search('form', 'image');
                 });
               }
             },

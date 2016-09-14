@@ -280,6 +280,10 @@
       "button": "Edit",
       "title": "Edit Teem"
     },
+    "form": {
+      "finish": "Finish",
+      "next": "Next"
+    },
     "index": {
       "banner": {
         "button": "Create a Teem",

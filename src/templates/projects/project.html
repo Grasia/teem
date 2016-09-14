@@ -1,5 +1,13 @@
-<div ng-include="'navbar-top/project.html'"></div>
+<div ng-if="form()">
+  <div ng-include="'projects/project/form/' + form() + '.html'"></div>
 
-<div ng-if="!isDesktop()" class="project project-mobile" ng-include="'projects/project/mobile.html'"></div>
+  <div ng-include="'projects/project/form/next.html'"></div>
+</div>
 
-<div ng-if="isDesktop()" class="project project-desktop" ng-include="'projects/project/desktop.html'"></div>
+<div ng-if="! form()">
+  <div ng-include="'navbar-top/project.html'"></div>
+
+  <div ng-if="!isDesktop()" class="project project-mobile" ng-include="'projects/project/mobile.html'"></div>
+
+  <div ng-if="isDesktop()" class="project project-desktop" ng-include="'projects/project/desktop.html'"></div>
+</div>

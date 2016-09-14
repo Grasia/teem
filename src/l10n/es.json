@@ -280,6 +280,10 @@
       "button": "Editar",
       "title": "Editar proyecto"
     },
+    "form": {
+      "finish": "Hecho",
+      "next": "Siguiente"
+    },
     "index": {
       "banner": {
         "button": "Crear un Teem",

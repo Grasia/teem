@@ -54,7 +54,7 @@ angular.module('Teem')
         community: communityId,
         localId: localId
       }).then(function(projects) {
-        
+
         var project = projects[0];
 
         if (project) {
@@ -77,6 +77,10 @@ angular.module('Teem')
   'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User', 'Selector',
   function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT,
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User, Selector) {
+
+    // Prevent users from forging the form parameter
+    // and set the form order
+    const Forms = [ 'image', 'title', 'invite', 'share' ];
 
     var editingTitle = false;
 
@@ -160,6 +164,28 @@ angular.module('Teem')
 
     NewForm.initialize($scope, 'project');
 
+    $scope.form = function () {
+      var f = $route.current.params.form;
+
+      if (f && Forms.indexOf(f) >= 0) {
+        return f;
+      }
+    };
+
+    $scope.nextForm = function () {
+      var index = Forms.indexOf($route.current.params.form) + 1;
+
+      if (index > 0 && index < Forms.length) {
+        return Forms[index];
+      }
+
+      return null;
+    };
+
+    $scope.goToNextForm = function () {
+      $location.search('form', $scope.nextForm());
+    };
+
     $scope.uploadProjectPhoto = function(file) {
       $scope.project.image = new swellRT.FileObject(file);
     };
@@ -193,8 +219,9 @@ angular.module('Teem')
 
     $scope.createProject = function() {
       let params = {};
+
       ProjectsSvc.create(params, function(p) {
-        $location.path(p.path()).search('form', 'new');
+        $location.path(p.path()).search('form', 'image');
       });
     };
 
