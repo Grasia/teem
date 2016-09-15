@@ -33,8 +33,6 @@ var sessionPages = require(__dirname + '/e2e/pages/session'),
     projectPages = require(__dirname + '/e2e/pages/project');
 
 exports.config = {
-  allScriptsTimeout: 30000,
-
   // Sometimes Selenium Webdriver gets stuck, and directly connecting to browsers work
   //directConnect: true,
 
@@ -47,10 +45,6 @@ exports.config = {
   baseUrl: 'http://' + gulpConfig.serverTest.host + ':' + gulpConfig.serverTest.port + '/',
 
   framework: 'jasmine2',
-
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 60000
-  },
 
   suites: {
     session: 'e2e/session.js',
