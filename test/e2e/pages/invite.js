@@ -10,10 +10,17 @@ class InvitePage {
 
     this.message = chance.sentence();
 
+    this.modalHeaderTitle = element(by.css('modal-header-title'));
+
     this.AddPeopleBtn = element(by.css('.invite-button'));
+
+    this.inputInvite = element(by.css('.selectize-input input'));
 
     this.inviteBtn = element(by.css('[ng-click="inviteUsers()"]'));
 
+    this.inviteOption = element(by.css('.create[data-selectable], .cachedOption[data-selectable]'));
+
+    this.focusedInvite = element(by.css('.selectize-input input:focus'));
   }
 
   get () {
@@ -25,30 +32,20 @@ class InvitePage {
 
   invite (who) {
 
-    this.inputInvite = element(by.css('.selectize-input input'));
-
-    this.inviteOption = () => element(by.css('.create[data-selectable], .cachedOption[data-selectable]'));
-
     browser.wait(protractor.ExpectedConditions.visibilityOf(this.inputInvite));
 
     this.inputInvite.click();
 
     this.inputInvite.sendKeys(who);
 
-    browser.wait(protractor.ExpectedConditions.presenceOf(this.inviteOption()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(this.inviteOption));
 
-    browser.wait(protractor.ExpectedConditions.visibilityOf(this.inviteOption()));
-
-    this.inviteOption().click();
-
-    this.focusedInvite = element(by.css('.selectize-input input:focus'));
+    this.inviteOption.click();
 
     // to blur input in email invite case.
     this.inputInvite.sendKeys(protractor.Key.TAB);
 
-    browser.wait(protractor.ExpectedConditions.elementToBeClickable(this.inviteBtn));
-
-    return this.inviteBtn.click();
+    this.inviteBtn.click();
   }
 }
 
