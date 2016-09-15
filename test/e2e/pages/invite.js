@@ -20,6 +20,8 @@ class InvitePage {
 
     this.inviteOption = element(by.css('.create[data-selectable], .cachedOption[data-selectable]'));
 
+    this.invitePlus = element(by.model('invite.selected')).element(by.css('.plus-circle'));
+
     this.focusedInvite = element(by.css('.selectize-input input:focus'));
   }
 
@@ -42,10 +44,17 @@ class InvitePage {
 
     this.inviteOption.click();
 
-    // to blur input in email invite case.
-    this.inputInvite.sendKeys(protractor.Key.TAB);
+    // There is a race condition when showing users in the selectize option
+    // menu, so we have to retry until the menu disappears
+    browser.wait(() => {
+      // to blur input in email invite case.
+      this.invitePlus.click();
 
-    this.inviteBtn.click();
+      return this.inviteBtn.click().then(
+        () => { return true; },
+        () => { return false; }
+      );
+    });
   }
 }
 
