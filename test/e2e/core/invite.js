@@ -13,7 +13,7 @@ var InvitePage = require('./../pages/invite'),
     newProjectPage = new projectPages.NewProjectPage(),
     chance = new Chance(),
     swellrt = new SwellRTPage(),
-    nick = chance.word();
+    nick = chance.word({ length: 10 });
 
 
 describe('A new user', () => {
