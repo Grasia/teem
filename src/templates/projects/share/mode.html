@@ -1,0 +1,8 @@
+<div class="form-group share-mode-selector">
+  <select class="form-control dropdown"
+          ng-model="project.shareMode"
+          ng-disabled="!project.isParticipant()">
+    <option value="link" translate>project.share.info.link</option>
+    <option value="public" translate>project.share.info.public</option>
+  </select>
+</div>

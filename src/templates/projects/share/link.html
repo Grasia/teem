@@ -1,0 +1,7 @@
+<div class="form-group"
+ngclipboard data-clipboard-target="#share-link" ngclipboard-success="clipboardMessage = 'copied'" ngclipboard-error="clipboardMessage = 'error'"
+uib-tooltip="{{'project.share.clipboard.'+clipboardMessage | translate}}" tooltip-placement="right">
+  <label class="control-label share-description" translate>project.share.description.link</label>
+  <input class="share-link" id="share-link" type="url" readonly ng-value="project.url()"/>
+  <span class="material-icons form-control-feedback">content_copy</span>
+</div>

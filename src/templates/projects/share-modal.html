@@ -1,51 +1,13 @@
 <modal name="shareModalCreate" class="share-modal">
   <header translate translate-values="{ title: project.title }">project.share.title</header>
   <main>
+    <div ng-include="'projects/share/social-networks.html'"></div>
 
-    <div class="btn-group btn-group-justified" role="group" aria-label="external social networks">
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default fa fa-facebook"
-        socialshare
-        socialshare-provider="facebook"
-        socialshare-text="{{project.title}}"
-        socialshare-url="{{project.url()}}">Facebook</button>
-      </div>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default fa fa-twitter"
-        socialshare
-        socialshare-provider="twitter"
-        socialshare-text="{{project.title}}"
-        socialshare-url="{{project.url()}}">Twitter</button>
-      </div>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default fa fa-google-plus"
-        socialshare
-        socialshare-provider="google"
-        socialshare-url="{{project.url()}}">Google+</button>
-      </div>
-    </div>
+    <div ng-include="'projects/share/link.html'"></div>
 
-    <div class="form-group"
-    ngclipboard data-clipboard-target="#share-link" ngclipboard-success="clipboardMessage = 'copied'" ngclipboard-error="clipboardMessage = 'error'"
-    uib-tooltip="{{'project.share.clipboard.'+clipboardMessage | translate}}" tooltip-placement="right">
-      <label class="control-label share-description" translate>project.share.description.link</label>
-      <input class="share-link" id="share-link" type="url" readonly ng-value="project.url()"/>
-      <span class="material-icons form-control-feedback">content_copy</span>
-    </div>
-    <div class="form-group share-mode-selector">
-      <select class="form-control dropdown"
-      ng-model="project.shareMode"
-      ng-disabled="!project.isParticipant()">
-        <option value="link" translate>project.share.info.link</option>
-        <option value="public" translate>project.share.info.public</option>
-      </select>
-    </div>
+    <div ng-include="'projects/share/mode.html'"></div>
 
-    <selector multiple
-    config="userSelectorConfig"
-    options="invite.list" ng-model="invite.selected"
-    placeholder=" 'project.add_people.placeholder' | translate"></selector>
-
+    <div ng-include="'projects/share/invite.html'"></div>
   </main>
   <footer>
     <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
