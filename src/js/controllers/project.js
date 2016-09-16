@@ -80,7 +80,7 @@ angular.module('Teem')
 
     // Prevent users from forging the form parameter
     // and set the form order
-    const Forms = [ 'image', 'title', 'invite', 'share' ];
+    const Forms = [ 'image', 'title', 'share', 'congrats' ];
 
     var editingTitle = false;
 
