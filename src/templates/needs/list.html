@@ -4,8 +4,6 @@
   <div class="needs-tip" translate>
     need.tip
   </div>
-
-  <need-progress-bar></need-progress-bar>
 </div>
 
 <div class="section need-list">
@@ -18,7 +16,13 @@
       <div need-display need="{completed: 'add'}">
       </div>
     </div>
-    <div ng-repeat="need in needs | orderBy:orderByTime | orderBy:'completed'">
+    <h2 translate>need.title.todo</h2>
+    <div ng-repeat="need in needs | filter:{completed: true} | orderBy:orderByTime">
+      <div need-display need="need">
+      </div>
+    </div>
+    <h2 translate>need.title.done</h2>
+    <div ng-repeat="need in needs | filter:{completed: false} | orderBy:orderByTime">
       <div need-display need="need">
       </div>
     </div>

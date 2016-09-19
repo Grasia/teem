@@ -1,3 +1,12 @@
+<div ng-class="{'hidden': (pad.editing && !isDesktop())}">
+  <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
+    <img class="media-object" ng-src="{{project.logo()}}">
+  </div>
+  <div class="project-photo" ng-if="!project.isParticipant()">
+    <img class="media-object" ng-src="{{project.logo()}}">
+  </div>
+</div>
+<div class="pos-r" ng-class="{'flex-container': pad.editing}">
 <div class="project-navigation">
   <div class="btn-group justified">
     <a ui-set="{'projectTab': 'pad'}"
@@ -10,13 +19,6 @@
        class="nav-needs">
       <span translate>need.nav.title</span>
       <span class="material-icons notification-indicator" ng-if="hasChanged('needs')">fiber_manual_record</span> </a>
-
-    <a ui-set="{'projectTab': 'chat'}"
-       ui-class="{'active': projectTab == 'chat'}"
-       class="nav-chat"
-       ng-if="project.isParticipant()">
-      <span translate>chat.nav.title</span>
-      <span class="material-icons notification-indicator" ng-if="hasChanged('chat')">fiber_manual_record</span> </a>
   </div>
 </div>
 
@@ -26,20 +28,10 @@
          class="flex-container touchable" ng-include="'projects/project/mobile/pad.html'">
     </div>
 
-    <div ui-if="projectTab == 'needs'" hm-swipeleft="swipeToChat" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
-      <div class="scrollable">
-        <div class="scrollable-content">
-          <div need-list project="project" needs="project.needs" ng-class="project.isParticipant() ? '' : 'has-cta'">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ng-if is not compatible with ui-if -->
-    <div class="flex-container" ui-if="projectTab == 'chat'">
-      <div class="flex-container" ng-if="project.isParticipant()" hm-swiperight="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}'  hm-recognizer-options='{{hmRecognizerOpt}}'>
-        <chat class="flex-container"></chat>
+    <div ui-if="projectTab == 'needs'" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
+      <div need-list project="project" needs="project.needs" ng-class="project.isParticipant() ? '' : 'has-cta'">
       </div>
     </div>
   </div>
+</div>
 </div>

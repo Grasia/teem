@@ -151,7 +151,7 @@
     .h1
       margin: 19px 0
       padding: 0
-      font-size: 30px
+      font-size: 64px
       font-weight: bold
       height: 50px
       &:not(.ng-empty):not(:focus):not(:hover)
@@ -177,21 +177,20 @@
   min-height: 30px
   text-align: center
   &, a
-    color: $navbar-top-inactive-color
+    color: $bluey2-grey
     background-color: $navbar-top-background-color
   .justified
     table-layout: fixed
   .btn-group
     margin: 0
   a
-    font-size: 1.1em
+    font-size: 14px
     padding-top: 5px
     padding-bottom: 5px
-    text-transform: uppercase
     text-decoration: none
     &.active,
     &.selected
-      color: $navbar-top-color
+      color: $teal
       font-weight: bold
       border-bottom: 4px solid $navbar-top-underscore
 
@@ -321,18 +320,15 @@ $project-desktop-border: 1px solid $grey
 
 .project-desktop
   background: white
-  > div
-    background: $lightest-grey
-    border-left: $grey solid 1px
-    border-right: $grey solid 1px
   h2
-    text-transform: uppercase
-    font-size: 18px
+    font-size: 24px
     padding: 10px
+    font-weight: bold
+  h3
+    font-size: 18px
+    margin-top: 18px
     border-bottom: 1px solid $grey
-    height: 0
-    padding-bottom: calc(18px + 10px) /* font-size + padding */
-    margin-bottom: 0
+    font-weight: bold
   .project-info
     @extend .flex-container
     border-left: none
@@ -349,8 +345,6 @@ $project-desktop-border: 1px solid $grey
     .section
       background-color: inherit
       margin: 0 0 15px 0
-    .project-photo
-      @extend .project-photo-small
     .project-item-title
       font-size: 14px
     .project-communities
@@ -363,24 +357,16 @@ $project-desktop-border: 1px solid $grey
       display: none
 
   .project-main
-    background-color: $bluey3-grey
     padding-bottom: 5px
     border: none
   .project-utils [ui-layout-container]:last-child h2
     background-color: white
 
-  .project-sidebar [ui-layout-container]:first-child
-    border-right: $project-desktop-border
-    border-bottom: $project-desktop-border
-  .project-sidebar [ui-layout-container]:last-child
-    border-right: $project-desktop-border
-    border-top: $project-desktop-border
-  .project-main
-    border-right: $project-desktop-border
-    border-left: $project-desktop-border
-  .project-utils [ui-layout-container]:first-child
-    border-left: $project-desktop-border
-    border-bottom: $project-desktop-border
-  .project-utils [ui-layout-container]:last-child
-    border-left: $project-desktop-border
-    border-top: $project-desktop-border
+.project-photo
+  height: 340px
+  overflow: hidden
+  img
+    min-width: 100%
+    height: 100%
+    object-fit: cover
+    max-height: 340px

@@ -1,84 +1,67 @@
-<div ui-layout="{flow: 'column', disableToggle: true, dividerSize: 4}">
-  <div ui-layout-container size="320px" class="project-sidebar">
-    <div ui-layout="{dividerSize: 4}">
-      <div ui-layout-container class="project-info bg-{{project.logoColor()}}">
-        <div ng-include="'projects/badge.html'"></div>
-        <div class="project-info-inner flex-container flex-scroll">
-          <div class="project-outline" ng-include="'projects/outline.html'"></div>
-          <div project-people class="flex-container"></div>
-        </div>
-      </div>
-      <div ui-layout-container ng-if="project.isParticipant()">
-        <div id="projectProjsContainer" class="flex-container other-projects" ng-controller="ProjectsCtrl">
-          <h2 translate>project.index.home.title</h2>
-          <div class="section">
-            <button class="btn btn-default btn-block btn-raised i-project" ng-click="createProject()" translate>project.create.button</button>
-          </div>
-          <projects class="flex-scroll" project-list="projects" context="context" ng-if="projects.length" container="#projectProjsContainer"></projects>
-          <div ng-if="!projects.length" class="project-void-banner">
-            <p translate>project.my_projects.no_projects</p>
-            <img src="images/teem_pot.svg">
-          </div>
-        </div>
-      </div>
+<div>
+  <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
+    <img class="media-object" ng-src="{{project.logo()}}">
+  </div>
+  <div class="project-photo" ng-if="!project.isParticipant()">
+    <img class="media-object" ng-src="{{project.logo()}}">
+  </div>
+</div>
+<div class="project-title-editable">
+  <input class="h1 title-input form-control" ng-model="project.title"
+  placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
+
+  <button class="btn btn-default like-icon"
+          like
+          like-icon="true"
+          like-count="true"
+          like-model="project">
+  </button>
+
+  <div class="icons" ng-if="project.isParticipant()">
+    <i ng-click="focusTitleInput()" class="material-icons" uib-tooltip="{{'project.tooltip.edit' | translate}}">edit</i>
+    <!--<i ng-click="archiveProject()" class="material-icons secundary-icon" uib-tooltip="{{'project.tooltip.archive' | translate}}">archive</i>-->
+    <i class="material-icons secundary-icon"
+    uib-tooltip="{{'project.tooltip.delete' | translate}}"
+    ui-set="{modalSharedState: {
+      name: 'confirm',
+      title: 'project.cancel.confirm.title',
+      text: 'project.cancel.confirm.text',
+      callback: cancelProject
+    }}">delete</i>
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-raised project-join-btn"
+          ng-if="!project.isParticipant()"
+          join
+          join-icon="false",
+          join-model="project"
+          join-copy-on="project.participate.btn.undo"
+          join-copy-off="project.participate.btn.do"
+          analytics-on="click"
+          analytics-event="Join project">
+  </button>
+</div>
+
+<div>
+
+  <div class="project-info col-md-2">
+    <div class="project-info-inner flex-container flex-scroll">
+      <div class="project-outline" ng-include="'projects/outline.html'"></div>
+      <div>&nbsp;</div>
     </div>
   </div>
 
-  <div ui-layout-container="central" class="project-main">
+  <div class="project-main col-md-7">
     <div class="flex-container">
-      <div class="project-title-editable">
-        <input class="h1 title-input form-control" ng-model="project.title"
-        placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
-
-        <button class="btn btn-default like-icon"
-                like
-                like-icon="true"
-                like-count="true"
-                like-model="project">
-        </button>
-
-        <div class="icons" ng-if="project.isParticipant()">
-          <i ng-click="focusTitleInput()" class="material-icons" uib-tooltip="{{'project.tooltip.edit' | translate}}">edit</i>
-          <!--<i ng-click="archiveProject()" class="material-icons secundary-icon" uib-tooltip="{{'project.tooltip.archive' | translate}}">archive</i>-->
-          <i class="material-icons secundary-icon"
-          uib-tooltip="{{'project.tooltip.delete' | translate}}"
-          ui-set="{modalSharedState: {
-            name: 'confirm',
-            title: 'project.cancel.confirm.title',
-            text: 'project.cancel.confirm.text',
-            callback: cancelProject
-          }}">delete</i>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-raised project-join-btn"
-                ng-if="!project.isParticipant()"
-                join
-                join-icon="false",
-                join-model="project"
-                join-copy-on="project.participate.btn.undo"
-                join-copy-off="project.participate.btn.do"
-                analytics-on="click"
-                analytics-event="Join project">
-        </button>
-      </div>
       <pad editing-default="true" class="flex-container"></pad>
     </div>
   </div>
 
-  <div ui-layout-container size="25%" class="project-utils">
-    <div ui-layout="{dividerSize: 4}">
-      <div ui-layout-container>
-        <div class="flex-container">
-          <h2 translate>need.nav.title</h2>
-          <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
-        </div>
-      </div>
-      <div ui-layout-container ng-if="project.isParticipant()">
-        <div class="flex-container">
-          <h2 translate>chat.nav.title</h2>
-          <chat class="flex-container"></chat>
-        </div>
-      </div>
+  <div class="project-utils col-md-3">
+    <div>
+      <h2 translate>need.nav.title</h2>
+      <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
     </div>
+    <div project-people></div>
   </div>
 </div>

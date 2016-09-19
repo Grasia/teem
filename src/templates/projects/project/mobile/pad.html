@@ -1,7 +1,9 @@
 <div class="flex-container project-mobile">
   <div ng-class="{'flex-container': pad.editing}">
-    <div class="section project-header bg-{{project.logoColor()}}" ng-if="!pad.editing && !isNew()">
-      <div ng-include="'projects/badge.html'"></div>
+    <div class="section" ng-class="{'hidden': pad.editing}">
+      <h1>{{project.title}}</h1>
+    </div>
+    <div class="section project-header" ng-if="!pad.editing && !isNew()">
       <button class="btn btn-default like-icon"
               like
               like-icon="true"
@@ -40,17 +42,15 @@
               analytics-event="Join project">
       </button>
     </div>
-    <div class="section project-participants" ng-if="!isNew() && !pad.editing">
-      <h2 translate>
-          project.section.participants.title
-      </h2>
-      <div project-people  ng-if="!isNew() && !pad.editing"></div>
-    </div>
     <div class="section info-tip" ng-if="project.isParticipant() && !pad.editing && infoTip()">
       <span translate>pad.tap_to_edit</span> <span ng-click="infoTip(true)" class="i-close pull-right"></span>
     </div>
 
     <pad class="flex-container"></pad>
+
+    <div class="section project-participants" ng-if="!isNew() && !pad.editing">
+      <div project-people ng-if="!isNew() && !pad.editing"></div>
+    </div>
   </div>
   <div class="scrollable-footer" ng-if="isNew() && !pad.editing">
     <div ng-include="'new-form/buttons.html'"></div>

@@ -1,7 +1,3 @@
-<div class="needs-header">
-  <need-progress-bar></need-progress-bar>
-</div>
-
 <div class="need-list" ng-class="{'need-list-collapsed': project.isParticipant()}">
   <div ng-if="!project.needs.length" class="project-void-banner">
     <img src="images/needs.svg">
@@ -9,12 +5,17 @@
   </div>
 
   <div class="list-group project-needs-list project-needs">
-
+    <h3 translate>need.title.todo</h3>
     <div>
       <div need-display need="{completed: 'add'}">
       </div>
     </div>
-    <div ng-repeat="need in needs | orderBy:orderByTime | orderBy: 'completed'">
+    <div ng-repeat="need in needs | filter:{completed: false} | orderBy:orderByTime">
+      <div need-display need="need">
+      </div>
+    </div>
+    <h3 translate>need.title.done</h3>
+    <div ng-repeat="need in needs | filter:{completed: true} | orderBy:orderByTime">
       <div need-display need="need">
       </div>
     </div>

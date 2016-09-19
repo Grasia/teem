@@ -69,7 +69,7 @@
     "project": {
       "button": "Create a teem",
       "count": "{{count}} teems",
-      "tip": "Organize your projects and expose your needs",
+      "tip": "Organize your projects and expose your tasks",
       "title": "Teems",
       "working_group_count": "{{count}} working groups"
     },
@@ -126,7 +126,7 @@
     "copy": {
       "explore": "Explore what people are doing in your community",
       "propose": "Propose your project, find support and collaborators",
-      "work": "Work in your project and expose your needs"
+      "work": "Work in your project and expose your tasks"
     },
     "welcome_msg": "The tool to promote your proposals in your communities"
   },
@@ -179,23 +179,27 @@
     "by": "Added {{time}} by {{author}}",
     "comment": {
       "input": "How can you lend a hand?",
-      "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at need \"{{need}}\""
+      "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at task \"{{need}}\""
     },
     "index": {
       "empty": {
-        "contributor": "Write down your needs so others can help you",
-        "reader": "This Teem has not published any needs yet"
+        "contributor": "Write down your tasks so others can help you",
+        "reader": "This Teem has not published any tasks yet"
       }
     },
     "nav": {
-      "title": "Needs"
+      "title": "Tasks"
     },
     "new": {
-      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the Teem",
-      "placeholder": "Add a new need"
+      "notification": "<strong>{{user}}</strong> has created the task \"{{need}}\" in the Teem",
+      "placeholder": "Add a new task"
     },
-    "no_needs": "This group has not created any need yet",
-    "tip": "This is what we need to get the project going"
+    "no_needs": "This group has not created any task yet",
+    "title": {
+      "done": "Done",
+      "todo": "To do"
+    },
+    "tip": "This is what we task to get the project going"
   },
   "newForm": {
     "btn": {
@@ -216,9 +220,9 @@
       "text": "Text"
     },
     "need": {
-      "missing": "This need was deleted"
+      "missing": "This task was deleted"
     },
-    "placeholder": "Share here how to participate in your activity or project: \n • how to start contributing, \n •  what do you need and what has to be done, \n •  the links to the tools you use...",
+    "placeholder": "Share here how to participate in your activity or project: \n • how to start contributing, \n •  what do you task and what has to be done, \n •  the links to the tools you use...",
     "outline": {
       "index": "Index"
     },
@@ -226,7 +230,7 @@
     "tooltip": {
       "link": "Insert link",
       "img": "Insert image",
-      "need": "Insert need",
+      "need": "Insert task",
       "text_fields": "Heading",
       "format_bold": "Bold",
       "format_italic": "Italic",
@@ -355,7 +359,7 @@
         "title": "Name"
       },
       "needs": {
-        "title": "Needs"
+        "title": "Tasks"
       },
       "participants": {
         "title": "Participants"
@@ -412,7 +416,7 @@
       "delete": "Delete",
       "edit": "Edit title",
       "pad": "Info",
-      "need": "Needs"
+      "need": "Tasks"
     },
     "welcome": {
       "tip": "Not involved in anything yet? <a href=\"/communities\">Find a community</a> to join or <a href=\"/communities/new\">create your community</a>"
@@ -486,8 +490,8 @@
       },
       "link": "Register here",
       "link_prev": "Are not you in Teem yet?",
-      "new_community": "To create your community you need to register first",
-      "new_project": "To create your teem you need to register first",
+      "new_community": "To create your community you task to register first",
+      "new_project": "To create your teem you task to register first",
       "new_user": "Choose your nick and password",
       "nick": "Nick",
       "password": "Password",
@@ -552,6 +556,6 @@
     "skip": "Ok, skip",
     "slide1": "See what people in your community have done",
     "slide2": "Pitch your project, find support and collaborators",
-    "slide3": "Work on your project and post your needs"
+    "slide3": "Work on your project and post your task"
   }
 }

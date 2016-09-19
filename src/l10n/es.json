@@ -69,7 +69,7 @@
     "project": {
       "button": "Crear un teem",
       "count": "{{count}} teems",
-      "tip": "Organiza los proyectos y expón vuestras necesidades",
+      "tip": "Organiza los proyectos y expón vuestras tareas",
       "title": "Teems",
       "working_group_count": "{{count}} Teems"
     },
@@ -126,7 +126,7 @@
     "copy": {
       "explore": "Explora lo que la gente está haciendo en tu comunidad",
       "propose": "Propón tu proyecto, encuentra apoyos y colaboradores",
-      "work": "Trabaja en tu proyecto y expón tus necesidades"
+      "work": "Trabaja en tu proyecto y expón tus tareas"
     },
     "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades"
   },
@@ -179,22 +179,26 @@
     "by": "Añadida {{time}} por {{author}}",
     "comment": {
       "input": "¿En qué puedes echar una mano?",
-      "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
+      "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la tarea \"{{need}}\""
     },
     "index": {
       "empty": {
-        "contributor": "Anota tus necesidades para que te echen una mano",
-        "reader": "Este Teem no ha publicado ninguna necesidad aún"
+        "contributor": "Anota tus tareas para que te echen una mano",
+        "reader": "Este Teem no ha publicado ninguna tarea aún"
       }
     },
     "nav": {
-      "title": "Necesidades"
+      "title": "Tareas"
     },
     "new": {
-      "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el Teem",
-      "placeholder": "Añade una nueva necesidad"
+      "notification": "<strong>{{user}}</strong> ha creado la tarea \"{{need}}\" en el Teem",
+      "placeholder": "Añade una nueva tarea"
     },
-    "no_needs": "Este grupo aún no ha creado ninguna necesidad",
+    "no_needs": "Este grupo aún no ha creado ninguna tarea",
+    "title": {
+      "done": "Hechas",
+      "todo": "Para hacer"
+    },
     "tip": "Esto es lo que necesitamos para llevar a cabo el proyecto"
   },
   "newForm": {
@@ -216,7 +220,7 @@
       "text": "Text"
     },
     "need": {
-      "missing": "Esta necesidad se ha borrado"
+      "missing": "Esta tarea se ha borrado"
     },
     "placeholder": "Comparte aquí cómo participar en tu actividad o proyecto: \n • cómo empezar a colaborar, \n •  las cosas que necesitais y lo que hay que hacer, \n •  la colección de enlaces a las herramientas que utilizais...",
     "outline": {
@@ -226,7 +230,7 @@
     "tooltip": {
       "link": "Insertar enlace",
       "img": "Insertar image",
-      "need": "Insertar necesidad",
+      "need": "Insertar tarea",
       "text_fields": "Encabezado",
       "format_bold": "Negrita",
       "format_italic": "Cursiva",
@@ -355,7 +359,7 @@
         "title": "Nombre"
       },
       "needs": {
-        "title": "Necesidades"
+        "title": "Tareas"
       },
       "participants": {
         "title":  "Participantes"
@@ -412,7 +416,7 @@
       "delete": "Eliminar",
       "edit": "Editar título",
       "pad": "Info",
-      "need": "Necesidades"
+      "need": "Tareas"
     },
     "welcome": {
       "tip": "¿No participas en nada todavía? <a href=\"/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"/communities/new\">crea tu comunidad</a>"
@@ -552,6 +556,6 @@
     "skip": "Ok, saltar",
     "slide1": "Explora lo que la gente está haciendo en tu comunidad",
     "slide2": "Propón tu proyecto, encuentra apoyos y colaboradores",
-    "slide3": "Trabaja en tu proyecto y expón tus necesidades"
+    "slide3": "Trabaja en tu proyecto y expón tus tareas"
   }
 }
