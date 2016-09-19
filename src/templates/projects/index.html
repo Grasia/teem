@@ -13,13 +13,7 @@
         {{'project.index.' + context + '.tip' | translate: translationData}}
       </div>
       <div>
-        <div class="col-md-4 col-lg-3 col-md-offset-1 col-md-push-7 col-lg-push-8 project-index-new">
-          <div>
-            <div translate>project.index.banner.text</div>
-            <button class="btn btn-primary btn-block i-project" translate ng-click="createProject()">project.index.banner.button</button>
-          </div>
-        </div>
-        <projects project-list="projects" context="context" container="#indexProjContainer" class="col-md-6 col-md-offset-1 col-md-pull-5 col-lg-pull-4"></projects>
+        <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
       </div>
     </div>
   </div>

@@ -22,11 +22,22 @@
     padding: 46px 0 46px 50%
     > button
       padding: 0
+.project-item .project-photo > div
+  position: absolute
+  bottom: 0
+  left: 0
+  color: white
+  background: rgba(black, 0.3)
+  padding: 22px 24px
+  width: 100%
 .project-item-title
-  color: $projects-title-color
+  font-size: 33px
   font-weight: normal
-.project-item:hover .project-item-title
-  color: $project-title-hover-color
+.project-item-community
+  font-size: 18px
+  font-weight: bold
+.project-item-date
+  font-size: 16px
 .notification-indicator
   color: $notification-point-color
   position: absolute
@@ -153,7 +164,7 @@
       padding: 0
       font-size: 64px
       font-weight: bold
-      height: 50px
+      height: 75px
       &:not(.ng-empty):not(:focus):not(:hover)
         background: none
       &[disabled]
@@ -162,10 +173,10 @@
         background: none
 
       &::-webkit-input-placeholder
-        font-size: 30px
+        font-size: 64px
         font-weight: bold
       &::-moz-placeholder /* due to a chrome bug, we can't define them in the same line */
-        font-size: 30px
+        font-size: 64px
         font-weight: bold
 
 .project-navigation

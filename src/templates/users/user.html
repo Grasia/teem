@@ -16,31 +16,11 @@
           <h3>{{user.nick}}</h3>
         </div>
         <div>
-          <button ng-click="logout()" class="btn btn-raised btn-primary btn-block">logout</button>
+          <button ng-click="logout()" class="btn btn-raised btn-primary btn-block" translate>menu.session.logout</button>
         </div>
       </div>
     </div>
     <div class="col-md-8">
-      <div class="profile-list">
-        <h4 class="text-uppercase" translate>community.communities</h4>
-        <table class="communities table table-hover">
-          <tr ng-repeat="community in communities">
-            <td>
-              <a href="{{ community.path() }}" class="project-photo-small">
-                <img ng-src="{{community.logo()}}">
-              </a>
-            </td>
-            <td>
-              <a href="{{ community.path() }}">
-                <span>{{community.name}}</span>
-              </a>
-            </td>
-            <td ng-if="canEdit()" class="text-right">
-              <a class="i-participant-remove text-uppercase" ng-click="leave(community)" translate>community.menu.leave</a>
-            </td>
-          </tr>
-        </table>
-      </div>
       <div class="profile-list">
         <h4 class="text-uppercase" translate>project.projects</h4>
         <table class="projects table table-hover">

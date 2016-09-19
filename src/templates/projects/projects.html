@@ -1,54 +1,15 @@
 <div class="projects list-group"
   infinite-scroll="getProjectsPage()"
   infinite-scroll-container="container" infinite-scroll-disabled="bussyPagination" infinite-scroll-distance="2">
-  <div class="project-item list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
-
-    <div class="media">
-      <div class="media-left">
-        <div class="project-photo">
-          <img class="media-object" ng-src="{{project.logo()}}" />
-        </div>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <span class="project-item-title">{{project.title}}</span>
-        </h4>
-
-        <div class="project-communities"
-             ng-if="context == 'home' || context == 'public'">
-             <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
-        </div>
-
-        <div class="project-description">
-          {{project.pad.excerpt}}
-        </div>
-
-        <div class="project-sections">
-          <div class="project-sections-participants">
-            <a uib-tooltip="{{'project.tooltip.pad' | translate}}">
-              <i class="i-community icon-count">
-                <span class="icon-count-number">{{ project.participantCount() }}</span>
-              </i>
-            </a>
-          </div>
-
-          <div class="icon-count project-sections-needs">
-            <a ng-click="showProject(project, 'needs')" uib-tooltip="{{'project.tooltip.need' | translate}}">
-              <i class="i-need icon-count">
-                <span class="icon-count-number">{{ project.needIncompletedCount() }}</span>
-              </i>
-            </a>
-          </div>
-
-          <div class="icon-count project-sections-chat">
-            <a ng-click="showProject(project, 'chat')" uib-tooltip="{{'project.tooltip.chat' | translate}}">
-              <i class="i-message icon-count">
-                <span class="icon-count-number">{{ project.newMessagesCount() }}</span>
-              </i>
-            </a>
-          </div>
-        </div>
+  <div class="project-item col-md-4 list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
+    <div class="project-photo pos-r">
+      <img class="media-object" ng-src="{{project.logo()}}" />
+      <div>
+        <div class="project-item-date">10/09/2016</div>
+        <div class="project-item-title">{{project.title}}</div>
+        <div class="project-item-community">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : '&nbsp;'}}</div>
       </div>
     </div>
+
   </div>
 </div>
