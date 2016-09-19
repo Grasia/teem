@@ -3,20 +3,22 @@ body
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
   font-family: 'Lato', sans-serif
-  font-weight: normal
   color: $dark-grey
 
-h1, .h1, h2, .h2
-  font-size: 24px
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+  font-weight: $font-weight-light
+
+h1, .h1
+  font-size: 48px
+h2, .h2
+  font-size: 34px
+h4, h5, h6, .h4, .h5, .h6
+  font-size: 18px
 
 .scrollable-header h1
   background: $light-grey
   padding: 17px 29px
   border-bottom: solid 1px $grey
-
-h4, h5, h6, .h4, .h5, .h6
-  font-weight: $font-weight-light
-  font-size: 18px
 
 .app, .section, .list-group-item
   background-color: $app-background-color
