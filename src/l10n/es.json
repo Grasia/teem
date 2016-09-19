@@ -295,7 +295,14 @@
     },
     "form": {
       "finish": "Hecho",
-      "next": "Siguiente"
+      "next": "Siguiente",
+      "share": {
+        "banner": {
+          "subtitle": "Tu proyecto tiene una pinta estupenda",
+          "text": "Invita a otra gente para que te ayude a hacerlo realidad",
+          "title": "¡Buen trabajo!"
+        }
+      }
     },
     "index": {
       "banner": {

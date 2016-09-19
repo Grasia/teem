@@ -295,7 +295,14 @@
     },
     "form": {
       "finish": "Finish",
-      "next": "Next"
+      "next": "Next",
+      "share": {
+        "banner": {
+          "subtitle": "Your project looks great",
+          "text": "Invite other people to help make it happen",
+          "title": "Nice work!"
+        }
+      }
     },
     "index": {
       "banner": {
