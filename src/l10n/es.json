@@ -137,6 +137,9 @@
     "communities": {
       "title": "Explorar"
     },
+    "explore": {
+      "title": "Explorar"
+    },
     "feedback": {
       "title": "Comentarios"
     },
@@ -144,7 +147,13 @@
       "title": "Mis comunidades"
     },
     "homeProjects": {
-      "title": "Mis Teems"
+      "title": "Your projects"
+    },
+    "login": {
+      "title": "Entrar"
+    },
+    "profile":  {
+      "title": "Perfil"
     },
     "projects": {
       "title": "Teems"

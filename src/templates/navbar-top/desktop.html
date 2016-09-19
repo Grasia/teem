@@ -2,99 +2,22 @@
 
   <ul class="nav navbar-nav">
     <li>
-      <a class="logo" href="/"><img src="/images/app-logo-white.png" /></a>
+      <a class="logo" href="/"><img src="/images/app-logo.png" /></a>
     </li>
   </ul>
 
   <ul class="nav navbar-nav navbar-right menu-desktop navbar-form">
-    <li class="text-uppercase menu-option" ng-if="loggedIn()">
-      <a href="/home/teems" translate>menu.homeProjects.title</a>
+    <li class="menu-option" ng-if="loggedIn()">
+      <a href="/home/projects" translate>menu.homeProjects.title</a>
     </li>
-    <li class="text-uppercase menu-option" ng-if="loggedIn()">
-      <a href="/home/communities" translate>menu.homeCommunities.title</a>
+    <li class="menu-option">
+      <a href="/projects" translate>menu.explore.title</a>
     </li>
-    <li class="text-uppercase menu-option">
-      <a href="/communities" translate>menu.communities.title</a>
+    <li ng-if="!loggedIn()" class="menu-option">
+      <a  ng-click="login()" translate>menu.login.title</a>
     </li>
-    <li class="dropdown menu-option search">
-      <a class="input-group">
-
-        <span class="input-group-addon"
-          ui-turn-on="searchDropdown">
-          <i class="fa fa-search input-group-addon" ng-click="focusSearchInput()"></i>
-        </span>
-
-        <input id="search-input" class="form-control" type="text" ng-model="search.input"
-        ng-model-options="{ debounce: 500 }"
-        ui-show="searchDropdown"
-        ui-turn-on="searchDropdown"
-        ui-outer-click="Ui.turnOff('searchDropdown')"
-        ui-outer-click-if="Ui.active('searchDropdown')">
-
-        <span class="input-group-addon" ui-show="searchDropdown">
-          <i class="fa fa-close input-group-addon" ng-click="Ui.turnOff('searchDropdown')"></i>
-        </span>
-      </a>
-      <ul class="dropdown-menu"
-        ui-outer-click="Ui.turnOff('searchDropdown')"
-        ui-outer-click-if="Ui.active('searchDropdown') && shouldHideDropdown()"
-        ui-state="searchDropdown"
-        ui-show="searchDropdown">
-        <search-results query="search.input"></search-results>
-      </ul>
-    </li>
-    <li class="text-uppercase menu-option" ng-if="support">
-      <a href="/projects/{{support.projectId}}" translate>menu.feedback.title</a>
-    </li>
-    <li ui-yield-to="nav-desktop">
-    </li>
-    <li class="dropdown menu-session">
-      <a ui-turn-on="menuSession">
-        <div ng-if="! loggedIn()">
-          <span class="avatar">
-            <img src="images/anonymous-avatar.png" />
-          </span>
-          <span class="menu-session-nick" translate>
-            menu.session.guest
-          </span>
-          <span class="caret"></span>
-        </div>
-
-        <div ng-if="loggedIn()">
-          <span avatars="user.id" class="avatars avatars-without-names"></span>
-          <span class="menu-session-nick" ng-bind="user.nick"></span>
-          <span class="caret"></span>
-        </div>
-      </a>
-      <ul class="dropdown-menu"
-          ui-outer-click="Ui.turnOff('menuSession')"
-          ui-outer-click-if="Ui.active('menuSession')"
-          role="menu"
-          ng-if="! loggedIn()"
-          ui-show="menuSession"
-          ui-state="menuSession"
-          ui-turn-off="menuSession">
-        <li><a ng-click="register()" class="user">{{'menu.session.guest' | translate}}<br>{{'menu.session.short_tip' | translate}}</a></li>
-        <li class="divider"></li>
-        <li><a ng-click="login()" translate>menu.session.login</a></li>
-        <li><a ng-click="register()" translate>menu.session.register</a></li>
-      </ul>
-      <!-- Material design uses ul>li css so we have to repeat the menu here
-           or add a watcher per menu entry -->
-      <ul class="dropdown-menu"
-          ui-outer-click="Ui.turnOff('menuSession')"
-          ui-outer-click-if="Ui.active('menuSession')"
-          role="menu"
-          ng-if="loggedIn()"
-          ui-show="menuSession"
-          ui-state="menuSession"
-          ui-turn-off="menuSession">
-
-        <li><a href="/users/{{user.id}}" class="user">{{user.nick}}</a></li>
-        <li class="divider"></li>
-        <li><a href="/users/{{user.id}}" translate>menu.session.profile</a></li>
-        <li><a ng-click="logout()" translate>menu.session.logout</a></li>
-      </ul>
+    <li ng-if="loggedIn()" class="menu-option">
+      <a href="/users/{{user.id}}" translate>menu.profile.title</a>
     </li>
   </ul>
 </div>

@@ -1,10 +1,16 @@
-<div class="navbar-brand navbar-brand-center nav-title" ui-yield-to="nav-title"></div>
-
-<div class="btn-group pull-left nav-left" ui-yield-to="nav-left">
-  <div class="btn btn-navbar" >
-    <i class="material-icons menu-btn" ui-toggle="uiSidebarLeft">menu</i>
-  </div>
-</div>
-
-<div class="btn-group pull-right nav-right" ui-yield-to="nav-right">
+<div class="container-fluid menu navbar-top-menu" ng-controller="MenuCtrl">
+  <ul class="nav navbar-nav navbar-right menu-mobile navbar-form">
+    <li class="menu-option" ng-if="loggedIn()">
+      <a href="/home/projects" translate>menu.homeProjects.title</a>
+    </li>
+    <li class="menu-option">
+      <a href="/projects" translate>menu.explore.title</a>
+    </li>
+    <li ng-if="!loggedIn()" class="menu-option">
+      <a  ng-click="login()" translate>menu.login.title</a>
+    </li>
+    <li ng-if="loggedIn()" class="menu-option">
+      <a href="/users/{{user.id}}" translate>menu.profile.title</a>
+    </li>
+  </ul>
 </div>
