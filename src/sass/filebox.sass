@@ -15,17 +15,19 @@
       margin-top: -210px
 
 .crop-box
-  border: 5px dashed $grey
   width: 100%
   height: 350px
   overflow: hidden
-  width: 100%
-  height: 350px
 
 .drop-box
   @extend .crop-box
+  border: 5px dashed $grey
   text-align: center
-  padding: 50px 10px
+  .drop-box-center
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
   &.dragover
     border-color: $purple
 

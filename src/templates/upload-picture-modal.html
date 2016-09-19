@@ -1,14 +1,13 @@
 <modal name="uploadPicture">
   <header translate>picture.title</header>
   <main>
-    <div ng-hide="pic.pictureFile">
-      <div ngf-drop ngf-select ng-model="pic.pictureFile" class="drop-box"
-      ngf-drag-over-class="'dragover'" accept="image/*"
-      ngf-pattern="'image/*'" dragover-text="{{'picture.dropover' | translate}}"><span translate>picture.upload</span></div>
-    </div>
-    <div ng-show="pic.pictureFile">
-      <p translate>picture.crop</p>
-      <div class="crop-box">
+    <div ngf-drop ngf-select ng-model="pic.pictureFile" class="drop-box"
+    ngf-drag-over-class="'dragover'" accept="image/*" ngf-select-disabled="pic.pictureFile"
+    ngf-pattern="'image/*'" dragover-text="{{'picture.dropover' | translate}}">
+      <div ng-hide="pic.pictureFile" class="drop-box-center">
+        <span translate>picture.upload</span>
+      </div>
+      <div ng-show="pic.pictureFile" class="crop-box">
         <img-crop image="pic.pictureFile | ngfDataUrl" result-image="pic.croppedPicture"
         area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
       </div>
