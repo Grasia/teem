@@ -172,6 +172,10 @@ angular.module('Teem')
       }
     };
 
+    $scope.formStep = function() {
+      return Forms.indexOf($route.current.params.form) + 1;
+    };
+
     $scope.nextForm = function () {
       var index = Forms.indexOf($route.current.params.form) + 1;
 
