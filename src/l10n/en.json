@@ -271,8 +271,8 @@
       "button": "Invite people",
       "button_cancel": "Cancel",
       "button_continue": "Share",
-      "long_placeholder": "Add people from Teem or email addresses",
-      "placeholder": "Add people from Teem or email addresses",
+      "long_placeholder": "Add users or email addresses",
+      "placeholder": "Add users or email addresses",
       "text": "Invite people to help you with this project",
       "title": "Invite people"
     },
@@ -301,6 +301,9 @@
           "subtitle": "Your project looks great",
           "text": "Invite other people to help make it happen",
           "title": "Nice work!"
+        },
+        "invite": {
+          "button": "Invite friends!"
         }
       }
     },
@@ -388,7 +391,7 @@
         "error": "Error"
       },
       "description": {
-        "link": "Link to share:",
+        "link": "Shareable link",
         "permission": "Change access permissions:"
       },
       "info": {

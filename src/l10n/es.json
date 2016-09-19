@@ -271,8 +271,8 @@
       "button": "Invita personas",
       "button_cancel": "Cancelar",
       "button_continue": "Compartir",
-      "long_placeholder": "Añade personas de Teem o emails",
-      "placeholder": "Añade personas de Teem o emails",
+      "long_placeholder": "Añade personas en Teem o emails",
+      "placeholder": "Añade personas en Teem o emails",
       "text": "Invita a personas para que te ayuden con este proyecto",
       "title": "Invita personas"
     },
@@ -301,6 +301,9 @@
           "subtitle": "Tu proyecto tiene una pinta estupenda",
           "text": "Invita a otra gente para que te ayude a hacerlo realidad",
           "title": "¡Buen trabajo!"
+        },
+        "invite": {
+          "button": "¡Invita amig@s!"
         }
       }
     },
