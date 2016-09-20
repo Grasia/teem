@@ -1,20 +1,22 @@
-<h1 translate>Create your project</h1>
+<div class="project-form-image text-center">
+  <h1 translate>Create your project</h1>
 
-<h2>Share a photo of a project you want to organize</h2>
+  <h2>Share a photo of a project you want to organize</h2>
 
-<div>
-  <div ngf-drop ngf-select ng-model="pic.pictureFile" class="drop-box"
-  ngf-drag-over-class="'dragover'" accept="image/*" ngf-select-disabled="pic.pictureFile"
-  ngf-pattern="'image/*'" dragover-text="{{'picture.dropover' | translate}}">
-    <div ng-hide="pic.pictureFile" class="drop-box-center">
-      <i class="material-icons">file_upload</i><span translate>picture.upload</span>
-    </div>
-    <div ng-show="pic.pictureFile" class="crop-box">
-      <img-crop image="pic.pictureFile | ngfDataUrl" result-image="pic.croppedPicture"
-      area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
+  <div>
+    <div ngf-drop ngf-select ng-model="pic.pictureFile" class="drop-box"
+         ngf-drag-over-class="'dragover'" accept="image/*" ngf-select-disabled="pic.pictureFile"
+         ngf-pattern="'image/*'" dragover-text="{{'picture.dropover' | translate}}">
+      <div ng-hide="pic.pictureFile" class="drop-box-center">
+        <i class="material-icons">file_upload</i><span translate>picture.upload</span>
+      </div>
+      <div ng-show="pic.pictureFile" class="crop-box">
+        <img-crop image="pic.pictureFile | ngfDataUrl" result-image="pic.croppedPicture"
+                  area-type="{{areaType}}" aspect-ratio="aspectRatio" result-image-size="imgSize" init-max-area="true"></img-crop>
+      </div>
     </div>
   </div>
+
+
+  <div><i class="material-icons">photo_camera</i> Take a photo</div>
 </div>
-
-
-<div><i class="material-icons">photo_camera</i> Take a photo</div>
