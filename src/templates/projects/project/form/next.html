@@ -1,4 +1,7 @@
-<div class="text-right">
+<div class="project-form-next">
+  <span class="project-form-next-message" ng-if="form() === 'share'" translate>
+    project.form.share.next.message
+  </span>
   <button class="btn btn-primary btn-link"
           ng-click="goToNextForm()">
           <span ng-bind="nextForm() ? 'project.form.next' : 'project.form.finish' | translate"></span>

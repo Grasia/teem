@@ -304,6 +304,9 @@
         },
         "invite": {
           "button": "¡Invita amig@s!"
+        },
+        "next": {
+          "message": "Ahora no, gracias"
         }
       }
     },
