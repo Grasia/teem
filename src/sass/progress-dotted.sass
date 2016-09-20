@@ -1,12 +1,12 @@
 .progress-dotted
   position: relative
   height: 10px
-  width: 80px
+  width: 90px
   .dot
     position: absolute
-    width: 10px
-    height: 10px
-    border-radius: 5px
+    width: 12px
+    height: 12px
+    border-radius: 50%
     background-color: $grey
     &:nth-child(1)
       left: 0%
@@ -39,5 +39,7 @@
       transition-delay: .5s
   .progress
     position: absolute
+    margin-top: 1px
+    background-color: $grey
     top: 3px
     width: 100%
