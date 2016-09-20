@@ -2,9 +2,10 @@
   <span class="project-form-next-message" ng-if="form() === 'share'" translate>
     project.form.share.next.message
   </span>
-  <button class="btn btn-primary btn-link"
+  <button class="btn btn-primary"
+          ng-class="nextForm() ? 'btn-link' : 'btn-block btn-raised'"
           ng-click="goToNextForm()">
           <span ng-bind="nextForm() ? 'project.form.next' : 'project.form.finish' | translate"></span>
-          <i class="i-next"></i>
+          <i class="i-next" ng-if="nextForm()"></i>
   </button>
 </div>

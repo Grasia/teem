@@ -294,7 +294,12 @@
       "title": "Edit Teem"
     },
     "form": {
-      "finish": "Finish",
+      "congrats": {
+        "banner": {
+          "title": "Add more details to make it cool"
+        }
+      },
+      "finish": "Done! Go to my project",
       "next": "Next",
       "share": {
         "banner": {

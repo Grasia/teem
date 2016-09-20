@@ -294,7 +294,12 @@
       "title": "Editar proyecto"
     },
     "form": {
-      "finish": "Hecho",
+      "congrats": {
+        "banner": {
+          "title": "Añade más detalles para hacerlo molón"
+        }
+      },
+      "finish": "¡Hecho! Ir a mi proyecto",
       "next": "Siguiente",
       "share": {
         "banner": {
