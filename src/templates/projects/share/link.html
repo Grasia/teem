@@ -3,7 +3,7 @@
      data-clipboard-target="#share-link"
      ngclipboard-success="clipboardMessage = 'copied'"
      ngclipboard-error="clipboardMessage = 'error'"
-     uib-tooltip="{{'project.share.clipboard.'+clipboardMessage | translate}}"
+     uib-tooltip="{{'project.share.clipboard.' + (clipboardMessage || 'copy')  | translate}}"
      tooltip-placement="right">
   <label class="control-label share-description">
     <i class="i-link"></i>
