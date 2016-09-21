@@ -371,9 +371,6 @@
         "notification": "{{invitedParticipants}} has been invited to this teem"
       }
     },
-    "project_description": "Description",
-    "project_name": "Project name",
-    "project_status": "Status",
     "projects": "Teems",
     "search": {
       "see_all": "see all projects"
