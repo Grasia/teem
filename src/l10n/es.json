@@ -299,6 +299,11 @@
           "title": "Añade más detalles para hacerlo molón"
         }
       },
+      "details": {
+        "banner": {
+          "title": "Create your project"
+        }
+      },
       "finish": "¡Hecho! Ir a mi proyecto",
       "next": "Siguiente",
       "share": {

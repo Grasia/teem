@@ -299,6 +299,11 @@
           "title": "Add more details to make it cool"
         }
       },
+      "details": {
+        "banner": {
+          "title": "Create your project"
+        }
+      },
       "finish": "Done! Go to my project",
       "next": "Next",
       "share": {
