@@ -283,7 +283,7 @@
       }
     },
     "community": {
-      "placeholder": "Communities to which it belongs"
+      "placeholder": "Add this project to a community"
     },
     "create": {
       "button": "Create Teem",
