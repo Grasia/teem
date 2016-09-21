@@ -313,7 +313,8 @@
         "next": {
           "message": "Not now, thanks"
         }
-      }
+      },
+      "title": "Create your project"
     },
     "index": {
       "banner": {
