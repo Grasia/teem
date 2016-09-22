@@ -21,12 +21,13 @@
 
 .drop-box
   @extend .crop-box
-  border: 5px dashed $grey
+  border: 2px solid $teal
   text-align: center
   .drop-box-center
     display: flex
     justify-content: center
     align-items: center
+    flex-direction: column
     height: 100%
   &.dragover
     border-color: $purple

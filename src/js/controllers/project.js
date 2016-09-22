@@ -73,9 +73,9 @@ angular.module('Teem')
     });
   }])
   .controller('ProjectCtrl', [
-  'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
+  'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT', '$filter',
   'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User', 'Selector',
-  function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT,
+  function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT, $filter,
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User, Selector) {
 
     // Prevent users from forging the form parameter
@@ -91,6 +91,7 @@ angular.module('Teem')
       saving: false,
       outline: []
     };
+    $scope.pic = {};
 
     $scope.editOff = function() {
       angular.element(document.querySelector('pad')).scope().editOff();
@@ -187,6 +188,9 @@ angular.module('Teem')
     };
 
     $scope.goToNextForm = function () {
+      if ($scope.form() === 'image') {
+        $scope.uploadProjectPhoto($filter('dataUriToBlob')($scope.pic.croppedPicture));
+      }
       $location.search('form', $scope.nextForm());
     };
 

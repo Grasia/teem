@@ -1,5 +1,5 @@
 <div>
-  <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
+  <div class="project-photo" ng-if="project.isParticipant()"><!-- to add when https://github.com/P2Pvalue/angular-swellrt/issues/25 solved: ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" -->
     <img class="media-object" ng-src="{{project.logo()}}">
   </div>
   <div class="project-photo" ng-if="!project.isParticipant()">

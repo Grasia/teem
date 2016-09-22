@@ -3,7 +3,7 @@
 angular.module('Teem')
   .directive('uploadPictureModal', function() {
     return {
-      controller: ['$scope', 'SharedState', '$timeout', function($scope, SharedState, $timeout) {
+      controller: ['$scope', 'SharedState', '$timeout', '$filter', function($scope, SharedState, $timeout, $filter) {
         $scope.pic = {
           pictureFile: '',
           croppedPicture: ''
@@ -21,22 +21,12 @@ angular.module('Teem')
           }
         });
 
-        function dataURItoBlob(dataURI) {
-          var type = dataURI.split(';')[0].substr(5);
-          var binary = atob(dataURI.split(',')[1]);
-          var array = [];
-          for(var i = 0; i < binary.length; i++) {
-            array.push(binary.charCodeAt(i));
-          }
-          return new Blob([new Uint8Array(array)], {type});
-        }
-
         $scope.updatePicture = function(croppedPicture) {
           if (typeof cb === 'function') {
             if (!croppedPicture) {
               cb();
             } else {
-              cb(cb.dataURI ? croppedPicture : dataURItoBlob(croppedPicture));
+              cb(cb.dataURI ? croppedPicture : $filter('dataUriToBlob')(croppedPicture));
             }
           }
           SharedState.turnOff('modalSharedState');
