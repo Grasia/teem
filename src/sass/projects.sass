@@ -134,6 +134,9 @@
     font-size: 1.42em
     margin-bottom: .14em
 .project-mobile
+  h1
+    font-size: 30px
+    font-weight: normal
   .like-icon
     float: right
     margin-top: -70px
@@ -160,7 +163,7 @@
       font-weight: bold
       white-space: nowrap
     .h1
-      margin: 19px 0
+      margin: 0
       padding: 0
       font-size: 64px
       font-weight: bold
@@ -185,18 +188,19 @@
   left: 0
   right: 0
   width: 100%
-  min-height: 30px
   text-align: center
   &, a
     color: $bluey2-grey
     background-color: $navbar-top-background-color
   .justified
     table-layout: fixed
+    height: 50px
+    border-bottom: 1px solid $grey
   .btn-group
     margin: 0
   a
     font-size: 14px
-    padding-top: 5px
+    padding-top: 15px
     padding-bottom: 5px
     text-decoration: none
     &.active,
@@ -209,7 +213,7 @@
   display: block
   overflow: hidden
   height: 100%
-  padding-top: 39px
+  padding-top: 50px
   transition: padding-top 0.3s
   &.xs-hidden-tabs
     @media (max-width: $screen-sm-max)
@@ -337,8 +341,12 @@
   color: $bluey-grey
 
 .project-outline
+  ol
+    line-height: 30px
+    padding-left: 15px
   a
-    color: $bluey2-grey
+    color: $dark-grey
+    font-weight: normal
     &:hover
       text-decoration: none
 
@@ -438,3 +446,22 @@ $project-desktop-border: 1px solid $grey
   line-height: 48px
 .project-form-next-message
   vertical-align: middle
+
+.project-creation
+  font-weight: normal
+  margin-top: 14px
+.project-community
+  font-size: 17px
+  font-weight: bold
+.project-location
+  font-size: 14px
+  font-weight: normal
+.project-promoter
+  margin-top: 15px !important
+  margin-bottom: 33px
+  span
+    font-size: 13px
+    font-weight: normal
+    line-height: 0.9
+  strong
+    font-size: 14px

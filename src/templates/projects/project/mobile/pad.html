@@ -1,17 +1,27 @@
 <div class="flex-container project-mobile">
   <div ng-class="{'flex-container': pad.editing}">
-    <div class="section" ng-class="{'hidden': pad.editing}">
-      <h1>{{project.title}}</h1>
+    <div ng-class="{'hidden': pad.editing}">
+      <div class="container project-creation">10/09/2016</div>
+      <div class="container">
+        <h1>{{project.title}}</h1>
+      </div>
+      <div class="container project-community">
+        <a href="communities/{{community._urlId}}">{{community.name}} Huerta de Tetuán</a>
+      </div>
+      <div class="container project-location">
+        <i class="custom-icons">location_on</i> {{project.location}} Madrid, Spain
+      </div>
+      <div class="container">
+        <div class="media project-promoter">
+          <div avatars="project.promoter" avatars-conf="{size: 'xsmall'}" class="avatars-without-names media-left"></div>
+          <div class="media-body">
+            <span>Created by</span>
+            <strong>{{project.promoter | idToNick}}</strong>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="section project-header" ng-if="!pad.editing && !isNew()">
-      <button class="btn btn-default like-icon"
-              like
-              like-icon="true"
-              like-count="true"
-              like-model="project">
-      </button>
-    </div>
-    <div class="section" ng-if="editingTitle() && !pad.editing">
+    <div class="container" ng-if="editingTitle() && !pad.editing">
       <div class="input-group title-form">
         <input type="text" hide-tabs
                class="form-control title-input"
@@ -31,7 +41,7 @@
         placeholder=" 'project.community.placeholder' | translate"
       ></selector>
     </div>
-    <div class="project-join section" ng-if="!project.isParticipant()">
+    <div class="project-join container" ng-if="!project.isParticipant()">
       <button class="btn btn-primary btn-raised btn-block btn-lg"
               join
               join-icon="false",
@@ -42,13 +52,13 @@
               analytics-event="Join project">
       </button>
     </div>
-    <div class="section info-tip" ng-if="project.isParticipant() && !pad.editing && infoTip()">
+    <div class="container info-tip" ng-if="project.isParticipant() && !pad.editing && infoTip()">
       <span translate>pad.tap_to_edit</span> <span ng-click="infoTip(true)" class="i-close pull-right"></span>
     </div>
 
     <pad class="flex-container"></pad>
 
-    <div class="section project-participants" ng-if="!isNew() && !pad.editing">
+    <div class="container project-participants" ng-if="!isNew() && !pad.editing">
       <div project-people ng-if="!isNew() && !pad.editing"></div>
     </div>
   </div>

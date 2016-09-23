@@ -1,7 +1,6 @@
 .pad
   padding-top: 0
   flex-direction: column
-  box-shadow: 0px 0px 5px 3px $grey
   position: relative
   .pad-toolbar
     background: $light-grey
@@ -35,9 +34,10 @@
     .swellrt-editor
       border: none !important
 
+  .pad-toolbar + .swellrt-editor
+    border: 1px solid $pad-border-color
   .swellrt-editor
     background: $pad-background-color
-    border: 1px solid $pad-border-color
     font-size: 19px
     > div
       @include break-lines()

@@ -6,6 +6,7 @@
     <img class="media-object" ng-src="{{project.logo()}}">
   </div>
 </div>
+<div class="container project-creation">10/09/2016</div>
 <div class="project-title-editable container">
   <input class="h1 title-input form-control" ng-model="project.title"
   placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
@@ -40,6 +41,21 @@
           analytics-on="click"
           analytics-event="Join project">
   </button>
+</div>
+<div class="container project-community">
+  <a href="communities/{{community._urlId}}">{{community.name}} Huerta de Tetuán</a>
+</div>
+<div class="container project-location">
+  <i class="custom-icons">location_on</i> {{project.location}} Madrid, Spain
+</div>
+<div class="container">
+  <div class="media project-promoter">
+    <div avatars="project.promoter" avatars-conf="{size: 'xsmall'}" class="avatars-without-names media-left"></div>
+    <div class="media-body">
+      <span>Created by</span>
+      <strong>{{project.promoter | idToNick}}</strong>
+    </div>
+  </div>
 </div>
 
 <div class="container">

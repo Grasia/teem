@@ -28,7 +28,7 @@
          class="flex-container touchable" ng-include="'projects/project/mobile/pad.html'">
     </div>
 
-    <div ui-if="projectTab == 'needs'" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
+    <div ui-if="projectTab == 'needs'" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}' class="needs-tab container">
       <div need-list project="project" needs="project.needs" ng-class="project.isParticipant() ? '' : 'has-cta'">
       </div>
     </div>
