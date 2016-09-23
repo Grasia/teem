@@ -21,6 +21,10 @@ angular.module('Teem')
       };
     }
 
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    };
+
     $scope.close = function() {
       SharedState.turnOff('uiSidebarLeft');
     };

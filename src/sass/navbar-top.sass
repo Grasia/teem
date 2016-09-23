@@ -6,17 +6,39 @@
   padding-top: 50px
 .navbar-absolute-top
   border-bottom-width: 0px
-  &, .fa, a, .material-icons
+  &, a
     color: $navbar-top-color
+  a::before, .material-icons
+    color: $navbar-top-icons-color
   background-color: $navbar-top-background-color
+
+  .active
+    color: $teal
+    border-bottom: 5px solid $teal
+    a
+      font-weight: bold
+      &::before
+        color: $teal
+    .menu-triangle
+      width: 0
+      height: 0
+      border-left: 15px solid transparent
+      border-right: 15px solid transparent
+      border-bottom: 10px solid $teal
+      margin-top: -15px
+      margin-left: auto
+      margin-right: auto
 
 @media (min-width: 992px)
   .has-sidebar-left .app, .sidebar-left-in .app
     margin-left: 0
   .navbar-absolute-top
-    height: 80px
+    height: 100px
   .has-navbar-top .app-body
     padding-top: 80px
+
+.nav > li
+  float: left
 
 .navbar-brand
   padding-left: 40px
@@ -62,6 +84,7 @@
     text-transform: none
 
 .navbar-top-menu
+  border-bottom: solid 1px $light-grey
   .navbar-nav
     margin-top: 0
     margin-bottom: 0
@@ -72,9 +95,12 @@
         padding-top: 16px !important
         padding-bottom: 13px !important
         img
-          height: 50px
+          height: 75px
     li > a
       padding-right: 25px !important
+    @media (max-width: $screen-sm-min)
+      display: flex
+      justify-content: center
   .menu-option
     > a
       padding-top: 30px !important

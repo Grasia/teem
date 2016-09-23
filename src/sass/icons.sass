@@ -31,6 +31,10 @@ i
   vertical-align: middle
   display: inline
 
+.menu-icons::before
+  @extend .center-block
+  display: block
+
 .material-icons.big
   font-size: 35px
   display: block
@@ -60,6 +64,9 @@ a, btn
   &::before
     @extend .custom-icons
     content: 'person_outline'
+.i-profile::before
+  @extend .custom-icons
+  content: 'person'
 
 .i-project
   @extend .icon-teem
@@ -99,6 +106,14 @@ a, btn
 .i-edit::before
   @extend .custom-icons
   content: 'edit'
+
+.i-explore::before
+  @extend .custom-icons
+  content: 'explore'
+
+.i-folder::before
+  @extend .custom-icons
+  content: 'folder'
 
 .i-check::before
   @extend .custom-icons

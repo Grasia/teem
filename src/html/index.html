@@ -47,8 +47,7 @@
 
     <div bindonce class="app" id="app">
       <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
-        <div class="hidden-md hidden-lg" ng-include="'navbar-top/mobile.html'"></div>
-        <div class="hidden-xs hidden-sm" ng-include="'navbar-top/desktop.html'"></div>
+        <div ng-include="'navbar-top/index.html'"></div>
       </div>
 
       <div ui-yield-to="navbar-bottom"></div>
