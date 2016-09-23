@@ -277,7 +277,16 @@ angular.module('Teem')
     $scope.communitySelector = {
       options: [],
       config: {
-        create: false,
+        create: function(input, callback) {
+          CommunitiesSvc.create({ name: input }, (community) => {
+            callback(community);
+          });
+        },
+        load: function(query, callback) {
+          CommunitiesSvc.all({ nameLike: query }, (communities) => {
+            callback(communities);
+          });
+        },
         valueField: 'id',
         labelField: 'name',
         searchField: 'name',
