@@ -271,8 +271,8 @@
       "button": "Invita personas",
       "button_cancel": "Cancelar",
       "button_continue": "Compartir",
-      "long_placeholder": "Añade personas en Teem o emails",
-      "placeholder": "Añade personas en Teem o emails",
+      "long_placeholder": "Añade personas en Teem o envía emails",
+      "placeholder": "Añade personas en Teem o envía emails",
       "text": "Invita a personas para que te ayuden con este proyecto",
       "title": "Invita personas"
     },
@@ -283,7 +283,7 @@
       }
     },
     "community": {
-      "placeholder": "Añade este project a una comunidad"
+      "placeholder": "Añade este proyecto a una comunidad (opcional)"
     },
     "create": {
       "button": "Crear Teem",
@@ -301,7 +301,7 @@
       },
       "details": {
         "banner": {
-          "title": "Create your project"
+          "title": "Añade detalles básicos"
         }
       },
       "finish": "¡Hecho! Ir a mi proyecto",
@@ -309,7 +309,7 @@
       "share": {
         "banner": {
           "subtitle": "Tu proyecto tiene una pinta estupenda",
-          "text": "Invita a otra gente para que te ayude a hacerlo realidad",
+          "text": "Invita a más gente a participar",
           "title": "¡Buen trabajo!"
         },
         "invite": {

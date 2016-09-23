@@ -271,8 +271,8 @@
       "button": "Invite people",
       "button_cancel": "Cancel",
       "button_continue": "Share",
-      "long_placeholder": "Add users or email addresses",
-      "placeholder": "Add users or email addresses",
+      "long_placeholder": "Add users or send emails",
+      "placeholder": "Add users or send emails",
       "text": "Invite people to help you with this project",
       "title": "Invite people"
     },
@@ -283,7 +283,7 @@
       }
     },
     "community": {
-      "placeholder": "Add this project to a community"
+      "placeholder": "Add this project to a community (optional)"
     },
     "create": {
       "button": "Create Teem",
@@ -301,7 +301,7 @@
       },
       "details": {
         "banner": {
-          "title": "Create your project"
+          "title": "Add basic details"
         }
       },
       "finish": "Done! Go to my project",
@@ -309,7 +309,7 @@
       "share": {
         "banner": {
           "subtitle": "Your project looks great",
-          "text": "Invite other people to help make it happen",
+          "text": "Invite others to get involved",
           "title": "Nice work!"
         },
         "invite": {
