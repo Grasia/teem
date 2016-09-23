@@ -188,7 +188,7 @@ angular.module('Teem')
     };
 
     $scope.goToNextForm = function () {
-      if ($scope.form() === 'image') {
+      if ($scope.form() === 'image' && $scope.pic.croppedPicture) {
         $scope.uploadProjectPhoto($filter('dataUriToBlob')($scope.pic.croppedPicture));
       }
       $location.search('form', $scope.nextForm());
