@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <div class="project-photo" ng-if="project.isParticipant()"><!-- to add when https://github.com/P2Pvalue/angular-swellrt/issues/25 solved: ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" -->
     <img class="media-object" ng-src="{{project.logo()}}">
   </div>
@@ -6,7 +6,7 @@
     <img class="media-object" ng-src="{{project.logo()}}">
   </div>
 </div>
-<div class="project-title-editable">
+<div class="project-title-editable container">
   <input class="h1 title-input form-control" ng-model="project.title"
   placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
 
@@ -42,7 +42,7 @@
   </button>
 </div>
 
-<div>
+<div class="container">
 
   <div class="project-info col-md-2">
     <div class="project-info-inner flex-container flex-scroll">
