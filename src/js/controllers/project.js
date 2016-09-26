@@ -302,6 +302,23 @@ angular.module('Teem')
         closeAfterSelect: true
       }
     };
+    $scope.locationSelector = {
+      options: [],
+      config: {
+        mode: 'single',
+        openOnFocus: false,
+        delimiter: null,
+        plugins: {
+          'placecomplete': {
+            placeholder: '',
+            //selectDetails: (placeResult) => {
+              // placeResult.displayText contains something like "Madrid, Spain"
+            //}
+          }
+        }
+      }
+    };
+
     SessionSvc.onLoad(function() {
       CommunitiesSvc.participating({ projectCount: true }).then(function(communities){
         $scope.communitySelector.options = angular.extend([], $scope.communities, communities);
