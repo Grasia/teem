@@ -296,6 +296,9 @@
       "button": "Editar",
       "title": "Editar proyecto"
     },
+    "featured": {
+      "placeholder": "Destaca tu proyecto"
+      },
     "form": {
       "congrats": {
         "banner": {

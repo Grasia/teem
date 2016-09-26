@@ -33,6 +33,17 @@
     background: rgba(black, 0.3)
     padding: 22px 24px
     width: 100%
+  &.i-featured::before
+    position: absolute
+    display: inline-table
+    top: 10px
+    right: 10px
+    color: $light-green
+    padding: 1px
+    border: 2px solid white
+    border-radius: 50%
+    &*
+      position: relative
 .project-item-title
   font-size: 33px
   font-weight: normal
@@ -424,6 +435,13 @@ $project-desktop-border: 1px solid $grey
 .project-form-details
   img
     min-width: 100%
+  .i-featured::before, .i-featured-not::before
+    border: 2px solid
+    padding: 1px
+    margin-right: 5px
+    border-radius: 50%
+  .i-featured::before
+    color: $teal
 .project-form-details-banner-title
   margin-bottom: 20px
 .project-form-details-banner-title,

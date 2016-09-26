@@ -31,4 +31,10 @@
     ng-model="project.location"
     placeholder=" 'project.location.placeholder' | translate"
   ></selector>
+
+  <div class="form-group">
+    <label ng-class="(project.featured === 'true') ? 'i-featured': 'i-featured-not'" ng-model="project.featured"
+    ng-click="project.toggleFeatured()"
+    >{{'project.featured.placeholder' |translate}}</label>
+  </div>
 </div>

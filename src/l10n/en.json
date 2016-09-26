@@ -296,6 +296,9 @@
       "button": "Edit",
       "title": "Edit Teem"
     },
+    "featured": {
+      "placeholder": "Feature this project"
+    },
     "form": {
       "congrats": {
         "banner": {

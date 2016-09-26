@@ -327,6 +327,17 @@ angular.module('Teem')
         }
       }
 
+      toggleFeatured () {
+        if (! this.isParticipant()) {
+          return;
+        }
+
+        var newStatus = this.featured !== 'true';
+
+        this.featured = newStatus.toString();
+
+      }
+
       removeNeed (need) {
         var i = this.needs.indexOf(need);
 

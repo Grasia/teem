@@ -2,7 +2,7 @@
   infinite-scroll="getProjectsPage()"
   infinite-scroll-container="container" infinite-scroll-disabled="bussyPagination" infinite-scroll-distance="2">
   <div class="project-item col-md-4 list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
-    <div class="project-photo pos-r">
+    <div class="project-photo pos-r" ng-class="(project.featured === 'true')? 'i-featured': ''">
       <img class="media-object" ng-src="{{project.logo()}}" />
       <div>
         <div class="project-item-title">{{project.title}}</div>
