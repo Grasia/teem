@@ -6,9 +6,9 @@ angular.module('Teem')
       templateUrl: 'modal.html',
       restrict: 'E',
       transclude: {
-        header: 'header',
-        main: 'main',
-        footer: 'footer'
+        header: '?header',
+        main: '?main',
+        footer: '?footer'
       },
       scope: true,
       link: function($scope, $element, $attrs) {

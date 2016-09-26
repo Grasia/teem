@@ -353,6 +353,33 @@
         "title": "Información"
       }
     },
+    "join": {
+      "form": {
+        "button": "Enviar",
+        "organizer": {
+          "label": "Para:"
+        },
+        "sender": {
+          "label": "De:",
+          "placeholder": "Introduce tu correo electrónico"
+        },
+        "text": {
+          "label": "Tu mensaje:",
+          "placeholder": "¡Hola! Este proyecto tiene muy buena pinta. Puedo ayudar a involucrarme, quizá.."
+        }
+      },
+      "message": {
+        "title": "Unirse al proyecto"
+      },
+      "success": {
+        "add": "Añadir un project nuevo",
+        "explore": "Explorar otros proyectos",
+        "start": "Empezar a participar",
+        "subtitle": "Estás ayudando a que este proyecto se haga realidad",
+        "text": "¿Ahora qué quieres hacer?",
+        "title": "¡Bien hecho!"
+      }
+    },
     "location": {
       "placeholder": "Ubicación"
     },

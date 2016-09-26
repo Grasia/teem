@@ -353,6 +353,33 @@
         "title": "Information"
       }
     },
+    "join": {
+      "form": {
+        "button": "Send",
+        "organizer": {
+          "label": "To:"
+        },
+        "sender": {
+          "label": "From:",
+          "placeholder": "Enter your email"
+        },
+        "text": {
+          "label": "Your message:",
+          "placeholder": "Hi! This project looks great. I can help get involved, maybe by..."
+        }
+      },
+      "message": {
+        "title": "Join the project"
+      },
+      "success": {
+        "add": "Add a new project",
+        "explore": "Explore other projects",
+        "start": "Start participating",
+        "subtitle": "You are helping make this project happen",
+        "text": "What do you want to do now?",
+        "title": "Success!"
+      }
+    },
     "location": {
       "placeholder": "Location"
     },
