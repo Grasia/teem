@@ -5,17 +5,18 @@
   </div>
 
   <div class="list-group project-needs-list project-needs">
-    <h3 translate>need.title.todo</h3>
+    <h3 ng-if="project.isParticipant()" translate>need.title.todo</h3>
     <div>
       <div need-display need="{completed: 'add'}">
       </div>
     </div>
     <div ng-repeat="need in needs | filter:{completed: false} | orderBy:orderByTime">
+      <h3 ng-if="$index === 0 && !project.isParticipant()" translate>need.title.todo</h3>
       <div need-display need="need">
       </div>
     </div>
-    <h3 translate>need.title.done</h3>
     <div ng-repeat="need in needs | filter:{completed: true} | orderBy:orderByTime">
+      <h3 ng-if="$index === 0" translate>need.title.done</h3>
       <div need-display need="need">
       </div>
     </div>

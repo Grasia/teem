@@ -43,7 +43,7 @@
   </button>
 </div>
 <div class="container project-community">
-  <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
+  <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
 </div>
 <div ng-if="project.location" class="container project-location">
   <i class="custom-icons">location_on</i> {{project.location[0]}}
@@ -74,10 +74,10 @@
   </div>
 
   <div class="project-utils col-md-3">
+    <div project-people></div>
     <div>
       <h2 translate>need.nav.title</h2>
       <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
     </div>
-    <div project-people></div>
   </div>
 </div>
