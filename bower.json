@@ -37,7 +37,7 @@
     "ngclipboard": "^1.1.1",
     "dropdown.js": "*",
     "angular-ui-layout": "^1.4.2",
-    "angular-socialshare": "angularjs-socialshare#^2.2.8",
+    "angular-socialshare": "angularjs-socialshare#^2.2.9",
     "selectize-placecomplete": "llopv/selectize-placecomplete"
   },
   "devDependencies": {

@@ -52,6 +52,11 @@
   flex-direction: column;
   min-height: 0px; /* hack for firefox: http://stackoverflow.com/a/14964944 */
 }
+.flex-center {
+  display: flex;
+  justify-content: center
+}
+
 [ui-layout-container] > .flex-container {
   height: 100%;
 }
