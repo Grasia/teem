@@ -44,7 +44,7 @@
   </button>
 </div>
 <div class="container project-community">
-  <a href="communities/{{community._urlId}}">{{community.name}} Huerta de Tetuán</a>
+  <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
 </div>
 <div class="container project-location">
   <i class="custom-icons">location_on</i> {{project.location[0]}}
