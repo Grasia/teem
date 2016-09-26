@@ -1,4 +1,10 @@
-<button class="{{text ? 'btn btn-primary btn-raised btn-block' : 'btn btn-default btn-fab plus i-plus'}}"
+<button ng-if="!text" class="btn btn-default btn-fab plus"
+        ng-click="create()"
+        analytics-on="click"
+        analytics-event="New {{type}}">
+  <i class="material-icons">add</i>
+</button>
+<button ng-if="text" class="btn btn-primary btn-raised pull-right i-edit"
         ng-click="create()"
         analytics-on="click"
         analytics-event="New {{type}}">

@@ -6,7 +6,6 @@
     font-size: 1.42em
     color: $projects-title-color
 .project-index
-  padding: 24px
   .list-group-item
     border: none
     padding: 10px
@@ -22,14 +21,18 @@
     padding: 46px 0 46px 50%
     > button
       padding: 0
-.project-item .project-photo > div
-  position: absolute
-  bottom: 0
-  left: 0
-  color: white
-  background: rgba(black, 0.3)
-  padding: 22px 24px
-  width: 100%
+.project-item
+  @extend .four-three
+.project-item .project-photo
+  margin: 4px
+  > div
+    position: absolute
+    bottom: 0
+    left: 0
+    color: white
+    background: rgba(black, 0.3)
+    padding: 22px 24px
+    width: 100%
 .project-item-title
   font-size: 33px
   font-weight: normal
@@ -397,12 +400,15 @@ $project-desktop-border: 1px solid $grey
     background-color: white
 
 .project-photo
-  height: 340px
+  margin: 15px 0
   overflow: hidden
   img
     min-width: 100%
     height: 100%
     object-fit: cover
+.project .project-photo
+  height: 340px
+  img
     max-height: 340px
 
 .project-form-title
