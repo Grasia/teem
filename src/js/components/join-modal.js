@@ -8,8 +8,11 @@ class JoinModalCtrl {
     this.$scope = $scope;
     this.swellRT = swellRT;
 
-    $scope.message = {};
-    $scope.step = 'success';
+    $scope.message = {
+      sending: false
+    };
+    $scope.step = 'message';
+
 
     /* SwellRT does not currently provides this info
 
@@ -22,7 +25,9 @@ class JoinModalCtrl {
   }
 
   send () {
-    /*
+    this.$scope.message.sending = true;
+
+/*
     this.swellRT.join(
       this.$scope.message.email.split('@')[0],
       this.project.url(),
@@ -33,7 +38,7 @@ class JoinModalCtrl {
       this.onSendError
     );
     */
-    this.onSendSuccess();
+    this.onSendSuccess ();
   }
 
   onSendSuccess () {

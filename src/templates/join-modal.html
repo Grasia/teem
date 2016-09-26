@@ -49,7 +49,7 @@
                       placeholder="{{ 'project.join.form.text.placeholder' | translate }}"></textarea>
           </div>
 
-          <button class="btn btn-primary btn-raised btn-block" ng-click="$ctrl.send()" ng-disabled="joinMessage.$invalid">
+          <button class="btn btn-primary btn-raised btn-block" ng-click="$ctrl.send()" ng-disabled="joinMessage.$invalid || message.sending">
             <span translate>project.join.form.button</span>
           </button>
         </form>
