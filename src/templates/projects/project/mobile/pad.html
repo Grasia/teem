@@ -1,21 +1,20 @@
 <div class="flex-container project-mobile">
   <div ng-class="{'flex-container': pad.editing}">
     <div ng-class="{'hidden': pad.editing}">
-      <div class="container project-creation">10/09/2016</div>
       <div class="container">
         <h1>{{project.title}}</h1>
       </div>
       <div class="container project-community">
         <span ng-repeat="c in project.loadedCommunities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
       </div>
-      <div class="container project-location">
+      <div ng-if="project.location" class="container project-location">
         <i class="custom-icons">location_on</i> {{project.location[0]}}
       </div>
       <div class="container">
         <div class="media project-promoter">
           <div avatars="project.promoter" avatars-conf="{size: 'xsmall'}" class="avatars-without-names media-left"></div>
           <div class="media-body">
-            <span>Created by</span>
+            <span translate>project.promoter</span>
             <strong>{{project.promoter | idToNick}}</strong>
           </div>
         </div>

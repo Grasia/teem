@@ -156,6 +156,8 @@
       "title": "Perfil"
     },
     "projects": {
+      "featured": "Destacados",
+      "latest": "Últimos",
       "title": "Teems"
     },
     "search": {
@@ -244,6 +246,7 @@
     }
   },
   "picture": {
+    "clear": "Subir otra",
     "crop": "Para recortar la imagen, arrastra la zona iluminada, y después, haz clic en guardar",
     "delete": "Elimina la foto actual",
     "dropover": "Suelta para adjuntar el archivo",
@@ -286,7 +289,7 @@
       "placeholder": "Añade este proyecto a una comunidad (opcional)"
     },
     "create": {
-      "button": "Crear Teem",
+      "button": "Crear proyecto",
       "tip": "Empieza creando un nuevo Teem"
     },
     "edit": {
@@ -305,6 +308,11 @@
         }
       },
       "finish": "¡Hecho! Ir a mi proyecto",
+      "image": {
+        "banner": {
+          "title": "Comparte una foto de un proyecto que quieres organizar"
+        }
+      },
       "next": "Siguiente",
       "share": {
         "banner": {
@@ -375,6 +383,7 @@
       }
     },
     "projects": "Teems",
+    "promoter": "Organizado por",
     "search": {
       "see_all": "ver todos"
     },
