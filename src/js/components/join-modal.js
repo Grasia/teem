@@ -29,11 +29,11 @@ class JoinModalCtrl {
 
 /*
     this.swellRT.join(
-      this.$scope.message.email.split('@')[0],
+      this.$scope.message.email
       this.project.url(),
       this.project.title,
       this.$scope.message.text,
-      this.$scope.message.email,
+      this.project.promoter,
       this.onSendSuccess,
       this.onSendError
     );
