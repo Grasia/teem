@@ -30,10 +30,11 @@
     bottom: 0
     left: 0
     color: white
-    background: rgba(black, 0.3)
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0))
     padding: 22px 24px
     width: 100%
-  &.i-featured::before
+    height: 100%
+  .i-featured
     position: absolute
     display: inline-table
     top: 10px
@@ -44,6 +45,8 @@
     border-radius: 50%
     &*
       position: relative
+.project-item-info
+  justify-content: flex-end
 .project-item-title
   font-size: 33px
   font-weight: normal
