@@ -55,7 +55,7 @@ angular
           'SessionSvc', '$location', 'Loading',
           function(SessionSvc, $location, Loading) {
             Loading.show(SessionSvc.onLoad(function() {
-              $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/communities');
+              $location.path(SessionSvc.users.loggedIn()? '/home/teems' : '/teems');
             }));
           }
         ]
