@@ -346,6 +346,18 @@ angular.module('Teem')
       $('.title-input').focus();
     };
 
+    $scope.createProjectFormInvalid = function() {
+      // There should be a better way to implement this
+      try {
+        let form = angular.element('[name="createProjectForm"]');
+
+        return form.scope().createProjectForm.$invalid;
+      } catch(e) {
+        return false;
+      }
+
+    };
+
     $scope.archiveProject = function() {
       // TODO
     };
