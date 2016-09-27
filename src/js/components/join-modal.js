@@ -27,9 +27,8 @@ class JoinModalCtrl {
   send () {
     this.$scope.message.sending = true;
 
-/*
     this.swellRT.join(
-      this.$scope.message.email
+      this.$scope.message.email,
       this.project.url(),
       this.project.title,
       this.$scope.message.text,
@@ -37,8 +36,6 @@ class JoinModalCtrl {
       this.onSendSuccess,
       this.onSendError
     );
-    */
-    this.onSendSuccess ();
   }
 
   onSendSuccess () {
