@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Teem')
-  .directive('projects', [ 'SessionSvc', '$location', function(SessionSvc, $location) {
+  .directive('projects', [ 'SessionSvc', '$location', '$window', '$timeout', function(SessionSvc, $location, $window, $timeout) {
     return {
 
       link: function (scope, element, attrs) {
@@ -41,6 +41,20 @@ angular.module('Teem')
             scope.emptyProjects = function(){
               return scope.projects && (Object.keys(scope.projects).length === 0);
             };
+
+            scope.container = attrs.container;
+            var overflowLast = 100000;
+            angular.element(attrs.container).bind('scroll', function () {
+              $timeout(function(){
+                overflowLast =
+                element.children(0).children().last().offset().top;
+              });
+            });
+
+            scope.farFromLast = function() {
+              return overflowLast > 2 * angular.element($window).height();
+            };
+
       },
       templateUrl: 'projects/projects.html'
     };
