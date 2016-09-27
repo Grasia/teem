@@ -95,8 +95,6 @@
         padding-bottom: 13px !important
         img
           height: 75px
-    li > a
-      padding-right: 25px !important
     @media (max-width: $screen-sm-min)
       display: flex
       justify-content: center
@@ -109,8 +107,9 @@
       font-weight: bold
   .btn
     margin-top: 3px
-  .menu-option:hover, .btn-link:hover i
-    color: $navbar-top-hover-color !important
+  .menu-option:hover:not(.active) a
+    &, &::before
+      color: $navbar-top-hover-color !important
   .menu-session
     & > a
       padding-top: 20px !important
