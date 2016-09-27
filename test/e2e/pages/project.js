@@ -117,9 +117,12 @@ class NewProjectPage {
 
     this.padEl.sendKeys(this.padText);
 
+    /*
+      padCheckBtn has been removed
     if (! isDesktop) {
       this.padCheckBtn.click();
     }
+    */
   }
 }
 

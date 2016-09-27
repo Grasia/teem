@@ -16,10 +16,10 @@
       <div class="menu-triangle"></div>
     </li>
     <li ng-if="!loggedIn()" class="menu-option">
-      <a  ng-click="login()" class="i-profile menu-icons" translate>menu.login.title</a>
+      <a ng-click="login()" class="i-profile menu-icons" translate>menu.login.title</a>
     </li>
     <li ng-if="loggedIn()" class="menu-option" ng-class="{'active': isActive('/users/'+user.id)}">
-      <a href="/users/{{user.id}}" class="i-profile menu-icons" translate>menu.profile.title</a>
+      <a ng-href="/users/{{user.id}}" class="i-profile menu-icons" ng-attr-data-nick="{{ user.nick }}" translate>menu.profile.title</a>
       <div class="menu-triangle"></div>
     </li>
   </ul>
