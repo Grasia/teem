@@ -223,6 +223,14 @@
       font-weight: bold
       border-bottom: 4px solid $navbar-top-underscore
 
+.navbar-top-projects
+  a
+    &.active, &.selected
+      color: $teal
+      font-weight: bold
+      &::before
+        color: $light-green
+
 .project-tabs-container
   display: block
   overflow: hidden
