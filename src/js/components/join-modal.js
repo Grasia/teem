@@ -2,10 +2,11 @@
 
 class JoinModalCtrl {
 
-  constructor ($scope, SessionSvc, swellRT){
+  constructor ($scope, $timeout, SessionSvc, swellRT){
     'ngInject';
 
     this.$scope = $scope;
+    this.$timeout = $timeout;
     this.swellRT = swellRT;
 
     $scope.message = {
@@ -33,13 +34,20 @@ class JoinModalCtrl {
       this.project.title,
       this.$scope.message.text,
       this.project.promoter,
-      this.onSendSuccess,
-      this.onSendError
+      () => {
+        // We cannot pass this.onSendSuccess directly because 'this'
+        // would be Window when called from SwellRT
+        this.onSendSuccess();
+      },
+      () => {
+        this.onSendError();
+      }
     );
   }
 
   onSendSuccess () {
     this.$scope.step = 'success';
+    this.$timeout();
   }
 
   onSendError (error) {
