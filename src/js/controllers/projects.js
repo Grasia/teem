@@ -35,6 +35,10 @@ angular.module('Teem')
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
+      .when('teems/featured', {
+        templateUrl: 'projects/index.html',
+        controller: 'ProjectsCtrl'
+      })
       .when('/teems', {
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
@@ -56,6 +60,8 @@ angular.module('Teem')
       $scope.context = 'project';
     } else if ($location.path() === '/home/teems') {
       $scope.context = 'home';
+    } else if ($location.path() === '/teems/featured') {
+      $scope.context = 'featured';
     } else {
       $scope.context = 'public';
     }
@@ -173,6 +179,19 @@ angular.module('Teem')
           });
 
           break;
+
+        case 'featured':
+          var defProjsPromiseFeat = ProjectsSvc.all({ shareMode: 'public', featured: true});
+          Loading.show(defProjsPromiseFeat).
+            then(function(projects) {
+              getCommunities(projects);
+
+              $scope.projects = projects;
+              $scope.bussyPagination = false;
+              $scope.projsNextPage = defProjsPromiseFeat.next;
+            });
+          break;
+
         default:
           var defProjsPromise = ProjectsSvc.all({ shareMode: 'public' });
           Loading.show(defProjsPromise).

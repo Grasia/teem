@@ -418,6 +418,10 @@ angular.module('Teem')
         };
       }
 
+      if (options.featured) {
+        query._aggregate[0].$match['root.featured'] = 'true';
+      }
+
       return query;
     }
 
