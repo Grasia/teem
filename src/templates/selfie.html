@@ -1,0 +1,9 @@
+<div class="pos-r">
+  <div class="drop-box four-three">
+    <div>
+      <video ng-show="!taken" autoplay></video>
+      <canvas ng-show="taken"></canvas>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-fab" ng-if="!taken" ng-click="TakeSelfie()"><i class="material-icons">camera</i></button>
+</div>
