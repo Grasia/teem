@@ -221,14 +221,6 @@ angular.module('Teem')
       editingTitle = false;
     };
 
-    $scope.titleReminder = function titleReminder() {
-      SharedState.turnOff('modalSharedState');
-      $scope.showEditTitle();
-      $timeout(function(){
-        document.querySelector('.title-input').focus();
-      });
-    };
-
     $scope.createProject = function() {
       let params = {};
 
