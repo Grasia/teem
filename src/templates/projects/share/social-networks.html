@@ -1,23 +1,30 @@
-<div class="flex-center">
+<div class="flex-center social-networks">
   <div>
-    <button type="button" class="btn btn-default btn-fab fa fa-facebook"
+    <a class="btn btn-default btn-fab"
     socialshare
     socialshare-provider="facebook"
     socialshare-text="{{project.title}}"
-    socialshare-url="{{project.url()}}"></button>
-    <button type="button" class="btn btn-default btn-fab fa fa-twitter"
+    socialshare-url="{{project.url()}}">
+    <i class="fa fa-facebook"></i></a>
+
+    <a class="btn btn-default btn-fab"
     socialshare
     socialshare-provider="twitter"
     socialshare-text="{{project.title}}"
-    socialshare-url="{{project.url()}}"></button>
-    <button type="button" class="btn btn-default btn-fab fa fa-whatsapp visible-xs-inline-block"
+    socialshare-url="{{project.url()}}">
+    <i class="fa fa-twitter"></i></a>
+
+    <a class="btn btn-default btn-fab visible-xs-inline-block"
     socialshare
     socialshare-provider="whatsapp"
     socialshare-text="{{project.title}}"
-    socialshare-url="{{project.url()}}"></button>
-    <button type="button" class="btn btn-default btn-fab fa fa-mobile visible-xs-inline-block"
+    socialshare-url="{{project.url()}}">
+    <i class="fa fa-whatsapp"></i></a>
+
+    <a class="btn btn-default btn-fab visible-xs-inline-block"
     socialshare
     socialshare-provider="sms"
-    socialshare-text="{{project.title + ' ' + project.url()}}"></button>
+    socialshare-text="{{project.title + ' ' + project.url()}}">
+    <i class="material-icons">sms</i></a>
   </div>
 </div>
