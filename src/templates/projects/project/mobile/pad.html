@@ -1,17 +1,17 @@
 <div class="flex-container project-mobile">
   <div ng-class="{'flex-container': pad.editing}">
     <div ng-class="{'hidden': pad.editing}">
-      <div class="container">
+      <div class="clearfix">
         <h1 class="pull-left">{{project.title}}</h1>
         <div class="pull-right" ng-include="'projects/project/menu.html'"></div>
       </div>
-      <div class="container project-community">
+      <div class="project-community">
         <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
       </div>
       <div ng-if="project.location" class="container project-location">
         <i class="custom-icons">location_on</i> {{project.location[0]}}
       </div>
-      <div class="container">
+      <div>
         <div class="media project-promoter">
           <div avatars="project.promoter" avatars-conf="{size: 'xsmall'}" class="avatars-without-names media-left"></div>
           <div class="media-body">
@@ -58,7 +58,7 @@
 
     <pad class="flex-container"></pad>
 
-    <div class="container project-participants" ng-if="!isNew() && !pad.editing">
+    <div class="project-participants" ng-if="!isNew() && !pad.editing">
       <div project-people ng-if="!isNew() && !pad.editing"></div>
     </div>
   </div>
