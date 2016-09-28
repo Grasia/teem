@@ -43,11 +43,17 @@ angular.module('Teem')
             'need': needWidget.getWidget($scope),
             'img': {
               onInit: function(parentElement, state) {
+                if (!(state in $scope.project.attachments) || !$scope.project.attachments[state].file) {
+                  return;
+                }
                 $scope.project.attachments[state].file.getUrl().then(url => {
                   parentElement.innerHTML='<img src="'+url+'">';
                 });
               },
               onChangeState: function(parentElement, before, state) {
+                if (!(state in $scope.project.attachments) || !$scope.project.attachments[state].file) {
+                  return;
+                }
                 $scope.project.attachments[state].file.getUrl().then(url => {
                   parentElement.innerHTML='<img src="'+url+'">';
                 });
