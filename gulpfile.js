@@ -56,6 +56,7 @@ var config = {
       './bower_components/js-emoji/lib/emoji.js',
       './bower_components/textfit/textFit.js',
       './bower_components/angular-socialshare/dist/angular-socialshare.js',
+      './bower_components/webrtc-adapter/release/adapter.js',
       './src/vendor/aggregation.js',
       './node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'
     ],

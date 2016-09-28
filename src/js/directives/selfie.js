@@ -17,18 +17,11 @@ angular.module('Teem')
       var ctx = canvas.getContext('2d');
       var stream;
 
-      navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
-      if (navigator.getUserMedia) {
-        navigator.getUserMedia({
-          video: true
-        },
-        function(localMediaStream) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode:  'environment' } }).
+        then(localMediaStream => {
           stream = localMediaStream;
           video.src = window.URL.createObjectURL(localMediaStream);
-        }, console.error);
-      } else {
-        console.error('No usermedia api available.');
-      }
+        }).catch(console.error);
 
       $scope.TakeSelfie = function() {
         $scope.taken = true;
