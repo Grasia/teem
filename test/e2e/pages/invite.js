@@ -42,7 +42,14 @@ class InvitePage {
 
     browser.wait(protractor.ExpectedConditions.visibilityOf(this.inviteOption));
 
-    this.inviteOption.click();
+    // There is a race condition when showing users in the selectize option
+    // menu, so we have to retry until the menu disappears
+    browser.wait(() => {
+      return this.inviteOption.click().then(
+        () => { return true; },
+        () => { return false; }
+      );
+    });
 
     // There is a race condition when showing users in the selectize option
     // menu, so we have to retry until the menu disappears
