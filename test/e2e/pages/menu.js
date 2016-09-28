@@ -12,11 +12,7 @@ class MenuPage {
   }
 
   isLoggedIn () {
-    return this.currentNick().then(() => {
-      return true;
-    }, () => {
-      return false;
-    });
+    return this.userNickEl.isPresent();
   }
 }
 
