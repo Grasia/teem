@@ -1,10 +1,5 @@
-<div ng-class="{'hidden': (pad.editing && !isDesktop())}">
-  <div class="project-photo" ng-if="project.isParticipant()"><!-- to add when https://github.com/P2Pvalue/angular-swellrt/issues/25 solved: ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" -->
-    <img class="media-object" ng-src="{{project.logo()}}">
-  </div>
-  <div class="project-photo" ng-if="!project.isParticipant()">
-    <img class="media-object" ng-src="{{project.logo()}}">
-  </div>
+<div ng-class="{'hidden': pad.editing}">
+  <div ng-include="'projects/project/photo.html'"></div>
 </div>
 <div class="pos-r container" ng-class="{'flex-container': pad.editing}">
 <div class="project-navigation">
@@ -23,7 +18,7 @@
 </div>
 
 <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden() || isNew()}">
-  <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !(pad.editing && !isDesktop())}">
+  <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !pad.editing}">
     <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'
          class="flex-container touchable" ng-include="'projects/project/mobile/pad.html'">
     </div>

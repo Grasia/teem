@@ -6,15 +6,6 @@
   </div>
 
   <div class="project-item" ng-click="showProject(project)">
-    <div class="project-photo pos-r">
-      <img class="media-object" ng-src="{{project.logo()}}" />
-      <div class="flex-container">
-        <div ng-class="{'i-featured': project.featured}" class="text-right"></div>
-        <div class="project-item-info flex-container">
-          <div class="project-item-title">{{project.title}}</div>
-          <div class="project-item-community">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : '&nbsp;'}}</div>
-        </div>
-      </div>
-    </div>
+    <div ng-include="'projects/project/photo.html'"></div>
   </div>
 </div>

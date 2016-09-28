@@ -23,14 +23,21 @@
       padding: 0
 .project-item
   @extend .four-three
-.project-item .project-photo
-  margin: 4px
+  .project-photo
+    margin: 4px
+    .project-item-info
+      display: flex !important /* override .hidden */
+    .project-item-icons
+      display: none
+.project-photo
+  position: relative
+  height: 100%
   > div
     position: absolute
     bottom: 0
     left: 0
     color: white
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0))
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.08) 35%, rgba(0, 0, 0, 0.08) 65%, rgba(0, 0, 0, 0.52) 100%)
     padding: 22px 24px
     width: 100%
     height: 100%
@@ -53,8 +60,14 @@
 .project-item-community
   font-size: 18px
   font-weight: bold
-.project-item-date
-  font-size: 16px
+.project-item-icons
+  display: flex
+  flex-direction: row
+  align-items: flex-end
+  justify-content: flex-end
+  height: 100%
+  .icon-count, .icon-count-number
+    color: white
 .notification-indicator
   color: $notification-point-color
   position: absolute
@@ -438,14 +451,15 @@ $project-desktop-border: 1px solid $grey
 .project-form-details
   img
     min-width: 100%
-  .i-featured::before, .i-featured-not::before
-    border: 2px solid
-    padding: 1px
-    margin-right: 5px
-    border-radius: 50%
-  .i-featured
-    color: $teal
-    font-weight: bold
+  form
+    .i-featured::before, .i-featured-not::before
+      border: 2px solid
+      padding: 1px
+      margin-right: 5px
+      border-radius: 50%
+    .i-featured
+      color: $teal
+      font-weight: bold
 .project-form-details-banner-title
   margin-bottom: 20px
 .project-form-details-banner-title,

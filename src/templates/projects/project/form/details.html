@@ -5,7 +5,9 @@
     </div>
   </div>
 
-  <img ng-src="{{project.logo()}}" class="img-responsive">
+  <div class="project-item">
+    <div ng-include="'projects/project/photo.html'"></div>
+  </div>
 
   <form name="createProjectForm">
     <div class="form-group label-floating">
