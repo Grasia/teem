@@ -16,17 +16,20 @@ angular.module('Teem')
           throw Error('Provide a name to the modal please.');
         }
 
+        var sharedStateName = 'modal.' + $attrs.name;
+
         $scope.overlay = $attrs.overlay;
+        $scope.sharedStateName = sharedStateName;
+
+        SharedState.initialize($scope, sharedStateName);
 
         $scope.isModalSharedState = function() {
-          let modalSharedState = SharedState.get('modalSharedState');
-          return modalSharedState && (modalSharedState === $attrs.name ||
-            modalSharedState.name === $attrs.name);
+          return SharedState.get(sharedStateName);
         };
 
         $scope.keyUp = function(event){
           if(event.which === 27){
-            SharedState.turnOff('modalSharedState');
+            SharedState.turnOff(sharedStateName);
           }
         };
       }

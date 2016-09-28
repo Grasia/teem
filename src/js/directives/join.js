@@ -11,7 +11,7 @@ angular.module('Teem')
 
           if (!$scope.project.isParticipant()){
             if ($scope.joinModal) {
-              SharedState.set('modalSharedState', { name: 'join' });
+              SharedState.set('modal.join', { name: 'join' });
             } else {
               SessionSvc.loginRequired($scope, function() {
                 $scope.project.addParticipant();

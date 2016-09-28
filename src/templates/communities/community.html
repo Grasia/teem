@@ -6,7 +6,7 @@
         <div class="community-share-button">
           <!--<i class="i-share"></i>-->
         </div>
-        <div ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()">
+        <div ui-set="{modal.uploadPicture: {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()">
           <img ng-src="{{community.logo()}}">
         </div>
         <div ng-if="!community.isParticipant()">
@@ -130,7 +130,7 @@
             {{ 'community.participants.title' | translate }}
           </h2>
         <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-        <button ng-if="community.isParticipant()" class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
+        <button ng-if="community.isParticipant()" class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modal.invite: 'invite'}" translate>
             project.add_people.button
         </button>
 

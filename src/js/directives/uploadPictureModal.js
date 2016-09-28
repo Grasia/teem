@@ -10,7 +10,7 @@ angular.module('Teem')
         };
         var cb = {};
 
-        $scope.$on('mobile-angular-ui.state.changed.modalSharedState', function(e, newValue) {
+        $scope.$on('mobile-angular-ui.state.changed.modal.uploadPicture', function(e, newValue) {
           cb = newValue && newValue.callback || {};
           if (cb.areaType === 'rectangle') {
             $scope.areaType = 'rectangle';
@@ -29,7 +29,7 @@ angular.module('Teem')
               cb(cb.dataURI ? croppedPicture : $filter('dataUriToBlob')(croppedPicture));
             }
           }
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.uploadPicture');
           $timeout();
         };
       }],

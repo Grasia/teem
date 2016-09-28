@@ -245,7 +245,7 @@ angular.module('Teem')
     });
 
     $scope.cancelProject = function() {
-      SharedState.turnOff('modalSharedState');
+      SharedState.turnOff('modal.confirm');
 
       $scope.project.delete();
 
@@ -326,12 +326,12 @@ angular.module('Teem')
     $scope.inviteUsers = function(){
       Selector.invite($scope.invite.selected, $scope.project);
       $scope.invite.selected = [];
-      SharedState.turnOff('modalSharedState');
+      SharedState.turnOff('modal.share');
     };
 
     $scope.cancelInvite = function(){
       $scope.invite.selected = [];
-      SharedState.turnOff('modalSharedState');
+      SharedState.turnOff('modal.share');
     };
 
     $scope.focusTitleInput = function() {

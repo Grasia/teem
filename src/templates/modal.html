@@ -1,13 +1,13 @@
 <div class="modal scrollable-content" ng-class="{overlay: overlay !== undefined}"
-    ng-if="isModalSharedState()" ui-state="modalSharedState" key-press="keyup">
-  <div class="modal-backdrop in" ui-turn-off="modalSharedState"></div>
+    ng-if="isModalSharedState()" key-press="keyup">
+  <div class="modal-backdrop in" ui-turn-off="{{sharedStateName}}"></div>
   <div class="modal-dialog">
     <div class="overlay-header-title" ng-transclude="header"></div>
     <div class="modal-content">
       <div class="modal-header">
         <div class="modal-header-title"><div ng-transclude="header"></div>
         <div class="modal-pull-right modal-header-right">
-            <a ui-turn-off="modalSharedState" class="i-close"></a>
+            <a ui-turn-off="{{sharedStateName}}" class="i-close"></a>
         </div></div>
       </div>
       <div class="modal-body" ng-transclude="main"></div>

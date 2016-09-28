@@ -5,7 +5,7 @@ angular.module('Teem')
     return {
       controller: ['$scope', 'SharedState', function($scope, SharedState) {
         $scope.getChatPictureUrl = function() {
-          let modalSharedState = SharedState.get('modalSharedState');
+          let modalSharedState = SharedState.get('modal.chatPicture');
           return modalSharedState && modalSharedState.url;
         };
       }],
