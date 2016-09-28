@@ -147,9 +147,13 @@ angular.module('Teem')
         $timeout(function(){
           p = swellRT.proxy(model, Community);
 
+          console.log('inside');
+
           p.type = 'community';
           p.id = model.id();
-          p.name = options.name;
+          if (options.name) {
+            p.name = options.name;
+          }
           p.projects = [];
 
           d.resolve(p);
