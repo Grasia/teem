@@ -2,7 +2,8 @@
   <div ng-class="{'flex-container': pad.editing}">
     <div ng-class="{'hidden': pad.editing}">
       <div class="container">
-        <h1>{{project.title}}</h1>
+        <h1 class="pull-left">{{project.title}}</h1>
+        <div class="pull-right" ng-include="'projects/project/menu.html'"></div>
       </div>
       <div class="container project-community">
         <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>

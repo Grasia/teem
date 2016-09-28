@@ -11,26 +11,6 @@
   <input class="h1 title-input form-control" ng-model="project.title"
   placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
 
-  <button class="btn btn-default like-icon"
-          like
-          like-icon="true"
-          like-count="true"
-          like-model="project">
-  </button>
-
-  <div class="icons" ng-if="project.isParticipant()">
-    <i ng-click="focusTitleInput()" class="material-icons" uib-tooltip="{{'project.tooltip.edit' | translate}}">edit</i>
-    <!--<i ng-click="archiveProject()" class="material-icons secundary-icon" uib-tooltip="{{'project.tooltip.archive' | translate}}">archive</i>-->
-    <i class="material-icons secundary-icon"
-    uib-tooltip="{{'project.tooltip.delete' | translate}}"
-    ui-set="{modalSharedState: {
-      name: 'confirm',
-      title: 'project.cancel.confirm.title',
-      text: 'project.cancel.confirm.text',
-      callback: cancelProject
-    }}">delete</i>
-  </div>
-
   <button class="btn btn-lg btn-primary btn-raised project-join-btn"
           ng-if="!project.isParticipant()"
           join
@@ -41,6 +21,7 @@
           analytics-on="click"
           analytics-event="Join project">
   </button>
+  <div ng-include="'projects/project/menu.html'"></div>
 </div>
 <div class="container project-community">
   <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
