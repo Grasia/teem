@@ -64,16 +64,17 @@
 
     <div class="sidebar sidebar-left" ng-include="'sidebar.html'"></div>
 
+    <!-- modals are arrange by priority, more important last -->
     <div ui-yield-to="modals"></div>
     <!-- Need support for several ui-content-for https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
     <div ui-yield-to="modals2"></div>
-    <div confirm-modal></div>
-    <div session-modal></div>
     <div upload-picture-modal></div>
-    <div loading></div>
-    <div upgrading></div>
+    <search-modal></search-modal>
     <div ui-yield-to="inviteModal"></div>
     <div ui-yield-to="joinModal"></div>
-    <search-modal></search-modal>
+    <div confirm-modal></div>
+    <div session-modal></div>
+    <div loading></div>
+    <div upgrading></div>
   </body>
 </html>
