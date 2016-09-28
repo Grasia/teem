@@ -4,17 +4,13 @@ angular.module('Teem')
   .directive('join', function() {
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SessionSvc', '$timeout', '$analytics', 'SharedState',
-      function($scope, $element, $attrs, SessionSvc, $timeout, $analytics, SharedState) {
-
-        $scope.joinIcon = $attrs.joinIcon;
-        $scope.joinCopyOn  = $attrs.joinCopyOn;
-        $scope.joinCopyOff = $attrs.joinCopyOff;
+      '$scope', '$element', 'SessionSvc', '$timeout', '$analytics', 'SharedState',
+      function($scope, $element, SessionSvc, $timeout, $analytics, SharedState) {
 
         $element.on('click', function() {
 
           if (!$scope.project.isParticipant()){
-            if ($attrs.joinModal) {
+            if ($scope.joinModal) {
               SharedState.set('modalSharedState', { name: 'join' });
             } else {
               SessionSvc.loginRequired($scope, function() {
@@ -32,6 +28,13 @@ angular.module('Teem')
           }
         });
       }],
+      scope: {
+        joinIcon: '@',
+        joinCopyOn: '@',
+        joinCopyOff: '@',
+        joinModal: '=',
+        project: '=joinModel'
+      },
       templateUrl: 'join.html'
     };
   });
