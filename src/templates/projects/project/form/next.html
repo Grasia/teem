@@ -10,7 +10,7 @@
       project.form.share.next.message
     </span>
     <button class="btn btn-primary"
-            ng-class="nextForm() ? 'btn-link' : 'btn-block btn-raised'"
+            ng-class="nextForm() ? 'btn-link btn-form-next' : 'btn-block btn-raised'"
             ng-disabled="createProjectFormInvalid()"
             ng-click="goToNextForm()">
             <span ng-bind="nextForm() ? 'project.form.next' : 'project.form.finish' | translate"></span>
