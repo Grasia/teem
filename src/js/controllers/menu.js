@@ -34,6 +34,11 @@ angular.module('Teem')
       $timeout();
     };
 
+    // The navbar-top-index component is not getting $rootScope.loggedIn()
+    $scope.loggedIn = function () {
+      return SessionSvc.users.loggedIn();
+    };
+
     $scope.login = function () {
       SharedState.set('modal.session', {name: 'session', type: 'login'});
       $timeout();
