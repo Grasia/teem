@@ -69,7 +69,7 @@
     "project": {
       "button": "Crear un teem",
       "count": "{{count}} teems",
-      "tip": "Organiza los proyectos y expón vuestras necesidades",
+      "tip": "Organiza los proyectos y expón vuestras tareas",
       "title": "Teems",
       "working_group_count": "{{count}} Teems"
     },
@@ -126,7 +126,7 @@
     "copy": {
       "explore": "Explora lo que la gente está haciendo en tu comunidad",
       "propose": "Propón tu proyecto, encuentra apoyos y colaboradores",
-      "work": "Trabaja en tu proyecto y expón tus necesidades"
+      "work": "Trabaja en tu proyecto y expón tus tareas"
     },
     "welcome_msg": "La herramienta para impulsar tus propuestas en tus comunidades"
   },
@@ -137,6 +137,9 @@
     "communities": {
       "title": "Explorar"
     },
+    "explore": {
+      "title": "Explorar"
+    },
     "feedback": {
       "title": "Comentarios"
     },
@@ -144,9 +147,17 @@
       "title": "Mis comunidades"
     },
     "homeProjects": {
-      "title": "Mis Teems"
+      "title": "Your projects"
+    },
+    "login": {
+      "title": "Entrar"
+    },
+    "profile":  {
+      "title": "Perfil"
     },
     "projects": {
+      "featured": "Destacados",
+      "latest": "Últimos",
       "title": "Teems"
     },
     "search": {
@@ -170,22 +181,26 @@
     "by": "Añadida {{time}} por {{author}}",
     "comment": {
       "input": "¿En qué puedes echar una mano?",
-      "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la necesidad \"{{need}}\""
+      "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la tarea \"{{need}}\""
     },
     "index": {
       "empty": {
-        "contributor": "Anota tus necesidades para que te echen una mano",
-        "reader": "Este Teem no ha publicado ninguna necesidad aún"
+        "contributor": "Anota tus tareas para que te echen una mano",
+        "reader": "Este Teem no ha publicado ninguna tarea aún"
       }
     },
     "nav": {
-      "title": "Necesidades"
+      "title": "Tareas"
     },
     "new": {
-      "notification": "<strong>{{user}}</strong> ha creado la necesidad \"{{need}}\" en el Teem",
-      "placeholder": "Añade una nueva necesidad"
+      "notification": "<strong>{{user}}</strong> ha creado la tarea \"{{need}}\" en el Teem",
+      "placeholder": "Añade una nueva tarea"
     },
-    "no_needs": "Este grupo aún no ha creado ninguna necesidad",
+    "no_needs": "Este grupo aún no ha creado ninguna tarea",
+    "title": {
+      "done": "Hechas",
+      "todo": "Para hacer"
+    },
     "tip": "Esto es lo que necesitamos para llevar a cabo el proyecto"
   },
   "newForm": {
@@ -207,7 +222,7 @@
       "text": "Text"
     },
     "need": {
-      "missing": "Esta necesidad se ha borrado"
+      "missing": "Esta tarea se ha borrado"
     },
     "placeholder": "Comparte aquí cómo participar en tu actividad o proyecto: \n • cómo empezar a colaborar, \n •  las cosas que necesitais y lo que hay que hacer, \n •  la colección de enlaces a las herramientas que utilizais...",
     "outline": {
@@ -217,7 +232,7 @@
     "tooltip": {
       "link": "Insertar enlace",
       "img": "Insertar image",
-      "need": "Insertar necesidad",
+      "need": "Insertar tarea",
       "text_fields": "Encabezado",
       "format_bold": "Negrita",
       "format_italic": "Cursiva",
@@ -231,10 +246,12 @@
     }
   },
   "picture": {
+    "camera": "Toma una foto",
+    "clear": "Subir otra",
     "crop": "Para recortar la imagen, arrastra la zona iluminada, y después, haz clic en guardar",
     "delete": "Elimina la foto actual",
     "dropover": "Suelta para adjuntar el archivo",
-    "upload": "Arrastra una imagen aquí, o haz clic para subir una",
+    "upload": "Sube una imagen",
     "save": "Guardar",
     "title": "Subir una foto"
   },
@@ -258,8 +275,8 @@
       "button": "Invita personas",
       "button_cancel": "Cancelar",
       "button_continue": "Compartir",
-      "long_placeholder": "Añade personas de Teem o emails",
-      "placeholder": "Añade personas de Teem o emails",
+      "long_placeholder": "Añade personas en Teem o envía emails",
+      "placeholder": "Añade personas en Teem o envía emails",
       "text": "Invita a personas para que te ayuden con este proyecto",
       "title": "Invita personas"
     },
@@ -270,15 +287,51 @@
       }
     },
     "community": {
-      "placeholder": "Comunidades a las que pertenece"
+      "placeholder": "Añade este proyecto a una comunidad (opcional)"
     },
     "create": {
-      "button": "Crear Teem",
+      "button": "Crear proyecto",
       "tip": "Empieza creando un nuevo Teem"
     },
     "edit": {
       "button": "Editar",
       "title": "Editar proyecto"
+    },
+    "featured": {
+      "placeholder": "Destaca tu proyecto"
+      },
+    "form": {
+      "congrats": {
+        "banner": {
+          "title": "Añade más detalles para hacerlo molón"
+        }
+      },
+      "details": {
+        "banner": {
+          "title": "Añade detalles básicos"
+        }
+      },
+      "finish": "¡Hecho! Ir a mi proyecto",
+      "image": {
+        "banner": {
+          "title": "Comparte una foto de un proyecto que quieres organizar"
+        }
+      },
+      "next": "Siguiente",
+      "share": {
+        "banner": {
+          "subtitle": "Tu proyecto tiene una pinta estupenda",
+          "text": "Invita a más gente a participar",
+          "title": "¡Buen trabajo!"
+        },
+        "invite": {
+          "button": "¡Invita amig@s!"
+        },
+        "next": {
+          "message": "Ahora no, gracias"
+        }
+      },
+      "title": "Crea tu proyecto"
     },
     "index": {
       "banner": {
@@ -303,6 +356,36 @@
       "nav": {
         "title": "Información"
       }
+    },
+    "join": {
+      "form": {
+        "button": "Enviar",
+        "organizer": {
+          "label": "Para:"
+        },
+        "sender": {
+          "label": "De:",
+          "placeholder": "Introduce tu correo electrónico"
+        },
+        "text": {
+          "label": "Tu mensaje:",
+          "placeholder": "¡Hola! Este proyecto tiene muy buena pinta. Puedo ayudar a involucrarme, quizá.."
+        }
+      },
+      "message": {
+        "title": "Unirse al proyecto"
+      },
+      "success": {
+        "add": "Añadir un project nuevo",
+        "explore": "Explorar otros proyectos",
+        "start": "Empezar a participar",
+        "subtitle": "Estás ayudando a que este proyecto se haga realidad",
+        "text": "¿Ahora qué quieres hacer?",
+        "title": "¡Bien hecho!"
+      }
+    },
+    "location": {
+      "placeholder": "Ubicación"
     },
     "menu": {
       "join": "Participar",
@@ -330,10 +413,8 @@
         "notification": "Se ha invitado a {{invitedParticipants}} a este teem"
       }
     },
-    "project_description": "Descripción",
-    "project_name": "Nombre del proyecto",
-    "project_status": "Estado",
     "projects": "Teems",
+    "promoter": "Organizado por",
     "search": {
       "see_all": "ver todos"
     },
@@ -342,7 +423,7 @@
         "title": "Nombre"
       },
       "needs": {
-        "title": "Necesidades"
+        "title": "Tareas"
       },
       "participants": {
         "title":  "Participantes"
@@ -385,7 +466,7 @@
       "empty": {
         "placeholder": "Crea nuevo Teem"
       },
-      "placeholder": "Título del Teem",
+      "placeholder": "Dale un nombre al projecto",
       "reminder": {
         "body_one": "¡El Teem no tiene nombre!",
         "body_two": "¿Deseas descartar el Teem?",
@@ -399,7 +480,7 @@
       "delete": "Eliminar",
       "edit": "Editar título",
       "pad": "Info",
-      "need": "Necesidades"
+      "need": "Tareas"
     },
     "welcome": {
       "tip": "¿No participas en nada todavía? <a href=\"/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"/communities/new\">crea tu comunidad</a>"
@@ -539,6 +620,6 @@
     "skip": "Ok, saltar",
     "slide1": "Explora lo que la gente está haciendo en tu comunidad",
     "slide2": "Propón tu proyecto, encuentra apoyos y colaboradores",
-    "slide3": "Trabaja en tu proyecto y expón tus necesidades"
+    "slide3": "Trabaja en tu proyecto y expón tus tareas"
   }
 }

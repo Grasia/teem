@@ -1,0 +1,24 @@
+
+<div class="project-form-share">
+  <div class="project-form-share-banner">
+    <div class="project-form-share-banner-title" translate>
+      project.form.share.banner.title
+    </div>
+    <div class="project-form-share-banner-subtitle" translate>
+      project.form.share.banner.subtitle
+    </div>
+    <div class="project-form-share-banner-text" translate>
+      project.form.share.banner.text
+    </div>
+  </div>
+
+  <div ng-include="'projects/share/social-networks.html'"></div>
+
+  <div ng-include="'projects/share/link.html'"></div>
+
+  <div ng-include="'projects/share/invite.html'"></div>
+
+  <div class="project-form-share-invite-btn">
+    <button class="btn btn-primary btn-raised btn-block" ng-click="inviteUsers()" translate>project.form.share.invite.button</button>
+  </div>
+</div>

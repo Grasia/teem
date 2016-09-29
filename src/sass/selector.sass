@@ -1,7 +1,7 @@
 selector
   .plus-circle
     color: $selector-plus-circle-color
-    font-size: 1.5em
+    margin-top: 2px
   .input-group-addon
     padding-left: 0
   .is-focused .plus-circle
@@ -29,7 +29,6 @@ selector
   .selectize-dropdown-content
 
     > div
-      display: flex
       margin-top: 10px !important
       margin-bottom: 10px !important
       padding-top: 0 !important
@@ -40,6 +39,8 @@ selector
 
 .selectize-control.multi
   .selectize-input, .selectize-input.input-active
+    .item
+      padding-left: 10px !important
     &::after
       content: ""
     > div::after, > .item::after

@@ -1,25 +1,10 @@
-<div ui-content-for="nav-title">
-  <span>{{'project.index.' + context + '.title' | translate}}</span>
-</div>
-
 <div class="scrollable">
-  <div class="scrollable-header hidden-mobile">
-    <h1>{{'project.index.' + context + '.title' | translate}}</h1>
-    <plus class="plus-desktop" plus-type="project" plus-community="community"></plus>
-  </div>
   <div id="indexProjContainer" class="scrollable-content">
-    <div class="section projects project-index">
-      <div class="project-index-tip">
-        {{'project.index.' + context + '.tip' | translate: translationData}}
-      </div>
+
+      <div ng-include="'navbar-top/projects.html'"></div>
+    <div class="container projects project-index">
       <div>
-        <div class="col-md-4 col-lg-3 col-md-offset-1 col-md-push-7 col-lg-push-8 project-index-new">
-          <div>
-            <div translate>project.index.banner.text</div>
-            <button class="btn btn-primary btn-block i-project" translate ng-click="createProject()">project.index.banner.button</button>
-          </div>
-        </div>
-        <projects project-list="projects" context="context" container="#indexProjContainer" class="col-md-6 col-md-offset-1 col-md-pull-5 col-lg-pull-4"></projects>
+        <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
       </div>
     </div>
   </div>

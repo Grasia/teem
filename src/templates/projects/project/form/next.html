@@ -1,0 +1,20 @@
+<div class="project-form-next">
+  <button class="btn"
+  ng-if="form() === 'image'"
+  ng-disabled="!pic.pictureFile && !pic.croppedPicture"
+  ng-click="pic.pictureFile=null; pic.croppedPicture=null; pic.camera=false"
+  translate>picture.clear</button>
+
+  <div class="pull-right">
+    <span class="project-form-next-message" ng-if="form() === 'image' && !pic.croppedPicture || form() === 'share'" translate>
+      project.form.share.next.message
+    </span>
+    <button class="btn btn-primary"
+            ng-class="nextForm() ? 'btn-link' : 'btn-block btn-raised'"
+            ng-disabled="createProjectFormInvalid()"
+            ng-click="goToNextForm()">
+            <span ng-bind="nextForm() ? 'project.form.next' : 'project.form.finish' | translate"></span>
+            <i class="i-next" ng-if="nextForm()"></i>
+    </button>
+  </div>
+</div>

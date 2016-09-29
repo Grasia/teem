@@ -15,17 +15,21 @@
       margin-top: -210px
 
 .crop-box
-  border: 5px dashed $grey
-  width: 100%
-  height: 350px
   overflow: hidden
-  width: 100%
-  height: 350px
 
 .drop-box
   @extend .crop-box
+  border: 2px solid $teal
   text-align: center
-  padding: 50px 10px
+  margin-top: 30px
+  margin-bottom: 30px
+  .drop-box-center
+    padding: 50px 10px
+    display: flex
+    justify-content: space-around
+    align-items: center
+    flex-direction: column
+    height: 100%
   &.dragover
     border-color: $purple
 
@@ -63,3 +67,15 @@ img-crop
     color: white
     background-color: rgba(0, 0, 0, 0.75)
     position: absolute
+
+selfie
+  display: block
+  text-align: center
+  .btn.btn-fab
+    position: absolute
+    bottom: -28px
+    margin-left: -28px
+  canvas, video
+    width: 100%
+    display: block
+    margin: 0 auto

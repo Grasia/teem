@@ -1,2 +1,4 @@
 <span ng-if="joinIcon === 'true'"><i ng-class="project.isParticipant()? 'i-participant-remove': 'i-participant-new'"></i></span></span>
 <span translate>{{ project.isParticipant() ? joinCopyOn : joinCopyOff }}</span>
+
+<join-modal project="project" ng-if="joinModal"></join-modal>

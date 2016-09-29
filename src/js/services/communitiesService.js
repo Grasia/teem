@@ -133,7 +133,7 @@ angular.module('Teem')
       return find(base64.urldecode(urlId));
     }
 
-    var create = function(data, callback) {
+    var create = function(options, callback) {
       var d = $q.defer();
 
       swellRT.createModel(function(model){
@@ -147,8 +147,13 @@ angular.module('Teem')
         $timeout(function(){
           p = swellRT.proxy(model, Community);
 
+          console.log('inside');
+
           p.type = 'community';
           p.id = model.id();
+          if (options.name) {
+            p.name = options.name;
+          }
           p.projects = [];
 
           d.resolve(p);

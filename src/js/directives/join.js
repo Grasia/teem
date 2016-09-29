@@ -4,29 +4,37 @@ angular.module('Teem')
   .directive('join', function() {
     return {
       controller: [
-      '$scope', '$element', '$attrs', 'SessionSvc', '$timeout', '$analytics',
-      function($scope, $element, $attrs, SessionSvc, $timeout, $analytics) {
-        $scope.joinIcon = $attrs.joinIcon;
-        $scope.joinCopyOn  = $attrs.joinCopyOn;
-        $scope.joinCopyOff = $attrs.joinCopyOff;
-        var previousJoinState;
+      '$scope', '$element', 'SessionSvc', '$timeout', '$analytics', 'SharedState',
+      function($scope, $element, SessionSvc, $timeout, $analytics, SharedState) {
 
         $element.on('click', function() {
 
-          previousJoinState = $scope.project.isParticipant();
-
-          SessionSvc.loginRequired($scope, function() {
-            if (!previousJoinState){
-              if (!$scope.project.isParticipant()){
-                $scope.project.addParticipant();
-                $analytics.eventTrack('Join project', {});
-              }
+          if (!$scope.project.isParticipant()){
+            if ($scope.joinModal) {
+              SharedState.set('modal.join', { name: 'join' });
             } else {
-              $scope.project.removeParticipant();
+              SessionSvc.loginRequired($scope, function() {
+                $scope.project.addParticipant();
+              }, undefined, $scope.project.synchPromise());
             }
-          }, undefined, $scope.project.synchPromise());
+
+            $timeout();
+            $analytics.eventTrack('Join project', {});
+          } else {
+
+            SessionSvc.loginRequired($scope, function() {
+              $scope.project.removeParticipant();
+            }, undefined, $scope.project.synchPromise());
+          }
         });
       }],
+      scope: {
+        joinIcon: '@',
+        joinCopyOn: '@',
+        joinCopyOff: '@',
+        joinModal: '=',
+        project: '=joinModel'
+      },
       templateUrl: 'join.html'
     };
   });

@@ -73,6 +73,12 @@ angular.module('Teem')
           $timeout();
         };
 
+        if (scope.selectorIcon === undefined) {
+          scope.icon = 'add_circle';
+        } else {
+          scope.icon = scope.selectorIcon;
+        }
+
       }],
       transclude: true,
       scope: {
@@ -81,7 +87,8 @@ angular.module('Teem')
         options :'=',
         ngModel : '=',
         placeholder : '=',
-        name : '='
+        name : '=',
+        selectorIcon: '='
       },
       templateUrl: 'selector.html'
     };

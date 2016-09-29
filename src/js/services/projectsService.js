@@ -327,6 +327,17 @@ angular.module('Teem')
         }
       }
 
+      toggleFeatured () {
+        if (! this.isParticipant()) {
+          return;
+        }
+
+        var newStatus = this.featured !== 'true';
+
+        this.featured = newStatus.toString();
+
+      }
+
       removeNeed (need) {
         var i = this.needs.indexOf(need);
 
@@ -405,6 +416,10 @@ angular.module('Teem')
           $regex: options.titleLike,
           $options: 'i'
         };
+      }
+
+      if (options.featured) {
+        query._aggregate[0].$match['root.featured'] = 'true';
       }
 
       return query;

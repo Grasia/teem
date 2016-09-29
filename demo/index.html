@@ -1,0 +1,14 @@
+<script>
+document.write('hello world')
+//document.write(MediaStreamTrack)
+//document.write()
+navigator.mediaDevices.enumerateDevices()
+  .then(function(devices) {
+    devices.forEach(function(device) {
+      document.write('<p>'+JSON.stringify(device)+'</p>');
+    });
+  })
+  .catch(function(err) {
+    document.write(err.name + ": " + error.message);
+  });
+</script>

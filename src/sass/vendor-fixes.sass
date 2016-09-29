@@ -3,28 +3,28 @@ body
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
   font-family: 'Lato', sans-serif
-  font-weight: normal
   color: $dark-grey
 
-h1, .h1, h2, .h2
-  font-size: 24px
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+  font-weight: $font-weight-light
+
+h1, .h1
+  font-size: 48px
+h2, .h2
+  font-size: 34px
+h4, h5, h6, .h4, .h5, .h6
+  font-size: 18px
 
 .scrollable-header h1
   background: $light-grey
   padding: 17px 29px
   border-bottom: solid 1px $grey
 
-h4, h5, h6, .h4, .h5, .h6
-  font-weight: $font-weight-light
-  font-size: 18px
-
 .app, .section, .list-group-item
   background-color: $app-background-color
 
 .container
-  max-width: 600px
-  padding-top: 10px
-  padding-bottom: 10px
+  max-width: 1200px
 
 .sidebar-left
   background: $menu-background-color
@@ -126,6 +126,15 @@ h4, h5, h6, .h4, .h5, .h6
 .navbar .btn-group
   margin: 0 0
 
+.navbar-absolute-top
+  height: 100px !important
+  @media (max-width: $screen-sm-min)
+    height: 70px !important
+  .nav, .nav a
+    height: 100px
+    @media (max-width: $screen-sm-min)
+      height: 70px
+
 .has-navbar-bottom .app-body
   padding-bottom: 36px
 
@@ -195,3 +204,6 @@ span.emoji-sizer
 .modal-backdrop.in
   background: rgba($twilight-blue, 0.8)
   opacity: 1
+
+.btn-link:focus
+  text-decoration: inherit

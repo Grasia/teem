@@ -1,0 +1,23 @@
+<div class="btn-group">
+  <a ui-turn-on="dropdownProjectMenu" class="btn btn-link">
+    <i class="material-icons">more_vert</i>
+  </a>
+  <ul ui-state="dropdownProjectMenu" class="dropdown-menu pull-right ng-hide"
+      ui-outer-click="Ui.turnOff('dropdownProjectMenu')"
+      ui-outer-click-if="Ui.active('dropdownProjectMenu')"
+      role="menu" ui-show="dropdownProjectMenu"
+      ui-turn-off="dropdownProjectMenu">
+
+    <li><a ui-set="{'modal.share': 'shareModalCreate'}"><span translate>project.menu.share</span></a></li>
+    <li><a like like-copy-on="project.menu.unlike" like-copy-off="project.menu.like" like-model="project"></a></li>
+    <li ng-if="project.isParticipant()"><a join join-modal="true" join-copy-on="project.menu.leave" join-copy-off="project.menu.join" join-model="project" analytics-on="click" analytics-event="Join project"></a></li>
+    <!-- To add when https://github.com/P2Pvalue/angular-swellrt/issues/25 solved: <li ng-if="project.isParticipant()"><a ui-set="{modal.uploadPicture: {name: 'uploadPicture', callback: uploadProjectPhoto}}" translate>project.menu.change_photo</a></li> -->
+    <!--<li><a ng-click="archiveProject()" translate>project.tooltip.archive</a></li>-->
+    <li ng-if="project.isParticipant()"><a ui-set="{'modal.confirm': {
+      name: 'confirm',
+      title: 'project.cancel.confirm.title',
+      text: 'project.cancel.confirm.text',
+      callback: cancelProject
+    }}" translate>project.tooltip.delete</a></li>
+  </ul>
+</div>

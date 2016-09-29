@@ -2,21 +2,51 @@
  *
  * We should use less
  */
-.has-navbar-top .app-body
-  padding-top: 50px
+
+@media (min-width: 992px)
+  .navbar-absolute-top
+    height: 100px
+  .has-navbar-top .app-body
+    padding-top: 100px
+
+@media (max-width: $screen-sm-min)
+  .has-navbar-top
+    .app-body
+      padding-top: 70px
+    .app-body.no-navbar-top
+      padding-top: 0px !important
+
 .navbar-absolute-top
-  border-bottom-width: 0px
-  &, .fa, a, .material-icons
+  border-bottom: 1px solid $light-grey
+  &, a
     color: $navbar-top-color
+  a::before, .material-icons
+    color: $navbar-top-icons-color
   background-color: $navbar-top-background-color
+
+  .active
+    color: $teal
+    border-bottom: 5px solid $teal
+    a
+      font-weight: bold
+      &::before
+        color: $teal
+    .menu-triangle
+      width: 0
+      height: 0
+      border-left: 10px solid transparent
+      border-right: 10px solid transparent
+      border-bottom: 5px solid $teal
+      margin-top: -10px
+      margin-left: auto
+      margin-right: auto
 
 @media (min-width: 992px)
   .has-sidebar-left .app, .sidebar-left-in .app
     margin-left: 0
-  .navbar-absolute-top
-    height: 80px
-  .has-navbar-top .app-body
-    padding-top: 80px
+
+.nav > li
+  float: left
 
 .navbar-brand
   padding-left: 40px
@@ -72,20 +102,25 @@
         padding-top: 16px !important
         padding-bottom: 13px !important
         img
-          height: 50px
-    li > a
-      padding-right: 25px !important
+          height: 75px
+    @media (max-width: $screen-sm-min)
+      display: flex
+      justify-content: center
   .menu-option
     > a
       padding-top: 30px !important
       padding-bottom: 30px !important
+      @media (max-width: $screen-sm-min)
+        padding-top: 12px !important
+        padding-bottom: 12px !important
     .active, &:focus
       color: $menu-active-color !important
       font-weight: bold
   .btn
     margin-top: 3px
-  .menu-option:hover, .btn-link:hover i
-    color: $navbar-top-hover-color !important
+  .menu-option:hover:not(.active) a
+    &, &::before
+      color: $navbar-top-hover-color !important
   .menu-session
     & > a
       padding-top: 20px !important
@@ -131,3 +166,19 @@
 .nav-title-desktop
   background: $grey
   height: 62px
+
+.menu-mobile
+  display: flex
+  justify-content: space-around
+  .menu-option
+
+.navbar-top-projects
+  border-bottom: 1px solid $grey
+  .nav
+    padding: 12px 0
+    display: flex
+    justify-content: center
+    a
+      font-size: 14px
+      font-weight: normal
+      color: $bluey-grey

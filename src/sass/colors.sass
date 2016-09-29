@@ -1,47 +1,46 @@
 /* Basic colors */
 
-$twilight-blue: #0C5464
-$pale-blue: #4E828F
-$light-blue: #00BFA0
-$soft-blue: #C6E6DF
-$purple: #C051C0
-
-$teal: #00BFA0
-$aubergine: #B2409E
+$light-green: #b8e986
+$dark-green: #008f78
+$teal: #00bfa0 /* Teem-green */
 $blue: #4A87E0
+$aubergine: #B2409E
 $yellow: #D8AB32
 
-// Too much greys!
-$light-grey: #E9EEF3
-$grey: #D6DDE4
-$darker-grey: #B0B4B7
-$dark-grey: #464B4E
-$other-grey: #A2A7Af
-$another-grey: #E0E2E5
-$another2-grey: #E6E9EC
-$lightest-grey: #F2F4F5
+
+$twilight-blue: #0C5464
+$pale-blue: #4E828F
+$soft-blue: #C6E6DF
+
+$purple: $aubergine
+
+$light-grey: #dce1e5
 $bluey-grey: #a7b4be
-$bluey2-grey: #607384
-$bluey3-grey: #eff7f9
+$bluey2-grey: #5B6F81
+$dark-grey: #2f3942
+
+// $grey is defined in some vendor library and widespread along our code
+$grey: $light-grey
 
 /* App */
 
-$app-background-color: $lightest-grey
-$line-color: $another-grey
+$app-background-color: white
+$line-color: $light-grey
 
 /* Navbar */
 
-$navbar-top-background-color: $twilight-blue
+$navbar-top-background-color: white
 
-$navbar-top-color: white
-$navbar-top-inactive-color: $grey
+$navbar-top-color: $bluey2-grey
+$navbar-top-icons-color: $bluey-grey
+$navbar-top-inactive-color: $light-grey
 
-$navbar-top-underscore: $light-blue
-$navbar-top-active-color: white
+$navbar-top-underscore: $teal
+$navbar-top-active-color: $teal
 $navbar-top-hover-color: $purple
 
 $navbar-bottom-selected-color: white
-$navbar-bottom-selected-background-color: $light-blue
+$navbar-bottom-selected-background-color: $teal
 
 /* Headings */
 
@@ -53,31 +52,31 @@ $heading-secondary-color: $dark-grey
 
 $button-primary-color: white
 
-$button-primary-background-color: $light-blue
+$button-primary-background-color: $teal
 
-$button-primary-selected-background-color: $light-blue
+$button-primary-selected-background-color: $teal
 
 $plus-color: white
-$plus-background-color: $purple
-$plus-shadow-color: $darker-grey
+$plus-background-color: $teal
+$plus-shadow-color: $bluey-grey
 
 
 /* Forms */
 $form-control-color: $dark-grey
-$placeholder-color: $other-grey
-$input-focus-border-color: $light-blue
+$placeholder-color: $bluey-grey
+$input-focus-border-color: $teal
 
 $form-buttons-background-color: white
-$form-buttons-confirm-color: $light-blue
+$form-buttons-confirm-color: $teal
 $form-buttons-cancel-color: $purple
 
-$selector-plus-circle-color: $darker-grey
+$selector-plus-circle-color: $bluey-grey
 $selector-plus-circle-focused-color: $teal
-$selector-item-background-color: $grey
+$selector-item-background-color: $light-grey
 
 
 /* Notifications */
-$notification-point-color: $light-blue
+$notification-point-color: $teal
 
 /* Tips */
 
@@ -89,16 +88,16 @@ $menu-background-color: white
 $menu-header-color: white
 $menu-header-background-color: $pale-blue
 
-$menu-active-color: $light-blue
+$menu-active-color: $teal
 
 $menu-session-background-color: $twilight-blue
 
-$menu-session-nick-color: $light-blue
+$menu-session-nick-color: $teal
 $menu-session-tip-color: $light-grey
-$menu-session-action-color: $light-blue
+$menu-session-action-color: $teal
 
-$menu-item-color: $light-blue
-$menu-item-selected-background-color: $another2-grey
+$menu-item-color: $teal
+$menu-item-selected-background-color: $light-grey
 
 /* Icons */
 
@@ -111,7 +110,7 @@ $icon-ok-color: $teal
 $modal-backdrop-gradient: linear-gradient($pale-blue, $twilight-blue)
 
 /* Session */
-$session-form-message-subtip-color: $darker-grey
+$session-form-message-subtip-color: $bluey-grey
 
 /* Communities */
 $community-title-color: $dark-grey
@@ -121,7 +120,7 @@ $community-description-color: $bluey2-grey
 
 $community-projects-background-color: white
 
-$community-participants-background-color: $grey
+$community-participants-background-color: $light-grey
 
 $community-participanting-message-color: $dark-grey
 
@@ -129,30 +128,41 @@ $community-participanting-message-color: $dark-grey
 $projects-title-color: $dark-grey
 $project-title-hover-color: $teal
 
-$project-participants-background-color: $grey
+$project-participants-background-color: $light-grey
 
 $project-communities-color: $bluey-grey
 
+$project-share-link-color: $bluey2-grey
+$project-share-link-background-color: $light-grey
+$project-share-link-border-color: $bluey2-grey
+
+$project-share-invite-placeholder-color: $bluey2-grey
+
+$project-form-title-color: $bluey2-grey
+$project-form-share-banner-text-color: $dark-grey
+
+$project-join-form-organizer-color: $dark-grey
+$project-join-success-text-color: $dark-grey
 /* Pad */
 $pad-background-color: white
-$pad-border-color: $grey
+$pad-border-color: $light-grey
 
 /* Needs */
 
 $needs-header-background-color: white
 
-$needs-list-background-color: $lightest-grey
+$needs-list-background-color: white
 
 $need-comment-count-color: white
 $need-comment-author-name-color: $twilight-blue
 $need-comment-time-color: $dark-grey
-$need-comment-placeholder-color: $light-blue
+$need-comment-placeholder-color: $teal
 
 /* Chat */
 
 $chat-mine-color: $soft-blue
 
-$chat-their-color: $lightest-grey
+$chat-their-color: $light-grey
 
 $chat-sender-color-1: #005365
 $chat-sender-color-2: #4b88e2
@@ -163,9 +173,9 @@ $chat-sender-color-6: #9c419c
 
 $chat-send-bar-background-color: white
 
-$chat-message-time-color: $other-grey
+$chat-message-time-color: $bluey-grey
 
 
 /* Search */
 
-$search-icon-color: $grey
+$search-icon-color: $light-grey

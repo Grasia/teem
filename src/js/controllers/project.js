@@ -12,6 +12,10 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+      .when('/teems/featured', {
+        templateUrl: 'projects/index.html',
+        controller: 'ProjectsCtrl'
+      })
       // Transition from old paths
       .when('/projects/:id/:new?', {
         redirectTo: function(params) {
@@ -54,7 +58,7 @@ angular.module('Teem')
         community: communityId,
         localId: localId
       }).then(function(projects) {
-        
+
         var project = projects[0];
 
         if (project) {
@@ -73,10 +77,23 @@ angular.module('Teem')
     });
   }])
   .controller('ProjectCtrl', [
-  'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT',
+  'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT', '$filter',
   'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User', 'Selector',
-  function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT,
+  function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT, $filter,
   SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User, Selector) {
+
+    // Prevent users from forging the form parameter
+    // and set the form order
+    const Forms = [ 'image', 'details', 'share', 'congrats' ];
+
+    // Hack to hide the navbar
+    // We should be using the class .has-navbar-top automatically added by
+    // mobile-angular-ui, it should be removed when the navbar is removed
+    // by ui-content-for, but it is not happening
+    $rootScope.noNavbarTop = true;
+    $scope.$on('$destroy', () => {
+      $rootScope.noNavbarTop = false;
+    });
 
     var editingTitle = false;
 
@@ -87,6 +104,7 @@ angular.module('Teem')
       saving: false,
       outline: []
     };
+    $scope.pic = {};
 
     $scope.editOff = function() {
       angular.element(document.querySelector('pad')).scope().editOff();
@@ -160,6 +178,35 @@ angular.module('Teem')
 
     NewForm.initialize($scope, 'project');
 
+    $scope.form = function () {
+      var f = $route.current.params.form;
+
+      if (f && Forms.indexOf(f) >= 0) {
+        return f;
+      }
+    };
+
+    $scope.formStep = function() {
+      return Forms.indexOf($route.current.params.form) + 1;
+    };
+
+    $scope.nextForm = function () {
+      var index = Forms.indexOf($route.current.params.form) + 1;
+
+      if (index > 0 && index < Forms.length) {
+        return Forms[index];
+      }
+
+      return null;
+    };
+
+    $scope.goToNextForm = function () {
+      if ($scope.form() === 'image' && $scope.pic.croppedPicture) {
+        $scope.uploadProjectPhoto($filter('dataUriToBlob')($scope.pic.croppedPicture));
+      }
+      $location.search('form', $scope.nextForm());
+    };
+
     $scope.uploadProjectPhoto = function(file) {
       $scope.project.image = new swellRT.FileObject(file);
     };
@@ -183,18 +230,11 @@ angular.module('Teem')
       editingTitle = false;
     };
 
-    $scope.titleReminder = function titleReminder() {
-      SharedState.turnOff('modalSharedState');
-      $scope.showEditTitle();
-      $timeout(function(){
-        document.querySelector('.title-input').focus();
-      });
-    };
-
     $scope.createProject = function() {
       let params = {};
+
       ProjectsSvc.create(params, function(p) {
-        $location.path(p.path()).search('form', 'new');
+        $location.path(p.path()).search('form', 'image');
       });
     };
 
@@ -214,7 +254,7 @@ angular.module('Teem')
     });
 
     $scope.cancelProject = function() {
-      SharedState.turnOff('modalSharedState');
+      SharedState.turnOff('modal.confirm');
 
       $scope.project.delete();
 
@@ -242,7 +282,16 @@ angular.module('Teem')
     $scope.communitySelector = {
       options: [],
       config: {
-        create: false,
+        create: function(input, callback) {
+          CommunitiesSvc.create({ name: input }, (community) => {
+            callback(community);
+          });
+        },
+        load: function(query, callback) {
+          CommunitiesSvc.all({ nameLike: query }, (communities) => {
+            callback(communities);
+          });
+        },
         valueField: 'id',
         labelField: 'name',
         searchField: 'name',
@@ -258,6 +307,23 @@ angular.module('Teem')
         closeAfterSelect: true
       }
     };
+    $scope.locationSelector = {
+      options: [],
+      config: {
+        mode: 'single',
+        openOnFocus: false,
+        delimiter: null,
+        plugins: {
+          'placecomplete': {
+            placeholder: '',
+            //selectDetails: (placeResult) => {
+              // placeResult.displayText contains something like "Madrid, Spain"
+            //}
+          }
+        }
+      }
+    };
+
     SessionSvc.onLoad(function() {
       CommunitiesSvc.participating({ projectCount: true }).then(function(communities){
         $scope.communitySelector.options = angular.extend([], $scope.communities, communities);
@@ -269,16 +335,28 @@ angular.module('Teem')
     $scope.inviteUsers = function(){
       Selector.invite($scope.invite.selected, $scope.project);
       $scope.invite.selected = [];
-      SharedState.turnOff('modalSharedState');
+      SharedState.turnOff('modal.share');
     };
 
     $scope.cancelInvite = function(){
       $scope.invite.selected = [];
-      SharedState.turnOff('modalSharedState');
+      SharedState.turnOff('modal.share');
     };
 
     $scope.focusTitleInput = function() {
       $('.title-input').focus();
+    };
+
+    $scope.createProjectFormInvalid = function() {
+      // There should be a better way to implement this
+      try {
+        let form = angular.element('[name="createProjectForm"]');
+
+        return form.scope().createProjectForm.$invalid;
+      } catch(e) {
+        return false;
+      }
+
     };
 
     $scope.archiveProject = function() {

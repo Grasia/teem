@@ -27,7 +27,7 @@ class ProjectsPage {
 class ProjectPage {
 
   constructor () {
-    this.titleEl = element(by.css('.project-title'));
+    this.titleEl = element(by.binding('project.title'));
 
     this.padEl = element(by.model('project.pad'));
 
@@ -92,27 +92,37 @@ class NewProjectPage {
 
     this.titleInputEl = element(by.model('project.title'));
 
+    this.nextBtn = element(by.css('[ng-click="goToNextForm()"]'));
+
     this.padEl = element(by.css('.wave-editor-on'));
     this.padCheckBtn = element(by.css('.nav-right .pad-check'));
-
-    this.submitEl =  element(by.css('.new-form-confirm-btn'));
   }
 
   create () {
-    browser.wait(protractor.ExpectedConditions.visibilityOf(this.titleInputEl));
+    // Image
+    this.nextBtn.click();
 
+    // Title
     this.titleInputEl.sendKeys(this.title);
+
+    this.nextBtn.click();
+
+    // Invite
+    this.nextBtn.click();
+
+    // Share
+    this.nextBtn.click();
 
     this.padEl.click();
 
     this.padEl.sendKeys(this.padText);
 
+    /*
+      padCheckBtn has been removed
     if (! isDesktop) {
       this.padCheckBtn.click();
-
-      return this.submitEl.click();
     }
-
+    */
   }
 }
 

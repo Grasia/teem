@@ -124,12 +124,12 @@ angular.module('Teem')
         $scope.inviteUsers = function(){
           Selector.invite($scope.invite.selected, $scope.community);
           $scope.invite.selected = [];
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.invite');
         };
 
         $scope.cancelInvite = function(){
           $scope.invite.selected = [];
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.invite');
         };
       }],
       templateUrl: 'communities/community.html'

@@ -1,0 +1,44 @@
+<div class="project-form-details">
+  <div class="project-form-details-banner text-center">
+    <div class="project-form-details-banner-title" translate>
+      project.form.details.banner.title
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div ng-include="'projects/project/photo.html'"></div>
+  </div>
+
+  <form name="createProjectForm">
+    <div class="form-group label-floating">
+      <label class="control-label" for="projectTitle" translate>project.title.placeholder</label>
+      <input type="text"
+             id="projectTitle"
+             class="form-control"
+             ng-required="true"
+             ng-model="project.title">
+    </div>
+
+    <selector multiple
+              selector-icon="false"
+              config="communitySelector.config"
+              options="communitySelector.options"
+              ng-model="project.communities"
+              placeholder=" 'project.community.placeholder' | translate"
+    ></selector>
+
+    <selector
+              selector-icon="false"
+              config="locationSelector.config"
+              options="locationSelector.options"
+              ng-model="project.location"
+              placeholder=" 'project.location.placeholder' | translate"
+    ></selector>
+
+    <div class="form-group">
+      <label ng-class="(project.featured === 'true') ? 'i-featured': 'i-featured-not'" ng-model="project.featured"
+             ng-click="project.toggleFeatured()"
+      >{{'project.featured.placeholder' |translate}}</label>
+    </div>
+  </form>
+</div>

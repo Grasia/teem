@@ -21,17 +21,21 @@ angular.module('Teem')
       };
     }
 
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    };
+
     $scope.close = function() {
       SharedState.turnOff('uiSidebarLeft');
     };
 
     $scope.register = function () {
-      SharedState.set('modalSharedState', {name: 'session', type: 'register'});
+      SharedState.set('modal.session', {name: 'session', type: 'register'});
       $timeout();
     };
 
     $scope.login = function () {
-      SharedState.set('modalSharedState', {name: 'session', type: 'login'});
+      SharedState.set('modal.session', {name: 'session', type: 'login'});
       $timeout();
     };
 

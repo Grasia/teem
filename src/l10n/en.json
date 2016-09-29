@@ -69,7 +69,7 @@
     "project": {
       "button": "Create a teem",
       "count": "{{count}} teems",
-      "tip": "Organize your projects and expose your needs",
+      "tip": "Organize your projects and expose your tasks",
       "title": "Teems",
       "working_group_count": "{{count}} working groups"
     },
@@ -126,7 +126,7 @@
     "copy": {
       "explore": "Explore what people are doing in your community",
       "propose": "Propose your project, find support and collaborators",
-      "work": "Work in your project and expose your needs"
+      "work": "Work in your project and expose your tasks"
     },
     "welcome_msg": "The tool to promote your proposals in your communities"
   },
@@ -137,6 +137,9 @@
     "communities": {
       "title": "Explore"
     },
+    "explore": {
+      "title": "Explore"
+    },
     "feedback": {
       "title": "Feedback"
     },
@@ -144,9 +147,17 @@
       "title": "My communities"
     },
     "homeProjects": {
-      "title": "My Teems"
+      "title": "Your projects"
+    },
+    "login": {
+      "title": "Log in"
+    },
+    "profile": {
+      "title": "Profile"
     },
     "projects": {
+      "featured": "Featured",
+      "latest": "Latest",
       "title": "Teems"
     },
     "search": {
@@ -169,24 +180,28 @@
   "need": {
     "by": "Added {{time}} by {{author}}",
     "comment": {
-      "input": "How can you lend a hand?",
-      "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at need \"{{need}}\""
+      "input": "How can you help?",
+      "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at task \"{{need}}\""
     },
     "index": {
       "empty": {
-        "contributor": "Write down your needs so others can help you",
-        "reader": "This Teem has not published any needs yet"
+        "contributor": "Write down your tasks so others can help you",
+        "reader": "This Teem has not published any tasks yet"
       }
     },
     "nav": {
-      "title": "Needs"
+      "title": "Tasks"
     },
     "new": {
-      "notification": "<strong>{{user}}</strong> has created the need \"{{need}}\" in the Teem",
-      "placeholder": "Add a new need"
+      "notification": "<strong>{{user}}</strong> has created the task \"{{need}}\" in the Teem",
+      "placeholder": "Add a new task"
     },
-    "no_needs": "This group has not created any need yet",
-    "tip": "This is what we need to get the project going"
+    "no_needs": "This group has not created any task yet",
+    "title": {
+      "done": "Done",
+      "todo": "To-do"
+    },
+    "tip": "This is what we task to get the project going"
   },
   "newForm": {
     "btn": {
@@ -207,9 +222,9 @@
       "text": "Text"
     },
     "need": {
-      "missing": "This need was deleted"
+      "missing": "This task was deleted"
     },
-    "placeholder": "Share here how to participate in your activity or project: \n • how to start contributing, \n •  what do you need and what has to be done, \n •  the links to the tools you use...",
+    "placeholder": "Share here how to participate in your activity or project: \n • how to start contributing, \n •  what do you task and what has to be done, \n •  the links to the tools you use...",
     "outline": {
       "index": "Index"
     },
@@ -217,7 +232,7 @@
     "tooltip": {
       "link": "Insert link",
       "img": "Insert image",
-      "need": "Insert need",
+      "need": "Insert task",
       "text_fields": "Heading",
       "format_bold": "Bold",
       "format_italic": "Italic",
@@ -231,10 +246,12 @@
     }
   },
   "picture": {
+    "camera": "Take a picture",
+    "clear": "Clear",
     "crop": "To crop the picture, drag the lighter zone, and then click on save",
     "delete": "Remove current picture",
     "dropover": "Drop to attach the file",
-    "upload": "Drop an image here or click to upload",
+    "upload": "Upload a picture",
     "save": "Save",
     "title": "Upload a picture"
   },
@@ -258,8 +275,8 @@
       "button": "Invite people",
       "button_cancel": "Cancel",
       "button_continue": "Share",
-      "long_placeholder": "Add people from Teem or email addresses",
-      "placeholder": "Add people from Teem or email addresses",
+      "long_placeholder": "Add users or send emails",
+      "placeholder": "Add users or send emails",
       "text": "Invite people to help you with this project",
       "title": "Invite people"
     },
@@ -270,15 +287,51 @@
       }
     },
     "community": {
-      "placeholder": "Communities to which it belongs"
+      "placeholder": "Add this project to a community (optional)"
     },
     "create": {
-      "button": "Create Teem",
+      "button": "Create project",
       "tip": "Please, start creating a new Teem."
     },
     "edit": {
       "button": "Edit",
       "title": "Edit Teem"
+    },
+    "featured": {
+      "placeholder": "Feature this project"
+    },
+    "form": {
+      "congrats": {
+        "banner": {
+          "title": "Add more details to make it cool"
+        }
+      },
+      "details": {
+        "banner": {
+          "title": "Add basic details"
+        }
+      },
+      "finish": "Done! Go to my project",
+      "image": {
+        "banner": {
+          "title": "Share a photo of a project you want to organize"
+        }
+      },
+      "next": "Next",
+      "share": {
+        "banner": {
+          "subtitle": "Your project looks great",
+          "text": "Invite others to get involved",
+          "title": "Nice work!"
+        },
+        "invite": {
+          "button": "Invite friends!"
+        },
+        "next": {
+          "message": "Not now, thanks"
+        }
+      },
+      "title": "Create your project"
     },
     "index": {
       "banner": {
@@ -303,6 +356,36 @@
       "nav": {
         "title": "Information"
       }
+    },
+    "join": {
+      "form": {
+        "button": "Send",
+        "organizer": {
+          "label": "To:"
+        },
+        "sender": {
+          "label": "From:",
+          "placeholder": "Enter your email"
+        },
+        "text": {
+          "label": "Your message:",
+          "placeholder": "Hi! This project looks great. I can help get involved, maybe by..."
+        }
+      },
+      "message": {
+        "title": "Join the project"
+      },
+      "success": {
+        "add": "Add a new project",
+        "explore": "Explore other projects",
+        "start": "Start participating",
+        "subtitle": "You are helping make this project happen",
+        "text": "What do you want to do now?",
+        "title": "Success!"
+      }
+    },
+    "location": {
+      "placeholder": "Location"
     },
     "menu": {
       "join": "Join",
@@ -330,10 +413,8 @@
         "notification": "{{invitedParticipants}} has been invited to this teem"
       }
     },
-    "project_description": "Description",
-    "project_name": "Project name",
-    "project_status": "Status",
     "projects": "Teems",
+    "promoter": "Organized by",
     "search": {
       "see_all": "see all projects"
     },
@@ -342,7 +423,7 @@
         "title": "Name"
       },
       "needs": {
-        "title": "Needs"
+        "title": "Tasks"
       },
       "participants": {
         "title": "Participants"
@@ -364,7 +445,7 @@
         "error": "Error"
       },
       "description": {
-        "link": "Link to share:",
+        "link": "Shareable link",
         "permission": "Change access permissions:"
       },
       "info": {
@@ -385,7 +466,7 @@
       "empty": {
         "placeholder": "Create new Teem"
       },
-      "placeholder": "Title of the Teem",
+      "placeholder": "Give this project a name",
       "reminder": {
         "body_one": "This Teem doesn't have a name yet!",
         "body_two": "Do you really want to discard the Teem?",
@@ -399,7 +480,7 @@
       "delete": "Delete",
       "edit": "Edit title",
       "pad": "Info",
-      "need": "Needs"
+      "need": "Tasks"
     },
     "welcome": {
       "tip": "Not involved in anything yet? <a href=\"/communities\">Find a community</a> to join or <a href=\"/communities/new\">create your community</a>"
@@ -473,8 +554,8 @@
       },
       "link": "Register here",
       "link_prev": "Are not you in Teem yet?",
-      "new_community": "To create your community you need to register first",
-      "new_project": "To create your teem you need to register first",
+      "new_community": "To create your community you task to register first",
+      "new_project": "To create your teem you task to register first",
       "new_user": "Choose your nick and password",
       "nick": "Nick",
       "password": "Password",
@@ -539,6 +620,6 @@
     "skip": "Ok, skip",
     "slide1": "See what people in your community have done",
     "slide2": "Pitch your project, find support and collaborators",
-    "slide3": "Work on your project and post your needs"
+    "slide3": "Work on your project and post your task"
   }
 }

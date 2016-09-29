@@ -16,6 +16,7 @@ var config = {
     js: [
       './bower_components/jquery/dist/jquery.js',
       './bower_components/selectize/dist/js/standalone/selectize.js',
+      './bower_components/selectize-placecomplete/plugin.js',
       './bower_components/modernizr/modernizr.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-selectize2/dist/angular-selectize.js',
@@ -55,6 +56,7 @@ var config = {
       './bower_components/js-emoji/lib/emoji.js',
       './bower_components/textfit/textFit.js',
       './bower_components/angular-socialshare/dist/angular-socialshare.js',
+      './bower_components/webrtc-adapter/release/adapter.js',
       './src/vendor/aggregation.js',
       './node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'
     ],
@@ -97,6 +99,15 @@ var config = {
    * };
    */
   app: {
+  },
+
+  /**
+   * Window Configuration
+   *
+   * Variables injected in window.* object.
+   */
+  windowConfig: {
+    gMapsApiKey: 'AIzaSyDizEEZnUmbrB2DEX9iW4gpGzoLrpsLb3A'
   },
 
   // The default URL of the links
@@ -315,6 +326,10 @@ function buildHtml (env) {
   var inject = [];
 
   inject.push('<base href="' + config.base + '" />');
+
+  if(typeof config.windowConfig === 'object') {
+    inject.push('<script>window.config = '+JSON.stringify(config.windowConfig)+';</script>');
+  }
 
   if (config.swellrt) {
     let url;

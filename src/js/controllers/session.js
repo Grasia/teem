@@ -33,7 +33,7 @@ angular.module('Teem')
       }
 
       $scope.$on('$routeChangeSuccess', function() {
-        SharedState.set('modalSharedState', {
+        SharedState.set('modal.session', {
           name: 'session',
           type: normalizeFormName($route.current.params.form)
         });
@@ -91,7 +91,7 @@ angular.module('Teem')
             notificationScope.values = {nick: fields.nick};
             Notification.success({message: 'session.login.success', scope: notificationScope});
             $timeout(function(){
-              SharedState.turnOff('modalSharedState');
+              SharedState.turnOff('modal.session');
             });
           },
           function(error){
@@ -134,7 +134,7 @@ angular.module('Teem')
       var onSuccess = function(){
         Notification.success('session.forgottenPassword.success');
         $timeout(function(){
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.session');
         });
       };
 
@@ -159,7 +159,7 @@ angular.module('Teem')
         delete localStorage.userId;
         Notification.success('session.' + $scope.form.current + '.success');
         $timeout(function(){
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.session');
         });
 
         fields.nick = params.id;
@@ -191,7 +191,7 @@ angular.module('Teem')
         Notification.success('session.' + $scope.form.current + '.success');
 
         $timeout(function(){
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.session');
         });
       };
 
@@ -214,14 +214,14 @@ angular.module('Teem')
           if (res.error) {
             Notification.error('session.set_email.error');
             $timeout(function(){
-              SharedState.turnOff('modalSharedState');
+              SharedState.turnOff('modal.session');
             });
             return;
           }
 
           Notification.success('session.set_email.success');
           $timeout(function(){
-            SharedState.turnOff('modalSharedState');
+            SharedState.turnOff('modal.session');
           });
         };
 
@@ -258,10 +258,10 @@ angular.module('Teem')
       migration: ['password', 'passwordRepeat', 'email']
     };
 
-    // Use modalSharedState.type to store form ('login', 'register', etc..)
-    // and modalSharedState.message to store form message (new_community) (you have to register to create a community)
+    // Use modal.session SharedState.type to store form ('login', 'register', etc..)
+    // and modal.session SharedState.message to store form message (new_community) (you have to register to create a community)
     // So SharedState can be {name: 'session', type: 'register', message: 'new_community'}
-    $scope.$on('mobile-angular-ui.state.changed.modalSharedState', function(e, newValue) {
+    $scope.$on('mobile-angular-ui.state.changed.modal.session', function(e, newValue) {
       $scope.form.current = newValue.type || 'register';
       $scope.form.message = newValue.message;
     });

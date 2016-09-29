@@ -1,7 +1,7 @@
 <div class="project-badge">
   <div class="media">
     <div class="media-left">
-      <div class="project-photo" ui-set="{modalSharedState: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
+      <div class="project-photo" ui-set="{modal.uploadPicture: {name: 'uploadPicture', callback: uploadProjectPhoto}}" ng-if="project.isParticipant()">
         <img class="media-object" ng-src="{{project.logo()}}">
       </div>
       <div class="project-photo" ng-if="!project.isParticipant()">

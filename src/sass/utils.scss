@@ -21,11 +21,11 @@
 }
 
 .body {
-  color: #696969
+  color: $dark-grey
 }
 
 .app-body {
-  color: #696969
+  color: $dark-grey
 }
 
 .comma-separated + .comma-separated::before {
@@ -35,6 +35,7 @@
 [ui-set],
 [ng-click],
 [data-ng-click],
+[ngf-select],
 [x-ng-click] {
     cursor: pointer;
 }
@@ -52,6 +53,11 @@
   flex-direction: column;
   min-height: 0px; /* hack for firefox: http://stackoverflow.com/a/14964944 */
 }
+.flex-center {
+  display: flex;
+  justify-content: center
+}
+
 [ui-layout-container] > .flex-container {
   height: 100%;
 }
@@ -73,4 +79,30 @@
 
 .touchable {
   touch-action: inherit !important;
+}
+
+.full-height {
+  height: 100%;
+}
+
+// https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.four-three {
+  @include aspect-ratio(4, 3);
 }

@@ -1,0 +1,68 @@
+<div ui-content-for="joinModal">
+  <modal name="join" class="project-join">
+
+    <header class="text-center">
+      <div ng-if="step === 'message'">
+        <img src="images/join_project.svg" class="img-responsive"/>
+        <h1 translate>project.join.message.title</h1>
+      </div>
+      <div ng-if="step === 'success'">
+        <img src="images/thanks.svg" class="img-responsive"/>
+        <h1 translate>project.join.success.title</h1>
+        <h2 translate>project.join.success.subtitle</h2>
+      </div>
+    </header>
+
+    <main>
+      <div class="project-join-form" ng-if="step === 'message'">
+        <div class="form-group project-join-form-organizer row">
+          <label class="control-label project-join-form-organizer-label col-xs-2" translate>project.join.form.organizer.label</label>
+          <div class="project-join-form-organizer-input col-xs-10">
+            <div class="project-join-form-organizer-input-border">
+              <div avatars="$ctrl.project.promoter"
+              class="avatars-without-names project-join-form-organizer-avatar"></div>
+              <span class="project-join-form-organizer-name">{{ $ctrl.project.promoter | idToNick}}</span>
+            </div>
+          </div>
+        </div>
+
+        <form name="joinMessage">
+          <div class="form-group project-join-form-sender row">
+            <label for="joinSenderEmail" class="control-label project-join-form-sender-label col-xs-2" translate>project.join.form.sender.label</label>
+            <div class="project-join-form-sender-email col-xs-10">
+              <input type="email"
+                     class="form-control"
+                     id="joinSenderEmail"
+                     ng-model="message.email"
+                     ng-required="true"
+                     placeholder="{{ 'project.join.form.sender.placeholder' | translate }}">
+            </div>
+          </div>
+
+          <div class="form-group project-join-form-text">
+            <label for="joinText" class="control-label project-join-form-text-label" translate>project.join.form.text.label</label>
+            <textarea class="form-control"
+                      id="joinText"
+                      autosize
+                      ng-model="message.text"
+                      ng-required="true"
+                      placeholder="{{ 'project.join.form.text.placeholder' | translate }}"></textarea>
+          </div>
+
+          <button class="btn btn-primary btn-raised btn-block" ng-click="$ctrl.send()" ng-disabled="joinMessage.$invalid || message.sending">
+            <span translate>project.join.form.button</span>
+          </button>
+        </form>
+      </div>
+
+      <div class="project-join-success" ng-if="step === 'success'">
+        <div class="project-join-success-text" translate>
+          project.join.success.text
+        </div>
+        <a class="btn btn-primary btn-raised btn-block" join join-model="$ctrl.project" join-copy-off="project.join.success.start"></a>
+        <a href="/teems/new" class="btn btn-primary btn-link btn-block" translate>project.join.success.add</a>
+        <a href="/teems" class="btn btn-primary btn-link btn-block" translate>project.join.success.explore</a>
+      </div>
+    </main>
+  </modal>
+</div>

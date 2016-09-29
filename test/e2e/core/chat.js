@@ -15,7 +15,8 @@ describe('1% core user', () => {
       loginPage.login();
     });
 
-    it('should be able to send a new message', () => {
+    // Waiting for the chat to be restored
+    xit('should be able to send a new message', () => {
       chatPage.get();
 
       chatPage.send();

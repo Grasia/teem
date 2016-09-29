@@ -6,7 +6,7 @@ angular.module('Teem')
       controller: ['$scope', 'SharedState', function($scope, SharedState) {
         let cb;
 
-        $scope.$on('mobile-angular-ui.state.changed.modalSharedState', function(e, newValue) {
+        $scope.$on('mobile-angular-ui.state.changed.modal.confirm', function(e, newValue) {
           $scope.confirmTitle = newValue && newValue.title;
           $scope.confirmText = newValue && newValue.text;
           cb = newValue && newValue.callback;
@@ -16,10 +16,10 @@ angular.module('Teem')
           if(cb) {
             cb();
           }
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.confirm');
         };
         $scope.cancel = function() {
-          SharedState.turnOff('modalSharedState');
+          SharedState.turnOff('modal.confirm');
         };
       }],
       templateUrl: 'confirm-modal.html'

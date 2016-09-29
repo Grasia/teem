@@ -1,8 +1,9 @@
 i
   color: $icon-color
+
 .btn-primary
   i
-    color: $button-primary-color
+    color: inherit
 
 .icon-count
   position: relative
@@ -30,6 +31,16 @@ i
   vertical-align: middle
   display: inline
 
+.menu-icons::before
+  @extend .center-block
+  display: block
+
+.material-icons.big
+  font-size: 35px
+  display: block
+.material-icons.blue
+  color: $blue
+
 a, btn
   &.custom-icons::before
     padding-right: 5px
@@ -53,6 +64,9 @@ a, btn
   &::before
     @extend .custom-icons
     content: 'person_outline'
+.i-profile::before
+  @extend .custom-icons
+  content: 'person'
 
 .i-project
   @extend .icon-teem
@@ -93,6 +107,26 @@ a, btn
   @extend .custom-icons
   content: 'edit'
 
+.i-explore::before
+  @extend .custom-icons
+  content: 'explore'
+
+.i-folder::before
+  @extend .custom-icons
+  content: 'folder'
+
+.i-featured::before
+  @extend .custom-icons
+  content: 'turned_in'
+
+.i-featured-not::before
+  @extend .custom-icons
+  content: 'turned_in_not'
+
+.i-latest::before
+  @extend .custom-icons
+  content: 'date_range'
+
 .i-check::before
   @extend .custom-icons
   content: 'check'
@@ -105,6 +139,26 @@ a, btn
   @extend .custom-icons
   content: 'arrow_forward'
 
+.i-upload::before
+  @extend .custom-icons
+  content: 'file_upload'
+
+.i-camera::before
+  @extend .custom-icons
+  content: 'camera'
+
 .i-info::before
   @extend .custom-icons
   content: 'info'
+
+.i-next::before
+  @extend .custom-icons
+  content: 'navigate_next'
+
+.i-link::before
+  @extend .custom-icons
+  content: 'link'
+
+.i-email::before
+  @extend .custom-icons
+  content: 'email_outline'

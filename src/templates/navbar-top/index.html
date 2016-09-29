@@ -1,0 +1,27 @@
+<div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
+  <div class="container menu navbar-top-menu" ng-controller="MenuCtrl">
+    <ul class="nav navbar-nav hidden-xs">
+      <li>
+        <a class="logo" href="/"><img src="/images/app-logo.png" /></a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right menu-desktop navbar-form">
+      <li class="menu-option" ng-if="loggedIn()" ng-class="{'active': isActive('/home/teems')}">
+        <a href="/home/teems" class="i-folder menu-icons" translate>menu.homeProjects.title</a>
+        <div class="menu-triangle"></div>
+      </li>
+      <li class="menu-option" ng-class="{'active': isActive('/teems') || isActive('/teems/featured')}">
+        <a href="/teems" class="i-explore menu-icons" translate>menu.explore.title</a>
+        <div class="menu-triangle"></div>
+      </li>
+      <li ng-if="!loggedIn()" class="menu-option">
+        <a ng-click="login()" class="i-profile menu-icons" translate>menu.login.title</a>
+      </li>
+      <li ng-if="loggedIn()" class="menu-option" ng-class="{'active': isActive('/users/'+user.id)}">
+        <a ng-href="/users/{{user.id}}" class="i-profile menu-icons" ng-attr-data-nick="{{ user.nick }}" translate>menu.profile.title</a>
+        <div class="menu-triangle"></div>
+      </li>
+    </ul>
+  </div>
+</div>

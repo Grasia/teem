@@ -1,0 +1,46 @@
+.progress-dotted
+  position: relative
+  height: 10px
+  width: 90px
+  margin-bottom: 30px
+  .dot
+    position: absolute
+    width: 12px
+    height: 12px
+    border-radius: 50%
+    background-color: $grey
+    &:nth-child(1)
+      left: 0%
+    &:nth-child(2)
+      left: 33%
+    &:nth-child(3)
+      left: 66%
+    &:nth-child(4)
+      left: 100%
+  &.progress-dotted-1-of-4
+    .dot:nth-child(1)
+      background-color: $teal
+  &.progress-dotted-2-of-4
+    .progress-bar
+      width: 33%
+    .dot:nth-child(1), .dot:nth-child(2)
+      background-color: $teal
+      transition-delay: .5s
+  &.progress-dotted-3-of-4
+    .progress-bar
+      width: 66%
+    .dot:nth-child(1), .dot:nth-child(2), .dot:nth-child(3)
+      background-color: $teal
+      transition-delay: .5s
+  &.progress-dotted-4-of-4
+    .progress-bar
+      width: 100%
+    .dot
+      background-color: $teal
+      transition-delay: .5s
+  .progress
+    position: absolute
+    margin-top: 1px
+    background-color: $grey
+    top: 3px
+    width: 100%

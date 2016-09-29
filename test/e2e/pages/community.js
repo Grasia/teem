@@ -82,7 +82,7 @@ class NewCommunityPage {
       // Remove trailing period
     this.name = this.name.substring(0, this.name.length - 1);
 
-    this.description = chance.paragraph();
+    this.description = chance.paragraph({ sentences: 2 });
 
     this.nameInputEl = element(by.model('community.name'));
     this.descriptionInputEl = element(by.model('community.description'));

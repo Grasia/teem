@@ -46,14 +46,14 @@
     <![endif]-->
 
     <div bindonce class="app" id="app">
-      <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
-        <div class="hidden-md hidden-lg" ng-include="'navbar-top/mobile.html'"></div>
-        <div class="hidden-xs hidden-sm" ng-include="'navbar-top/desktop.html'"></div>
+
+      <div ui-yield-to="navbar-top">
+        <navbar-top-index></navbar-top-index>
       </div>
 
       <div ui-yield-to="navbar-bottom"></div>
 
-      <div class="app-body">
+      <div class="app-body" ng-class="noNavbarTop ? 'no-navbar-top' : ''">
         <div class="notification-area">
           <div connection-status></div>
         </div>
@@ -65,15 +65,17 @@
 
     <div class="sidebar sidebar-left" ng-include="'sidebar.html'"></div>
 
+    <!-- modals are arrange by priority, more important last -->
     <div ui-yield-to="modals"></div>
     <!-- Need support for several ui-content-for https://github.com/mcasimir/mobile-angular-ui/pull/286 -->
     <div ui-yield-to="modals2"></div>
+    <div upload-picture-modal></div>
+    <search-modal></search-modal>
+    <div ui-yield-to="inviteModal"></div>
+    <div ui-yield-to="joinModal"></div>
     <div confirm-modal></div>
     <div session-modal></div>
-    <div upload-picture-modal></div>
     <div loading></div>
     <div upgrading></div>
-    <div ui-yield-to="inviteModal"></div>
-    <search-modal></search-modal>
   </body>
 </html>

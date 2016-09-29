@@ -1,50 +1,27 @@
-<div ng-include="'navbar-top/project.html'"></div>
-<div class="project" ng-if="!isDesktop()">
-  <div class="project-navigation">
-    <div class="btn-group justified">
-      <a ui-set="{'projectTab': 'pad'}"
-         ui-class="{'active': projectTab == 'pad'}"
-         class="nav-pad">
-        <span translate>pad.nav.title</span>
-        <span class="material-icons notification-indicator" ng-if="hasChanged('pad')">fiber_manual_record</span> </a>
-      <a ui-set="{'projectTab': 'needs'}"
-         ui-class="{'active': projectTab == 'needs'}"
-         class="nav-needs">
-        <span translate>need.nav.title</span>
-        <span class="material-icons notification-indicator" ng-if="hasChanged('needs')">fiber_manual_record</span> </a>
-
-      <a ui-set="{'projectTab': 'chat'}"
-         ui-class="{'active': projectTab == 'chat'}"
-         class="nav-chat"
-         ng-if="project.isParticipant()">
-        <span translate>chat.nav.title</span>
-        <span class="material-icons notification-indicator" ng-if="hasChanged('chat')">fiber_manual_record</span> </a>
-    </div>
+<div ng-if="!isDesktop()">
+  <div ui-content-for="navbar-top">
   </div>
+</div>
 
-  <div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden() || isNew()}">
-    <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !(pad.editing && !isDesktop())}">
-      <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'
-      class="flex-container touchable" ng-include="'projects/mobile.html'">
-      </div>
+<div ng-if="form()" class="scrollable">
+  <div class="project-form-bar hidden-md hidden-lg">
+  </div>
+  <div class="scrollable-content">
+    <div class="col-md-4 col-md-offset-4">
+      <div ng-include="'projects/project/form/steps.html'"></div>
 
-      <div ui-if="projectTab == 'needs'" hm-swipeleft="swipeToChat" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'>
-        <div class="scrollable">
-          <div class="scrollable-content">
-            <div need-list project="project" needs="project.needs" ng-class="project.isParticipant() ? '' : 'has-cta'">
-            </div>
-          </div>
-        </div>
-      </div>
+      <div ng-include="'projects/project/form/' + form() + '.html'"></div>
 
-      <!-- ng-if is not compatible with ui-if -->
-      <div class="flex-container" ui-if="projectTab == 'chat'">
-        <div class="flex-container" ng-if="project.isParticipant()" hm-swiperight="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}'  hm-recognizer-options='{{hmRecognizerOpt}}'>
-          <chat class="flex-container"></chat>
-        </div>
+      <div ng-include="'projects/project/form/next.html'"></div>
       </div>
     </div>
   </div>
 </div>
 
-<div ng-if="isDesktop()" class="project project-desktop" ng-include="'projects/desktop.html'"></div>
+<div ng-if="! form()" class="full-height">
+  <div ng-include="'navbar-top/project.html'"></div>
+
+  <div ng-if="!isDesktop()" class="project project-mobile flex-container scrollable"><div class="scrollable-content flex-container" ng-include="'projects/project/mobile.html'"></div></div>
+
+  <div ng-if="isDesktop()" class="project project-desktop scrollable"><div class="scrollable-content" ng-include="'projects/project/desktop.html'"></div></div>
+</div>

@@ -1,4 +1,4 @@
-.avatar, .project-photo
+.avatar
   color: $dark-grey
   text-align: center
   display: inline-block
@@ -21,34 +21,31 @@
     font-size: 0.8em
     color: $grey
 
-.avatar-large, .project-photo-large
+.avatar-large
   @extend .avatar
   width: 75px
   img
     height: 75px
     width: 75px
 
-.avatar-small, .project-photo-small
+.avatar-small
   @extend .avatar
   width: 50px
   img
     height: 50px
     width: 50px
 
-.avatar-xsmall, .project-photo-xsmall
+.avatar-xsmall
   @extend .avatar
   width: 30px
   img
     height: 30px
     width: 30px
 
-.avatar-responsive, .project-photo-responsive
+.avatar-responsive
   img
     @extend .img-circle
     width: 100%
-
-.project-photo, .project-photo-large, .project-photo-small, .project-photo-xsmall, .project-photo-responsive
-  margin: 0
 
 .avatars
   display: flex

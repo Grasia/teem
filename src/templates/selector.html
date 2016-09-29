@@ -1,11 +1,12 @@
 <div class="form-group label-floating"  ng-class="{'is-empty': !ngModel.length, 'is-focused': focused}">
-  <div class="input-group">
-    <span class="input-group-addon">
-      <i class="material-icons plus-circle">add_circle</i>
+  <div ng-class="icon ? 'input-group' : ''">
+    <span class="input-group-addon" ng-if="icon">
+      <i class="material-icons plus-circle" ng-bind="icon"></i>
     </span>
     <label class="control-label" for="selector.id">{{placeholder}}</label>
     <selectize
     multiple="multiple"
+    selector-icon="false"
     config="config"
     options="options"
     ng-model="ngModel"

@@ -1,7 +1,8 @@
-<div class="section" ng-if="project._participants.length >= 3 || !project.isParticipant()">
-  <div avatars="project._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
+<h2 translate>project.section.participants.title</h2>
+<div ng-if="project._participants.length >= 3 || !project.isParticipant()">
+  <div avatars="project._participants" avatars-conf="{size: 'xsmall'}" class="avatars"></div>
   <div class="project-add-users"  ng-if="project.isParticipant()">
-    <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
+    <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modal.invite: 'invite'}" translate>
         project.add_people.button
     </button>
   </div>
@@ -9,14 +10,14 @@
 <div ng-if="project._participants.length < 3 && project.isParticipant()" class="project-void-banner project-void-banner-people">
   <p translate>project.add_people.text</p>
   <img src="images/project-people.svg">
-  <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modalSharedState: 'invite'}" translate>
+  <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{modal.invite: 'invite'}" translate>
       project.add_people.button
   </button>
 </div>
 
 <div ui-content-for="inviteModal">
   <modal name="invite">
-    <header translate>project.add_people.title</header>
+    <header translate>project.add_people.button</header>
     <main>
       <selector multiple
       config="userSelectorConfig"
