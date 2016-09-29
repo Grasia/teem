@@ -86,6 +86,15 @@ angular.module('Teem')
     // and set the form order
     const Forms = [ 'image', 'details', 'share', 'congrats' ];
 
+    // Hack to hide the navbar
+    // We should be using the class .has-navbar-top automatically added by
+    // mobile-angular-ui, it should be removed when the navbar is removed
+    // by ui-content-for, but it is not happening
+    $rootScope.noNavbarTop = true;
+    $scope.$on('$destroy', () => {
+      $rootScope.noNavbarTop = false;
+    });
+
     var editingTitle = false;
 
     // FIXME Defined here instead of inside pad because when pad scope is destroyed,

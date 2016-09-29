@@ -128,8 +128,12 @@ h4, h5, h6, .h4, .h5, .h6
 
 .navbar-absolute-top
   height: 100px !important
+  @media (max-width: $screen-sm-min)
+    height: 70px !important
   .nav, .nav a
     height: 100px
+    @media (max-width: $screen-sm-min)
+      height: 70px
 
 .has-navbar-bottom .app-body
   padding-bottom: 36px

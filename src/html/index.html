@@ -46,13 +46,14 @@
     <![endif]-->
 
     <div bindonce class="app" id="app">
-      <div class="navbar navbar-app navbar-absolute-top" ng-hide="hideNavigation">
-        <div ng-include="'navbar-top/index.html'"></div>
+
+      <div ui-yield-to="navbar-top">
+        <navbar-top-index></navbar-top-index>
       </div>
 
       <div ui-yield-to="navbar-bottom"></div>
 
-      <div class="app-body">
+      <div class="app-body" ng-class="noNavbarTop ? 'no-navbar-top' : ''">
         <div class="notification-area">
           <div connection-status></div>
         </div>

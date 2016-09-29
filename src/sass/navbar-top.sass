@@ -2,8 +2,20 @@
  *
  * We should use less
  */
-.has-navbar-top .app-body
-  padding-top: 100px
+
+@media (min-width: 992px)
+  .navbar-absolute-top
+    height: 100px
+  .has-navbar-top .app-body
+    padding-top: 100px
+
+@media (max-width: $screen-sm-min)
+  .has-navbar-top
+    .app-body
+      padding-top: 70px
+    .app-body.no-navbar-top
+      padding-top: 0px !important
+
 .navbar-absolute-top
   border-bottom: 1px solid $light-grey
   &, a
@@ -22,20 +34,16 @@
     .menu-triangle
       width: 0
       height: 0
-      border-left: 15px solid transparent
-      border-right: 15px solid transparent
-      border-bottom: 10px solid $teal
-      margin-top: -15px
+      border-left: 10px solid transparent
+      border-right: 10px solid transparent
+      border-bottom: 5px solid $teal
+      margin-top: -10px
       margin-left: auto
       margin-right: auto
 
 @media (min-width: 992px)
   .has-sidebar-left .app, .sidebar-left-in .app
     margin-left: 0
-  .navbar-absolute-top
-    height: 100px
-  .has-navbar-top .app-body
-    padding-top: 100px
 
 .nav > li
   float: left
@@ -102,6 +110,9 @@
     > a
       padding-top: 30px !important
       padding-bottom: 30px !important
+      @media (max-width: $screen-sm-min)
+        padding-top: 12px !important
+        padding-bottom: 12px !important
     .active, &:focus
       color: $menu-active-color !important
       font-weight: bold
