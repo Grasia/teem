@@ -4,11 +4,13 @@
   <div class="modal-dialog">
     <div class="overlay-header-title" ng-transclude="header"></div>
     <div class="modal-content">
+      <div class="modal-close">
+        <a ui-turn-off="{{sharedStateName}}" class="i-close"></a>
+      </div>
       <div class="modal-header">
-        <div class="modal-header-title"><div ng-transclude="header"></div>
-        <div class="modal-pull-right modal-header-right">
-            <a ui-turn-off="{{sharedStateName}}" class="i-close"></a>
-        </div></div>
+        <div class="modal-header-title">
+          <div ng-transclude="header"></div>
+        </div>
       </div>
       <div class="modal-body" ng-transclude="main"></div>
       <div class="modal-footer" ng-transclude="footer"></div>
