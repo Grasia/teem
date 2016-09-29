@@ -68,6 +68,8 @@ angular.module('Teem')
 
       scope.newFormObjectName = o;
       Object.assign(scope, scopeFn);
+
+      SharedState.initialize(s, 'modal.newForm');
       SharedState.set('modal.newForm', 'newForm');
     }
 
