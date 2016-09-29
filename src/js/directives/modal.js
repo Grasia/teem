@@ -27,6 +27,10 @@ angular.module('Teem')
           return SharedState.get(sharedStateName);
         };
 
+        $scope.test = () => {
+          console.log('ey');
+        };
+
         $scope.keyUp = function(event){
           if(event.which === 27){
             SharedState.turnOff(sharedStateName);

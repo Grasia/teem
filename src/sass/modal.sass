@@ -1,6 +1,4 @@
 .modal-content .modal-header .modal-header-title
-  display: flex
-  justify-content: space-between
   border-bottom: solid 2px #cbd3da
   &, h4, button
     font-weight: bold
@@ -12,6 +10,8 @@
 .modal-dialog
   @extend .col-md-6
   @extend .col-md-offset-3
+.modal-body
+  position: static !important
 .modal-content
   background: white
   .modal-close
@@ -30,7 +30,6 @@
 
 .overlay-header-title
   display: none
-
 
 .modal.overlay
   .modal-backdrop
