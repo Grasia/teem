@@ -15,6 +15,15 @@ services:
   mongo:
     image: mongo:latest
     restart: always
-
+  tagger:
+    image: p2pvalue/teem-tag:v1.2
+    ports:
+      - "5000:5000"
+    depends_on:
+     - swellrt
+    environment:
+      TEEMTAG_USERNAME: "teemtag@local.net"
+      TEEMTAG_PASSWORD: "teemtag"
+      SWELLRT_HOST: "swellrt"
 
 
