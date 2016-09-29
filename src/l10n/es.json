@@ -110,10 +110,6 @@
       "title": "¡Enhorabuena!"
     }
   },
-  "confirm": {
-    "accept": "Aceptar",
-    "cancel": "Cancelar"
-  },
   "connection": {
     "init": "Conectando...",
     "lost": "Conexión perdida. Tratando de reconectar...",
@@ -282,6 +278,8 @@
     },
     "cancel": {
       "confirm": {
+        "accept": "Eliminar",
+        "cancel": "Cancelar",
         "text": "Estás seguro de que quieres eliminar este Teem?",
         "title": "Eliminando teem..."
       }
