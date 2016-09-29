@@ -22,7 +22,7 @@ angular.module('Teem')
           return '/teems/' + params.id;
         }
       })
-      .when('/teems/:id/:new?', {
+      .when('/teems/:id', {
         templateUrl: 'projects/project.html',
         controller: 'ProjectCtrl',
         // Change between tabs without re-rendering the view
@@ -171,12 +171,6 @@ angular.module('Teem')
     $scope.areTabsHidden = function() {
       return SharedState.isActive('hiddenTabs') && $window.innerHeight < 400;
     };
-
-    if($route.current.params.form === 'new'){
-      SharedState.turnOn('hiddenTabs');
-    }
-
-    NewForm.initialize($scope, 'project');
 
     $scope.form = function () {
       var f = $route.current.params.form;
