@@ -110,10 +110,6 @@
       "title": "Congratulations!"
     }
   },
-  "confirm": {
-    "accept": "Accept",
-    "cancel": "Cancel"
-  },
   "connection": {
     "init": "Connecting...",
     "lost": "Connection lost. Trying to reconnect...",
@@ -282,6 +278,8 @@
     },
     "cancel": {
       "confirm": {
+        "accept": "Delete",
+        "cancel": "Cancel",
         "title": "Deleting teem...",
         "text": "Are you sure you want to delete this teem?"
       }
@@ -301,6 +299,12 @@
       "placeholder": "Feature this project"
     },
     "form": {
+      "cancelDialog": {
+        "accept": "Remove",
+        "cancel": "Keep project",
+        "text": "Are you sure you want to cancel?",
+        "title": "Remove project..."
+      },
       "congrats": {
         "banner": {
           "title": "Add more details to make it cool"

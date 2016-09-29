@@ -301,6 +301,12 @@
       "placeholder": "Destaca tu proyecto"
       },
     "form": {
+      "cancelDialog": {
+        "accept": "Borrar",
+        "cancel": "Seguir",
+        "text": "¿Estás seguro de borrar el proyecto?",
+        "title": "Borrar proyecto..."
+      },
       "congrats": {
         "banner": {
           "title": "Añade más detalles para hacerlo molón"

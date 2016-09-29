@@ -9,6 +9,9 @@ angular.module('Teem')
         $scope.$on('mobile-angular-ui.state.changed.modal.confirm', function(e, newValue) {
           $scope.confirmTitle = newValue && newValue.title;
           $scope.confirmText = newValue && newValue.text;
+          $scope.confirmAccept = newValue && newValue.accept;
+          $scope.confirmCancel = newValue && newValue.cancel;
+
           cb = newValue && newValue.callback;
         });
 

@@ -263,7 +263,13 @@ angular.module('Teem')
 
       $scope.project.delete();
 
-      $location.path('/home/teems');
+      if ($location.search('form')) {
+        $location.search('form', null);
+
+        $location.path('/teems');
+      } else {
+        $location.path('/home/teems');
+      }
     };
 
     $scope.hasChanged = function(section){

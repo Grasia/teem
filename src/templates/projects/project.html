@@ -6,6 +6,15 @@
 <div ng-if="form()" class="scrollable">
 
   <div class="scrollable-header project-form-bar hidden-md hidden-lg">
+    <a ui-set="{ 'modal.confirm': {
+         name: 'confirm',
+         title: 'project.form.cancelDialog.title',
+         text: 'project.form.cancelDialog.text',
+         accept: 'project.form.cancelDialog.accept',
+         cancel: 'project.form.cancelDialog.cancel',
+         callback: cancelProject
+       }}"
+       class="i-close"></a>
   </div>
 
   <div class="scrollable-content">
