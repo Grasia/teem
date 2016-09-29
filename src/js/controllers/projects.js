@@ -54,6 +54,20 @@ angular.module('Teem')
 
     $scope.translationData = {};
 
+    // New project stuff
+    // Render communities code but redirect to new project
+    if ($location.path() === '/teems/new') {
+      SessionSvc.loginRequired($scope, function() {
+        ProjectsSvc.create({}, function(c) {
+          $location.path(c.path()).search('form', 'image');
+        });
+      },
+      {
+        form: 'register',
+        message: 'new_project'
+      });
+    }
+
     if (communityId) {
       $scope.context = 'community';
     } else if (projectId) {
