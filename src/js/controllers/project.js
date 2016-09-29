@@ -94,6 +94,9 @@ angular.module('Teem')
     // and set the form order
     const Forms = [ 'image', 'details', 'share', 'congrats' ];
 
+    // Use them in steps template
+    $scope.formSteps = Forms;
+
     // Hack to hide the navbar
     // We should be using the class .has-navbar-top automatically added by
     // mobile-angular-ui, it should be removed when the navbar is removed
