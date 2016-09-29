@@ -217,7 +217,7 @@ angular.module('Teem')
     };
 
     $scope.editingTitle = function() {
-      return editingTitle || $scope.isNew();
+      return editingTitle;
     };
 
     $scope.infoTip = function(close) {
