@@ -86,9 +86,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT', '$filter',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'NewForm', 'CommunitiesSvc', 'User', 'Selector',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector',
   function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT, $filter,
-  SharedState, ProjectsSvc, Loading, $window, NewForm, CommunitiesSvc, User, Selector) {
+  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector) {
 
     // Prevent users from forging the form parameter
     // and set the form order
