@@ -35,13 +35,12 @@ angular.module('Teem')
         templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
-      .when('teems/featured', {
-        templateUrl: 'projects/index.html',
-        controller: 'ProjectsCtrl'
-      })
+      // featured, latest and new routes are defined in the project (singular) controller
+      // so they take precendence over /teems/:id
       .when('/teems', {
-        templateUrl: 'projects/index.html',
-        controller: 'ProjectsCtrl'
+        redirectTo: () => {
+          return '/teems/featured';
+        }
       });
   }])
   .controller('ProjectsCtrl', [

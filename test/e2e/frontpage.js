@@ -14,7 +14,7 @@ describe('Teem', function() {
         logoutPage.get();
       });
 
-      it('should automatically redirect to /teems', function() {
+      it('should automatically redirect to /teems/featured', function() {
         browser.get('/');
 
         // There is a instantion fo a controller in the '/' route,
@@ -25,7 +25,7 @@ describe('Teem', function() {
           });
         });
 
-        expect(browser.getLocationAbsUrl()).toMatch('/teems');
+        expect(browser.getLocationAbsUrl()).toMatch('/teems/featured');
       });
     });
 

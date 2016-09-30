@@ -12,22 +12,24 @@
 angular.module('Teem')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/teems/featured', {
-        templateUrl: 'projects/index.html',
-        // We need this route here to take precendence on /teems/:id
-        // but note we are using the projects (plural) controller
-        controller: 'ProjectsCtrl'
-      })
       // Transition from old paths
       .when('/projects/:id/:new?', {
         redirectTo: function(params) {
           return '/teems/' + params.id;
         }
       })
+      // We need these routes here to take precendence on /teems/:id
+      // but note we are using the projects (plural) controller
       .when('/teems/new', {
         templateUrl: 'projects/project.html',
-        // We need this route here to take precendence on /teems/:id
-        // but note we are using the projects (plural) controller
+        controller: 'ProjectsCtrl'
+      })
+      .when('/teems/featured', {
+        templateUrl: 'projects/index.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/teems/latest', {
+        templateUrl: 'projects/index.html',
         controller: 'ProjectsCtrl'
       })
       .when('/teems/:id', {
