@@ -14,6 +14,9 @@ Initialize Android platform:
 -Phonegap push plugin:
     cordova plugin add phonegap-plugin-push
 
+- Camera plugin
+    cordova plugin add cordova-plugin-camera
+
 ### Create the emulator
   - Use Android SDK Manager to download Android SDKs, e.g. files under Android 5.0.1 (API 21) and from the Extras folder ```Android Support Library```, ```Android Support Repository```, ```Google Play Services``` and ```Google Repository```
 
