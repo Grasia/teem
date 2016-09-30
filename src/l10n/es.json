@@ -392,10 +392,12 @@
       "placeholder": "Ubicación"
     },
     "menu": {
+      "feature": "Destacar",
       "join": "Participar",
       "leave": "Abandonar este teem",
       "like": "Me gusta",
       "share": "Compartir",
+      "unfeature": "No destacar",
       "unlike": "No me gusta"
     },
     "my_projects": {

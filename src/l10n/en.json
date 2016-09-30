@@ -392,10 +392,12 @@
       "placeholder": "Location"
     },
     "menu": {
+      "feature": "Feature this",
       "join": "Join",
       "leave": "Leave this Teem",
       "like": "I like this",
       "share": "Share",
+      "unfeature": "Unfeature this",
       "unlike": "Unlike"
     },
     "my_projects": {

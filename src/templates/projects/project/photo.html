@@ -1,7 +1,7 @@
 <div class="project-photo">
   <img class="media-object" ng-src="{{project.logo()}}">
   <div class="flex-container">
-    <div ng-class="{'i-featured': project.featured}" class="text-right"></div>
+    <div ng-class="{'i-featured': project.isFeatured()}" class="text-right"></div>
     <div class="project-item-info flex-container hidden">
       <div class="project-item-title">{{project.title}}</div>
       <div class="project-item-community">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : '&nbsp;'}}</div>
