@@ -301,7 +301,7 @@ angular.module('Teem')
           });
         },
         load: function(query, callback) {
-          CommunitiesSvc.all({ nameLike: query }, (communities) => {
+          CommunitiesSvc.all({ nameLike: query }).then((communities) => {
             callback(communities);
           });
         },
@@ -310,8 +310,8 @@ angular.module('Teem')
         searchField: 'name',
         maxOptions: 10,
         onChange: function(ids) {
+          // Hack: set scope communities to display them later
           $scope.communities = $scope.communitySelector.options.filter(community => ids.includes(community.id));
-          Selector.populateUserSelector($scope.invite.list, $scope.project.communities);
         },
         plugins: ['remove_button'],
         onDropdownOpen(dropdown){
