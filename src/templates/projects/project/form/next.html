@@ -1,11 +1,10 @@
 <div class="project-form-next">
   <button class="btn"
-  ng-if="form() === 'image'"
-  ng-disabled="!pic.pictureFile && !pic.croppedPicture"
+  ng-if="form() === 'image' && (pic.pictureFile || pic.croppedPicture)"
   ng-click="pic.pictureFile=null; pic.croppedPicture=null; pic.camera=false"
   translate>picture.clear</button>
 
-  <div class="pull-right">
+  <div ng-class="{'pull-right': nextForm()}">
     <span class="project-form-next-message" ng-if="form() === 'image' && !pic.croppedPicture || form() === 'share'" translate>
       project.form.share.next.message
     </span>

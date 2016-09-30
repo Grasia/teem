@@ -19,10 +19,15 @@
         <selfie result-image="pic.croppedPicture" />
       </div>
     </div>
+
   </main>
   <footer>
     <!-- TODO Uncomment when https://github.com/P2Pvalue/swellrt/issues/129 is solved:
     <button ng-click="updatePicture()" class="btn btn-link" translate>picture.delete</button> -->
+    <button class="btn"
+    ng-if="pic.pictureFile || pic.croppedPicture"
+    ng-click="pic.pictureFile=null; pic.croppedPicture=null; pic.camera=false"
+    translate>picture.clear</button>
     <button ng-click="updatePicture(pic.croppedPicture)" ng-disable="!pic.pictureFile" class="btn btn-primary" translate>picture.save</button>
   </footer>
 </modal>

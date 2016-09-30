@@ -243,7 +243,7 @@
   },
   "picture": {
     "camera": "Toma una foto",
-    "clear": "Subir otra",
+    "clear": "Quitar",
     "crop": "Para recortar la imagen, arrastra la zona iluminada, y después, haz clic en guardar",
     "delete": "Elimina la foto actual",
     "dropover": "Suelta para adjuntar el archivo",
