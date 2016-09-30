@@ -131,6 +131,10 @@ angular.module('Teem')
         }
       }
 
+      isFeatured () {
+        return this.featured === 'true';
+      }
+
       isSupporter (userId = User.currentId()) {
         if (!userId) {
           return false;
@@ -325,10 +329,6 @@ angular.module('Teem')
         } else {
           delete need.completionDate;
         }
-      }
-
-      isFeatured () {
-        return this.featured === 'true';
       }
 
       toggleFeatured () {
