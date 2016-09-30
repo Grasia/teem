@@ -392,6 +392,7 @@
       "placeholder": "Location"
     },
     "menu": {
+      "change_photo": "Change photo",
       "feature": "Feature this",
       "join": "Join",
       "leave": "Leave this Teem",

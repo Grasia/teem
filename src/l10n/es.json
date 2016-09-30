@@ -392,6 +392,7 @@
       "placeholder": "Ubicación"
     },
     "menu": {
+      "change_photo": "Cambiar foto",
       "feature": "Destacar",
       "join": "Participar",
       "leave": "Abandonar este teem",
