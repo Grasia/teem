@@ -349,11 +349,13 @@ angular.module('Teem')
       Selector.invite($scope.invite.selected, $scope.project);
       $scope.invite.selected = [];
       SharedState.turnOff('modal.share');
+      SharedState.turnOff('modal.invite');
     };
 
     $scope.cancelInvite = function(){
       $scope.invite.selected = [];
       SharedState.turnOff('modal.share');
+      SharedState.turnOff('modal.invite');
     };
 
     $scope.focusTitleInput = function() {
