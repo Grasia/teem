@@ -6,12 +6,10 @@
     <div class="drop-box four-three" ng-if="!pic.camera"
         ngf-drop ng-model="pic.pictureFile"
         ngf-drag-over-class="'dragover'" dragover-text="{{'picture.dropover' | translate}}">
-      <div class="drop-box-center" ng-hide="pic.pictureFile">
-        <div class="i-upload" ngf-select ng-model="pic.pictureFile" accept="image/*" ngf-pattern="'image/*'">
-          <span translate>picture.upload</span>
-        </div>
-        <div class="i-camera" ng-click="pic.camera=true; pic.croppedPicture=false">
-          <span translate>Take a photo</span>
+      <div class="drop-box-center" ng-hide="pic.pictureFile" ngf-select ng-model="pic.pictureFile" accept="image/*" ngf-pattern="'image/*'">
+        <div>
+          <div class="material-icons">file_upload</div>
+          <div translate>picture.upload</div>
         </div>
       </div>
       <div ng-show="pic.pictureFile" class="crop-box">
