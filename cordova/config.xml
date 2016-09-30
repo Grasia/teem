@@ -17,6 +17,7 @@ http://p2pvalue.eu/
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-intent href="whatsapp://*" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
