@@ -178,42 +178,55 @@
 .project-desktop
   [ui-layout], [ui-layout-container]
     overflow: hidden
-  .project-title-editable
-    display: flex
-    justify-content: space-between
-    padding: 0 17px
-    .form-group
-      padding: 0
-      margin: 0
-      width: 100%
-    .like-icon
-      margin-top: 16px
-    .project-join-btn
-      margin-top: 16px
-    .icons
-      margin: 23px 0
+.project-title-editable
+  display: flex
+  justify-content: space-between
+  .form-group
+    padding: 0
+    margin: 0
+    width: 100%
+  .like-icon
+    margin-top: 16px
+  .project-join-btn
+    margin-top: 16px
+  .icons
+    margin: 23px 0
+    font-size: 30px
+    font-weight: bold
+    white-space: nowrap
+  .h1
+    margin: 0
+    padding: 0
+    font-size: 30px
+    font-weight: normal
+    height: 75px
+    &:not(.ng-empty):not(:focus):not(:hover)
+      background: none
+    &[disabled]
+      cursor: auto
+      border-bottom: none
+      background: none
+
+    &::-webkit-input-placeholder
       font-size: 30px
-      font-weight: bold
-      white-space: nowrap
-    .h1
-      margin: 0
-      padding: 0
+      font-weight: normal
+    &::-moz-placeholder /* due to a chrome bug, we can't define them in the same line */
+      font-size: 30px
+      font-weight: normal
+
+.project-desktop
+  .project-title-editable
+    padding: 0 17px
+  .h1
+    font-size: 64px
+    font-weight: bold
+    &::-webkit-input-placeholder
       font-size: 64px
       font-weight: bold
-      height: 75px
-      &:not(.ng-empty):not(:focus):not(:hover)
-        background: none
-      &[disabled]
-        cursor: auto
-        border-bottom: none
-        background: none
+    &::-moz-placeholder /* due to a chrome bug, we can't define them in the same line */
+      font-size: 64px
+      font-weight: bold
 
-      &::-webkit-input-placeholder
-        font-size: 64px
-        font-weight: bold
-      &::-moz-placeholder /* due to a chrome bug, we can't define them in the same line */
-        font-size: 64px
-        font-weight: bold
 
 .project-navigation
   width: 100%

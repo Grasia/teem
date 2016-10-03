@@ -1,9 +1,10 @@
 <div class="flex-container project-mobile">
   <div ng-class="{'flex-container': pad.editing}">
     <div ng-class="{'hidden': pad.editing}">
-      <div class="clearfix">
-        <h1 class="pull-left">{{project.title}}</h1>
-        <div class="pull-right" ng-include="'projects/project/menu.html'"></div>
+      <div class="project-title-editable">
+        <input class="h1 title-input form-control" ng-model="project.title"
+        placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
+        <div ng-include="'projects/project/menu.html'"></div>
       </div>
       <div class="project-community">
         <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
@@ -20,26 +21,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="container" ng-if="editingTitle() && !pad.editing">
-      <div class="input-group title-form">
-        <input type="text" hide-tabs
-               class="form-control title-input"
-               ng-model="project.title"
-               placeholder="{{ 'project.title.placeholder' | translate }}">
-        <div class="input-group-addon">
-          <button class="btn btn-link" ng-if="! isNew()" ng-click="hideEditTitle()">
-            <i class="i-check"></i>
-          </button>
-        </div>
-      </div>
-      <selector
-        multiple
-        config="communitySelector.config"
-        options="communitySelector.options"
-        ng-model="project.communities"
-        placeholder=" 'project.community.placeholder' | translate"
-      ></selector>
     </div>
     <div class="project-join container" ng-if="!project.isParticipant()">
       <button class="btn btn-primary btn-raised btn-block btn-lg"
