@@ -106,6 +106,7 @@ exports.config = {
 
     return browser.driver.executeScript('return window.innerWidth >= 992;').then((desktop) => {
       global.isDesktop = desktop;
+      global.media = desktop ? 'desktop' : 'mobile';
     }).then(() => {
       // isDesktop global variable is needed for some of these:
 

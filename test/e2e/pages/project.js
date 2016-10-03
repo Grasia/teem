@@ -29,9 +29,19 @@ class ProjectPage {
   constructor () {
     this.titleEl = element(by.binding('project.title'));
 
+    this.menuEl = element(by.css('.project-' + global.media + ' [ui-turn-on="dropdownProjectMenu"]'));
+
     this.padEl = element(by.model('project.pad'));
 
     this.joinEl = element(by.css('button[join]'));
+
+    this.joinEmailEl = element(by.model('message.email'));
+    this.joinTextEl = element(by.model('message.text'));
+    this.joinSendEl = element(by.css('[ng-click="$ctrl.send()"]'));
+
+    this.joinStartEl = element(by.css('.project-join-success [join]'));
+
+    this.leaveEl = element(by.css('.project-' + global.media + ' [join-copy-off="project.menu.join"]'));
 
     this.participantListEl = element(by.css('[avatars="project._participants"]'));
   }
@@ -40,24 +50,34 @@ class ProjectPage {
     browser.get(global.defaultCommunity.url + '/teems/fetch/' + id);
   }
 
-  join () {
+  join (options) {
+    // Default parameter values should be supported in node 6.x
+    // join (options = { email: chance.email(), text: chance.sentence() }) {
+    if (! options) {
+      options = {};
+    }
+
+    if (! options.email) {
+      options.email = chance.email();
+    }
+
+    if (! options.text) {
+      options.text = chance.sentence();
+    }
+
     browser.wait(protractor.ExpectedConditions.visibilityOf(this.joinEl));
     this.joinEl.click();
-  }
 
-  getMenuEl () {
-    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
-    return element(by.css(platform + ' [ui-turn-on="dropdownProjectMenu"]'));
-  }
+    this.joinEmailEl.sendKeys(options.email);
+    this.joinTextEl.sendKeys(options.text);
+    this.joinSendEl.click();
 
-  getLeaveEl() {
-    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
-    return element(by.css(platform + ' [join-copy-off="project.menu.join"]'));
+    this.joinStartEl.click();
   }
 
   leave () {
-    this.getMenuEl().click();
-    this.getLeaveEl().click();
+    this.menuEl.click();
+    this.leaveEl.click();
   }
 
   getTitle () {
