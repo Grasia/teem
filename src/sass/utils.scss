@@ -53,6 +53,11 @@
   flex-direction: column;
   min-height: 0px; /* hack for firefox: http://stackoverflow.com/a/14964944 */
 }
+.flex-container-row {
+  @extend .flex-container;
+  flex-direction: row;
+}
+
 .flex-center {
   display: flex;
   justify-content: center

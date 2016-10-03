@@ -53,7 +53,7 @@
 
 .need-name
   textarea
-    font-size: 1.21em
+    font-size: 14px
     cursor: auto
     resize: none
     >input
@@ -94,21 +94,22 @@
   .comment-author-name
     color: $need-comment-author-name-color
     font-weight: bold
+    font-size: 12px
   .comment-time
-    text-align: right
     color: $need-comment-time-color
-    font-size: .86em
+    font-size: 12px
   .need-comments
     padding-left: 40px
     margin-top: 20px
   .new-need-comment
     margin-top: 10px
     textarea
+      overflow: hidden
       @include placeholder
         color: $need-comment-placeholder-color
         font-size: 0.8em
     textarea + span.input-group-addon
-      @include material-underline(7px)
+      @include material-underline(9px)
       .btn
         margin: 0
         margin-top: -12px
@@ -117,12 +118,14 @@
 
 
   .need-comment-input-button
-    font-size: 1.21em
     border: 0
     padding: 0
+    i::before
+      color: $need-comment-button-color
+      font-size: 18px
   .input-group
     textarea
-      font-size: 1.21em
+      font-size: 18px
       resize: none
       border-right: 0px
     textarea:focus + .input-group-addon

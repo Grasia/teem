@@ -1,9 +1,9 @@
 <div class="list-group-item need-item"
      ng-if="project.isParticipant() || need.completed !== 'add'"
      ng-class="'need-item-completed-' + need.completed">
-  <div class="need-body"
+  <div class="need-body flex-container-row"
        ng-click="toggleCommentsVisibility(need)">
-    <form>
+    <form class="flex-container">
       <div class="form-group need-form" ng-class="isNewNeed(need)? 'notify-need':''">
         <div class="checkbox" ng-if="need.completed !== 'add'">
           <label ng-click="toggleCompleted(need, $event)">
@@ -32,17 +32,7 @@
         </div>
       </div>
     </form>
-    <div class="need-author">
-      <span translate
-            translate-values="{
-              author: need.author.split('@')[0]
-            }"
-            translate-value-time="{{ need.time | amTimeAgo }}"
-            ng-if="need.text !== '' && need.author">
-        need.by
-      </span>
-    </div>
-    <div ng-if="need.completed !== 'add'" ng-class="need.comments.length ? 'active' : ''">
+    <div ng-if="need.completed !== 'add'" class="{{need.comments.length ? 'active' : ''}}">
       <span class="icon-count">
         <i class="i-comment" ng-class="newComments(need)? 'notify-comments':''">
           <span class="icon-count-number">{{ need.comments && need.comments.length || 0 }}</span>
@@ -53,23 +43,19 @@
   <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">
     <div class="media" ng-repeat="comment in need.comments">
       <div class="media-left">
-        <div avatars="comment.author" avatars-conf="{size: 'small'}" class="avatars-without-names"></div>
+        <div avatars="comment.author" avatars-conf="{size: 'xsmall'}" class="avatars-without-names"></div>
       </div>
       <div class="media-body">
-        <div class="comment-time pull-right">
-          <span am-time-ago="comment.time"></time-ago>
-        </div>
-        <h5 class="media-heading">
-          <span class="comment-author-name" bo-html="comment.author.split('@')[0]">
-          </span>
-        </h5>
+        <div>
+        <span class="comment-author-name" bo-html="comment.author.split('@')[0]"></span>
+        <span class="comment-time" am-time-ago="comment.time"></span></div>
         <div bo-html="comment.text | linky"></div>
       </div>
     </div>
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
         <div class="form-group">
-          <div class="input-group">
+          <div class="input-group input-group-sm">
             <textarea class="form-control"
                       rows="1" hide-tabs
                       ng-model="newComment.text"
