@@ -2,7 +2,7 @@
   <div ng-include="'projects/project/photo.html'"></div>
 </div>
 <div class="pos-r container" ng-class="{'flex-container': pad.editing}">
-<div class="project-navigation">
+<div class="project-navigation" ng-if="! pad.editing">
   <div class="btn-group justified">
     <a ui-set="{'projectTab': 'pad'}"
        ui-class="{'active': projectTab == 'pad'}"
