@@ -7,7 +7,7 @@ var projectPages = require('./../pages/project'),
     loginPage = new sessionPages.Login(),
     profilePage = new ProfilePage();
 
-describe('Participant user', () => {
+describe('Participant', () => {
 
   beforeAll(() => {
     loginPage.get();
