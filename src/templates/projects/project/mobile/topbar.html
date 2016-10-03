@@ -1,0 +1,10 @@
+  <div class="project-editing-topbar" ng-if="pad.editing">
+    <div class="project-editing-topbar-btn">
+      <a ng-click="editOff()" class="btn pad-check">
+        <i class="material-icons">{{!pad.saving ? 'done': 'autorenew'}}</i>
+     </a>
+    </div>
+    <div class="project-editing-topbar-title text-center">
+      <span ng-bind="project.title"></span>
+    </div>
+  </div>
