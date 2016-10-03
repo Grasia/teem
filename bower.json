@@ -19,7 +19,7 @@
     "font-awesome": "~4.4",
     "hammerjs": "2.x",
     "json3": "3.x",
-    "mobile-angular-ui": ">= 1.2.0-rc.3",
+    "mobile-angular-ui": "1.3.3",
     "modernizr": "~2.8.3",
     "ryanmullins-angular-hammer": "~2.1.10",
     "swiper": "~3.1.0",
