@@ -95,7 +95,7 @@ class NewProjectPage {
     this.nextBtn = element(by.css('[ng-click="goToNextForm()"]'));
 
     this.padEl = element(by.css('.wave-editor-on'));
-    this.padCheckBtn = element(by.css('.nav-right .pad-check'));
+    this.padCheckBtn = element(by.css('.pad-check'));
   }
 
   create () {
@@ -117,12 +117,9 @@ class NewProjectPage {
 
     this.padEl.sendKeys(this.padText);
 
-    /*
-      padCheckBtn has been removed
     if (! isDesktop) {
       this.padCheckBtn.click();
     }
-    */
   }
 }
 
