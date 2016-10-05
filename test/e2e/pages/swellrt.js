@@ -7,7 +7,7 @@ class SwellRTPage {
   constructor () {
     this.cmd = {
       // Show at least the last 2 emails
-      log: 'docker logs --tail=200 ' + gulpConfig.swellrt.docker.projectName + '_swellrt_1'
+      log: 'docker logs --tail=250 ' + gulpConfig.swellrt.docker.projectName + '_swellrt_1'
     };
 
     this.recoveryPath = '/session/recover_password';
