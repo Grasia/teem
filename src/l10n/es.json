@@ -41,6 +41,7 @@
       }
     },
     "menu": {
+      "editTitle": "Editar título",
       "join": "Unirse a esta comunidad",
       "leave": "Abandonar esta comunidad",
       "settings": "Ajustes"

@@ -1,0 +1,14 @@
+<div class="btn-group community-menu">
+  <a ui-turn-on="dropdownCommunityMenu" class="btn btn-link">
+    <i class="material-icons">more_vert</i>
+  </a>
+  <ul ui-state="dropdownCommunityMenu" class="dropdown-menu ng-hide"
+      ui-outer-click="Ui.turnOff('dropdownCommunityMenu')"
+      ui-outer-click-if="Ui.active('dropdownCommunityMenu')"
+      role="menu" ui-show="dropdownCommunityMenu"
+      ui-turn-off="dropdownCommunityMenu">
+
+    <li><a ng-click="showEditTitle()" translate>community.menu.editTitle</a></li>
+    <li><a participate participate-copy-on="community.menu.leave" participate-copy-off="community.menu.join" participate-model="community"></a></li>
+  </ul>
+</div>

@@ -4,19 +4,7 @@
 
 <div ng-repeat="content in ['nav-right', 'nav-desktop']">
   <div ui-content-for="{{content}}">
-    <div class="nav-right-menu">
-      <a ui-turn-on="dropdownProjectMenu" class="btn btn-link">
-        <i class="material-icons">more_vert</i>
-      </a>
-      <ul ui-state="dropdownProjectMenu" class="dropdown-menu ng-hide"
-          ui-outer-click="Ui.turnOff('dropdownProjectMenu')"
-          ui-outer-click-if="Ui.active('dropdownProjectMenu')"
-          role="menu" ui-show="dropdownProjectMenu"
-          ui-turn-off="dropdownProjectMenu">
-
-        <li><a participate participate-copy-on="community.menu.leave" participate-copy-off="community.menu.join" participate-model="community"></a></li>
-      </ul>
-    </div>
+    <div ng-include="'communities/community/menu.html'"></div>
   </div>
 </div>
 
