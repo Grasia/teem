@@ -32,21 +32,15 @@ class CommunityPage {
     this.descriptionEl = element(by.binding('community.description'));
 
     this.participantListEl = element(by.css('[avatars="community._participants"]'));
+
+    this.menuEl = element(by.css('[ui-turn-on="dropdownCommunityMenu"]'));
+
+    this.leaveEl = element(by.css('[participate-copy-off="community.menu.join"]'));
   }
 
   getJoinEl () {
     var platform = global.isDesktop ? '.hidden-mobile' : '.hidden-desktop';
     return element(by.css(platform + ' button[participate]'));
-  }
-
-  getMenuEl () {
-    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
-    return element(by.css(platform + ' [ui-turn-on="dropdownProjectMenu"]'));
-  }
-
-  getLeaveEl() {
-    var platform = global.isDesktop ? '.menu-desktop' : '.nav-right';
-    return element(by.css(platform + ' [participate-copy-off="community.menu.join"]'));
   }
 
   join () {
@@ -57,8 +51,8 @@ class CommunityPage {
   }
 
   leave () {
-    this.getMenuEl().click();
-    this.getLeaveEl().click();
+    this.menuEl.click();
+    this.leaveEl.click();
   }
 
   getName () {
