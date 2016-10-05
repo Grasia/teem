@@ -27,7 +27,7 @@ class ProjectsPage {
 class ProjectPage {
 
   constructor () {
-    this.titleEl = element(by.binding('project.title'));
+    this.titleEl = element(by.model('project.title'));
 
     this.menuEl = element(by.css('.project-' + global.media + ' [ui-turn-on="dropdownProjectMenu"]'));
 
@@ -81,7 +81,7 @@ class ProjectPage {
   }
 
   getTitle () {
-    return this.titleEl.getText();
+    return this.titleEl.getAttribute('value');
   }
 
   getPadText () {
