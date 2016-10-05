@@ -28,7 +28,7 @@
 
         <div class="community-info col-md-4">
           <h1 ng-if="! editingTitle()">
-            {{community.name}}
+            <span class="community-name" ng-bind="community.name"></span>
             <div class="pull-right" ng-include="'communities/community/menu.html'">
             </div>
           </h1>

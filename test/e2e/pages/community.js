@@ -27,7 +27,7 @@ class CommunitiesPage {
 class CommunityPage {
 
   constructor () {
-    this.nameEl = element(by.css('.community-info h1'));
+    this.nameEl = element(by.css('.community-info h1 .community-name'));
 
     this.descriptionEl = element(by.binding('community.description'));
 
