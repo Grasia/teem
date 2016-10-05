@@ -21,8 +21,8 @@
       </td>
     </tr>
 
-    #set($actionUrl = $text.joinAnswerButtonUrl.insert($joinerEmail,$url_text, $url))
-    #set($actionText = $text.joinAnswerButtonText.insert($joiner))
+    #set($actionUrl = $text.joinAnswerButtonUrl.insert($joinerEmail,  $esc.html($url_text), $url))
+    #set($actionText =$text.joinAnswerButtonText.insert($joiner))
     #parse("button.vm")
     #parse("footer.vm")
   </table>
