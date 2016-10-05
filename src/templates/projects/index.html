@@ -1,19 +1,20 @@
 <div class="scrollable">
   <div id="indexProjContainer" class="scrollable-content">
 
-      <div ng-include="'navbar-top/projects.html'"></div>
+    <div ng-include="'navbar-top/projects.html'"></div>
+
     <div class="container projects project-index">
       <div>
         <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
+      </div>
+
+      <div class="projects-welcome" ng-if="! community && emptyProjects()">
+        <div class="alert alert-info">
+          <span translate>project.welcome.tip</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <plus class="plus-mobile" plus-type="project" plus-community="community"></plus>
-
-<div class="projects-welcome" ng-if="! community && emptyProjects()">
-  <div class="alert alert-info">
-    <span translate>project.welcome.tip</span>
-  </div>
-</div>
