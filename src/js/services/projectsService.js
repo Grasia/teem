@@ -22,6 +22,8 @@ angular.module('Teem')
             }
           }
           this._participants = val.participants;
+          this._creationDate =
+            parseInt(val._id.$oid.slice(0, 8), 16) * 1000;
         }
       }
 
@@ -90,6 +92,10 @@ angular.module('Teem')
         }
       }
 
+      get creationDate(){
+        return this._creationDate;
+      }
+
       // section in {'chat', 'pad', 'needs'}
       // pos in {'last','prev'}
       lastAccess (section, pos) {
@@ -133,6 +139,14 @@ angular.module('Teem')
 
       isFeatured () {
         return this.featured !== undefined && this.featured !== 'false';
+      }
+
+      featureDate () {
+        if (this.isFeatured()){
+          return parseInt(this.featured)||0;
+        } else {
+          return -1;
+        }
       }
 
       isSupporter (userId = User.currentId()) {
@@ -429,6 +443,10 @@ angular.module('Teem')
       if (options.featured) {
         query._aggregate[0].$match['root.featured'] = {$exists: true, $ne: 'false'};
         query._aggregate[1].$sort = {'root.featured' : -1};
+      }
+
+      if (options.latest) {
+        query._aggregate[1].$sort = {'_id' : -1};
       }
 
       return query;

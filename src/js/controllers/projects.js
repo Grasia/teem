@@ -75,6 +75,8 @@ angular.module('Teem')
       $scope.context = 'home';
     } else if ($location.path() === '/teems/featured') {
       $scope.context = 'featured';
+    }  else if ($location.path() === '/teems/latest') {
+      $scope.context = 'latest';
     } else {
       $scope.context = 'public';
     }
@@ -133,6 +135,21 @@ angular.module('Teem')
 
         });
       }
+    };
+
+    $scope.sortKey = function(){
+      var ret = '';
+      switch ($scope.context) {
+        case 'featured':
+          ret = '-featureDate()';
+          break;
+        case 'latest':
+          ret = '-creationDate';
+          break;
+        default:
+          ret = '-lastChange().getTime()';
+      }
+      return ret;
     };
 
     $scope.createProject = function(){
@@ -194,7 +211,16 @@ angular.module('Teem')
           break;
 
         case 'featured':
-          var defProjsPromiseFeat = ProjectsSvc.all({ shareMode: 'public', featured: true});
+        case 'latest':
+          var q = {shareMode: 'public'};
+
+          if ($scope.context === 'featured'){
+            q.featured = true;
+          } else if ($scope.context === 'latest'){
+            q.latest = true;
+          }
+
+          var defProjsPromiseFeat = ProjectsSvc.all(q);
           Loading.show(defProjsPromiseFeat).
             then(function(projects) {
               getCommunities(projects);

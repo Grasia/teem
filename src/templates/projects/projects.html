@@ -4,7 +4,7 @@
   infinite-scroll-disabled="bussyPagination || farFromLast()"
   infinite-scroll-inmediate-check="false"
   infinite-scroll-distance="0">
-  <div class="project-item col-md-4 list-group-item" ng-repeat="project in projects| orderBy: '-lastChange().getTime()'" ng-click="showProject(project)" ng-if="project.title!==''">
+  <div class="project-item col-md-4 list-group-item" ng-repeat="project in projects| orderBy:sortKey()" ng-click="showProject(project)" ng-if="project.title!==''">
     <div ng-include="'projects/project/photo.html'"></div>
   </div>
 </div>
