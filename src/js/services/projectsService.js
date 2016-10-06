@@ -22,8 +22,12 @@ angular.module('Teem')
             }
           }
           this._participants = val.participants;
-          this._creationDate =
-            parseInt(val._id.$oid.slice(0, 8), 16) * 1000;
+          if (val._id && val._id.$oid){
+            this._creationDate =
+              parseInt(val._id.$oid.slice(0, 8), 16) * 1000;
+            } else {
+              this.creationDate = 0;
+            }
         }
       }
 
