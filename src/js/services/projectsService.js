@@ -381,6 +381,9 @@ angular.module('Teem')
             }
           },
           {
+            $sort : {'root.pad.lastmodtime': -1 }
+          },
+          {
             $skip: options.pagination.pageIndex * options.pagination.pageSize
           },
           {
