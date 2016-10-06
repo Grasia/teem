@@ -23,6 +23,7 @@
       padding: 0
 .project-item
   @extend .four-three
+  margin-top: 4px
   .project-photo
     margin: 4px
     .project-item-info
@@ -57,9 +58,14 @@
 .project-item-title
   font-size: 33px
   font-weight: normal
+  line-height: 33px
 .project-item-community
   font-size: 18px
   font-weight: bold
+  color: white
+  &:hover
+    color: $purple
+    text-decoration: none
 .project-item-icons
   display: flex
   flex-direction: row

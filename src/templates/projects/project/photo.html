@@ -3,8 +3,8 @@
   <div class="flex-container">
     <div ng-class="{'i-featured': project.isFeatured()}" class="text-right"></div>
     <div class="project-item-info flex-container hidden">
+      <a href="" class="project-item-community">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : ''}}</a>
       <div class="project-item-title">{{project.title}}</div>
-      <div class="project-item-community">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : '&nbsp;'}}</div>
     </div>
     <div class="project-item-icons">
       <i class="i-share icon-count" ui-set="{'modal.share': 'shareModalCreate'}"></i>
