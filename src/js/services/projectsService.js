@@ -132,7 +132,7 @@ angular.module('Teem')
       }
 
       isFeatured () {
-        return this.featured === 'true';
+        return this.featured !== undefined && this.featured !== 'false';
       }
 
       isSupporter (userId = User.currentId()) {
@@ -336,7 +336,11 @@ angular.module('Teem')
           return;
         }
 
-        this.featured = (! this.isFeatured()).toString();
+        if (this.isFeatured()){
+          this.featured = 'false';
+        } else {
+          this.featured = new Date().getTime().toString();
+        }
       }
 
       removeNeed (need) {
@@ -423,7 +427,8 @@ angular.module('Teem')
       }
 
       if (options.featured) {
-        query._aggregate[0].$match['root.featured'] = 'true';
+        query._aggregate[0].$match['root.featured'] = {$exists: true, $ne: 'false'};
+        query._aggregate[1].$sort = {'root.featured' : -1};
       }
 
       return query;
