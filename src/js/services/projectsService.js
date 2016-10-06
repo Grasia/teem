@@ -26,7 +26,7 @@ angular.module('Teem')
             this._creationDate =
               parseInt(val._id.$oid.slice(0, 8), 16) * 1000;
             } else {
-              this.creationDate = 0;
+              this._creationDate = 0;
             }
         }
       }
