@@ -119,6 +119,16 @@
     "saving": "Saving...",
     "sync": "Your changes since {{time}} have not been saved. If the problem persist, copy somewhere else your last changes and reload the application"
   },
+  "cordova": {
+    "takePicture": {
+      "source": {
+        "camera": "Camera",
+        "gallery": "Gallery",
+        "title": "Select a photo"
+      },
+      "text": "Take a photo"
+    }
+  },
   "frontpage": {
     "copy": {
       "explore": "Explore what people are doing in your community",

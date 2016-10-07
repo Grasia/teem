@@ -469,6 +469,36 @@ $project-desktop-border: 1px solid $grey
   padding: 20px
   .i-close
     color: $modal-close-color
+.project-form-image
+  cordova-take-picture
+    display: block
+    min-height: 190px
+    border: solid 2px $project-form-image-border-color
+    margin-top: 30px
+    margin-bottom: 30px
+    .cordova-take-picture-icon
+      margin-top: 60px
+      i
+        color: $project-form-image-icon-color
+      i::before
+        font-size: 34px
+    .cordova-take-picture-text
+      font-size: 18px
+      font-weight: bold
+      margin-top: 20px
+
+modal[name="cordovaTakePicture"]
+  .modal-dialog
+    min-width: 280px
+  .modal-header
+    padding-top: 35px
+  main
+    a
+      display: block
+      color: $bluey2-grey
+      padding: 10px 0px
+
+
 .project-form-title
   font-size: 3em
   font-weight: 300

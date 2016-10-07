@@ -2,7 +2,9 @@
 
   <h2 translate>project.form.image.banner.title</h2>
 
-  <div>
+  <cordova-take-picture ng-if="isCordova()"></cordova-take-picture>
+  
+  <div ng-if="!isCordova()">
     <div class="drop-box four-three" ng-if="!pic.camera"
         ngf-drop ng-model="pic.pictureFile"
         ngf-drag-over-class="'dragover'" dragover-text="{{'picture.dropover' | translate}}">

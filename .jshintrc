@@ -23,6 +23,7 @@
     "angular": false,
     "autosize": false,
     "browser": false,
+    "Camera": false,
     "expect": false,
     "inject": false,
     "it": false,

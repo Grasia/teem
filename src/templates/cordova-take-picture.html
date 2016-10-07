@@ -1,0 +1,22 @@
+<a ng-click="$ctrl.selectSource()">
+  <div class="cordova-take-picture-icon">
+    <i class="i-photo-camera"></i>
+  </div>
+  <div class="cordova-take-picture-text" translate>
+    cordova.takePicture.text
+  </div>
+</a>
+
+<div ui-content-for="cordovaTakePictureModal">
+  <modal name="cordovaTakePicture">
+    <header translate>cordova.takePicture.source.title</header>
+    <main>
+      <div class="alert alert-danger" ng-if="error">
+        {{ error }}
+      </div>
+
+      <a ng-click="$ctrl.take('gallery')" translate>cordova.takePicture.source.gallery</a>
+      <a ng-click="$ctrl.take('camera')" translate>cordova.takePicture.source.camera</a>
+    </main>
+  </modal>
+</div>

@@ -119,6 +119,16 @@
     "saving": "Guardando...",
     "sync": "Tus cambios desde {{time}} no se han guardado. Si el problema continua, copia a algún otro lugar tus últimos cambios y recarga la aplicación"
   },
+  "cordova": {
+    "takePicture": {
+      "source": {
+        "camera": "Cámara",
+        "gallery": "Galería",
+        "title": "Selecciona una foto"
+      },
+      "text": "Toma una foto"
+    }
+  },
   "frontpage": {
     "copy": {
       "explore": "Explora lo que la gente está haciendo en tu comunidad",

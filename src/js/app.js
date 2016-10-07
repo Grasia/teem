@@ -93,4 +93,8 @@ angular
     $rootScope.isDesktop = function() {
       return $window.innerWidth >= 992;
     };
+
+    $rootScope.isCordova = () => {
+      return !! $window.cordova;
+    };
   });
