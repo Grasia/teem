@@ -27,6 +27,10 @@ Initialize Android platform:
 
   cordova emulate android
 
+  # Or run it in your device
+  
+  cordova run android --device
+
 ### Debugging the app in Android
 
 The app can be accessed and debugged using [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
