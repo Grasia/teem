@@ -470,6 +470,34 @@ gulp.task('js', function(callback) {
 =            Cordova files         =
 ==================================*/
 
+// Sync files from local cordova folder
+// Note that this needs having cordova platform android and related plugins
+// installed
+gulp.task('cordova:sync:clean', function() {
+  var dest = 'src/vendor/cordova';
+
+  return gulp.src([dest],
+           { read: false })
+   .pipe(rimraf());
+
+
+});
+
+
+gulp.task('cordova:sync:copy', function() {
+  var source = 'cordova/platforms/android/assets/www/';
+  var dest = 'src/vendor/cordova';
+
+
+  return gulp.src([ source + '{cordova.js,cordova_plugins.js,plugins/**/*}'])
+    .pipe(gulp.dest(dest));
+});
+
+gulp.task('cordova:sync', function(cb) {
+  seq('cordova:sync:clean', 'cordova:sync:copy', cb);
+});
+
+
 gulp.task('cordova', function() {
   return gulp.src('src/vendor/cordova/**/*')
     .pipe(gulp.dest(path.join(config.dest, 'js/cordova')));
