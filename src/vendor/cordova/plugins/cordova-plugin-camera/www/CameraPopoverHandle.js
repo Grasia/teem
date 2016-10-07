@@ -1,4 +1,6 @@
-cordova.define("cordova-plugin-whitelist.whitelist", function(require, exports, module) { /*
+cordova.define("cordova-plugin-camera.CameraPopoverHandle", function(require, exports, module) {
+/*
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -18,12 +20,16 @@ cordova.define("cordova-plugin-whitelist.whitelist", function(require, exports, 
  *
 */
 
-if (!document.querySelector('meta[http-equiv=Content-Security-Policy]')) {
-    var msg = 'No Content-Security-Policy meta tag found. Please add one when using the cordova-plugin-whitelist plugin.';
-    console.error(msg);
-    setInterval(function() {
-        console.warn(msg);
-    }, 10000);
-}
+/**
+ * @ignore in favour of iOS' one
+ * A handle to an image picker popover.
+ */
+var CameraPopoverHandle = function() {
+    this.setPosition = function(popoverOptions) {
+        console.log('CameraPopoverHandle.setPosition is only supported on iOS.');
+    };
+};
+
+module.exports = CameraPopoverHandle;
 
 });

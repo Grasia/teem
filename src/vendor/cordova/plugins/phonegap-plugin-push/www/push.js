@@ -1,4 +1,5 @@
-cordova.define("phonegap-plugin-push.PushNotification", function(require, exports, module) { /* global cordova:false */
+cordova.define("phonegap-plugin-push.PushNotification", function(require, exports, module) {
+/* global cordova:false */
 /* globals window */
 
 /*!
@@ -34,7 +35,7 @@ var PushNotification = function(options) {
     var success = function(result) {
         if (result && typeof result.registrationId !== 'undefined') {
             that.emit('registration', result);
-        } else if (result && result.additionalData && typeof result.additionalData.callback !== 'undefined') {
+        } else if (result && result.additionalData && typeof result.additionalData.actionCallback !== 'undefined') {
             var executeFunctionByName = function(functionName, context /*, args */) {
                 var args = Array.prototype.slice.call(arguments, 2);
                 var namespaces = functionName.split('.');
@@ -45,7 +46,7 @@ var PushNotification = function(options) {
                 return context[func].apply(context, args);
             };
 
-            executeFunctionByName(result.additionalData.callback, window, result);
+            executeFunctionByName(result.additionalData.actionCallback, window, result);
         } else if (result) {
             that.emit('notification', result);
         }
@@ -87,7 +88,7 @@ PushNotification.prototype.unregister = function(successCallback, errorCallback,
                 'registration': [],
                 'notification': [],
                 'error': []
-            };            
+            };
         }
         successCallback();
     };
@@ -133,6 +134,27 @@ PushNotification.prototype.getApplicationIconBadgeNumber = function(successCallb
     }
 
     exec(successCallback, errorCallback, 'PushNotification', 'getApplicationIconBadgeNumber', []);
+};
+
+/**
+ * Get the application icon badge
+ */
+
+PushNotification.prototype.clearAllNotifications = function(successCallback, errorCallback) {
+    if (!successCallback) { successCallback = function() {}; }
+    if (!errorCallback) { errorCallback = function() {}; }
+
+    if (typeof errorCallback !== 'function')  {
+        console.log('PushNotification.clearAllNotifications failure: failure parameter not a function');
+        return;
+    }
+
+    if (typeof successCallback !== 'function') {
+        console.log('PushNotification.clearAllNotifications failure: success callback parameter must be a function');
+        return;
+    }
+
+    exec(successCallback, errorCallback, 'PushNotification', 'clearAllNotifications', []);
 };
 
 /**
@@ -190,15 +212,21 @@ PushNotification.prototype.emit = function() {
     }
 
     for (var i = 0, length = this._handlers[eventName].length; i < length; i++) {
-        this._handlers[eventName][i].apply(undefined,args);
+        var callback = this._handlers[eventName][i];
+        if (typeof callback === 'function') {
+            callback.apply(undefined,args);
+        } else {
+            console.log('event handler: ' + eventName + ' must be a function');
+        }
     }
 
     return true;
 };
 
-PushNotification.prototype.finish = function(successCallback, errorCallback) {
+PushNotification.prototype.finish = function(successCallback, errorCallback, id) {
     if (!successCallback) { successCallback = function() {}; }
     if (!errorCallback) { errorCallback = function() {}; }
+    if (!id) { id = 'handler'; }
 
     if (typeof successCallback !== 'function') {
         console.log('finish failure: success callback parameter must be a function');
@@ -210,7 +238,7 @@ PushNotification.prototype.finish = function(successCallback, errorCallback) {
         return;
     }
 
-    exec(successCallback, errorCallback, 'PushNotification', 'finish', []);
+    exec(successCallback, errorCallback, 'PushNotification', 'finish', [id]);
 };
 
 /*!
