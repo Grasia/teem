@@ -21,27 +21,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="profile-list">
-          <h4 class="text-uppercase" translate>project.projects</h4>
-          <table class="projects table table-hover">
-            <tr ng-repeat="project in projects">
-              <td>
-                <a href="{{ project.path() }}" class="project-photo-small">
-                  <img ng-src="{{project.logo()}}">
-                </a>
-              </td>
-              <td>
-                <a href="{{ project.path() }}">
-                  <span>{{project.title}}</span>
-                </a>
-              </td>
-              <td ng-if="canEdit()" class="text-right">
-                <a class="i-participant-remove text-uppercase" ng-click="leave(project)" translate>project.menu.leave</a>
-              </td>
-            </tr>
-          </table>
-        </div>
+      <div class="col-md-8" id="#indexProjContainer">
+        <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
       </div>
     </div>
   </div>
