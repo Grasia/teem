@@ -1,6 +1,6 @@
 <div class="project-form-next">
   <button class="btn"
-  ng-if="form() === 'image' && (pic.pictureFile || pic.croppedPicture)"
+  ng-if="form() === 'image' && (pic.pictureFile || pic.croppedPicture || pic.camera)"
   ng-click="pic.pictureFile=null; pic.croppedPicture=null; pic.camera=false"
   translate>picture.clear</button>
 

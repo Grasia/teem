@@ -3,7 +3,7 @@
   <h2 translate>project.form.image.banner.title</h2>
 
   <cordova-take-picture ng-if="isCordova()"></cordova-take-picture>
-  
+
   <div ng-if="!isCordova()">
     <div class="drop-box four-three" ng-if="!pic.camera"
         ngf-drop ng-model="pic.pictureFile"
@@ -12,6 +12,10 @@
         <div>
           <div class="material-icons">file_upload</div>
           <div translate>picture.upload</div>
+        </div>
+        <div ng-click="pic.camera = true; $event.stopPropagation()" class="hiden-xs hidden-sm">
+          <div class="material-icons camera">photo_camera</div>
+          <div translate>picture.camera</div>
         </div>
       </div>
       <div ng-show="pic.pictureFile" class="crop-box">
