@@ -23,7 +23,7 @@
   <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
 </div>
 <div ng-if="project.location" class="container project-location">
-  <i class="custom-icons">location_on</i> {{project.location[0]}}
+  <i class="custom-icons">location_on</i> {{project.location.name}}
 </div>
 <div class="container">
   <div class="media project-promoter">

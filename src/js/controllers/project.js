@@ -88,9 +88,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT', '$filter',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector', '$http',
   function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT, $filter,
-  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector) {
+  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector, $http) {
 
     // Prevent users from forging the form parameter
     // and set the form order
@@ -326,14 +326,55 @@ angular.module('Teem')
         mode: 'single',
         openOnFocus: false,
         delimiter: null,
-        plugins: {
-          'placecomplete': {
-            placeholder: '',
-            //selectDetails: (placeResult) => {
-              // placeResult.displayText contains something like "Madrid, Spain"
-            //}
+        valueField: 'geonameId', //geoname id
+        labelField: 'name',
+        searchField: 'name',
+        create: false,
+        closeAfterSelect: true,
+        options: [],
+        onChange: function(item){
+
+          var idAsNum = parseInt(item[0]);
+          // retrieve the selected value from selectize's options
+          var newValue = $scope.locationSelector.options.filter(function(a){
+            return a.geonameId === idAsNum ;
+          })[0];
+
+          $scope.project.location = newValue.value;
+        },
+
+        render: {
+          option: function(item) {
+            return '<div>' + item.name + ', ' + item.adminName1 + ', ' + item.countryName + '</div>';
+          },
+        },
+
+        load: function(query, callback) {
+          if (!query.length){
+            return callback();
           }
-        }
+
+          $http({
+            method: 'GET',
+            url: 'http://api.geonames.org/search?name_startsWith=' + query + '&maxRows=10&featureClass=P&username=teem&type=json&lang=' + navigator.language.slice(0,2)
+          }).then(function (response) {
+            angular.forEach(response.data.geonames, function(v) {
+               v.value = {
+                 id: v.geonameId.toString(),
+                 latitide: v.lat,
+                 longitude: v.lng,
+                 name: v.name,
+               };
+            });
+
+            callback(response.data.geonames);
+          }, function () {
+            callback();
+          });
+        },
+
+        location: []
+
       }
     };
 

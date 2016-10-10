@@ -27,13 +27,14 @@
               placeholder=" 'project.community.placeholder' | translate"
     ></selector>
 
-    <!--<selector
+    <selector
               selector-icon="false"
               config="locationSelector.config"
               options="locationSelector.options"
-              ng-model="project.location"
+              ng-model="locationSelector.location"
+              ng-model-options="{ debounce: 1000 }"
               placeholder=" 'project.location.placeholder' | translate"
-    ></selector>-->
+    ></selector>
 
     <div class="form-group">
       <label ng-class="(project.isFeatured()) ? 'i-featured': 'i-featured-not'" ng-model="project.featured"
