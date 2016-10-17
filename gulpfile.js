@@ -704,8 +704,15 @@ gulp.task('test:e2e:protractor', function(done) {
   spawn(getProtractorBinary('protractor'), args, {
     stdio: 'inherit'
   })
-    .on('error', function(e) { throw e; })
-    .once('close', function() { connect.serverClose(); done(); });
+    .once('close', function(code) { 
+      connect.serverClose();
+
+      if (code === 0) {
+        done();
+      } else {
+        throw 'Protractor error';
+      }
+    });
 
 });
 
