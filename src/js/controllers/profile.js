@@ -16,8 +16,8 @@ angular.module('Teem')
       controller: 'ProfileCtrl'
     });
   }])
-  .controller('ProfileCtrl', ['$scope', '$route', 'SessionSvc', 'Notification', 'User', 'ProjectsSvc', 'CommunitiesSvc',
-  function ($scope, $route, SessionSvc, Notification, User, ProjectsSvc, CommunitiesSvc) {
+  .controller('ProfileCtrl', ['$scope', '$route', 'SessionSvc', 'NotificationSvc', 'User', 'ProjectsSvc', 'CommunitiesSvc',
+  function ($scope, $route, SessionSvc, NotificationSvc, User, ProjectsSvc, CommunitiesSvc) {
 
     SessionSvc.onLoad(function() {
       $scope.user = new User($route.current.params.id);
@@ -50,13 +50,13 @@ angular.module('Teem')
       $scope.updateAvatar = function(croppedAvatar) {
         SessionSvc.updateUserProfile({avatarData: croppedAvatar}, function (res) {
           if (res.error) {
-            Notification.error(croppedAvatar ? 'profile.avatar.upload.error' : 'profile.avatar.remove.error');
+            NotificationSvc.error(croppedAvatar ? 'profile.avatar.upload.error' : 'profile.avatar.remove.error');
             return;
           }
           // TODO: this should update all avatars in a 2-way-data binding way
           document.querySelector('.menu-session-logged-in .avatars img').src = res.data.avatarUrl;
           document.querySelector('.profile .avatar-responsive img').src = res.data.avatarUrl;
-          Notification.success(croppedAvatar ? 'profile.avatar.upload.success' : 'profile.avatar.remove.success');
+          NotificationSvc.success(croppedAvatar ? 'profile.avatar.upload.success' : 'profile.avatar.remove.success');
         });
       };
       $scope.updateAvatar.dataURI = true;

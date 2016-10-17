@@ -14,7 +14,7 @@ var config = {
 
   vendor: {
     js: [
-      //'./bower_components/jquery/dist/jquery.js',
+      './bower_components/jquery/dist/jquery.js',
       './bower_components/modernizr/modernizr.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',

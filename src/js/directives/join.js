@@ -4,14 +4,14 @@ angular.module('Teem')
   .directive('join', function() {
     return {
       controller: [
-      '$scope', '$element', 'SessionSvc', '$timeout', '$analytics', 'SharedState',
-      function($scope, $element, SessionSvc, $timeout, $analytics, SharedState) {
+      '$scope', '$element', 'SessionSvc', '$timeout', '$analytics', 'ModalsSvc',
+      function($scope, $element, SessionSvc, $timeout, $analytics, ModalsSvc) {
 
         $element.on('click', function() {
 
           if (!$scope.project.isParticipant()){
             if ($scope.joinModal) {
-              SharedState.set('modal.join', { name: 'join' });
+              ModalsSvc.set('modal.join', { name: 'join' });
             } else {
               SessionSvc.loginRequired($scope, function() {
                 $scope.project.addParticipant();

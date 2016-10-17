@@ -3,7 +3,7 @@
 angular.module('Teem')
   .directive('confirmModal', function() {
     return {
-      controller: ['$scope', 'SharedState', function($scope, SharedState) {
+      controller: ['$scope', 'ModalsSvc', function($scope, ModalsSvc) {
         let cb;
 
         $scope.$on('mobile-angular-ui.state.changed.modal.confirm', function(e, newValue) {
@@ -19,10 +19,10 @@ angular.module('Teem')
           if(cb) {
             cb();
           }
-          SharedState.turnOff('modal.confirm');
+          ModalsSvc.turnOff('modal.confirm');
         };
         $scope.cancel = function() {
-          SharedState.turnOff('modal.confirm');
+          ModalsSvc.turnOff('modal.confirm');
         };
       }],
       templateUrl: 'confirm-modal.html'

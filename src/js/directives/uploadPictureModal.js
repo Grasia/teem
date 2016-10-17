@@ -3,7 +3,7 @@
 angular.module('Teem')
   .directive('uploadPictureModal', function() {
     return {
-      controller: ['$scope', 'SharedState', '$timeout', '$filter', function($scope, SharedState, $timeout, $filter) {
+      controller: ['$scope', 'ModalsSvc', '$timeout', '$filter', function($scope, ModalsSvc, $timeout, $filter) {
         $scope.pic = {
           pictureFile: '',
           croppedPicture: ''
@@ -29,7 +29,7 @@ angular.module('Teem')
               cb(cb.dataURI ? croppedPicture : $filter('dataUriToBlob')(croppedPicture));
             }
           }
-          SharedState.turnOff('modal.uploadPicture');
+          ModalsSvc.turnOff('modal.uploadPicture');
           $timeout();
         };
       }],

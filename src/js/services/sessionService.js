@@ -11,9 +11,9 @@
 angular.module('Teem')
   .factory('SessionSvc', [
     // NotificationSvc has to be added here as dependency to be loaded in the app
-  '$q', '$timeout', 'SharedState', 'NotificationSvc', '$locale', 'User',
+  '$q', '$timeout', 'ModalsSvc', 'NotificationSvc', '$locale', 'User',
   '$rootScope', 'swellRT',
-  function($q, $timeout, SharedState, NotificationSvc, $locale, User,
+  function($q, $timeout, ModalsSvc, NotificationSvc, $locale, User,
            $rootScope, swellRT) {
 
     var swellRTDef = $q.defer(),
@@ -256,7 +256,7 @@ angular.module('Teem')
           user, pass, function(){
             // migrating users with default password
             if (user !== undefined) {
-              SharedState.set('modal.session', {name: 'session', type: 'migration'});
+              ModalsSvc.set('modal.session', {name: 'session', type: 'migration'});
               $timeout();
             }
           },
@@ -297,7 +297,7 @@ angular.module('Teem')
             message: options.message
           };
 
-          SharedState.set('modal.session', state);
+          ModalsSvc.set('modal.session', state);
 
           // Invoque $timout to refresh scope and actually show modal
           $timeout();

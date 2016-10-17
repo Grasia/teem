@@ -8,8 +8,8 @@
  */
 
 angular.module('Teem')
-  .factory( 'NotificationSvc', ['$location', 'Url', '$timeout', '$rootScope', 'SharedState',
-   function($location, Url, $timeout, $rootScope, SharedState){
+  .factory( 'NotificationSvc', ['$location', 'Url', '$timeout', '$rootScope', 'ModalsSvc',
+   function($location, Url, $timeout, $rootScope, ModalsSvc){
 
     var push;
     var registrationId;
@@ -46,7 +46,7 @@ angular.module('Teem')
             // this navigates to context tab if not already in a project view
             $location.search('tab', data.additionalData.context);
             // this navigates to context tab when already in the project view
-            SharedState.set('projectTab', data.additionalData.context);
+            ModalsSvc.set('projectTab', data.additionalData.context);
 
             $timeout();
           }
@@ -84,9 +84,22 @@ angular.module('Teem')
       unregister(
         function(){}, function(error){console.log(error);});
     });
+
+    function success (message) {
+      // TODO: Use $mdToast instead
+      console.log(message);
+    }
+
+    function error (message) {
+      // TODO: Use $mdToast instead
+      console.log(message);
+    }
+
     return {
-      register: register,
-      onNotification: onNotification,
-      unregister: unregister
+      register,
+      onNotification,
+      unregister,
+      success,
+      error
     };
   }]);

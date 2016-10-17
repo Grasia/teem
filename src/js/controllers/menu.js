@@ -11,9 +11,9 @@
 angular.module('Teem')
   .controller('MenuCtrl', [
   '$scope', 'config', 'Url', 'SessionSvc', 'CommunitiesSvc', 'ProjectsSvc',
-  'User', '$timeout', 'SharedState', '$location',
+  'User', '$timeout', 'ModalsSvc', '$location',
   function($scope, config, Url, SessionSvc, CommunitiesSvc, ProjectsSvc,
-           User, $timeout, SharedState, $location){
+           User, $timeout, ModalsSvc, $location){
     if (config.support) {
       $scope.support = {
         communityId: Url.encode(config.support.communityId),
@@ -26,11 +26,11 @@ angular.module('Teem')
     };
 
     $scope.close = function() {
-      SharedState.turnOff('uiSidebarLeft');
+      ModalsSvc.turnOff('uiSidebarLeft');
     };
 
     $scope.register = function () {
-      SharedState.set('modal.session', {name: 'session', type: 'register'});
+      ModalsSvc.set('modal.session', {name: 'session', type: 'register'});
       $timeout();
     };
 
@@ -40,7 +40,7 @@ angular.module('Teem')
     };
 
     $scope.login = function () {
-      SharedState.set('modal.session', {name: 'session', type: 'login'});
+      ModalsSvc.set('modal.session', {name: 'session', type: 'login'});
       $timeout();
     };
 

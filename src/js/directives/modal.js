@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Teem')
-  .directive('modal', ['SharedState', function(SharedState) {
+  .directive('modal', ['ModalsSvc', function(ModalsSvc) {
     return {
       templateUrl: 'modal.html',
       restrict: 'E',
@@ -21,10 +21,10 @@ angular.module('Teem')
         $scope.overlay = $attrs.overlay;
         $scope.sharedStateName = sharedStateName;
 
-        SharedState.initialize($scope, sharedStateName);
+        ModalsSvc.initialize($scope, sharedStateName);
 
-        $scope.isModalSharedState = function() {
-          return SharedState.get(sharedStateName);
+        $scope.isModalModalsSvc = function() {
+          return ModalsSvc.get(sharedStateName);
         };
 
         $scope.test = () => {
@@ -33,7 +33,7 @@ angular.module('Teem')
 
         $scope.keyUp = function(event){
           if(event.which === 27){
-            SharedState.turnOff(sharedStateName);
+            ModalsSvc.turnOff(sharedStateName);
           }
         };
       }

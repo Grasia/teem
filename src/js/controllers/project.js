@@ -88,9 +88,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT', '$filter',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector', '$http',
+  'ModalsSvc', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector', '$http',
   function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT, $filter,
-  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector, $http) {
+  ModalsSvc, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector, $http) {
 
     // Prevent users from forging the form parameter
     // and set the form order
@@ -142,7 +142,7 @@ angular.module('Teem')
           };
 
           if($location.search().tab === 'chat' && !$scope.project.isParticipant()){
-            SharedState.setOne('projectTab', 'pad');
+            ModalsSvc.setOne('projectTab', 'pad');
           }
 
           CommunitiesSvc.all({ ids: project.communities }).then(function (communities) {
@@ -160,14 +160,14 @@ angular.module('Teem')
       return $location.search().tab || 'pad';
     }
 
-    SharedState.initialize($scope, 'projectTab', {
+    ModalsSvc.initialize($scope, 'projectTab', {
       defaultValue: currentTab()
     });
 
     function swipeToProjectTab(tab) {
       return function(event) {
         if (event.pointerType === 'touch') {
-          SharedState.set('projectTab', tab);
+          ModalsSvc.set('projectTab', tab);
         }
       };
     }
@@ -180,9 +180,9 @@ angular.module('Teem')
     $scope.hmRecognizerOpt = '{"threshold": 200}';
 
 
-    SharedState.initialize($scope, 'hiddenTabs');
+    ModalsSvc.initialize($scope, 'hiddenTabs');
     $scope.areTabsHidden = function() {
-      return SharedState.isActive('hiddenTabs') && $window.innerHeight < 400;
+      return ModalsSvc.isActive('hiddenTabs') && $window.innerHeight < 400;
     };
 
     $scope.form = function () {
@@ -261,7 +261,7 @@ angular.module('Teem')
     });
 
     $scope.cancelProject = function() {
-      SharedState.turnOff('modal.confirm');
+      ModalsSvc.turnOff('modal.confirm');
 
       $scope.project.delete();
 
@@ -389,14 +389,14 @@ angular.module('Teem')
     $scope.inviteUsers = function(){
       Selector.invite($scope.invite.selected, $scope.project);
       $scope.invite.selected = [];
-      SharedState.turnOff('modal.share');
-      SharedState.turnOff('modal.invite');
+      ModalsSvc.turnOff('modal.share');
+      ModalsSvc.turnOff('modal.invite');
     };
 
     $scope.cancelInvite = function(){
       $scope.invite.selected = [];
-      SharedState.turnOff('modal.share');
-      SharedState.turnOff('modal.invite');
+      ModalsSvc.turnOff('modal.share');
+      ModalsSvc.turnOff('modal.invite');
     };
 
     $scope.focusTitleInput = function() {
@@ -422,16 +422,16 @@ angular.module('Teem')
   }])
   .directive(
     'hideTabs',
-    function (SharedState, $timeout) {
+    function (ModalsSvc, $timeout) {
       return {
         restrict: 'A',
         link: function(scope, element) {
           element.on('focus', function() {
-            SharedState.turnOn('hiddenTabs');
+            ModalsSvc.turnOn('hiddenTabs');
             $timeout();
           });
           element.on('blur', function() {
-            SharedState.turnOff('hiddenTabs');
+            ModalsSvc.turnOff('hiddenTabs');
             $timeout();
           });
           scope.$on('$destroy', function() {

@@ -34,7 +34,7 @@ angular.module('Teem')
       }
     };
   }])
-  .directive('chat', ['Notification', function(Notification) {
+  .directive('chat', ['NotificationSvc', function(NotificationSvc) {
     return {
       controller: [
         'SessionSvc', '$scope', '$rootScope', '$route', '$location',
@@ -200,11 +200,11 @@ angular.module('Teem')
               return;
             }
             if (!file.type || !file.type.startsWith('image/')) {
-              Notification.error('chat.upload.noImg');
+              NotificationSvc.error('chat.upload.noImg');
               return;
             }
             if (file.size > 4 * 1024 * 1024) { // 4MB
-              Notification.error('chat.upload.tooLarge');
+              NotificationSvc.error('chat.upload.tooLarge');
               return;
             }
             $scope.project.addChatMessage(CAMERA_SYMBOL, file);

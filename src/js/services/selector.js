@@ -10,9 +10,9 @@
 
 angular.module('Teem')
 .factory('Selector', [
-  'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'Notification', '$compile',
+  'User', '$timeout', 'CommunitiesSvc', '$rootScope', 'NotificationSvc', '$compile',
   'swellRT',
-  function(User, $timeout, CommunitiesSvc, $rootScope, Notification, $compile,
+  function(User, $timeout, CommunitiesSvc, $rootScope, NotificationSvc, $compile,
   swellRT) {
 
 
@@ -187,7 +187,7 @@ angular.module('Teem')
 
           if (users.length) {
             notificationScope.values.addedParticipants = users.map(u => u.split('@')[0]).join(', ');
-            Notification.success({message: hasParticipantsObject.type + '.participate.add.notification', scope: notificationScope });
+            NotificationSvc.success({message: hasParticipantsObject.type + '.participate.add.notification', scope: notificationScope });
 
           }
 
@@ -205,7 +205,7 @@ angular.module('Teem')
 
             if (emails.length > 0){
               notificationScope.values.invitedParticipants = emails.join(', ');
-              Notification.success({message: hasParticipantsObject.type + '.participate.invite.notification', scope: notificationScope });
+              NotificationSvc.success({message: hasParticipantsObject.type + '.participate.invite.notification', scope: notificationScope });
             }
           }
         }

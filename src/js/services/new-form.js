@@ -2,8 +2,8 @@
 
 angular.module('Teem')
   .factory('NewForm', [
-  '$location', '$window', '$rootScope', 'SharedState', 'swellRT',
-  function($location, $window, $rootScope, SharedState, swellRT) {
+  '$location', '$window', '$rootScope', 'ModalsSvc', 'swellRT',
+  function($location, $window, $rootScope, ModalsSvc, swellRT) {
     var scope,
         objectName,
         scopeFn = {
@@ -69,8 +69,8 @@ angular.module('Teem')
       scope.newFormObjectName = o;
       Object.assign(scope, scopeFn);
 
-      SharedState.initialize(s, 'modal.newForm');
-      SharedState.set('modal.newForm', 'newForm');
+      ModalsSvc.initialize(s, 'modal.newForm');
+      ModalsSvc.set('modal.newForm', 'newForm');
     }
 
     return {

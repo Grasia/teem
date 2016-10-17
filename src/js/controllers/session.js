@@ -22,8 +22,8 @@ angular.module('Teem')
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
   .controller('SessionRouteCtrl', [
-    '$scope', 'SharedState', '$route', '$location',
-    function($scope, SharedState, $route, $location) {
+    '$scope', 'ModalsSvc', '$route', '$location',
+    function($scope, ModalsSvc, $route, $location) {
 
       function normalizeFormName(form) {
         var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
@@ -33,7 +33,7 @@ angular.module('Teem')
       }
 
       $scope.$on('$routeChangeSuccess', function() {
-        SharedState.set('modal.session', {
+        ModalsSvc.set('modal.session', {
           name: 'session',
           type: normalizeFormName($route.current.params.form)
         });
@@ -53,8 +53,8 @@ angular.module('Teem')
     }
   )
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
-    function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'ModalsSvc', 'NotificationSvc',
+    function($scope, $location, $route, SessionSvc, $timeout, ModalsSvc, NotificationSvc) {
 
     $scope.session = {};
 
@@ -89,9 +89,9 @@ angular.module('Teem')
             // TODO: Should we move it to a service?
             var notificationScope = $scope.$new(true);
             notificationScope.values = {nick: fields.nick};
-            Notification.success({message: 'session.login.success', scope: notificationScope});
+            NotificationSvc.success({message: 'session.login.success', scope: notificationScope});
             $timeout(function(){
-              SharedState.turnOff('modal.session');
+              ModalsSvc.turnOff('modal.session');
             });
           },
           function(error){
@@ -132,9 +132,9 @@ angular.module('Teem')
       var fields = $scope.form.values;
 
       var onSuccess = function(){
-        Notification.success('session.forgottenPassword.success');
+        NotificationSvc.success('session.forgottenPassword.success');
         $timeout(function(){
-          SharedState.turnOff('modal.session');
+          ModalsSvc.turnOff('modal.session');
         });
       };
 
@@ -157,9 +157,9 @@ angular.module('Teem')
 
       var onSuccess = function(){
         delete localStorage.userId;
-        Notification.success('session.' + $scope.form.current + '.success');
+        NotificationSvc.success('session.' + $scope.form.current + '.success');
         $timeout(function(){
-          SharedState.turnOff('modal.session');
+          ModalsSvc.turnOff('modal.session');
         });
 
         fields.nick = params.id;
@@ -188,10 +188,10 @@ angular.module('Teem')
       var onSuccess = function(){
         delete localStorage.userId;
 
-        Notification.success('session.' + $scope.form.current + '.success');
+        NotificationSvc.success('session.' + $scope.form.current + '.success');
 
         $timeout(function(){
-          SharedState.turnOff('modal.session');
+          ModalsSvc.turnOff('modal.session');
         });
       };
 
@@ -212,16 +212,16 @@ angular.module('Teem')
 
         var onComplete = function(res) {
           if (res.error) {
-            Notification.error('session.set_email.error');
+            NotificationSvc.error('session.set_email.error');
             $timeout(function(){
-              SharedState.turnOff('modal.session');
+              ModalsSvc.turnOff('modal.session');
             });
             return;
           }
 
-          Notification.success('session.set_email.success');
+          NotificationSvc.success('session.set_email.success');
           $timeout(function(){
-            SharedState.turnOff('modal.session');
+            ModalsSvc.turnOff('modal.session');
           });
         };
 
@@ -258,9 +258,9 @@ angular.module('Teem')
       migration: ['password', 'passwordRepeat', 'email']
     };
 
-    // Use modal.session SharedState.type to store form ('login', 'register', etc..)
-    // and modal.session SharedState.message to store form message (new_community) (you have to register to create a community)
-    // So SharedState can be {name: 'session', type: 'register', message: 'new_community'}
+    // Use modal.session ModalsSvc.type to store form ('login', 'register', etc..)
+    // and modal.session ModalsSvc.message to store form message (new_community) (you have to register to create a community)
+    // So ModalsSvc can be {name: 'session', type: 'register', message: 'new_community'}
     $scope.$on('mobile-angular-ui.state.changed.modal.session', function(e, newValue) {
       $scope.form.current = newValue.type || 'register';
       $scope.form.message = newValue.message;

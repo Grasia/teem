@@ -2,7 +2,7 @@
 
 class CordovaTakePictureCtrl {
 
-  constructor ($scope, $timeout, SessionSvc, SharedState) {
+  constructor ($scope, $timeout, SessionSvc, modals) {
     'ngInject';
 
     this.width = 1200;
@@ -10,11 +10,11 @@ class CordovaTakePictureCtrl {
 
     this.$scope = $scope;
     this.$timeout = $timeout;
-    this.SharedState = SharedState;
+    this.modals = modals;
   }
 
   selectSource () {
-    this.SharedState.turnOn('modal.cordovaTakePicture');
+    this.modals.turnOn('modal.cordovaTakePicture');
   }
 
   sourceType (source) {
@@ -47,7 +47,7 @@ class CordovaTakePictureCtrl {
     // FIXME standarize this in the component API
     this.$scope.$parent.pic.croppedPicture = 'data:image/jpeg;base64,' + picture;
 
-    this.SharedState.turnOff('modal.cordovaTakePicture');
+    this.modals.turnOff('modal.cordovaTakePicture');
 
     this.$scope.$parent.goToNextForm();
   }
