@@ -58,6 +58,7 @@ var config = {
       './bower_components/angular-socialshare/dist/angular-socialshare.js',
       './bower_components/webrtc-adapter/release/adapter.js',
       './src/vendor/aggregation.js',
+      './src/vendor/startswith.js',
       './node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'
     ],
 
