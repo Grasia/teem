@@ -1,27 +1,26 @@
-<div class="navbar navbar-app navbar-absolute-top">
-  <div class="container menu navbar-top-menu" ng-controller="MenuCtrl">
-    <ul class="nav navbar-nav hidden-xs">
-      <li>
-        <a class="logo" href="/"><img src="/images/app-logo.png" /></a>
-      </li>
-    </ul>
+<div layout="row" ng-controller="MenuCtrl" class="navbar-top">
+  <div flex>
+    <a class="logo" href="/"><img src="/images/app-logo.png" /></a>
+  </div>
 
-    <ul class="nav navbar-nav navbar-right menu-desktop navbar-form">
-      <li class="menu-option" ng-if="loggedIn()" ng-class="{'active': isActive('/home/teems')}">
-        <a href="/home/teems" class="i-folder menu-icons" translate>menu.homeProjects.title</a>
-        <div class="menu-triangle"></div>
-      </li>
-      <li class="menu-option" ng-class="{'active': isActive('/teems') || isActive('/teems/featured') || isActive('/teems/latest')}">
-        <a href="/teems" class="i-explore menu-icons" translate>menu.explore.title</a>
-        <div class="menu-triangle"></div>
-      </li>
-      <li ng-if="!loggedIn()" class="menu-option">
-        <a ng-click="login()" class="i-profile menu-icons" translate>menu.login.title</a>
-      </li>
-      <li ng-if="loggedIn()" class="menu-option" ng-class="{'active': isActive('/users/'+user.id)}">
-        <a ng-href="/users/{{user.id}}" class="i-profile menu-icons" ng-attr-data-nick="{{ user.nick }}" translate>menu.profile.title</a>
-        <div class="menu-triangle"></div>
-      </li>
-    </ul>
+  <div flex>
+    <md-nav-bar nav-bar-aria-label="navigation links">
+      <md-nav-item ng-if="loggedIn()" md-nav-href="/home/teems" name="home-teems">
+        <md-icon md-font-library="material-icons">folder</md-icon>
+        <span translate>menu.homeProjects.title</span>
+      </md-nav-item>
+      <md-nav-item md-nav-href="/teems" name="explore">
+        <md-icon md-font-library="material-icons">explore</md-icon>
+        <span translate>menu.explore.title</span>
+      </md-nav-item>
+      <md-nav-item ng-if="!loggedIn()" md-nav-click="login()" name="login">
+        <md-icon md-font-library="material-icons">person</md-icon>
+        <span translate>menu.login.title</span>
+      </md-nav-item>
+      <md-nav-item ng-if="loggedIn()" md-nav-href="/users/{{user.id}}" name="profile">
+        <md-icon md-font-library="material-icons">person</md-icon>
+        <span translate>menu.profile.title</span>
+      </md-nav-item>
+    </md-nav-bar>
   </div>
 </div>
