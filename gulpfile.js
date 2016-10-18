@@ -55,6 +55,7 @@ var config = {
     ],
 
     fonts: [
+      './bower_components/material-design-icons/iconfont/MaterialIcons-Regular.eot',
       './bower_components/material-design-icons/iconfont/MaterialIcons-Regular.ttf',
       './bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff',
       './bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff2',
@@ -364,7 +365,7 @@ gulp.task('sass', function () {
   gulp.src('./src/sass/app.sass')
     .pipe(sourcemaps.init())
     .pipe(sass({
-      includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components'), path.resolve(__dirname, 'bower_components/bootstrap-sass/assets/stylesheets') ]
+      includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components') ]
     }).on('error', sass.logError))
     /* Currently not working with sourcemaps
     .pipe(mobilizer('app.css', {

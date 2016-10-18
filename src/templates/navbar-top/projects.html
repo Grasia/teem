@@ -1,15 +1,12 @@
-<div class="navbar-top-projects">
-  <div class="container">
-    <ul class="nav navbar-left">
-      <li class="menu-option" ng-class="{'active': isActive('/teems/featured')}">
-        <a href="/teems/featured" class="i-featured" translate>menu.projects.featured</a>
-        <div class="menu-triangle"></div>
-      </li>
-      <li class="menu-option" ng-class="{'active': isActive('/teems/latest')}">
-        <a href="/teems/latest" class="i-latest" translate>menu.projects.latest</a>
-        <div class="menu-triangle"></div>
-      </li>
-    </ul>
-    <plus plus-type="project" class="hidden-mobile" text="{{'project.create.button' | translate}}"></plus>
-  </div>
-</div>
+<md-nav-bar nav-bar-aria-label="navigation links">
+  <md-nav-item md-nav-href="/teems/featured" name="featured">
+    <md-icon md-font-library="material-icons">turned_in</md-icon>
+    <span translate>menu.projects.featured</span>
+  </md-nav-item>
+  <md-nav-item md-nav-href="/teems/latest" name="latest">
+    <md-icon md-font-library="material-icons">date_range</md-icon>
+    <span translate>menu.projects.latest</span>
+  </md-nav-item>
+</md-nav-bar>
+
+<plus plus-type="project" class="hidden-mobile" text="{{'project.create.button' | translate}}"></plus>
