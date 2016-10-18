@@ -323,6 +323,10 @@ describe('SessionCtrl', function() {
           $scope: scope
         });
 
+        scope.search = {
+          id: 'id@local.net',
+        };
+
         scope.form.values = {
           password: password,
           passwordRepeat: password
