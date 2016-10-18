@@ -35,7 +35,8 @@ angular.module('Teem')
       $scope.$on('$routeChangeSuccess', function() {
         SharedState.set('modal.session', {
           name: 'session',
-          type: normalizeFormName($route.current.params.form)
+          type: normalizeFormName($route.current.params.form),
+          search: $location.search()
         });
 
         $location.path('/');
@@ -153,7 +154,7 @@ angular.module('Teem')
 
       var fields = $scope.form.values;
 
-      var params =  $location.search();
+      var params =  $scope.search;
 
       var onSuccess = function(){
         delete localStorage.userId;
@@ -164,8 +165,6 @@ angular.module('Teem')
 
         fields.nick = params.id;
         $scope.submit.login();
-
-        $location.path('/').search('token', null).search('id', null);
       };
 
       var onError = function(error){
@@ -264,6 +263,7 @@ angular.module('Teem')
     $scope.$on('mobile-angular-ui.state.changed.modal.session', function(e, newValue) {
       $scope.form.current = newValue.type || 'register';
       $scope.form.message = newValue.message;
+      $scope.search = newValue.search;
     });
 
     $scope.logout = function() {
