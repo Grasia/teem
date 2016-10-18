@@ -155,16 +155,15 @@ angular.module('Teem')
       var fields = $scope.form.values;
 
       var params =  $scope.search;
+      fields.nick = params.id;
 
       var onSuccess = function(){
         delete localStorage.userId;
         Notification.success('session.' + $scope.form.current + '.success');
         $timeout(function(){
           SharedState.turnOff('modal.session');
+          $scope.submit.login();
         });
-
-        fields.nick = params.id;
-        $scope.submit.login();
       };
 
       var onError = function(error){
