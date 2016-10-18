@@ -1,17 +1,8 @@
-<div class="project-photo">
-  <img class="media-object" ng-src="{{project.logo()}}">
-  <div class="flex-container">
-    <a class="project-back-arrow" ng-href="{{project.isParticipant() ? 'home/teems' : 'teems'}}"><i class="material-icons">arrow_back</i></a>
-    <div ng-class="{'i-featured': project.isFeatured()}" class="text-right"></div>
-    <div class="project-item-info flex-container hidden">
-      <a href="" class="project-item-community">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : ''}}</a>
-      <div class="project-item-title">{{project.title}}</div>
-    </div>
-    <div class="project-item-icons">
-      <i class="i-share icon-count" ui-set="{'modal.share': 'shareModalCreate'}"></i>
-      <i class="i-community icon-count">
-        <span class="icon-count-number">{{project.participantCount()}}</span>
-      </i>
-    </div>
-  </div>
-</div>
+<img ng-src="{{project.logo()}}"></img>
+<md-grid-tile-header layout="row" layout-align="end center">
+  <div ng-if="project.isFeatured()"><i class="material-icons">bookmark_border</i></div>
+</md-grid-tile-header>
+<md-grid-tile-footer>
+  <a ng-href="communities/{{project.loadedCommunities[0]._urlId}}" class="md-subhead">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : ''}}</a>
+  <div class="md-title">{{project.title}}</div>
+</md-grid-tile-footer>

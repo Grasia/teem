@@ -1,10 +1,17 @@
-<div class="projects list-group"
+<!--<div class="projects list-group"
   infinite-scroll="getProjectsPage()"
   infinite-scroll-container="container"
   infinite-scroll-disabled="bussyPagination || farFromLast()"
   infinite-scroll-inmediate-check="false"
-  infinite-scroll-distance="0">
-  <div class="project-item col-md-4 list-group-item" ng-repeat="project in projects| orderBy:sortKey()" ng-click="showProject(project)" ng-if="project.title!==''">
-    <div ng-include="'projects/project/photo.html'"></div>
-  </div>
-</div>
+  infinite-scroll-distance="0">-->
+
+<md-grid-list
+  md-cols-xs="1" md-cols-sm="2" md-cols-gt-sm="3" md-row-height="4:3"
+  md-gutter="5px" md-gutter-gt-sm="3px" class="projects">
+  <md-grid-tile
+    ng-repeat="project in projects | orderBy:sortKey()"
+    ng-click="showProject(project)" ng-if="project.title!==''" md-rowspan="1"
+    md-colspan="1">
+    <div class="project-photo" ng-include="'projects/project/photo.html'"></div>
+  </md-grid-tile>
+</md-grid-list>
