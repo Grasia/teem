@@ -12,7 +12,7 @@
         <div ng-if="!community.isParticipant()">
           <img ng-src="{{community.logo()}}">
         </div>
-        <div class="community-join-button hidden-mobile">
+        <div hide show-gt-sm class="community-join-button">
           <button class="btn btn-lg btn-primary btn-raised pull-right"
                   ng-if="! community.isParticipant()"
                   participate
@@ -70,7 +70,7 @@
             </div>
           </div>
 
-          <div class="hidden-desktop">
+          <div hide show-gt-sm>
             <button class="btn btn-lg btn-primary btn-raised btn-block"
                     ng-if="! community.isParticipant()"
                     participate
@@ -202,5 +202,5 @@
       </div>
     </div>
   </div>
-  <plus class="plus-mobile" plus-type="project" plus-community="community"></plus>
+  <plus hide-gt-sm plus-type="project" plus-community="community"></plus>
 </div>

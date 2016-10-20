@@ -39,8 +39,8 @@ class CommunityPage {
   }
 
   getJoinEl () {
-    var platform = global.isDesktop ? '.hidden-mobile' : '.hidden-desktop';
-    return element(by.css(platform + ' button[participate]'));
+    var platform = global.isDesktop ? '.hide show-gt-sm' : '.hide show-gt-sm';
+    return element(by.css('[' + platform + '] button[participate]'));
   }
 
   join () {
