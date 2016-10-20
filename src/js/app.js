@@ -73,6 +73,11 @@ angular
       .determinePreferredLanguage()
       .fallbackLanguage('en');
   })
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('teal')
+      .accentPalette('purple');
+  })
   .run(function(amMoment, $translate, $window, $rootScope) {
     amMoment.changeLocale($translate.proposedLanguage() || $translate.use());
 
