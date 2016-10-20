@@ -1,9 +1,9 @@
-<div layout="row" ng-controller="MenuCtrl" class="navbar-top">
-  <div flex>
+<div layout="row" layout-align="space-between center" ng-controller="MenuCtrl" class="navbar-top">
+  <div>
     <a class="logo" href="/"><img src="/images/app-logo.png" /></a>
   </div>
 
-  <div flex>
+  <div>
     <md-nav-bar nav-bar-aria-label="navigation links">
       <md-nav-item ng-if="loggedIn()" md-nav-href="/home/teems" name="home-teems">
         <md-icon md-font-library="material-icons">folder</md-icon>
