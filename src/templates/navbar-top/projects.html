@@ -1,12 +1,14 @@
-<md-nav-bar nav-bar-aria-label="navigation links">
-  <md-nav-item md-nav-href="/teems/featured" name="featured">
-    <md-icon md-font-library="material-icons">turned_in</md-icon>
-    <span translate>menu.projects.featured</span>
-  </md-nav-item>
-  <md-nav-item md-nav-href="/teems/latest" name="latest">
-    <md-icon md-font-library="material-icons">date_range</md-icon>
-    <span translate>menu.projects.latest</span>
-  </md-nav-item>
-</md-nav-bar>
+<div layout=row layout-align="space-between">
+  <md-nav-bar nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-href="/teems/featured" name="featured">
+      <md-icon md-font-library="material-icons">turned_in</md-icon>
+      <span translate>menu.projects.featured</span>
+    </md-nav-item>
+    <md-nav-item md-nav-href="/teems/latest" name="latest">
+      <md-icon md-font-library="material-icons">date_range</md-icon>
+      <span translate>menu.projects.latest</span>
+    </md-nav-item>
+  </md-nav-bar>
 
-<plus plus-type="project" class="hidden-mobile" text="{{'project.create.button' | translate}}"></plus>
+  <plus plus-type="project" class="hidden-mobile" text="{{'project.create.button' | translate}}"></plus>
+</div>

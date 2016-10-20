@@ -1,12 +1,12 @@
-<button ng-if="!text" class="btn btn-default btn-fab plus"
+<md-button ng-if="!text" class="md-fab"
         ng-click="create()"
         analytics-on="click"
         analytics-event="New {{type}}">
-  <i class="material-icons">add</i>
-</button>
-<button ng-if="text" class="btn btn-primary btn-raised pull-right i-edit"
+        <md-icon class="material-icons">add</md-icon>
+</md-button>
+<md-button ng-if="text" class="md-primary md-raised"
         ng-click="create()"
         analytics-on="click"
         analytics-event="New {{type}}">
   {{text | translate}}
-</button>
+</md-button>
