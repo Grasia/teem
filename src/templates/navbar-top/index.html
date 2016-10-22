@@ -1,26 +1,29 @@
-<div layout="row" layout-align="space-between center" ng-controller="MenuCtrl" class="navbar-top">
-  <div>
-    <a class="logo" href="/"><img src="/images/app-logo.png" /></a>
-  </div>
+<div flex-gt-sm=80 flex-offset-gt-sm=10>
+  <div layout="row" layout-align="space-between center" ng-controller="MenuCtrl" class="navbar-top">
+    <div>
+      <a class="logo" href="/"><img src="/images/app-logo.png" /></a>
+    </div>
 
-  <div>
-    <md-nav-bar nav-bar-aria-label="navigation links">
-      <md-nav-item ng-if="loggedIn()" md-nav-href="/home/teems" name="home-teems">
-        <md-icon md-font-library="material-icons">folder</md-icon>
-        <span translate>menu.homeProjects.title</span>
-      </md-nav-item>
-      <md-nav-item md-nav-href="/teems" name="explore">
-        <md-icon md-font-library="material-icons">explore</md-icon>
-        <span translate>menu.explore.title</span>
-      </md-nav-item>
-      <md-nav-item ng-if="!loggedIn()" md-nav-click="login()" name="login">
-        <md-icon md-font-library="material-icons">person</md-icon>
-        <span translate>menu.login.title</span>
-      </md-nav-item>
-      <md-nav-item ng-if="loggedIn()" md-nav-href="/users/{{user.id}}" name="profile">
-        <md-icon md-font-library="material-icons">person</md-icon>
-        <span translate>menu.profile.title</span>
-      </md-nav-item>
-    </md-nav-bar>
+    <div>
+      <md-nav-bar nav-bar-aria-label="navigation links">
+        <md-nav-item ng-if="loggedIn()" md-nav-href="/home/teems" name="home-teems">
+          <md-icon md-font-library="material-icons">folder</md-icon>
+          <span translate>menu.homeProjects.title</span>
+        </md-nav-item>
+        <md-nav-item md-nav-href="/teems" name="explore">
+          <md-icon md-font-library="material-icons">explore</md-icon>
+          <span translate>menu.explore.title</span>
+        </md-nav-item>
+        <md-nav-item ng-if="!loggedIn()" md-nav-click="login()" name="login">
+          <md-icon md-font-library="material-icons">person</md-icon>
+          <span translate>menu.login.title</span>
+        </md-nav-item>
+        <md-nav-item ng-if="loggedIn()" md-nav-href="/users/{{user.id}}" name="profile">
+          <md-icon md-font-library="material-icons">person</md-icon>
+          <span translate>menu.profile.title</span>
+        </md-nav-item>
+      </md-nav-bar>
+    </div>
   </div>
 </div>
+<md-divider />
