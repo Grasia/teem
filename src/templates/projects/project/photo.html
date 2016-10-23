@@ -1,8 +1,8 @@
 <img ng-src="{{project.logo()}}"></img>
-<md-grid-tile-header layout="row" layout-align="end center">
+<md-grid-tile-header layout="row" layout-align="end start" layout-padding>
   <div ng-if="project.isFeatured()"><i class="material-icons">bookmark_border</i></div>
 </md-grid-tile-header>
-<md-grid-tile-footer>
+<md-grid-tile-footer layout=column layout-align="end start" layout-padding>
   <a ng-href="communities/{{project.loadedCommunities[0]._urlId}}" class="md-subhead">{{project.loadedCommunities.length ? project.loadedCommunities[0].name : ''}}</a>
   <div class="md-title">{{project.title}}</div>
 </md-grid-tile-footer>
