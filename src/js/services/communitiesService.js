@@ -175,7 +175,8 @@ angular.module('Teem')
             $match: {
               $or: [
                 {$and: [
-                  {'root.type': 'community'}
+                  {'root.type': 'community'},
+                  {'root.name': {$ne : ''}}
                 ]},
                 {$and: [
                   {'root.type': 'project'},

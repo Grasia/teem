@@ -399,7 +399,8 @@ angular.module('Teem')
         _aggregate: [
           {
             $match: {
-              'root.type': 'project'
+              'root.type': 'project',
+              'root.title': {$ne: ''}
             }
           },
           {
