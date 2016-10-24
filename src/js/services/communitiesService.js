@@ -295,7 +295,7 @@ angular.module('Teem')
       }
 
       if (!options.pagination.pageSize) {
-        options.pagination.pageSize = 50;
+        options.pagination.pageSize = 12;
       }
 
       if (!options.pagination.pageIndex) {
