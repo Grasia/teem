@@ -187,6 +187,8 @@
 .project-title-editable
   display: flex
   justify-content: space-between
+  .project-join-btn
+    width: 100px
   .form-group
     padding: 0
     margin: 0
@@ -449,8 +451,10 @@ $project-desktop-border: 1px solid $grey
     padding-bottom: 5px
     border: none
     padding-top: 10px
-  .project-utils [ui-layout-container]:last-child h2
-    background-color: white
+  .project-utils
+    margin-top: 10px
+    max-height: 70vh
+    overflow: auto
 
 .project-photo
   margin: 15px 0
