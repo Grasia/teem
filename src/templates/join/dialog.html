@@ -1,0 +1,72 @@
+<md-dialog aria-label="Join dialog">
+  <md-dialog-content class="md-dialog-content">
+    <header>
+      <div ng-if="step === 'message'" layout="column" layout-align="center center">
+        <img src="images/join_project.svg" class="img-responsive"/>
+        <h1 translate>project.join.message.title</h1>
+      </div>
+      <div ng-if="step === 'success'" layout="column" layout-align="center center">
+        <img src="images/thanks.svg" class="img-responsive"/>
+        <h1 translate>project.join.success.title</h1>
+        <h2 translate>project.join.success.subtitle</h2>
+      </div>
+    </header>
+
+    <main>
+      <div class="project-join-form" ng-if="step === 'message'">
+
+        <md-input-container class="md-block md-input-has-placeholder">
+          <label translate>project.join.form.organizer.label</label>
+          <div class="md-contact-chips">
+            <md-chips name=organizer ng-model=organizer md-removable=false readonly=true>
+              <md-chip-template>
+                <div class="md-contact-avatar"
+                     avatars="$chip.id">
+                </div>
+                <div class="md-contact-name">
+                  {{$chip.name}}
+                </div>
+              </md-chip-template>
+            </md-chips>
+          </div>
+        </md-input-container>
+
+
+        <form name="joinMessage">
+          <md-input-container class="md-block">
+            <label for="joinSenderEmail" translate>project.join.form.sender.label</label>
+            <input type="email"
+                   class="form-control"
+                   id="joinSenderEmail"
+                   ng-model="message.email"
+                   ng-required="true"
+                   placeholder="{{ 'project.join.form.sender.placeholder' | translate }}">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label for="joinText" translate>project.join.form.text.label</label>
+            <textarea id="joinText"
+                      ng-model="message.text"
+                      ng-required="true"
+                      placeholder="{{ 'project.join.form.text.placeholder' | translate }}"></textarea>
+          </md-input-container>
+
+          <div layout="column">
+            <md-button class="md-primary md-raised" flex ng-click="$ctrl.send()" ng-disabled="joinMessage.$invalid || message.sending">
+              <span translate>project.join.form.button</span>
+            </md-button>
+          </div>
+        </form>
+      </div>
+
+      <div class="project-join-success" ng-if="step === 'success'" layout="column" layout-align="center stretch">
+        <div class="project-join-success-text" layout="column" layout-padding layout-align="center center">
+          <span flex translate>project.join.success.text</span>
+        </div>
+        <md-button class="md-primary md-raised" flex><span join join-model="$ctrl.project" join-copy-off="project.join.success.start"></span></md-button>
+        <md-button ng-href="/teems/new" ng-click="$ctrl.close()" class="md-primary" flex><span translate>project.join.success.add<span></md-button>
+        <md-button ng-href="/teems" ng-click="$ctrl.close()" class="md-primary" flex><span translate>project.join.success.explore</span></md-button>
+      </div>
+    </main>
+  </md-dialog-content>
+</md-dialog>
