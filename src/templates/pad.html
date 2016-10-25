@@ -1,5 +1,5 @@
 <div class="pad-wrapper flex-container" ng-class="pad.editing ? 'project-pad-editing' : ''">
-  <div class="pad no-pointer flex-container" ng-click="editOn()" ui-outer-click="editOff()" ui-outer-click-if="pad.editing && !isDesktop() && !pad.selectingFile"
+  <div class="pad no-pointer flex-container" ng-click="editOn()" ui-outer-click="editOff()" ui-outer-click-if="pad.editing && !$mdMedia('gt-sm') && !pad.selectingFile"
   ngf-drop="widget('img', $file)" ngf-fix-orientation="true" ngf-drag-over-class="'pad-dragover'" >
     <div ng-if="pad.editing" class="pad-toolbar">
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

@@ -6,7 +6,7 @@
   <div class="scrollable-content">
     <div class="container">
       <div class="info">
-        <div ng-class="{'affix col-md-3': isDesktop()}">
+        <div ng-class="{'affix col-md-3': $mdMedia('gt-sm')}">
           <div ng-if="canEdit()" ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: updateAvatar}}">
             <div avatars="user.id" avatars-conf="{size:'responsive'}" class="avatars-without-names"></div>
           </div>

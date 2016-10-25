@@ -1,6 +1,6 @@
 <div ng-repeat="content in ['nav-right', 'nav-desktop']">
   <div ui-content-for="{{content}}">
-    <div class="nav-right-menu" ng-if="!pad.editing || isDesktop()">
+    <div class="nav-right-menu" ng-if="!pad.editing || $mdMedia('gt-sm')">
       <a ui-turn-on="dropdownProjectMenu" class="btn btn-link">
         <i class="material-icons">more_vert</i>
       </a>
@@ -24,7 +24,7 @@
         }}" translate>project.tooltip.delete</a></li>
       </ul>
     </div>
-    <div class="nav-right-menu" ng-if="pad.editing && !isDesktop()">
+    <div class="nav-right-menu" ng-if="pad.editing && !$mdMedia('gt-sm')">
       <a ng-click="editOff()" class="btn pad-check">
         <i class="material-icons">{{!pad.saving ? 'done': 'autorenew'}}</i>
       </a>
@@ -33,7 +33,7 @@
 </div>
 
 <div ui-content-for="nav-title">
-  <div ng-if="!isDesktop()" class="project-title-navbar overflow-ellipsis">
+  <div ng-if="!$mdMedia('gt-sm')" class="project-title-navbar overflow-ellipsis">
     {{project.title || 'project.title.empty.placeholder' | translate}}
   </div>
 </div>

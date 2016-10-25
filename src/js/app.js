@@ -138,13 +138,11 @@ angular
       $rootScope.$digest();
     });
   })
-  .run(function($rootScope, $window, SessionSvc) {
+  .run(function($rootScope, $window, SessionSvc, $mdMedia) {
     $rootScope.loggedIn = function () {
       return SessionSvc.users.loggedIn();
     };
-    $rootScope.isDesktop = function() {
-      return $window.innerWidth >= 992;
-    };
+    $rootScope.$mdMedia = $mdMedia;
 
     $rootScope.isCordova = () => {
       return !! $window.cordova;

@@ -1,6 +1,5 @@
-<div ng-if="!isDesktop()">
-  <div ui-content-for="navbar-top">
-  </div>
+<div ng-if="$mdMedia('gt-sm')">
+  <div ng-include="'navbar-top/index.html'"></div>
 </div>
 
 <div ng-if="form()" class="scrollable">
@@ -32,10 +31,10 @@
 <div ng-if="! form()" class="full-height show-project-back-arrow">
   <div ng-include="'navbar-top/project.html'"></div>
 
-  <div ng-if="!isDesktop()" class="project project-mobile flex-container scrollable">
+  <div ng-if="!$mdMedia('gt-sm')" class="project project-mobile flex-container scrollable">
     <div class="scrollable-header" ng-include="'projects/project/mobile/topbar.html'"></div>
     <div class="scrollable-content flex-container" ng-include="'projects/project/mobile.html'"></div>
   </div>
 
-  <div ng-if="isDesktop()" class="project project-desktop scrollable"><div class="scrollable-content" ng-include="'projects/project/desktop.html'"></div></div>
+  <div ng-if="$mdMedia('gt-sm')" class="project project-desktop scrollable"><div class="scrollable-content" ng-include="'projects/project/desktop.html'"></div></div>
 </div>
