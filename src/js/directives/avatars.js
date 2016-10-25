@@ -45,14 +45,7 @@ angular.module('Teem')
           img[0].src = tmp[0].src;
         }
       };
-      function appendEmptyAvatars() {
-        // Fill with empty avatars to align last row of flexbox
-        // https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid
-        var conf = scope.avatarsConf() || {};
-        for (let i = 0; i < 4; i++) {
-          element.append(angular.element('<a class="avatar'+(conf.size ? '-'+conf.size : '')+' empty-avatar"></a>'));
-        }
-      }
+
       scope.$watchCollection('avatars', function(users){
         if (!users || users.length === 0){
           return;
@@ -72,7 +65,6 @@ angular.module('Teem')
           angular.forEach(res.data, function(user) {
             createAppendAvatar(user.id, user.avatarUrl);
           });
-          appendEmptyAvatars();
           $timeout();
         });
 
