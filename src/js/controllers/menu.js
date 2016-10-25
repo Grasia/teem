@@ -11,9 +11,9 @@
 angular.module('Teem')
   .controller('MenuCtrl', [
   '$scope', 'config', 'Url', 'SessionSvc', 'CommunitiesSvc', 'ProjectsSvc',
-  'User', '$timeout', 'ModalsSvc', '$location',
+  'User', '$timeout', '$location',
   function($scope, config, Url, SessionSvc, CommunitiesSvc, ProjectsSvc,
-           User, $timeout, ModalsSvc, $location){
+           User, $timeout, $location){
     if (config.support) {
       $scope.support = {
         communityId: Url.encode(config.support.communityId),
@@ -25,23 +25,13 @@ angular.module('Teem')
       return route === $location.path();
     };
 
-    $scope.close = function() {
-      ModalsSvc.turnOff('uiSidebarLeft');
-    };
-
-    $scope.register = function () {
-      ModalsSvc.set('modal.session', {name: 'session', type: 'register'});
-      $timeout();
-    };
-
     // The navbar-top-index component is not getting $rootScope.loggedIn()
     $scope.loggedIn = function () {
       return SessionSvc.users.loggedIn();
     };
 
     $scope.login = function () {
-      ModalsSvc.set('modal.session', {name: 'session', type: 'login'});
-      $timeout();
+      SessionSvc.show({ form: 'login' });
     };
 
     $scope.logout = function () {

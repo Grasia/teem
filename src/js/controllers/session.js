@@ -22,8 +22,8 @@ angular.module('Teem')
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
   .controller('SessionRouteCtrl', [
-    '$scope', 'ModalsSvc', '$route', '$location',
-    function($scope, ModalsSvc, $route, $location) {
+    '$scope', 'SessionSvc', '$route', '$location',
+    function($scope, SessionSvc, $route, $location) {
 
       function normalizeFormName(form) {
         var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
@@ -33,9 +33,8 @@ angular.module('Teem')
       }
 
       $scope.$on('$routeChangeSuccess', function() {
-        ModalsSvc.set('modal.session', {
-          name: 'session',
-          type: normalizeFormName($route.current.params.form)
+        SessionSvc.show({
+          form: normalizeFormName($route.current.params.form)
         });
 
         $location.path('/');
@@ -53,8 +52,8 @@ angular.module('Teem')
     }
   )
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'ModalsSvc', 'NotificationSvc',
-    function($scope, $location, $route, SessionSvc, $timeout, ModalsSvc, NotificationSvc) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', '$mdDialog', 'NotificationSvc',
+    function($scope, $location, $route, SessionSvc, $timeout, $mdDialog, NotificationSvc) {
 
     $scope.session = {};
 
@@ -91,7 +90,7 @@ angular.module('Teem')
             notificationScope.values = {nick: fields.nick};
             NotificationSvc.success({message: 'session.login.success', scope: notificationScope});
             $timeout(function(){
-              ModalsSvc.turnOff('modal.session');
+              $mdDialog.hide();
             });
           },
           function(error){
@@ -134,7 +133,7 @@ angular.module('Teem')
       var onSuccess = function(){
         NotificationSvc.success('session.forgottenPassword.success');
         $timeout(function(){
-          ModalsSvc.turnOff('modal.session');
+          $mdDialog.hide();
         });
       };
 
@@ -159,7 +158,7 @@ angular.module('Teem')
         delete localStorage.userId;
         NotificationSvc.success('session.' + $scope.form.current + '.success');
         $timeout(function(){
-          ModalsSvc.turnOff('modal.session');
+          $mdDialog.hide();
         });
 
         fields.nick = params.id;
@@ -191,7 +190,7 @@ angular.module('Teem')
         NotificationSvc.success('session.' + $scope.form.current + '.success');
 
         $timeout(function(){
-          ModalsSvc.turnOff('modal.session');
+          $mdDialog.hide();
         });
       };
 
@@ -214,14 +213,14 @@ angular.module('Teem')
           if (res.error) {
             NotificationSvc.error('session.set_email.error');
             $timeout(function(){
-              ModalsSvc.turnOff('modal.session');
+              $mdDialog.hide();
             });
             return;
           }
 
           NotificationSvc.success('session.set_email.success');
           $timeout(function(){
-            ModalsSvc.turnOff('modal.session');
+            $mdDialog.hide();
           });
         };
 
@@ -249,7 +248,8 @@ angular.module('Teem')
     };
 
     $scope.form = {
-      current: 'register',
+      current: this.form || 'register',
+      message: this.message,
       values: {},
       login: ['nick', 'password'],
       register: ['nick', 'password', 'passwordRepeat', 'email', 'terms'],
@@ -257,14 +257,6 @@ angular.module('Teem')
       recoverPassword: ['password', 'passwordRepeat'],
       migration: ['password', 'passwordRepeat', 'email']
     };
-
-    // Use modal.session ModalsSvc.type to store form ('login', 'register', etc..)
-    // and modal.session ModalsSvc.message to store form message (new_community) (you have to register to create a community)
-    // So ModalsSvc can be {name: 'session', type: 'register', message: 'new_community'}
-    $scope.$on('mobile-angular-ui.state.changed.modal.session', function(e, newValue) {
-      $scope.form.current = newValue.type || 'register';
-      $scope.form.message = newValue.message;
-    });
 
     $scope.logout = function() {
       SessionSvc.stopSession();

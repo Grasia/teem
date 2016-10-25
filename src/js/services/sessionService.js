@@ -11,9 +11,9 @@
 angular.module('Teem')
   .factory('SessionSvc', [
     // NotificationSvc has to be added here as dependency to be loaded in the app
-  '$q', '$timeout', 'ModalsSvc', 'NotificationSvc', '$locale', 'User',
+  '$q', '$timeout', 'NotificationSvc', '$mdDialog', '$locale', 'User',
   '$rootScope', 'swellRT',
-  function($q, $timeout, ModalsSvc, NotificationSvc, $locale, User,
+  function($q, $timeout, NotificationSvc, $mdDialog, $locale, User,
            $rootScope, swellRT) {
 
     var swellRTDef = $q.defer(),
@@ -235,6 +235,19 @@ angular.module('Teem')
       });
     };
 
+    /*
+     * Show session dialog
+     */
+    function show (options = {}) {
+      $mdDialog.show({
+        templateUrl: 'session/dialog.html',
+        controller: 'SessionCtrl',
+        bindToController: true,
+        clickOutsideToClose: true,
+        locals: options
+      });
+    }
+
     autoStartSession = function(){
 
       status.connection = 'connecting';
@@ -256,7 +269,7 @@ angular.module('Teem')
           user, pass, function(){
             // migrating users with default password
             if (user !== undefined) {
-              ModalsSvc.set('modal.session', {name: 'session', type: 'migration'});
+              show({ section: 'migration' });
               $timeout();
             }
           },
@@ -291,13 +304,10 @@ angular.module('Teem')
 
         if (! users.loggedIn()) {
 
-          let state = {
-            name: 'session',
-            type: options.form || 'login',
+          show({
+            section: options.form,
             message: options.message
-          };
-
-          ModalsSvc.set('modal.session', state);
+         });
 
           // Invoque $timout to refresh scope and actually show modal
           $timeout();
@@ -392,6 +402,7 @@ angular.module('Teem')
       updateUserProfile: updateUserProfile,
       loginRequired: loginRequired,
       status: status,
+      show,
       SynchedModel,
       // TODO refactor with Prototype version of proxy objects to avoid the use of onLoad
       onLoad: function(f) {
