@@ -1,37 +1,5 @@
-<div style="height: 200px; overflow: hidden">
-  <div ng-include="'projects/project/photo.html'"></div>
-</div>
-<div class="project-title-editable" layout=row layout-align="space-arround center">
-  <!--<md-input-container>
-    <label translate>project.title.placeholder</label>
-    <input ng-model="project.title" ng-disabled="!project.isParticipant()">
-  </md-input-container>-->
-  <h1 flex>{{project.title}}</h1>
-
-  <md-button class="md-primary md-raised project-join-btn"
-    join-dialog join-dialog-model="project"
-    ng-if="!project.isParticipant()">
-    <span translate>project.participate.btn.do</span>
-  </md-button>
-  <div ng-if="project.isParticipant()"
-    ng-include="'projects/project/menu.html'"></div>
-</div>
-<div class="project-community">
-  <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
-</div>
-<div ng-if="project.location" class="container project-location">
-  <i class="custom-icons">location_on</i> {{project.location.name}}
-</div>
-<div>
-  <div class="media project-promoter">
-    <div avatars="project.promoter" avatars-conf="{size: 'xsmall'}" class="avatars-without-names media-left"></div>
-    <div class="media-body">
-      <span translate>project.promoter</span>
-      <strong>{{project.promoter | idToNick}}</strong>
-    </div>
-  </div>
-</div>
-
+<div ng-include="'projects/project/item.html'"></div>
+<div ng-include="'projects/project/info.html'"></div>
 <div layout=row>
 
   <div flex=20 layout-margin class="project-info">

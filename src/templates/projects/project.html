@@ -2,7 +2,7 @@
   <div ng-include="'navbar-top/index.html'"></div>
 </div>
 
-<!--<div ng-if="form()">
+<div ng-if="form()">
 
   <div class="scrollable-header project-form-bar hidden-md hidden-lg">
     <a ui-set="{ 'modal.confirm': {
@@ -25,10 +25,9 @@
       <div ng-include="'projects/project/form/next.html'"></div>
     </div>
   </div>
-</div>-->
+</div>
 
 <div ng-if="! form()" class="show-project-back-arrow">
-  <div ng-include="'navbar-top/projects.html'"></div>
 
   <div ng-if="!$mdMedia('gt-sm')" class="project project-mobile">
     <div class="scrollable-header" ng-include="'projects/project/mobile/topbar.html'"></div>
@@ -36,6 +35,7 @@
   </div>
 
   <div ng-if="$mdMedia('gt-sm')" flex-gt-sm=80 flex-offset-gt-sm=10 layout-margin class="project project-desktop">
+    <div ng-include="'navbar-top/projects.html'"></div>
     <div ng-include="'projects/project/desktop.html'"></div>
   </div>
 </div>

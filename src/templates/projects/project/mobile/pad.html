@@ -1,38 +1,7 @@
-<div class="flex-container project-mobile">
-  <div ng-class="{'flex-container': pad.editing}">
+<div class="project-mobile">
+  <div>
     <div ng-class="{'hidden': pad.editing}">
-      <div class="project-title-editable">
-        <input class="h1 title-input form-control" ng-model="project.title"
-        placeholder="{{'project.title.placeholder' | translate}}" ng-disabled="!project.isParticipant()">
-        <div ng-include="'projects/project/menu.html'"></div>
-      </div>
-      <div class="project-community">
-        <span ng-repeat="c in communities">{{ $index > 0 ? ', ' : '' }}<a ng-href="{{ c.path() }}">{{ c.name }}</a></span>
-      </div>
-      <div ng-if="project.location" class="container project-location">
-        <i class="custom-icons">location_on</i> {{project.location.name}}
-      </div>
-      <div>
-        <div class="media project-promoter">
-          <div avatars="project.promoter" avatars-conf="{size: 'xsmall'}" class="avatars-without-names media-left"></div>
-          <div class="media-body">
-            <span translate>project.promoter</span>
-            <strong>{{project.promoter | idToNick}}</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="project-join" ng-if="!project.isParticipant()">
-      <button class="btn btn-primary btn-raised btn-block btn-lg"
-              join
-              join-modal="true"
-              join-icon="false",
-              join-model="project"
-              join-copy-on="project.participate.btn.undo"
-              join-copy-off="project.participate.btn.do"
-              analytics-on="click"
-              analytics-event="Join project">
-      </button>
+      <div ng-include="'projects/project/info.html'"></div>
     </div>
     <div class="container info-tip" ng-if="project.isParticipant() && !pad.editing && infoTip()">
       <span translate>pad.tap_to_edit</span> <span ng-click="infoTip(true)" class="i-close pull-right"></span>

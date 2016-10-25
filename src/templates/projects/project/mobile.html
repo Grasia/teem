@@ -1,32 +1,20 @@
 <div ng-class="{'hidden': pad.editing}">
-  <div ng-include="'projects/project/photo.html'"></div>
-</div>
-<div class="pos-r container" ng-class="{'flex-container': pad.editing}">
-<div class="project-navigation" ng-if="! pad.editing">
-  <div class="btn-group justified">
-    <a ui-set="{'projectTab': 'pad'}"
-       ui-class="{'active': projectTab == 'pad'}"
-       class="nav-pad">
-      <span translate>pad.nav.title</span>
-      <span class="material-icons notification-indicator" ng-if="hasChanged('pad')">fiber_manual_record</span> </a>
-    <a ui-set="{'projectTab': 'needs'}"
-       ui-class="{'active': projectTab == 'needs'}"
-       class="nav-needs">
-      <span translate>need.nav.title</span>
-      <span class="material-icons notification-indicator" ng-if="hasChanged('needs')">fiber_manual_record</span> </a>
-  </div>
+  <div ng-include="'projects/project/item.html'"></div>
 </div>
 
-<div class="project-tabs-container" ng-class="{'xs-hidden-tabs': areTabsHidden() || isNew()}">
-  <div ui-state="projectTab" class="project-tabs" ng-class="{'project-tabs-overflow': !pad.editing}">
-    <div ui-if="projectTab == 'pad'" hm-swipeleft="swipeToNeeds" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}'
-         class="flex-container touchable" ng-include="'projects/project/mobile/pad.html'">
-    </div>
-
-    <div ui-if="projectTab == 'needs'" hm-swiperight="swipeToPad" hm-manager-options='{{hmManagerOpt}}' hm-recognizer-options='{{hmRecognizerOpt}}' class="needs-tab touchable">
-      <div need-list project="project" needs="project.needs" ng-class="project.isParticipant() ? '' : 'has-cta'">
-      </div>
-    </div>
-  </div>
-</div>
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="{{'pad.nav.title' | translate}}">
+        <md-content class="md-padding">
+          <div ng-include="'projects/project/mobile/pad.html'"></div>
+        </md-content>
+      </md-tab>
+      <md-tab label="{{'need.nav.title' | translate}}">
+        <md-content class="md-padding">
+          <div need-list project="project" needs="project.needs"></div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 </div>
