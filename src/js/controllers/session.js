@@ -257,9 +257,4 @@ angular.module('Teem')
       recoverPassword: ['password', 'passwordRepeat'],
       migration: ['password', 'passwordRepeat', 'email']
     };
-
-    $scope.logout = function() {
-      SessionSvc.stopSession();
-      $location.path('/');
-    };
   }]);

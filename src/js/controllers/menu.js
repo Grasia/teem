@@ -34,11 +34,6 @@ angular.module('Teem')
       SessionSvc.show({ form: 'login' });
     };
 
-    $scope.logout = function () {
-      SessionSvc.stopSession();
-      $location.path('/');
-    };
-
     $scope.search = {
       input: ''
     };
