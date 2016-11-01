@@ -30,10 +30,33 @@
       display: flex !important /* override .hidden */
     .project-item-icons
       display: none
+    .project-photo-edit-hover
+      display: none !important
+      *:hover
+        display: none !important
 .project-photo
   position: relative
   height: 100%
+  .project-photo-edit-hover
+    display: none
+    &:hover
+      background: rgba(0, 0, 0, 0.6)
+      -moz-transition: all 1s
+      -webkit-transition: all 1s
+      transition: all 1s
   > div
+    &:hover
+      .project-photo-edit-hover
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        flex-direction: column
+        font-weight: bold
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
     position: absolute
     bottom: 0
     left: 0
@@ -564,6 +587,7 @@ modal[name="cordovaTakePicture"]
     color: white
 .show-project-back-arrow .project-back-arrow
   display: block
+  position: absolute
 .project-creation
   font-weight: normal
   margin-top: 14px

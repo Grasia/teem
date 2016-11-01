@@ -1,6 +1,10 @@
 <div class="project-photo">
   <img class="media-object" ng-src="{{project.logo()}}">
   <div class="flex-container">
+    <div ng-if="project.isParticipant()" class="project-photo-edit-hover">
+      <span class="i-photo-camera" ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: uploadProjectPhoto}}"></span>
+      <span ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: uploadProjectPhoto}}" translate>project.menu.change_photo</span>
+    </div>
     <a class="project-back-arrow" ng-href="{{project.isParticipant() ? 'home/teems' : 'teems'}}"><i class="material-icons">arrow_back</i></a>
     <div ng-class="{'i-featured': project.isFeatured()}" class="text-right"></div>
     <div class="project-item-info flex-container hidden">
