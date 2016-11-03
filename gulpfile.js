@@ -46,6 +46,7 @@ var config = {
       './bower_components/angular-socialshare/dist/angular-socialshare.js',
       './bower_components/webrtc-adapter/release/adapter.js',
       './src/vendor/aggregation.js',
+      './src/vendor/startswith.js',
       './node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'
     ],
 
@@ -201,7 +202,6 @@ var gulp           = require('gulp'),
   watch          = require('gulp-watch'),
   jshint         = require('gulp-jshint'),
   karma          = require('karma').Server,
-  angularProtractor = require('gulp-angular-protractor'),
   ghPages        = require('gh-pages'),
   manifest       = require('gulp-manifest'),
   spawn          = require('child_process').spawn,
@@ -642,9 +642,8 @@ gulp.task('test:unit:loop', function(done) {
 =        End to end testing with protractor      =
 =================================================*/
 
-
 gulp.task('test:e2e', function(done) {
-  var tasks = [ 'test:e2e:protractor', done ];
+  var tasks = [ 'test:e2e:protractor:install', 'test:e2e:protractor', done ];
 
   if (config.swellrt.docker) {
     tasks.unshift('docker:swellrt');
@@ -654,16 +653,35 @@ gulp.task('test:e2e', function(done) {
 });
 
 
-gulp.task('test:e2e:protractor', function(done) {
-  var options = {
-        'configFile': 'test/protractor.conf.js',
-        'autoStartStopServer': true,
-        'debug': true
-      };
+function getProtractorBinary(binaryName){
+  var winExt = /^win/.test(process.platform)? '.cmd' : '';
+  var pkgPath = require.resolve('protractor');
+  var protractorDir = path.resolve(path.join(path.dirname(pkgPath), '..', 'bin'));
 
-  if (process.argv.length > 3) {
-    options.args = process.argv.slice(-2);
-  }
+  return path.join(protractorDir, '/' + binaryName+winExt);
+}
+ 
+gulp.task('test:e2e:protractor:install', function(done){
+  spawn(getProtractorBinary('webdriver-manager'), ['update'], {
+    stdio: 'inherit'
+  }).once('close', done);
+});
+ 
+// Run protractor from command line
+gulp.task('test:e2e:protractor:run', function (done) {
+  var argv = process.argv.slice(3); // forward args to protractor 
+
+  spawn(getProtractorBinary('protractor'), argv, {
+    stdio: 'inherit'
+  }).once('close', done);
+});
+
+
+gulp.task('test:e2e:protractor', function(done) {
+  var args = [
+    'test/protractor.conf.js',
+    '--baseUrl http://' + config.serverTest.host + ':' + config.serverTest.port,
+  ];
 
   connect.server({
     root: config.dest,
@@ -672,10 +690,19 @@ gulp.task('test:e2e:protractor', function(done) {
     fallback: config.dest + '/index.html'
   });
 
-  gulp.src(['./test/e2e/**/*.js'])
-    .pipe(angularProtractor(options))
-    .on('error', function(e) { connect.serverClose(); throw e; })
-    .on('end', function() { connect.serverClose(); done(); });
+  spawn(getProtractorBinary('protractor'), args, {
+    stdio: 'inherit'
+  })
+    .once('close', function(code) { 
+      connect.serverClose();
+
+      if (code === 0) {
+        done();
+      } else {
+        throw 'Protractor error';
+      }
+    });
+
 });
 
 /*====================================

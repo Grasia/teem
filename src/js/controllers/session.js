@@ -159,12 +159,8 @@ angular.module('Teem')
         NotificationSvc.success('session.' + $scope.form.current + '.success');
         $timeout(function(){
           $mdDialog.hide();
+          $scope.submit.login();
         });
-
-        fields.nick = params.id;
-        $scope.submit.login();
-
-        $location.path('/').search('token', null).search('id', null);
       };
 
       var onError = function(error){
@@ -187,7 +183,7 @@ angular.module('Teem')
       var onSuccess = function(){
         delete localStorage.userId;
 
-        NotificationSvc.success('session.' + $scope.form.current + '.success');
+        Notification.success('session.' + $scope.form.current + '.success');
 
         $timeout(function(){
           $mdDialog.hide();

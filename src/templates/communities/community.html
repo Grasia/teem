@@ -6,7 +6,7 @@
         <div class="community-share-button">
           <!--<i class="i-share"></i>-->
         </div>
-        <div ui-set="{modal.uploadPicture: {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()">
+        <div ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()">
           <img ng-src="{{community.logo()}}">
         </div>
         <div ng-if="!community.isParticipant()">

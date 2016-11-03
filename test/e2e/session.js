@@ -57,6 +57,9 @@ describe('Teem', function() {
 
       registerPage.expectNoErrors();
 
+      // User must be logged out to test this functionality
+      logoutPage.get();
+
       forgottenPasswordPage.get();
 
       forgottenPasswordPage.recover({ email: email});

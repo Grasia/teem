@@ -175,7 +175,8 @@ angular.module('Teem')
             $match: {
               $or: [
                 {$and: [
-                  {'root.type': 'community'}
+                  {'root.type': 'community'},
+                  {'root.name': {$ne : ''}}
                 ]},
                 {$and: [
                   {'root.type': 'project'},
@@ -295,7 +296,7 @@ angular.module('Teem')
       }
 
       if (!options.pagination.pageSize) {
-        options.pagination.pageSize = 50;
+        options.pagination.pageSize = 12;
       }
 
       if (!options.pagination.pageIndex) {

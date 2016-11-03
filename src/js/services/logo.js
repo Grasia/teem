@@ -39,11 +39,13 @@ angular.module('Teem')
       }
 
       logo () {
-        return this.image && this.image.url || this.defaultLogo();
+        // the image url if is already loaded || empty (white) image if is still not loaded || default logo if it does not have an image
+        return this.image && this.image.url || this.image && ' ' || this.defaultLogo();
       }
 
       logoUrl () {
-        return this.image && this.image.url || this.defaultLogoUrl();
+        // the image url if is already loaded || empty (white) image if is still not loaded || default logo if it does not have an image
+        return this.image && this.image.url || this.image && ' ' || this.defaultLogoUrl();
       }
     }
 
