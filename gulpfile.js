@@ -31,6 +31,7 @@ var config = {
       './bower_components/angular-animate/angular-animate.js',
       './bower_components/angular-aria/angular-aria.js',
       './bower_components/angular-material/angular-material.js',
+      './bower_components/ngSticky/dist/sticky.min.js',
       './bower_components/angular-toArrayFilter/toArrayFilter.js',
       './bower_components/avatar/build/avatar.js',
       './bower_components/avatar/vendor/md5.js',
@@ -660,16 +661,16 @@ function getProtractorBinary(binaryName){
 
   return path.join(protractorDir, '/' + binaryName+winExt);
 }
- 
+
 gulp.task('test:e2e:protractor:install', function(done){
   spawn(getProtractorBinary('webdriver-manager'), ['update'], {
     stdio: 'inherit'
   }).once('close', done);
 });
- 
+
 // Run protractor from command line
 gulp.task('test:e2e:protractor:run', function (done) {
-  var argv = process.argv.slice(3); // forward args to protractor 
+  var argv = process.argv.slice(3); // forward args to protractor
 
   spawn(getProtractorBinary('protractor'), argv, {
     stdio: 'inherit'
@@ -693,7 +694,7 @@ gulp.task('test:e2e:protractor', function(done) {
   spawn(getProtractorBinary('protractor'), args, {
     stdio: 'inherit'
   })
-    .once('close', function(code) { 
+    .once('close', function(code) {
       connect.serverClose();
 
       if (code === 0) {

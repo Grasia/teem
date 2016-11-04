@@ -1,25 +1,25 @@
 <div ng-include="'projects/project/item.html'"></div>
 <div ng-include="'projects/project/info.html'"></div>
-<div layout=row>
+<div layout=row flex>
 
   <div flex=20 layout-margin class="project-info">
-    <div class="project-info-inner flex-container flex-scroll">
+    <div class="project-info-inner">
       <div class="project-outline" ng-include="'projects/outline.html'"></div>
       <div>&nbsp;</div>
     </div>
   </div>
 
   <div flex=50 layout-margin class="project-main">
-    <div class="flex-container">
-      <pad editing-default="true" class="flex-container"></pad>
-    </div>
+    <pad editing-default="true"></pad>
   </div>
 
   <div flex=30 layout-margin class="project-utils">
-    <div project-people></div>
-    <div>
-      <h2 translate>need.nav.title</h2>
-      <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
+    <div sticky>
+      <div project-people></div>
+      <div>
+        <h2 translate>need.nav.title</h2>
+        <div need-list project="project" needs="project.needs" display="panel"></div>
+      </div>
     </div>
   </div>
 </div>

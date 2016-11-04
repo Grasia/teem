@@ -1,82 +1,63 @@
-<div class="pad-wrapper flex-container" ng-class="pad.editing ? 'project-pad-editing' : ''">
-  <div class="pad no-pointer flex-container" ng-click="editOn()" ui-outer-click="editOff()" ui-outer-click-if="pad.editing && !$mdMedia('gt-sm') && !pad.selectingFile"
+<div class="pad-wrapper" ng-class="pad.editing ? 'project-pad-editing' : ''">
+  <div class="pad no-pointer" ng-click="editOn()"
   ngf-drop="widget('img', $file)" ngf-fix-orientation="true" ngf-drag-over-class="'pad-dragover'" >
-    <div ng-if="pad.editing" class="pad-toolbar">
-      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group btn-group-xs" role="group" aria-label="widgets">
-          <button type="button" ng-click="linkModal.add($event)" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.link' | translate}}">
-            <i class="material-icons">link</i>
-          </button>
-          <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
-            <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.img' | translate}}">
-              <i class="material-icons">image</i>
-            </button>
-          </span>
-          <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.need' | translate}}">
-            <i class="material-icons">check_box</i>
-          </button>
+    <md-content>
+      <div class="pad-toolbar" md-colors="{background: 'background'}" ng-if="pad.editing" sticky>
+        <section layout="row" layout-align="start center" layout-wrap>
+          <md-button class="md-icon-button" ng-click="linkModal.add($event)" aria-label="{{'pad.tooltip.link' | translate}}">
+            <md-icon>link</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" ng-click="widget('img')" aria-label="{{'pad.tooltip.img' | translate}}">
+            <md-icon>image</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" ng-click="widget('need')" aria-label="{{'pad.tooltip.need' | translate}}">
+            <md-icon>check_box</md-icon>
+          </md-button>
+          <md-divider></md-divider>
+          <md-button class="md-icon-button" ng-repeat="(btn, isActive) in buttons" ng-click="annotate(btn)" ng-class="{'md-raised': isActive}" aria-label="{{'pad.tooltip.'+btn | translate}}">
+            <md-icon>{{btn}}</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" ng-click="clearFormat()" aria-label="{{'pad.tooltip.clearFormat' | translate}}">
+            <md-icon>format_clear</md-icon>
+          </md-button>
+        </section>
+      </div>
+      <div
+        class="swellrt-editor"
+        dragover-text="{{'picture.dropover' | translate}}"
+        swellrt-editor-on-ready="padReady"
+        swellrt-editor-on-create="padCreate"
+        swellrt-editor-widgets="padWidgets"
+        swellrt-editor-annotations="padAnnotations"
+        editable="{{project.isParticipant()}}"
+        ng-model="project.pad"
+        placeholder="{{ 'pad.placeholder' | translate }}"
+        block-edit="{{!project.isParticipant()}}">
+      </div>
+      <div id="link-modal" class="well bs-component" ng-if="linkModal.show" ui-outer-click="linkModal.show = false; linkModal.edit = false">
+        <div ng-if="linkModal.annotation.value && !linkModal.edit">
+          <a href="{{linkModal.link}}" target="_blank">{{linkModal.link}}</a>
+           - <a ng-click="linkModal.edit = true; $event.stopPropagation()" translate>pad.link.change</a>
+           | <a ng-click="linkModal.clear()" translate>pad.link.delete</a>
         </div>
-        <div class="btn-group btn-group-xs" role="group" aria-label="formats">
-          <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive, 'hidden-md': $index > 5}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
-            <i class="material-icons">{{btn}}</i>
-          </button>
-          <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs hidden-md" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}">
-            <i class="material-icons">format_clear</i>
-          </button>
-          <div class="btn-group btn-group-xs hidden-xs hidden-sm hidden-lg">
-            <button type="button" class="btn btn-raised btn-link btn-xs" ng-click="toggleTools = true">
-              <i class="material-icons">expand_more</i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right dropdown-menu-toolbar {{toggleTools? '' : 'hidden'}}"
-            ng-click="toggleTools = false">
-              <div class="btn-group btn-group-xs">
-                <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive, 'hidden-md': $index <= 5}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
-                  <i class="material-icons">{{btn}}</i>
-                </button>
-                <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}">
-                  <i class="material-icons">format_clear</i>
-                </button>
+        <form class="form-horizontal" ng-submit="linkModal.change()" ng-if="!linkModal.annotation.value || linkModal.edit">
+          <fieldset>
+            <div class="form-group">
+              <label class="col-md-2 control-label" translate>pad.link.text</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" ng-model="linkModal.text">
               </div>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="swellrt-editor flex-container flex-scroll"
-      dragover-text="{{'picture.dropover' | translate}}"
-      swellrt-editor-on-ready="padReady"
-      swellrt-editor-on-create="padCreate"
-      swellrt-editor-widgets="padWidgets"
-      swellrt-editor-annotations="padAnnotations"
-      editable="{{project.isParticipant()}}"
-      ng-model="project.pad"
-      placeholder="{{ 'pad.placeholder' | translate }}"
-      block-edit="{{!project.isParticipant()}}">
-    </div>
-    <div id="link-modal" class="well bs-component" ng-class="{hidden: !linkModal.show}" ui-outer-click="linkModal.show = false; linkModal.edit = false">
-      <div ng-if="linkModal.annotation.value && !linkModal.edit">
-        <a href="{{linkModal.link}}" target="_blank">{{linkModal.link}}</a>
-         - <a ng-click="linkModal.edit = true; $event.stopPropagation()" translate>pad.link.change</a>
-         | <a ng-click="linkModal.clear()" translate>pad.link.delete</a>
-      </div>
-      <form class="form-horizontal" ng-submit="linkModal.change()" ng-if="!linkModal.annotation.value || linkModal.edit">
-        <fieldset>
-          <div class="form-group">
-            <label class="col-md-2 control-label" translate>pad.link.text</label>
-            <div class="col-md-10">
-              <input type="text" class="form-control" ng-model="linkModal.text">
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-2 control-label" translate>pad.link.link</label>
-            <div class="col-md-10">
-              <input type="text" class="form-control" ng-model="linkModal.link">
+            <div class="form-group">
+              <label class="col-md-2 control-label" translate>pad.link.link</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" ng-model="linkModal.link">
+              </div>
             </div>
-          </div>
-          <button class="btn btn-primary pull-right" translate>pad.link.button</button>
-        </fieldset>
-      </form>
-    </div>
+            <button class="btn btn-primary pull-right" translate>pad.link.button</button>
+          </fieldset>
+        </form>
+      </div>
+    </md-content>
   </div>
 </div>

@@ -17,6 +17,7 @@ angular
     'ngAnimate',
     'ngMessages',
     'ngMaterial',
+    'sticky',
     'angulartics',
     'angulartics.piwik',
     'SwellRTService',

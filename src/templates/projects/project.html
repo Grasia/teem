@@ -30,12 +30,12 @@
 <div ng-if="! form()" class="show-project-back-arrow">
 
   <div ng-if="!$mdMedia('gt-sm')" class="project project-mobile">
-    <div class="scrollable-header" ng-include="'projects/project/mobile/topbar.html'"></div>
-    <div class="scrollable-content flex-container" ng-include="'projects/project/mobile.html'"></div>
+    <div ng-include="'projects/project/mobile/topbar.html'"></div>
+    <div ng-include="'projects/project/mobile.html'"></div>
   </div>
 
-  <div ng-if="$mdMedia('gt-sm')" flex-gt-sm=80 flex-offset-gt-sm=10 layout-margin class="project project-desktop">
+  <div ng-if="$mdMedia('gt-sm')" class="project project-desktop">
     <div ng-include="'navbar-top/projects.html'"></div>
-    <div ng-include="'projects/project/desktop.html'"></div>
+    <div flex-gt-sm=80 flex-offset-gt-sm=10 layout-margin ng-include="'projects/project/desktop.html'"></div>
   </div>
 </div>
