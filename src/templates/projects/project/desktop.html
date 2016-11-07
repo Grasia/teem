@@ -38,7 +38,7 @@
 <div class="container">
 
   <div class="project-info col-md-2">
-    <div class="project-info-inner flex-container flex-scroll">
+    <div class="project-info-inner flex-container flex-scroll" sticky>
       <div class="project-outline" ng-include="'projects/outline.html'"></div>
       <div>&nbsp;</div>
     </div>
@@ -50,11 +50,13 @@
     </div>
   </div>
 
-  <div class="project-utils col-md-3">
-    <div project-people></div>
-    <div>
-      <h2 translate>need.nav.title</h2>
-      <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
+  <div class="col-md-3">
+    <div sticky class="project-utils">
+      <div project-people></div>
+      <div>
+        <h2 translate>need.nav.title</h2>
+        <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
+      </div>
     </div>
   </div>
 </div>

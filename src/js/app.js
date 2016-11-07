@@ -21,6 +21,7 @@ angular
     'ui.layout',
     'selectize',
     'ui.bootstrap',
+    'sticky',
     'angulartics',
     'angulartics.piwik',
     'SwellRTService',
