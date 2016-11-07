@@ -17,7 +17,7 @@
             <h3>{{user.nick}}</h3>
           </div>
           <div>
-            <button ng-click="logout()" class="btn btn-raised btn-primary btn-block" translate>menu.session.logout</button>
+            <button ng-click="logout()" ng-if="canEdit()" class="btn btn-raised btn-primary btn-block" translate>menu.session.logout</button>
           </div>
         </div>
       </div>
