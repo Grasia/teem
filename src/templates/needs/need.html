@@ -1,74 +1,64 @@
 <div class="list-group-item need-item"
      ng-if="project.isParticipant() || need.completed !== 'add'"
      ng-class="'need-item-completed-' + need.completed">
-  <div class="need-body flex-container-row"
+  <div class="need-body" layout=row
        ng-click="toggleCommentsVisibility(need)">
-    <form class="flex-container">
-      <div class="form-group need-form" ng-class="isNewNeed(need)? 'notify-need':''">
-        <div class="checkbox" ng-if="need.completed !== 'add'">
+    <form>
+      <div layout=row class="need-form" ng-class="isNewNeed(need)? 'notify-need':''">
+        <!--<div class="checkbox" ng-if="need.completed !== 'add'">
           <label ng-click="toggleCompleted(need, $event)">
             <input type="checkbox" ng-checked="need.completed === 'true'">
             </label>
         </div>
-        <div class="need-check-container need-checkbox-add pull-left"
+        <div class="need-check-container need-checkbox-add"
              ng-if="need.completed === 'add'"
              ng-click="focusNeed($event)">
-        </div>
+        </div>-->
         <div class="need-name">
-          <textarea ng-if="project.isParticipant()"
-                    class="form-control"
-                    rows="1"
-                    saving-status
-                    autosize
-                    hide-tabs
-                    ng-class="need.completed === 'true' ? 'text-strike' : ''"
-                    ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
-                    ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
-                    ng-click="$event.stopPropagation()">
-          </textarea>
+          <md-input-container class="md-block" md-no-float ng-if="project.isParticipant()">
+            <md-icon>check</md-icon>
+            <textarea rows="1"
+                      md-select-on-focus
+                      ng-class="need.completed === 'true' ? 'text-strike' : ''"
+                      ng-model="need.text" placeholder="{{ 'need.new.placeholder' | translate }}"
+                      ng-blur="updateNeed(need)" ng-keydown="keyEventsHandler($event)"
+                      ng-click="$event.stopPropagation()">
+            </textarea>
+          </md-input-container>
           <div ng-if="!project.isParticipant()" class="section-text-readonly" ng-class="need.completed === 'true' ? 'text-strike' : ''">
             {{ need.text }}
           </div>
         </div>
+
+        <div ng-if="need.completed !== 'add'" class="{{need.comments.length ? 'active' : ''}}">
+          <md-button class="md-icon-button icon-count" layout=row>
+            <md-icon ng-class="newComments(need)? 'notify-comments':''">chat_bubble_outline</md-icon>
+            <span class="icon-count-number">{{ need.comments && need.comments.length || 0 }}</span>
+          </md-button>
+        </div>
       </div>
     </form>
-    <div ng-if="need.completed !== 'add'" class="{{need.comments.length ? 'active' : ''}}">
-      <span class="icon-count">
-        <i class="i-comment" ng-class="newComments(need)? 'notify-comments':''">
-          <span class="icon-count-number">{{ need.comments && need.comments.length || 0 }}</span>
-        </i>
-      </span>
-    </div>
+
   </div>
   <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">
     <div class="media" ng-repeat="comment in need.comments">
-      <div class="media-left">
-        <div avatars="comment.author" avatars-conf="{size: 'xsmall'}" class="avatars-without-names"></div>
-      </div>
-      <div class="media-body">
-        <div>
-        <span class="comment-author-name" bo-html="comment.author.split('@')[0]"></span>
-        <span class="comment-time" am-time-ago="comment.time"></span></div>
-        <div bo-html="comment.text | linky"></div>
-      </div>
+      <div avatars="comment.author" avatars-conf="{size: 'xsmall'}" class="avatars-without-names"></div>
+      <span class="comment-author-name" bo-html="comment.author.split('@')[0]"></span>
+      <span class="comment-time" am-time-ago="comment.time"></span>
+      <div bo-html="comment.text | linky"></div>
     </div>
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
-        <div class="form-group">
-          <div class="input-group input-group-sm">
-            <textarea class="form-control"
-                      rows="1" hide-tabs
-                      ng-model="newComment.text"
-                      placeholder="{{ 'need.comment.input' | translate}}"
-                      ng-keydown="keyDown($event)">
-            </textarea>
-            <span class="input-group-addon">
-              <button type="submit" class="btn btn-link need-comment-input-button">
-                <i class="i-send"></i>
-              </button>
-            </span>
-          </div>
-        </div>
+        <md-input-container md-no-float layout=row>
+          <textarea rows="1"
+                    ng-model="newComment.text"
+                    placeholder="{{ 'need.comment.input' | translate}}"
+                    ng-keydown="keyDown($event)">
+          </textarea>
+          <md-button type="submit" class="need-comment-input-button md-icon-button">
+            <md-icon>send</md-icon>
+          </md-button>
+        </md-input-container>
       </form>
     </div>
   </div>
