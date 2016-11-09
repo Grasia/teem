@@ -3,18 +3,14 @@
  * We should use less
  */
 
-@media (min-width: 992px)
+@media (min-width: $screen-sm-min)
   .navbar-absolute-top
     height: 100px
   .has-navbar-top .app-body
     padding-top: 100px
 
-@media (max-width: $screen-sm-max)
-  .has-navbar-top
-    .app-body
-      padding-top: 70px
-    .app-body.no-navbar-top
-      padding-top: 0px !important
+.app-body.no-navbar-top
+  padding-top: 0px !important
 
 .navbar-absolute-top
   border-bottom: 1px solid $light-grey
