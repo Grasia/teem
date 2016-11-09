@@ -36,6 +36,11 @@
   background: $needs-list-background-color
   .list-group-item
     background: inherit
+    padding: 5px 16px
+.project-desktop
+  .need-list
+    height: 50vh
+    overflow: auto
 
 .need-check-container
   width: 30px
@@ -54,8 +59,11 @@
 .need-name
   textarea
     font-size: 14px
+    font-weight: $font-weight-light
     cursor: auto
     resize: none
+    padding-bottom: 0
+    margin-bottom: 0
     >input
       cursor: auto
     &:not(:focus)

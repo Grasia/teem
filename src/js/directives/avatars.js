@@ -49,7 +49,7 @@ angular.module('Teem')
         // Fill with empty avatars to align last row of flexbox
         // https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid
         var conf = scope.avatarsConf() || {};
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 10; i++) {
           element.append(angular.element('<a class="avatar'+(conf.size ? '-'+conf.size : '')+' empty-avatar"></a>'));
         }
       }
