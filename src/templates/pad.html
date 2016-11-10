@@ -17,20 +17,20 @@
           </button>
         </div>
         <div class="btn-group btn-group-xs" role="group" aria-label="formats">
-          <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive, 'hidden-md': $index > 5}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
+          <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive, 'hidden-md': $index > 4, 'hidden-lg': $index > 5}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
             <i class="material-icons">{{btn}}</i>
           </button>
-          <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs hidden-md" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}">
+          <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs hidden-md hidden-lg" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}">
             <i class="material-icons">format_clear</i>
           </button>
-          <div class="btn-group btn-group-xs hidden-xs hidden-sm hidden-lg">
-            <button type="button" class="btn btn-raised btn-link btn-xs" ng-click="toggleTools = true">
+          <div class="btn-group btn-group-xs hidden-xs hidden-sm">
+            <button type="button" class="btn btn-raised btn-link btn-xs" ng-click="toggleTools = !toggleTools">
               <i class="material-icons">expand_more</i>
             </button>
             <ul class="dropdown-menu dropdown-menu-right dropdown-menu-toolbar {{toggleTools? '' : 'hidden'}}"
             ng-click="toggleTools = false">
               <div class="btn-group btn-group-xs">
-                <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive, 'hidden-md': $index <= 5}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
+                <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive, 'hidden-md': $index <= 4, 'hidden-lg': $index <= 5}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
                   <i class="material-icons">{{btn}}</i>
                 </button>
                 <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}">

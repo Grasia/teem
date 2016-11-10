@@ -9,8 +9,9 @@
   .has-navbar-top .app-body
     padding-top: 100px
 
-.app-body.no-navbar-top
-  padding-top: 0px !important
+@media (max-width: $screen-sm-max)
+  .has-navbar-top .app-body.no-navbar-top
+    padding-top: 0px !important
 
 .navbar-absolute-top
   border-bottom: 1px solid $light-grey
