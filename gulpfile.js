@@ -352,7 +352,7 @@ function buildHtml (env) {
   }
 
   if (typeof config.weinre === 'object') {
-    inject.push('<script src="http://'+config.weinre.boundHost+':'+config.weinre.httpPort+'/target/target-script-min.js"></script>');
+    inject.push('<script src="http://'+config.weinre.boundHost+':'+config.weinre.httpPort+'/target/target-script-min.js#anonymous"></script>');
   }
 
   return gulp.src(['src/html/**/*.html'])

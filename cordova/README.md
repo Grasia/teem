@@ -28,30 +28,30 @@ Initialize Android platform:
   cordova emulate android
 
   # Or run it in your device
-  
+
   cordova run android --device
 
 ### Debugging the app in Android
 
-The app can be accessed and debugged using [Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
-
-In the project root, copy the config.js.sample to your config.js
+Cordova app is configured to use `teem.works` server by default. If you want to
+use your own local server, copy config.js.sample to your config.js in the root
+folder.
 
   cp config.js.sample config.js
 
-Edit config.js and change the line
+Change hosts and ports at `config.js` and also at `cordova/config.xml`to point
+to your LAN/Internet device's IP (eth0, wlan0, etc).
 
-  config.weinre = true;
+The app can be accessed and debugged using
+[Weinre](http://people.apache.org/~pmuellr/weinre-docs/latest/Home.html)
 
-Restart the server
+At `config.js`, uncomment the `config.weinre` lines, and restart the server:
 
   gulp
 
-You can access weinre from your browser at:
+Now, you should be able to access weinre's console at:
 
-  http://[external-ip]:8080/client/#anonymous
-
-Being `external-ip` with the ip of your internet device (eth0, wlan0, etc..)
+  http://[lan-or-internet-ip]:8080/client/#anonymous
 
 ### When adding a new plugin to the app
 
