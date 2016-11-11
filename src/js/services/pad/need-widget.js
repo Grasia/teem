@@ -11,7 +11,7 @@ angular.module('Teem')
         onInit: function(parent, needId) {
           var element = angular.element(document.createElement('need-widget')),
               compiled = $compile(element)(scope),
-              need = scope.project.findNeed(needId),
+              need = scope.project.findNeed(needId) || scope.newNeed,
               stopEvents = ['keypress', 'keyup', 'keydown', 'paste'],
               isolateScope;
 
@@ -29,6 +29,13 @@ angular.module('Teem')
 
             isolateScope.project = scope.project;
             isolateScope.need = need;
+
+            isolateScope.onchange = function(){
+                  if (!scope.project.findNeed(needId)) {
+                    scope.project.addNeed(need);
+                    scope.newNeed = undefined;
+                  }
+                };
           });
 
           // Wait for the directive to be compiled before adding it
@@ -46,15 +53,21 @@ angular.module('Teem')
           },
           selection = editor.getSelection(),
           widget;
-          console.log(selection);
 
       if (selection.text) {
+
         need.text = selection.text;
 
         editor.deleteText(selection);
-      }
 
-      scope.project.addNeed(need);
+        scope.project.addNeed(need);
+
+      } else {
+
+        need._id = Math.random().toString().substring(2);
+
+        scope.newNeed = need;
+      }
 
       $timeout(() => {
         widget = editor.addWidget('need', need._id);
