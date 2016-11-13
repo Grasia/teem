@@ -1,7 +1,8 @@
 # Teem
 
-Teem is the [P2Pvalue](http://p2pvalue.eu/) collaboration tool for [common-based peer production communities (CBPPs)](https://en.wikipedia.org/wiki/Commons-based_peer_production)
+Teem is a web tool and mobile app for collaboration in communities, collectives and social movements, which facilitates onboarding of newcomers. It is built within the [P2Pvalue project](http://p2pvalue.eu/) with a focus on [common-based peer production communities (CBPPs)](https://en.wikipedia.org/wiki/Commons-based_peer_production)
 
+Find more in:
 http://teem.works/
 
 [![Build Status](https://travis-ci.org/P2Pvalue/teem.svg?branch=master)](https://travis-ci.org/P2Pvalue/teem)
