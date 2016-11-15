@@ -6,22 +6,21 @@
     background: $light-grey
     border: solid 1px $grey
   .btn-toolbar
-    .btn-group + .btn-group
-      border-left: 1px solid $pad-border-color
-    .btn-group
-      margin-top: 0
-      margin-bottom: 0
-      padding-left: 10px
-      .btn
-        padding: 10px
-        background: $light-grey
+    display: flex
+    justify-content: space-around
+    margin-top: 0
+    margin-bottom: 0
+    .btn
+      margin: 0
+      padding: 0
+      background: $light-grey
+      i
+        color: $bluey-grey
+      &.active, &:focus
+        border-color: transparent
+        background: transparent
         i
-          color: $bluey-grey
-        &.active, &:focus
-          border-color: transparent
-          background: $twilight-blue
-          i
-            color: $teal
+          color: $teal
     .dropdown-menu-toolbar
       background: transparent
       box-shadow: none
