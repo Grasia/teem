@@ -204,6 +204,8 @@ var gulp           = require('gulp'),
   pngcrush       = require('imagemin-pngcrush'),
   templateCache  = require('gulp-angular-templatecache'),
   mobilizer      = require('gulp-mobilizer'),
+  postcss        = require('gulp-postcss'),
+  autoprefixer   = require('autoprefixer'),
   ngAnnotate     = require('gulp-ng-annotate'),
   replace        = require('gulp-replace'),
   ngFilesort     = require('gulp-angular-filesort'),
@@ -379,6 +381,7 @@ gulp.task('sass', function () {
     .pipe(sass({
       includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components'), path.resolve(__dirname, 'bower_components/bootstrap-sass/assets/stylesheets') ]
     }).on('error', sass.logError))
+    .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions', 'Android >= 4'] }) ]))
     /* Currently not working with sourcemaps
     .pipe(mobilizer('app.css', {
       'app.css': {
