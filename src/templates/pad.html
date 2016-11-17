@@ -3,21 +3,21 @@
   ngf-drop="widget('img', $file)" ngf-fix-orientation="true">
     <div ng-if="pad.editing" class="pad-toolbar" sticky>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <button type="button" ng-click="linkModal.add($event)" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.link' | translate}}">
+        <button type="button" ng-click="linkModal.add($event)" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.link' | translate}}" tooltip-append-to-body="true">
           <i class="material-icons">link</i>
         </button>
         <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
-          <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.img' | translate}}">
+          <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.img' | translate}}" tooltip-append-to-body="true">
             <i class="material-icons">image</i>
           </button>
         </span>
-        <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.need' | translate}}">
+        <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.need' | translate}}" tooltip-append-to-body="true">
           <i class="material-icons">check_box</i>
         </button>
-        <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}">
+        <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}" tooltip-append-to-body="true">
           <i class="material-icons">{{btn}}</i>
         </button>
-        <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}">
+        <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}" tooltip-append-to-body="true">
           <i class="material-icons">format_clear</i>
         </button>
       </div>
