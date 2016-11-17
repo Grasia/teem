@@ -1,9 +1,8 @@
 ### Setup
 
-First of all, you must have
-[Android SDK](https://developer.android.com/studio/index.html) and
-[cordova](https://cordova.apache.org/docs/en/4.0.0/guide_cli_index.md.html)
-installed.
+First of all, you must have:
+* [Android SDK](https://developer.android.com/studio/index.html)
+* Cordova: `npm install -g cordova`
 
 Use Android SDK Manager to download files under `Android 5.0.1 (API 21)` and
 from the Extras folder ```Android Support Repository```,
