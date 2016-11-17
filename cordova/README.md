@@ -17,6 +17,9 @@ Initialize Android platform:
 - Camera plugin
     cordova plugin add cordova-plugin-camera
 
+- Crosswalk webview
+    cordova plugin add cordova-plugin-crosswalk-webview
+
 ### Create the emulator
   - Use Android SDK Manager to download Android SDKs, e.g. files under Android 5.0.1 (API 21) and from the Extras folder ```Android Support Library```, ```Android Support Repository```, ```Google Play Services``` and ```Google Repository```
 
