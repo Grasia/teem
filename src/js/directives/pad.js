@@ -103,7 +103,7 @@ angular.module('Teem')
           $scope.padCreate = function(editor) {
 
             $scope.linkModal = {
-              add: function() {
+              add: function(event) {
                 event.stopPropagation();
                 let range = editor.getSelection();
                 if (range.text) {
