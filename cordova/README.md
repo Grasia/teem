@@ -2,7 +2,8 @@
 
 First of all, you must have:
 * [Android SDK](https://developer.android.com/studio/index.html)
-* Cordova: `npm install -g cordova`
+* Cordova: `sudo npm install -g cordova cordova-icon`
+* Imagemagik: `sudo apt-get install imagemagick`
 
 Use Android SDK Manager to download files under `Android 5.0.1 (API 21)` and
 from the Extras folder ```Android Support Repository```,

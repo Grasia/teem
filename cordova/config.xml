@@ -18,15 +18,13 @@ http://p2pvalue.eu/
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="whatsapp://*" />
-    <platform name="android">
-        <allow-intent href="market:*" />
-    </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
     <access origin="*" />
     <platform name="android">
+      <allow-intent href="market:*" />
       <config-file target="AndroidManifest.xml" parent="application/activity">
         <intent-filter>
           <action android:name="android.intent.action.VIEW"></action>
@@ -38,10 +36,6 @@ http://p2pvalue.eu/
       </config-file>
       <preference name="android-minSdkVersion" value="16" />
       <preference name="android-targetSdkVersion" value="23" />
-      <icon src="res/icon.png" density="ldpi" />
-      <icon src="res/icon.png" density="mdpi" />
-      <icon src="res/icon.png" density="hdpi" />
-      <icon src="res/icon.png" density="xhdpi" />
     </platform>
     <icon src="res/icon.png" />
 </widget>

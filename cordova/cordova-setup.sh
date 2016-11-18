@@ -17,3 +17,5 @@ cordova plugin add cordova-plugin-camera
 
 #Crosswalk webview
 cordova plugin add cordova-plugin-crosswalk-webview
+
+cordova prepare
