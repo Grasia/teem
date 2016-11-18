@@ -1,12 +1,14 @@
 <button ng-if="!text" class="btn btn-default btn-fab plus"
         ng-click="create()"
         analytics-on="click"
-        analytics-event="New {{type}}">
+        analytics-category="Create {{type}}"
+        analytics-event="New">
   <i class="material-icons">add</i>
 </button>
 <button ng-if="text" class="btn btn-primary btn-raised pull-right i-edit"
         ng-click="create()"
         analytics-on="click"
-        analytics-event="New {{type}}">
+        analytics-category="Create {{type}}"
+        analytics-event="New">
   {{text | translate}}
 </button>
