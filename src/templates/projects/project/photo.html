@@ -17,7 +17,11 @@
       <div class="project-item-title">{{project.title}}</div>
     </div>
     <div class="project-item-icons">
-      <i class="i-share icon-count" ui-set="{'modal.share': 'shareModalCreate'}"></i>
+      <i class="i-share icon-count"
+         ui-set="{'modal.share': 'shareModalCreate'}"
+         analytics-on="click"
+         analytics-category="Share project"
+         analytics-event="Click to share"></i>
       <i class="i-community icon-count">
         <span class="icon-count-number">{{project.participantCount()}}</span>
       </i>
