@@ -11,10 +11,11 @@ angular.module('Teem')
 
           if (!$scope.project.isParticipant()){
 
-            var origin = $routeParams.origin;
-            console.log($routeParams);
+            var campaign = $routeParams.pk_campaign;
 
-            if ($scope.joinModal && typeof origin === 'undefined') {
+            var skipModal = !$scope.joinModal || campaign === 'joinEmail' || campaign === 'inviteEmail';
+
+            if (skipModal) {
               SharedState.set('modal.join', { name: 'join' });
             } else {
               SessionSvc.loginRequired($scope, function() {

@@ -27,10 +27,14 @@ angular.module('Teem')
         return this.pathPrefix + this.urlId;
       }
 
-      url () {
+      url (campaign) {
         // using location.host instead of $location.host because
         // it gives port information when needed
-        return $location.protocol() + '://' +  location.host  + this.path();
+        var url = $location.protocol() + '://' +  location.host  + this.path();
+        if (campaign){
+          url += '?pk_campaign=' + campaign;
+        }
+        return url;
       }
 
       static encode (id) {
