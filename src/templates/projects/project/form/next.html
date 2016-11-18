@@ -5,7 +5,14 @@
   translate>picture.clear</button>
 
   <div ng-class="{'pull-right': nextForm()}">
-    <span class="project-form-next-message" ng-if="form() === 'image' && !pic.croppedPicture || form() === 'share'" translate>
+    <span class="project-form-next-message" ng-if="form() === 'image' && !pic.croppedPicture || form() === 'share'"
+      ng-disabled="createProjectFormInvalid()"
+      ng-click="goToNextForm()"
+      analytics-category="Create project"
+      analytics-event="Next"
+      analytics-label="Form"
+      analytics-value="{{ nextForm() || 'finish' }}"
+      translate>
       project.form.share.next.message
     </span>
     <button class="btn btn-primary"
