@@ -15,7 +15,7 @@ angular.module('Teem')
 
             var skipModal = !$scope.joinModal || campaign === 'joinEmail' || campaign === 'inviteEmail';
 
-            if (skipModal) {
+            if (!skipModal) {
               SharedState.set('modal.join', { name: 'join' });
             } else {
               SessionSvc.loginRequired($scope, function() {
