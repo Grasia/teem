@@ -59,9 +59,24 @@
         <div class="project-join-success-text" translate>
           project.join.success.text
         </div>
-        <a class="btn btn-primary btn-raised btn-block" join join-model="$ctrl.project" join-copy-off="project.join.success.start"></a>
-        <a href="/teems/new" class="btn btn-primary btn-link btn-block" translate>project.join.success.add</a>
-        <a href="/teems" class="btn btn-primary btn-link btn-block" translate>project.join.success.explore</a>
+        <a class="btn btn-primary btn-raised btn-block"
+           join
+           join-model="$ctrl.project"
+           join-copy-off="project.join.success.start"
+           analytics-on="click"
+           analytics-category="Join project"
+           analytics-event="Join"></a>
+        <a href="/teems/new" class="btn btn-primary btn-link btn-block"
+           analytics-on="click"
+           analytics-category="Join project"
+           analytics-event="Create project"
+           translate>project.join.success.add</a>
+        <a href="/teems"
+           class="btn btn-primary btn-link btn-block"
+           analytics-on="click"
+           analytics-category="Join project"
+           analytics-event="Explore"
+           translate>project.join.success.explore</a>
       </div>
     </main>
   </modal>

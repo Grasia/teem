@@ -31,7 +31,8 @@
               join-copy-on="project.participate.btn.undo"
               join-copy-off="project.participate.btn.do"
               analytics-on="click"
-              analytics-event="Join project">
+              analytics-category="Join project"
+              analytics-event="Click join button">
       </button>
     </div>
     <div class="container info-tip" ng-if="project.isParticipant() && !pad.editing && infoTip()">

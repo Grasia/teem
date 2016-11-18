@@ -13,7 +13,7 @@
            analytics-category="Share project"
            analytics-event="Click to share"><span translate>project.menu.share</span></a></li>
     <li><a feature feature-copy-on="project.menu.unfeature" feature-copy-off="project.menu.feature" feature-model="project"></a></li>
-    <li ng-if="project.isParticipant()"><a join join-modal="true" join-copy-on="project.menu.leave" join-copy-off="project.menu.join" join-model="project" analytics-on="click" analytics-event="Join project"></a></li>
+    <li ng-if="project.isParticipant()"><a join join-modal="true" join-copy-on="project.menu.leave" join-copy-off="project.menu.join" join-model="project" analytics-on="click" analytics-category="Join project" analytics-event="Click join button"></a></li>
     <li ng-if="project.isParticipant()"><a ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: uploadProjectPhoto}}" translate>project.menu.change_photo</a></li>
     <!--<li><a ng-click="archiveProject()" translate>project.tooltip.archive</a></li>-->
     <li ng-if="project.isParticipant()"><a ui-set="{'modal.confirm': {

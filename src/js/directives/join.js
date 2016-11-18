@@ -24,7 +24,6 @@ angular.module('Teem')
             }
 
             $timeout();
-            $analytics.eventTrack('Join project', {});
           } else {
 
             SessionSvc.loginRequired($scope, function() {
