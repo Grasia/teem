@@ -36,4 +36,8 @@
   </div>
 
   <div ng-if="isDesktop()" class="project project-desktop scrollable"><sticky-scroll class="scrollable-content" ng-include="'projects/project/desktop.html'"></sticky-scroll></div>
+
+  <div ui-content-for="projectShareModal">
+    <div projects-share-modal></div>
+  </div>
 </div>
