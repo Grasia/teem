@@ -31,7 +31,7 @@ angular.module('Teem')
         // using location.host instead of $location.host because
         // it gives port information when needed
         var url = $location.protocol() + '://' +  location.host  + this.path();
-        if (options.campaign){
+        if (options && options.campaign){
           url += '?pk_campaign=' + options.campaign;
         }
         return url;
