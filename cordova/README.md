@@ -46,7 +46,7 @@ folder.
 cp config.js.sample config.js
 ```
 
-Change hosts and ports at `config.js` and also at `cordova/config.xml`to point
+Change hosts and ports at `../config.js` and also at `config.xml`to point
 to your LAN/Internet device's IP (eth0, wlan0, etc).
 
 The app can be accessed and debugged using
@@ -86,7 +86,7 @@ cp build.json.example build.json
 
 And customize it with the path to the keystore.
 
-To build the package:
+To build the package, bump the app's version at `config.xml` and then:
 
 ```sh
 cordova build --release
@@ -94,3 +94,5 @@ cordova build --release
 
 The package will be stored at
 `cordova/platforms/android/build/outputs/apk/android-release.apk`.
+
+Upload it to https://play.google.com/apps/publish/.

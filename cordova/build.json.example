@@ -2,7 +2,9 @@
   "android": {
     "release": {
       "keystore": "/path/to/keystore",
-      "alias": "pear2pear"
+      "alias": "pear2pear",
+      "storePassword": "********",
+      "password": "*******"
     }
   }
 }
