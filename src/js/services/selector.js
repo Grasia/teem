@@ -192,7 +192,10 @@ angular.module('Teem')
           }
 
           if (emails.length > 0){
-            swellRT.invite(emails, hasParticipantsObject.url(),
+
+            var markedUrl = hasParticipantsObject.url() + '?origin=inviteMail';
+
+            swellRT.invite(emails, markedUrl,
               // project.title || community.name
               hasParticipantsObject.title || hasParticipantsObject.name, function(s){console.log(s);}, function(e){console.log('error:', e);});
 

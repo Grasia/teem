@@ -28,9 +28,11 @@ class JoinModalCtrl {
   send () {
     this.$scope.message.sending = true;
 
+    var markedUrl = this.project.url() + '?origin=joinEmail';
+
     this.swellRT.join(
       this.$scope.message.email,
-      this.project.url(),
+      markedUrl,
       this.project.title,
       this.$scope.message.text,
       this.project.promoter,

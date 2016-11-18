@@ -46,7 +46,10 @@ angular.module('Teem')
             }
 
             if (emails.length > 0){
-              swellRT.invite(emails, scope[objectName].url(),
+
+              var markedUrl = scope[objectName].url() + '?origin=inviteMail';
+
+              swellRT.invite(emails, markedUrl,
               // project.title || community.name
                scope[objectName].title || scope[objectName].name, function(s){console.log(s);}, function(e){console.log('error:', e);});
             }
