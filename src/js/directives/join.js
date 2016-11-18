@@ -4,13 +4,17 @@ angular.module('Teem')
   .directive('join', function() {
     return {
       controller: [
-      '$scope', '$element', 'SessionSvc', '$timeout', '$analytics', 'SharedState',
-      function($scope, $element, SessionSvc, $timeout, $analytics, SharedState) {
+      '$scope', '$element', 'SessionSvc', '$timeout', '$analytics', 'SharedState', '$routeParams',
+      function($scope, $element, SessionSvc, $timeout, $analytics, SharedState, $routeParams) {
 
         $element.on('click', function() {
 
           if (!$scope.project.isParticipant()){
-            if ($scope.joinModal) {
+
+            var origin = $routeParams.origin;
+            console.log($routeParams);
+
+            if ($scope.joinModal && typeof origin === 'undefined') {
               SharedState.set('modal.join', { name: 'join' });
             } else {
               SessionSvc.loginRequired($scope, function() {
