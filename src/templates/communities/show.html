@@ -1,11 +1,1 @@
-<div ui-content-for="nav-title">
-  <div class="overflow-ellipsis">{{ community.name || 'community.new.title' | translate }}</div>
-</div>
-
-<div ng-repeat="content in ['nav-right', 'nav-desktop']">
-  <div ui-content-for="{{content}}">
-    <div ng-include="'communities/community/menu.html'"></div>
-  </div>
-</div>
-
 <community></community>
