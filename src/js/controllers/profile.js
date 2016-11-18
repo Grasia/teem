@@ -54,7 +54,6 @@ angular.module('Teem')
             return;
           }
           // TODO: this should update all avatars in a 2-way-data binding way
-          document.querySelector('.menu-session-logged-in .avatars img').src = res.data.avatarUrl;
           document.querySelector('.profile .avatar-responsive img').src = res.data.avatarUrl;
           Notification.success(croppedAvatar ? 'profile.avatar.upload.success' : 'profile.avatar.remove.success');
         });

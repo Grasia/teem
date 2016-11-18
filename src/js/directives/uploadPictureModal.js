@@ -4,14 +4,14 @@ angular.module('Teem')
   .directive('uploadPictureModal', function() {
     return {
       controller: ['$scope', 'SharedState', '$timeout', '$filter', function($scope, SharedState, $timeout, $filter) {
-        $scope.pic = {
-          pictureFile: '',
-          croppedPicture: ''
-        };
         var cb = {};
 
         $scope.$on('mobile-angular-ui.state.changed.modal.uploadPicture', function(e, newValue) {
           cb = newValue && newValue.callback || {};
+          $scope.pic = {
+            pictureFile: '',
+            croppedPicture: ''
+          };
           if (cb.areaType === 'rectangle') {
             $scope.areaType = 'rectangle';
             $scope.aspectRatio = 1.56;
