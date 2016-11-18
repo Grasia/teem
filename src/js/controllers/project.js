@@ -267,11 +267,8 @@ angular.module('Teem')
 
       if ($location.search('form')) {
         $location.search('form', null);
-
-        $location.path('/teems');
-      } else {
-        $location.path('/home/teems');
       }
+      $location.path('/home/teems');
     };
 
     $scope.hasChanged = function(section){
