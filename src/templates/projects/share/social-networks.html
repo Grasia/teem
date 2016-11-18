@@ -4,7 +4,7 @@
     socialshare
     socialshare-provider="facebook"
     socialshare-text="{{project.title}}"
-    socialshare-url="{{project.url()}}"
+    socialshare-url="{{project.url({campaign: 'facebookShare'})}}"
     socialshare-media="{{project.logoUrl()}}"
     analytics-on="click"
     analytics-category="Share project"
@@ -17,7 +17,7 @@
     socialshare
     socialshare-provider="twitter"
     socialshare-text="{{project.title}}"
-    socialshare-url="{{project.url()}}"
+    socialshare-url="{{project.url({campaign: 'twitterShare'})}}"
     analytics-on="click"
     analytics-category="Share project"
     analytics-event="Share in SN"
@@ -29,7 +29,7 @@
     socialshare
     socialshare-provider="whatsapp"
     socialshare-text="{{project.title}}"
-    socialshare-url="{{project.url()}}"
+    socialshare-url="{{project.url({campaign: 'whatsappShare'})}}"
     analytics-on="click"
     analytics-category="Share project"
     analytics-event="Share in SN"
@@ -40,7 +40,7 @@
     <a class="btn btn-default btn-fab visible-xs-inline-block"
     socialshare
     socialshare-provider="sms"
-    socialshare-text="{{project.title + ' ' + project.url()}}"
+    socialshare-text="{{project.title + ' ' + project.url({campaign: 'smsShare'})}}"
     analytics-category="Share project"
     analytics-event="Share in SN"
     analytics-label="Provider"
