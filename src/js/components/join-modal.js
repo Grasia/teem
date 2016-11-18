@@ -30,7 +30,7 @@ class JoinModalCtrl {
 
     this.swellRT.join(
       this.$scope.message.email,
-      this.project.url('joinEmail'),
+      this.project.url({campaign: 'joinEmail'}),
       this.project.title,
       this.$scope.message.text,
       this.project.promoter,
