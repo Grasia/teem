@@ -14,9 +14,11 @@ plus:not([text ])
     color: inherit
 
 .plus-mobile
-  @extend .hidden-desktop
+  @extend .hidden-sm
+  @extend .hidden-md
+  @extend .hidden-lg
 
 .plus-desktop
-  @extend .hidden-mobile
+  @extend .hidden-xs
   top: 19px
   bottom: auto
