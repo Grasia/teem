@@ -19,6 +19,11 @@
   <div ng-include="'projects/share/invite.html'"></div>
 
   <div class="project-form-share-invite-btn">
-    <button class="btn btn-primary btn-raised btn-block" ng-click="inviteUsers()" translate>project.form.share.invite.button</button>
+    <button class="btn btn-primary btn-raised btn-block"
+            ng-click="inviteUsers()"
+            analytics-on="click"
+            analytics-category="Invite to project"
+            analytics-event="Send"
+            translate>project.form.share.invite.button</button>
   </div>
 </div>

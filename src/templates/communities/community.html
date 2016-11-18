@@ -130,7 +130,13 @@
             {{ 'community.participants.title' | translate }}
           </h2>
         <div avatars="community._participants" avatars-conf="{size: 'small'}" class="avatars"></div>
-        <button ng-if="community.isParticipant()" class="invite-button btn btn-primary btn-raised btn-block i-participant-new" ui-set="{'modal.invite': 'invite'}" translate>
+        <button ng-if="community.isParticipant()"
+                class="invite-button btn btn-primary btn-raised btn-block i-participant-new"
+                ui-set="{'modal.invite': 'invite'}"
+                analytics-on="click"
+                analytics-category="Invite to community"
+                analytics-event="Click invite button"
+                translate>
             project.add_people.button
         </button>
 
@@ -145,7 +151,12 @@
             </main>
             <footer>
               <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
-              <button class="btn btn-primary" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+              <button class="btn btn-primary"
+                      ng-click="inviteUsers()"
+                      analytics-on="click"
+                      analytics-category="Invite to community"
+                      analytics-event="Send"
+                      translate>project.add_people.button_continue</button>
             </footer>
           </modal>
         </div>
