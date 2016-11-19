@@ -176,7 +176,10 @@ angular.module('Teem')
         _urlId: 1,
         type: 1,
         featured: 1,
-        communities: 1
+        communities: 1,
+        pad: {
+          lastmodtime: 1
+        }
       }
     };
 
