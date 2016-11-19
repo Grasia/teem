@@ -6,7 +6,12 @@
         <div class="community-share-button">
           <!--<i class="i-share"></i>-->
         </div>
-        <div ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()">
+        <div ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()" class="pos-r">
+          <div ng-if="community.logo() === ' '" class="spinner-container">
+            <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+              <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+            </svg>
+          </div>
           <img ng-src="{{community.logo()}}">
         </div>
         <div ng-if="!community.isParticipant()">

@@ -39,25 +39,32 @@ angular.module('Teem')
 
           var annotations = {};
 
+          function imgWidget(parentElement, before, state) {
+            state = state || before;
+
+            if (!(state in $scope.project.attachments) || !$scope.project.attachments[state].file) {
+              return;
+            }
+
+            parentElement.innerHTML = `
+            <div class="pos-r">
+              <div class="spinner-container">
+                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg>
+              </div>
+            </div>`;
+
+            $scope.project.attachments[state].file.getUrl().then(url => {
+              parentElement.innerHTML = `<img src="${url}">`;
+            });
+          }
+
           $scope.padWidgets = {
             'need': needWidget.getWidget($scope),
             'img': {
-              onInit: function(parentElement, state) {
-                if (!(state in $scope.project.attachments) || !$scope.project.attachments[state].file) {
-                  return;
-                }
-                $scope.project.attachments[state].file.getUrl().then(url => {
-                  parentElement.innerHTML='<img src="'+url+'">';
-                });
-              },
-              onChangeState: function(parentElement, before, state) {
-                if (!(state in $scope.project.attachments) || !$scope.project.attachments[state].file) {
-                  return;
-                }
-                $scope.project.attachments[state].file.getUrl().then(url => {
-                  parentElement.innerHTML='<img src="'+url+'">';
-                });
-              }
+              onInit: imgWidget,
+              onChangeState: imgWidget
             }
           };
 

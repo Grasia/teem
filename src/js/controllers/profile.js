@@ -53,9 +53,13 @@ angular.module('Teem')
             Notification.error(croppedAvatar ? 'profile.avatar.upload.error' : 'profile.avatar.remove.error');
             return;
           }
+          let img = document.querySelector('.profile .avatar-responsive img');
           // TODO: this should update all avatars in a 2-way-data binding way
-          document.querySelector('.profile .avatar-responsive img').src = res.data.avatarUrl;
-          Notification.success(croppedAvatar ? 'profile.avatar.upload.success' : 'profile.avatar.remove.success');
+          img.src = res.data.avatarUrl;
+          img.addEventListener('load', () => {
+            Notification.success(croppedAvatar ? 'profile.avatar.upload.success' : 'profile.avatar.remove.success');
+            $scope.updateAvatar.loading = false;
+          });
         });
       };
       $scope.updateAvatar.dataURI = true;

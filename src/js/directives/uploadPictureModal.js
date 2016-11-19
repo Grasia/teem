@@ -23,6 +23,7 @@ angular.module('Teem')
 
         $scope.updatePicture = function(croppedPicture) {
           if (typeof cb === 'function') {
+            cb.loading = true;
             if (!croppedPicture) {
               cb();
             } else {
