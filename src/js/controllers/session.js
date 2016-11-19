@@ -54,8 +54,8 @@ angular.module('Teem')
     }
   )
   .controller('SessionCtrl', [
-    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification',
-    function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification) {
+    '$scope', '$location', '$route', 'SessionSvc', '$timeout', 'SharedState', 'Notification', '$q', 'Loading',
+    function($scope, $location, $route, SessionSvc, $timeout, SharedState, Notification, $q, Loading) {
 
     $scope.session = {};
 
@@ -82,29 +82,43 @@ angular.module('Teem')
 
     $scope.submit.login = function() {
       var fields = $scope.form.values;
+
+
       var startSession = function() {
+
+        var loginDef = $q.defer();
+        var loginPromise = loginDef.promise;
 
         SessionSvc.startSession(
           fields.nick, fields.password,
           function(){
             // TODO: Should we move it to a service?
-            var notificationScope = $scope.$new(true);
-            notificationScope.values = {nick: fields.nick};
-            Notification.success({message: 'session.login.success', scope: notificationScope});
-            $timeout(function(){
-              SharedState.turnOff('modal.session');
-            });
+            loginDef.resolve();
+
           },
           function(error){
-            if (error === 'ACCESS_FORBIDDEN_EXCEPTION') {
-              $timeout(function(){
-                $scope.error.current = 'wrong_email_or_password';
-              });
-            }
+            loginDef.reject(error);
+
           }
         );
+        return loginPromise;
       };
-      startSession();
+
+      Loading.show(startSession()).then(function(){
+        var notificationScope = $scope.$new(true);
+        notificationScope.values = {nick: fields.nick};
+        Notification.success({message: 'session.login.success', scope: notificationScope});
+        $timeout(function(){
+          SharedState.turnOff('modal.session');
+        });
+      }, function(error){
+        if (error === 'ACCESS_FORBIDDEN_EXCEPTION') {
+          $timeout(function(){
+            $scope.error.current = 'wrong_email_or_password';
+          });
+        }
+      });
+
     };
 
     $scope.submit.register = function() {
