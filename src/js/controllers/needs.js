@@ -26,7 +26,6 @@ angular.module('Teem')
         },
         link: function (scope, element, attrs, needsCtrl) {
           scope.toggleCompleted = function (need, event) {
-            event.stopPropagation();
             // Needed by the magic of material design
             event.preventDefault();
 
