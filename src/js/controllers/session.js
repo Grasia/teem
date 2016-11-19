@@ -235,9 +235,6 @@ angular.module('Teem')
     var passwordPattern = /^.{6,}$/;
 
     $scope.validation = {
-      required: function() {
-        return $scope.form.current !== 'login';
-      },
       nickPattern: function() {
         return $scope.form.current !== 'login' ? nickPattern : null;
       },
