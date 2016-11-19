@@ -167,6 +167,19 @@ angular.module('Teem')
       });
     };
 
+    var projectListProjection = {
+      participants: 1,
+      root: {
+        title: 1,
+        image: 1,
+        id: 1,
+        _urlId: 1,
+        type: 1,
+        featured: 1,
+        communities: 1
+      }
+    };
+
     SessionSvc.onLoad(function(){
       switch ($scope.context) {
         case 'community':
@@ -177,7 +190,7 @@ angular.module('Teem')
 
               $scope.translationData.community = community.name;
 
-              Loading.show(community.myAndPublicProjects()).
+              Loading.show(community.myAndPublicProjects({projection: projectListProjection})).
                 then(function (projects){
 
                   $scope.projects = projects;
@@ -190,7 +203,10 @@ angular.module('Teem')
         case 'home':
         case 'project':
           SessionSvc.loginRequired($scope, function() {
-            var projsPromise = ProjectsSvc.all({ contributor: SessionSvc.users.current() });
+            var q = { contributor: SessionSvc.users.current() };
+            q.projection = projectListProjection;
+
+            var projsPromise = ProjectsSvc.all(q);
             Loading.show(projsPromise).
               then(function(projects) {
 
@@ -219,6 +235,8 @@ angular.module('Teem')
           } else if ($scope.context === 'latest'){
             q.latest = true;
           }
+
+        q.projection = projectListProjection;
 
           var defProjsPromiseFeat = ProjectsSvc.all(q);
           Loading.show(defProjsPromiseFeat).

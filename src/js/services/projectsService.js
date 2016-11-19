@@ -456,6 +456,12 @@ angular.module('Teem')
         query._aggregate[1].$sort = {'_id' : -1};
       }
 
+      if (options.projection){
+        query._aggregate.push({
+          $project: options.projection
+        });
+      }
+
       return query;
     }
 
@@ -489,7 +495,6 @@ angular.module('Teem')
       };
 
       var projsPromise = $q(function(resolve, reject) {
-
         swellRT.query(query, function(result) {
           angular.forEach(result.result, function(val){
             var v = new ProjectReadOnly(val);

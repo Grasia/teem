@@ -78,10 +78,10 @@ angular.module('Teem')
             '');
       }
 
-      myAndPublicProjects () {
-        return ProjectsSvc.all({
-           community: this.id
-         });
+      myAndPublicProjects (options = {}) {
+        options.community = this.id;
+
+        return ProjectsSvc.all(options);
       }
     }
 
