@@ -15,13 +15,21 @@ angular.element(document).ready(function () {
         angular.bootstrap(document.documentElement, ['Teem']);
         d.addEventListener('resume', onResume, false);
         console.log('deviceReady');
-        window.plugins.intent.getCordovaIntent(function (Intent) {
-            console.log(Intent);
+        window.plugins.intent.getCordovaIntent(function (intent) {
+          console.log('getCordovaIntent');
+          console.log(intent);
+          if (intent.data) {
+            window.location = intent.data;
+          }
         }, function () {
             console.log('Error');
         });
-        window.plugins.intent.setNewIntentHandler(function (Intent) {
-            console.log(Intent);
+        window.plugins.intent.setNewIntentHandler(function (intent) {
+          console.log('setNewIntnetHandler');
+          console.log(intent);
+          if(intent.data) {
+            window.location = intent.data;
+          }
         });
       }
 

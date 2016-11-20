@@ -22,3 +22,6 @@ cordova plugin add cordova-plugin-camera
 cordova plugin add cordova-plugin-crosswalk-webview
 
 cordova prepare
+
+cp platforms/android/assets/www/cordova_plugins.js ../src/vendor/cordova/cordova_plugins.js
+cp -r platforms/android/assets/www/plugins/ ../src/vendor/cordova/
