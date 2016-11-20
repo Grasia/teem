@@ -64,14 +64,10 @@ Now, you should be able to access weinre's console at:
 
 ### When adding a new plugin to the app
 
-Cordova's js files are distributed with the web application. We need to copy
-them to other folder, which is checked-in in git.
+Cordova's js files are distributed with the web application. `./cordova-setup.sh`
+copies them automatically to other folder, which is checked-in in git.
 
-After adding a new plugin:
-
--  copy the new or updated files from platform/android/assets/www/plugins/ to
-../src/vendor/cordova/
--  add them and commit them with git.
+So, after adding a new plugin, commit them with git.
 
 ### Releasing and signing the apk
 

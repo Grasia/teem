@@ -39,15 +39,25 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "id": "com.napolitano.cordova.plugin.intent.IntentPlugin",
+        "file": "plugins/com.napolitano.cordova.plugin.intent/www/android/IntentPlugin.js",
+        "pluginId": "com.napolitano.cordova.plugin.intent",
+        "clobbers": [
+            "IntentPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-whitelist": "1.3.1-dev",
-    "phonegap-plugin-push": "1.8.2",
-    "cordova-plugin-compat": "1.0.0",
-    "cordova-plugin-camera": "2.3.0"
+    "phonegap-plugin-push": "1.9.0",
+    "cordova-plugin-compat": "1.1.0",
+    "cordova-plugin-camera": "2.3.0",
+    "cordova-plugin-crosswalk-webview": "2.2.0",
+    "com.napolitano.cordova.plugin.intent": "0.1.3"
 };
 // BOTTOM OF METADATA
 });

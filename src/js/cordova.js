@@ -14,6 +14,15 @@ angular.element(document).ready(function () {
       function onDeviceReady() {
         angular.bootstrap(document.documentElement, ['Teem']);
         d.addEventListener('resume', onResume, false);
+        console.log('deviceReady');
+        window.plugins.intent.getCordovaIntent(function (Intent) {
+            console.log(Intent);
+        }, function () {
+            console.log('Error');
+        });
+        window.plugins.intent.setNewIntentHandler(function (Intent) {
+            console.log(Intent);
+        });
       }
 
       // When cordova is loaded
