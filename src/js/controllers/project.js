@@ -88,9 +88,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT', '$filter',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector', '$http',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector', '$http', '$translate',
   function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT, $filter,
-  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector, $http) {
+  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector, $http, $translate) {
 
     // Prevent users from forging the form parameter
     // and set the form order
@@ -351,9 +351,13 @@ angular.module('Teem')
             return callback();
           }
 
+          let lang = $translate.use();
+          let url = `http://api.geonames.org/search?name_startsWith=${query}&maxRows=10&featureClass=P&username=teem&type=json&lang=${lang}`;
+          url = 'https://jsonp.afeld.me/?url=' + window.escape(url);
+
           $http({
             method: 'GET',
-            url: 'http://api.geonames.org/search?name_startsWith=' + query + '&maxRows=10&featureClass=P&username=teem&type=json&lang=' + navigator.language.slice(0,2)
+            url
           }).then(function (response) {
             angular.forEach(response.data.geonames, function(v) {
                v.value = {
