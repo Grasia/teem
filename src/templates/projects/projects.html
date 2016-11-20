@@ -1,9 +1,12 @@
 <div class="projects list-group"
   infinite-scroll="getProjectsPage()"
-  infinite-scroll-disabled="bussyPagination || farFromLast()"
+  infinite-scroll-disabled="bussyPagination || finishedPagination || farFromLast()"
   infinite-scroll-inmediate-check="false"
   infinite-scroll-distance="0">
   <div class="project-item col-sm-4 list-group-item" ng-repeat="project in projects| orderBy:sortKey()" ng-click="showProject(project)" ng-if="project.title!==''">
     <div ng-include="'projects/project/photo.html'"></div>
   </div>
+</div>
+<div class="bottom-loader">
+  <div ng-if="bussyPagination" ng-include="'spinner.html'"></div>
 </div>

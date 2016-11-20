@@ -45,15 +45,14 @@ angular.module('Teem')
             scope.container = attrs.container;
             var overflowLast = 100000;
 
-            var scrollFunct = function () {
-              $timeout(function(){
+            scope.scrollFunct = function () {
+              $timeout();
                 overflowLast =
-                element.children(0).children().last().offset().top;
-              });
+                element.children(0).children().children().last().offset().top;
             };
 
             $timeout(function () {
-              angular.element(attrs.container).on('scroll', scrollFunct);
+              angular.element(attrs.container).on('scroll', scope.scrollFunct);
             });
 
             scope.farFromLast = function() {

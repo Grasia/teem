@@ -128,11 +128,18 @@ angular.module('Teem')
             Array.prototype.push.apply(
               $scope.projects,
               projects);
-
-              $scope.projsNextPage = projsPromise.next;
-              $scope.bussyPagination = false;
+          } else {
+            $timeout(function () {
+              $scope.finishedPagination = true;
+            });
           }
+          $timeout(function () {
+            //update offset
+            $scope.scrollFunct();
 
+            $scope.projsNextPage = projsPromise.next;
+            $scope.bussyPagination = false;
+          });
         });
       }
     };

@@ -496,6 +496,11 @@ angular.module('Teem')
 
       var projsPromise = $q(function(resolve, reject) {
         swellRT.query(query, function(result) {
+
+          if (result.length === 0) {
+            nextPage = undefined;
+          }
+
           angular.forEach(result.result, function(val){
             var v = new ProjectReadOnly(val);
             projects.push(v);
