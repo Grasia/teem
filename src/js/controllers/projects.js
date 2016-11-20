@@ -115,6 +115,7 @@ angular.module('Teem')
     }
 
     $scope.bussyPagination = true;
+    $scope.finishedPagination = false;
 
     $scope.getProjectsPage = function() {
       if ($scope.bussyPagination){
@@ -122,6 +123,7 @@ angular.module('Teem')
       }
       if ($scope.projects && typeof $scope.projsNextPage === 'function'){
         $scope.bussyPagination = true;
+        $timeout();
         var projsPromise = $scope.projsNextPage();
         projsPromise.then((projects)=>{
           if (projects.length > 0) {
@@ -129,35 +131,27 @@ angular.module('Teem')
               $scope.projects,
               projects);
           } else {
-            $timeout(function () {
               $scope.finishedPagination = true;
-            });
           }
-          $timeout(function () {
-            //update offset
-            $scope.scrollFunct();
-
-            $scope.projsNextPage = projsPromise.next;
-            $scope.bussyPagination = false;
-          });
+          $scope.projsNextPage = projsPromise.next;
+          $scope.bussyPagination = false;
+          //update offset
+          $timeout();
+          $scope.scrollFunct();
         });
       }
     };
 
-    $scope.sortKey = function(){
-      var ret = '';
-      switch ($scope.context) {
-        case 'featured':
-          ret = '-featureDate()';
-          break;
-        case 'latest':
-          ret = '-creationDate';
-          break;
-        default:
-          ret = '-lastChange().getTime()';
-      }
-      return ret;
-    };
+    switch ($scope.context) {
+      case 'featured':
+        $scope.sortKey = '-featureDate()';
+        break;
+      case 'latest':
+        $scope.sortKey = '-creationDate';
+        break;
+      default:
+        $scope.sortKey = '-lastChange().getTime()';
+    }
 
     $scope.createProject = function(){
       SessionSvc.loginRequired($scope, function() {

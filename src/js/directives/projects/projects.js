@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Teem')
-  .directive('projects', [ 'SessionSvc', '$location', '$window', '$timeout', function(SessionSvc, $location, $window, $timeout) {
+  .directive('projects', [ 'SessionSvc', '$location', '$window', '$timeout', '$rootScope', function(SessionSvc, $location, $window, $timeout, $rootScope) {
     return {
 
       link: function (scope, element, attrs) {
@@ -43,21 +43,34 @@ angular.module('Teem')
             };
 
             scope.container = attrs.container;
-            var overflowLast = 100000;
+            scope.overflowLast = 100000;
+
+            var scrolling = false;
+
 
             scope.scrollFunct = function () {
-              $timeout();
-                overflowLast =
+              function updateOverflow() {
+                scope.overflowLast =
                 element.children(0).children().children().last().offset().top;
+                scope.farFromLast = scope.overflowLast > 2 * angular.element($window).height();
+                $rootScope.$broadcast('overflowUpdated');
+              }
+                if (!scrolling){
+                  scrolling = true;
+                  updateOverflow();
+
+                  $timeout(function () {
+                    updateOverflow();
+                    scrolling = false;
+                  }, 200);
+                }
             };
 
             $timeout(function () {
-              angular.element(attrs.container).on('scroll', scope.scrollFunct);
-            });
-
-            scope.farFromLast = function() {
-              return overflowLast > 2 * angular.element($window).height();
-            };
+              angular.element(attrs.container).on('scroll',
+                scope.scrollFunct
+              );
+            }, 100);
 
       },
       templateUrl: 'projects/projects.html'

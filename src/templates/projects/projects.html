@@ -1,9 +1,10 @@
 <div class="projects list-group"
   infinite-scroll="getProjectsPage()"
-  infinite-scroll-disabled="bussyPagination || finishedPagination || farFromLast()"
-  infinite-scroll-inmediate-check="false"
-  infinite-scroll-distance="0">
-  <div class="project-item col-sm-4 list-group-item" ng-repeat="project in projects| orderBy:sortKey()" ng-click="showProject(project)" ng-if="project.title!==''">
+  infinite-scroll-disabled="bussyPagination || finishedPagination || farFromLast"
+  infinite-scroll-listen-for-event="overflowUpdated"
+  infinite-scroll-immediate-check="false"
+  >
+  <div class="project-item col-sm-4 list-group-item" ng-repeat="project in projects| orderBy:sortKey" ng-click="showProject(project)" ng-if="project.title!==''">
     <div ng-include="'projects/project/photo.html'"></div>
   </div>
 </div>
