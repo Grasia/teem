@@ -46,6 +46,7 @@ angular.module('Teem')
               return;
             }
 
+            // cannot use spinner template directly here
             parentElement.innerHTML = `
             <div class="pos-r">
               <div class="spinner-container">
