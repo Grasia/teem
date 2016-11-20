@@ -38,7 +38,6 @@
     "dropdown.js": "*",
     "angular-ui-layout": "^1.4.2",
     "angular-socialshare": "angularjs-socialshare#^2.2.9",
-    "selectize-placecomplete": "llopv/selectize-placecomplete",
     "webrtc-adapter": "^2.0.3",
     "ngSticky": "^1.8.13"
   },

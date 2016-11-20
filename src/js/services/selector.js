@@ -56,10 +56,8 @@ angular.module('Teem')
           function (newValue, oldValue){
             if(newValue !== oldValue){
 
-              var rendered = scope.selectorCacheUpdate(item._id, clone.html(), type);
-
               var actualElem = angular.element(document.getElementById(randomId));
-              actualElem.html(rendered);
+              actualElem.html(clone.html());
 
               destroyWatch();
             }
@@ -127,7 +125,7 @@ angular.module('Teem')
             option: function(i,e){
               return renderAvatar(i, e, 'option');
             }
-          },
+          }
         }
       },
 

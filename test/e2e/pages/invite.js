@@ -18,7 +18,7 @@ class InvitePage {
 
     this.inviteBtn = element(by.css('[ng-click="inviteUsers()"]'));
 
-    this.inviteOption = element(by.css('.create[data-selectable], .cachedOption[data-selectable]'));
+    this.inviteOption = element(by.css('[data-selectable]'));
 
     this.invitePlus = element(by.model('invite.selected')).element(by.css('.plus-circle'));
 
