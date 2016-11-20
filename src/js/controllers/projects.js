@@ -188,13 +188,13 @@ angular.module('Teem')
       switch ($scope.context) {
         case 'community':
           var projsPromise = CommunitiesSvc.findByUrlId($route.current.params.communityId);
-          Loading.show(projsPromise).
+          projsPromise.
             then(function(community){
               $scope.community = community;
 
               $scope.translationData.community = community.name;
 
-              Loading.show(community.myAndPublicProjects({projection: projectListProjection})).
+              community.myAndPublicProjects({projection: projectListProjection}).
                 then(function (projects){
 
                   $scope.projects = projects;
@@ -211,7 +211,7 @@ angular.module('Teem')
             q.projection = projectListProjection;
 
             var projsPromise = ProjectsSvc.all(q);
-            Loading.show(projsPromise).
+            projsPromise.
               then(function(projects) {
 
                 // Exclude current project
@@ -243,7 +243,7 @@ angular.module('Teem')
         q.projection = projectListProjection;
 
           var defProjsPromiseFeat = ProjectsSvc.all(q);
-          Loading.show(defProjsPromiseFeat).
+          defProjsPromiseFeat.
             then(function(projects) {
               getCommunities(projects);
 
@@ -255,7 +255,7 @@ angular.module('Teem')
 
         default:
           var defProjsPromise = ProjectsSvc.all({ shareMode: 'public' });
-          Loading.show(defProjsPromise).
+          defProjsPromise.
             then(function(projects) {
               getCommunities(projects);
 
