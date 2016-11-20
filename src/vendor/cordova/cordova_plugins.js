@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "id": "com.napolitano.cordova.plugin.intent.IntentPlugin",
+        "file": "plugins/com.napolitano.cordova.plugin.intent/www/android/IntentPlugin.js",
+        "pluginId": "com.napolitano.cordova.plugin.intent",
+        "clobbers": [
+            "IntentPlugin"
+        ]
+    },
+    {
         "id": "phonegap-plugin-push.PushNotification",
         "file": "plugins/phonegap-plugin-push/www/push.js",
         "pluginId": "phonegap-plugin-push",
@@ -39,25 +47,17 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
-    },
-    {
-        "id": "com.napolitano.cordova.plugin.intent.IntentPlugin",
-        "file": "plugins/com.napolitano.cordova.plugin.intent/www/android/IntentPlugin.js",
-        "pluginId": "com.napolitano.cordova.plugin.intent",
-        "clobbers": [
-            "IntentPlugin"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-whitelist": "1.3.1-dev",
+    "com.napolitano.cordova.plugin.intent": "0.1.3",
     "phonegap-plugin-push": "1.9.0",
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-camera": "2.3.0",
-    "cordova-plugin-crosswalk-webview": "2.2.0",
-    "com.napolitano.cordova.plugin.intent": "0.1.3"
+    "cordova-plugin-crosswalk-webview": "2.2.0"
 };
 // BOTTOM OF METADATA
 });
