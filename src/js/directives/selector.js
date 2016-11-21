@@ -31,6 +31,32 @@ angular.module('Teem')
           }
           $timeout();
 
+          scope.selectorCacheUpdate = function(key, value, type){
+
+            var cached = selectize.renderCache[type][key];
+
+            if (!cached){
+              return value;
+            }
+
+            var newValue;
+
+            if (type === 'item') {
+              var removeAddon = angular.element(cached).children()[1];
+              value += removeAddon.outerHTML;
+            }
+
+            // update cached element
+            newValue = angular.element(cached).html(value);
+
+            newValue[0].className += ' cachedOption';
+
+            selectize.renderCache[type][key] = newValue[0].outerHTML;
+
+            $timeout();
+
+            return newValue.html();
+          };
         };
 
         scope.focused = false;
