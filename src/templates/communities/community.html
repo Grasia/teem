@@ -8,7 +8,7 @@
         </div>
         <div ui-set="{'modal.uploadPicture': {name: 'uploadPicture', callback: uploadCommunityPhoto}}" ng-if="community.isParticipant()" class="pos-r">
           <div ng-if="community.logo() === ' '">
-            <div ng-include="spinner.html"></div>
+            <div ng-include="'spinner.html'"></div>
             </div>
           <img ng-src="{{community.logo()}}">
         </div>
