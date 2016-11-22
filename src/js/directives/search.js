@@ -50,7 +50,8 @@ angular.module('Teem')
             });
 
             var projsPromise = ProjectsSvc.all({
-              titleLike: value
+              titleLike: value,
+              projection: ProjectsSvc.projectListProjection
             });
 
             projsPromise.then(function(projects) {

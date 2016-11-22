@@ -78,7 +78,7 @@ angular.module('Teem')
         });
       });
 
-      ProjectsSvc.contributing().then(function (projects) {
+      ProjectsSvc.contributing({projection: ProjectsSvc.projectListProjection}).then(function (projects) {
         $timeout(function () {
           $scope.userProjectsCount = projects.length;
         });

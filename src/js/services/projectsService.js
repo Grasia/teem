@@ -520,7 +520,7 @@ angular.module('Teem')
       return projsPromise;
     }
 
-    function contributing () {
+    function contributing (options = {}) {
 
       if (!SessionSvc.users.loggedIn()) {
         return $q(function(resolve) {
@@ -528,7 +528,9 @@ angular.module('Teem')
         });
       }
 
-      return all({ contributor: User.currentId()});
+      options.contributor = User.currentId();
+
+      return all(options);
     }
 
     function find(id) {
