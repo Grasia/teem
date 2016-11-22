@@ -590,11 +590,28 @@ angular.module('Teem')
       return d.promise;
     }
 
+    var projectListProjection = {
+      participants: 1,
+      root: {
+        title: 1,
+        image: 1,
+        id: 1,
+        _urlId: 1,
+        type: 1,
+        featured: 1,
+        communities: 1,
+        pad: {
+          lastmodtime: 1
+        }
+      }
+    };
+
     return {
       all,
       contributing,
       findByUrlId,
       find,
-      create
+      create,
+      projectListProjection
     };
   }]);

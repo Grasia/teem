@@ -80,6 +80,7 @@ angular.module('Teem')
 
       myAndPublicProjects (options = {}) {
         options.community = this.id;
+        options.projection = ProjectsSvc.projectListProjection;
 
         return ProjectsSvc.all(options);
       }
@@ -370,8 +371,9 @@ angular.module('Teem')
 
           {$unwind: '$participants'},
           {$group :
-            {_id:'$participants'}
-          }
+            {_id: '$participants'}
+          },
+          {$project: '_id'}
         ]};
 
         var def = $q.defer();

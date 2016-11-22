@@ -30,7 +30,7 @@ angular.module('Teem')
         $scope.communities = communities;
       });
 
-      ProjectsSvc.all({ contributor: $scope.user.id }).
+      ProjectsSvc.all({ contributor: $scope.user.id, projection: ProjectsSvc.projectListProjection }).
       then(function(projects) {
         $scope.projects = projects;
       });

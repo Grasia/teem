@@ -66,7 +66,8 @@ angular.module('Teem')
 
       ProjectsSvc.all({
         community: communityId,
-        localId: localId
+        localId: localId,
+        projection: ProjectsSvc.projectListProjection
       }).then(function(projects) {
 
         var project = projects[0];

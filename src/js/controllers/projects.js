@@ -168,22 +168,6 @@ angular.module('Teem')
       });
     };
 
-    var projectListProjection = {
-      participants: 1,
-      root: {
-        title: 1,
-        image: 1,
-        id: 1,
-        _urlId: 1,
-        type: 1,
-        featured: 1,
-        communities: 1,
-        pad: {
-          lastmodtime: 1
-        }
-      }
-    };
-
     SessionSvc.onLoad(function(){
       switch ($scope.context) {
         case 'community':
@@ -194,7 +178,7 @@ angular.module('Teem')
 
               $scope.translationData.community = community.name;
 
-              community.myAndPublicProjects({projection: projectListProjection}).
+              community.myAndPublicProjects({projection: ProjectsSvc.projectListProjection}).
                 then(function (projects){
 
                   $scope.projects = projects;
@@ -208,7 +192,7 @@ angular.module('Teem')
         case 'project':
           SessionSvc.loginRequired($scope, function() {
             var q = { contributor: SessionSvc.users.current() };
-            q.projection = projectListProjection;
+            q.projection = ProjectsSvc.projectListProjection;
 
             var projsPromise = ProjectsSvc.all(q);
             projsPromise.
@@ -240,7 +224,7 @@ angular.module('Teem')
             q.latest = true;
           }
 
-        q.projection = projectListProjection;
+        q.projection = ProjectsSvc.projectListProjection;
 
           var defProjsPromiseFeat = ProjectsSvc.all(q);
           defProjsPromiseFeat.
@@ -254,7 +238,11 @@ angular.module('Teem')
           break;
 
         default:
-          var defProjsPromise = ProjectsSvc.all({ shareMode: 'public' });
+          var defProjsPromise = ProjectsSvc.all({
+            shareMode: 'public',
+            projection: ProjectsSvc.projectListProjection
+          });
+
           defProjsPromise.
             then(function(projects) {
               getCommunities(projects);
