@@ -51,7 +51,7 @@ angular.module('Teem')
 
             newValue[0].className += ' cachedOption';
 
-            selectize.renderCache[type][key] = newValue[0].outerHTML;
+            selectize.renderCache[type][key] = newValue[0];
 
             $timeout();
 
