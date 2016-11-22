@@ -3,15 +3,15 @@
 
     <div ng-include="'navbar-top/projects.html'"></div>
 
-    <div class="projects-welcome" ng-if="! community && emptyProjects()">
-      <div class="container projects project-index">
+    <div class="container projects project-index">
+      <div class="projects-welcome" ng-if="! community && emptyProjects()">
         <div class="alert alert-info">
           <span translate>project.welcome.tip</span>
         </div>
       </div>
-    </div>
-    <div>
-      <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
+      <div>
+        <projects project-list="projects" context="context" container="#indexProjContainer"></projects>
+      </div>
     </div>
   </div>
 </div>
