@@ -501,7 +501,7 @@
       "need": "Tareas"
     },
     "welcome": {
-      "tip": "¿No participas en nada todavía? <a href=\"/communities\">Encuentra una comunidad</a> a la que unirte o <a href=\"/communities/new\">crea tu comunidad</a>"
+      "tip": "¿No participas en nada todavía? <a href=\"/teems/latest\">Encuentra una proyecto</a> al que unirte o <a href=\"/teems/new\">crea tu proyecto</a>"
     }
   },
   "selector": {

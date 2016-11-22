@@ -501,7 +501,7 @@
       "need": "Tasks"
     },
     "welcome": {
-      "tip": "Not involved in anything yet? <a href=\"/communities\">Find a community</a> to join or <a href=\"/communities/new\">create your community</a>"
+      "tip": "Not involved in anything yet? <a href=\"/teems/latest\">Find a project</a> to join or <a href=\"/teems/new\">create your project</a>"
     }
   },
   "selector": {
