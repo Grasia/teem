@@ -11,6 +11,11 @@
   </main>
   <footer>
     <button class="btn" ng-click="cancelInvite()" translate>project.add_people.button_cancel</button>
-    <button class="btn btn-primary btn-raised" ng-click="inviteUsers()" translate>project.add_people.button_continue</button>
+    <button class="btn btn-primary btn-raised"
+            ng-click="inviteUsers()"
+            analytics-on="click"
+            analytics-category="Invite to project"
+            analytics-event="Send at share modal"
+            translate>project.add_people.button_continue</button>
   </footer>
 </modal>
