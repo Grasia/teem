@@ -10,9 +10,7 @@
       ng-click="goToNextForm()"
       analytics-on="click"
       analytics-category="Create project"
-      analytics-event="Next"
-      analytics-label="Form"
-      analytics-value="{{ nextForm() || 'finish' }}"
+      analytics-event="Next: {{ nextForm() || 'finish' }}"
       translate>
       project.form.share.next.message
     </span>
@@ -22,9 +20,7 @@
             ng-click="goToNextForm()"
             analytics-on="click"
             analytics-category="Create project"
-            analytics-event="Next"
-            analytics-label="Form"
-            analytics-value="{{ nextForm() || 'finish' }}">
+            analytics-event="Next: {{ nextForm() || 'finish' }}">
             <span ng-bind="nextForm() ? 'project.form.next' : 'project.form.finish' | translate"></span>
             <i class="i-next" ng-if="nextForm()"></i>
     </button>
