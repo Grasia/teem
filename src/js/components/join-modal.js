@@ -28,11 +28,14 @@ class JoinModalCtrl {
   send () {
     this.$scope.message.sending = true;
 
+    var message = this.$scope.message.text ||
+      angular.element(document.getElementById('joinText')).attr('placeholder');
+
     this.swellRT.join(
       this.$scope.message.email,
       this.project.url({campaign: 'joinEmail'}),
       this.project.title,
-      this.$scope.message.text,
+      message,
       this.project.promoter,
       () => {
         // We cannot pass this.onSendSuccess directly because 'this'

@@ -57,11 +57,11 @@ class ProjectPage {
       options = {};
     }
 
-    if (! options.email) {
+    if (! options.hasOwnProperty('email')) {
       options.email = chance.email();
     }
 
-    if (! options.text) {
+    if (! options.hasOwnProperty('text')) {
       options.text = chance.sentence();
     }
 
@@ -69,7 +69,12 @@ class ProjectPage {
     this.joinEl.click();
 
     this.joinEmailEl.sendKeys(options.email);
-    this.joinTextEl.sendKeys(options.text);
+
+    // Don't touch the field if there is not text
+    if (options.text) {
+      this.joinTextEl.sendKeys(options.text);
+    }
+    
     this.joinSendEl.click();
 
     this.joinStartEl.click();
