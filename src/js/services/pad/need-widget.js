@@ -34,6 +34,12 @@ angular.module('Teem')
           // Wait for the directive to be compiled before adding it
           $timeout(() => {
             angular.element(parent).append(compiled);
+
+            // on blur, bump need version to generate SwellRT event
+            compiled[0].querySelector('textarea').addEventListener('blur', function(){
+              need.version =
+                ((parseInt(need.version) || 0) + 1).toString();
+            });
           });
 
         }
@@ -46,15 +52,21 @@ angular.module('Teem')
           },
           selection = editor.getSelection(),
           widget;
-          console.log(selection);
 
       if (selection.text) {
         need.text = selection.text;
-
         editor.deleteText(selection);
       }
 
-      scope.project.addNeed(need);
+      need = scope.project.addNeed(need);
+
+
+      // To generate need added event after all the info is available
+      $timeout();
+
+      if (selection.text) {
+            need.version = '1';
+      }
 
       $timeout(() => {
         widget = editor.addWidget('need', need._id);
