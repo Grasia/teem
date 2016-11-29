@@ -1,6 +1,8 @@
 <span class="need-missing" ng-if="project && !need">
   <i class="i-need-missing"></i> <span class="need-missing-message" translate>pad.need.missing</span>
 </span>
+
+
 <form ng-if="need">
   <div class="form-group need-form" ng-class="'need-form-' + need._id">
     <div class="checkbox">
@@ -15,8 +17,7 @@
                 autosize
                 ng-class="need.completed === 'true' ? 'text-strike' : ''"
                 ng-model="need.text"
-                placeholder="{{ 'need.new.placeholder' | translate }}"
-                ng-change="onchange()" ng-model-options="{updateOn: 'blur'}">
+                placeholder="{{ 'need.new.placeholder' | translate }}">
       </textarea>
       <div ng-if="!project.isParticipant()" class="section-text-readonly" ng-class="need.completed === 'true' ? 'text-strike' : ''">
         {{ need.text }}

@@ -320,9 +320,7 @@ angular.module('Teem')
       addNeed(need) {
 
         // Quick dirty hack until SwellRT provides ids for array elements
-        if (need._id === undefined){
-          need._id = Math.random().toString().substring(2);
-        }
+        need._id = Math.random().toString().substring(2);
         need.author = SessionSvc.users.current();
         need.time = (new Date()).toJSON();
         need.completed = 'false';
