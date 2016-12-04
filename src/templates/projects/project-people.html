@@ -2,7 +2,7 @@
 <div ng-if="project._participants.length >= 3 || !project.isParticipant()">
   <div avatars="project._participants" avatars-conf="{size: 'xsmall'}" class="avatars"></div>
   <div class="project-add-users"  ng-if="project.isParticipant()">
-    <button class="invite-button btn btn-primary btn-raised btn-block i-participant-new"
+    <button class="invite-button btn btn-primary btn-raised btn-block"
             ui-set="{'modal.invite': 'invite'}"
             analytics-on="click"
             analytics-category="Invite to project"
