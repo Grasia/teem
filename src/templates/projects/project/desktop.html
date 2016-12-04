@@ -42,22 +42,15 @@
     <div class="project-info-inner flex-container flex-scroll" sticky>
       <div class="project-outline" ng-include="'projects/outline.html'"></div>
       <div>&nbsp;</div>
+      <div project-people></div>
     </div>
   </div>
 
-  <div class="project-main col-md-6">
+  <div class="project-main col-md-10">
     <div class="flex-container">
       <pad editing-default="true" class="flex-container"></pad>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div sticky class="project-utils">
-      <div project-people></div>
-      <div class="project-needs-section">
-        <h2 translate>need.nav.title</h2>
-        <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
-      </div>
-    </div>
-  </div>
+
 </div>

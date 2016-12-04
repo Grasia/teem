@@ -2,6 +2,11 @@
   padding-top: 0
   flex-direction: column
   position: relative
+  :target:before /* for anchor links */
+    content: ""
+    display: block
+    height: 50px; /* fixed header height*/
+    margin: -50px 0 0 /* negative fixed header height */
   .pad-toolbar
     background: $light-grey
     border: solid 1px $grey
@@ -10,9 +15,11 @@
     justify-content: space-around
     margin-top: 0
     margin-bottom: 0
-    .btn
+    .btn-group
       margin: 0
-      padding: 0
+      display: flex
+      flex-wrap: nowrap
+    .btn
       background: $light-grey
       i
         color: $bluey-grey
@@ -21,6 +28,10 @@
         background: transparent
         i
           color: $teal
+    .btn-pad-featured
+      color: $dark-grey !important
+    .no-pointer .btn-pad-featured
+      color: $teal !important
     .dropdown-menu-toolbar
       background: transparent
       box-shadow: none
@@ -36,7 +47,7 @@
     .pad-toolbar
       overflow-y: hidden
     .btn-toolbar
-      width: calc(0% + 14 * 44px)
+      width: calc(0% + 16 * 44px)
     .swellrt-editor
       border: none !important
 
