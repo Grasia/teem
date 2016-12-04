@@ -3,23 +3,37 @@
   ngf-drop="widget('img', $file)" ngf-fix-orientation="true">
     <div ng-if="project.isParticipant() && (isDesktop() || pad.editing)" class="pad-toolbar" sticky>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <button type="button" ng-click="linkModal.add($event)" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.link' | translate}}" tooltip-append-to-body="true">
-          <i class="material-icons">link</i>
-        </button>
-        <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
-          <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.img' | translate}}" tooltip-append-to-body="true">
-            <i class="material-icons">image</i>
+        <div class="btn-group" role="group" aria-label="widgets">
+          <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.need' | translate}}" tooltip-append-to-body="true">
+            <i class="material-icons btn-pad-featured">check_box</i>
           </button>
-        </span>
-        <button type="button" ng-click="widget('need')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.need' | translate}}" tooltip-append-to-body="true">
-          <i class="material-icons">check_box</i>
-        </button>
-        <button ng-repeat="(btn, isActive) in buttons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': isActive}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}" tooltip-append-to-body="true">
-          <i class="material-icons">{{btn}}</i>
-        </button>
-        <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}" tooltip-append-to-body="true">
-          <i class="material-icons">format_clear</i>
-        </button>
+          <button type="button" ng-click="linkModal.add($event)" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.link' | translate}}" tooltip-append-to-body="true">
+            <i class="material-icons">link</i>
+          </button>
+          <span ngf-select="widget('img', $file)" accept="image/*" ng-fix-orientation="true">
+            <button type="button" ng-click="widget('img')" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.img' | translate}}" tooltip-append-to-body="true">
+              <i class="material-icons">image</i>
+            </button>
+          </span>
+        </div>
+        <div class="btn-group" role="group" aria-label="format">
+          <button ng-repeat="btn in formatButtons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': buttons[btn]}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}" tooltip-append-to-body="true">
+            <i class="material-icons">{{btn}}</i>
+          </button>
+        </div>
+        <div class="btn-group" role="group" aria-label="format">
+          <button ng-repeat="btn in paragraphButtons" type="button" ng-click="annotate(btn)" class="btn btn-raised btn-link btn-xs" ng-class="{'active': buttons[btn]}" uib-tooltip="{{'pad.tooltip.'+btn | translate}}" tooltip-append-to-body="true">
+            <i class="material-icons">{{btn}}</i>
+          </button>
+          <button type="button" ng-click="clearFormat()" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.clearFormat' | translate}}" tooltip-append-to-body="true">
+            <i class="material-icons">format_clear</i>
+          </button>
+        </div>
+        <div class="btn-group hidden-mobile" role="group" aria-label="autosave">
+          <button type="button" class="btn btn-raised btn-link btn-xs no-pointer">
+            <i class="material-icons" ng-class="{'btn-pad-featured': !pad.saving}">{{!pad.saving ? 'done': 'autorenew'}}</i>
+          </button>
+        </div>
       </div>
     </div>
 
