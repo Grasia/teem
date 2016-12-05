@@ -243,9 +243,9 @@ angular.module('Teem')
 
           $scope.closePadEmptyTip = function closePadEmptyTip() {
             $scope.pad.emptyTip = false;
-            angular.element(document.querySelector('.wave-editor-on')).focus();
-
-            $timeout();
+            $timeout(() => {
+              angular.element(document.querySelector('.wave-editor-on')).focus();
+            });
           };
 
       }],

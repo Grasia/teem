@@ -27,6 +27,7 @@
 
     <div
       class="swellrt-editor flex-container flex-scroll"
+      ng-class="{hidden: pad.emptyTip}"
       dragover-text="{{'picture.dropover' | translate}}"
       swellrt-editor-on-ready="padReady"
       swellrt-editor-on-create="padCreate"

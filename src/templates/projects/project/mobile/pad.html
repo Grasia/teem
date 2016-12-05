@@ -35,7 +35,7 @@
               analytics-event="Click join button at mobile view">
       </button>
     </div>
-    <div class="container info-tip" ng-if="project.isParticipant() && !pad.editing && infoTip()">
+    <div class="container info-tip" ng-if="project.isParticipant() && !pad.editing && !pad.emptyTip && infoTip()">
       <span translate>pad.tap_to_edit</span> <span ng-click="infoTip(true)" class="i-close pull-right"></span>
     </div>
 
