@@ -98,3 +98,85 @@
     padding: 0
   > div
     padding: 10px 5px
+#pad-empty-tip
+  color: $pad-empty-tip-color
+  background-color: $pad-empty-tip-background-color
+  padding: 10px
+  @media (min-width: $screen-sm-min)
+    padding: 20px
+  h2
+    margin-top: 10px
+    color: inherit
+    padding: 0px
+  h3
+    color: inherit
+    border-bottom: 0px
+    padding: 0px
+    margin-bottom: 20px
+  i
+    color: inherit
+  i.icon-round-positive
+    font-size: 33px
+    margin-left: -1px
+  i.icon-round-negative
+    color: $pad-empty-tip-background-color
+    background-color: $pad-empty-tip-color
+    border-radius: 50%
+    height: 30px
+    width: 30px
+    padding-top: 3px
+    padding-left: 3px
+
+.pad-empty-tip-close
+  float: right
+  margin-top: -5px
+  margin-right: -10px
+  a
+    color: $pad-empty-tip-color
+  a:hover
+    text-decoration: none
+
+.pad-empty-tip-item
+  display: table
+  @media (min-width: $screen-sm-min)
+    margin-left: 10px
+.pad-empty-tip-item-col
+  display: table-cell
+  vertical-align: top
+.pad-empty-tip-item-col-example
+  width: 20%
+.pad-empty-tip-text
+  margin-top: 5px
+  margin-left: 5px
+  font-weight: normal
+.pad-empty-tip-show-example
+  margin-top: 5px
+  margin-left: 5px
+  font-weight: bold
+  color: inherit
+  display: block
+.pad-empty-tip-start-btn
+  margin-top: 20px
+  text-align: center
+  a
+    color: inherit !important
+    border: 1px solid $pad-empty-tip-color
+    height: 53px
+.pad-empty-tip-modal
+  .modal-header-title
+    border-bottom: 0px !important
+  h1
+    font-size: 48px
+    font-weight: 300
+    color: $pad-empty-tip-modal-title
+  .description
+    font-size: 18px
+    font-weight: normal
+    color: $pad-empty-tip-modal-description
+  .description:not(:first-child)
+    margin-top: 30px
+  .example
+    font-size: 18px
+    font-weight: bold
+    color: $pad-empty-tip-modal-description
+    margin-top: 20px

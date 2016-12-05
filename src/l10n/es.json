@@ -218,6 +218,38 @@
   },
   "pad": {
     "edit": "Editar",
+    "empty": {
+      "tip": {
+        "ideas": "Algunas ideas:",
+        "links": "Añade enlaces a otros espacios de trabajo (vuestra web, vuestro telegram...)",
+        "modal": {
+          "example": "Ejemplo: ",
+          "links": {
+            "description": {
+              "content": "Introduce el texto explicativo y el enlace de ejemplo de forma sencilla",
+              "icon": "Utiliza este icono para añadir enlaces a vuestro proyecto."
+            },
+            "title": "Añadir enlaces"
+          },
+          "participate": {
+            "description": "Así, posibles colaboradores/as sabrán de un vistazo los datos básicos de vuestro proyecto y tendreis más posibilidades de escontrar gente interesada.<br/>Algunas ideas:<ul><li>Lugar y hora de reunión</li><li>Canales de comunicación, debate etc que utilizais</li></ul>",
+            "title": "Explica cómo participar"
+          },
+          "tasks": {
+            "description": {
+              "comments": "Podeis comentarlas para que sea más fácil completarlas y facilitar la colaboración.",
+              "icon": "Utiliza este icono para añadir tareas a vuestro proyecto."
+            },
+            "title": "Añade tareas"
+          }
+        },
+        "participate": "Empieza explicando de forma clara cómo participar",
+        "showExample": "Quiero ver un ejemplo",
+        "start": "Ok, empezar",
+        "tasks": "Utiliza este icono en la barra de herramientas para añadir tareas o necesidades",
+        "title": "Comparte aquí cómo participar en tu actividad o proyecto"
+      }
+    },
     "nav": {
       "title": "Info"
     },

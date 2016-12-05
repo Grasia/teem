@@ -226,6 +226,10 @@ angular.module('Teem')
             if ($scope.editingDefault && $scope.project.isParticipant()) {
               $scope.pad.editing = true;
             }
+
+            // TODO show tip only when pad is empty
+            $scope.pad.emptyTip = true;
+
           };
 
           $scope.$watchCollection(function() {
@@ -233,6 +237,12 @@ angular.module('Teem')
           }, function(current) {
             $scope.pad.saving = !current.sync;
           });
+
+          $scope.closePadEmptyTip = function closePadEmptyTip() {
+            $scope.pad.emptyTip = false;
+
+            $timeout();
+          };
 
       }],
       templateUrl: 'pad.html'

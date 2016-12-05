@@ -1,0 +1,57 @@
+<div id="pad-empty-tip" ng-if="pad.emptyTip">
+  <div class="pad-empty-tip-close">
+    <a ng-click="closePadEmptyTip()" class="i-close"></a>
+  </div>
+  <h2 translate>pad.empty.tip.title</h2>
+  <h3 translate>pad.empty.tip.ideas</h3>
+  <div class="pad-empty-tip-item">
+    <div class="pad-empty-tip-item-col">
+      <i class="material-icons icon-round-positive">help</i>
+    </div>
+    <div class="pad-empty-tip-item-col">
+      <div class="pad-empty-tip-text" translate>pad.empty.tip.participate</div>
+    </div>
+    <div class="pad-empty-tip-item-col pad-empty-tip-item-col-example">
+      <a class="pad-empty-tip-show-example" ui-set="{'modal.padEmptyTip': {step: 'participate'}}" translate>
+        pad.empty.tip.showExample
+      </a>
+    </div>
+  </div>
+  <div class="pad-empty-tip-item">
+    <div class="pad-empty-tip-item-col">
+      <i class="material-icons icon-round-negative">check_box</i>
+    </div>
+    <div class="pad-empty-tip-item-col">
+      <div class="pad-empty-tip-text" translate>pad.empty.tip.tasks</div>
+    </div>
+    <div class="pad-empty-tip-item-col pad-empty-tip-item-col-example">
+      <a class="pad-empty-tip-show-example" ui-set="{'modal.padEmptyTip': {step: 'tasks'}}" translate>
+        pad.empty.tip.showExample
+      </a>
+    </div>
+  </div>
+  <div class="pad-empty-tip-item">
+    <div class="pad-empty-tip-item-col">
+      <i class="material-icons icon-round-negative">link</i>
+    </div>
+    <div class="pad-empty-tip-item-col">
+      <div class="pad-empty-tip-text" translate>pad.empty.tip.links</div>
+    </div>
+    <div class="pad-empty-tip-item-col pad-empty-tip-item-col-example">
+      <a class="pad-empty-tip-show-example" ui-set="{'modal.padEmptyTip': {step: 'links'}}" translate>
+        pad.empty.tip.showExample
+      </a>
+    </div>
+  </div>
+
+  <div class="pad-empty-tip-start-btn">
+    <a ng-click="closePadEmptyTip()"
+       class="btn btn-default"
+       analytics-on="click"
+       analytics-category="Pad"
+       analytics-event="Start on Empty Tip"
+       translate>pad.empty.tip.start</a>
+  </div>
+
+  <pad-empty-tip-modal></pad-empty-tip-modal>
+</div>

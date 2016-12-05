@@ -218,6 +218,38 @@
   },
   "pad": {
     "edit": "Edit",
+    "empty": {
+      "tip": {
+        "ideas": "Some ideas:",
+        "links": "Add links to other workspaces (your web, your telegram...)",
+        "modal": {
+          "example": "Example: ",
+          "links": {
+            "description": {
+              "content": "Enter the explanatory text and the link in a simple way",
+              "icon": "Use this icon to add links to your project."
+            },
+            "title": "Add links"
+          },
+          "participate": {
+            "description": "In this way, potencial collaborators will know at a glance the basic facts of your project and you will have more possibilities of finding interested people.<br/>Some ideas:<li>Place and date of your meetings</li><li>Communication, debate channels you use</li></ul>",
+            "title": "Explain how to participate"
+          },
+          "tasks": {
+            "description": {
+              "comments": "You can comment them to make it easier to complete them and facilitate collaboration",
+              "icon": "Use this icon to add tasks to your project."
+            },
+            "title": "Add tasks"
+          }
+        },
+        "participate": "Start by explaining how to participate in a clear way",
+        "showExample": "See an example",
+        "start": "Ok, let's start!",
+        "tasks": "Use this icon from the toolbar to add tasks or needs",
+        "title": "Share here how to participate in your activity or project"
+      }
+    },
     "nav": {
       "title": "Info"
     },
