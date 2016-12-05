@@ -22,6 +22,9 @@
         </button>
       </div>
     </div>
+
+    <div ng-include="'pad/empty-tip.html'"></div>
+
     <div
       class="swellrt-editor flex-container flex-scroll"
       dragover-text="{{'picture.dropover' | translate}}"
@@ -34,6 +37,7 @@
       placeholder="{{ 'pad.placeholder' | translate }}"
       block-edit="{{!project.isParticipant()}}">
     </div>
+
     <div id="link-modal" class="well bs-component" ng-class="{hidden: !linkModal.show}" ui-outer-click="linkModal.show = false; linkModal.edit = false">
       <div ng-if="linkModal.annotation.value && !linkModal.edit">
         <a href="{{linkModal.link}}" target="_blank">{{linkModal.link}}</a>
@@ -60,5 +64,4 @@
     </div>
   </div>
 
-  <div ng-include="'pad/empty-tip.html'"></div>
 </div>
