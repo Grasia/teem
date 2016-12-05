@@ -227,8 +227,11 @@ angular.module('Teem')
               $scope.pad.editing = true;
             }
 
-            // TODO show tip only when pad is empty
-            $scope.pad.emptyTip = true;
+            // FIXME We should get the pad text directly from the editor, but
+            // I couldn't find the proper way
+            if ($scope.project.isParticipant() && $scope.project.pad.text() === '') {
+              $scope.pad.emptyTip = true;
+            }
 
           };
 
@@ -240,6 +243,7 @@ angular.module('Teem')
 
           $scope.closePadEmptyTip = function closePadEmptyTip() {
             $scope.pad.emptyTip = false;
+            angular.element(document.querySelector('.wave-editor-on')).focus();
 
             $timeout();
           };
