@@ -45,9 +45,9 @@ angular.module('Teem')
   }])
   .controller('ProjectsCtrl', [
   'SessionSvc', '$scope', '$location', '$route', 'time',
-  'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout', 'Loading',
+  'CommunitiesSvc', 'ProjectsSvc', 'ProfilesSvc', '$timeout',
   function (SessionSvc, $scope, $location, $route, time,
-  CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout, Loading) {
+  CommunitiesSvc, ProjectsSvc, ProfilesSvc, $timeout) {
     var communityId = $route.current.params.communityId;
     var projectId = $location.path().startsWith('/teems/') && $route.current.params.id;
 
