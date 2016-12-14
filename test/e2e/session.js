@@ -7,6 +7,7 @@ var Chance = require('chance'),
     SwellRTPage = require('./pages/swellrt'),
     chance = new Chance(),
     loginPage = new sessionPage.Login(),
+    initPage = new sessionPage.Init(),
     logoutPage = new sessionPage.Logout(),
     registerPage = new sessionPage.Register(),
     forgottenPasswordPage = new sessionPage.ForgottenPassword(),
@@ -87,6 +88,56 @@ describe('Teem', function() {
       loginPage.expectNoErrors();
 
       expect(menu.currentNick()).toBe(nick);
+    });
+  });
+
+
+  describe('when authenticated', () => {
+
+    beforeEach(() => {
+      loginPage.get();
+      loginPage.login();
+    });
+
+    describe('session init', () => {
+
+      beforeAll(() => {
+
+        initPage.get();
+      });
+
+      it('should not show session form', () => {
+        expect(loginPage.formElement.isPresent()).toBeFalsy();
+      });
+
+      it('should not show session form', () => {
+        expect(menu.currentNick()).toBe(loginPage.default.nick);
+      });
+    });
+  });
+
+  describe('when not authenticated', () => {
+
+    beforeEach(() => {
+
+      logoutPage.get();
+    });
+
+    describe('session init', () => {
+
+      beforeEach(() => {
+
+        initPage.get();
+      });
+
+      it('should login existing user', function() {
+
+        loginPage.login();
+
+        loginPage.expectNoErrors();
+
+        expect(menu.currentNick()).toBe(loginPage.default.nick);
+      });
     });
   });
 

@@ -170,6 +170,15 @@ class Logout {
   }
 }
 
+class Init extends Session {
+
+  constructor () {
+    super();
+
+    this.path = 'init';
+  }
+}
+
 class ForgottenPassword extends Session {
   constructor () {
     super();
@@ -220,6 +229,7 @@ class RecoverPassword extends Session {
 module.exports = {
   Register,
   Login,
+  Init,
   Logout,
   ForgottenPassword,
   RecoverPassword
