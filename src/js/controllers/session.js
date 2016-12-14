@@ -21,28 +21,44 @@ angular.module('Teem')
       });
     // to recover password: '/sesion/recover_password?token=<theToken>?id=<userId>
   }])
-  .controller('SessionRouteCtrl', [
-    '$scope', 'SharedState', '$route', '$location',
-    function($scope, SharedState, $route, $location) {
+  .controller('SessionRouteCtrl',
+    function($scope, SharedState, $route, $location, SessionSvc, User) {
+      'ngInject';
 
       function normalizeFormName(form) {
-        var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration'];
+        // * login form *always* shows the login screen
+        // * init param tries to restore the session and shows the login screen
+        //   only if the user is not authenticated
+        var forms = ['login', 'register', 'forgotten_password', 'recover_password', 'migration', 'init'];
         var isValid = form && forms.indexOf(form.toLowerCase()) !== -1;
 
         return isValid ? form.toLowerCase().replace('_p', 'P') : 'login';
       }
 
       $scope.$on('$routeChangeSuccess', function() {
-        SharedState.set('modal.session', {
-          name: 'session',
-          type: normalizeFormName($route.current.params.form),
-          search: $location.search()
-        });
 
-        $location.path('/');
+        var normalizedForm = normalizeFormName($route.current.params.form);
+
+        SessionSvc.onLoad(() => {
+          if (! (User.loggedIn() && normalizedForm === 'init')) {
+
+            // Show login form if the user is not authenticated
+            if (normalizedForm === 'init') {
+              normalizedForm = 'login';
+            }
+
+            SharedState.set('modal.session', {
+              name: 'session',
+              type: normalizedForm,
+              search: $location.search()
+            });
+          }
+
+          $location.path('/');
+        });
       });
     }
-  ])
+  )
   .controller('SessionLogoutCtrl',
     function(SessionSvc, $location) {
 

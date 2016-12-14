@@ -1,0 +1,70 @@
+<div ui-content-for="padEmptyTipModal">
+  <modal name="padEmptyTip" class="pad-empty-tip-modal">
+
+    <header class="text-center">
+      <h1 translate>{{ 'pad.empty.tip.modal.' + step + '.title' }}</h1>
+    </header>
+
+    <main>
+      <div ng-if="step === 'participate'">
+        <div class="description" translate>
+          pad.empty.tip.modal.participate.description
+        </div>
+
+        <img class="img-responsive" src="/images/pad-empty-tip/participate.png">
+
+        <div class="example">
+          <span translate>pad.empty.tip.modal.example</span>
+          <a href="/teems/cHJvdG90eXBlLnAycHZhbHVlLmV1L3MrSWZtemNyZnZ3c0M"
+             analytics-on="click"
+             analytics-category="Pad Empty Tip"
+             analytics-event="Go To Example: Participate">vSociety</a>
+        </div>
+      </div>
+
+      <div ng-if="step === 'tasks'">
+        <div class="description" translate>
+          pad.empty.tip.modal.tasks.description.icon
+        </div>
+
+        <img class="img-responsive" src="/images/pad-empty-tip/tasks-icon.png">
+
+        <div class="description" translate>
+          pad.empty.tip.modal.tasks.description.comments
+        </div>
+
+        <img class="img-responsive" src="/images/pad-empty-tip/tasks-comments.png">
+
+        <div class="example">
+          <span translate>pad.empty.tip.modal.example</span>
+          <a href="/teems/cHJvdG90eXBlLnAycHZhbHVlLmV1L3MrdkY1bDJubEhsM0E"
+             analytics-on="click"
+             analytics-category="Pad Empty Tip"
+             analytics-event="Go To Example: Tasks">GNU Social &amp; Teem Hackaton</a>
+        </div>
+      </div>
+
+      <div ng-if="step === 'links'">
+        <div class="description" translate>
+          pad.empty.tip.modal.links.description.icon
+        </div>
+
+        <img class="img-responsive" src="/images/pad-empty-tip/links-icon.png">
+
+        <div class="description" translate>
+          pad.empty.tip.modal.links.description.content
+        </div>
+
+        <img class="img-responsive" src="/images/pad-empty-tip/links-content.png">
+
+        <div class="example">
+          <span translate>pad.empty.tip.modal.example</span>
+          <a href="/teems/cHJvdG90eXBlLnAycHZhbHVlLmV1L3MrQXRYM0x2UmNWUUE"
+             analytics-on="click"
+             analytics-category="Pad Empty Tip"
+             analytics-event="Go To Example: Links">Guidelines imágenes Teem</a>
+        </div>
+      </div>
+    </main>
+  </modal>
+</div>

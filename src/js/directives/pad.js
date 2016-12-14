@@ -228,6 +228,13 @@ angular.module('Teem')
             if ($scope.editingDefault && $scope.project.isParticipant()) {
               $scope.pad.editing = true;
             }
+
+            // FIXME We should get the pad text directly from the editor, but
+            // I couldn't find the proper way
+            if ($scope.project.isParticipant() && $scope.project.pad.text() === '') {
+              $scope.pad.emptyTip = true;
+            }
+
           };
 
           $scope.$watchCollection(function() {
@@ -235,6 +242,13 @@ angular.module('Teem')
           }, function(current) {
             $scope.pad.saving = !current.sync;
           });
+
+          $scope.closePadEmptyTip = function closePadEmptyTip() {
+            $scope.pad.emptyTip = false;
+            $timeout(() => {
+              angular.element(document.querySelector('.wave-editor-on')).focus();
+            });
+          };
 
       }],
       templateUrl: 'pad.html'

@@ -74,7 +74,7 @@ class ProjectPage {
     if (options.text) {
       this.joinTextEl.sendKeys(options.text);
     }
-    
+
     this.joinSendEl.click();
 
     this.joinStartEl.click();
@@ -119,6 +119,8 @@ class NewProjectPage {
 
     this.nextBtn = element(by.css('[ng-click="goToNextForm()"]'));
 
+    this.padEmptyTipCloseBtn = element(by.css('[ng-click="closePadEmptyTip()"]'));
+
     this.padEl = element(by.css('.wave-editor-on'));
     this.padCheckBtn = element(by.css('.pad-check'));
   }
@@ -138,7 +140,10 @@ class NewProjectPage {
     // Share
     this.nextBtn.click();
 
-    this.padEl.click();
+    this.padEmptyTipCloseBtn.click();
+
+    // pad should be focused now
+    // this.padEl.click();
 
     this.padEl.sendKeys(this.padText);
 
