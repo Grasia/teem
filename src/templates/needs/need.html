@@ -1,4 +1,4 @@
-<div class="list-group-item need-item"
+<div class="need-item"
      ng-if="project.isParticipant() || need.completed !== 'add'"
      ng-class="'need-item-completed-' + need.completed">
   <div class="need-body flex-container-row"
@@ -32,26 +32,18 @@
         </div>
       </div>
     </form>
-    <div ng-if="need.completed !== 'add'" class="{{need.comments.length ? 'active' : ''}}">
-      <span class="icon-count">
-        <i class="i-comment" ng-class="newComments(need)? 'notify-comments':''">
-          <span class="icon-count-number">{{ need.comments && need.comments.length || 0 }}</span>
-        </i>
-      </span>
+    <div>
+      <button class="need-delete-btn btn btn-link btn-sm" translate>need.delete</button>
     </div>
   </div>
-  <div class="need-comments" ng-show="areCommentsVisible(need) && need.completed !== 'add'">
-    <div class="media" ng-repeat="comment in need.comments">
-      <div class="media-left">
-        <div avatars="comment.author" avatars-conf="{size: 'xsmall'}" class="avatars-without-names"></div>
-      </div>
-      <div class="media-body">
-        <div>
-        <span class="comment-author-name" bo-html="comment.author.split('@')[0]"></span>
-        <span class="comment-time" am-time-ago="comment.time"></span></div>
-        <div bo-html="comment.text | linky"></div>
-      </div>
+  <div class="need-participants">
+    <div class="need-created-by">{{('need.created' | translate) + need.author.split('@')[0]}}</div>
+    <div ng-if="need.assignees" class="need-assigned-to">{{((need.completed !== 'true' ? 'need.assign.to' : 'need.assign.finished') | translate) + need.assignees[0].split('@')[0]}}</div>
+    <div ng-if="!need.assignees && need.completed !== 'true' && need.completed !== 'add'" class="need-assign-myself">
+      <button class="btn btn-primary btn-raised btn-sm" ng-click="assignYourself(need)" translate>need.assign.myself</button>
     </div>
+  </div>
+  <div class="need-comments" ng-show="need.completed !== 'add' && need.completed !== 'true'">
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
         <div class="form-group">
@@ -70,5 +62,23 @@
           </div>
         </div>
       </form>
+      <div ng-if="need.completed !== 'add'" class="{{need.comments.length ? 'active' : ''}}">
+        <span class="icon-count">
+          <i class="i-comment" ng-class="newComments(need)? 'notify-comments':''">
+            <span class="icon-count-number">{{ need.comments && need.comments.length || 0 }} comments</span>
+          </i>
+        </span>
+      </div>
+    </div>
+    <div class="media" ng-repeat="comment in need.comments">
+      <div class="media-left">
+        <div avatars="comment.author" avatars-conf="{size: 'xsmall'}" class="avatars-without-names"></div>
+      </div>
+      <div class="media-body">
+        <div>
+        <span class="comment-author-name" ng-bind-html="'@'+comment.author.split('@')[0]"></span>
+        <span class="comment-time" am-time-ago="comment.time"></span></div>
+        <div ng-bind-html="comment.text | linky"></div>
+      </div>
     </div>
   </div>

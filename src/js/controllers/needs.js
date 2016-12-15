@@ -18,13 +18,14 @@ angular.module('Teem')
   }])
   .directive(
     'needDisplay',
-    function(SessionSvc, ProjectsSvc, $route){
+    function(SessionSvc, ProjectsSvc, $route, User){
       return {
-        require: '^needList',
+        //require: '^needList',
         scope: {
           need: '='
         },
-        link: function (scope, element, attrs, needsCtrl) {
+        link: function (scope) {
+
           scope.toggleCompleted = function (need, event) {
             // Needed by the magic of material design
             event.preventDefault();
@@ -81,15 +82,21 @@ angular.module('Teem')
             event.target.parentNode.parentNode.children[1].children[0].focus();
           };
 
-          scope.toggleCommentsVisibility = function(n){
-            needsCtrl.toggleCommentsVisibility(n);
+          scope.assignYourself = function(need) {
+            need.assignees = [User.currentId()];
+          };
+
+          scope.toggleCommentsVisibility = function(){
+
           };
 
           scope.newComment = {
             text: ''
           };
 
-          scope.areCommentsVisible = needsCtrl.areCommentsVisible;
+          scope.areCommentsVisible = function() {
+            return true;
+          };
 
           scope.sendComment = function(){
             SessionSvc.loginRequired(scope, function() {
@@ -98,10 +105,10 @@ angular.module('Teem')
             }, undefined, scope.project.synchPromise());
           };
 
-          scope.hour = needsCtrl.hour;
+          //scope.hour = needsCtrl.hour;
 
           scope.newComments = function(need){
-            if (!need.comments || !scope.project || !scope.project.isParticipant()){
+            if (!need || !need.comments || !need.comments.length || !scope.project || !scope.project.isParticipant()){
               return false;
             }
 
@@ -111,7 +118,7 @@ angular.module('Teem')
           };
 
           scope.isNewNeed = function(need){
-            if (!scope.project || !scope.project.isParticipant() ||
+            if (!need || !scope.project || !scope.project.isParticipant() ||
             !scope.project.getTimestampAccess() || !scope.project.getTimestampAccess().needs){
               return false;
             }
@@ -124,38 +131,4 @@ angular.module('Teem')
         transclude: true
       };
     }
-  ).directive(
-    'needList',
-    function () {
-      return {
-        templateUrl: function(elem, attrs) {
-          return attrs.display !== 'panel' ? 'needs/list.html' : 'needs/panel.html';
-        },
-        transclude: true,
-        scope: {
-          project: '=',
-          needs: '='
-        },
-        controller: function($scope, $route, SessionSvc, ProjectsSvc, time) {
-          this.comments = {};
-
-          var comments = this.comments;
-
-          this.toggleCommentsVisibility = function toggleCommentsVisibility(need) {
-            comments.visible = (comments.visible === need) ? null : need;
-          };
-
-          this.areCommentsVisible = function areCommentsVisible(need) {
-            return comments.visible === need;
-          };
-
-          this.hour = function(comment) {
-            return time.hour(new Date(comment.time));
-          };
-
-          $scope.orderByTime = (need) => {
-            return -Date.parse(need.time);
-          };
-        }
-      };
-    });
+  );
