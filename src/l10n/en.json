@@ -185,11 +185,18 @@
     "title": "Teem"
   },
   "need": {
+    "assign": {
+      "finished": "Finished thanks to: @",
+      "myself": "I do it",
+      "to": "Assigned to: @"
+    },
     "by": "Added {{time}} by {{author}}",
     "comment": {
       "input": "How can you help?",
       "notification": "<strong>{{user}}</strong> commented: \"{{comment}}\" at task \"{{need}}\""
     },
+    "created": "Created by: @",
+    "delete": "Delete",
     "index": {
       "empty": {
         "contributor": "Write down your tasks so others can help you",

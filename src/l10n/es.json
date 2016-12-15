@@ -185,11 +185,18 @@
     "title": "Teem"
   },
   "need": {
+    "assign": {
+      "finished": "Terminado gracias a: @",
+      "myself": "Yo lo hago",
+      "to": "Asignado a: @"
+    },
     "by": "Añadida {{time}} por {{author}}",
     "comment": {
       "input": "¿En qué puedes echar una mano?",
       "notification": "<strong>{{user}}</strong> comenta: \"{{comment}}\" en la tarea \"{{need}}\""
     },
+    "created": "Creada por: @",
+    "delete": "Eliminar",
     "index": {
       "empty": {
         "contributor": "Anota tus tareas para que te echen una mano",

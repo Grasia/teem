@@ -56,7 +56,7 @@
     font-size: 19px
     > div
       @include break-lines()
-      padding: 0 17px
+      padding: 0
       flex: 1
       outline: 0
   need-widget
@@ -113,6 +113,9 @@
   color: $pad-empty-tip-color
   background-color: $pad-empty-tip-background-color
   padding: 10px
+  display: flex
+  align-items: center
+  flex-direction: column
   @media (min-width: $screen-sm-min)
     padding: 20px
   h2
@@ -139,7 +142,7 @@
     padding-left: 3px
 
 .pad-empty-tip-close
-  float: right
+  align-self: flex-end
   margin-top: -5px
   margin-right: -10px
   a
@@ -149,8 +152,6 @@
 
 .pad-empty-tip-item
   display: table
-  @media (min-width: $screen-sm-min)
-    margin-left: 10px
 .pad-empty-tip-item-col
   display: table-cell
   vertical-align: top
