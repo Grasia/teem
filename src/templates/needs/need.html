@@ -36,14 +36,14 @@
       <button class="need-delete-btn btn btn-link btn-sm" translate>need.delete</button>
     </div>
   </div>
-  <div class="need-participants">
+  <div class="need-participants" ng-if="need.text">
     <div class="need-created-by">{{('need.created' | translate) + need.author.split('@')[0]}}</div>
     <div ng-if="need.assignees" class="need-assigned-to">{{((need.completed !== 'true' ? 'need.assign.to' : 'need.assign.finished') | translate) + need.assignees[0].split('@')[0]}}</div>
     <div ng-if="!need.assignees && need.completed !== 'true' && need.completed !== 'add'" class="need-assign-myself">
       <button class="btn btn-primary btn-raised btn-sm" ng-click="assignYourself(need)" translate>need.assign.myself</button>
     </div>
   </div>
-  <div class="need-comments" ng-show="need.completed !== 'add' && need.completed !== 'true'">
+  <div class="need-comments" ng-if="need.text">
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
         <div class="form-group">
