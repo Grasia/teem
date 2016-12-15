@@ -43,7 +43,7 @@
       <button class="btn btn-primary btn-raised btn-sm" ng-click="assignYourself(need)" translate>need.assign.myself</button>
     </div>
   </div>
-  <div class="need-comments" ng-if="need.text">
+  <div class="need-comments" ng-if="need.completed !== 'add' && need.completed !== 'true' && need.text">
     <div class="new-need-comment">
       <form class="new-need-comment-send" ng-submit="sendComment()">
         <div class="form-group">
