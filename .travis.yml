@@ -8,7 +8,9 @@ services:
 - docker
 
 addons:
-  ssh_known_hosts: deploy.teem.works
+  ssh_known_hosts:
+    - deploy.teem.works
+    - deploy.staging.teem.works
 
 notifications:
   webhooks:
