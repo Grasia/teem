@@ -19,6 +19,10 @@ elif [ $TRAVIS_BRANCH = "staging" ]; then
   eval "$(ssh-agent -s)" #start the ssh agent
   ssh-add .travis/id_rsa
 
+  # Clean gh-pages cache
+  # Travis cache gets the repo from master
+  rm -rf node_modules/gh-pages/.cache
+
   gulp cd:pushAndRun
 else
   echo "Testing branch $TRAVIS_BRANCH"
