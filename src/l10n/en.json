@@ -432,7 +432,7 @@
       }
     },
     "location": {
-      "placeholder": "Location"
+      "placeholder": "Location (optional)"
     },
     "menu": {
       "change_photo": "Change photo",
