@@ -5,7 +5,7 @@ Teem is a web tool and mobile app for collaboration in communities, collectives 
 Find more in:
 http://teem.works/
 
-[![Build Status](https://travis-ci.org/P2Pvalue/teem.svg?branch=master)](https://travis-ci.org/P2Pvalue/teem)
+[![Build Status](https://travis-ci.org/Grasia/teem.svg?branch=master)](https://travis-ci.org/Grasia/teem)
 [![Join the chat at https://gitter.im/P2Pvalue/teem](https://img.shields.io/gitter/room/nwjs/nw.js.svg
 )](https://gitter.im/P2Pvalue/teem)
 
@@ -38,7 +38,7 @@ Finally, you also need [Docker Compose](https://docs.docker.com/compose/) to set
 Clone the teem repository using `git`:
 
 ```
-git clone https://github.com/P2Pvalue/teem.git
+git clone https://github.com/Grasia/teem.git
 cd teem
 ```
 
