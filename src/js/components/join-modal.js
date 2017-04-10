@@ -42,19 +42,23 @@ class JoinModalCtrl {
         // would be Window when called from SwellRT
         this.onSendSuccess();
       },
-      () => {
-        this.onSendError();
+      (e) => {
+        this.onSendError(e);
       }
     );
   }
 
   onSendSuccess () {
+    this.$scope.message.sending = false;
     this.$scope.step = 'success';
     this.$timeout();
   }
 
   onSendError (error) {
     console.error(error);
+    this.$scope.message.sending = false;
+    this.$scope.step = 'error';
+    this.$timeout();
   }
 }
 

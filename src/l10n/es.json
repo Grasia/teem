@@ -405,6 +405,10 @@
       }
     },
     "join": {
+      "error": {
+        "subtitle": "Algo ha salido mal al enviar un email al organizador.",
+        "title": "Ups!"
+      },
       "form": {
         "button": "Enviar",
         "organizer": {

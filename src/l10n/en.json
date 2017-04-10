@@ -405,6 +405,10 @@
       }
     },
     "join": {
+      "error": {
+        "subtitle": "Something went wrong while sending an email to the organizer.",
+        "title": "Ups!"
+      },
       "form": {
         "button": "Send",
         "organizer": {
