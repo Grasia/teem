@@ -11,6 +11,10 @@
         <h1 translate>project.join.success.title</h1>
         <h2 translate>project.join.success.subtitle</h2>
       </div>
+      <div ng-if="step === 'error'">
+        <h1 translate>project.join.error.title</h1>
+        <h2 translate>project.join.error.subtitle</h2>
+      </div>
     </header>
 
     <main>
@@ -54,7 +58,7 @@
         </form>
       </div>
 
-      <div class="project-join-success" ng-if="step === 'success'">
+      <div class="project-join-success" ng-if="step === 'success' || step === 'error'">
         <div class="project-join-success-text" translate>
           project.join.success.text
         </div>
