@@ -26,7 +26,7 @@
     "angular-moment": "1.x",
     "moment": "~2.10.6",
     "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.5.4",
-    "angular-messages": "^1.5.0",
+    "angular-messages": "~1.5.8",
     "angular-ui-notification": "^0.1.0",
     "ng-file-upload": "^12.0.1",
     "angular-selectize2": "git://github.com/nbrustein/angular-selectize.git#bindable-placeholder",
