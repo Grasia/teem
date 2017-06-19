@@ -7,7 +7,6 @@
  * # Chat Ctrl
  * Show Pad for a given project
  */
-
 angular.module('Teem')
   .directive('pad', function() {
     return {
@@ -17,9 +16,9 @@ angular.module('Teem')
       },
       controller: [
         'SessionSvc', '$rootScope', '$scope', '$route', '$location',
-        '$timeout', 'SharedState', 'needWidget', '$element',
+    '$timeout', 'SharedState', 'needWidget', '$element','linkPreview',
         function(SessionSvc, $rootScope, $scope, $route, $location,
-        $timeout, SharedState, needWidget, $element) {
+    $timeout, SharedState, needWidget, $element, linkPreview) {
 
           var buttons = ['text_fields', 'format_bold', 'format_italic', 'format_strikethrough',
           'format_align_left', 'format_align_center', 'format_align_right',
@@ -86,9 +85,68 @@ angular.module('Teem')
             },
             'link': {
               onEvent: function(range, event) {
+            let timer;
+            let div = document.createElement('div');
                 if (event.type === 'click') {
                   event.stopPropagation();
                   $scope.linkModal.open(range);
+              div.style.display = 'none';
+              clearTimeout(timer);
+            }
+            else if(event.type === 'mouseover'){
+              timer = setTimeout(() => {
+                console.log(event);
+                event.stopPropagation();
+                let btn = event.target;
+                console.dir(btn.offsetHeight);
+                let inHTML = `
+                <span>Loading....</span>
+                `;
+                linkPreview.getMetaData(btn.href)
+                .then((meta) => {
+                  console.log(meta);
+                  if(!meta){
+                    div.style.display = 'none';
+                    return;
+                  }
+                  let urlDate = meta.date,
+                      urlImage = meta.image,
+                      urlAuthor = meta.author,
+                      urlLink = meta.url,
+                      urlTitle = meta.title,
+                      urlDescription = meta.description,
+                      urlPublisher = meta.title;
+                  if(urlImage){
+                    // div.style.backgroundImage = `url(${urlImage})`;
+                    // div.style.filter = 'grayscale(1)';
+                  }
+                  if(urlDescription){
+                    pStyle = 'position: absolute; bottom: 5px;width:100%';
+                    div.innerHTML = `<p style=${pStyle}>${urlDescription}</p>`;
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+                div.innerHTML = inHTML;
+                div.style.width = '350px';
+                div.style.height = '250px';
+                div.style.position = 'absolute';
+                div.style.border = '1px solid #F0F0F0';
+                div.style.left = event.clientX - event.target.offsetWidth/2 - 20 + 'px';
+                div.style.top = event.clientY + event.target.offsetTop/2 - 10 + 'px';
+                div.style.zIndex = 3;
+                div.style.backgroundColor = '#F2F2F2';
+                div.id = 'popover';
+                div.style.padding = '10px';
+                document.body.appendChild(div);
+              },500);
+            }
+            else if(event.type === 'mouseout'){
+              clearTimeout(timer);
+              setTimeout(() => {
+                document.body.removeChild(document.getElementById('popover'));
+              }, 500);
                 }
               }
             }
