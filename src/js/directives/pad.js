@@ -7,6 +7,7 @@
  * # Chat Ctrl
  * Show Pad for a given project
  */
+let timer,styleAppended = false;
 angular.module('Teem')
   .directive('pad', function() {
     return {
@@ -37,6 +38,118 @@ angular.module('Teem')
           };
 
           var annotations = {};
+
+      function openLinkPopover(event){
+        if(!styleAppended){
+          let pStyle = document.createElement('style');
+          pStyle.innerHTML = `
+          #popover{
+            width: 330px;
+            height: 270px;
+            margin: 0 5px;
+            border-radius: 6px;
+          }
+          div.popover-link-image{
+            width: 330px;
+            height: 190px;
+            margin: 5px auto;
+          }
+          div.popover-link-description{
+            width: 320px;
+            height: auto;
+            max-height: 40px;
+            margin: 0 auto;
+            overflow: auto;
+            word-wrap: break-all;
+          }
+          .popover-link-address{
+            color: #000;
+            margin-left: 5px;
+          }
+          .popover-link-title{
+            margin-left: 5px;
+          }`;
+          document.body.appendChild(pStyle);
+          styleAppended = true;
+        }
+        timer = $timeout(() => {
+          console.log(event);
+          event.stopPropagation();
+          let div =  document.createElement('div');
+          let btn = event.target;
+          console.dir(btn.offsetHeight);
+          let inHTML = `
+          <span>Loading....</span>
+          `;
+          linkPreview.getMetaData(btn.href)
+          .then((meta) => {
+            console.log(meta);
+            if(!meta){
+              div.style.display = 'none';
+              return;
+            }
+            let urlImage = meta.image,
+                urlAuthor = meta.author,
+                urlTitle = meta.title,
+                urlDescription = meta.description;
+            if(urlImage && urlDescription){
+              inHTML = `<div id="popover">
+              <div class="popover-link-title">${urlTitle}</div>
+              <div class="popover-link-image">
+              <img src="${urlImage}" alt="${urlAuthor}" height="180" width="330">
+              </div>
+              <div class="popover-link-description">
+              Hello, My name is Kumar Shubham
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur iste, voluptatibus, sequi dolorem accusamus exercitationem, harum iure molestiae sint nisi ducimus mollitia, aliquid eum culpa quo deleniti nemo dolor aut.
+              </div>
+              <span class="popover-link-address">${btn.href}</span>
+              </div>`;
+            }
+            else if(urlDescription && !urlImage){
+              inHTML = `<div id="popover">
+              <div class="popover-link-title"></div>
+              <div class="popover-link-description">${urlDescription}</div>
+              <span class="popover-link-address">${btn.href}</span>
+              </div>`;
+            }
+            else{
+              div.style.height = '110px';
+              inHTML = `<div id="popover" align="center">
+              <div class="popover-link-title">${urlTitle}</div>
+              <div class="popover-link-description">No Description provided ...</div>
+              <span class="popover-link-address">${btn.href}</span>
+              </div>`;
+            }
+            div.innerHTML = inHTML;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+          div.innerHTML = inHTML;
+          div.style.width = '345px';
+          div.style.height = '300px';
+          div.style.position = 'absolute';
+          div.style.border = '1px solid #F0F0F0';
+          div.style.left = event.clientX - event.target.offsetWidth/2 - 20 + 'px';
+          div.style.top = event.clientY + 50 + 'px';
+          div.style.zIndex = 3;
+          div.style.backgroundColor = '#F2F2F2';
+          div.style.paddingTop = '5px';
+          div.id = 'popover-container';
+          document.body.appendChild(div);
+        },500);
+      }
+
+      function closeLinkPopover(event){
+        console.log(event);
+        if(timer){
+          $timeout.cancel(timer);
+          timer = null;
+          $timeout(() => {
+            document.body.removeChild(document.getElementById('popover-container'));
+          }, 500);
+        }
+      }
 
           function imgWidget(parentElement, before, state) {
             state = state || before;
@@ -85,7 +198,6 @@ angular.module('Teem')
             },
             'link': {
               onEvent: function(range, event) {
-            let timer;
             let div = document.createElement('div');
                 if (event.type === 'click') {
                   event.stopPropagation();
@@ -94,59 +206,10 @@ angular.module('Teem')
               clearTimeout(timer);
             }
             else if(event.type === 'mouseover'){
-              timer = setTimeout(() => {
-                console.log(event);
-                event.stopPropagation();
-                let btn = event.target;
-                console.dir(btn.offsetHeight);
-                let inHTML = `
-                <span>Loading....</span>
-                `;
-                linkPreview.getMetaData(btn.href)
-                .then((meta) => {
-                  console.log(meta);
-                  if(!meta){
-                    div.style.display = 'none';
-                    return;
-                  }
-                  let urlDate = meta.date,
-                      urlImage = meta.image,
-                      urlAuthor = meta.author,
-                      urlLink = meta.url,
-                      urlTitle = meta.title,
-                      urlDescription = meta.description,
-                      urlPublisher = meta.title;
-                  if(urlImage){
-                    // div.style.backgroundImage = `url(${urlImage})`;
-                    // div.style.filter = 'grayscale(1)';
-                  }
-                  if(urlDescription){
-                    pStyle = 'position: absolute; bottom: 5px;width:100%';
-                    div.innerHTML = `<p style=${pStyle}>${urlDescription}</p>`;
-                  }
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-                div.innerHTML = inHTML;
-                div.style.width = '350px';
-                div.style.height = '250px';
-                div.style.position = 'absolute';
-                div.style.border = '1px solid #F0F0F0';
-                div.style.left = event.clientX - event.target.offsetWidth/2 - 20 + 'px';
-                div.style.top = event.clientY + event.target.offsetTop/2 - 10 + 'px';
-                div.style.zIndex = 3;
-                div.style.backgroundColor = '#F2F2F2';
-                div.id = 'popover';
-                div.style.padding = '10px';
-                document.body.appendChild(div);
-              },500);
+              openLinkPopover(event);
             }
             else if(event.type === 'mouseout'){
-              clearTimeout(timer);
-              setTimeout(() => {
-                document.body.removeChild(document.getElementById('popover'));
-              }, 500);
+              closeLinkPopover(event);
                 }
               }
             }
