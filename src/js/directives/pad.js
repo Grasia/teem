@@ -62,6 +62,12 @@ angular.module('Teem')
             overflow: auto;
             word-wrap: break-all;
           }
+          .popover-link-title{
+            word-wrap: break-all;
+            text-overflow: ellpsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
           .popover-link-address{
             color: #000;
             margin-left: 5px;
@@ -153,7 +159,7 @@ angular.module('Teem')
                 inHTML = `<div id="popover" align="center">
                 <div class="popover-link-description">No Description provided ...</div>
                 <div class="popover-link-address">${btn.href}</div>
-                </div>`;  
+                </div>`;
               }
               div.style.height = '110px';
               inHTML = `<div id="popover" align="center">
@@ -190,8 +196,9 @@ angular.module('Teem')
           $timeout.cancel(timer);
           timer = null;
           $timeout(() => {
-            if(document.getElementById('popover-container'))
+            if(document.getElementById('popover-container')){
               document.body.removeChild(document.getElementById('popover-container'));
+            }
           }, delay);
         }
       }
