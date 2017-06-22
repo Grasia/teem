@@ -9,15 +9,16 @@
    * Returns the parsed meta data of the given link
    */
 
-	angular
-  .module('Teem')
-  .factory('linkPreview', linkPreview);
+let linkPreviewFactory = angular.module('Teem');
+
 
 	function linkPreview($http) {
     const LINK_PREVIEW_SERVER_URL = 'http://localhost:9090/fetch';
     function getMetaData(url){
       //TODO: implement a check for the URL to be correct
-      if(!url) return;
+    if(!url){
+      return;
+    }
       return $http.post(LINK_PREVIEW_SERVER_URL,{url})
       .then((res) => {
         return res.data;
@@ -32,4 +33,5 @@
     };
 	}
   linkPreview.$inject = ['$http'];
+linkPreviewFactory.factory('linkPreview', linkPreview);
 })();
