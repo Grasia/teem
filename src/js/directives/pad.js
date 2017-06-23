@@ -173,14 +173,14 @@ angular.module('Teem')
           .catch((err) => {
             console.log(err);
           });
+          let clientRect = range.node.nextSibling ?
+          range.node.nextSibling.getBoundingClientRect() :
+          range.node.parentElement.getBoundingClientRect();
           div.innerHTML = inHTML;
           div.style.width = '345px';
           div.style.height = '300px';
           div.style.position = 'absolute';
           div.style.border = '1px solid #F0F0F0';
-          let clientRect = range.node.nextSibling ?
-          range.node.nextSibling.getBoundingClientRect() :
-          range.node.parentElement.getBoundingClientRect();
           div.style.top = clientRect.top + 35 + 'px';
           div.style.left = clientRect.left + 'px';
           div.style.zIndex = 3;
