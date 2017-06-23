@@ -7,7 +7,7 @@
  * # Chat Ctrl
  * Show Pad for a given project
  */
-
+let onceClick =  false;
 angular.module('Teem')
   .directive('pad', function() {
     return {
@@ -88,6 +88,7 @@ angular.module('Teem')
               onEvent: function(range, event) {
                 if (event.type === 'click') {
                   event.stopPropagation();
+                  onceClick = true;
                   $scope.linkModal.open(range);
                 }
               }
@@ -121,7 +122,9 @@ angular.module('Teem')
               },
               open: function(range) {
                 let annotation = editor.getAnnotationInRange(range, 'link');
-
+                if(onceClick){
+                  range.end = range.start + range.lenght;
+                }
                 $scope.linkModal.range = range;
                 $scope.linkModal.annotation = annotation;
                 console.log(range);
