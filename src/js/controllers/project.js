@@ -53,6 +53,14 @@ angular.module('Teem')
         redirectTo: function(params) {
           return '/teems/' + params.id + '?tab=' + params.tab;
         }
+      })
+      .when('/trello/get/',{
+        controller: 'TrelloGetController',
+        template: '<h1>Redirecting ....</h1>'
+      })
+      .when('/trello/auth',{
+        template: '<h1>Redirecting to trello</h1>',
+        controller: 'TrelloAuthController'
       });
   }])
   .controller('FetchProject', [
@@ -255,7 +263,7 @@ angular.module('Teem')
       $scope.pad.editing = false;
     });
 
-      $scope.$on('$routeChangeStart', function(event, next, current) {
+    $scope.$on('$routeChangeStart', function(event, next, current) {
       if (current.params.tab !== undefined && $scope.project!== undefined) {
         $scope.project.setTimestampAccess(current.params.tab);
       }
@@ -281,12 +289,12 @@ angular.module('Teem')
 
       var lastChange = $scope.project.lastChange(section);
       var lastAccess;
-          if ($scope.project.getTimestampAccess() &&
-            $scope.project.getTimestampAccess()[section]) {
-            lastAccess = new Date(($scope.project.getTimestampAccess()[section]).last);
-          } else {
-            lastAccess = new Date(0);
-          }
+      if ($scope.project.getTimestampAccess() &&
+        $scope.project.getTimestampAccess()[section]) {
+        lastAccess = new Date(($scope.project.getTimestampAccess()[section]).last);
+      } else {
+        lastAccess = new Date(0);
+      }
       return lastChange > lastAccess;
     };
 
@@ -361,7 +369,7 @@ angular.module('Teem')
             url
           }).then(function (response) {
             angular.forEach(response.data.geonames, function(v) {
-               v.value = {
+              v.value = {
                  id: v.geonameId.toString(),
                  latitide: v.lat,
                  longitude: v.lng,
@@ -421,6 +429,16 @@ angular.module('Teem')
       // TODO
     };
 
+  }])
+  .controller('TrelloGetController', ['$location','ProjectsSvc','SessionSvc', function($location,ProjectsSvc,SessionSvc){
+    let token = $location.hash().split('=')[1];
+    localStorage.setItem('trelloTeemToken',token);
+    SessionSvc.onLoad(function(){
+      ProjectsSvc.updateTrello();
+    });
+  }])
+  .controller('TrelloAuthController',['trelloSvc',function(trelloSvc){
+    trelloSvc.getToken();
   }])
   .directive(
     'hideTabs',

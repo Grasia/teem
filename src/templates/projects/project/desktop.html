@@ -54,8 +54,9 @@
   <div class="col-md-4">
     <div sticky class="project-utils">
       <div project-people></div>
+      <button ng-if="!project.trello" class="btn btn-primary btn-block" type="button"><i class="material-icons">credit_card</i> Integrate Trello</button>
+      <h2 translate>need.nav.title</h2>
       <div class="project-needs-section">
-        <h2 translate>need.nav.title</h2>
         <div need-list project="project" needs="project.needs" display="panel" class="flex-container" ng-class="project.isParticipant() ? '' : 'has-cta'"></div>
       </div>
     </div>
