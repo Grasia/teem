@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cfc61a1-eec0-4d7b-9989-e47f26c7fa3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/controllers/project.js" afterPath="$PROJECT_DIR$/src/js/controllers/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/services/projectsService.js" afterPath="$PROJECT_DIR$/src/js/services/projectsService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/projects/project/desktop.html" afterPath="$PROJECT_DIR$/src/templates/projects/project/desktop.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,11 +31,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="desktop.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="desktop.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/projects/project/desktop.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="490">
               <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="426">
+              <caret line="144" column="5" lean-forward="false" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -94,6 +103,7 @@
         <option value="$PROJECT_DIR$/src/js/services/trelloService.js" />
         <option value="$PROJECT_DIR$/src/js/services/projectsService.js" />
         <option value="$PROJECT_DIR$/src/templates/projects/project/desktop.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -181,12 +191,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1502779680401</updated>
-      <workItem from="1502779682771" duration="8130000" />
+      <workItem from="1502779682771" duration="8231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8130000" />
+    <option name="totallyTimeSpent" value="8231000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -323,6 +333,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
           <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="144" column="5" lean-forward="false" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
           <folding />
         </state>
       </provider>

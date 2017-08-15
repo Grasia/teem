@@ -93,7 +93,7 @@ local.properties
 # PDT-specific
 .buildpath
 
-# sbteclipse plugin 
+# sbteclipse plugin
 .target
 
 # TeXlipse plugin
@@ -141,3 +141,6 @@ build/Release
 
 # Destination folder
 /www/
+
+.idea
+
