@@ -141,3 +141,6 @@ build/Release
 
 # Destination folder
 /www/
+
+.idea
+
