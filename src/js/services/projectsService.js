@@ -3,9 +3,9 @@
 angular.module('Teem')
   .factory('ProjectsSvc', [
   'swellRT', '$q', '$timeout', 'base64', 'SessionSvc', 'SwellRTCommon', 'User',
-  '$rootScope', 'Logo', 'Url', 'Participation',
+    '$rootScope', 'Logo', 'Url', 'Participation', 'trelloSvc', '$location',
   function(swellRT, $q, $timeout, base64, SessionSvc, SwellRTCommon, User,
-  $rootScope, Logo, Url, Participation){
+              $rootScope, Logo, Url, Participation, trelloSvc, $location) {
 
     // class that expose only read methods of the project object
     class ProjectReadOnly extends aggregation(Object, Logo, Url, Participation.ReadOnly) {
@@ -31,7 +31,9 @@ angular.module('Teem')
         }
       }
 
-      get pathPrefix () { return '/teems/'; }
+        get pathPrefix() {
+          return '/teems/';
+        }
 
       getTimestampAccess () {
         var access;
@@ -318,7 +320,6 @@ angular.module('Teem')
       }
 
       addNeed(need) {
-
         // Quick dirty hack until SwellRT provides ids for array elements
         need._id = Math.random().toString().substring(2);
         need.author = SessionSvc.users.current();
@@ -327,6 +328,36 @@ angular.module('Teem')
 
         this.needs.push(need);
         this.setTimestampAccess('needs', true);
+
+          if (this.trello) {
+            console.log('hello');
+            if (this.trello.boardId) {
+              if (!this.trello.listId){
+                console.log('No list Id found for the current board');
+              }
+              trelloSvc.addNewCard(this.trello, need);
+            }
+            else {
+              trelloSvc.createTrelloBoard(this, need).then((BoardData) => {
+                this.trello.boardId = BoardData.id;
+                trelloSvc.createNewList(this.trello)
+                  .then((listdata) => {
+                    trelloSvc.addNewCard(this.trello).then((cardData) => {
+                      console.log(cardData);
+                    })
+                      .catch(err => console.log(err))
+                  })
+                  .catch(err => console.log(err));
+              })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }
+          }
+          else {
+            console.log('creating a new trello thing');
+            trelloSvc.getToken();
+          }
 
         return need;
       }
@@ -388,7 +419,6 @@ angular.module('Teem')
     // Service functions //
 
     var openedProjects = {};
-
 
 
     /*
@@ -590,6 +620,19 @@ angular.module('Teem')
       return d.promise;
     }
 
+      function updateTrello() {
+        $location.path(localStorage.getItem('projectUrl'));
+        let locationSplit = $location.path().split('/');
+        let urlId = locationSplit[locationSplit.length - 1];
+        let id = base64.urldecode(urlId);
+        if (!localStorage.getItem('trelloTeemToken')) return;
+        find(id).then((model) => {
+          model.trello = {};
+          model.trello.token = localStorage.getItem('trelloTeemToken');
+          localStorage.removeItem('trelloTeemToken');
+        });
+      }
+
     var projectListProjection = {
       participants: 1,
       root: {
@@ -612,6 +655,7 @@ angular.module('Teem')
       findByUrlId,
       find,
       create,
-      projectListProjection
+        projectListProjection,
+        updateTrello
     };
   }]);

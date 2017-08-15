@@ -53,6 +53,14 @@ angular.module('Teem')
         redirectTo: function(params) {
           return '/teems/' + params.id + '?tab=' + params.tab;
         }
+      })
+      .when('/trello/get/',{
+        controller: 'TrelloGetController',
+        template: '<h1>Redirecting ....</h1>'
+      })
+      .when('/trello/auth',{
+        template: '<h1>Redirecting to trello</h1>',
+        controller: 'TrelloAuthController'
       });
   }])
   .controller('FetchProject', [
@@ -421,6 +429,16 @@ angular.module('Teem')
       // TODO
     };
 
+  }])
+  .controller('TrelloGetController', ['$location','ProjectsSvc','SessionSvc', function($location,ProjectsSvc,SessionSvc){
+    let token = $location.hash().split('=')[1];
+    localStorage.setItem('trelloTeemToken',token);
+    SessionSvc.onLoad(function(){
+      ProjectsSvc.updateTrello();
+    });
+  }])
+  .controller('TrelloAuthController',['trelloSvc',function(trelloSvc){
+    trelloSvc.getToken();
   }])
   .directive(
     'hideTabs',
