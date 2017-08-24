@@ -57,10 +57,6 @@ angular.module('Teem')
       .when('/trello/get/',{
         controller: 'TrelloGetController',
         template: '<h1>Redirecting ....</h1>'
-      })
-      .when('/trello/auth',{
-        template: '<h1>Redirecting to trello</h1>',
-        controller: 'TrelloAuthController'
       });
   }])
   .controller('FetchProject', [
@@ -97,9 +93,9 @@ angular.module('Teem')
   }])
   .controller('ProjectCtrl', [
   'SessionSvc', '$scope', '$rootScope', '$location', '$route', '$timeout', 'swellRT', '$filter',
-  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector', '$http', '$translate',
+  'SharedState', 'ProjectsSvc', 'Loading', '$window', 'CommunitiesSvc', 'User', 'Selector', '$http', '$translate','trelloSvc',
   function (SessionSvc, $scope, $rootScope, $location, $route, $timeout, swellRT, $filter,
-  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector, $http, $translate) {
+  SharedState, ProjectsSvc, Loading, $window, CommunitiesSvc, User, Selector, $http, $translate, trelloSvc) {
 
     // Prevent users from forging the form parameter
     // and set the form order
@@ -425,6 +421,10 @@ angular.module('Teem')
 
     };
 
+    $scope.getToken = function () {
+      trelloSvc.getToken();
+    };
+
     $scope.archiveProject = function() {
       // TODO
     };
@@ -436,9 +436,6 @@ angular.module('Teem')
     SessionSvc.onLoad(function(){
       ProjectsSvc.updateTrello();
     });
-  }])
-  .controller('TrelloAuthController',['trelloSvc',function(trelloSvc){
-    trelloSvc.getToken();
   }])
   .directive(
     'hideTabs',

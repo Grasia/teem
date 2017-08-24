@@ -326,37 +326,17 @@ angular.module('Teem')
           need.time = (new Date()).toJSON();
           need.completed = 'false';
 
-          this.needs.push(need);
           this.setTimestampAccess('needs', true);
 
           if (this.trello) {
-            console.log('hello');
-            if (this.trello.boardId) {
-              if (!this.trello.listId){
-                console.log('No list Id found for the current board');
-              }
-              trelloSvc.addNewCard(this.trello, need);
-            }
-            else {
-              trelloSvc.createTrelloBoard(this, need).then((BoardData) => {
-                this.trello.boardId = BoardData.id;
-                trelloSvc.createNewList(this.trello)
-                  .then((listdata) => {
-                    trelloSvc.addNewCard(this.trello).then((cardData) => {
-                      console.log(cardData);
-                    })
-                      .catch(err => console.log(err))
-                  })
+            if (this.trello.boardId && this.trello.listId) {
+              trelloSvc.addNewCard(this.trello, need).
+                then((cardData) => {
+                  need.trelloId = cardData.id;
+                  this.needs.push(need);
+                })
                   .catch(err => console.log(err));
-              })
-                .catch((err) => {
-                  console.log(err);
-                });
             }
-          }
-          else {
-            console.log('creating a new trello thing');
-            trelloSvc.getToken();
           }
 
           return need;
@@ -630,6 +610,17 @@ angular.module('Teem')
           model.trello = {};
           model.trello.token = localStorage.getItem('trelloTeemToken');
           localStorage.removeItem('trelloTeemToken');
+          trelloSvc.createTrelloBoard(model).
+            then((BoardData) => {
+              model.trello.boardId = BoardData.id;
+              trelloSvc.registerWebhook(model.trello);
+              trelloSvc.createNewList(model.trello).
+                then((listData) => {
+                  model.trello.listId = listData.id;
+                })
+                  .catch(err => console.log(err));
+            })
+              .catch(err => console.error(err));
         });
       }
 
