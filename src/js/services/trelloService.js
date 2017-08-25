@@ -59,13 +59,32 @@
       // const newCardURL = `https://api.trello.com/1/cards?idList=${trelloObj.listId}&`
     }
 
+    function archiveCard(trelloObj, need){
+      let deferred = $q.defer();
+      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?closed="true"&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
+      $http.put(archiveCardURL).
+        then(result => deferred.resolve(result.data))
+        .catch(err => deferred.reject(result.data));
+      return deferred.promise;
+    }
+
+    function registerWebhook(trelloObj){
+      const webhookURL = `https://api.trello.com/1/webhooks/?idModel=${trelloObj.boardId}&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}&callbackURL=http://13.126.145.126:9000/`;
+      $http.post(webhookURL)
+        .then(result => console.log(result.data))
+        .catch(err => console.log(err));
+    }
+
+    // 59967ddfa49283757bd8a2ac
 
     let service = {
       getToken: getToken,
       parseTokenFromUrl: parseTokenFromUrl,
       createTrelloBoard: createTrelloBoard,
       createNewList: createNewList,
-      addNewcard: addNewcard
+      addNewCard: addNewCard,
+      registerWebhook: registerWebhook,
+      archiveCard: archiveCard
     };
 
     return service;
