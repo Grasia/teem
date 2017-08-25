@@ -60,6 +60,15 @@
       return deferred.promise;
     }
 
+    function archiveCard(trelloObj, need){
+      let deferred = $q.defer();
+      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?closed="true"&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
+      $http.put(archiveCardURL).
+        then(result => deferred.resolve(result.data))
+        .catch(err => deferred.reject(result.data));
+      return deferred.promise;
+    }
+
     function registerWebhook(trelloObj){
       const webhookURL = `https://api.trello.com/1/webhooks/?idModel=${trelloObj.boardId}&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}&callbackURL=http://13.126.145.126:9000/`;
       $http.post(webhookURL)
@@ -82,7 +91,8 @@
       createTrelloBoard: createTrelloBoard,
       createNewList: createNewList,
       addNewCard: addNewCard,
-      registerWebhook: registerWebhook
+      registerWebhook: registerWebhook,
+      archiveCard: archiveCard
     };
   }
 })();

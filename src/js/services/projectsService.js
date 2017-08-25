@@ -355,7 +355,13 @@ angular.module('Teem')
 
           if (newStatus) {
             need.completionDate = (new Date()).toJSON();
+            trelloSvc.archiveCard(this.trello,need).
+              then(data => need.closed = true)
+              .catch(err => console.log(err));
           } else {
+            trelloSvc.unarchiveCard(this.trello,need).
+              then(data => {need.closed = false;})
+              .catch(err => console.log(err));
             delete need.completionDate;
           }
         }
@@ -376,6 +382,10 @@ angular.module('Teem')
           var i = this.needs.indexOf(need);
 
           this.needs.splice(i, 1);
+
+          trelloSvc.archiveNeed(this.trello,need).
+            then(data => need.removed = true)
+            .catch(err => console.log(err));
         }
 
         addNeedComment(need, comment) {
