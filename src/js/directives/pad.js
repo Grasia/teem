@@ -37,9 +37,9 @@ angular.module('Teem')
          'format_list_numbered': 'paragraph/listStyleType=decimal'
        };
 
-       var annotations = {};
+        var annotations = {};
 
-       function openLinkPopover(event,range){
+        function openLinkPopover(event,range){
         if(!styleAppended){
           let pStyle = document.createElement('style');
           pStyle.innerHTML = `
@@ -191,7 +191,7 @@ angular.module('Teem')
         },700);
       }
 
-      function closeLinkPopover(delay){
+        function closeLinkPopover(delay){
         if(timer){
           $timeout.cancel(timer);
           timer = null;
@@ -203,12 +203,12 @@ angular.module('Teem')
         }
       }
 
-      function imgWidget(parentElement, before, state) {
-        state = state || before;
+        function imgWidget(parentElement, before, state) {
+          state = state || before;
 
-        if (!(state in $scope.project.attachments) || !$scope.project.attachments[state].file) {
-          return;
-        }
+          if (!(state in $scope.project.attachments) || !$scope.project.attachments[state].file) {
+            return;
+          }
 
           // cannot use spinner template directly here
           parentElement.innerHTML = `
@@ -423,4 +423,4 @@ angular.module('Teem')
       }],
       templateUrl: 'pad.html'
     };
-});
+  });
