@@ -1,6 +1,6 @@
 <div class="pad-wrapper flex-container" ng-class="project.isParticipant() && (isDesktop() || pad.editing) ? 'project-pad-editing' : ''">
   <div class="pad no-pointer flex-container" ng-click="editOn()" ui-outer-click="editOff()" ui-outer-click-if="pad.editing && !isDesktop() && !pad.selectingFile"
-  ngf-drop="widget('img', $file)" ngf-fix-orientation="true">
+       ngf-drop="widget('img', $file)" ngf-fix-orientation="true">
     <div ng-if="project.isParticipant() && (isDesktop() || pad.editing)" class="pad-toolbar" sticky>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <button type="button" ng-click="linkModal.add($event)" class="btn btn-raised btn-link btn-xs" uib-tooltip="{{'pad.tooltip.link' | translate}}" tooltip-append-to-body="true">
@@ -42,8 +42,8 @@
     <div id="link-modal" class="well bs-component" ng-class="{hidden: !linkModal.show}" ui-outer-click="linkModal.show = false; linkModal.edit = false">
       <div ng-if="linkModal.annotation.value && !linkModal.edit">
         <a href="{{linkModal.link}}" target="_blank">{{linkModal.link}}</a>
-         - <a ng-click="linkModal.edit = true; $event.stopPropagation()" translate>pad.link.change</a>
-         | <a ng-click="linkModal.clear()" translate>pad.link.delete</a>
+        - <a ng-click="linkModal.edit = true; $event.stopPropagation()" translate>pad.link.change</a>
+        | <a ng-click="linkModal.clear()" translate>pad.link.delete</a>
       </div>
       <form class="form-horizontal" ng-submit="linkModal.change()" ng-if="!linkModal.annotation.value || linkModal.edit">
         <fieldset>
@@ -65,4 +65,42 @@
     </div>
   </div>
 
+</div>
+
+<div style="display: none;">
+  <!--If urlImage as well as urlDescription are there then we can have this as our template-->
+  <div id="urlImage-and-urlDescription">
+    <div id="popover">
+      <div class="popover-link-title" id="popoverLinkTitle"></div>
+      <div class="popover-link-image">
+        <img src="" alt="" height="180" width="330" id="popoverLinkImage">
+      </div>
+      <div class="popover-link-description" id="popoverLinkDescription"></div>
+      <div class="popover-link-address" id="popoverLinkUrl"></div>
+    </div>
+  </div>
+
+  <!--If only description is there-->
+  <div id="description-and-no-image">
+    <div id="popover">
+      <div class="popover-link-title"></div>
+      <div class="popover-link-description"></div>
+      <div class="popover-link-address"></div>
+    </div>
+  </div>
+  <!--If title of the URL is not there-->
+  <div id="no-title-in-url">
+    <div id="popover" align="center">
+      <div class="popover-link-description">A description of this content is not available accross the page!</div>
+      <div class="popover-link-address">${btn.href}</div>
+    </div>
+  </div>
+  <!--If not adequate meta data is there-->
+  <div id="not-adequate-metadata">
+    <div id="popover" align="center">
+      <div class="popover-link-title"></div>
+      <div class="popover-link-description">A description of this content is not available accross the page!</div>
+      <div class="popover-link-address"></div>
+    </div>
+  </div>
 </div>

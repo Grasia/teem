@@ -7,23 +7,23 @@
  * # Chat Ctrl
  * Show Pad for a given project
  */
-
+let timer;
 angular.module('Teem')
-  .directive('pad', function() {
+  .directive('pad', function () {
     return {
       scope: true,
-      link: function($scope, elem, attrs) {
+      link: function ($scope, elem, attrs) {
         $scope.editingDefault = attrs.editingDefault;
       },
       controller: [
         'SessionSvc', '$rootScope', '$scope', '$route', '$location',
-        '$timeout', 'SharedState', 'needWidget', '$element',
-        function(SessionSvc, $rootScope, $scope, $route, $location,
-        $timeout, SharedState, needWidget, $element) {
+        '$timeout', 'SharedState', 'needWidget', '$element', 'linkPreview',
+        function (SessionSvc, $rootScope, $scope, $route, $location,
+                  $timeout, SharedState, needWidget, $element, linkPreview) {
 
           var buttons = ['text_fields', 'format_bold', 'format_italic', 'format_strikethrough',
-          'format_align_left', 'format_align_center', 'format_align_right',
-          'format_list_bulleted', 'format_list_numbered'];
+            'format_align_left', 'format_align_center', 'format_align_right',
+            'format_list_bulleted', 'format_list_numbered'];
 
           var annotationMap = {
             'text_fields': 'paragraph/header=h3',
@@ -39,6 +39,106 @@ angular.module('Teem')
 
           var annotations = {};
 
+          function openLinkPopover(event, range) {
+            timer = $timeout(() => {
+              event.stopPropagation();
+              let div = document.createElement('div');
+              let btn = event.target;
+              //cannot inject the spinner HTML directly here
+              let inHTML = `
+          <style>
+          .pos-r{
+            position relative;
+            margin: 150px 0;
+          }
+          </style>
+          <div class="pos-r">
+          <div class="spinner-container">
+          <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+          <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+          </svg>
+          </div>
+          </div>
+          `;
+              linkPreview.getMetaData(btn.href)
+                .then((meta) => {
+                  if (!meta) {
+                    div.style.display = 'none';
+                    return;
+                  }
+                  let urlImage = meta.image,
+                    urlAuthor = meta.author,
+                    urlTitle = meta.title,
+                    urlDescription = meta.description;
+                  let innerEle = document.createElement('div');
+                  if (urlImage && urlDescription) {
+                    innerEle.innerHTML = document.getElementById('urlImage-and-urlDescription').innerHTML;
+                    innerEle.querySelector('#popoverLinkTitle').innerHTML = urlTitle;
+                    innerEle.querySelector('#popoverLinkImage').src = urlImage;
+                    innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                    innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                    inHTML = innerEle.innerHTML;
+                  }
+                  else if (urlDescription && !urlImage) {
+                    div.style.height = '110px';
+                    innerEle.innerHTML = document.getElementById('description-and-no-image').innerHTML;
+                    innerEle.querySelector('#popoverLinkTitle').innerHTML = urlTitle;
+                    innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                    innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                    inHTML = innerEle.innerHTML;
+                  }
+                  else {
+                    if (!urlTitle) {
+                      div.style.height = '110px';
+                      innerEle.innerHTML = document.getElementById('no-title-in-url').innerHTML;
+                      innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                      innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                      inHTML = innerEle.innerHTML;
+                    }
+                    else {
+                      div.style.height = '110px';
+                      innerEle.innerHTML = document.getElementById('no-title-in-url').innerHTML;
+                      innerEle.querySelector('#popoverLinkTitle').innerHTML = urlTitle;
+                      innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                      innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                      inHTML = innerEle.innerHTML;
+                    }
+                  }
+                  div.innerHTML = inHTML;
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+              let clientRect = range.node.nextSibling ?
+                range.node.nextSibling.getBoundingClientRect() :
+                range.node.parentElement.getBoundingClientRect();
+              div.innerHTML = inHTML;
+              div.style.width = '345px';
+              div.style.height = '300px';
+              div.style.position = 'absolute';
+              div.style.border = '1px solid #F0F0F0';
+              div.style.top = clientRect.top + 35 + 'px';
+              div.style.left = clientRect.left + 'px';
+              div.style.zIndex = 3;
+              div.style.backgroundColor = '#F2F2F2';
+              div.style.paddingTop = '5px';
+              div.id = 'popover-container';
+              document.body.appendChild(div);
+            }, 700);
+          }
+
+          function closeLinkPopover(delay) {
+            if (timer) {
+              $timeout.cancel(timer);
+              timer = null;
+              $timeout(() => {
+                if (document.getElementById('popover-container')) {
+                  document.body.removeChild(document.getElementById('popover-container'));
+                }
+              }, delay);
+            }
+          }
+
           function imgWidget(parentElement, before, state) {
             state = state || before;
 
@@ -48,13 +148,13 @@ angular.module('Teem')
 
             // cannot use spinner template directly here
             parentElement.innerHTML = `
-            <div class="pos-r">
-              <div class="spinner-container">
-                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                  <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-                </svg>
-              </div>
-            </div>`;
+          <div class="pos-r">
+          <div class="spinner-container">
+          <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+          <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+          </svg>
+          </div>
+          </div>`;
 
             $scope.project.attachments[state].file.getUrl().then(url => {
               parentElement.innerHTML = `<img src="${url}">`;
@@ -71,24 +171,32 @@ angular.module('Teem')
 
           $scope.padAnnotations = {
             'paragraph/header': {
-              onAdd: function() {
+              onAdd: function () {
                 $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
                 $timeout();
               },
-              onChange: function() {
+              onChange: function () {
                 $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
                 $timeout();
               },
-              onRemove: function() {
+              onRemove: function () {
                 $scope.pad.outline = this.editor.getAnnotationSet('paragraph/header');
                 $timeout();
               }
             },
             'link': {
-              onEvent: function(range, event) {
+              onEvent: function (range, event) {
                 if (event.type === 'click') {
                   event.stopPropagation();
+                  closeLinkPopover(0);
                   $scope.linkModal.open(range);
+                }
+                else if (event.type === 'mouseover') {
+                  openLinkPopover(event, range);
+                  console.log(range);
+                }
+                else if (event.type === 'mouseout') {
+                  closeLinkPopover(500);
                 }
               }
             }
@@ -108,10 +216,10 @@ angular.module('Teem')
             $timeout();
           }
 
-          $scope.padCreate = function(editor) {
+          $scope.padCreate = function (editor) {
 
             $scope.linkModal = {
-              add: function(event) {
+              add: function (event) {
                 event.stopPropagation();
                 let range = editor.getSelection();
                 if (range.text) {
@@ -119,7 +227,7 @@ angular.module('Teem')
                 }
                 $scope.linkModal.open(range);
               },
-              open: function(range) {
+              open: function (range) {
                 let annotation = editor.getAnnotationInRange(range, 'link');
 
                 $scope.linkModal.range = range;
@@ -135,17 +243,17 @@ angular.module('Teem')
                 $scope.linkModal.link = annotation ? annotation.value : '';
                 $scope.linkModal.show = true;
 
-                let emptyInput = !range.text ? 'text': 'link';
+                let emptyInput = !range.text ? 'text' : 'link';
                 let autofocus = document.querySelector('#link-modal [ng-model="linkModal.' + emptyInput + '"]');
                 $timeout(() => autofocus && autofocus.focus());
               },
-              change: function() {
+              change: function () {
                 let range = editor.setText($scope.linkModal.range, $scope.linkModal.text);
                 editor.setAnnotationInRange(range, 'link', $scope.linkModal.link);
                 $scope.linkModal.show = false;
                 $scope.linkModal.edit = false;
               },
-              clear: function() {
+              clear: function () {
                 editor.clearAnnotationInRange($scope.linkModal.range, 'link');
                 $scope.linkModal.show = false;
                 $scope.linkModal.edit = false;
@@ -154,13 +262,13 @@ angular.module('Teem')
 
             disableAllButtons();
 
-            editor.onSelectionChanged(function(range) {
+            editor.onSelectionChanged(function (range) {
               annotations = range.annotations;
               updateAllButtons();
             });
           };
 
-          $scope.padReady = function(editor) {
+          $scope.padReady = function (editor) {
             // FIXME
             // SwellRT editor is created with .wave-editor-off
             // Should use .wave-editor-on when SwellRT editor callback is available
@@ -172,7 +280,7 @@ angular.module('Teem')
 
             $scope.pad.outline = editor.getAnnotationSet('paragraph/header');
 
-            $scope.annotate = function(btn) {
+            $scope.annotate = function (btn) {
               let [key, val] = annotationMap[btn].split('=');
               let currentVal = annotations[key];
               if (currentVal === val) {
@@ -184,12 +292,12 @@ angular.module('Teem')
               editorElement.focus();
             };
 
-            $scope.clearFormat = function() {
+            $scope.clearFormat = function () {
               editor.clearAnnotation('style');
               editorElement.focus();
             };
 
-            $scope.widget = function(type) {
+            $scope.widget = function (type) {
               if (type === 'need') {
                 needWidget.add(editor, $scope);
               }
@@ -235,9 +343,9 @@ angular.module('Teem')
 
           };
 
-          $scope.$watchCollection(function() {
+          $scope.$watchCollection(function () {
             return SessionSvc.status;
-          }, function(current) {
+          }, function (current) {
             $scope.pad.saving = !current.sync;
           });
 
@@ -248,7 +356,7 @@ angular.module('Teem')
             });
           };
 
-      }],
+        }],
       templateUrl: 'pad.html'
     };
   });
