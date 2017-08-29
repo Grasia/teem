@@ -329,29 +329,16 @@ angular.module('Teem')
         this.needs.push(need);
         this.setTimestampAccess('needs', true);
 
-          if (this.trello) {
-            console.log('hello');
-            if (this.trello.boardId) {
-              if (!this.trello.listId){
-                console.log('No list Id found for the current board');
-              }
-              trelloSvc.addNewCard(this.trello, need);
+          if (need.text === '') {
+            return need;
             }
-            else {
-              trelloSvc.createTrelloBoard(this, need).then((BoardData) => {
-                this.trello.boardId = BoardData.id;
-                trelloSvc.createNewList(this.trello)
-                  .then((listdata) => {
-                    trelloSvc.addNewCard(this.trello).then((cardData) => {
-                      console.log(cardData);
-                    })
-                      .catch(err => console.log(err))
+          if (this.trello) {
+            if (this.trello.boardId && this.trello.listId) {
+              trelloSvc.addNewCard(this.trello, need).then((cardData) => {
+                need.trelloId = cardData.id;
+                this.needs.push(need);
                   })
                   .catch(err => console.log(err));
-              })
-                .catch((err) => {
-                  console.log(err);
-                });
             }
           }
           else {
@@ -360,6 +347,17 @@ angular.module('Teem')
 
         return need;
       }
+
+        addNeedWithoutTrello(need) {
+          need._id = Math.random().toString().substring(2);
+          need.author = SessionSvc.users.current();
+          need.time = (new Date()).toJSON();
+          need.completed = 'false';
+          this.setTimestampAccess('needs', true);
+          this.needs.push(need);
+
+          return need;
+        }
 
       toggleNeedCompleted (need) {
         var newStatus;
@@ -374,12 +372,12 @@ angular.module('Teem')
 
         if (newStatus) {
           need.completionDate = (new Date()).toJSON();
-            trelloSvc.archiveCard(this.trello,need).
-              then(data => need.closed = true)
+            trelloSvc.archiveCard(this.trello, need).then(data => need.closed = true)
               .catch(err => console.log(err));
         } else {
-            trelloSvc.unarchiveCard(this.trello,need).
-              then(data => {need.closed = false;})
+            trelloSvc.unarchiveCard(this.trello, need).then(data => {
+              need.closed = false;
+            })
               .catch(err => console.log(err));
           delete need.completionDate;
         }
@@ -402,8 +400,7 @@ angular.module('Teem')
 
         this.needs.splice(i,1);
 
-          trelloSvc.archiveNeed(this.trello,need).
-            then(data => need.removed = true)
+          trelloSvc.archiveNeed(this.trello, need).then(data => need.removed = true)
             .catch(err => console.log(err));
       }
 
@@ -412,8 +409,7 @@ angular.module('Teem')
           need.comments = [];
         }
           if(this.trello){
-            trelloSvc.addNewComment(this.trello, need, comment).
-              then(data => console.log(data))
+            trelloSvc.addNewComment(this.trello, need, comment).then(data => console.log(data))
               .catch(err => console.log(err));
           }
         need.comments.push({
@@ -644,11 +640,9 @@ angular.module('Teem')
           model.trello = {};
           model.trello.token = localStorage.getItem('trelloTeemToken');
           localStorage.removeItem('trelloTeemToken');
-          trelloSvc.createTrelloBoard(model).
-            then((BoardData) => {
+          trelloSvc.createTrelloBoard(model).then((BoardData) => {
               model.trello.boardId = BoardData.id;
-              trelloSvc.createNewList(model.trello).
-                then((listData) => {
+            trelloSvc.createNewList(model.trello).then((listData) => {
                   model.trello.listId = listData.id;
                 })
                   .catch(err => console.log(err));
