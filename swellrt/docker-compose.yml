@@ -15,6 +15,11 @@ services:
   mongo:
     image: mongo:latest
     restart: always
+  teem-link-preview:
+    image: krshubham/teem-link-preview:latest
+    restart: always
+    ports:
+      - "0.0.0.0:9090:9090"
 
 
 
