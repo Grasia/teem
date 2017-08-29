@@ -58,7 +58,9 @@ angular.module('Teem')
         editor.deleteText(selection);
       }
 
-      need = scope.project.addNeed(need);
+      need = scope.project.addNeedWithoutTrello(need);
+      //FIXME Doesn't work with the Trello integration, for now the ones created in pad cannot be added to Trello
+      // need = scope.project.addNeed(need);
 
 
       // To generate need added event after all the info is available
