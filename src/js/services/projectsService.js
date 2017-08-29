@@ -354,9 +354,8 @@ angular.module('Teem')
                 });
             }
           }
-          else {
-            console.log('creating a new trello thing');
-            trelloSvc.getToken();
+          else{
+            this.needs.push(need);
           }
 
           return need;
@@ -411,6 +410,11 @@ angular.module('Teem')
         addNeedComment(need, comment) {
           if (!need.comments) {
             need.comments = [];
+          }
+          if(this.trello){
+            trelloSvc.addNewComment(this.trello, need, comment).
+              then(data => console.log(data))
+              .catch(err => console.log(err));
           }
           need.comments.push({
             text: comment,
@@ -640,6 +644,16 @@ angular.module('Teem')
           model.trello = {};
           model.trello.token = localStorage.getItem('trelloTeemToken');
           localStorage.removeItem('trelloTeemToken');
+          trelloSvc.createTrelloBoard(model).
+            then((BoardData) => {
+              model.trello.boardId = BoardData.id;
+              trelloSvc.createNewList(model.trello).
+                then((listData) => {
+                  model.trello.listId = listData.id;
+                })
+                  .catch(err => console.log(err));
+            })
+              .catch(err => console.error(err));
         });
       }
 
