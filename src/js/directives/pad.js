@@ -7,7 +7,7 @@
 * # Chat Ctrl
 * Show Pad for a given project
 */
-let timer,styleAppended = false;
+let timer;
 angular.module('Teem')
   .directive('pad', function() {
     return {
@@ -40,75 +40,11 @@ angular.module('Teem')
        var annotations = {};
 
        function openLinkPopover(event,range){
-        if(!styleAppended){
-          let pStyle = document.createElement('style');
-          pStyle.innerHTML = `
-          #popover{
-            width: 330px;
-            height: 270px;
-            margin: 0 5px;
-            border-radius: 6px;
-          }
-          div.popover-link-image{
-            width: 330px;
-            height: 190px;
-            margin: 5px auto;
-          }
-          div.popover-link-description{
-            width: 320px;
-            height: auto;
-            max-height: 40px;
-            margin: 0 auto;
-            overflow: auto;
-            word-wrap: break-all;
-          }
-          .popover-link-title{
-            word-wrap: break-all;
-            text-overflow: ellpsis;
-            overflow: hidden;
-            white-space: nowrap;
-          }
-          .popover-link-address{
-            color: #000;
-            margin-left: 5px;
-            overflow: auto;
-            word-wrap: break-all;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-          .popover-link-title{
-            margin-left: 5px;
-          }
-          #popover-container:after{
-            content: "";
-            position: absolute;
-            bottom: -25px;
-            left: 175px;
-            border-style: solid;
-            visibility: hidden;
-            width: 0;
-            z-index: 1;
-          }
-          #popover-container:before{
-            content: "";
-            position: absolute;
-            top: -11px;
-            left: -1px;
-            border-style: solid;
-            border-width: 0 10px 10px;
-            border-color: #F1F1F1 transparent;
-            display: block;
-            width: 0;
-            z-index: 0;
-          }`;
-          document.body.appendChild(pStyle);
-          styleAppended = true;
-        }
         timer = $timeout(() => {
           event.stopPropagation();
           let div =  document.createElement('div');
           let btn = event.target;
-          console.dir(btn.offsetHeight);
+              //cannot inject the spinner HTML directly here
           let inHTML = `
           <style>
           .pos-r{
@@ -126,7 +62,6 @@ angular.module('Teem')
           `;
           linkPreview.getMetaData(btn.href)
           .then((meta) => {
-            console.log(meta);
             if(!meta){
               div.style.display = 'none';
               return;
@@ -135,38 +70,39 @@ angular.module('Teem')
             urlAuthor = meta.author,
             urlTitle = meta.title,
             urlDescription = meta.description;
+                  let innerEle = document.createElement('div');
             if(urlImage && urlDescription){
-              inHTML = `<div id="popover">
-              <div class="popover-link-title">${urlTitle}</div>
-              <div class="popover-link-image">
-              <img src="${urlImage}" alt="${urlAuthor}" height="180" width="330">
-              </div>
-              <div class="popover-link-description">${urlDescription}</div>
-              <div class="popover-link-address">${btn.href}</div>
-              </div>`;
+                    innerEle.innerHTML = document.getElementById('urlImage-and-urlDescription').innerHTML;
+                    innerEle.querySelector('#popoverLinkTitle').innerHTML = urlTitle;
+                    innerEle.querySelector('#popoverLinkImage').src = urlImage;
+                    innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                    innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                    inHTML = innerEle.innerHTML;
             }
             else if(urlDescription && !urlImage){
               div.style.height = '110px';
-              inHTML = `<div id="popover">
-              <div class="popover-link-title"></div>
-              <div class="popover-link-description">${urlDescription}</div>
-              <div class="popover-link-address">${btn.href}</div>
-              </div>`;
+                    innerEle.innerHTML = document.getElementById('description-and-no-image').innerHTML;
+                    innerEle.querySelector('#popoverLinkTitle').innerHTML = urlTitle;
+                    innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                    innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                    inHTML = innerEle.innerHTML;
             }
             else{
               if(!urlTitle){
                 div.style.height = '110px';
-                inHTML = `<div id="popover" align="center">
-                <div class="popover-link-description">No Description provided ...</div>
-                <div class="popover-link-address">${btn.href}</div>
-                </div>`;  
+                      innerEle.innerHTML = document.getElementById('no-title-in-url').innerHTML;
+                      innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                      innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                      inHTML = innerEle.innerHTML;
               }
+                    else {
               div.style.height = '110px';
-              inHTML = `<div id="popover" align="center">
-              <div class="popover-link-title">${urlTitle}</div>
-              <div class="popover-link-description">No Description provided ...</div>
-              <div class="popover-link-address">${btn.href}</div>
-              </div>`;
+                      innerEle.innerHTML = document.getElementById('no-title-in-url').innerHTML;
+                      innerEle.querySelector('#popoverLinkTitle').innerHTML = urlTitle;
+                      innerEle.querySelector('#popoverLinkDescription').innerHTML = urlDescription;
+                      innerEle.querySelector('#popoverLinkUrl').innerHTML = btn.href;
+                      inHTML = innerEle.innerHTML;
+                    }
             }
             div.innerHTML = inHTML;
           })

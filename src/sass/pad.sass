@@ -183,3 +183,66 @@
     font-weight: bold
     color: $pad-empty-tip-modal-description
     margin-top: 20px
+
+$black: #000
+$seashell: #f1f1f1
+
+#popover
+  width: 330px
+  height: 270px
+  margin: 0 5px
+  border-radius: 6px
+
+div
+  &.popover-link-image
+    width: 330px
+    height: 190px
+    margin: 5px auto
+
+  &.popover-link-description
+    width: 320px
+    height: auto
+    max-height: 50px
+    margin: 0 auto
+    overflow: hidden
+    word-wrap: break-word
+
+
+.popover-link-title
+  word-wrap: break-word
+  text-overflow: ellpsis
+  overflow: hidden
+  white-space: nowrap
+  font-weight: 600
+  margin-left: 5px
+
+.popover-link-address
+  color: $black
+  margin-left: 5px
+  overflow: hidden
+  word-wrap: break-word
+  text-overflow: ellipsis
+  white-space: nowrap
+
+#popover-container
+  &:after
+    content: ""
+    position: absolute
+    bottom: -25px
+    left: 175px
+    border-style: solid
+    visibility: hidden
+    width: 0
+    z-index: 1
+
+  &:before
+    content: ""
+    position: absolute
+    top: -11px
+    left: -1px
+    border-style: solid
+    border-width: 0 10px 10px
+    border-color: $seashell transparent
+    display: block
+    width: 0
+    z-index: 0

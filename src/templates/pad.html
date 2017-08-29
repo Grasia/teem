@@ -66,3 +66,41 @@
   </div>
 
 </div>
+
+<div style="display: none;">
+  <!--If urlImage as well as urlDescription are there then we can have this as our template-->
+  <div id="urlImage-and-urlDescription">
+    <div id="popover">
+      <div class="popover-link-title" id="popoverLinkTitle"></div>
+      <div class="popover-link-image">
+        <img src="" alt="" height="180" width="330" id="popoverLinkImage">
+      </div>
+      <div class="popover-link-description" id="popoverLinkDescription"></div>
+      <div class="popover-link-address" id="popoverLinkUrl"></div>
+    </div>
+  </div>
+
+  <!--If only description is there-->
+  <div id="description-and-no-image">
+    <div id="popover">
+      <div class="popover-link-title"></div>
+      <div class="popover-link-description"></div>
+      <div class="popover-link-address"></div>
+    </div>
+  </div>
+  <!--If title of the URL is not there-->
+  <div id="no-title-in-url">
+    <div id="popover" align="center">
+      <div class="popover-link-description">A description of this content is not available accross the page!</div>
+      <div class="popover-link-address">${btn.href}</div>
+    </div>
+  </div>
+  <!--If not adequate meta data is there-->
+  <div id="not-adequate-metadata">
+    <div id="popover" align="center">
+      <div class="popover-link-title"></div>
+      <div class="popover-link-description">A description of this content is not available accross the page!</div>
+      <div class="popover-link-address"></div>
+    </div>
+  </div>
+</div>
