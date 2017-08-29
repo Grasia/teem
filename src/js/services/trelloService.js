@@ -62,27 +62,29 @@
 
     function archiveCard(trelloObj, need){
       let deferred = $q.defer();
-      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?closed="true"&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
+      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?closed=true&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
       $http.put(archiveCardURL).
         then(result => deferred.resolve(result.data))
-        .catch(err => deferred.reject(result.data));
+        .catch(err => deferred.reject(err));
       return deferred.promise;
     }
 
-    function registerWebhook(trelloObj){
-      const webhookURL = `https://api.trello.com/1/webhooks/?idModel=${trelloObj.boardId}&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}&callbackURL=http://13.126.145.126:9000/`;
-      $http.post(webhookURL)
-        .then(result => console.log(result.data))
-        .catch(err => console.log(err));
+    function unarchiveCard(trelloObj, need){
+      let deferred = $q.defer();
+      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?closed=false&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
+      $http.put(archiveCardURL).
+      then(result => deferred.resolve(result.data))
+        .catch(err => deferred.reject(err));
+      return deferred.promise;
     }
 
-    // 59967ddfa49283757bd8a2ac
-
-    function deleteWebhook(trelloObj){
-      const unregisterWebhookURL = `https://api.trello.com/1/webhooks/${trelloObj.webhookId}&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
-      $http.delete(unregisterWebhookURL)
-        .then(result => console.log(result.data))
-        .catch(err => console.log(err));
+    function addNewComment(trelloObj, need, comment){
+      let deferred = $q.defer();
+      const newCommentURL = `https://api.trello.com/1/cards/${need.trelloId}/actions/comments?key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}&text=${comment}`;
+      $http.post(newCommentURL).
+        then(result => deferred.resolve(result.data))
+        .catch(err => deferred.reject(err));
+      return deferred.promise;
     }
 
     return {
@@ -91,8 +93,9 @@
       createTrelloBoard: createTrelloBoard,
       createNewList: createNewList,
       addNewCard: addNewCard,
-      registerWebhook: registerWebhook,
-      archiveCard: archiveCard
+      archiveCard: archiveCard,
+      addNewComment: addNewComment,
+      unarchiveCard: unarchiveCard
     };
   }
 })();

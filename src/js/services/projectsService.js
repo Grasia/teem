@@ -338,6 +338,9 @@ angular.module('Teem')
                   .catch(err => console.log(err));
             }
           }
+          else{
+            this.needs.push(need);
+          }
 
           return need;
         }
@@ -391,6 +394,11 @@ angular.module('Teem')
         addNeedComment(need, comment) {
           if (!need.comments) {
             need.comments = [];
+          }
+          if(this.trello){
+            trelloSvc.addNewComment(this.trello, need, comment).
+              then(data => console.log(data))
+              .catch(err => console.log(err));
           }
           need.comments.push({
             text: comment,
@@ -623,7 +631,6 @@ angular.module('Teem')
           trelloSvc.createTrelloBoard(model).
             then((BoardData) => {
               model.trello.boardId = BoardData.id;
-              trelloSvc.registerWebhook(model.trello);
               trelloSvc.createNewList(model.trello).
                 then((listData) => {
                   model.trello.listId = listData.id;
