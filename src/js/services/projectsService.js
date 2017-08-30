@@ -642,8 +642,13 @@ angular.module('Teem')
           localStorage.removeItem('trelloTeemToken');
           trelloSvc.createTrelloBoard(model).then((BoardData) => {
               model.trello.boardId = BoardData.id;
-            trelloSvc.createNewList(model.trello).then((listData) => {
+            trelloSvc.createNewList(model.trello, 'Teem').then((listData) => {
                   model.trello.listId = listData.id;
+              trelloSvc.createNewList(model.trello, 'Done').
+                then((doneListData) => {
+                  model.trello.doneListId = doneListData.id;
+                })
+                  .catch(err => console.log(err));
                 })
                   .catch(err => console.log(err));
             })
