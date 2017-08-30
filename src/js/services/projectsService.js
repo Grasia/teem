@@ -535,17 +535,17 @@ angular.module('Teem')
         var projsPromise = $q(function (resolve, reject) {
           swellRT.query(query, function (result) {
 
-              if (result.length === 0) {
-                nextPage = undefined;
-              }
+            if (result.length === 0) {
+              nextPage = undefined;
+            }
 
-              angular.forEach(result.result, function (val) {
+            angular.forEach(result.result, function (val) {
                 var v = new ProjectReadOnly(val);
                 projects.push(v);
               });
 
-              resolve(projects);
-            },
+            resolve(projects);
+          },
             function (error) {
               console.log(error);
 
@@ -642,8 +642,13 @@ angular.module('Teem')
           localStorage.removeItem('trelloTeemToken');
           trelloSvc.createTrelloBoard(model).then((BoardData) => {
             model.trello.boardId = BoardData.id;
-            trelloSvc.createNewList(model.trello).then((listData) => {
+            trelloSvc.createNewList(model.trello, 'Teem').then((listData) => {
               model.trello.listId = listData.id;
+              trelloSvc.createNewList(model.trello, 'Done').
+                then((doneListData) => {
+                  model.trello.doneListId = doneListData.id;
+                })
+                  .catch(err => console.log(err));
             })
               .catch(err => console.log(err));
           })

@@ -52,17 +52,19 @@
       return deferred.promise;
     }
 
-    function addNewcard(trelloObj,need){
+    function addNewCard(trelloObj, need) {
       let deferred = $q.defer();
-      deferred.resolve(need);
+      const newCardURL = `https://api.trello.com/1/cards?idList=${trelloObj.listId}&name=${need.text}&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
+      $http.post(newCardURL).
+      then(result => deferred.resolve(result.data))
+        .catch(err => deferred.resolve(err));
       return deferred.promise;
-      // const newCardURL = `https://api.trello.com/1/cards?idList=${trelloObj.listId}&`
     }
 
     function archiveCard(trelloObj, need){
       let deferred = $q.defer();
-      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?closed=true&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
-      $http.put(archiveCardURL).
+      const removeCardURL = `https://api.trello.com/1/cards/${need.trelloId}/idList?&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}&value=${trelloObj.doneListId}`;
+      $http.delete(removeCardURL).
         then(result => deferred.resolve(result.data))
         .catch(err => deferred.reject(err));
       return deferred.promise;
@@ -70,7 +72,7 @@
 
     function unarchiveCard(trelloObj, need){
       let deferred = $q.defer();
-      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?closed=false&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}`;
+      const archiveCardURL = `https://api.trello.com/1/cards/${need.trelloId}?idList?&key=09e4aced60041e389dbb27b9accadd65&token=${trelloObj.token}&value=${trelloObj.listId}`;
       $http.put(archiveCardURL).
       then(result => deferred.resolve(result.data))
         .catch(err => deferred.reject(err));
