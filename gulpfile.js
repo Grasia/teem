@@ -220,7 +220,16 @@ var gulp           = require('gulp'),
   spawn          = require('child_process').spawn,
   gutil          = require('gulp-util');
 
-
+/**
+ * Logs the error occured in the pipe without killing the gulp process
+ * emits an end event to the corresponding stream
+ * @function endErrorProcess
+ * @param {Error} err
+ */
+function endErrorProcess(err){
+  console.log(err);
+  this.emit('end');
+}
 /*================================================
 =            Report Errors to Console            =
 ================================================*/
@@ -244,14 +253,16 @@ gulp.task('clean', function () {
     path.join(config.dest, 'l10n'),
     path.join(config.dest, 'app.manifest')
   ], { read: false })
- .pipe(rimraf());
+    .pipe(rimraf())
+    .on('error', endErrorProcess);
 });
 
 gulp.task('clean:manifest', function () {
   return gulp.src([
     path.join(config.dest, 'app.manifest')
   ], { read: false })
- .pipe(rimraf());
+    .pipe(rimraf())
+    .on('error', endErrorProcess);
 });
 
 
@@ -279,7 +290,8 @@ gulp.task('connect', function() {
 
 gulp.task('livereload', function () {
   gulp.src(path.join(config.dest, '*.html'))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
+    .on('error', endErrorProcess);
 });
 
 
@@ -295,10 +307,12 @@ gulp.task('images', function () {
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
       use: [pngcrush()]
-    }));
+    }))
+      .on('error', endErrorProcess);
   }
 
-  return stream.pipe(gulp.dest(path.join(config.dest, 'images')));
+  return stream.pipe(gulp.dest(path.join(config.dest, 'images')))
+    .on('error', endErrorProcess);
 });
 
 
@@ -308,7 +322,8 @@ gulp.task('images', function () {
 
 gulp.task('fonts', function() {
   return gulp.src(config.vendor.fonts)
-    .pipe(gulp.dest(path.join(config.dest, 'fonts')));
+    .pipe(gulp.dest(path.join(config.dest, 'fonts')))
+    .on('error', endErrorProcess);
 });
 
 /*==================================
@@ -317,7 +332,8 @@ gulp.task('fonts', function() {
 
 gulp.task('l10n', function() {
   return gulp.src('src/l10n/**/*')
-    .pipe(gulp.dest(path.join(config.dest, 'l10n')));
+    .pipe(gulp.dest(path.join(config.dest, 'l10n')))
+    .on('error', endErrorProcess);
 });
 
 
@@ -358,7 +374,9 @@ function buildHtml (env) {
 
   return gulp.src(['src/html/**/*.html'])
     .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
-    .pipe(gulp.dest(config.dest));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(config.dest))
+    .on('error', endErrorProcess);
 }
 
 gulp.task('html', function() {
@@ -377,10 +395,12 @@ gulp.task('html:production', function() {
 gulp.task('sass', function () {
   gulp.src('./src/sass/app.sass')
     .pipe(sourcemaps.init())
+    .on('error', endErrorProcess)
     .pipe(sass({
       includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components'), path.resolve(__dirname, 'bower_components/bootstrap-sass/assets/stylesheets') ]
     }).on('error', sass.logError))
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions', 'Android >= 4'] }) ]))
+    .on('error', endErrorProcess)
     /* Currently not working with sourcemaps
     .pipe(mobilizer('app.css', {
       'app.css': {
@@ -394,11 +414,15 @@ gulp.task('sass', function () {
     }))
     */
     .pipe(gulpif(config.cssmin, cssmin()))
+    .on('error', endErrorProcess)
     .pipe(rename({suffix: '.min'}))
+    .on('error', endErrorProcess)
     .pipe(sourcemaps.write('.', {
       sourceMappingURLPrefix: '/css/'
     }))
-    .pipe(gulp.dest(path.join(config.dest, 'css')));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(path.join(config.dest, 'css')))
+    .on('error', endErrorProcess);
 });
 
 /*====================================================================
@@ -408,7 +432,9 @@ gulp.task('sass', function () {
 gulp.task('jshint', function() {
   return gulp.src('./src/js/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .on('error', endErrorProcess)
+    .pipe(jshint.reporter('jshint-stylish'))
+    .on('error', endErrorProcess);
 });
 
 
@@ -422,44 +448,61 @@ gulp.task('js:app', function() {
   return streamqueue({ objectMode: true },
     // Vendor: angular, mobile-angular-ui, etc.
     gulp.src(config.vendor.js)
-    .pipe(sourcemaps.init()),
+      .pipe(sourcemaps.init())
+      .on('error', endErrorProcess),
     // app.js is configured
     gulp.src('./src/js/app.js')
     .pipe(sourcemaps.init())
+      .on('error', endErrorProcess)
     .pipe(replace('value(\'config\', {}). // inject:app:config',
                   'value(\'config\', ' + JSON.stringify(config.app) + ').'))
+      .on('error', endErrorProcess)
     .pipe(babel({
       presets: ['es2015']
-    })),
+      }))
+      .on('error', endErrorProcess),
     // rest of app logic
     gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js'])
     .pipe(sourcemaps.init())
+      .on('error', endErrorProcess)
     .pipe(babel({
       presets: ['es2015'],
       plugins: ['transform-object-assign']
     }))
-    .pipe(ngFilesort()),
+      .on('error', endErrorProcess)
+      .pipe(ngFilesort())
+      .on('error', endErrorProcess),
     // app templates
     gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
     .pipe(sourcemaps.init())
+      .on('error', endErrorProcess)
     .pipe(babel({
       presets: ['es2015']
     }))
+      .on('error', endErrorProcess)
   )
   .pipe(concat('app.js'))
+    .on('error', endErrorProcess)
   .pipe(ngAnnotate())
+    .on('error', endErrorProcess)
   .pipe(gulpif(config.uglify, uglify()))
+    .on('error', endErrorProcess)
   .pipe(rename({suffix: '.min'}))
+    .on('error', endErrorProcess)
   .pipe(sourcemaps.write('.', {
     sourceMappingURLPrefix: '/js/'
   }))
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(path.join(config.dest, 'js')))
+    .on('error', endErrorProcess);
 });
 
 gulp.task('js:widgets', function() {
   return gulp.src('./src/js/widgets.js')
   .pipe(uglify())
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(path.join(config.dest, 'js')))
+    .on('error', endErrorProcess);
 });
 
 
@@ -481,7 +524,8 @@ gulp.task('cordova:sync:clean', function() {
 
   return gulp.src([dest],
            { read: false })
-   .pipe(rimraf());
+    .pipe(rimraf())
+    .on('error', endErrorProcess);
 
 
 });
@@ -493,7 +537,8 @@ gulp.task('cordova:sync:copy', function() {
 
 
   return gulp.src([ source + '{cordova.js,cordova_plugins.js,plugins/**/*}'])
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest))
+    .on('error', endErrorProcess);
 });
 
 gulp.task('cordova:sync', function(cb) {
@@ -503,7 +548,8 @@ gulp.task('cordova:sync', function(cb) {
 
 gulp.task('cordova', function() {
   return gulp.src('src/vendor/cordova/**/*')
-    .pipe(gulp.dest(path.join(config.dest, 'js/cordova')));
+    .pipe(gulp.dest(path.join(config.dest, 'js/cordova')))
+    .on('error', endErrorProcess);
 });
 
 
@@ -530,7 +576,9 @@ function buildManifest (env) {
       exclude: 'app.manifest',
       hash: true
     }))
-  .pipe(gulp.dest(config.dest));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(config.dest))
+    .on('error', endErrorProcess);
 }
 
 gulp.task('manifest', function(){
