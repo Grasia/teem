@@ -1,8 +1,8 @@
 'use strict';
 
 /*=====================================
-=        Default Configuration        =
-=====================================*/
+ =        Default Configuration        =
+ =====================================*/
 
 // Please use config.js to override these selectively:
 
@@ -183,8 +183,8 @@ module.exports.config = config;
 
 
 /*========================================
-=            Requiring stuffs            =
-========================================*/
+ =            Requiring stuffs            =
+ ========================================*/
 
 var gulp           = require('gulp'),
   gulpif         = require('gulp-if'),
@@ -220,10 +220,19 @@ var gulp           = require('gulp'),
   spawn          = require('child_process').spawn,
   gutil          = require('gulp-util');
 
-
+/**
+ * Logs the error occured in the pipe without killing the gulp process
+ * emits an end event to the corresponding stream
+ * @function endErrorProcess
+ * @param {Error} err
+ */
+function endErrorProcess(err){
+  console.log(err);
+  this.emit('end');
+}
 /*================================================
-=            Report Errors to Console            =
-================================================*/
+ =            Report Errors to Console            =
+ ================================================*/
 
 gulp.on('error', function(e) {
   throw(e);
@@ -231,8 +240,8 @@ gulp.on('error', function(e) {
 
 
 /*=========================================
-=            Clean dest folder            =
-=========================================*/
+ =            Clean dest folder            =
+ =========================================*/
 
 gulp.task('clean', function () {
   return gulp.src([
@@ -244,20 +253,22 @@ gulp.task('clean', function () {
     path.join(config.dest, 'l10n'),
     path.join(config.dest, 'app.manifest')
   ], { read: false })
- .pipe(rimraf());
+    .pipe(rimraf())
+    .on('error', endErrorProcess);
 });
 
 gulp.task('clean:manifest', function () {
   return gulp.src([
     path.join(config.dest, 'app.manifest')
   ], { read: false })
- .pipe(rimraf());
+    .pipe(rimraf())
+    .on('error', endErrorProcess);
 });
 
 
 /*==========================================
-=            Start a web server            =
-==========================================*/
+ =            Start a web server            =
+ ==========================================*/
 
 gulp.task('connect', function() {
   if (typeof config.server === 'object') {
@@ -274,18 +285,19 @@ gulp.task('connect', function() {
 });
 
 /*==============================================================
-=            Setup live reloading on source changes            =
-==============================================================*/
+ =            Setup live reloading on source changes            =
+ ==============================================================*/
 
 gulp.task('livereload', function () {
   gulp.src(path.join(config.dest, '*.html'))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
+    .on('error', endErrorProcess);
 });
 
 
 /*=====================================
-=            Minify images            =
-=====================================*/
+ =            Minify images            =
+ =====================================*/
 
 gulp.task('images', function () {
   var stream = gulp.src(config.vendor.images);
@@ -295,35 +307,39 @@ gulp.task('images', function () {
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
       use: [pngcrush()]
-    }));
+    }))
+      .on('error', endErrorProcess);
   }
 
-  return stream.pipe(gulp.dest(path.join(config.dest, 'images')));
+  return stream.pipe(gulp.dest(path.join(config.dest, 'images')))
+    .on('error', endErrorProcess);
 });
 
 
 /*==================================
-=            Copy fonts            =
-==================================*/
+ =            Copy fonts            =
+ ==================================*/
 
 gulp.task('fonts', function() {
   return gulp.src(config.vendor.fonts)
-    .pipe(gulp.dest(path.join(config.dest, 'fonts')));
+    .pipe(gulp.dest(path.join(config.dest, 'fonts')))
+    .on('error', endErrorProcess);
 });
 
 /*==================================
-=            Copy l10n            =
-==================================*/
+ =            Copy l10n            =
+ ==================================*/
 
 gulp.task('l10n', function() {
   return gulp.src('src/l10n/**/*')
-    .pipe(gulp.dest(path.join(config.dest, 'l10n')));
+    .pipe(gulp.dest(path.join(config.dest, 'l10n')))
+    .on('error', endErrorProcess);
 });
 
 
 /*=================================================
-=            Copy html files to dest              =
-=================================================*/
+ =            Copy html files to dest              =
+ =================================================*/
 function buildHtml (env) {
   var inject = [];
 
@@ -358,7 +374,9 @@ function buildHtml (env) {
 
   return gulp.src(['src/html/**/*.html'])
     .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
-    .pipe(gulp.dest(config.dest));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(config.dest))
+    .on('error', endErrorProcess);
 }
 
 gulp.task('html', function() {
@@ -371,50 +389,58 @@ gulp.task('html:production', function() {
 });
 
 /*======================================================================
-=            Compile, minify, mobilize Sass                            =
-======================================================================*/
+ =            Compile, minify, mobilize Sass                            =
+ ======================================================================*/
 
 gulp.task('sass', function () {
   gulp.src('./src/sass/app.sass')
     .pipe(sourcemaps.init())
+    .on('error', endErrorProcess)
     .pipe(sass({
       includePaths: [ path.resolve(__dirname, 'src/sass'), path.resolve(__dirname, 'bower_components'), path.resolve(__dirname, 'bower_components/bootstrap-sass/assets/stylesheets') ]
     }).on('error', sass.logError))
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions', 'Android >= 4'] }) ]))
+    .on('error', endErrorProcess)
     /* Currently not working with sourcemaps
-    .pipe(mobilizer('app.css', {
-      'app.css': {
-        hover: 'exclude',
-        screens: ['0px']
-      },
-      'hover.css': {
-        hover: 'only',
-        screens: ['0px']
-      }
-    }))
-    */
+     .pipe(mobilizer('app.css', {
+     'app.css': {
+     hover: 'exclude',
+     screens: ['0px']
+     },
+     'hover.css': {
+     hover: 'only',
+     screens: ['0px']
+     }
+     }))
+     */
     .pipe(gulpif(config.cssmin, cssmin()))
+    .on('error', endErrorProcess)
     .pipe(rename({suffix: '.min'}))
+    .on('error', endErrorProcess)
     .pipe(sourcemaps.write('.', {
       sourceMappingURLPrefix: '/css/'
     }))
-    .pipe(gulp.dest(path.join(config.dest, 'css')));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(path.join(config.dest, 'css')))
+    .on('error', endErrorProcess);
 });
 
 /*====================================================================
-=                             jshint                                 =
-====================================================================*/
+ =                             jshint                                 =
+ ====================================================================*/
 
 gulp.task('jshint', function() {
   return gulp.src('./src/js/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .on('error', endErrorProcess)
+    .pipe(jshint.reporter('jshint-stylish'))
+    .on('error', endErrorProcess);
 });
 
 
 /*====================================================================
-=            Compile and minify js generating source maps            =
-====================================================================*/
+ =            Compile and minify js generating source maps            =
+ ====================================================================*/
 // - Orders ng deps automatically
 // - Precompile templates to ng templateCache
 
@@ -422,44 +448,61 @@ gulp.task('js:app', function() {
   return streamqueue({ objectMode: true },
     // Vendor: angular, mobile-angular-ui, etc.
     gulp.src(config.vendor.js)
-    .pipe(sourcemaps.init()),
+      .pipe(sourcemaps.init())
+      .on('error', endErrorProcess),
     // app.js is configured
     gulp.src('./src/js/app.js')
-    .pipe(sourcemaps.init())
-    .pipe(replace('value(\'config\', {}). // inject:app:config',
-                  'value(\'config\', ' + JSON.stringify(config.app) + ').'))
-    .pipe(babel({
-      presets: ['es2015']
-    })),
+      .pipe(sourcemaps.init())
+      .on('error', endErrorProcess)
+      .pipe(replace('value(\'config\', {}). // inject:app:config',
+        'value(\'config\', ' + JSON.stringify(config.app) + ').'))
+      .on('error', endErrorProcess)
+      .pipe(babel({
+        presets: ['es2015']
+      }))
+      .on('error', endErrorProcess),
     // rest of app logic
     gulp.src(['./src/js/**/*.js', '!./src/js/app.js', '!./src/js/widgets.js'])
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['es2015'],
-      plugins: ['transform-object-assign']
-    }))
-    .pipe(ngFilesort()),
+      .pipe(sourcemaps.init())
+      .on('error', endErrorProcess)
+      .pipe(babel({
+        presets: ['es2015'],
+        plugins: ['transform-object-assign']
+      }))
+      .on('error', endErrorProcess)
+      .pipe(ngFilesort())
+      .on('error', endErrorProcess),
     // app templates
     gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Teem' }))
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['es2015']
-    }))
+      .pipe(sourcemaps.init())
+      .on('error', endErrorProcess)
+      .pipe(babel({
+        presets: ['es2015']
+      }))
+      .on('error', endErrorProcess)
   )
-  .pipe(concat('app.js'))
-  .pipe(ngAnnotate())
-  .pipe(gulpif(config.uglify, uglify()))
-  .pipe(rename({suffix: '.min'}))
-  .pipe(sourcemaps.write('.', {
-    sourceMappingURLPrefix: '/js/'
-  }))
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
+    .pipe(concat('app.js'))
+    .on('error', endErrorProcess)
+    .pipe(ngAnnotate())
+    .on('error', endErrorProcess)
+    .pipe(gulpif(config.uglify, uglify()))
+    .on('error', endErrorProcess)
+    .pipe(rename({suffix: '.min'}))
+    .on('error', endErrorProcess)
+    .pipe(sourcemaps.write('.', {
+      sourceMappingURLPrefix: '/js/'
+    }))
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(path.join(config.dest, 'js')))
+    .on('error', endErrorProcess);
 });
 
 gulp.task('js:widgets', function() {
   return gulp.src('./src/js/widgets.js')
-  .pipe(uglify())
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
+    .pipe(uglify())
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(path.join(config.dest, 'js')))
+    .on('error', endErrorProcess);
 });
 
 
@@ -470,8 +513,8 @@ gulp.task('js', function(callback) {
 });
 
 /*==================================
-=            Cordova files         =
-==================================*/
+ =            Cordova files         =
+ ==================================*/
 
 // Sync files from local cordova folder
 // Note that this needs having cordova platform android and related plugins
@@ -480,8 +523,9 @@ gulp.task('cordova:sync:clean', function() {
   var dest = 'src/vendor/cordova';
 
   return gulp.src([dest],
-           { read: false })
-   .pipe(rimraf());
+    { read: false })
+    .pipe(rimraf())
+    .on('error', endErrorProcess);
 
 
 });
@@ -493,7 +537,8 @@ gulp.task('cordova:sync:copy', function() {
 
 
   return gulp.src([ source + '{cordova.js,cordova_plugins.js,plugins/**/*}'])
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest))
+    .on('error', endErrorProcess);
 });
 
 gulp.task('cordova:sync', function(cb) {
@@ -503,22 +548,23 @@ gulp.task('cordova:sync', function(cb) {
 
 gulp.task('cordova', function() {
   return gulp.src('src/vendor/cordova/**/*')
-    .pipe(gulp.dest(path.join(config.dest, 'js/cordova')));
+    .pipe(gulp.dest(path.join(config.dest, 'js/cordova')))
+    .on('error', endErrorProcess);
 });
 
 
 /*===================================================================
-=                Generate HTML5 Cache Manifest files                =
-===================================================================*/
+ =                Generate HTML5 Cache Manifest files                =
+ ===================================================================*/
 
 function buildManifest (env) {
   var files = [
-    'index.html',
-    'css/app.min.css',
-    'js/app.min.js'
-  ],
+      'index.html',
+      'css/app.min.css',
+      'js/app.min.js'
+    ],
 
-  swellrtUrl = env === 'production' ? config.deploy.swellrt.remoteUrl : config.swellrt.server;
+    swellrtUrl = env === 'production' ? config.deploy.swellrt.remoteUrl : config.swellrt.server;
 
 
   return gulp.src(files.map(function(f) { return config.dest + '/' + f; }), { base: config.dest })
@@ -530,7 +576,9 @@ function buildManifest (env) {
       exclude: 'app.manifest',
       hash: true
     }))
-  .pipe(gulp.dest(config.dest));
+    .on('error', endErrorProcess)
+    .pipe(gulp.dest(config.dest))
+    .on('error', endErrorProcess);
 }
 
 gulp.task('manifest', function(){
@@ -541,8 +589,8 @@ gulp.task('manifest:production', function(){
   return buildManifest('production');
 });
 /*===================================================================
-=            Watch for source changes and rebuild/reload            =
-===================================================================*/
+ =            Watch for source changes and rebuild/reload            =
+ ===================================================================*/
 
 gulp.task('watch', function () {
   if (typeof config.server === 'object') {
@@ -559,8 +607,8 @@ gulp.task('watch', function () {
 
 
 /*===================================================
-=            Starts a Weinre Server                 =
-===================================================*/
+ =            Starts a Weinre Server                 =
+ ===================================================*/
 
 gulp.task('weinre', function() {
   if (typeof config.weinre === 'object') {
@@ -573,8 +621,8 @@ gulp.task('weinre', function() {
 
 
 /*======================================
-=            Build Sequence            =
-======================================*/
+ =            Build Sequence            =
+ ======================================*/
 
 gulp.task('build', function(done) {
   var tasks = ['html', 'fonts', 'l10n', 'images', 'sass', 'js', 'cordova'];
@@ -582,8 +630,8 @@ gulp.task('build', function(done) {
 });
 
 /*====================================
-=      Run SwellRT with Docker       =
-====================================*/
+ =      Run SwellRT with Docker       =
+ ====================================*/
 
 function dockerSwellrt (options, callback) {
 
@@ -597,10 +645,10 @@ function dockerSwellrt (options, callback) {
   process.env.SWELLRT_VERSION = config.swellrt.docker.tag;
 
   var child = spawn('docker-compose', args, {
-                      cwd: process.cwd() + '/swellrt'
-                    }),
-      stdout = '',
-      stderr = '';
+      cwd: process.cwd() + '/swellrt'
+    }),
+    stdout = '',
+    stderr = '';
 
   child.stdout.on('data', (data) => {
 
@@ -634,8 +682,8 @@ gulp.task('docker:swellrt:restart', function(done) {
 
 
 /*======================================
-=        Unit testing with Karma       =
-======================================*/
+ =        Unit testing with Karma       =
+ ======================================*/
 
 gulp.task('test:unit', function(done) {
   new karma({
@@ -653,8 +701,8 @@ gulp.task('test:unit:loop', function(done) {
 
 
 /*================================================
-=        End to end testing with protractor      =
-=================================================*/
+ =        End to end testing with protractor      =
+ =================================================*/
 
 gulp.task('test:e2e', function(done) {
   var tasks = [ 'test:e2e:protractor:install', 'test:e2e:protractor', done ];
@@ -720,8 +768,8 @@ gulp.task('test:e2e:protractor', function(done) {
 });
 
 /*====================================
-=              Test Task             =
-====================================*/
+ =              Test Task             =
+ ====================================*/
 
 gulp.task('test', function(done){
   var tasks = [];
@@ -732,17 +780,17 @@ gulp.task('test', function(done){
 });
 
 /*====================================
-=              Deploy Task           =
-====================================*/
+ =              Deploy Task           =
+ ====================================*/
 
 gulp.task('deploy:swellrt', function(done) {
   var connection = new ssh();
 
   connection.on('ready', function() {
     var cmd = 'SWELLRT_VERSION=' + config.deploy.swellrt.tag +
-          ' docker-compose -f ' + config.deploy.swellrt.config +
-          ' -p ' + config.deploy.swellrt.name +
-          ' up -d';
+      ' docker-compose -f ' + config.deploy.swellrt.config +
+      ' -p ' + config.deploy.swellrt.name +
+      ' up -d';
 
     console.log(cmd);
 
@@ -751,22 +799,22 @@ gulp.task('deploy:swellrt', function(done) {
       if (err) { throw err ; }
 
       stream.
-        on('data', function(d) {
-          console.log('ssh: ' + d);
-        }).
-        on('close', function() {
-          done();
-          connection.end();
-        }).
-        stderr.on('data', function(data) { console.log('STDERR: ' + data); });
+      on('data', function(d) {
+        console.log('ssh: ' + d);
+      }).
+      on('close', function() {
+        done();
+        connection.end();
+      }).
+      stderr.on('data', function(data) { console.log('STDERR: ' + data); });
     });
   }).connect(config.deploy.swellrt.ssh);
 });
 
 gulp.task('deploy:files', function(done) {
   ghPages.publish(path.join(__dirname, config.dest),
-                  config.deploy.files,
-                  done);
+    config.deploy.files,
+    done);
 });
 
 gulp.task('deploy', function(done) {
@@ -777,26 +825,26 @@ gulp.task('deploy', function(done) {
 
 
 /*============================================
-=         Continous Delivery Task            =
-============================================*/
+ =         Continous Delivery Task            =
+ ============================================*/
 
 gulp.task('cd', function(done) {
   seq('build', 'test', 'deploy', done);
 });
 
 /*============================================
-=               Staging task                 =
-= Always deploy and pass specs afterwards    =
-============================================*/
+ =               Staging task                 =
+ = Always deploy and pass specs afterwards    =
+ ============================================*/
 
 gulp.task('cd:pushAndRun', function(done) {
   seq('build', 'deploy', [ 'clean:manifest', 'html' ], 'test', done);
 });
 
 /*============================================
-=              Build and test                =
-= Other branches just build and test         =
-============================================*/
+ =              Build and test                =
+ = Other branches just build and test         =
+ ============================================*/
 
 gulp.task('buildAndTest', function(done) {
   seq('build', 'test', done);
@@ -804,8 +852,8 @@ gulp.task('buildAndTest', function(done) {
 
 
 /*====================================
-=            Default Task            =
-====================================*/
+ =            Default Task            =
+ ====================================*/
 
 gulp.task('default', function(done){
   var tasks = [];
