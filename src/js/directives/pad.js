@@ -113,15 +113,9 @@ angular.module('Teem')
           range.node.nextSibling.getBoundingClientRect() :
           range.node.parentElement.getBoundingClientRect();
           div.innerHTML = inHTML;
-          div.style.width = '345px';
-          div.style.height = '300px';
-          div.style.position = 'absolute';
-          div.style.border = '1px solid #F0F0F0';
+              //these styles need to be present here for positioning purposes
           div.style.top = clientRect.top + 35 + 'px';
           div.style.left = clientRect.left + 'px';
-          div.style.zIndex = 3;
-          div.style.backgroundColor = '#F2F2F2';
-          div.style.paddingTop = '5px';
           div.id = 'popover-container';
           document.body.appendChild(div);
         },700);
