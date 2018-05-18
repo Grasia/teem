@@ -11,7 +11,11 @@ elif [ $TRAVIS_BRANCH = "master" ]; then
   eval "$(ssh-agent -s)" #start the ssh agent
   ssh-add .travis/id_rsa
 
-  gulp cd
+  if [[ $TRAVIS_COMMIT_MESSAGE == *"push and run"* ]]; then
+      gulp cd:pushAndRun
+  else
+      gulp cd
+  fi
 elif [ $TRAVIS_BRANCH = "staging" ]; then
   echo "Deploying to staging and testing"
 
