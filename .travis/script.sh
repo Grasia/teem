@@ -13,7 +13,7 @@ elif [ $TRAVIS_BRANCH = "master" ]; then
 
   echo "commit message:" $TRAVIS_COMMIT_MESSAGE
 
-  case "TRAVIS_COMMIT_MESSAGE" in
+  case "$TRAVIS_COMMIT_MESSAGE" in
       *"push and run"*)
           gulp cd:pushAndRun ;;
       *)
