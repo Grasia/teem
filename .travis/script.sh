@@ -13,11 +13,13 @@ elif [ $TRAVIS_BRANCH = "master" ]; then
 
   echo "commit message:" $TRAVIS_COMMIT_MESSAGE
 
-  if [[ $TRAVIS_COMMIT_MESSAGE == *"push and run"* ]]; then
-      gulp cd:pushAndRun
-  else
-      gulp cd
-  fi
+  case "TRAVIS_COMMIT_MESSAGE" in
+      *"push and run"*)
+          gulp cd:pushAndRun ;;
+      *)
+	  gulp cd ;;
+  esac
+
 elif [ $TRAVIS_BRANCH = "staging" ]; then
   echo "Deploying to staging and testing"
 
