@@ -6,6 +6,10 @@ if [ $TRAVIS_PULL_REQUEST != "false" ]; then
   exit
 fi
 
+# to renew ssh fingerprint (TOFU approach)
+ssh-keygen -R deploy.teem.works
+ssh-keyscan -t rsa deploy.teem.works >> ~/.ssh/known_hosts
+
 if [ $TRAVIS_BRANCH = "master" ] || [ $TRAVIS_BRANCH = "staging" ]; then
   echo "Using config.js for branch $TRAVIS_BRANCH"
 
